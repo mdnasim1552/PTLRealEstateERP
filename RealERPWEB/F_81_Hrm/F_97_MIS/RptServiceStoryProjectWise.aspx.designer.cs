@@ -7,65 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB
+namespace RealERPWEB.F_81_Hrm.F_97_MIS
 {
 
 
-    public partial class login_new
+    public partial class RptServiceStoryProjectWise
     {
 
         /// <summary>
-        /// Image1 control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// listComName control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList listComName;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// ListModulename control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ListModulename;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// txtuserid control.
+        /// ddlProjectName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtuserid;
-
-        /// <summary>
-        /// txtuserpass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtuserpass;
-
-        /// <summary>
-        /// compName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl compName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
     }
 }

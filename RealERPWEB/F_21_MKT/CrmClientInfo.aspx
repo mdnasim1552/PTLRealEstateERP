@@ -695,6 +695,10 @@
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
+                    if (comcod == "3354") {
+                        //alert("test--");
+                        funDupMobile(comcod, sircode, mobile);
+                    }
 
                 });
 
@@ -2463,9 +2467,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
-
                                                         <ItemTemplate>
-
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2478,7 +2480,9 @@
                                                             <asp:Panel ID="Panegrd" runat="server">
                                                                 <div class="form-group">
                                                                     <div class="col-md-12 pading5px">
+
                                                                         <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexChanged">
+
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>

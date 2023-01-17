@@ -304,10 +304,16 @@ namespace RealEntity.C_09_PIMP
             public double isurat { get; set; }
             public double isuamt { get; set; }
             public double bgdqty { get; set; }
-
-
-
-
+            public double prevqty { get; set; }
+            public double dedqty { get; set; }
+            public string dedunit { get; set; }
+            public double dedrate { get; set; }
+            public double idedamt { get; set; }
+            public double above { get; set; }
+            public double amount { get; set; }
+            public double adedamt { get; set; }
+            public double toqty { get; set; }
+            public double curbillper { get; set; }
 
             public ConRaBill() { }
 
@@ -515,7 +521,72 @@ namespace RealEntity.C_09_PIMP
             public SubConAllBill() { }
 
         }
+        [Serializable]
+        public class EClassResourceWiseMB
+        {
+            public string rsircode { get; set; }
+            public string flrcod { get; set; }
+            public int sl { get; set; }
+            public double tweight { get; set; }
+            public EClassResourceWiseMB() { }
 
+            public EClassResourceWiseMB(string rsircode, string flrcod, double tweight, int sl)
+            {
+
+                this.rsircode = rsircode;
+                this.flrcod = flrcod;
+                this.tweight = tweight;
+                this.sl = sl;
+
+            }
+
+
+        }
+
+
+        [Serializable]
+        public class EClassResourceWiseMBSum
+        {
+            public string rsircode { get; set; }
+            public string flrcod { get; set; }
+            public double tweight { get; set; }
+            public EClassResourceWiseMBSum() { }
+
+            public EClassResourceWiseMBSum(string rsircode, string flrcod, double tweight)
+            {
+
+                this.rsircode = rsircode;
+                this.flrcod = flrcod;
+                this.tweight = tweight;
+
+            }
+
+
+        }
+        [Serializable]
+        public class EClassMRbook
+        {
+            public string rsircode { get; set; }
+            public string rsirdesc { get; set; }
+            public string rsirunit { get; set; }
+            public string flrdes { get; set; }
+            public double nos { get; set; }
+            public double lnght { get; set; }
+            public double breadth { get; set; }
+            public double height { get; set; }
+            public double uweight { get; set; }
+            public double tweight { get; set; }
+            public string remarks { get; set; }
+
+            public EClassMRbook()
+            {
+
+            }
+
+
+
+
+        }
 
     }
 

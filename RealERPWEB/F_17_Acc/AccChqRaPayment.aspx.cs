@@ -33,9 +33,11 @@ namespace RealERPWEB.F_17_Acc
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "ChequeReady" ? "Cheque Ready" : "Cheque Payment to Party";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "ChequeReady" ? "Cheque Ready" : "Cheque Payment to Party";
                 this.ViewSection();
-                this.Master.Page.Title = type == "ChequeReady" ? "Cheque Ready" : "Cheque Payment to Party";
+                //this.Master.Page.Title = type == "ChequeReady" ? "Cheque Ready" : "Cheque Payment to Party";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 CommonButton();
 
             }

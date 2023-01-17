@@ -29,8 +29,11 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "work execution - work wise";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "work execution - work wise";
 
                 this.txtCurISSDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.Load_Project_Combo();
@@ -210,16 +213,12 @@ namespace RealERPWEB.F_09_PImp
 
             Session["itemlist"] = ds1.Tables[0];
             Session["item"] = ds1.Tables[1];
-
-
             if (ds1 == null)
                 return;
-
             this.ddlcatagory.DataTextField = "sirdesc";
             this.ddlcatagory.DataValueField = "mitemcode";
             this.ddlcatagory.DataSource = ds1.Tables[2];
             this.ddlcatagory.DataBind();
-
             this.ddlcatagory_OnSelectedIndexChanged(null, null);
         }
         //private void GetFloorCode()
@@ -606,8 +605,6 @@ namespace RealERPWEB.F_09_PImp
         }
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
-
-
             this.LoopForSession();
             DataTable itemtable = (DataTable)Session["itemlist"];
             DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
@@ -617,10 +614,6 @@ namespace RealERPWEB.F_09_PImp
             foreach (string lab1 in lab)
             {
                 string flrcode = lab1.Substring(0, 3);
-
-
-
-
                 DataRow[] dr1 = tempforgrid.Select("flrcod='" + flrcode + "'  and itemcode='" + itemcode + "'");
                 if (dr1.Length == 0)
                 {

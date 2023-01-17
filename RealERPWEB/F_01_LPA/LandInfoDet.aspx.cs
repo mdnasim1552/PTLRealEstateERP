@@ -48,6 +48,10 @@ namespace RealERPWEB.F_01_LPA
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
 
@@ -838,9 +842,6 @@ namespace RealERPWEB.F_01_LPA
 
                 switch (gcod)
                 {
-
-
-
                     case "0401011": //Priority
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '51%'");

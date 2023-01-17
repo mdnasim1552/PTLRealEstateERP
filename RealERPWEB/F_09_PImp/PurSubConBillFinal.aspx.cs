@@ -37,16 +37,18 @@ namespace RealERPWEB.F_09_PImp
                 //    Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "BillEntry") ? "Bill Finalization"
-                    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Bill Finalization-First Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Bill Finalization-Second Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Bill Finalization-Third Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "BillEdit") ? "Bill Finalization-Edit"
-                    : (this.Request.QueryString["Type"].ToString() == "BillConfirmed") ? "Bill Finalization-Confirmed" : "Labour Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "BillEntry") ? "Bill Finalization"
+                //    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Bill Finalization-First Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Bill Finalization-Second Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Bill Finalization-Third Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "BillEdit") ? "Bill Finalization-Edit"
+                //    : (this.Request.QueryString["Type"].ToString() == "BillConfirmed") ? "Bill Finalization-Confirmed" : "Labour Issue Information";
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
@@ -958,6 +960,7 @@ namespace RealERPWEB.F_09_PImp
                 this.txtPenaltyAmount.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["penamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtAdvanced.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtreward.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["reward"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtadvpay.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advpay"]).ToString("#,##0.00;(#,##0.00); ");
                 this.ddlbilltype.SelectedValue = ds1.Tables[1].Rows[0]["billtcode"].ToString();
 
                 this.txtRemarks.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
@@ -1108,9 +1111,10 @@ namespace RealERPWEB.F_09_PImp
             {
                 double conrate = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("lgvSubRate")).Text.Trim());
 
-                double conqty = ASTUtility.StrPosOrNagative(((Label)this.gvSubBill.Rows[i].FindControl("lgvconqty")).Text.Trim());
+                double conqty = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvconqty")).Text.Trim());
                 double billamt = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvamt")).Text.Trim());
                 TblRowIndex = (gvSubBill.PageIndex) * gvSubBill.PageSize + i;
+
 
                 //if (Request.QueryString["status"] != null)
                 //{
@@ -1124,8 +1128,9 @@ namespace RealERPWEB.F_09_PImp
                 //else
                 //{
 
-                    dt.Rows[TblRowIndex]["billamt"] = billamt;
-                    dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
+                    dt.Rows[TblRowIndex]["conqty"] = conqty;
+                    dt.Rows[TblRowIndex]["billamt"] = conqty>0? conqty*conrate: billamt;
+                dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
                // }
 
 
@@ -1469,6 +1474,7 @@ namespace RealERPWEB.F_09_PImp
                 string Penalty = Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()).ToString();
                 string advamt = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim()).ToString();
                 string Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim()).ToString();
+                string advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim()).ToString();
                 string billtype = this.ddlbilltype.SelectedValue.ToString();
                 bool result;
 
@@ -1477,8 +1483,8 @@ namespace RealERPWEB.F_09_PImp
                 string type = Request.QueryString["Type"].ToString();
 
 
-                result = PurData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
-                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid, Approval);
+                result = PurData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
+                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid,advpay, Approval, "","","","","","","","", "");
 
                 if (type == "BillServiceEntry")
                 {
@@ -1840,7 +1846,8 @@ namespace RealERPWEB.F_09_PImp
             double deduction = Convert.ToDouble("0" + this.txtDedAmount.Text.Trim());
             double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
-            this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
+            double Advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim());
+            this.lblvalnettotal.Text = (amount + Reward  - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
             //if (((DataTable)Session["tblbill"]).Rows.Count == 0)
             //    return;
             //double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billamt)", "")) ? 0.00

@@ -15,16 +15,14 @@ namespace RealEntity.C_22_Sal
 
             public string grp { get; set; }
             public string grpdesc { get; set; }
-            public string pactcode { get; set; }
-
+            public string pactcode { get; set; }           
+            public double soldqty { get; set; }
+            public double mgtbook { get; set; }
+            public double usoldqty { get; set; }
             public string grp1 { get; set; }
             public string prodesc { get; set; }
             public string loc { get; set; }
             public double uqty { get; set; }
-            public double soldqty { get; set; }
-            public double mgtbook { get; set; }
-            public double usoldqty { get; set; }
-            public string hdate { get; set; }
 
             public SalesInventory()
             {
@@ -272,6 +270,86 @@ namespace RealEntity.C_22_Sal
             }
 
 
+        }
+        [Serializable]
+        public class PaymentStatusReconcile
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string mrno { get; set; }
+            public string chqno { get; set; }
+            public DateTime recdate { get; set; }
+            public DateTime recndate { get; set; }
+            public DateTime mrdate { get; set; }
+            public string refno { get; set; }
+            public string bankname { get; set; }
+            public double paidamt { get; set; }
+            public double loamt { get; set; }
+          
+
+
+
+            public PaymentStatusReconcile()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+        public class PaymentStatusRevenue
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+            public double uamt { get; set; }
+
+            public PaymentStatusRevenue()
+            {
+
+            }
+        }
+        [Serializable]
+        public class PrjWiseCollection
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string aptdesc { get; set; }
+           
+            public double ramt { get; set; }
+
+            public PrjWiseCollection()
+            {
+
+            }
+        }
+        [Serializable]
+        public class PrjWiseCollectiontilldate
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string musircode { get; set; }
+            public string pactdesc { get; set; }
+            public string aptdesc { get; set; }
+
+            public double ramt { get; set; }
+
+            public PrjWiseCollectiontilldate()
+            {
+
+            }
         }
 
     }

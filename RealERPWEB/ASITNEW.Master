@@ -1113,6 +1113,15 @@
             }
         };
 
+
+        function FunConfirmSplit() {
+            if (confirm('Are you sure you want Split this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        };
+
         function FunConfirm() {
             if (confirm('Are you sure you want to delete this  Item?')) {
                 return;

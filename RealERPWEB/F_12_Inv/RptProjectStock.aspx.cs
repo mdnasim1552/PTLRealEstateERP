@@ -29,11 +29,14 @@ namespace RealERPWEB.F_12_Inv
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 // Session.Remove("Unit");
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "acc" ? "MATERIALS STOCK REPORT " : "MATERIALS STOCK REPORT INVENTORY");
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "acc" ? "MATERIALS STOCK REPORT " : "MATERIALS STOCK REPORT INVENTORY");
 
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
@@ -295,15 +298,14 @@ namespace RealERPWEB.F_12_Inv
 
                 case "invWithSpec":
                     string isircod = dt1.Rows[0]["rptcod"].ToString();
-                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    for (int i = 1; i < dt1.Rows.Count; i++)
                     {
-                        if (dt1.Rows[j]["rptcod"].ToString() == isircod)
+                        if (dt1.Rows[i]["rptcod"].ToString() == isircod)
                         {
 
-                            dt1.Rows[j]["rptdesc1"] = "";
+                            dt1.Rows[i]["rptdesc1"] = "";
                         }
-
-                        isircod = dt1.Rows[j]["rptcod"].ToString();
+                        isircod = dt1.Rows[i]["rptcod"].ToString();
                     }
                     break;
 
@@ -322,7 +324,6 @@ namespace RealERPWEB.F_12_Inv
             }
 
             return dt1;
-
 
         }
         private void Data_Bind()
@@ -532,6 +533,11 @@ namespace RealERPWEB.F_12_Inv
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptProMatStock2Leisure", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            }
+            else if (comcod == "3370")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptProMatStock2CPDL", lst, null, null);
+                Rpt1.EnableExternalImages = true;
             }
             else
             {

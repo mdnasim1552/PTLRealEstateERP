@@ -59,7 +59,7 @@ namespace RealERPWEB
 
 
                     string type1 = this.Request.QueryString["Type"].ToString().Trim();
-                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023" || type1 == "10008" || type1 == "10007" || type1 == "10011")
+                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10030" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023" || type1 == "10008" || type1 == "10007" || type1 == "10011")
                     {
                         this.GetSelected();
                         this.GetCompany();
@@ -1459,7 +1459,9 @@ namespace RealERPWEB
 
                     if (comcod == "3370" || comcod == "3101")
                     {
-                        lbody = "<p style='text-align: left'>" +
+                        lbody =
+                             "<p style='text-align: center;'><strong >CONFIDENTIAL</strong> </p>"+
+                            "<p style='text-align: left'>" +
                             "<strong>Ref : CPDL/TM/PROMOTION/23-" +
                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                             "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
@@ -1511,6 +1513,7 @@ namespace RealERPWEB
                     if (comcod == "3370" || comcod == "3101")
                     {
                         lbody =
+                             "<p style='text-align: center;'><strong >CONFIDENTIAL</strong> </p>"+
                       "<p style='text-align: left'>" +
                       "<strong >" + date + "</strong>" + "</strong>" +
                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
@@ -1575,34 +1578,45 @@ namespace RealERPWEB
                 case "10011":
                     if(comcod == "3370" || comcod == "3101")
                     {
-                        lbody = "<p style='text-align: left'> " +
-                           "<strong >" + date + "</strong>" + "</strong>" +
+                        lbody =
+                            "<p style='text-align: center;'><strong >CONFIDENTIAL</strong> </p>" +
+                            "<p style='text-align: left'> " +
+                           "<span>" + date + "</strong>" + "<span/>" +
                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<strong> CPDL/TM/Acceptance/22- " + "</strong></p>"+
-                            "<p style='margin-bottom:-11px;'><strong>NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</strong></p>" +
+                            "<span>Our Ref: CPDL/TM/Acceptance/22- " + "</span>"+
+                            "<p style='margin-bottom:-11px;'>To</p>" +
+                            "<p style='margin-bottom:-11px;'>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</p>" +
 
-                             "<p style='margin-bottom:-11px;'><strong>Designation :&nbsp;" + Desig + "</strong></p>" +
-                             "<p style='margin-bottom:-11px;'><strong>ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;" + idcard + "</strong></p>" +
-                             "<p style='margin-bottom:-11px;'><strong>Department &nbsp;:&nbsp;" + depart + "</strong></p>" +
+                             "<p style='margin-bottom:-11px;'>Designation &nbsp;&nbsp;&nbsp;" + Desig + "</p>" +
+                             "<p style='margin-bottom:-11px;'>ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;" + idcard + "</p>" +
+                             "<p style='margin-bottom:-11px;'>Department &nbsp;:&nbsp;" + depart + "</p>" +
+                             "<p style='margin-bottom:-11px;'>CPDL, Chittagong.</p>" +
                              "<br>" +
                              "<p><strong>Sub &nbsp;&nbsp;: &nbsp;&nbsp; <u>Acceptance of Resignation Letter.</u></strong> </p>" +
 
-                             "<p style='margin-top:5px;'><strong>Dear Name of Personnel</strong><p>" +
-                            "<p>In respect of the above, company management has reviewed your overall performances and as " +
-                            "such President is satisfied to confirm your job with effected from xxxxxxx. You will now " +
-                        
-                              "<p style='text-align:right;margin-left:30px;'>Thanking you,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>" +
+                             "<p style='margin-top:5px;'><strong>Dear Name of Personnel,</strong><p>" +
+                            "<p>In reference to your letter dated <strong>" + date + "</strong>, Company management reviewed your" +
+                            "application and decided to release you from company service on"+ date +". Please update &" +
+                            "hand over your present responsibilities before…...</p>" +
+
+                             "<p>You are requested to hand over your responsibilities to <strong>Responsibility Handover Personnel </strong> and" +
+                            "finally get necessary clearance from all concerned departments (with form no: CF-HR-08) on as" +
+                            "per management decision.</p>" +
+                            "<p>You are further advised to contact with the Accounts & Finance department on or before….. for " +
+                            "your financial settlement if any.</p>" +
+
+
 
                              "<p></p>" +
+                             "<p style='margin-bottom:-11px;text-align:left;'>------------------------------------------</p><p>" +
+                             "<p style='margin-bottom:-11px;text-align: left;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
+                              "<p style='margin-bottom: 5px;text-align: left; margin-left:10px;'><strong> Chief Operating Officer</strong> </p><p>" +
+                             
 
-                             "<p style='margin-bottom:-11px;text-align: right;margin-right:20px;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
-                              "<p style='margin-bottom:-11px;text-align: right; margin-right:30px;'> Chief Operating Officer </p><p>" +
-
-
-                            "<p style='display:inline-block;margin-bottom:-11px;'>CC:</p>" +
-                            "<p style='margin-left:30px;margin-bottom:-11px;'>President </p>" +
-                            "<p style='margin-left:30px;margin-bottom:-11px;'>Department Head</p>" +
-                            "<p style='margin-left:30px;margin-bottom:-11px;'>Personal File.</p>";
+                            "<p style='margin-bottom:-11px;'><Strong>C.C.</strong></p>" +
+                            "<p style='margin-bottom:-11px;'>President-CPDL</p>" +
+                            "<p style='margin-bottom:-11px;'>Department Head</p>" +
+                            "<p style='margin-bottom:-11px;'>Personal File.</p>";
                     }
                     else
                     {
@@ -1740,6 +1754,7 @@ namespace RealERPWEB
                     if (this.GetCompCode() == "3354")
                     {
                         lbody =
+                             "<p style='text-align: center;'><strong >CONFIDENTIAL</strong> </p>"+
                            "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
                            "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/2022/027</strong></p>" +
                            "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
@@ -2115,7 +2130,151 @@ namespace RealERPWEB
                     }
 
                     break;
+                case "10030" :
+                    if (comcod == "3370" || comcod == "3101")
+                    {
+                        lbody = "<p style='text-align: center;'><strong >CLEARANCE FORM</strong> </p>" +
+                             "<p style='margin-bottom:-11px;'>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</p>" +
 
+                        "<p style='margin-bottom:-5px;'><span text-align:left;> Designation :&nbsp;" + Desig + "</span>" +
+                        "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department: &nbsp;&nbsp;" + depart + "</span></p>" +
+                        "<p style='margin-bottom:-5px;'>Responsibility Handover To :&nbsp;</p>" +
+                        "<p style='margin-bottom:-5px;'><u>Company Name: [Please</u><strong>click</strong> (√)]</p>" +
+                        "<p style='margin-top:10px;'><input type='checkbox' /> CA PROPERTY DEVELOPMENT LTD <input type='checkbox' style='margin-bottom:2px;' /> CPDL Ltd<input type='checkbox' style='margin-bottom:2px;' />PARAGONTECH LTD.<input type='checkbox' style='margin-bottom:2px;' />NEO SOUL" +
+                        "<p style='margin-bottom:-5px;'>I do hereby declare that, on acceptance of my Resignation/Termination/Dismiss/Discharge from service by the" +
+                        "management with effect from Effect Date, company has no claim on me </p>" +
+                        "<br>" +
+                        "<p style='margin-bottom:-11px;text-align:left;'>------------------------------------------</p><p>" +
+                        "<p style='margin-bottom:-11px;margin-left:50px;text-align: left;'><strong>Signature</strong>" +
+
+                        "<span style='margin-bottom:-11px;text-align: right;'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date: &nbsp;&nbsp;/ &nbsp;&nbsp;/</span></p>" +
+                         "<br>" +
+                        "<p style='text-align: center;'><strong>Departmental Clearance Remarks & Signature for final Settlement </strong> </p>" +
+                  "<table style='width:90%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:40%;border-style:solid;border: 1px solid black;'>Department/Section </th><th style='width:40%;border-style:solid;border: 1px solid black;'>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Outstanding</th><th style='border-style:solid;border: 1px solid black;'>NotOutstanding</th><th style='border-style:solid;border: 1px solid black;'>Signature</th></tr>" +
+
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>RESPECTIVE DEPARTMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>HTALENT MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'>ID Card:<br>Loan issue :<br> Others:</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>LOGISTIC MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'>P. Number :<br>Unadjusted M. Bill:<br>SIM Card:<br>Stationery :</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>MIS/IT</td><td style='border-style:solid;border: 1px solid black;'>Hardware:<br>Email ID:<br>What’s app Group:</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ENGINEERING/ iNNSTUDIO/BOQ /PARAGONTECH</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;color:red'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ELECTRO MECHANICAL</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ACCOUNTS & FINANCE</td><td style='border-style:solid;border: 1px solid black;'>Unadjusted Amount:</td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right';></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>SUPPLY CHAIN MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>PROPERTY SOLUTION</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>HAPPINESS TEAM</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>OTHERS</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+
+                     "</table>" +
+                 "<br>" +
+                        "<p style='margin-bottom:-11px;text-align: right;margin-right:20px;'>----------------------------------------------------</p><p>" +
+                         "<p style='margin-bottom:-11px;text-align: right; margin-right:50px;'> Chief Operating Officer </p><p>" +
+                        "<br>" +
+                         "<br>" +
+                          "<br>" +
+                        "<p style='text-align: center;'><strong ><u>PERSONNEL EXIT REPORT</u></strong> </p>" +
+                        "<br>" +
+
+
+
+                         "<p style='margin-bottom:-5px;'><span text-align:left;> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + name + "</span>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department&nbsp;:" + depart + "</span></p>" +
+                         "<p style='margin-bottom:-5px;'>Designation :&nbsp;</p>" +
+                         "<p style='margin-bottom:-5px;'><span text-align:left;>Joining Date :&nbsp;" + jdate + "</span>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Mobile: &nbsp;&nbsp;" + empMobile + "</span></p>" +
+
+                     "<br>" +
+                        "<p style='margin-bottom:-5px;'><Strong>The Personel: click (√) the type of left</p>" +
+
+                        "<br>" +
+                        "<table style='width:90%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:140px;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Types of Left</th><th style='border-style:solid;border: 1px solid black;'>Application Date</th><th style='border-style:solid;border: 1px solid black;'>Effected Date</th></tr>" +
+
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Resigned</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Termination</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Discharged</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Dismiss</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+
+                    "</table>" +
+                     "<br>" +
+
+                         "<p style='margin-bottom:-5px;'><span style='text-align:left;'><strong>Reasons for Resign &nbsp; : As mention his/her resignation letter</strong>" +
+                            "<br>" +
+                             "<br>" +
+                        "<p style='margin-bottom:-11px;text-align:Right;'>--------------------------</p><p>" +
+                        "<p style='margin-bottom:-11px;margin-left:80px;text-align:Right;'><strong>Signature</strong></p>" +
+
+                        "<br>" +
+                        "<p style='text-align: center;'><strong ><u>Fill up by Talent Management</u></strong> </p>" +
+                        
+
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>Is re-employment recommended?&nbsp;Yes  <input type='checkbox' />&nbsp; No  <input type='checkbox' /></p> " +
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>If No state reason: </p>" +
+
+
+                        "<br>" +
+                        "<p style='margin-bottom:-11px;text-align: left;margin-right:20px;'>Signed----------------------------------------------------</p>" +
+                        "<p style='margin-bottom:-11px;text-align: right;margin-right:50px;'>Date:</p>" +
+                        "<p style='margin-bottom:-11px;text-align: left;margin-right:20px;'>Name----------------------------------------------------</p>" +
+                        "<br>" +
+                        "<p style='margin-bottom:-1px;text-align: left;margin-right:20px;'>Designation-----------------------------------------------------</p>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+
+
+                       "<p style='text-align: center;'><strong ><u>EXIT INTERVIEW QUESTIONNAIRES</u></strong> </p>" +
+                      
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>01. How long have you been served in CPDL:-</p>" +
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>02. How did you enjoy your job in CPDL?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) Very satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Neutral</li><li style='list-style-type:none;'>d) Dissatisfied</li></ul>" +
+
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>03. How did you feel the working environment of CPDL?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) Very satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Neutral</li><li style='list-style-type:none;'>d) Dissatisfied</li></ul>" +
+
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>04. Are you satisfied with the appreciation or reward system provided by CPDL Management?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) High Satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Needs Improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>05. Are you satisfied with bonus and incentives given?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) High Satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Needs Improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>06. Did you feel that there is an overall employee satisfaction in CPDL?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Yes</li><li style='list-style-type:none;'>b) No</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>07. What is your opinion about the smooth relationship with CPDL Management and Members?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Very High</li><li style='list-style-type:none;'>b) High</li><li style='list-style-type:none;'>c) Medium</li><li style='list-style-type:none;'>d) Low</li></ul>" +
+
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>08. What is our opinion about the level of Personnel career development system in CPDL based on arranged " +
+                         "training program, workshop &others programs ?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Excellent</li><li style='list-style-type:none;'>b) Very good</li><li style='list-style-type:none;'>c) Average</li><li style='list-style-type:none;'>d) Needs to improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>09. Are you motivated during your services period by company’s existing rules and regulation?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Highly Motivated</li><li style='list-style-type:none;'>b) Neutral </li><li style='list-style-type:none;'>c) Needs to improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>10. What changes or policy implementation will you recommend to HRD to satisfy the Personnel? </p>" +
+                         "<p style='margin-bottom:-5px;text-align:left;'>Yes <input type='checkbox' /> No <input type='checkbox' style='margin-bottom:2px;'/> </p>" +
+                        "<br>"+
+                        "<p style='margin-bottom:-5px;text-align:left;'>If Yes: ------------------------------------------------------------------------------------------------------------" +
+                        "-------------------------------------------------------------------------------------------------------------------------------------------------------------------" +
+                        "-------------------------------------------------------------------------------------------------------------------------------------------------------------------- </p>"+
+                        "<br>" +
+                        "<p style='margin-bottom:-11px;text-align:left;'>------------------------------------------" +
+                        "<span style='margin-bottom:-11px;text-align:right;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:</span></p>" +
+                        "<p style='margin-bottom:-11px;margin-left:30px;text-align: left;'><strong>Signature of Personnel</strong></p>";
+
+                    }
+                    else
+                    {
+                        lbody = "<div class='printHeader'><p>Ref: SPL/HR/Appt/16/524</p><p>" + cdate + "</p><p><strong>" + name + "</strong></p><p><strong>C/O: Abdul Bashar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p><p><strong>Vill: Boro Hossainput, PO: Banglabazar-3822,</strong></p><p><strong>PS: Begumganj, Dist: Noakhali&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p><p>&nbsp;</p><p><strong>Subject: <u>Confirmation of Service.</u></strong></p><p>&nbsp;</p> <p></br></br></br><br></br></br></br></p><p>Dear <strong>" + name + "</strong>,</p><p>This has reference to your appointment letter.</p><p>We are pleased to inform you that, on successful completion of your period of probation, your services in Star Paradise Ltd have been confirmed effective from 3 November, 2016. </p><p>We hope that you will extend your full support and cooperation to promote company activities and growth in the days to come.</p>Yours faithfully,<p><p class='pImage'><strong><img src='data:Image/png;base64," + usersign + "' width='200px' height='80px' ></img></p>  <p class='pUname'><strong>" + uname + "</p> <p class='pUname'><strong>" + usrdesig + "</strong></p>";
+                    }
+                    break;
                 default:
                     break;
             }

@@ -16,6 +16,9 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
+using RestSharp;
+using System.Net;
+
 namespace RealERPWEB.F_23_CR
 {
     public partial class RptCustomerDues : System.Web.UI.Page
@@ -39,8 +42,11 @@ namespace RealERPWEB.F_23_CR
 
                 this.GetProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CUSTOMER DUES INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "CUSTOMER DUES INFORMATION";
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -328,8 +334,29 @@ namespace RealERPWEB.F_23_CR
             this.Data_Bind();
 
         }
+        private void SaveValue()
+        {
+
+            DataTable dt = (DataTable)Session["tblCustDues"];
+            int rowindex = 0;          
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                     bool chksms = ((CheckBox)gv1.FindControl("chksms")).Checked;                  
+                    dt.Rows[rowindex]["chksms"] = chksms;
+                }
+
+            Session["tblCustDues"] = dt;
+
+
+
+
+        }
         protected void gvcustdues_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.SaveValue();
             this.gvcustdues.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
@@ -371,12 +398,61 @@ namespace RealERPWEB.F_23_CR
                 this.chkCurrentdues.Checked = false;
             }
         }
+        public bool SendSms_SSL_Single(string comcode, string text, string mobilenum)
+        {
+
+            try
+            {
+                string comcod = comcode;
+                DataSet ds3 = CustData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+                string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+                string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                Random rnd1 = new Random(9); //seed value 10
+                string cmsid = rnd1.Next().ToString();
+                var options = new RestClientOptions(Single_Sms_Url)
+                {
+                    ThrowOnAnyError = true,
+                    Timeout = 1000  // 1 second
+                };
+                var client = new RestClient(Single_Sms_Url);
+                var request = new RestRequest();
+
+                request.Method = Method.Post;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddParameter("api_token", Single_Sms_api_token);
+                request.AddParameter("sid", Single_Sms_Sid);
+                request.AddParameter("msisdn", mobile);
+                request.AddParameter("sms", text);
+                request.AddParameter("csms_id", cmsid);
+                var response = client.Execute(request);
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + response.Content.ToString() + "');", true);
+                // response.
+
+                return response.IsSuccessful;
+            }
+            catch (Exception ex)
+            {
+               
+                return false;
+            }
+
+        }
 
         protected void lnkSendSMS_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable dt = (DataTable)Session["tblCustDues"];
+                this.SaveValue();
+                DataTable dt = ((DataTable)Session["tblCustDues"]).Copy();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("chksms=1");
+                DataTable dt1 = dv.ToTable();
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();
@@ -386,19 +462,27 @@ namespace RealERPWEB.F_23_CR
 
                 SendSmsProcess sms = new SendSmsProcess();
                 int smsFailCount = 0;
-                int totalSMS = dt.Rows.Count;
+                int totalSMS = dt1.Rows.Count;
                 if (compsms == "True")
                 {
-                    for (int j = 0; j < dt.Rows.Count; j++)
+                    for (int j = 0; j < dt1.Rows.Count; j++)
                     {
-                        if (dt.Rows[j]["custmob"].ToString().Length > 0)
+                        if (dt1.Rows[j]["custmob"].ToString().Length > 0)
                         {
-                            string supphone = dt.Rows[j]["custmob"].ToString();
-                            string SMSText = dt.Rows[j]["smstxt"].ToString();
+                            string supphone = dt1.Rows[j]["custmob"].ToString();
+                            string SMSText = dt1.Rows[j]["smstxt"].ToString();
                             bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
+                           // bool resultsms = SendSms_SSL_Single(comcod, SMSText, supphone);
                             if (resultsms == false)
                             {
                                 smsFailCount += 1;
+                                string msg = sms.ErrorObject["Msg"].ToString();
+                                string sournce = sms.ErrorObject["Src"].ToString();
+                                string Location = sms.ErrorObject["Location"].ToString();
+                                string allinfo = msg + "," + sournce + "," + Location;
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + allinfo + "');", true);
+                                return;
+
                             }
                         }
                     }
@@ -410,10 +494,52 @@ namespace RealERPWEB.F_23_CR
             }
             catch (Exception ex)
             {
-                string Messagesd = "SMS has not been sent " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+               // string Messagesd = "SMS has not been sent " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
 
+        }
+
+        protected void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblCustDues"];
+           
+            int rowindex = 0;
+            if (((CheckBox)this.gvcustdues.HeaderRow.FindControl("chkAll")).Checked)
+            {
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                    ((CheckBox)gv1.FindControl("chksms")).Checked = true;
+                    dt.Rows[rowindex]["chksms"] = true;
+                }
+
+            }
+            else
+            {
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                    ((CheckBox)gv1.FindControl("chksms")).Checked = false;
+                    dt.Rows[rowindex]["chksms"] = false;
+                }
+
+            }
+
+
+            Session["tblCustDues"] = dt;
+
+
+        }
+
+        protected void lnkTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+           
         }
     }
 }

@@ -132,7 +132,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvItmCode3" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
-                                                    Width="49px"></asp:Label>
+                                                    Width="50"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -155,7 +155,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvsDate" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdate")) %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -251,6 +251,7 @@
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
+                                       <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
                                 <div class="row">
                                     <asp:Label ID="lblchqdishonour" runat="server" BorderStyle="None"
@@ -371,7 +372,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Schdule Date">
+                                            <asp:TemplateField HeaderText="Schedule Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPmntDueDate" runat="server" ForeColor="Black" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdate"))%>'
@@ -383,7 +384,7 @@
                                                 </FooterTemplate>
                                                 <FooterStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Shcdule Amount">
+                                            <asp:TemplateField HeaderText="Schedule Amount">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDueAmnt" runat="server" ForeColor="Black" Height="16px" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
@@ -398,7 +399,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="MR No(System)">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblmrNo" runat="server" ForeColor="Black" Style="text-align: left" Height="16px"
+                                                    <asp:Label ID="lblmrNo" runat="server" ForeColor="Black" Style="text-align: right" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>

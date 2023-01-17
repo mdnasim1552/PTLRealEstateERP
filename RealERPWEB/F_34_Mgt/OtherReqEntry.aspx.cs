@@ -1270,7 +1270,7 @@ namespace RealERPWEB.F_34_Mgt
             string paytype = "Pay Type: " + this.rblpaytype.SelectedItem.Text.ToString();
             string date = "Date : " + this.txtCurReqDate.Text.ToString().Trim();
             string refno = "Ref No : " + this.txtMRFNo.Text.ToString().Trim();
-            string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
+            //string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
             string narration = "Narration:" + this.txtReqNarr.Text.Trim();
             string title = this.Request.QueryString["Type"].ToString() == "OreqEntry" ? "General Bill Requisition" : "Software Generated Bill";
 
@@ -1279,6 +1279,10 @@ namespace RealERPWEB.F_34_Mgt
                  "", "", "", "", "", "", "");
 
             DataTable dtsign = ds1.Tables[2];
+            DataTable dt1 = ds1.Tables[1];
+            
+            string reqno = "Requisition No : " + dt1.Rows[0]["reqno1"].ToString();
+           
 
             string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 
             string confirmby = dtsign.Rows[0]["reqanam"].ToString() + "\n" + dtsign.Rows[0]["reqadesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req approved
@@ -2316,7 +2320,28 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     string SMSText = comnam + ":\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername + "\n" + "First Approved: " + fausername + "\n" + "Thanks";
-                    bool resultsms = sms.SendSmms(SMSText, userid, frmname);
+
+                    bool resultsms;
+                    switch (comcod)
+                    {
+                        case "3101"://PTL
+                        case "3333"://Alliance                              
+
+                            resultsms = sms.SendSms_novocom(SMSText, userid, frmname);
+                            break;
+
+
+                        default:
+
+                            resultsms = sms.SendSmms(SMSText, userid, frmname);
+
+
+                            break;
+
+
+                    }
+
+                  //  bool resultsms = sms.SendSmms(SMSText, userid, frmname);
                 }
             }
 
@@ -3247,6 +3272,40 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        protected void lbtpath_Click(object sender, EventArgs e)
+        {
+           string auth = HttpContext.Current.Request.Url.Authority;
 
+
+          
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string portAdd = hst["portnum"].ToString().Length==0?"": (":" + hst["portnum"].ToString());
+
+            //string fullurl= HttpContext.Current.Request.Url.AbsoluteUri.ToString();
+            //string application = HttpContext.Current.Request.ApplicationPath;
+            //fullurl = fullurl.Replace("//", "/");
+            //string []array = fullurl.Split('/');
+            //string ipwithport = array[1];
+            //int indexoffapp = fullurl.IndexOf('/');
+            ////string ipwithport = array[1];
+            ////  int portStart = ipString.LastIndexOf(':');
+
+            //string add="";
+            //foreach (string item in array)
+            //{
+            //    add= add+","+ item.ToString();
+
+
+            //}
+
+            string HostAdd = HttpContext.Current.Request.Url.Host;
+          
+            string uhostname = "http://" + HostAdd+ portAdd + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";           
+            string currentptah = "RptEngInterface?Type=Report";
+            string totalpath = uhostname + currentptah;
+            string autvshanport = "author:" + auth+"host add:"+ portAdd + " End"+" ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + autvshanport + "');", true);
+
+        }
     }
 }

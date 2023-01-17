@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RealERPWEB
+namespace RealERPWEB.F_14_Pro
 {
-    public partial class Oops : System.Web.UI.Page
+    public partial class RptPurchesStatus : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

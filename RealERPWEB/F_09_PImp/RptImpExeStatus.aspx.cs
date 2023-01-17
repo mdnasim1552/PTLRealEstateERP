@@ -47,17 +47,20 @@ namespace RealERPWEB.F_09_PImp
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
 
                 string Type = Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = Type == "ImpPlan" ? "MONTHLY IMPLEMENTATION PLAN " : Type == "Execution" ? "WORK EXECUTION "
-                    : Type == "PlanVSEx" ? "MONTHLY PLAN VS EXECUTION" : Type == "BgdVSEx" ? "BUDGET VS EXECUTION"
-                    : Type == "MaPlanVsPlanVsEx" ? "MASTER PLAN, MONTHLY PLAN & EXECUTION"
-                    : Type == "BgdVSEx02" ? "BUDGET VS EXECUTION(GRAPH)"
+                //((Label)this.Master.FindControl("lblTitle")).Text = Type == "ImpPlan" ? "MONTHLY IMPLEMENTATION PLAN " : Type == "Execution" ? "WORK EXECUTION "
+                //    : Type == "PlanVSEx" ? "MONTHLY PLAN VS EXECUTION" : Type == "BgdVSEx" ? "BUDGET VS EXECUTION"
+                //    : Type == "MaPlanVsPlanVsEx" ? "MASTER PLAN, MONTHLY PLAN & EXECUTION"
+                //    : Type == "BgdVSEx02" ? "BUDGET VS EXECUTION(GRAPH)"
 
-                    : Type == "DayWiseExecution" ? "DAY WISE EXECUTION"
-                    : Type == "ImpPlan02" ? "System Generated Work Plan Vs. Real Plan" : "MATERIALS EVALUTION";
+                //    : Type == "DayWiseExecution" ? "DAY WISE EXECUTION"
+                //    : Type == "ImpPlan02" ? "System Generated Work Plan Vs. Real Plan" : "MATERIALS EVALUTION";
 
                 if (Type == "BgdVSEx" || Type == "MatEva")
                 {
@@ -108,8 +111,6 @@ namespace RealERPWEB.F_09_PImp
             {
                 case "ImpPlan":
                 case "Execution":
-
-
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
                 case "PlanVSEx":

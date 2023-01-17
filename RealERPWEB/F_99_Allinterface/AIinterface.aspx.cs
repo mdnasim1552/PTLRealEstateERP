@@ -50,7 +50,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ////this.getAllData();
                 this.GetAIInterface();
-                this.GetBatchAssingList();
+             
+                //this.GetBatchAssingList();
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
                 this.GetEmployeeName();
@@ -103,6 +104,20 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
+        private void GetSearchBatch()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSEARCHBATCHLIST", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            this.ddlsearchBatchlist.DataTextField = "batchid";
+            this.ddlsearchBatchlist.DataValueField = "prjid";
+            this.ddlsearchBatchlist.DataSource = ds.Tables[0];
+            this.ddlsearchBatchlist.DataBind();
+
+
+
+        }
 
 
 
@@ -121,11 +136,11 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.TasktState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["production"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Production</div></div></div>";
 
-            this.TasktState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qc"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC</div></div></div>"; //2nd App.
+            this.TasktState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qc"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QA1</div></div></div>"; //2nd App.
 
             this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["accpt"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Accept/Reject</div></div></div>";
 
-            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA</div></div></div>";
+            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA2</div></div></div>";
             this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
             this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Feedback</div></div></div>";
             this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
@@ -158,15 +173,59 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tbl1 = (DataTable)Session["tblprojectlist"];
           
 
-            this.gvInterface.DataSource = tbl1;
+            this.gvInterface.DataSource = tbl1;                                                                                                                                                                                                                                                                                                                                                                                                               
             this.gvInterface.DataBind();
            
 
         }
+
+        private void GetSearchAssign()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSEARCHASSIGNLIST", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            this.ddlsearchtitle.DataTextField = "tasktitle";
+            this.ddlsearchtitle.DataValueField = "prjid";
+            this.ddlsearchtitle.DataSource = ds.Tables[0];
+            this.ddlsearchtitle.DataBind();
+
+
+
+            this.ddlsearchtasktitle.DataTextField = "tasktitle";
+            this.ddlsearchtasktitle.DataValueField = "prjid";
+            this.ddlsearchtasktitle.DataSource = ds.Tables[0];
+            this.ddlsearchtasktitle.DataBind();
+
+            this.ddltastileqa1.DataTextField = "tasktitle";
+            this.ddltastileqa1.DataValueField = "prjid";
+            this.ddltastileqa1.DataSource = ds.Tables[0];
+            this.ddltastileqa1.DataBind();
+
+
+
+            this.ddllistoftask.DataTextField = "tasktitle";
+            this.ddllistoftask.DataValueField = "prjid";
+            this.ddllistoftask.DataSource = ds.Tables[0];
+            this.ddllistoftask.DataBind();
+
+            this.ddlAcceptRejecttask.DataTextField = "tasktitle";
+            this.ddlAcceptRejecttask.DataValueField = "prjid";
+            this.ddlAcceptRejecttask.DataSource = ds.Tables[0];
+            this.ddlAcceptRejecttask.DataBind();
+
+
+
+        }
         private void GetAssignTask()
         {
-            DataTable tblasing = (DataTable)Session["tblassinglist"];
-            this.gvAssingJob.DataSource = tblasing;
+            string comcod = this.GetCompCode();
+            string title = this.ddlsearchtitle.SelectedValue.ToString() =="000000000000" ? "16%" : this.ddlsearchtitle.SelectedValue.ToString() + "%";
+            DataSet ds01 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETALLASSIGNBATCH", title, "", "", "", "", "");
+            if (ds01 == null)
+                return;
+            
+            this.gvAssingJob.DataSource = ds01;
             this.gvAssingJob.DataBind();
         }
 
@@ -206,6 +265,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchBatch();
                     this.GetBatchAssingList();
                     this.TasktState.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -221,6 +281,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetAssignTask();
                     this.TasktState.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -236,6 +297,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.Getproducttion();
                     this.TasktState.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -251,6 +313,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetQcList();
                     this.TasktState.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -266,6 +329,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetProductionInfo();
                     this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -281,6 +345,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = true;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetAssignQa();
                     this.TasktState.Items[6].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -356,8 +421,8 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
 
-            string prjid = "16%";
-            DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            string batchid =this.ddlsearchBatchlist.SelectedValue.ToString()=="000000000000"? "16%" : this.ddlsearchBatchlist.SelectedValue.ToString()+"%";
+            DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", batchid, "", "", "", "", "", "");
             if (dt == null)
                 return;
 
@@ -370,7 +435,8 @@ namespace RealERPWEB.F_99_Allinterface
         private void  Getproducttion()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjid = this.ddlsearchtasktitle.SelectedValue.ToString() =="000000000000" ? "16%" : this.ddlsearchtasktitle.SelectedValue.ToString() + "%";
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
             if (ds == null)
                 return;
             DataTable dt1 = new DataTable();
@@ -385,7 +451,9 @@ namespace RealERPWEB.F_99_Allinterface
        private void GetQcList()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjidname = this.ddltastileqa1.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddltastileqa1.SelectedValue.ToString() + "%";
+
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjidname, "", "", "", "", "", "");
             if (ds == null)
                 return;
             DataTable dt1 = new DataTable();
@@ -402,7 +470,9 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAssignQa()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjid = this.ddllistoftask.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddllistoftask.SelectedValue.ToString() + "%";
+
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
             if (ds == null)
                 return;
             Session["tblproductioninfo"] = ds.Tables[0];
@@ -421,7 +491,9 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 string comcod = this.GetCompCode();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+                string prjid = this.ddlAcceptRejecttask.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlAcceptRejecttask.SelectedValue.ToString() + "%";
+
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
                 if (ds == null)
                     return;
                 Session["tblproductioninfo"] = ds.Tables[0];
@@ -871,8 +943,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
@@ -1557,10 +1630,16 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
-               
+
+                
+
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
+
+
+
+
                 if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
                 {
 
@@ -1573,14 +1652,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty  )
+                else if (roletype == "95002" && doneannotor < assignqty && pedingqc < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty )
+                else if (roletype == "95003" && doneqc < assignqty && pedingqar < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -1770,6 +1849,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
                 if (ds1 == null)
                     return;
+                ViewState["Donetask"] = ds1.Tables[0];
                 DataTable dt = ds1.Tables[0];
                 double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
                 double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
@@ -2284,6 +2364,74 @@ namespace RealERPWEB.F_99_Allinterface
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             this.prjSearch_Click(null,null);
+        }
+
+        protected void ddlBatchPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_BatchList.PageSize = Convert.ToInt32(this.ddlBatchPage.SelectedValue.ToString());
+            this.GetBatchAssingList();
+
+        }
+
+        protected void ddlassignpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gvAssingJob.PageSize = Convert.ToInt32(this.ddlassignpagesize.SelectedValue.ToString());
+            this.GetAssignTask();
+        }
+
+        protected void ddlProduction_page_Size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_Production.PageSize = Convert.ToInt32(this.ddlProduction_page_Size.SelectedValue.ToString());
+            this.Getproducttion();
+        }
+
+        protected void btnbatchSearch_Click(object sender, EventArgs e)
+        {
+            this.GetBatchAssingList();
+        }
+
+        protected void btnsearchtitle_Click(object sender, EventArgs e)
+        {
+            this.GetAssignTask();
+        }
+
+        protected void btntasktitle_Click(object sender, EventArgs e)
+        {
+            this.Getproducttion();
+        }
+
+        protected void dllQA1search_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_QCQA.PageSize = Convert.ToInt32(this.dllQA1search.SelectedValue.ToString());
+            this.GetQcList();
+
+        }
+
+        protected void btnqa1search_Click(object sender, EventArgs e)
+        {
+            this.GetQcList();
+        }
+
+        protected void ddlpagingQC1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_AssignQA.PageSize = Convert.ToInt32(this.ddlpagingQC1.SelectedValue.ToString());
+            this.GetAssignQa();
+        }
+
+        protected void btnsearhqc1_Click(object sender, EventArgs e)
+        {
+            this.GetAssignQa();
+        }
+
+        protected void ddlAcceptReject_pagging_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_AcceptReject.PageSize = Convert.ToInt32(this.ddlAcceptReject_pagging.SelectedValue.ToString());
+            this.GetProductionInfo();
+        }
+
+        protected void btnAcceptRejectsearch_Click(object sender, EventArgs e)
+        {
+            this.GetProductionInfo();
         }
     }
 }

@@ -33,7 +33,10 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblprintstk")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "AccIsu") ? "Post Dated Cheque (Issued)" : "Post Dated Cheque (Received)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "AccIsu") ? "Post Dated Cheque (Issued)" : "Post Dated Cheque (Received)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.Master.Page.Title = (this.Request.QueryString["Type"] == "AccIsu") ? "Post Dated Cheque (Issued)" : "Post Dated Cheque (Received)";
                 this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01" + this.txtfrmdate.Text.Trim().Substring(2);

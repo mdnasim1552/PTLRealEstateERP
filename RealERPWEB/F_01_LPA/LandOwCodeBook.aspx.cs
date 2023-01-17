@@ -25,14 +25,18 @@ namespace RealERPWEB.F_01_LPA
 
         ProcessAccess da = new ProcessAccess();
         // static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
             ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Project Information Code";
+            //((Label)this.Master.FindControl("lblTitle")).Text = "Project Information Code";
 
             if (this.ddlOthersBook.Items.Count == 0)
                 this.Load_CodeBooList();
@@ -116,7 +120,7 @@ namespace RealERPWEB.F_01_LPA
             int rowindex = (this.grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
             Panel pnl02 = (Panel)this.grvacc.Rows[e.NewEditIndex].FindControl("Paneldata");
             string code = ((DataTable)Session["storedata"]).Rows[rowindex]["code"].ToString();
-            string gcode = ((TextBox)grvacc.Rows[e.NewEditIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+            string gcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
 
             string gcode2 = ASTUtility.Right(((TextBox)grvacc.Rows[e.NewEditIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", ""), 3);
 
@@ -240,13 +244,13 @@ namespace RealERPWEB.F_01_LPA
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
 
-                this.grvacc.Columns[2].HeaderText = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54") ? "Country/District"
+                this.grvacc.Columns[3].HeaderText = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54") ? "Country/District"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "55") ? "District/Zone"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56") ? "Zone/Police Station"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57") ? "Police Station/Area"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58") ? "Area/Block" : "";
 
-                this.grvacc.Columns[2].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54") ? true
+                this.grvacc.Columns[3].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "55") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57") ? true
@@ -378,6 +382,12 @@ namespace RealERPWEB.F_01_LPA
 
 
         }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
 
         protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -414,9 +424,77 @@ namespace RealERPWEB.F_01_LPA
             this.grvacc_DataBind();
         }
 
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string prgcod = ((DataTable)Session["storedata"]).Rows[index]["prgcod"].ToString();
+            //this.lbgrcod.Text = gcod;
+            this.prgcodechk.Text = prgcod;
+            this.txtprgcode.Text = prgcod.Substring(0, 2) + "-" +prgcod.Substring(2, 2) + "-" + ASTUtility.Right(prgcod, 3);
+
+            this.Chboxchild.Checked = (ASTUtility.Right(prgcod, 3) == "000" && ASTUtility.Right(prgcod, 5) != "00000") || (ASTUtility.Right(prgcod, 3) == "000");
+            this.chkbod.Visible =  (ASTUtility.Right(prgcod, 3) == "000" && ASTUtility.Right(prgcod, 5) != "00000") || (ASTUtility.Right(prgcod, 3) == "000");
+            this.lblchild.Visible = (ASTUtility.Right(prgcod, 3) == "000" && ASTUtility.Right(prgcod, 5) != "00000") || (ASTUtility.Right(prgcod, 3) == "000");
 
 
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string isprgcod = prgcodechk.Text;
 
 
+            string tgrcode = this.txtprgcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtDesc.Text.Trim();
+            string gtype = this.txttype.Text.Trim();
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string mnumber = (isprgcod == tgrcode) ? "" : "manual";
+
+            string prgcod = this.Chboxchild.Checked ? ((ASTUtility.Right(isprgcod, 5) == "00000") ? (ASTUtility.Left(isprgcod, 2) + "01" + ASTUtility.Right(isprgcod, 3)) : ASTUtility.Left(isprgcod, 4) + "001")
+
+                    : ((isprgcod != tgrcode) ? tgrcode : isprgcod);
+
+            bool isResultValid = false;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTLANDOWNERPRGCODE", prgcod,
+                          Desc, Gtype, mnumber, "", "", "", "", "");
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
+            ShowInformation();
+            grvacc_DataBind();
+        }
     }
 }

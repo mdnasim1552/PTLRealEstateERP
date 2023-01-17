@@ -29,8 +29,11 @@ namespace RealERPWEB.F_12_Inv
                     if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                         Response.Redirect("../AcceessError.aspx");
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS ISSUE STATUS";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS ISSUE STATUS";
 
                 }
                 // Session.Remove("Unit");
@@ -39,7 +42,38 @@ namespace RealERPWEB.F_12_Inv
                 this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy");
                 this.GetProjectName();
+                this.GridViewHeaderName();
+                this.GetMaterialCode();
             }
+        }
+
+        public string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+        private void GridViewHeaderName()
+        {
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3370"://CPDL
+                case "3101"://PTL
+                    this.gvMatIssueStatus.Columns[3].HeaderText = "SIS No";
+                    this.gvMatIssueStatus.Columns[4].HeaderText = "SIR No";
+                    break;
+
+                default:
+                    break;
+            
+            
+            
+            }
+            
+        
+        
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -49,7 +83,7 @@ namespace RealERPWEB.F_12_Inv
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
+       
         protected void GetProjectName()
         {
 
@@ -64,7 +98,19 @@ namespace RealERPWEB.F_12_Inv
             this.ddlProName.DataSource = ds1.Tables[0];
             this.ddlProName.DataBind();
         }
+        private void GetMaterialCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
+
+            DataSet ds3 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETRESOURCE", "%%", "", "", "", "", "", "", "", "");
+            this.ddlmatlist.DataTextField = "sirdesc";
+            this.ddlmatlist.DataValueField = "sircode";
+            this.ddlmatlist.DataSource = ds3.Tables[0];
+            this.ddlmatlist.DataBind();
+          
+        }
         protected void ibtnFindProject_Click(object sender, EventArgs e)
         {
             this.GetProjectName();
@@ -85,7 +131,8 @@ namespace RealERPWEB.F_12_Inv
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
             string refno = "%" + this.txtSrcRefNo.Text.Trim() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, "", "", "", "", "");
+            string rescode = ((this.ddlmatlist.SelectedValue.ToString() == "000000000000") ? "" : this.ddlmatlist.SelectedValue.ToString()) + "%";
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, rescode, "", "", "", "");
             if (ds1 == null)
             {
                 this.gvMatIssueStatus.DataSource = null;

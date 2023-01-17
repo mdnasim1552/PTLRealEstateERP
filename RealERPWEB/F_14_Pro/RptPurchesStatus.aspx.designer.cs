@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 
-namespace RealERPWEB
+namespace RealERPWEB.F_14_Pro
 {
-    public partial class Oops
+    public partial class RptPurchesStatus
     {
     }
 }

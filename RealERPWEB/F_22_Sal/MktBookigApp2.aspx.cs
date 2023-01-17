@@ -42,8 +42,11 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "BOOKING APPLICATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "BOOKING APPLICATION";
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtbookdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -264,8 +267,8 @@ namespace RealERPWEB.F_22_Sal
             DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
-                this.gvProjectInfo.DataSource = null;
-                this.gvProjectInfo.DataBind();
+                //this.gvProjectInfo.DataSource = null;
+                //this.gvProjectInfo.DataBind();
                 return;
             }
 
@@ -301,14 +304,17 @@ namespace RealERPWEB.F_22_Sal
             this.txtInstallmentDate.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["insdaypermonth"].ToString();
             this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");
 
-            this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
-            this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
+
+            //this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
+            //this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
+
+            this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : "Yes";
+            this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : "Installment";
 
             if (dt.Rows.Count > 0 && dt.Rows[0]["customerno"].ToString().Length > 0)
             {
                 this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
             }
-
 
             ds2.Dispose();
             this.Data_BindPrj();
@@ -698,13 +704,11 @@ namespace RealERPWEB.F_22_Sal
             }
             Session["tblperinfo"] = dtp;
             this.Data_BindPer();
-
         }
 
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
             if (this.saleDeclaration.Checked)
             {
                 this.PrintSaleDeclaration();
@@ -733,7 +737,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt10 = (DataTable)Session["tblrmrk"];
             DataTable dtSalname = (DataTable)Session["salesname"];
 
-            string customerno = dt2.Rows[0]["customerno"].ToString() == "" ? dt2.Rows[0]["usircode"].ToString() : dt2.Rows[0]["custno"].ToString();
+            string customerno = dt2.Rows[0]["customerno"].ToString() == "" ? dt2.Rows[0]["usircode"].ToString() : dt2.Rows[0]["customerno"].ToString();
 
             var list = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>();
             LocalReport Rpt1 = new LocalReport();
@@ -787,8 +791,6 @@ namespace RealERPWEB.F_22_Sal
             string bankname = this.txtbankname.Text.Trim();
             //string branch = this.txtbankbranch.Text.Trim();
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
-            //string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
-            //string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string installDate = this.txtInstallmentDate.Text.Trim();
 
 
@@ -799,8 +801,8 @@ namespace RealERPWEB.F_22_Sal
             //this.txtdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
             //this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
 
-            string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
-            string modeofpay = this.cblpaytype.SelectedValue.ToString();
+            //string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
+            //string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string projectName = this.ddlProjectName.SelectedItem.Text;
             DataTable dt1 = (DataTable)Session["tblpricedetail"];
             DataTable dt2 = (DataTable)Session["tblcustinfo"];

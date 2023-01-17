@@ -47,13 +47,13 @@ namespace RealERPWEB.F_21_MKT
             string TxtVal = "%";
             string srchempid = "%";           
             string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+            string mgt = "Management";
            
 
           
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                 Pri, Status, Other, TxtVal, todate, srchempid);
+                 Pri, Status, Other, TxtVal, todate, srchempid, mgt);
 
 
             // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,

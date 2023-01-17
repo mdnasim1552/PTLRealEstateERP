@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ASITMaster.Master"   CodeBehind="RptTransactionSt.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptTransactionSt" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ASITNEW.Master"   CodeBehind="RptTransactionSt.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptTransactionSt" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
     
       <script type="text/javascript" language="javascript">
           $(document).ready(function () {
@@ -16,59 +16,173 @@
           function pageLoaded() {
 
 
-              var WorkOrdHisSup = $('#<%=this.gvSercharge.ClientID%>');
-              WorkOrdHisSup.gridviewScroll({
-                  width: 1160,
-                  height: 420,
-                  arrowsize: 30,
-                  railsize: 16,
-                  barsize: 8,
-                  varrowtopimg: "../Image/arrowvt.png",
-                  varrowbottomimg: "../Image/arrowvb.png",
-                  harrowleftimg: "../Image/arrowhl.png",
-                  harrowrightimg: "../Image/arrowhr.png",
-                  freezesize: 11
+              var gridViewScroll = new GridViewScroll({
+                  elementID: "gvDaTrns",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
               });
 
+              var gridViewScroll1 = new GridViewScroll({
+                  elementID: "grvTrnDatWise",
+                  width: 1400,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
 
+              });
+              var gridViewScroll2 = new GridViewScroll({
+                  elementID: "gvDaTrns",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
 
+              });
+             
+              var gridViewScroll3 = new GridViewScroll({
+                  elementID: "ClientStatus",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll4 = new GridViewScroll({
+                  elementID: "grvRepChq",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll5 = new GridViewScroll({
+                  elementID: "gvTransSum",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll6 = new GridViewScroll({
+                  elementID: "gvAssociation",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll7 = new GridViewScroll({
+                  elementID: "gvSercharge",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll8 = new GridViewScroll({
+                  elementID: "gvServicePayment",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll9 = new GridViewScroll({
+                  elementID: "gvServiceCollection",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              var gridViewScroll10 = new GridViewScroll({
+                  elementID: "gvModCharge",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              }); var gridViewScroll11 = new GridViewScroll({
+                  elementID: "gvRectypeWise02",
+                  width: 1300,
+                  height: 500,
+                  freezeColumn: true,
+                  freezeFooter: true,
+                  freezeColumnCssClass: "GridViewScrollItemFreeze",
+                  freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                  freezeHeaderRowCount: 1,
+                  freezeColumnCount: 8,
+
+              });
+              
        
-              $('#<%=this.grvTrnDatWise.ClientID%>').gridviewScroll({
-                  width: 1160,
-                  height: 420,
-                  arrowsize: 30,
-                  railsize: 16,
-                  barsize: 8,
-                  varrowtopimg: "../Image/arrowvt.png",
-                  varrowbottomimg: "../Image/arrowvb.png",
-                  harrowleftimg: "../Image/arrowhl.png",
-                  harrowrightimg: "../Image/arrowhr.png",
-                  freezesize: 11
-
-
-              });
+             
 
 
 
-              $('#<%=this.gvTransSum.ClientID%>').gridviewScroll({
-                  width: 1160,
-                  height: 420,
-                  arrowsize: 30,
-                  railsize: 16,
-                  barsize: 8,
-                  varrowtopimg: "../Image/arrowvt.png",
-                  varrowbottomimg: "../Image/arrowvb.png",
-                  harrowleftimg: "../Image/arrowhl.png",
-                  harrowrightimg: "../Image/arrowhr.png",
-                  freezesize: 9
-
-
-              });
 
               
       
 
-
+              gridViewScroll.enhance();
+              gridViewScroll1.enhance();
+              gridViewScroll2.enhance();
+              gridViewScroll3.enhance();
+              gridViewScroll4.enhance();
+              gridViewScroll5.enhance();
+              gridViewScroll6.enhance();
+              gridViewScroll7.enhance();
+              gridViewScroll8.enhance();
+              gridViewScroll9.enhance();
+              gridViewScroll10.enhance();
+              gridViewScroll11.enhance();
               $('.chzn-select').chosen({ search_contains: true });
 
               //$('#rpRTypeTransTb').Scrollable({
@@ -81,8 +195,59 @@
 
 
     <style>
+         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+            font-weight: normal;
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #999999;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .GridViewScrollItem TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FFFFFF;
+            color: #444444;
+        }
+
+        .GridViewScrollItemFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FAFAFA;
+            color: #444444;
+        }
+
+        .GridViewScrollFooterFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #444444;
+        }
+
+        .grvHeader {
+            height: 58px !important;
+        }
+
+        .WrpTxt {
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+                       .mt20 {
+            margin-top: 20px;
+        }
         .table td, .table th {
             padding: 0rem;
+        }
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
         }
     </style>
 
@@ -107,15 +272,13 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                               
-                                <div class="form-group">
-                                    <div class="col-md-3 asitCol3 pading5px">                                   
-                                        <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#BBBB99" CssClass="rbtnList1"
+            <div class="card mt-2">
+                <div class="card-header">
+                
+                 
+                                <div class="row">
+                                    <div class="col-md-8">                                   
+                                        <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#BBBB99" CssClass="form-control"
                                             RepeatColumns="7"
                                             RepeatDirection="Horizontal" Style="text-align: left" Width="800px"
                                             Visible="False">
@@ -135,48 +298,55 @@
 
                                 </div>
                                     
-                                <div class="form-group">
+                                <div class="row mt-2">
 
-                                    <div class="col-md-3 asitCol3 pading5px">
+                                    <div class="col-md-3 asitCol3 pading5px d-none">
 
-                                        <asp:Label ID="lblProName" runat="server" CssClass="lblTxt lblName" Text="Project Name:"></asp:Label>
+                                      
 
                                         <asp:TextBox ID="txtSrcPro" runat="server" BorderStyle="None"
                                             CssClass="inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click"
                                             TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
-                                    <div class="col-md-5 asitCol5 pading5px">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="ddlPage chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged"
-                                            Width="300px">
+                                    <div class="col-md-3">
+                                          <asp:Label ID="lblProName" runat="server" CssClass="form-label" Text="Project Name:"></asp:Label>
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged"
+                                            >
                                         </asp:DropDownList>
                                     </div>
 
-                                </div>
+                                
 
-                                <div class="form-group">
-                                    <div class="col-md-3 asitCol3 pading5px">
-                                        <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName"
+                           
+                                    <div class="col-md-2">
+                                        <asp:Label ID="Label5" runat="server" CssClass="form-label"
                                             Text="From :"></asp:Label>
 
                                         <asp:TextBox ID="txtfromdate" runat="server"
-                                            CssClass="inputtextbox"></asp:TextBox>
+                                            CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="csefdate" runat="server" Format="dd-MMM-yyyy "
                                             TargetControlID="txtfromdate"></cc1:CalendarExtender>
                                     </div>
 
-                                    <div class="col-md-5 asitCol5 pading5px">
-                                        <asp:Label ID="Label6" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
+                                    <div class="col-md-2">
+                                        <asp:Label ID="Label6" runat="server" CssClass="form-label" Text="To:"></asp:Label>
 
                                         <asp:TextBox ID="txttodate" runat="server"
-                                            CssClass="inputtextbox"></asp:TextBox>
+                                            CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="cetdate" runat="server" Format="dd-MMM-yyyy"
                                             TargetControlID="txttodate"></cc1:CalendarExtender>
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName"
-                                            Text="Page Size:"></asp:Label>
+                                        
 
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                            CssClass="ddlPage" Width="95px"
+                                      
+
+                                      
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:Label ID="lblPage" runat="server" CssClass="form-label"
+                                            Text="Page Size:"></asp:Label>
+                                          <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
+                                            CssClass="form-control form-control-sm"
                                             OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
@@ -188,22 +358,23 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
-
-                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn primaryBtn btn-primary"
+                                    </div>
+                                    <div class="col-md-1" style="margin-top:22px;">
+                                          <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-sm btn-primary"
                                             TabIndex="3"
                                             Font-Underline="False">Ok</asp:LinkButton>
                                     </div>
 
-                                    <div class="col-md-3 asitCol3 pading5px">
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                               </div>
+                         
+                    </div>
+                 <div class="card-body">
+                    <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
 
                             <asp:View ID="TransPrjWise" runat="server">
                                 <div class=" table table-responsive">
-                                    <asp:GridView ID="gvDaTrns" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="gvDaTrns" runat="server" ClientIDMode="Static" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False"
                                         ShowFooter="True"
                                         OnPageIndexChanging="gvDaTrns_PageIndexChanging">
@@ -357,7 +528,7 @@
 
                             <asp:View ID="TransDateWise" runat="server">
                                 <div class="table table-responsive">
-                                    <asp:GridView ID="grvTrnDatWise" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="grvTrnDatWise" runat="server" ClientIDMode="Static" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False"
                                         ShowFooter="True"
                                         OnPageIndexChanging="grvTrnDatWise_PageIndexChanging"
@@ -378,7 +549,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcGrpt" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -386,7 +557,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRNo" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
-                                                        Width="60px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -396,7 +567,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRDat" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrdate1")) %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -477,7 +648,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvCuName" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
-                                                        Width="120px"></asp:Label>
+                                                        Width="290px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -513,7 +684,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvChDat" runat="server" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chqdate")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -586,7 +757,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEntrydate" runat="server" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydat")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -615,7 +786,7 @@
 
                             <asp:View ID="ClientStatus" runat="server">
                                 <div class="table table-responsive">
-                                    <asp:GridView ID="grvClientStat" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="grvClientStat" runat="server" ClientIDMode="Static" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False"
                                         ShowFooter="True"
                                         OnPageIndexChanging="grvClientStat_PageIndexChanging" Width="906px">
@@ -775,16 +946,16 @@
                             <asp:View ID="RepChqNo" runat="server">
 
 
-                                <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Font-Bold="True"
+                                <asp:Label ID="Label7" runat="server" CssClass="form-label" Font-Bold="True"
                                     Text="Mrr No :"></asp:Label>
 
-                                <asp:TextBox ID="txtSrcMrrNo" runat="server" BorderStyle="None"
-                                    CssClass="inputtextbox"></asp:TextBox>
+                                <asp:TextBox ID="txtSrcMrrNo" runat="server"
+                                    CssClass="form-control form-control-sm"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnFindRepNo" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindRepNo_Click"
-                                    TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                    TabIndex="2"><span class="fa"> </span></asp:LinkButton>
 
                                 <div class="table table-responsive">
-                                    <asp:GridView ID="grvRepChq" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="grvRepChq" runat="server" AllowPaging="True" ClientIDMode="Static" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False"
                                         ShowFooter="True"
                                         OnPageIndexChanging="grvRepChq_PageIndexChanging">
@@ -924,7 +1095,7 @@
 
                             <asp:View ID="ProSummary" runat="server">
                                 <div class="table table-responsive ">
-                                  <asp:GridView ID="gvTransSum" runat="server" AutoGenerateColumns="False"
+                                  <asp:GridView ID="gvTransSum" runat="server" ClientIDMode="Static" AutoGenerateColumns="False"
                                         ShowFooter="True" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         OnPageIndexChanging="gvTransSum_PageIndexChanging">
                                         <RowStyle />
@@ -1684,7 +1855,7 @@
                             <asp:View ID="Associaltion" runat="server">
                                 <div class="table table-responsive ">
                                     <asp:GridView ID="gvAssociation" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvAssociation_PageIndexChanging">
+                                        ShowFooter="True" ClientIDMode="Static" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvAssociation_PageIndexChanging">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -1825,7 +1996,7 @@
                             </asp:View>
                              <asp:View ID="ViewSerCharge" runat="server">
                                   <asp:GridView ID="gvSercharge" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="616px" OnRowDataBound="gvSercharge_RowDataBound" OnPageIndexChanging="gvSercharge_PageIndexChanging">
+                                ShowFooter="True" ClientIDMode="Static" Width="616px" OnRowDataBound="gvSercharge_RowDataBound" OnPageIndexChanging="gvSercharge_PageIndexChanging">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -1957,7 +2128,7 @@
                          
                                 <asp:View ID="ViewServicePayment" runat="server">
                                 <div class="table-responsive">
-                                <asp:GridView ID="gvServicePayment" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvServicePayment" ClientIDMode="Static" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True" Width="616px" OnPageIndexChanging="gvServicePayment_PageIndexChanging" >
                                 <RowStyle />
                                 <Columns>
@@ -2265,7 +2436,7 @@
                             <asp:View ID="ViewServiceCollection" runat="server">
                                 <div class="table-responsive">
                                 <asp:GridView ID="gvServiceCollection" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="616px" OnPageIndexChanging="gvServiceCollection_PageIndexChanging" >
+                                ShowFooter="True" ClientIDMode="Static" Width="616px" OnPageIndexChanging="gvServiceCollection_PageIndexChanging" >
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -2571,7 +2742,7 @@
                             
                             <asp:View ID="ViewModificationCharge" runat="server">
                                   <asp:GridView ID="gvModCharge" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="616px" OnPageIndexChanging="gvModCharge_PageIndexChanging">
+                                ShowFooter="True" ClientIDMode="Static" Width="616px" OnPageIndexChanging="gvModCharge_PageIndexChanging">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -2690,7 +2861,7 @@
 
                             <asp:View ID="RectypeWise02" runat="server">
                                   <asp:GridView ID="gvRectypeWise02" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="616px" OnPageIndexChanging="gvRectypeWise02_PageIndexChanging" OnRowDataBound="gvRectypeWise02_RowDataBound">
+                                ShowFooter="True" ClientIDMode="Static" Width="616px" OnPageIndexChanging="gvRectypeWise02_PageIndexChanging" OnRowDataBound="gvRectypeWise02_RowDataBound">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -2713,7 +2884,7 @@
 
 
                                                         <asp:HyperLink ID="hlbotherCdataExcel" runat="server"
-                                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>
+                                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i></asp:HyperLink>
                                                      
                                                     </HeaderTemplate>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BillingRateEntry.aspx.cs" Inherits="RealERPWEB.F_16_Bill.BillingRateEntry" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="BillingRateEntry.aspx.cs" Inherits="RealERPWEB.F_16_Bill.BillingRateEntry" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -29,34 +29,34 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row mt-4">
+                      
+                         
+                                    <div class="col-md-3 d-none">
                                         <asp:Label ID="lblItem5" runat="server" CssClass="lblTxt smLbl_to lblName" Text="Project/Unit"></asp:Label>
                                         <asp:TextBox ID="txtProjectSearch" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
                                         <asp:LinkButton ID="ImgbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindProject_OnClick" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
 
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:Label ID="lblProjectDesc" runat="server" Visible="False" CssClass="inputlblVal" Style="width: 313px;"></asp:Label>
-                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control inputTxt"></asp:DropDownList>
+                                    <div class="col-md-3">
+                                        
+                                           <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Project/Unit"></asp:Label>
+                                        <asp:Label ID="lblProjectDesc" runat="server" Visible="False" CssClass="form-control form-control-sm"></asp:Label>
+                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
 
-                                    <div class="colMdbtn pading5px">
-                                        <asp:LinkButton ID="lbtnOk1" runat="server" stylr="margin-left=-50px;" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" Text="Ok"></asp:LinkButton>
+                                    <div class="col-md-1 ml-2" style="margin-top:20px;">
+                                        <asp:LinkButton ID="lbtnOk1" runat="server" stylr="margin-left=-50px;" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk1_Click" Text="Ok"></asp:LinkButton>
                                     </div>
-                                </div>
-                            </div>
+                            
 
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <asp:Label ID="lblpage" runat="server" CssClass="lblTxt lblName" Text="Page Size:" Visible="False"></asp:Label>
+                           
+                                <div class="col-md-1">
+                                    <asp:Label ID="lblpage" runat="server" CssClass="form-label" Text="Page Size:" Visible="False"></asp:Label>
                                     <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                        Font-Bold="True" Font-Size="12px" CssClass="ddlPage"
+                                        Font-Bold="True" Font-Size="12px" CssClass="form-control form-control-sm"
                                         OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
                                         <asp:ListItem Value="10">10</asp:ListItem>
                                         <asp:ListItem Value="15">15</asp:ListItem>
@@ -71,16 +71,14 @@
                                     <asp:Label ID="lblmsg" runat="server" BackColor="Red" Font-Bold="True" Font-Size="12px"></asp:Label>
                                 </div>
                             </div>
-                    </div>
-                    </fieldset>
-                    
-
                
+                  </div>
+                <div class="card-body">
 
                         <asp:GridView ID="gvRptResBasis" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False"
                             OnPageIndexChanging="gvRptResBasis_PageIndexChanging" PageSize="20"
-                            ShowFooter="True" Width="654px" CssClass="table-responsive table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvRptResBasis_RowCreated">
+                            ShowFooter="True" Width="1054px" CssClass="table-responsive table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvRptResBasis_RowCreated">
                             <PagerSettings PageButtonCount="20" Mode="NumericFirstLast" />
                             <RowStyle Font-Size="11px" />
                             <Columns>
@@ -142,13 +140,13 @@
 
                                 <asp:TemplateField HeaderText="Rate">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkfinalup" runat="server" CssClass="btn btn-danger btn-xs" OnClick="lnkfinalup_Click">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkfinalup" runat="server" CssClass="btn  btn-danger btn-xs" OnClick="lnkfinalup_Click">Final Update</asp:LinkButton>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtbillrate" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                            Width="60px"></asp:TextBox>
+                                            Width="100px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
@@ -159,14 +157,14 @@
 
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFordam" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+                                            Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
                                         <asp:Label ID="lblordam" runat="server" BackColor="Transparent" BorderStyle="None"
                                             BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordam")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
@@ -181,7 +179,7 @@
                                         <asp:Label ID="lblbgdrate" runat="server" BackColor="Transparent" BorderStyle="None"
                                             BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrate")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
@@ -191,7 +189,7 @@
                                 <asp:TemplateField HeaderText=" Amount">
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFbgddam" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+                                            Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
 
                                     <ItemTemplate>

@@ -25,14 +25,18 @@ namespace RealERPWEB.F_04_Bgd
 
         ProcessAccess da = new ProcessAccess();
         // static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
             ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Project Information Code";
+            //((Label)this.Master.FindControl("lblTitle")).Text = "Project Information Code";
 
             if (this.ddlOthersBook.Items.Count == 0)
                 this.Load_CodeBooList();
@@ -124,7 +128,7 @@ namespace RealERPWEB.F_04_Bgd
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-            string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim();
+            string gcode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim();
 
             string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string tgcod = gcode1.Substring(0, 2) + gcode2;
@@ -135,6 +139,17 @@ namespace RealERPWEB.F_04_Bgd
             string code = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlData")).Text.Trim();
             string chkvisibility = (((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkvisibility")).Checked) ? "True" : "False";
             string unit = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvunit")).Text.Trim();
+
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
 
             bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPPRINF", tgcod,
                            gdesc, Gtype, slno, code, chkvisibility, unit, "", "", "", "", "", "", "", "");
@@ -199,6 +214,12 @@ namespace RealERPWEB.F_04_Bgd
             catch (Exception ex)
             {
             }
+
+        }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
 
         }
 
@@ -307,7 +328,69 @@ namespace RealERPWEB.F_04_Bgd
 
         }
 
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
 
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string prgcode = ((DataTable)Session["storedata"]).Rows[index]["prgcod"].ToString();
+            this.txtprgcode.Text = prgcode.Substring(0, 2) + "-" + ASTUtility.Right(prgcode, 3);
+            this.prgcode.Text = prgcode;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            
+            string comcod = this.GetCompCode();
+            string prgcod = prgcode.Text;
+
+            string txtprgcode = this.txtprgcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtprgdesc.Text.Trim();
+            string gtype = this.txtprgtype.Text.Trim();
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string chkprgvisibility = (this.chkprgvisibility.Checked == true) ? "True" : "False";
+            string mnumber = (prgcod == txtprgcode) ? "" : "manual";
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPRGCODE", txtprgcode,
+                          Desc, Gtype,"","", chkprgvisibility, "", mnumber);
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+            }
+            ShowInformation();
+            grvacc_DataBind();
+        }
     }
 }

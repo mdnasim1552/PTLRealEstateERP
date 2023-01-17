@@ -11,6 +11,10 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+
+            $('.chzn-select').chosen({ search_contains: true });
+
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
@@ -138,7 +142,6 @@
                     <div class="card card-fluid">
                         <div class="card-body">
                             <div class="row">
-
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <asp:TextBox ID="txtSrcProject" runat="server" TabIndex="3" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>

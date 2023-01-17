@@ -28,9 +28,12 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.gvUnit.Columns[1].Visible = (Convert.ToBoolean(dr1[0]["entry"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Landowner's Unit Fixation";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Landowner's Unit Fixation";
                 this.GetProjectName();
                 this.GetGroup();
                 this.ChangeName();
@@ -228,16 +231,18 @@ namespace RealERPWEB.F_22_Sal
                 string isLO = "0";
                 string bookingam = "0";
                 string noofinstall = "0";
+                string handovdate ="01-Jan-1900";
+                string handovper = "0";
                 if (dUsize > 0)
                 {
                   
 
 
-                    bool result = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
-                       bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingam, noofinstall, "");
+                    bool result = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
+                       bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingam, noofinstall, handovdate, handovper, "", "", "", "", "", "", "", "", "");
 
+                  
 
-                
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";

@@ -38,7 +38,8 @@ namespace RealERPWEB.F_17_Acc
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.lnkFinalUpdate.Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
 
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
 
                 lnkFinalUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
@@ -46,9 +47,10 @@ namespace RealERPWEB.F_17_Acc
                 this.txtEntryDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
 
-                this.txtFDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                this.txtFDate.Text = "01" + this.txtFDate.Text.Trim().Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtFDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                //this.txtFDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                //this.txtFDate.Text = "01" + this.txtFDate.Text.Trim().Substring(2);
+                //this.txttodate.Text = Convert.ToDateTime(this.txtFDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.GetResCode();
                 this.LoadAcccombo();
@@ -523,11 +525,11 @@ namespace RealERPWEB.F_17_Acc
 
             string subcode = this.ddlresuorcecode.SelectedValue.ToString();
             string comcod = this.GetCompCode();
-            string frmdate = this.txtFDate.Text.Trim();
+           // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
 
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETALLSUPPAITAVAT", frmdate, todate, subcode, "", "", "", "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETALLSUPPAITAVAT", todate, todate, subcode, "", "", "", "", "", "");
             DataTable dt = ds1.Tables[0];
 
             DataTable tbl1 = (DataTable)ViewState["tblt01"];

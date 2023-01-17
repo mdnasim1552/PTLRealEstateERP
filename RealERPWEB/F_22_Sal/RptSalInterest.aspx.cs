@@ -35,11 +35,14 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "interest") ? "DELAY CHARGES "
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "registration") ? "REGISTRATION CLEARENCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "CustApp") ? "CUSTOMER APPLICATION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "DueCollAll") ? "Invoice Print" : "CUSTOMER PAYMENT SCHEDULE";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "interest") ? "DELAY CHARGES "
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "registration") ? "REGISTRATION CLEARENCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "CustApp") ? "CUSTOMER APPLICATION"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "DueCollAll") ? "Invoice Print" : "CUSTOMER PAYMENT SCHEDULE";
 
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -2015,9 +2018,10 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
 
                     Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["customerno"].ToString()));
-                    if (ds2.Tables[0].Rows[0]["customerno"].ToString() == "") {
-                        Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
-                    }
+                    Rpt1.SetParameters(new ReportParameter("txtremarks", ds2.Tables[0].Rows[0]["remarks"].ToString()));
+                    //if (ds2.Tables[0].Rows[0]["customerno"].ToString() == "") {
+                    //    Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
+                    //}
 
 
 

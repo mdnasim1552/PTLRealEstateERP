@@ -31,6 +31,9 @@ namespace RealERPWEB.F_16_Bill
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 // this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
@@ -379,11 +382,10 @@ namespace RealERPWEB.F_16_Bill
             this.gvRptResBasis.DataBind();
 
             if (dt.Rows.Count > 0)
+            {
                 ((LinkButton)this.gvRptResBasis.FooterRow.FindControl("lnkfinalup")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
-
-
-
-            this.FooterCalCulation();
+                this.FooterCalCulation();
+            }
         }
 
 
@@ -1207,43 +1209,28 @@ namespace RealERPWEB.F_16_Bill
 
             //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoice", lst, null, null);
             Rpt1.EnableExternalImages = true;
-            //   Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("Project", "Project Name: " + Project));
             Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
             Rpt1.SetParameters(new ReportParameter("mBILLNo", "Invoice No: " + mbillno));
+            Rpt1.SetParameters(new ReportParameter("rptname", "Upcon Bill Invoice"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("txtsecpercntge", "Security(" + this.txtpercentage.Text + ")"));
-
-
             Rpt1.SetParameters(new ReportParameter("txttaxpercntge", "Tax(" + this.txttaxpercentage.Text + ")"));
-
-
             Rpt1.SetParameters(new ReportParameter("txtvatpercntge", "Vat(" + this.txtvatpercentage.Text + ")"));
-            Rpt1.SetParameters(new ReportParameter("txttaxamt", this.txtTaxAmount.Text));
             Rpt1.SetParameters(new ReportParameter("txtsecamt", this.txtSDAmount.Text));
+            Rpt1.SetParameters(new ReportParameter("txttaxamt", this.txtTaxAmount.Text));
             Rpt1.SetParameters(new ReportParameter("txtvatamt", this.txtvatAmount.Text));
             Rpt1.SetParameters(new ReportParameter("txtadvamt", this.txtAdvanced.Text));
             Rpt1.SetParameters(new ReportParameter("txtnetamt", this.lblvalnettotal.Text));
-
-
-            //Rpt1.SetParameters(new ReportParameter("txttaxamt", tax.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtsecamt",security.ToString("#,##0.00;(#,##0.00); ")));
-            //Rpt1.SetParameters(new ReportParameter("txtvatamt", vat.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtadvamt", Advanced.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtnetamt", netamt.ToString()));
-
-
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-            Rpt1.SetParameters(new ReportParameter("rptname", "Upcon Bill Invoice"));
             Rpt1.SetParameters(new ReportParameter("RANO", "R/A No: " + RANO));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("InWrd", "In Word : " + ASTUtility.Trans(Math.Round(netamt), 2)));
 
+            
 
-
-
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

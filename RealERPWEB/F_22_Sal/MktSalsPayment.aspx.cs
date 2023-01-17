@@ -36,8 +36,8 @@ namespace RealERPWEB.F_22_Sal
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
-                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc == "SalesLO" ? "" : "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
+                //    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc == "SalesLO" ? "" : "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -50,6 +50,9 @@ namespace RealERPWEB.F_22_Sal
                 
                 // this.GetCompanyDiscount();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 // ((Label)this.Master.FindControl("lblTitle")).Text = "SALES WITH PAYMENT  INFORMATION ";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
@@ -232,8 +235,8 @@ namespace RealERPWEB.F_22_Sal
                 string ddldesc = hst["ddldesc"].ToString();
                 this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() :
                     this.ddlProjectName.SelectedItem.Text.Substring(13));
-                this.ddlProjectName.Visible = false;
-                this.lblProjectmDesc.Visible = true;
+                //this.ddlProjectName.Visible = false;
+                //this.lblProjectmDesc.Visible = true;
                 this.GetCustomerinfo();
                 this.LoadGrid();
 
@@ -1146,9 +1149,9 @@ namespace RealERPWEB.F_22_Sal
             {
                 BookDate = (this.txtBookDate.Text.Trim() == "") ? "01-jan-1900" : this.txtBookDate.Text;
             }
+            
 
-
-            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
+            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "51003", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
 
             if (res == false)
             {

@@ -73,6 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             switch (comcod)
             {
+                case "3369":
                 case "3367":
                 case "3330":
                 case "3355":
@@ -84,7 +85,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 default:
-                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
@@ -1205,7 +1206,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI", list, null, null);
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            if (printtype == "EXCEL")
+            {
+                Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTIEXCEL", list, null, null);
+
+            }
+            else
+            {
+                Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI", list, null, null);
+
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));

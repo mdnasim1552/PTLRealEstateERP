@@ -47,7 +47,8 @@
         });
 
         function pageLoaded() {
-
+            var gv = $('#<%=this.gvadvLoan.ClientID %>');
+            gv.Scrollable();
             $('.chzn-select').chosen({ search_contains: true });
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
             $(function () {
@@ -112,6 +113,13 @@
                                 <asp:DropDownList ID="ddlDeptName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
+
+                         <div class="col-md-2">
+                            <div class="from-group">
+                                <label class="control-label">Employee Name</label>
+                                <asp:DropDownList ID="ddlempname" runat="server" CssClass="chzn-select form-control" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                        </div>
                          
 
                         <div class="col-md-1">
@@ -137,7 +145,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -151,7 +159,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvrperticulars" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                                Width="200px"></asp:Label>
+                                                Width="180px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -171,7 +179,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvdeptname" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")) %>'
-                                                Width="180px"></asp:Label>
+                                                Width="160px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -191,7 +199,7 @@
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvopndr" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opndram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="110px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -201,7 +209,7 @@
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvopncr" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opncram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="110px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -211,7 +219,7 @@
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvcurrentdr" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="110px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -231,7 +239,7 @@
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvclsdr" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "closdram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="110px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -241,7 +249,7 @@
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvclscr" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "closcram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="110px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -251,7 +259,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvnetamt" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "clsam")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="120px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />

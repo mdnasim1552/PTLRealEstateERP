@@ -12,7 +12,7 @@
             line-height: 28px !important;
         }
 
- /*       .card-body {
+        /*       .card-body {
             min-height: 400px !important;
         }*/
 
@@ -23,8 +23,9 @@
         .gvWidth {
             width: 272px !important;
         }
-        .card-header{
-           padding: 0.2rem 1rem !important;
+
+        .card-header {
+            padding: 0.2rem 1rem !important;
         }
     </style>
 </asp:Content>
@@ -59,7 +60,7 @@
                             <div class="dot"></div>
                             <div class="dot"></div>
                             <div class="dot"></div>
-                            <div class="lading"></div>
+                            <div class="loading"></div>
                         </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
@@ -118,14 +119,14 @@
                             <div class="card-body" runat="server" id="engst">
                              <img src="~/../../../Upload/UserImages/3365001.png" style="display: block;margin-left: auto; margin-right: auto;width: 50%;" alt="User Image">
                                 <table class="table table-striped table-hober tblEMPinfo mt-2">
-                    <%--                <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-
-                                        </tr>
-                                    </thead>--%>
+ 
                                     <tbody class="">
+                                        <tr>
+                                            <td class="font-weight-bold">Id Card No</td>
+                                            <td>
+                                                <asp:Label ID="lblidcard" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td class="font-weight-bold">Name</td>
                                             <td>
@@ -137,6 +138,13 @@
                                            <td class="font-weight-bold ">Designation</td>
                                             <td>
                                                 <asp:Label ID="lbldesig" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                           <td class="font-weight-bold">Section/Department</td>
+                                            <td>
+                                                <asp:Label ID="lblsection" runat="server"></asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -153,38 +161,30 @@
                                                 <asp:Label ID="lblsep" runat="server"></asp:Label>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Id Card No</td>
-                                            <td>
-                                                <asp:Label ID="lblidcard" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
 
-                                        <tr>
-                                           <td class="font-weight-bold">Section/Department</td>
-                                            <td>
-                                                <asp:Label ID="lblsection" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Present Salary</td>
-                                            <td>
-                                                <asp:Label ID="lblgross" runat="server">0000</asp:Label>
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                                <tr>
                                             <td class="font-weight-bold">Job Seperation Type</td>
                                             <td>
                                                 <asp:Label ID="lblseptype" runat="server"></asp:Label>
                                             </td>
                                         </tr>
-
+                              
+                                        
                                         <tr>
                                            <td class="font-weight-bold">Last Date of Office</td>
                                             <td>
                                                 <asp:Label ID="lbllastday" runat="server"></asp:Label>
                                             </td>
                                         </tr>
+                           
+                                        <tr>
+                                            <td class="font-weight-bold">Present Salary</td>
+                                            <td>
+                                                <asp:Label ID="lblgross" runat="server">0000</asp:Label>
+                                            </td>
+                                        </tr>
+                
+
 
                                         <tr>
                                            <td class="font-weight-bold">Service Period</td>
@@ -410,7 +410,7 @@
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                 </asp:GridView>
-                                                 <table class="table-striped table-hover table-bordered">
+                         <table class="table-striped table-hover table-bordered">
                             <tr>
                                 <td class="text-right font-weight-bold text-muted" color: black; font-weight: bolder; font-size: 13px;">Net Payable Amount</td>
                                 <td style="width: 130px" class="text-right">

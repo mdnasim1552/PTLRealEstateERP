@@ -31,9 +31,11 @@ namespace RealERPWEB.F_14_Pro
                 string type = this.Request.QueryString["Type"].ToString();
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "RptgrpPayable" ? "Monthly Payable( Group Wise)" : "Monthly Supplier & Group Wise Payable";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "RptgrpPayable" ? "Monthly Payable( Group Wise)" : "Monthly Supplier & Group Wise Payable";
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFDate.Text = Convert.ToDateTime("01" + (this.txttodate.Text).Substring(2)).ToString("dd-MMM-yyyy");

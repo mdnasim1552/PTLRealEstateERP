@@ -34,6 +34,8 @@ namespace RealERPWEB.F_23_CR
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string date1 = "01-" + ASTUtility.Right(date, 8);
@@ -45,12 +47,12 @@ namespace RealERPWEB.F_23_CR
                 this.ViewSelection();
                 this.NameChange();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Receivedlist") ? "Accounts Receivable - 02 Report"
-                  : (this.Request.QueryString["Type"].ToString() == "DuesCollect") ? "Dues Collection Statment Report"
-                  : (this.Request.QueryString["Type"].ToString() == "DuesCollCR") ? "Dues Collection Statment 02 Report"
-                  : (this.Request.QueryString["Type"].ToString() == "yCollectionfc") ? "Yearly Collection Forcasting"
-                  : (this.Request.QueryString["Type"].ToString() == "CurDues") ? "Current Dues"
-                  : (this.Request.QueryString["Type"].ToString() == "ProClientst") ? "Project Wise Client Status" : "Dues Collection -Summary";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Receivedlist") ? "Accounts Receivable - 02 Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "DuesCollect") ? "Dues Collection Statment Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "DuesCollCR") ? "Dues Collection Statment 02 Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "yCollectionfc") ? "Yearly Collection Forcasting"
+                //  : (this.Request.QueryString["Type"].ToString() == "CurDues") ? "Current Dues"
+                //  : (this.Request.QueryString["Type"].ToString() == "ProClientst") ? "Project Wise Client Status" : "Dues Collection -Summary";
 
 
             }
@@ -653,8 +655,12 @@ namespace RealERPWEB.F_23_CR
             string username = hst["username"].ToString();
             string comcod = hst["comcod"].ToString();
             //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DateTime frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
             DateTime todate = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+            string frmdt = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("MMM yy");
+            string todt = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMM yy");
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt1 = (DataTable)Session["tblAccRec"];
 
@@ -666,10 +672,11 @@ namespace RealERPWEB.F_23_CR
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptYearlyCollectionForecasting", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "YEARLY COLLECTION FORCASTING"));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From(" + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text + ")"));
+            Rpt1.SetParameters(new ReportParameter("cdate", "("+frmdt+"-"+todt +")"));
 
             for (int i = 1; i <= 12; i++)
             {

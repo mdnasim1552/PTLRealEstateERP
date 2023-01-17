@@ -330,7 +330,7 @@
                             </div>
                             <div class="row">
                                 <div class="table table-responsivex" style="width: 100%; height: 400px; overflow: auto">
-                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False" HeaderStyle-CssClass="FixedHeader"
+                                     <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False" HeaderStyle-CssClass="FixedHeader"
                                         OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea "
                                         PageSize="15">
                                         <PagerSettings Position="Top" />
@@ -380,7 +380,14 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-
+                                              <asp:TemplateField HeaderText="Designation">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvDesig" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                                        Width="120px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Join Date">
                                                 <ItemTemplate>
@@ -392,16 +399,17 @@
                                             </asp:TemplateField>
 
 
-
-
-                                            <asp:TemplateField HeaderText="Designation">
+                                             <asp:TemplateField HeaderText="Confirm Date">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvDesig" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                        Width="120px"></asp:Label>
+                                                    <asp:Label ID="lblgvconf" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "confdate")).ToString("dd-MMM-yyyy") %>'
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
+
+
+                                          
 
                                             <asp:TemplateField HeaderText="Opening Leave">
                                                 <ItemTemplate>
@@ -444,9 +452,29 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Without Pay <br> Leave">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
 
 
+                                            
 
+                                             <asp:TemplateField HeaderText="Leave On Probation <br> ">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+                                            
                                             <asp:TemplateField HeaderText="Maternity Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvml" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -457,7 +485,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Star Leave">
+                                             <asp:TemplateField HeaderText="Star Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvpl" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ptleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -466,7 +494,8 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Hajj Leave">
+                                           
+                                             <asp:TemplateField HeaderText="Hajj Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnHajjlv" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lapphajjleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -476,25 +505,11 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Leave On Probation <br> ">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
-                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="70px"></asp:TextBox>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="right" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                           
 
-                                            <asp:TemplateField HeaderText="Without Pay <br> Leave">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
-                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="70px"></asp:TextBox>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="right" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                               
+
+                                            
                                             <asp:TemplateField HeaderText="Training <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvTrL" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -1425,7 +1440,8 @@
                                             <asp:DropDownList ID="ddlyear" ClientIDMode="Static" data-placeholder="Choose year" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlyear_SelectedIndexChanged">
                                                 <asp:ListItem Value="2020">2020</asp:ListItem>
                                                 <asp:ListItem Value="2021">2021</asp:ListItem>
-                                                <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
+                                                <asp:ListItem Value="2022">2022</asp:ListItem>
+                                                 <asp:ListItem Value="2023" Selected="True">2023</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>

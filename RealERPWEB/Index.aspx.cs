@@ -32,6 +32,7 @@ namespace RealERPWEB
                 (this.Master.FindControl("DDPrintOpt")).Visible = false;
                 (this.Master.FindControl("lnkPrint")).Visible = false;
                 this.GetCompCode();
+                this.GetYear();
 
 
 
@@ -90,6 +91,19 @@ namespace RealERPWEB
             this.ddlCompcode.DataBind();
 
 
+        }
+
+        private void GetYear()
+        {
+
+            List<string> lst = ASTUtility.GetYear();
+            //this.ddlyearSale.DataTextField=""
+            this.ddlyearSale.DataSource = lst;
+            this.ddlyearSale.DataBind();
+            this.ddlyearSale.SelectedValue = System.DateTime.Today.Year.ToString();
+        
+        
+        
         }
 
         protected void getComponnet()

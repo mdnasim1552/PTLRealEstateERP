@@ -216,6 +216,10 @@ namespace RealERPWEB.F_38_AI
 
         }
 
+
+      
+
+
         protected void btncancel_Click(object sender, EventArgs e)
         {
 
@@ -291,11 +295,29 @@ namespace RealERPWEB.F_38_AI
         private void VirtualGrid_DataBind()
         {
             DataTable tbl1 = (DataTable)ViewState["tblt01"];
-            this.GridVirtual.DataSource = tbl1;
-            this.GridVirtual.DataBind();
+
+            if(tbl1==null || tbl1.Rows.Count == 0)
+            {
+                this.GridVirtual.DataSource = null;
+            }
+            else
+            {
+                this.GridVirtual.DataSource = tbl1;
+                this.GridVirtual.DataBind();
+                this.FooterCalculation(tbl1);
+
+            }
+
         }
 
+        private void FooterCalculation(DataTable tbl1)
+        {
+            if (tbl1.Rows.Count == 0)
+                return;
 
+            ((Label)this.GridVirtual.FooterRow.FindControl("tblsumValoquantity")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("sum(assignqty)", "")) ? 0.00 :
+                tbl1.Compute("sum(assignqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+        }
         private void CreateTableAssign()
         {
 
@@ -323,7 +345,7 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
-
+                this.VirtualGrid_DataBind();
                 DataSet dt = (DataSet)ViewState["tblgetprojectwisebatch"];
            
                 string roletype = this.ddlUserRoleType.SelectedValue;
@@ -334,9 +356,20 @@ namespace RealERPWEB.F_38_AI
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
-                double totalassign = Convert.ToDouble("0" + dt.Tables[0].Rows[0]["datasetqty"].ToString()); 
+                double totalassign = Convert.ToDouble("0" + dt.Tables[0].Rows[0]["datasetqty"].ToString());
 
-                if (roletype == "95001" && totalassign < assignqty )
+                double total = 0;
+                double validtotal = 0;
+                if (this.GridVirtual.Rows.Count!= 0)
+                {
+                     total = Convert.ToDouble("0" + ((Label)this.GridVirtual.FooterRow.FindControl("tblsumValoquantity")).Text.ToString());
+                    validtotal = total + assignqty;
+
+                }
+          
+
+
+                if ((roletype == "95001" && totalassign < assignqty) || (roletype == "95001" && pedingannotor < validtotal))
                 {
 
 
@@ -346,14 +379,14 @@ namespace RealERPWEB.F_38_AI
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty )
+                else if (roletype == "95002" && doneannotor < assignqty || roletype == "95002" && doneannotor < validtotal)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty )
+                else if (roletype == "95003" && doneqc < assignqty || roletype == "95003" && doneqc < validtotal)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -543,7 +576,7 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                int index = row.RowIndex;
+                int index = row.RowIndex; 
                 string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
                 this.HiddinTaskid.Value = id;
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -551,8 +584,8 @@ namespace RealERPWEB.F_38_AI
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
                 string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
                 string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
-                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
-                string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
+                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgrassigincode")).Text.ToString();
+                double assginqty = Convert.ToDouble("0"+((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString());
                 string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
                 string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
 
@@ -560,8 +593,9 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedValue = roletype;
-                this.ddlAnnotationid.SelectedItem.Value = anotationid;
-                this.txtquantity.Text = assginqty;
+                this.ddlAnnotationid.SelectedValue= anotationid;
+                this.ddlassigntype.SelectedValue = assigntype;
+                this.txtquantity.Text = Convert.ToString(assginqty).ToString();
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
 

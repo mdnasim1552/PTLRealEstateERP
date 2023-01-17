@@ -33,15 +33,19 @@ namespace RealERPWEB.F_01_LPA
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
             }
 
 
 
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+           
+
 
             if (this.ddlOthersBook.Items.Count == 0)
                 this.Load_CodeBooList();

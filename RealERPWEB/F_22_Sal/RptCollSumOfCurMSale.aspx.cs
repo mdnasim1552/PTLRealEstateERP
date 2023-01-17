@@ -31,13 +31,16 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmDate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(txtfrmDate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Collection Summary of Current Month Sales";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Collection Summary of Current Month Sales";
 
-
+                this.GetProjectName();
             }
         }
 
@@ -71,8 +74,9 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "TRANSSTCURSALES", frmdate, todate, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "TRANSSTCURSALES", frmdate, todate, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.rpcsummary.DataSource = null;
@@ -84,8 +88,37 @@ namespace RealERPWEB.F_22_Sal
             //Session["tblcolsum"] =ds1.Tables[0];
             this.Data_Bind();
 
-
         }
+
+        protected void imgbtnFindProject_Click(object sender, EventArgs e)
+        {
+            this.GetProjectName();
+        }
+
+
+        private void GetProjectName()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+                this.ddlProjectName.DataTextField = "actdesc";
+                this.ddlProjectName.DataValueField = "actcode";
+                this.ddlProjectName.DataSource = ds1.Tables[0];
+                this.ddlProjectName.DataBind();
+                ds1.Dispose();
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+
+
 
         private void Data_Bind()
         {

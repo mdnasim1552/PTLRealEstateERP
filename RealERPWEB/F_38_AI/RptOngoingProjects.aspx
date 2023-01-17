@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptOngoingProjects.aspx.cs" Inherits="RealERPWEB.F_38_AI.RptOngoingProjects" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -105,21 +103,21 @@
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Expected USD">
+                                <asp:TemplateField HeaderText="Expected USD">
                                     <ItemTemplate>
                                         <asp:Label ID="lblexpusd" runat="server" Width="80px"
                                             Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "expusd")).ToString("#,##0;(#,##0); ") %>'
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Valocity PerHour">
+                                <asp:TemplateField HeaderText="Valocity PerHour">
                                     <ItemTemplate>
                                         <asp:Label ID="lblannovalueper" runat="server" Width="80px"
                                             Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "annovalueper")).ToString("#,##0;(#,##0); ") %>'
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Possible  Day">
+                                <asp:TemplateField HeaderText="Possible  Day">
                                     <ItemTemplate>
                                         <asp:Label ID="lblannotperday" runat="server" Width="80px"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "annotperday")).ToString("#,##0;(#,##0); ") %>'
@@ -127,11 +125,8 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                            </Columns>
-                            <%--<FooterStyle CssClass="grvFooter" />--%>
-
+                            </Columns>             
                             <PagerStyle CssClass="gvPagination" />
-
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                     </div>
@@ -141,3 +136,4 @@
     </asp:UpdatePanel>
 
 </asp:Content>
+

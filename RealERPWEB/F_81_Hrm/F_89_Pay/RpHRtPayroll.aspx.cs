@@ -178,7 +178,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             //this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
                             //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
@@ -5118,7 +5118,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                          pwf = dt.Rows[i]["swf"].ToString();
                          subfee = dt.Rows[i]["subfee"].ToString();
                     }
-                    if (comcod == "3369")
+                    if (comcod == "3369" || comcod=="3365")
                     {
                         extday = dt.Rows[i]["extday"].ToString();
                         extdayamt = dt.Rows[i]["extdayamt"].ToString();

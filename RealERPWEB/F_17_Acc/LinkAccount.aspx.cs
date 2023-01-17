@@ -457,10 +457,10 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 case "SalesProj":
-                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDTAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tuamt)", "")) ?
-                                    0 : dt.Compute("sum(tuamt)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDSAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(suamt)", "")) ?
-                                    0 : dt.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
+                    //((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDTAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tuamt)", "")) ?
+                    //                0 : dt.Compute("sum(tuamt)", ""))).TlgvFditemoString("#,##0;(#,##0); ");
+                    //((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDSAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(suamt)", "")) ?
+                    //                0 : dt.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
                     //((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDDisAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(disamt)", "")) ?
                     //                0 : dt.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
 
@@ -474,10 +474,7 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.grvSalDet.FooterRow.FindControl("lgvFNAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netamt)", "")) ?
                                     0 : dt.Compute("sum(netamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
-
             }
-
-
         }
         private void Data_Bind()
         {

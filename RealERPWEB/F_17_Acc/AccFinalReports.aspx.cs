@@ -36,6 +36,7 @@ namespace RealERPWEB.F_17_Acc
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 string comcod = this.GetCompCode();
                 string mRepID = "IS";
@@ -51,10 +52,11 @@ namespace RealERPWEB.F_17_Acc
                     : (mRepID == "PrjIS" ? "Statement Of Comprehensive Income (Project)"
 
                     : (mRepID == "IACUR" ? "Income Statement (Acural Basis)" : "Income Statement (Individual Project)")))))))))));
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
 
-                this.Master.Page.Title = title;
-
+                //this.Master.Page.Title = title;
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
 
                 this.MultiView1.ActiveViewIndex = ((mRepID == "IS" || mRepID == "IS2") ? 0 : (mRepID == "BS" ? 1 : ((mRepID == "PS" || mRepID == "SS") ? 2
