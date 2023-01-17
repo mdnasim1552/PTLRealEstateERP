@@ -131,7 +131,8 @@ namespace RealERPWEB.F_12_Inv
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
             string refno = "%" + this.txtSrcRefNo.Text.Trim() + "%";
-            string rescode = ((this.ddlmatlist.SelectedValue.ToString() == "000000000000") ? "" : this.ddlmatlist.SelectedValue.ToString()) + "%";
+            string rescode = ((this.ddlmatlist.SelectedValue.ToString() == "000000000000") ? ""
+              : ((this.ddlmatlist.SelectedValue.ToString().Substring(9) == "000") ? this.ddlmatlist.SelectedValue.ToString().Substring(0,9):  this.ddlmatlist.SelectedValue.ToString())) + "%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, rescode, "", "", "", "");
             if (ds1 == null)
             {

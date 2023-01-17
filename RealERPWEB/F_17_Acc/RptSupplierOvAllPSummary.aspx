@@ -120,7 +120,7 @@
             white-space: nowrap;
             border-right: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
-            background-color: #FFFFFF;
+            background-color: transparent;
             color: #444444;
         }
 
@@ -530,7 +530,7 @@
                     <%--<div class="card card-fluid">
                         <div class="card-body">--%>
                             
-                    <asp:GridView ID="gvspaymentdetails" runat="server" CssClass="table-striped  table-bordered grvContentarea"
+                    <asp:GridView ID="gvspaymentdetails" runat="server" ClientIDMode="Static" CssClass="table-striped  table-bordered grvContentarea"
                 AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvspaymentdetails_RowDataBound">
                 <PagerSettings Visible="False" />
                          <FooterStyle CssClass="grvHeader" />
