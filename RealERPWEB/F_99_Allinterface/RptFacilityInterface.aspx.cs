@@ -23,8 +23,11 @@ namespace RealERPWEB.F_99_Allinterface
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
                 this.GetFromDate();
                 //  txtfrmdate.Text = this.GetFromDate(); 
                 this.txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");

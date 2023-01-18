@@ -1260,7 +1260,7 @@ namespace RealEntity.C_17_Acc
             public double netbillamt { get; set; }
             public double payamt { get; set; }
             public double discountamt { get; set; }
-
+            public double afterdiscount { get; set; }
             public double dram { get; set; }
             public double cram { get; set; }
 
@@ -1286,6 +1286,7 @@ namespace RealEntity.C_17_Acc
             public double taxamt { get; set; }
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
+            public double afterdiscount { get; set; }
             
             public double dram { get; set; }
             public double cram { get; set; }

@@ -864,7 +864,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703232", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPay", "Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703238", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPay02", "Receipts & Payment(Honoured)- Details", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1703000", "1703233", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=Fflow", "Fund Flow", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703234", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=IssuedVsCollect", "Receipts & Payment(Actual)", "Accounts", "False", "False", "False", "False" }); ;
+         
             tblObj.Rows.Add(new Object[] { "1703000", "1703235", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=ProTrans", "Daily Transaction -Project", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703237", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj", "Project Wise Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703242", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj02", "Project Wise Receipts & Payment(Honoured) Details", "Accounts", "False", "False", "False", "False" }); ;

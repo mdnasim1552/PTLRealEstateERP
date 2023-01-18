@@ -31,6 +31,9 @@ public partial class RptMisSCollTAActual : System.Web.UI.Page
                 this.txtfromdate.Text = Convert.ToDateTime("01" + Date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(txtfromdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 string Type = this.Request.QueryString["Type"].ToString();
                 this.ViewSection();

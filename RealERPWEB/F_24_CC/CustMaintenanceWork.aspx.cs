@@ -521,8 +521,12 @@ namespace RealERPWEB.F_24_CC
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
-
+          
             DataTable dt = (DataTable)Session["tbladwork"];
+            string tmatt = Convert.ToDouble(dt.Rows[0]["amt"]).ToString("#,##0.00;(#,##0.00); ");
+            double tmat = Convert.ToDouble(dt.Rows[0]["amt"]);
+
+            string inword = ASTUtility.Trans(Convert.ToDouble(tmat), 2);
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
             switch (comcod)
@@ -539,10 +543,23 @@ namespace RealERPWEB.F_24_CC
                     break;
             }
             Rpt1.EnableExternalImages = true;
+
+            double tpay = Convert.ToDouble(tmat);
+
+            if (tpay < 0)
+            {
+                Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tmatt));
+            }
+            else
+            {
+                Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tmatt));
+            }
+
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
+            Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " +inword));
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
