@@ -394,7 +394,7 @@
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlSupname" runat="server" Width="150px">
+                                                <asp:DropDownList ID="ddlSupname" runat="server" CssClass="chzn-select" Width="150px">
                                                 </asp:DropDownList>
                                             </EditItemTemplate>
 
