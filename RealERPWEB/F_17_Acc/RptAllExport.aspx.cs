@@ -48,9 +48,9 @@ namespace RealERPWEB.F_17_Acc
                    : (this.Request.QueryString["Type"].ToString().Trim() == "BankPosition02") ? "Bank Position 02"
                    : (this.Request.QueryString["Type"].ToString().Trim() == "BalConfirmation") ? "Balance Confirmation" : "Bank Position ";
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
 
-                this.Master.Page.Title = title;
+                //this.Master.Page.Title = title;
                 indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
@@ -58,6 +58,9 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptMatIssueStatus.aspx.cs" Inherits="RealERPWEB.F_12_Inv.RptMatIssueStatus" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptMatIssueStatus.aspx.cs" Inherits="RealERPWEB.F_12_Inv.RptMatIssueStatus" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,10 +6,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <script src="../../Scripts/gridviewScrollHaVertworow.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+ 
     <script language="javascript" type="text/javascript">
 
         $(document).ready(function () {
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -40,7 +45,19 @@
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
                 });
-
+                $('.select2').each(function () {
+                    var select = $(this);
+                    select.select2({
+                        placeholder: 'Select an option',
+                        width: '100%',
+                        allowClear: !select.prop('required'),
+                        language: {
+                            noResults: function () {
+                                return "{{ __('No results found') }}";
+                            }
+                        }
+                    });
+                });
                 $('.chzn-select').chosen({ search_contains: true });
             }
 
@@ -53,7 +70,11 @@
     </script>
  
 
-
+    <style type="text/css">
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;}
+    </style>
 
 
 
@@ -76,60 +97,64 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
-                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+            <div class="card mt-2">
+                <div class="card-header">
+                    <div class="row mt-4 mb-2">
+                        
+                                 <div class="col-md-1">
+                                        <asp:Label ID="lbldate" runat="server" CssClass="form-label" Text="From"></asp:Label>
+                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
-
-                                        <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
-                                        <asp:TextBox ID="txttodate" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+                                    </div>
+                        <div class="col-md-1">
+                            <asp:Label ID="lbltodate" runat="server" CssClass="form-label" Text="To"></asp:Label>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-
-
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 pading5px ">
-                                        <asp:DropDownList ID="ddlProName" runat="server" CssClass="chzn-select  form-control inputTxt" TabIndex="3" style="width:336px;">
+                        </div>
+                         <div class="col-md-3">
+                                        <asp:Label ID="Label4" runat="server" CssClass="form-label" Text="Project Name"></asp:Label>
+                                        <asp:DropDownList ID="ddlProName" runat="server" CssClass="chzn-select  form-control form-control-sm" TabIndex="3">
                                         </asp:DropDownList>
 
                                     </div>
+                        <div class="col-md-2 d-none">
+                                <asp:TextBox ID="txtsrchresource" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1" Visible="false"></asp:TextBox>
+                                <asp:LinkButton ID="lbtnresource" runat="server"  TabIndex="2">Material&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                              <asp:ListBox ID="chkResourcelist" runat="server" CssClass="form-control select2 form-control-sm" SelectionMode="Multiple"></asp:ListBox>
+                        </div>
+                        <div class="col-md-2">
+                           
+                            
+                                <asp:Label ID="lblresName" runat="server" CssClass="control-label" Text="Matrial Name"></asp:Label>
+                             <asp:DropDownList ID="ddlmatlist" runat="server" CssClass="chzn-select  form-control form-control-sm" TabIndex="3">
+                                        </asp:DropDownList>
+                              
+                           
+                        
+                        </div>
+                                   
+                                    <div class="col-md-2">
+                                        <asp:Label ID="lblsisasirno" runat="server" CssClass="form-label" Text="SMCR No/ DMIRF No"></asp:Label>
+                                        <asp:TextBox ID="txtSrcRefNo" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
 
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="4" Style="margin-left:-148px;">ok</asp:LinkButton>
+                                       
+                                    </div>
+                                      <div class="col-md-1" style="margin-top:21px;">
+                                            <asp:LinkButton ID="imgbtnFindRefno" CssClass="btn btn-primary btn-sm" runat="server" OnClick="imgbtnFindRefno_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
+                                        </div>
+
+                         <div class="col-md-1" style="margin-top:21px;">
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnOk_Click" TabIndex="4">ok</asp:LinkButton>
 
                                     </div>
+                                <div class="col-md-1">
+                                        <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size"></asp:Label>
 
 
-                                </div>
-
-                                <div class="form-group">
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
-
-
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                             OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
@@ -142,24 +167,27 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+                                <div class="form-group d-none">
 
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:Label ID="lblsisasirno" runat="server" CssClass=" smLbl_to" Text="SMCR No/ DMIRF No"></asp:Label>
-                                        <asp:TextBox ID="txtSrcRefNo" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        
+                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
                                         <div class="colMdbtn">
-                                            <asp:LinkButton ID="imgbtnFindRefno" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindRefno_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                     </div>
-
+                                   
 
 
                                 </div>
 
-                            </div>
-                        </fieldset>
-                    </div>
+                               
 
+                           
+                    </div>
+                    </div>
+                <div class="card-header">
 
                     <asp:GridView ID="gvMatIssueStatus" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -214,7 +242,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lgcIsuDat" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isudat1")) %>'
-                                        Width="70px"></asp:Label>
+                                        Width="90px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -238,7 +266,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lgcScfcode" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                        Width="100px"></asp:Label>
+                                        Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>

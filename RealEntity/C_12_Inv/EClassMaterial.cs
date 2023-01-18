@@ -15,6 +15,7 @@ namespace RealEntity.C_12_Inv
             public string trnno { get; set; }
 
             public string refno { get; set; }
+            public string mtrref { get; set; }
             public string getpref { get; set; }
             public string tfpactcode { get; set; }
             public string tfproj { get; set; }
@@ -25,6 +26,7 @@ namespace RealEntity.C_12_Inv
             public string spcfcod { get; set; }
             public string spcfdesc { get; set; }
             public string tunit { get; set; }
+            public string narration { get; set; }
             public double tqty { get; set; }
             public double trate { get; set; }
             public double tamount { get; set; }

@@ -37,7 +37,9 @@ namespace RealERPWEB.F_17_Acc
                 ViewState["formid"] = dr[0].ItemArray[3].ToString();
                 //ViewState["formname"] = dr[0].ItemArray[4].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Account's Opening";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Account's Opening";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr[0]["dscrption"].ToString();
                 CommonButton();
                 //ViewState["formname"] = dr[0].ItemArray[4].ToString();
                 //lnkbtnHelp.OnClientClick = this.getHelpDocUrl();

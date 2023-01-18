@@ -29,7 +29,10 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Discussion Information";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Client Discussion Information";
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 this.txtFrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

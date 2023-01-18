@@ -24,9 +24,11 @@ namespace RealERPWEB.F_32_Mis
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "CB") ? "Income Statement (Cash Basis)" : "Balance Sheet (Project)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "CB") ? "Income Statement (Cash Basis)" : "Balance Sheet (Project)";
                 //double day = System.DateTime.Today.ToString("dd")) - 1;
                 this.txtDatefrom.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 this.ImgbtnFindProjind_Click(null, null);

@@ -49,13 +49,15 @@ namespace RealERPWEB.F_22_Sal
                 this.GetSalesTeam();
                 this.gvVisibility();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "soldunsold") ? "SOLD & UNSOLD INFORMATION"
-                    : (this.Request.QueryString["Type"] == "uwiseCosting") ? "Unit Wise Costing"
-                    : (this.Request.QueryString["Type"] == "RptDayWSale") ? "Day Wise Sales"
-                    : (this.Request.QueryString["Type"] == "paking") ? "Parking Status" : "SOLD & UNSOLD INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "soldunsold") ? "SOLD & UNSOLD INFORMATION"
+                //    : (this.Request.QueryString["Type"] == "uwiseCosting") ? "Unit Wise Costing"
+                //    : (this.Request.QueryString["Type"] == "RptDayWSale") ? "Day Wise Sales"
+                //    : (this.Request.QueryString["Type"] == "paking") ? "Parking Status" : "SOLD & UNSOLD INFORMATION";
 
                 this.lbtnOk_Click(null, null);
             }

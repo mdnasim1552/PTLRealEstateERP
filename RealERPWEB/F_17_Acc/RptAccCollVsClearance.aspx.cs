@@ -31,6 +31,9 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : Convert.ToBoolean(dr1[0]["printable"]);
 
                 string type = this.Request.QueryString["Type"].ToString().Trim();
@@ -46,18 +49,18 @@ namespace RealERPWEB.F_17_Acc
                 this.txtfromdate.Text = fdate;
                 this.txttodate.Text = edate;
                 this.SelectView();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "CollVsClearance") ? "Cheque Received Vs. Clearance" : (type == "DailyPayment") ? "Payment Status(All)"
-                    : (type == "DetRealColl") ? "Real Collection - Details "
-                    : (type == "MonCollection") ? "Month Wise Collection(Received)"
-                    : (type == "MonCollHonoured") ? "Month Wise Collection(Honoured)"
-                    : (type == "MonPayment") ? "Month Wise Payment - All Project"
-                    : (type == "MonSales") ? "Month Wise Sales"
-                    : (type == "MonReceipt") ? "Month Wise Collection"
-                    : (type == "MonPaymentDet") ? "Month Wise Payment(Cost)"
-                    : (type == "MonSalPerWise") ? "Month Wise Sales (Marketing Person)"
-                    : (type == "MonAR") ? "Month Wise Collection"
-                    : (type == "CollBuyer") ? "Month Wise Collection (Buyer & Project)"
-                    : "Month Wise Payment-Summary";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "CollVsClearance") ? "Cheque Received Vs. Clearance" : (type == "DailyPayment") ? "Payment Status(All)"
+                //    : (type == "DetRealColl") ? "Real Collection - Details "
+                //    : (type == "MonCollection") ? "Month Wise Collection(Received)"
+                //    : (type == "MonCollHonoured") ? "Month Wise Collection(Honoured)"
+                //    : (type == "MonPayment") ? "Month Wise Payment - All Project"
+                //    : (type == "MonSales") ? "Month Wise Sales"
+                //    : (type == "MonReceipt") ? "Month Wise Collection"
+                //    : (type == "MonPaymentDet") ? "Month Wise Payment(Cost)"
+                //    : (type == "MonSalPerWise") ? "Month Wise Sales (Marketing Person)"
+                //    : (type == "MonAR") ? "Month Wise Collection"
+                //    : (type == "CollBuyer") ? "Month Wise Collection (Buyer & Project)"
+                //    : "Month Wise Payment-Summary";
 
 
             }

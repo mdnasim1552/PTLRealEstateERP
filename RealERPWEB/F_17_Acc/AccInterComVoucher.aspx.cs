@@ -29,8 +29,11 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblprintstk")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "InterCompany Payment Voucher";
-                this.Master.Page.Title = "InterCompany Payment Voucher";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "InterCompany Payment Voucher";
+                //this.Master.Page.Title = "InterCompany Payment Voucher";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 this.lblFromCmpName.Text = hst["comnam"].ToString();
                 this.txtfdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

@@ -28,6 +28,10 @@ namespace RealERPWEB.F_21_MKT
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.txtcurdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -36,7 +40,7 @@ namespace RealERPWEB.F_21_MKT
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 // this.LoadddlPaper();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Entry Initial";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Client Entry Initial";
                 this.GetProLocCode();
                 this.GetProspectiveClientInfo();
                 this.GetTeamCode();

@@ -23,7 +23,7 @@
             var gvPurMatRVar = $('#<%=this.gvPurMatRVar.ClientID%>');
 
             gvPurStatus.gridviewScroll({
-                width: 1160,
+                width: 1660,
                 height: 420,
                 barsize: 8,
                 startHorizontal: 3,
@@ -62,7 +62,7 @@
             padding: 5px 4px;
         }
         .grvContentarea {
-            margin-right: 68px;
+            margin-right: 0px;
         }
     </style>
 
@@ -228,7 +228,7 @@
 
 
                                 <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="false" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" Width="831px">
+                                    OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" >
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
                                     <Columns>

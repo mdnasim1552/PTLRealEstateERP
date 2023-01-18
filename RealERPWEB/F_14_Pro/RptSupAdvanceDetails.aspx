@@ -40,6 +40,8 @@
         }
     </style>
 
+
+
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -51,6 +53,9 @@
         function pageLoaded() {
 
             $('.chzn-select').chosen({ search_contains: true });
+
+            var gvsupstatus = $('#<%=this.gvsupstatus.ClientID %>');
+            gvsupstatus.Scrollable();
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
             $(function () {
                 $('[id*=chkSupCategory').multiselect({
@@ -230,10 +235,28 @@
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Net Payment">
+                                    <asp:TemplateField HeaderText="Order Amount">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvamount" runat="server"
+                                            <asp:Label ID="lblgvoramount" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="right" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Tax Amount">
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblgvtaxamount" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "taxam")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="right" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Net Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvnetamount" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netamount")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
@@ -253,7 +276,7 @@
                                     <asp:TemplateField HeaderText="Cheque Issue">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvvoudat" runat="server"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "voudat")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "voudat")).ToString("dd-MMM-yyyy")%>'
+                                               Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat")) %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />

@@ -124,7 +124,7 @@ namespace RealEntity
                     DataRow dr2 = dtpage.NewRow();
                     dr2["formid"] = dr1[0]["frmid"].ToString();
                     dr2["itemcod"] = dt1.Rows[j]["itemcod"].ToString();
-                    dr2["itemdesc"] =  ASTUtility.Right("00" + i.ToString(), 2) + ". " + dt1.Rows[j]["itemdesc"].ToString().Substring(3);
+                    dr2["itemdesc"] = ASTUtility.Right("00" + i.ToString(), 2) + ". " + dr1[0]["dscrption"]; //dt1.Rows[j]["itemdesc"].ToString().Substring(3);
                     dr2["itemurl"] = dt1.Rows[j]["itemurl"].ToString();
                     dr2["itemtips"] = dt1.Rows[j]["itemtips"].ToString();
                     dr2["itemslct"] = Convert.ToBoolean(dt1.Rows[j]["itemslct"]).ToString();
