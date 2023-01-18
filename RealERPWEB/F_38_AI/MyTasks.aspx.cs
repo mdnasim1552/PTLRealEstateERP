@@ -20,6 +20,10 @@ namespace RealERPWEB.F_38_AI
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "My Tasks";
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                //this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string type = Request.QueryString["Type"];
                 if (type == "MGT")
                 {

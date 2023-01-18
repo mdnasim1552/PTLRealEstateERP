@@ -26,17 +26,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
                 //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetCompName();
                 this.GetDesignation();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Employee Monthly Late Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
-                    : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MabsentApp") ? "Monthly Approval (LP)"
-                    : "Monthly Absent Approval";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Employee Monthly Late Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
+                //    : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MabsentApp") ? "Monthly Approval (LP)"
+                //    : "Monthly Absent Approval";
                 this.ViewSaction();
 
             }

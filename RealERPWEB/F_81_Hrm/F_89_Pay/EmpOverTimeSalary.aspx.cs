@@ -30,8 +30,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "OvertimeSalary") ? "EMPLOYEE OVERTIME SALARY" : "EMPLOYEE MONTHLY LATE ATTENDANCE INMROMATION";
-                
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "OvertimeSalary") ? "EMPLOYEE OVERTIME SALARY" : "EMPLOYEE MONTHLY LATE ATTENDANCE INMROMATION";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetDate();
                 this.GetCompany();
                 this.GetDesignation();

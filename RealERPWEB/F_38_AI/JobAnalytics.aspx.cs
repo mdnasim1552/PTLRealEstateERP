@@ -18,7 +18,11 @@ namespace RealERPWEB.F_38_AI
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Job Analytics";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Job Analytics";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ProjectCount();
             }
         }

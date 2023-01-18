@@ -29,6 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 this.txtdate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
 
             }

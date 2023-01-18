@@ -31,9 +31,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 string type = this.Request.QueryString["Type"].ToString().Trim();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "salati" ? "AIT purpose salary " : type == "salsumMonth"? "Salary Summary (Month Wise)" :"Monthly Attendance Statement";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "salati" ? "AIT purpose salary " : type == "salsumMonth"? "Salary Summary (Month Wise)" :"Monthly Attendance Statement";
                 this.GetCompany();
                 this.SetDate();
 
