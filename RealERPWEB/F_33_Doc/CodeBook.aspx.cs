@@ -36,6 +36,9 @@ namespace RealERPWEB.F_33_Doc
                     Response.Redirect("../AcceessError.aspx");
                 //this.lblHeader.Text = (this.Request.QueryString["Type"].ToString().Trim() == "Sales") ? "SALES CODE BOOK INFORMATION VIEW/EDIT" : "SUPPLIER INFORMATION FIELD VIEW/EDIT";
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
             if (this.ddlOthersBook.Items.Count == 0)
