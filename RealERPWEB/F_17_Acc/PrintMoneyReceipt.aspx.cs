@@ -171,7 +171,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-               // case "3101":
+               //case "3101":
                 case "1205":
                 case "3351":
                 case "3352":

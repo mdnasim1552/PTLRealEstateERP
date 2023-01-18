@@ -578,7 +578,7 @@ namespace RealERPWEB.F_24_CC
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
+            //string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
             //string unitName = this.ddlUnitName.SelectedItem.Text.Substring(1,10);
             string Client = this.ddlUnitName.SelectedItem.Text.Substring(12);
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -594,6 +594,7 @@ namespace RealERPWEB.F_24_CC
            
             string unitName = dt1.Rows[0]["udesc"].ToString(); 
             string ClientName = dt1.Rows[0]["custname"].ToString(); 
+            string projectName = dt1.Rows[0]["pactdesc"].ToString(); 
 
             string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
