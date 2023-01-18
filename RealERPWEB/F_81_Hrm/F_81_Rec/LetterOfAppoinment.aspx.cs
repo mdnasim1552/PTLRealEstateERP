@@ -27,6 +27,11 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 // for Mettroo
@@ -38,7 +43,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 Hashtable hst = (Hashtable)Session["tblLogin"];
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Latter of Appoinment";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Latter of Appoinment";
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 //this.lblmsg2.Visible = false;

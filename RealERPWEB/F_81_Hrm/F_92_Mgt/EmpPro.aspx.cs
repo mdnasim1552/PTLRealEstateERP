@@ -28,6 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetPromotionNo();

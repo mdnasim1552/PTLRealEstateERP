@@ -31,11 +31,14 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                     Response.Redirect("../../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.SelectView();
                 //((Label)this.Master.FindControl("lblTitle")).Text = "PF Account";
                 string type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Pffund") ? "PF FUND" : "Month Wise Salary Report";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "Pffund") ? "PF FUND" : "Month Wise Salary Report";
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-Jan-" + date.Substring(7);
