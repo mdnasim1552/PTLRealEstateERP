@@ -30,6 +30,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfromdate.Text = "01" + date.Substring(2);
                 //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -39,7 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text.Trim()).AddMonths(12).AddDays(-1).ToString("dd-MMM-yyyy");
                 // this.ShowView();
                 this.GetCompanyName();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Tax Report";
+               // ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Tax Report";
 
             }
 

@@ -34,24 +34,27 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     Response.Redirect("../../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
                 // this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.lblfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Overtime") ? "EMPLOYEE  OVERTIME ALLOWANCE "
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "BankPayment") ? "BANK PAYMENT INFORMATION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Lencashment") ? "LEAVE ENCASHMENT"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "salaryencashment") ? "Salary ENCASHMENT"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "OtherDeduction") ? "EMPLOYEE OTHER DEDCUTION"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "otherearn") ? "Employee Other Earning"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "bonusextra") ? "Additional Bonus"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "SalaryReduction") ? "Salary Reduction" : "EMPLOYEE ARREAR INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Overtime") ? "EMPLOYEE  OVERTIME ALLOWANCE "
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "BankPayment") ? "BANK PAYMENT INFORMATION"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Lencashment") ? "LEAVE ENCASHMENT"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "salaryencashment") ? "Salary ENCASHMENT"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "OtherDeduction") ? "EMPLOYEE OTHER DEDCUTION"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "otherearn") ? "Employee Other Earning"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "bonusextra") ? "Additional Bonus"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "SalaryReduction") ? "Salary Reduction" : "EMPLOYEE ARREAR INFORMATION";
 
 
                 this.ViewVisibility();

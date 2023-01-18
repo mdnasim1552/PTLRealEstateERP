@@ -27,6 +27,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.rbtnlst.SelectedIndex = 0;
                 this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
@@ -34,7 +39,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetCompanyName();
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE STATUS INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE STATUS INFORMATION";
 
 
             }
