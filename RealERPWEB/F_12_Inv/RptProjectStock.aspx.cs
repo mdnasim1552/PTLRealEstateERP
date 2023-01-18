@@ -209,6 +209,8 @@ namespace RealERPWEB.F_12_Inv
                 case "2305":
                 case "3325":
                 case "3101":
+                case "2325":
+
                     if (calltype == "RPTPROSTOCKINV")
                     {
                         pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%%" : "%" + this.ddlProName.SelectedValue.ToString() + "%";
@@ -528,7 +530,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             var lst = dt1.DataTableToList<RealEntity.C_12_Inv.ErptStock>();
             LocalReport Rpt1 = new LocalReport();
-            if(comcod=="2305" || comcod=="3325" || comcod == "3101")
+            if(comcod=="2305" || comcod=="3325" || comcod=="2325" || comcod == "3101")
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptProMatStock2Leisure", lst, null, null);
                 Rpt1.EnableExternalImages = true;
