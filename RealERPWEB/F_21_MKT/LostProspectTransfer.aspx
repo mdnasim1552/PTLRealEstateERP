@@ -159,7 +159,7 @@
                                             HeaderText="Prospect Name">
                                             <HeaderTemplate>
                                                 <asp:Label ID="lblProsName" runat="server" Font-Bold="True"
-                                                    Text="Prospect Name" Width="120px"></asp:Label>
+                                                    Text="Prospect Name" Width="110px"></asp:Label>
                                                 <asp:HyperLink ID="hlnkbtnProsWorking" runat="server"
                                                     CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
                                             </HeaderTemplate>
