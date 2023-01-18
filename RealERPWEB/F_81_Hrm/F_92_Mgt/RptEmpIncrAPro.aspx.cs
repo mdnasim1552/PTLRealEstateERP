@@ -28,6 +28,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.lblHtitle.Text = (this.Request.QueryString["Type"].ToString().Trim() == "GradeWiseEmp") ? "Grade Wise Employee Details" : "";
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);

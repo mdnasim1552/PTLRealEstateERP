@@ -43,20 +43,21 @@ namespace RealERPWEB.F_32_Mis
                 //    Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgd") ? "BUDGETED INCOME - ALL PROJECT(DETAILS) "
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "SrAUtilities") ? "SOURCES & UTILIZATION OF FUND - CASH BASIS"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "SrAUtilitiesFF") ? "SOURCES & UTILIZATION OF FUND - ACURAL BASIS"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "ProDetails") ? "Individual Project Cost Last 12 Month"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "ProExpenses") ? "Head Office overhead-last 12 Month"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdVsExpenses") ? "BUDGET VS EXPENSES ALL- PROJECT"
-                    //: (this.Request.QueryString["Type"].ToString().Trim() == "SalesVsColection") ? "SALES VS COLLECTION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "SalesVsColection") ? "COLLECTION VS EXPENSES- ALL PROJECTS"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "ColVsExpenses") ? "INVESTMENT PLAN - ALL PROJECTS"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "ComProCost") ? "Any Cost-All Project Report"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "InvPlan") ? "INVESTMENT PLAN SUMMARY"
-                : (this.Request.QueryString["Type"].ToString().Trim() == "BgdVsActual") ? "Budget VS Actual-All Project"
-                : (this.Request.QueryString["Type"].ToString().Trim() == "CostOfFund") ? "Interest Allocation" : "COST OF FUND OF PROJECTS";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgd") ? "BUDGETED INCOME - ALL PROJECT(DETAILS) "
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "SrAUtilities") ? "SOURCES & UTILIZATION OF FUND - CASH BASIS"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "SrAUtilitiesFF") ? "SOURCES & UTILIZATION OF FUND - ACURAL BASIS"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "ProDetails") ? "Individual Project Cost Last 12 Month"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "ProExpenses") ? "Head Office overhead-last 12 Month"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdVsExpenses") ? "BUDGET VS EXPENSES ALL- PROJECT"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "SalesVsColection") ? "COLLECTION VS EXPENSES- ALL PROJECTS"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "ColVsExpenses") ? "INVESTMENT PLAN - ALL PROJECTS"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "ComProCost") ? "Any Cost-All Project Report"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "InvPlan") ? "INVESTMENT PLAN SUMMARY"
+                //: (this.Request.QueryString["Type"].ToString().Trim() == "BgdVsActual") ? "Budget VS Actual-All Project"
+                //: (this.Request.QueryString["Type"].ToString().Trim() == "CostOfFund") ? "Interest Allocation" : "COST OF FUND OF PROJECTS";
 
                 this.SectionView();
                 // this.pnlMenu.Visible = true;

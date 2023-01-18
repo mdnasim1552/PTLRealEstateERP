@@ -28,7 +28,7 @@ namespace RealERPWEB.F_17_Acc
             //Final Accounts Reports View/Print Screen
             if (!IsPostBack)
             {
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 //if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
                 //        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
@@ -36,7 +36,10 @@ namespace RealERPWEB.F_17_Acc
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string comcod = this.GetCompCode();
                 string mRepID = "IS";
@@ -55,8 +58,7 @@ namespace RealERPWEB.F_17_Acc
                 //((Label)this.Master.FindControl("lblTitle")).Text = title;
 
                 //this.Master.Page.Title = title;
-                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                
 
 
                 this.MultiView1.ActiveViewIndex = ((mRepID == "IS" || mRepID == "IS2") ? 0 : (mRepID == "BS" ? 1 : ((mRepID == "PS" || mRepID == "SS") ? 2

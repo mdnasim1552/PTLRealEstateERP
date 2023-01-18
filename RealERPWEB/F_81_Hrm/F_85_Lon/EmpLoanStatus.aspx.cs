@@ -32,8 +32,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LOAN STATUS";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LOAN STATUS";
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.GetDepartment();
