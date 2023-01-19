@@ -348,6 +348,7 @@ namespace RealERPWEB.F_24_CC
                 return;
 
             Session["tbladwork"] = ds1.Tables[0];
+            Session["tbltaddwork"] = ds1.Tables[3];
 
             if (mAdNo == "NEWAD")
             {
@@ -425,7 +426,7 @@ namespace RealERPWEB.F_24_CC
                     CompAddWork = "PrintAddWorkSanSuvastu";
                     break;
 
-                case "3101":
+               
                 case "3367":
                     CompAddWork = "PrintAddWorkEpic";
                     break;
@@ -523,43 +524,60 @@ namespace RealERPWEB.F_24_CC
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
           
             DataTable dt = (DataTable)Session["tbladwork"];
-            string tmatt = Convert.ToDouble(dt.Rows[0]["amt"]).ToString("#,##0.00;(#,##0.00); ");
-            double tmat = Convert.ToDouble(dt.Rows[0]["amt"]);
+            DataTable dt1 = (DataTable)Session["tbltaddwork"];
+            string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+            double tnet = Convert.ToDouble(dt1.Rows[0]["tnetamt"]);
+          
 
-            string inword = ASTUtility.Trans(Convert.ToDouble(tmat), 2);
+            string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
-            switch (comcod)
-            {
-                case "3101":
-                case "1108":
-                case "1109":
-                case "3315":
-                case "3316":
-                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
-                    break;
-                default:
-                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
-                    break;
-            }
-            Rpt1.EnableExternalImages = true;
+          
 
-            double tpay = Convert.ToDouble(tmat);
 
-            if (tpay < 0)
+            if (comcod== "3316" || comcod == "3315" || comcod == "1109" || comcod == "1108")
             {
-                Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tmatt));
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
+                Rpt1.EnableExternalImages = true;
             }
             else
             {
-                Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tmatt));
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+               
+                double tpay = Convert.ToDouble(tnet);
+                Rpt1.EnableExternalImages = true;
+                if (tpay < 0)
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet*-1));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tnet));
+                }
+                Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " + inword));
             }
 
+            //switch (comcod)
+            //{
+            //    case "3101":
+            //    case "1108":
+            //    case "1109":
+            //    case "3315":
+            //    case "3316":
+            //        Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
+            //        break;
+            //    default:
+            //        Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+            //        break;
+            //}
+          
+
+          
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
-            Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " +inword));
+           
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
@@ -594,9 +612,9 @@ namespace RealERPWEB.F_24_CC
            
             string unitName = dt1.Rows[0]["udesc"].ToString(); 
             string ClientName = dt1.Rows[0]["custname"].ToString(); 
-            string projectName = dt1.Rows[0]["pactdesc"].ToString(); 
+            string projectName = dt1.Rows[0]["pactdesc"].ToString();
 
-            string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
+            string ftxtcheck = "";// ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
             string ftxtapp2nd = ds1.Tables[2].Rows[0]["sapvusr"].ToString();
             string ftxtapp3rd = ds1.Tables[2].Rows[0]["auditusr"].ToString();
