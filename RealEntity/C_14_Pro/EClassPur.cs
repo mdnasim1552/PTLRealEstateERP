@@ -1454,6 +1454,8 @@ namespace RealEntity.C_14_Pro
             public double amount { get; set; }
             public double taxam { get; set; }
             public double netamount { get; set; }
+            public double payment { get; set; }
+            public double actualorder { get; set; }
             public string chequeno { get; set; }
 
             public string voudat { get; set; }
