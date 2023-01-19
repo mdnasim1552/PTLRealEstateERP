@@ -529,7 +529,7 @@ namespace RealERPWEB.F_24_CC
             double tnet = Convert.ToDouble(dt1.Rows[0]["tnetamt"]);
           
 
-            string inword = ASTUtility.Trans(Convert.ToDouble(inwrd), 2);
+            string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
           
