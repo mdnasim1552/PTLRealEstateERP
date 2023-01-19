@@ -2760,6 +2760,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3338": // acme technologies
                 case "3369": // acme ai 
                 case "3370": // cpdl 
+                case "3348": //credence
 
 
                     this.OrderPrintRDLC();
@@ -4362,6 +4363,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
                         terms4 = "* " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
                         terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+
                         break;
                 }
 
@@ -6444,7 +6447,7 @@ namespace RealERPWEB.F_99_Allinterface
             else if (pCompanyBill == "PrintBill05")
             {
 
-                sign4= "Syed Fatemy Ahmed Roomy" + "\n" + "Major General (Retd.)" + "\n"+ "Chairman & Managing Director" + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
+                //sign4= "Syed Fatemy Ahmed Roomy" + "\n" + "Major General (Retd.)" + "\n"+ "Chairman & Managing Director" + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillAcme", lst, null, null);
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
@@ -6454,7 +6457,7 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("sign1", sign1));
                 rptbill.SetParameters(new ReportParameter("sign2", sign2));
                 rptbill.SetParameters(new ReportParameter("sign3", sign3));
-                rptbill.SetParameters(new ReportParameter("sign4", sign4));
+              //  rptbill.SetParameters(new ReportParameter("sign4", sign4));
             }
 
             else if (pCompanyBill == "PrintBill06")
