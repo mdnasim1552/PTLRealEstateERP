@@ -1652,6 +1652,341 @@
                         </div>
                     </asp:View>
 
+                    <asp:View ID="SalesvscolltypeWise" runat="server">
+                        <%--<div class="table table-responsive">--%>
+                        <asp:GridView ID="gvsalvscolltypeWise" runat="server" AutoGenerateColumns="False"
+                             ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvsalvscolltypeWise_RowCreated">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="serialtypenoid" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Sales Team Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvsalesteamname" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: Left; background-color: Transparent"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                            Width="200px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                           <%--     <asp:TemplateField HeaderText="Sales Team">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvtypeDepartment" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: Left; background-color: Transparent" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "deptname").ToString().Trim().Length > 0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "mdeptname")).Trim().Length>0 ?  "<br>" : "")+                                                             
+                                                                          
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "") 
+                                                                         
+                                                                    %>'
+                                            Width="180px">
+                                                                     
+                                                                     
+                                        </asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>--%>
+
+
+
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptqty" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptqty")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                 <asp:TemplateField HeaderText="Shop ">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptshop" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopqty")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvacaptqty" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actaptqty")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvacshopqty" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actshopqty")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptsfall" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salaptsfall")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                   <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopsfall" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salshopsfall")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptperontsale" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perontapt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopperontsale" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perontshop")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+
+
+
+                          <%--      <asp:TemplateField HeaderText="Last Month Position &lt;br&gt; Sales">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypepmonsalamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pmonsaleamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>--%>
+                              <%--  <asp:TemplateField HeaderText="Sales Target  &lt;br&gt; Today's">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypetsalamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tsaleamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText=" Sales Actual  &lt;br&gt; Today's">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypetatsaleamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tasaleamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>--%>
+
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypeseprationsale" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Bold="true" Font-Size="11px"
+                                            Style="background-color: Transparent" Text=":" Width="20px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="center" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptmoncollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopmoncollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptacuatcollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptaccollamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                
+                                <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopacuatcollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopaccollamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptcollsfall" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "collaptsfall")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                  <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopcollsfall" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "collshopsfall")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="Apartment">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvaptperontcoll" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "peronaptcoll")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                   <asp:TemplateField HeaderText="Shop">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvshopperontcoll" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "peronshopcoll")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+                          <%--      <asp:TemplateField HeaderText="Collection Target  &lt;br&gt; Today's">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypetcollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcollamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Collection Actual  &lt;br&gt; Today's  ">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypetatcollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tacollamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Last Month Position &lt;br&gt; Collection">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvtypepmoncollamt" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                            Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pmoncollamt")).ToString("#,##0;-#,##0; ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>--%>
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                        </asp:GridView>
+                        <%--</div>--%>
+                    </asp:View>
+
                 </asp:MultiView>
 
             </div>

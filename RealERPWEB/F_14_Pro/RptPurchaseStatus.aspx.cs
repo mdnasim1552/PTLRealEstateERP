@@ -1787,6 +1787,22 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "Purchasetrk":
+      
+
+                    grp = dt1.Rows[0]["grp"].ToString();
+                    grpdesc = dt1.Rows[0]["grpdesc"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["grp"].ToString() == grp)
+                            dt1.Rows[j]["grpdesc"] = "";
+
+                        grp = dt1.Rows[j]["grp"].ToString();
+
+                    }
+                    break;
+
+
+                case "PurBilltk":
 
                     grp = dt1.Rows[0]["grp"].ToString();
                     grpdesc = dt1.Rows[0]["grpdesc"].ToString();
@@ -1799,109 +1815,9 @@ namespace RealERPWEB.F_14_Pro
 
                     }
 
-
-
-
-                    //reqno = dt1.Rows[0]["reqno"].ToString();
-                    //matcode = dt1.Rows[0]["rsircode"].ToString();
-                    // spcfcod = dt1.Rows[0]["spcfcod"].ToString();
-                    //for (int j = 1; j < dt1.Rows.Count; j++)
-                    //{
-                    //    if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["rsircode"].ToString() == matcode && dt1.Rows[j]["spcfcod"].ToString() == spcfcod)
-                    //    {
-
-                    //        dt1.Rows[j]["reqno1"] = "";
-                    //        dt1.Rows[j]["mrfno"] = "";
-                    //        dt1.Rows[j]["reqdat"] = "";
-                    //        dt1.Rows[j]["shipsupdat"] = "";
-                    //        dt1.Rows[j]["pactdesc"] = "";
-                    //        dt1.Rows[j]["rsirdesc"] = "";
-                    //        dt1.Rows[j]["rsirunit"] = "";
-                    //        dt1.Rows[j]["spcfdesc"] = "";
-
-                    //    }
-
-                    //    else
-                    //    {
-                    //        if (dt1.Rows[j]["reqno"].ToString() == reqno)
-                    //        {
-                    //            dt1.Rows[j]["reqno1"] = "";
-                    //            dt1.Rows[j]["mrfno"] = "";
-                    //            dt1.Rows[j]["reqdat"] = "";
-                    //            dt1.Rows[j]["shipsupdat"] = "";
-                    //            dt1.Rows[j]["pactdesc"] = "";
-                    //        }
-                    //         if (dt1.Rows[j]["rsircode"].ToString() == matcode)
-                    //             dt1.Rows[j]["rsirdesc"] = "";
-                    //         if (dt1.Rows[j]["spcfcod"].ToString() == spcfcod)
-                    //             dt1.Rows[j]["spcfdesc"] = "";
-
-
-
-
-
-                    //    }
-
-
-                    //    reqno = dt1.Rows[j]["reqno"].ToString();
-                    //    matcode = dt1.Rows[j]["rsircode"].ToString();
-                    //    spcfcod = dt1.Rows[j]["spcfcod"].ToString();
-                    //}
-
                     break;
 
-
-
-
-                case "PurBilltk":
-                    //reqno = dt1.Rows[0]["reqno"].ToString();
-                    //matcode = dt1.Rows[0]["rsircode"].ToString();
-                    //spcfcod = dt1.Rows[0]["spcfcod"].ToString();
-                    //for (int j = 1; j < dt1.Rows.Count; j++)
-                    //{
-                    //    if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["rsircode"].ToString() == matcode && dt1.Rows[j]["spcfcod"].ToString() == spcfcod)
-                    //    {
-
-                    //        dt1.Rows[j]["reqno1"] = "";
-                    //        dt1.Rows[j]["mrfno"] = "";
-                    //        dt1.Rows[j]["reqdat"] = "";
-                    //        dt1.Rows[j]["shipsupdat"] = "";
-                    //        dt1.Rows[j]["pactdesc"] = "";
-                    //        dt1.Rows[j]["rsirdesc"] = "";
-                    //        dt1.Rows[j]["rsirunit"] = "";
-                    //        dt1.Rows[j]["spcfdesc"] = "";
-
-                    //    }
-
-                    //    else
-                    //    {
-                    //        if (dt1.Rows[j]["reqno"].ToString() == reqno)
-                    //        {
-                    //            dt1.Rows[j]["reqno1"] = "";
-                    //            dt1.Rows[j]["mrfno"] = "";
-                    //            dt1.Rows[j]["reqdat"] = "";
-                    //            dt1.Rows[j]["shipsupdat"] = "";
-                    //            dt1.Rows[j]["pactdesc"] = "";
-                    //        }
-                    //        if (dt1.Rows[j]["rsircode"].ToString() == matcode)
-                    //            dt1.Rows[j]["rsirdesc"] = "";
-                    //        if (dt1.Rows[j]["spcfcod"].ToString() == spcfcod)
-                    //            dt1.Rows[j]["spcfdesc"] = "";
-
-
-
-
-
-                    //    }
-
-
-                    //    reqno = dt1.Rows[j]["reqno"].ToString();
-                    //    matcode = dt1.Rows[j]["rsircode"].ToString();
-                    //    spcfcod = dt1.Rows[j]["spcfcod"].ToString();
-                    //}
-
-                    break;
-
+                   
 
                 case "Purchasetrk02":
                     //string ppactcode = dt1.Rows[0]["pactcode"].ToString();
