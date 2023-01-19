@@ -4039,7 +4039,7 @@ namespace RealERPWEB.F_21_MKT
                         {
 
                             // ;
-                            e.Row.Attributes["style"] = "background-color:#8B0000;";
+                            e.Row.Attributes["style"] = "background-color:#e67070;";
                             // e.Row.Attributes["style"] = "background-color:#E0D9E9;";
 
 
