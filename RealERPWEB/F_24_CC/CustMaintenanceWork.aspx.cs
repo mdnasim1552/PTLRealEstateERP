@@ -630,7 +630,7 @@ namespace RealERPWEB.F_24_CC
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
             Rpt1.SetParameters(new ReportParameter("ClientName", ClientName));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Modification Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Modification Date: " + Convert.ToDateTime(dt1.Rows[0]["addate"].ToString()).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + txtAddNo));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
