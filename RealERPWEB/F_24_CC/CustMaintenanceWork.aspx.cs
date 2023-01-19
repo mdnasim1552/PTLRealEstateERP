@@ -348,6 +348,7 @@ namespace RealERPWEB.F_24_CC
                 return;
 
             Session["tbladwork"] = ds1.Tables[0];
+            Session["tbltaddwork"] = ds1.Tables[3];
 
             if (mAdNo == "NEWAD")
             {
@@ -523,8 +524,9 @@ namespace RealERPWEB.F_24_CC
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
           
             DataTable dt = (DataTable)Session["tbladwork"];
-            string inwrd = Convert.ToDouble(dt.Rows[3]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
-            double tnet = Convert.ToDouble(dt.Rows[3]["tnetamt"]);
+            DataTable dt1 = (DataTable)Session["tbltaddwork"];
+            string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+            double tnet = Convert.ToDouble(dt1.Rows[0]["tnetamt"]);
           
 
             string inword = ASTUtility.Trans(Convert.ToDouble(inwrd), 2);
@@ -546,7 +548,7 @@ namespace RealERPWEB.F_24_CC
                 Rpt1.EnableExternalImages = true;
                 if (tpay < 0)
                 {
-                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet));
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet*-1));
                 }
                 else
                 {
@@ -610,9 +612,9 @@ namespace RealERPWEB.F_24_CC
            
             string unitName = dt1.Rows[0]["udesc"].ToString(); 
             string ClientName = dt1.Rows[0]["custname"].ToString(); 
-            string projectName = dt1.Rows[0]["pactdesc"].ToString(); 
+            string projectName = dt1.Rows[0]["pactdesc"].ToString();
 
-            string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
+            string ftxtcheck = "";// ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
             string ftxtapp2nd = ds1.Tables[2].Rows[0]["sapvusr"].ToString();
             string ftxtapp3rd = ds1.Tables[2].Rows[0]["auditusr"].ToString();
