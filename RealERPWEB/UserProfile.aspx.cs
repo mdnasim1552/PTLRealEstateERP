@@ -300,7 +300,7 @@ namespace RealERPWEB
                     string userrole = hst["userrole"].ToString();
                     this.winsList.Visible = true;
                     this.lnkOrintation.Visible = true;
-                    this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
+                    this.lnkOrintation.NavigateUrl = "http://172.16.0.30/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
