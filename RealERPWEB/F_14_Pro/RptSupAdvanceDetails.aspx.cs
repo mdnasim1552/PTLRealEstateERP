@@ -125,8 +125,8 @@ namespace RealERPWEB.F_14_Pro
             {
 
             }
-            //Session["Report1"] = gvsupstatus;
-            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            Session["Report1"] = gvsupstatus;
+            ((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 

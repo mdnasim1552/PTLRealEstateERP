@@ -24,6 +24,11 @@ namespace RealERPWEB.F_38_AI
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "On Going Projects";
+
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                //this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");

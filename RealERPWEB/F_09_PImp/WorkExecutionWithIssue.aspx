@@ -348,6 +348,10 @@
                                                 <asp:Label ID="lblrsirdesc" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
                                                     Width="200px"></asp:Label>
+                                                <asp:LinkButton runat="server" ID="LnkbtnSpec" OnClick="LnkbtnSpec_Click"
+                                                            ToolTip="Add Specification">
+                                                <span class="fas fa-plus fa-sm" style="color:blue;" aria-hidden="true"></span>&nbsp;
+                                                        </asp:LinkButton>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>

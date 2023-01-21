@@ -40,7 +40,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = Convert.ToDateTime(date).AddYears(-2).ToString("dd-MMM-yyyy");

@@ -40,13 +40,18 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.lblfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Interface";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Budget Interface";
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;

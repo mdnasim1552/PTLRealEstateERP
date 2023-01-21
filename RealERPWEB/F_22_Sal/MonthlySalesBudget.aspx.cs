@@ -704,6 +704,7 @@ namespace RealERPWEB.F_22_Sal
                 cell3.Text = "Quantity";
                 cell3.HorizontalAlign = HorizontalAlign.Center;
                 cell3.ColumnSpan = 2;
+                cell3.Font.Bold = true;
                 gvrow.Cells.Add(cell3);
 
 
@@ -714,6 +715,7 @@ namespace RealERPWEB.F_22_Sal
                 cell4.Text = "Collection";
                 cell4.HorizontalAlign = HorizontalAlign.Center;
                 cell4.ColumnSpan = 2;
+                cell4.Font.Bold = true;
                 gvrow.Cells.Add(cell4);
 
 
