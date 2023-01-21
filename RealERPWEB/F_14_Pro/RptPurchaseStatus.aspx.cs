@@ -44,8 +44,8 @@ namespace RealERPWEB.F_14_Pro
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+               // this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 CommonButton();
@@ -700,7 +700,11 @@ namespace RealERPWEB.F_14_Pro
             Session.Remove("tblreq");
             string comcod = this.GetComeCode();
             string txtsearch = "%" + this.TextGenBillTrack.Text + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", txtsearch, "", "", "", "", "", "", "", "");
+            string frmdat = this.txtfromdate1.Text.Trim();
+            string todat = this.txttodate1.Text.Trim();
+
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", txtsearch, frmdat, todat, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlGenBillTracking.DataTextField = "reqno1";
