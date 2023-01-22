@@ -119,9 +119,11 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["ProjEmp"];
-            //this.gvProjEmp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.gvProjEmp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvProjEmp.DataSource = dt;
             this.gvProjEmp.DataBind();
+
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "pageLoaded()", true);
 
         }
 
