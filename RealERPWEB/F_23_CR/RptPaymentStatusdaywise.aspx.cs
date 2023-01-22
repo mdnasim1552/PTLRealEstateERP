@@ -166,10 +166,11 @@ namespace RealERPWEB.F_23_CR
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            string frmdate = this.txtFDate.Text;
-            string todate = this.txttoDate.Text;
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+           
             string prjname = this.ddlPrjName.SelectedItem.Text.Trim();
            
             DataTable dt2 = (DataTable)ViewState["prjcust"];
@@ -198,6 +199,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("custname", custname));
             Rpt1.SetParameters(new ReportParameter("udesc", udesc));
             Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("frmto", "( "+frmdate +" to " +todate+" )"));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
             Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
 
