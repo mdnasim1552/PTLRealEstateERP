@@ -24,10 +24,15 @@ namespace RealERPWEB.F_09_PImp
                 if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Work Execution With Material Issue";
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Work Execution With Material Issue";
                 if (Request.QueryString["Type"] != null && Request.QueryString["Type"].ToString() == "Edit")
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Work Execution With Material Issue - EDIT MODE";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Work Execution With Material Issue - EDIT MODE";
                 }
                 InitPage();
             }
