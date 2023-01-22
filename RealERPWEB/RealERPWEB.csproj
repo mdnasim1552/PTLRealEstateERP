@@ -227,7 +227,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2350,6 +2350,7 @@
     <Content Include="F_09_PImp\PurIssueWorkWiseEntry.aspx" />
     <Content Include="F_09_PImp\PurLabIssue.aspx" />
     <Content Include="F_09_PImp\PurLabIssue2.aspx" />
+    <Content Include="F_09_PImp\PurLabRequisition02.aspx" />
     <Content Include="F_09_PImp\PurLabRequisition.aspx" />
     <Content Include="F_09_PImp\PurOpenigBillCon.aspx" />
     <Content Include="F_09_PImp\PurSubConBillFinal.aspx" />
@@ -4292,6 +4293,13 @@
     </Compile>
     <Compile Include="F_09_PImp\BillingMBEntry.aspx.designer.cs">
       <DependentUpon>BillingMBEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\PurLabRequisition02.aspx.cs">
+      <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\PurLabRequisition02.aspx.designer.cs">
+      <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>

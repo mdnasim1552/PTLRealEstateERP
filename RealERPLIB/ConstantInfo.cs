@@ -392,13 +392,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903305", "F_09_PImp", "RptBgdPrjoject?", "Type=MatRequired", "Material Requirements", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903306", "F_09_PImp", "RptMonthlyResRequir?", "Type=Report", "Monthly Resource Requirement", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903310", "F_09_PImp", "RptConsConBillStatus?", "Type=ConBillSummary", "Sub-Contractor Bill(All in One)", "Project Implementation", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition ", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903316", "F_09_PImp", "PurLabRequisition?", "Type=CSAppEdit", "Sub-Contractor CS Approval Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903314", "F_09_PImp", "SubContracBillTracking?", "Type=billtrack", "Sub-Contractor Bill Tracking -01", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903315", "F_09_PImp", "RptSubConTopsheetTypeWise?", "Type=TypeWise", "Sub-Contractor Top Sheet (Type Wise)", "Project Implementation", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "0903000", "0903317", "F_09_PImp", "PurLabRequisition02?", "Type=Entry", "Sub-Contractor Bill Requisition (Work Wise)", "Project Implementation", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "0901000", "0901020", "EmpAssesmentCode?", "Type=AssessmntCode", "Assessment Code", "Project Implementation", "False", "False", "False", "False" }); rihan/emdad
             //tblObj.Rows.Add(new Object[] { "0902000", "0902033", "PurFinProIssueEntry", "", "Work Execution-Finishing Project", "Project Implementation", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902060", "SubConBillEntry", "", "Sub-Cont. Payment", "Project Implementaion", "False", "False", "False", "False" });;
@@ -5043,6 +5043,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "11. Contractor Assessment", "F_22_Sal/ConAssessment?Type=ConcAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Work Execution With Material Issue", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });
