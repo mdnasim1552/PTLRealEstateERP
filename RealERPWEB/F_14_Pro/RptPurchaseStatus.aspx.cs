@@ -2263,7 +2263,8 @@ namespace RealERPWEB.F_14_Pro
             string trmnid = hst["compname"].ToString();
             string session = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority+ portAdd + HttpContext.Current.Request.ApplicationPath;
 
 
 
