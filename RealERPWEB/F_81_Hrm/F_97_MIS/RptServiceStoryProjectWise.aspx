@@ -7,9 +7,7 @@
 
         $(document).ready(function () {
 
-            //Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            $(".chzn-select").chosen();
-            $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+            pageLoaded();
 
         });
 
