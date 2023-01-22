@@ -1692,12 +1692,26 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string ymon = this.ddlyearmon.SelectedValue.ToString();
-            string ymon2 = "01-" + ymon.Substring(4, 2) + "-" + ymon.Substring(0, 4);
+            string ymon2 = ymon.Substring(4, 2) +"-01"  + "-" + ymon.Substring(0, 4);
             string txtdate = Convert.ToDateTime(ymon2).ToString("MMM-yyyy");
 
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            DataTable dt = (DataTable)Session["tblencashment"];
+
+            int index = this.btnRadio.SelectedIndex;
+
+            DataTable dt = new DataTable();
+
+            switch (index)
+            {
+                case 0:
+                    dt = (DataTable)Session["tblencashment"];
+                    break;
+                case 1:
+                    dt = (DataTable)Session["tblencashsaved"];
+                    break;
+            }
+
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>();
             LocalReport Rpt1 = new LocalReport();
@@ -4427,20 +4441,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     dv.RowFilter = "issaved = '" + 1 + "'";
                     this.gvEncashment.DataSource = dv;
                     this.gvEncashment.DataBind();
+                    Session["tblencashsaved"] = dv.Table;
                     break;
 
 
-                //case 0:
-                //    dv = dt.DefaultView;
-                //    this.gvdoc.DataSource = dv;
-                //    this.gvdoc.DataBind();
-                //    break;
-                //case 1:
-                //   
-                //    dv.RowFilter = "gcod='99901'";
-                //    this.gvdoc.DataSource = dv;
-                //    this.gvdoc.DataBind();
-                //    break;
+
 
             }
 
