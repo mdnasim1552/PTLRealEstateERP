@@ -46,6 +46,9 @@ namespace RealERPWEB.F_09_LCM
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.MultiView1.ActiveViewIndex = 0;
@@ -62,7 +65,7 @@ namespace RealERPWEB.F_09_LCM
                 Hashtable hst = (Hashtable)Session["tblLogin"];
 
                 string qType = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (qType == "All") ? "LC Information" : "";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (qType == "All") ? "LC Information" : "";
 
 
 
