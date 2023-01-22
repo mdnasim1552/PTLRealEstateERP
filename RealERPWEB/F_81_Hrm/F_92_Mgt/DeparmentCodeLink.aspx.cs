@@ -29,7 +29,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Deparment Code link";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Deparment Code link";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.ShowInformation();
                 this.GetACGCode();

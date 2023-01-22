@@ -15,22 +15,9 @@
 
               try {
 
-
-                  var gridViewScroll = new GridViewScroll({
-                      elementID: "gvspaymentdetails",
-                      width: 1250,
-                      height: 500,
-                      freezeColumn: true,
-                      freezeFooter: true,
-                      freezeColumnCssClass: "GridViewScrollItemFreeze",
-                      freezeFooterCssClass: "GridViewScrollFooterFreeze",
-                      freezeHeaderRowCount: 1,
-                      freezeColumnCount: 8,
-
-                  });
-                  
-
-                  gridViewScroll.enhance();
+                  var gv = $('#<%=this.gvspaymentdetails.ClientID %>');
+                  gv.Scrollable();
+                 
              
                   $('.chzn-select').chosen({ search_contains: true });
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
@@ -120,7 +107,7 @@
             white-space: nowrap;
             border-right: 1px solid #e6e6e6;
             border-bottom: 1px solid #e6e6e6;
-            background-color: #FFFFFF;
+            background-color: transparent;
             color: #444444;
         }
 
@@ -371,6 +358,22 @@
                                         <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                   <asp:TemplateField HeaderText="Bill Amount</br>(After Discount)">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblafdiscount" runat="server" CssClass="GridLebel"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "afterdiscount")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvafftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
                                      <asp:TemplateField HeaderText="Vat Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvVatAmt" runat="server" CssClass="GridLebel"
@@ -530,7 +533,7 @@
                     <%--<div class="card card-fluid">
                         <div class="card-body">--%>
                             
-                    <asp:GridView ID="gvspaymentdetails" runat="server" CssClass="table-striped  table-bordered grvContentarea"
+                    <asp:GridView ID="gvspaymentdetails" runat="server"  CssClass="table-striped table-hover table-bordered grvContentarea"
                 AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvspaymentdetails_RowDataBound">
                 <PagerSettings Visible="False" />
                          <FooterStyle CssClass="grvHeader" />
@@ -732,6 +735,22 @@
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:Label ID="lgvftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="90px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Bill Amount<br>(After Discount)">
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblafdiscount" runat="server" CssClass="GridLebel"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "afterdiscount")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvafftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
                                                 Style="text-align: right" Width="90px"></asp:Label>
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />

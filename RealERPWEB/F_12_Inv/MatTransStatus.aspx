@@ -243,7 +243,7 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterStyle HorizontalAlign="Center" />
-                                <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                <HeaderStyle  HorizontalAlign="Center" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Project From">
                                 <ItemTemplate>

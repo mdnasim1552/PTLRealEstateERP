@@ -271,14 +271,6 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
 
-
-
-
-
-
-                case "3370": //CPDL
-                    txtTmrrData = "MRR No";
-                    break;
                 case "3330": //Bridge
                     txtTmrrData = "TMRR No";
                     break;
