@@ -271,12 +271,6 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
 
-
-
-
-
-
-                
                 case "3330": //Bridge
                     txtTmrrData = "TMRR No";
                     break;
