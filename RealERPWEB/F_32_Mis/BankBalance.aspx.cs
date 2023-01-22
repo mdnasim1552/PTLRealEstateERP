@@ -34,6 +34,9 @@ namespace RealERPWEB.F_32_Mis
                 //this.txtFromdat.Text = DateTime.Today.AddDays(-90).ToString("dd-MMM-yyyy ddd");
                 //this.txtTodat.Text = DateTime.Today.ToString("dd-MMM-yyyy ddd");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
 

@@ -29,6 +29,9 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             {
                 this.GetProjectName();
                 //this.lbtnOk_Click(null, null);
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -43,13 +46,31 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             this.RtpServiceHistoryProjectWise();
         }
 
-        //protected void lbtnOk_Click(object sender, EventArgs e)
-        //{
-        //   this.RtpServiceHistoryProjectWise();
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+            //this.RtpServiceHistoryProjectWise();
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+            string projectName = this.ddlProjectName.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTPROJECTEMPSERVICES", projectName, "", "", "", "", "", "", "", "");
+            //DataTable dt = (DataTable)ds1.Tables[0];
+            if (ds1 == null)
+            {
+                this.gvProjEmp.DataSource = null;
+                this.gvProjEmp.DataBind();
+
+                return;
+
+            }
+
+            Session["ProjEmp"] = ds1.Tables[0];
+
+            this.Data_Bind();
 
 
-        //}
-
+        }
         private void RtpServiceHistoryProjectWise()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -95,5 +116,24 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             this.ddlProjectName.DataBind();
           }
 
+        private void Data_Bind()
+        {
+            DataTable dt = (DataTable)Session["ProjEmp"];
+            //this.gvProjEmp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.gvProjEmp.DataSource = dt;
+            this.gvProjEmp.DataBind();
+
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gvProjEmp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.Data_Bind();
+        }
+        protected void gvProjEmp_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvProjEmp.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
     }
 }

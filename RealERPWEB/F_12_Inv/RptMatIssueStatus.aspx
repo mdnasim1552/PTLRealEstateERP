@@ -70,7 +70,11 @@
     </script>
  
 
-
+    <style type="text/css">
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;}
+    </style>
 
 
 

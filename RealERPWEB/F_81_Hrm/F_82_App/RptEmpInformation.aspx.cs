@@ -31,7 +31,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("../../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Services") ? "EMPLOYEE  SERVICES INFORMATION" : "EMPLOYEE INFORMATION";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Services") ? "EMPLOYEE  SERVICES INFORMATION" : "EMPLOYEE INFORMATION";
                 this.SelectView();
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.GetEmpName();

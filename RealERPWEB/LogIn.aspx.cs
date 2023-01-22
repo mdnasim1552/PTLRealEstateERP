@@ -349,10 +349,10 @@ namespace RealERPWEB
 
                 //}
                 // else
-                {
+              //  {
                     ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
 
-                }
+              //  }
 
                 if (ds5.Tables[0].Rows.Count == 1)
                 {

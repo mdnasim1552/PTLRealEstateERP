@@ -96,7 +96,7 @@ namespace RealERPWEB.F_14_Pro
 
                 string calltype = (stindex == "0" ? "SUPPLIERWISEWRKORDERDETAIL" : "SUPPLIERWISEWRKORDERBILLDETAIL");
 
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_RND", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvsupstatus.DataSource = null;
@@ -125,8 +125,8 @@ namespace RealERPWEB.F_14_Pro
             {
 
             }
-            //Session["Report1"] = gvsupstatus;
-            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            Session["Report1"] = gvsupstatus;
+            ((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 

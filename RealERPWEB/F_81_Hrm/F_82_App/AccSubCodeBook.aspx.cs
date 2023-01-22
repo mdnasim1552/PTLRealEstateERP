@@ -38,10 +38,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
             if (this.ddlOthersBook.Items.Count == 0)
                 this.Load_CodeBooList();
             ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "New Employee Code Entry";
+            //((Label)this.Master.FindControl("lblTitle")).Text = "New Employee Code Entry";
 
         }
         protected void Page_PreInit(object sender, EventArgs e)

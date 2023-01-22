@@ -864,7 +864,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703232", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPay", "Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703238", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPay02", "Receipts & Payment(Honoured)- Details", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1703000", "1703233", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=Fflow", "Fund Flow", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703234", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=IssuedVsCollect", "Receipts & Payment(Actual)", "Accounts", "False", "False", "False", "False" }); ;
+         
             tblObj.Rows.Add(new Object[] { "1703000", "1703235", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=ProTrans", "Daily Transaction -Project", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703237", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj", "Project Wise Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703242", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj02", "Project Wise Receipts & Payment(Honoured) Details", "Accounts", "False", "False", "False", "False" }); ;
@@ -1274,10 +1274,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202201", "F_22_Sal", "MonthlySalesBudget?", "Type=Yearly", "Yearly Budget (Sales,Collection & Purchase)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2202000", "2202202", "F_22_Sal", "MonthlySalesBudget02", "", "Yearly  Sales Budget ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202205", "F_22_Sal", "MonthlySalesBudget03", "", "Yearly  Sales Budget (All Employee)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202206", "F_22_Sal", "MonthlySalesBudget?", "Type=MonthlyTypeWise", "Monthly Sales & Collection Target (Type Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "2203000", "2203210", "F_22_Sal", "RptSalSummery?", "Type=SalesRegister", "Sales Register", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203211", "F_22_Sal", "RptSalSummery?", "Type=dSaleVsColl", "Daily Sales & Collection Status", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203212", "F_22_Sal", "RptSalSummery?", "Type=mSalesTarget", "Monthly Sales Target-Market", "Sales & Recovery", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2203000", "2203213", "F_22_Sal", "RptSalSummery?", "Type=SaleVsCollTypeWise", "Monthly Achievement (Sales & Collection Type Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "2201000", "2201220", "F_22_Sal", "SalesPlaningCodeBook", "", "Sales Planning Code Book", "Sales & Recovery", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2201000", "2201230", "F_22_Sal", "SaleSurGenCodeBook?", "Type=Entry", "Information Code(Survey)", "Sales & Recovery", "False", "False", "False", "False" });
@@ -7489,6 +7492,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application2", "F_22_Sal/MktBookigApp2?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Sales & Collection Target (Type Wise)", "F_22_Sal/MonthlySalesBudget?Type=MonthlyTypeWise", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "14. Yearly  Sales Budget(All Employee)", "F_22_Sal/MonthlySalesBudget03", "", true, "" });
 
@@ -7676,6 +7681,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "18. Daily Sales & Collection Status", "F_22_Sal/RptSalSummery?Type=dSaleVsColl&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000001", "19. Monthly Achievement (Sales & Collection Type Wise)", "F_22_Sal/RptSalSummery?Type=SaleVsCollTypeWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "15. Month Wise Sales", "F_17_Acc/RptAccCollVsClearance?Type=MonSales&comcod=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000003", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Month Wise Sales (Reconcilation)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });

@@ -31,11 +31,12 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Current") ? "Sub-Contractor Bill-Catagory Wise"
-                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Edit" : "Labour Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Current") ? "Sub-Contractor Bill-Catagory Wise"
+                //    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Edit" : "Labour Issue Information";
 
 
 
@@ -47,7 +48,7 @@ namespace RealERPWEB.F_09_PImp
                 this.ComRefText();
                 string qgenno = this.Request.QueryString["genno"] ?? "";
                 string corderno = this.Request.QueryString["vounum"] ?? "";
-                if (qgenno.Length > 0 || corderno.Length>0)
+                if (qgenno.Length > 0 || corderno.Length > 0)
                 {
                     corderno = corderno.Length == 0 ? "Previous" : corderno;
                     if (corderno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
@@ -174,7 +175,7 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[17].Visible = true;
                     this.grvissue.Columns[19].Visible = true;
                     this.divgrp.Attributes["style"] = "width: 548px;float: left;";
-                    break;             
+                    break;
 
 
                 default:
@@ -595,13 +596,13 @@ namespace RealERPWEB.F_09_PImp
                 this.txtISSNarr.Text = "";
                 this.lblBillno.Text = "";
 
-             
+
                 this.ddlPrevISSList.Visible = true;
                 this.txtSrcPreBill.Visible = true;
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
-              
+
                 this.ddlRA.Enabled = true;
                 this.ddlfloorno.Items.Clear();
                 DropCheck1.Items.Clear();
@@ -634,7 +635,7 @@ namespace RealERPWEB.F_09_PImp
             this.GetFloorCode();
             this.GetCataGory();
             this.Get_Issue_Info();
-            this.SupplierOverallAdvanced(this.ddlprjlist.SelectedValue.ToString(), this.ddlcontractorlist.SelectedValue.ToString()) ;
+            this.SupplierOverallAdvanced(this.ddlprjlist.SelectedValue.ToString(), this.ddlcontractorlist.SelectedValue.ToString());
             //this.PenelVisiblity();
 
 
@@ -700,15 +701,15 @@ namespace RealERPWEB.F_09_PImp
 
 
             switch (comcod)
-            { 
-            
-            
-            
+            {
+
+
+
             }
-            
+
             string workorder = (qcorderno.Length > 0 || qgenno.Length > 0) ?
                 (qcorderno.Substring(0, 3) == "COR" ?
-                (qgenno.Length>0?(qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno): qcorderno) : "") 
+                (qgenno.Length > 0 ? (qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno) : qcorderno) : "")
                 : "";
 
 
@@ -1809,9 +1810,9 @@ namespace RealERPWEB.F_09_PImp
                         //    break;
 
 
-                        case"3101":
-                        case"3370":
-                            if(dgvQty > balqty)
+                        case "3101":
+                        case "3370":
+                            if (dgvQty > balqty)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = "Bill Qty Can't Excess Balance Qty .. !! ";
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
@@ -1839,7 +1840,7 @@ namespace RealERPWEB.F_09_PImp
                             dt.Rows[TblRowIndex]["isuamt"] = issueamt;
                             dt.Rows[TblRowIndex]["mbbook"] = mbbook;
 
-                            break; 
+                            break;
                         default:
                             dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
                             dt.Rows[TblRowIndex]["prcent"] = percent;
@@ -1871,7 +1872,7 @@ namespace RealERPWEB.F_09_PImp
                             break;
 
 
-                    } 
+                    }
 
                 }
                 ViewState["tblmatissue"] = dt;
@@ -1888,33 +1889,43 @@ namespace RealERPWEB.F_09_PImp
         protected void grvissue_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblmatissue"];
-            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            string Labcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
-            string Flrcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblgvflrCode")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETELABISUE", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (result == true)
+            try
             {
-                int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + e.RowIndex;
-                dt.Rows[rowindex].Delete();
+
+
+                string comcod = this.GetCompCode();
+                DataTable dt = (DataTable)ViewState["tblmatissue"];
+                string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+                string Labcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
+                string Flrcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblgvflrCode")).Text.Trim();
+                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETELABISUE", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (result == true)
+                {
+                    int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + e.RowIndex;
+                    dt.Rows[rowindex].Delete();
+                }
+
+                DataView dv = dt.DefaultView;
+                ViewState.Remove("tblmatissue");
+                ViewState["tblmatissue"] = dv.ToTable();
+                this.grvissue_DataBind();
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Labour Issue Information";
+                    string eventdesc = "Delete Labour";
+                    string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
+                            this.ddlcontractorlist.SelectedItem.Text.Substring(14) + "- " + "Issue No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                            ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
+                            ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
-
-            DataView dv = dt.DefaultView;
-            ViewState.Remove("tblmatissue");
-            ViewState["tblmatissue"] = dv.ToTable();
-            this.grvissue_DataBind();
-
-            if (ConstantInfo.LogStatus == true)
+            catch (Exception exp)
             {
-                string eventtype = "Labour Issue Information";
-                string eventdesc = "Delete Labour";
-                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
-                        this.ddlcontractorlist.SelectedItem.Text.Substring(14) + "- " + "Issue No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
-                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
-                        ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
             }
 
 
@@ -2092,7 +2103,7 @@ namespace RealERPWEB.F_09_PImp
                 string pactcode = this.ddlprjlist.SelectedValue.ToString();
                 string csircode = this.ddlcontractorlist.SelectedValue.ToString();
                 string genno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
-                if (grp.Substring(0,1) == "2")
+                if (grp.Substring(0, 1) == "2")
                 {
                     txtisuqty.Attributes["style"] = "background:#f9f9a1";
                     txtisuqty.Attributes["placeholder"] = "use - (minus qty)";

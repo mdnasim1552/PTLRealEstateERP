@@ -30,7 +30,11 @@ namespace RealERPWEB.F_01_LPA
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Daily Job Execution";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Daily Job Execution";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 this.txtFrom.Text = (Request.QueryString["nfollow"].Length != 0) ? ((this.Request.QueryString["Type"] == "Edit") ?

@@ -213,6 +213,8 @@ namespace RealEntity.C_12_Inv
         public decimal avgrate { get; set; }
         public double bgdqty { get; set; }
         public double diviation { get; set; }
+        public double bgdbla { get; set; }
+
 
         public ErptStock() { }
 

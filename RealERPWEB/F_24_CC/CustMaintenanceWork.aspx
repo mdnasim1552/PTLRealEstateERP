@@ -136,7 +136,7 @@
                             ShowFooter="True">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl#">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" ForeColor="Black"
                                             Height="16px" Style="text-align: right"

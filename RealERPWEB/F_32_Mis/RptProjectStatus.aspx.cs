@@ -32,20 +32,22 @@ namespace RealERPWEB.F_32_Mis
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.SelectView();
                 string type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "PrjStatus") ? "Project Status Report"
-                    : (type == "MProStatus") ? "Monthly Project Status"
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "PrjStatus") ? "Project Status Report"
+                //    : (type == "MProStatus") ? "Monthly Project Status"
 
-                    : (type == "Proturnover") ? "Project Remaining  Turnover"
-                    : (type == "GPNPCal") ? "GP NP Calculation"
-                    : (type == "GPNPSum") ? "GP NP Calculation Summary"
+                //    : (type == "Proturnover") ? "Project Remaining  Turnover"
+                //    : (type == "GPNPCal") ? "GP NP Calculation"
+                //    : (type == "GPNPSum") ? "GP NP Calculation Summary"
 
-                    : (type == "Prjwiseres") ? "Project Wise Resource" : "Collection Break Down";
+                //    : (type == "Prjwiseres") ? "Project Wise Resource" : "Collection Break Down";
 
 
             }

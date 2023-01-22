@@ -27,9 +27,11 @@ namespace RealERPWEB.F_02_Fea
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.ProjectName();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString().Trim() == "PrjInfo") ? "Project Feasibility Project Information" : ((Request.QueryString["Type"].ToString().Trim() == "Cost") ? "Project Feasibility Cost Information" : "Project Feasibility Revenue Information");
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString().Trim() == "PrjInfo") ? "Project Feasibility Project Information" : ((Request.QueryString["Type"].ToString().Trim() == "Cost") ? "Project Feasibility Cost Information" : "Project Feasibility Revenue Information");
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
             }
