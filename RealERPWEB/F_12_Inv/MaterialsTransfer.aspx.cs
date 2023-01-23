@@ -721,10 +721,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3338":
                     break;
 
-                case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
+              default:
                     if (this.Request.QueryString["Type"] == "Entry")
                     {
                         if (Refno.Length == 0)
@@ -748,39 +745,29 @@ namespace RealERPWEB.F_12_Inv
                     }
                     break;
 
-                default:
+                //default:
 
-                    if (Refno.Length == 0)
-                    {
-                        msg = "Ref. No. Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                        return;
-                    }
-                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                        ;
+                //    if (Refno.Length == 0)
+                //    {
+                //        msg = "Ref. No. Should Not Be Empty";
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //        return;
+                //    }
+                //    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
+                //    if (ds2.Tables[0].Rows.Count == 0)
+                //        ;
 
-                    else
-                    {
-                        if (ds2.Tables[0].Rows.Count > 0)
-                        {
-                            msg = "Found Duplicate Ref. No.";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                            return;
-                        }
-                        //DataView dv1 = ds2.Tables[0].DefaultView;
-                        //dv1.RowFilter = ("trnno <>'" + transno + "'");
-                        //DataTable dt1 = dv1.ToTable();
-                        //if (dt1.Rows.Count == 0)
-                        //    ;
-                        //else
-                        //{
-                        //    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref. No.";
-
-                        //    return;
-                        //}
-                    }
-                    break;
+                //    else
+                //    {
+                //        if (ds2.Tables[0].Rows.Count > 0)
+                //        {
+                //            msg = "Found Duplicate Ref. No.";
+                //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //            return;
+                //        }
+                        
+                //    }
+                //    break;
             }
 
 
