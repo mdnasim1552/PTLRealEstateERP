@@ -32,7 +32,7 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
-                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString().Substring(0, indexofamp);
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");

@@ -783,6 +783,22 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
+            for (int i = 0; i < this.gvAprovInfo.Rows.Count; i++)
+            {
+
+
+                double balqty = Convert.ToDouble("0" + tbl1.Rows[i]["balqty"].ToString());
+                double aproqty = Convert.ToDouble("0" + tbl1.Rows[i]["getpqty"].ToString());
+                if (balqty < aproqty)
+                {
+                    message = "Balance Qty can not Large Then Approved Qty ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
+                }
+            }
+
+           
+
             DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
             string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();                    
             if(comcod=="3101" || comcod=="3367")

@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="col-md-6 pading6px asitCol6" id="prjSection" runat="server" visible="false">
-                                        <asp:Label ID="lblGenBillTrack" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
+                                        <asp:Label ID="lblGenBillTrack" runat="server" CssClass="lblTxt lblName" Text="Requisition No."></asp:Label>
                                         <asp:TextBox ID="TextGenBillTrack"  runat="server" CssClass=" inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="LinkGenBillTrack" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="LinkGenBillTrack_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         <asp:DropDownList ID="ddlGenBillTracking"  AutoPostBack="True" runat="server" Style="width: 250px" CssClass="chzn-select  ddlPage">
