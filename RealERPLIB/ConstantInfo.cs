@@ -199,6 +199,7 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "0403000", "0403094", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdMainRpt&AnaType=4", "Cost-Analysis Sheet", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403097", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdMainRptALL", "Budget-Engineering Reports", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403098", "F_04_Bgd", "RptBgdPrjoject?", "Type=MasterBgdFlrDet", "Budgeted Details(Category Wise)", "Budget", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0403000", "0403099", "F_04_Bgd", "RptWorkWiResVariance?", "Type=Entry", "Variance Report", "Budget", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "0403000", "0403110", "F_04_Bgd", "RptWorkSchedule", "", "Work List", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403120", "F_04_Bgd", "RptOtherReqStatus", "", "General Requisition Status", "Budget", "False", "False", "False", "False" }); ;
@@ -431,7 +432,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "1202000", "1202050", "F_12_Inv", "PurPhyStock", "", "Physical Stock", "Inventory", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry&genno=", "Top Sheet(Cash Purchase)", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry", "Top Sheet(Cash Purchase)", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202061", "F_12_Inv", "PurReqEntry?", "InputType=LcEntry", "LC Requisition", "Inventory", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "1202000", "1202062", "F_12_Cen", "EntryLostSoldAndDes01", "", " Entry Lost, Sold & Destroyed", "Inventory", "False", "False", "False", "False" }); ;
 
@@ -4314,7 +4315,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000005", "17. Material Group Wise Cost", "F_04_Bgd/RptBgdPrjoject?Type=BgdCostResBasis02&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000006", "18. Category Wise Material Details", "F_04_Bgd/RptPrjFloorWise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "20. Frame and Finishing Cost", "F_04_Bgd/RptFrameAndFinishingCost", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0301000008", "", "", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0301000008", "22. Variance Report", "F_04_Bgd/RptWorkWiResVariance?Type=Entry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0301000009", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0301000010", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0301000011", "", "", "", true, "" });
@@ -4372,6 +4373,7 @@ namespace RealERPLIB
             //mnuTbl1.Rows.Add(new Object[] { "0401000007", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "17. Budgeted Cost-Details", "F_04_Bgd/RptBgdPrjoject?Type=MasterBgdGrWiseDet&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "17. Budgeted Details(Category Wise)", "F_04_Bgd/RptBgdPrjoject?Type=MasterBgdFlrDet&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000006", "22. Variance Report", "F_04_Bgd/RptWorkWiResVariance?Type=Entry", "", true, "" });
 
 
 
