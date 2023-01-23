@@ -78,12 +78,14 @@ namespace RealERPWEB.F_09_PImp
                 pnl2.Visible = false;
                 btnOK.Text = "<span class='fa fa-arrow-circle-left' style='color: white;' aria-hidden='true'></span> New";
                 GetCategory();
-
                 GetItem();
-                GetDivision();
-                GetWENIssueNo();
+                GetDivision();               
                 GetWorkWithIssue();
                 GetMaterials();
+                GetWENIssueNo();
+                GridOne_DataBind();
+                CreateTable();
+                GridTwo_DataBind();                
             }
             else
             {
@@ -134,7 +136,7 @@ namespace RealERPWEB.F_09_PImp
         private void GetItem()
         {
             string itemcode = this.ddlCategory.SelectedValue.Substring(0, 4).ToString() + "%";
-            DataTable dt = ((DataTable)Session["itemlist"]).Copy();
+            DataTable dt = ((DataTable)Session["item"]).Copy();
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("itemcode like '" + itemcode + "' ");
             dt = dv.ToTable();
@@ -326,6 +328,9 @@ namespace RealERPWEB.F_09_PImp
                 string strColName4 = "balqty";
                 string strColName5 = "useoflocation";
                 string strColName6 = "remarks";
+                string strColName7 = "WrkQty";
+                string strColName8 = "StdQty";
+                string strColName9 = "WrkUnit";
                 DataColumn colNew = new DataColumn(strColName, typeof(double));
                 DataColumn colNew1 = new DataColumn(strColName1, typeof(double));
                 DataColumn colNew2 = new DataColumn(strColName2, typeof(string));
@@ -333,6 +338,9 @@ namespace RealERPWEB.F_09_PImp
                 DataColumn colNew4 = new DataColumn(strColName4, typeof(double));
                 DataColumn colNew5 = new DataColumn(strColName5, typeof(string));
                 DataColumn colNew6 = new DataColumn(strColName6, typeof(string));
+                DataColumn colNew7 = new DataColumn(strColName7, typeof(double));
+                DataColumn colNew8 = new DataColumn(strColName8, typeof(double));
+                DataColumn colNew9 = new DataColumn(strColName9, typeof(string));                
                 colNew.DefaultValue = 0.00;
                 colNew1.DefaultValue = 0.00;
                 colNew2.DefaultValue = "000000000000";
@@ -350,6 +358,12 @@ namespace RealERPWEB.F_09_PImp
                     dt.Columns.Add(colNew5);
                 if (!dt.Columns.Contains(strColName6))
                     dt.Columns.Add(colNew6);
+                if (!dt.Columns.Contains(strColName7))
+                    dt.Columns.Add(colNew7);
+                if (!dt.Columns.Contains(strColName8))
+                    dt.Columns.Add(colNew8);
+                if (!dt.Columns.Contains(strColName9))
+                    dt.Columns.Add(colNew9);
                 string flag = "1";
                 if (tempforgrid.Rows.Count == 0)
                 {
@@ -365,6 +379,7 @@ namespace RealERPWEB.F_09_PImp
                         string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
                         double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["wrkqty"].ToString());
                         double stdqty = Convert.ToDouble(tempforgrid.Rows[i]["stdqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["stdqty"].ToString());
+                        string wrkunit = tempforgrid.Rows[i]["wrkunit"].ToString();
 
                         if (wrkqty <= 0)
                         {
@@ -382,6 +397,9 @@ namespace RealERPWEB.F_09_PImp
 
                                 if (((dtMatList).Select("rsircode='" + rsircode + "'")).Length > 0)
                                 {
+                                    dr["WrkUnit"] = wrkunit;
+                                    dr["StdQty"] = stdqty;
+                                    dr["WrkQty"] = wrkqty;
                                     dr["Ratio"] = stdqty == 0 ? 0.00 : wrkqty / stdqty;
                                     dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
                                     dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
@@ -447,9 +465,9 @@ namespace RealERPWEB.F_09_PImp
 
                     flrcod = dt.Rows[i]["flrcod"].ToString();
                     Itemcode = dt.Rows[i]["isircode"].ToString();
-
                     dt.Rows[i]["flrdesc"] = "";
                     dt.Rows[i]["isirdesc"] = "";
+                    dt.Rows[i]["WrkQty"] = 0.00;
                 }
                 else
                 {
@@ -467,7 +485,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 DropDownList ddlSpec = (DropDownList)e.Row.FindControl("ddlSpecification");
                 LinkButton lnk = (LinkButton)e.Row.FindControl("LnkbtnSpec");
-                
+
                 string rsircode = ((Label)e.Row.FindControl("lblrsircode")).Text;
                 DataView dv = dtspec.DefaultView;
                 dv.RowFilter = ("rsircode='" + rsircode + "'");
@@ -742,12 +760,12 @@ namespace RealERPWEB.F_09_PImp
                 double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
                 string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
                 string txtremarks = tbl02.Rows[i]["remarks"].ToString();
-
+                string flrcod= tbl02.Rows[i]["flrcod"].ToString();
                 if (Isuqty > 0)
                 {
 
                     result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEA", mMISUNO,
-                        Rsircode, Spcfcod, Isuqty.ToString(), txtlocation, txtremarks, "", "", "", "", "", "", "", "");
+                        Rsircode, Spcfcod, Isuqty.ToString(), txtlocation, txtremarks, flrcod, "", "", "", "", "", "", "");
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -856,18 +874,22 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["materialexefinal"];
             string isircode = dt.Rows[RowIndex]["isircode"].ToString();
             string isirdesc = dt.Rows[RowIndex]["isirdesc"].ToString();
-            string rsircode= dt.Rows[RowIndex]["rsircode"].ToString();
+            string rsircode = dt.Rows[RowIndex]["rsircode"].ToString();
             string rsirdesc = dt.Rows[RowIndex]["rsirdesc"].ToString();
-            string flrcode= dt.Rows[RowIndex]["flrcod"].ToString();
+            string flrcode = dt.Rows[RowIndex]["flrcod"].ToString();
             string flrdesc = dt.Rows[RowIndex]["flrdesc"].ToString();
             double RSTDQTY = Convert.ToDouble(dt.Rows[RowIndex]["rstdqty"].ToString());
-            double Ratio= Convert.ToDouble(dt.Rows[RowIndex]["Ratio"].ToString());
+            double Ratio = Convert.ToDouble(dt.Rows[RowIndex]["Ratio"].ToString());
             double isuqty = Convert.ToDouble("0.00");
             string spcfcod = dt.Rows[RowIndex]["spcfcod"].ToString();
             string rsirunit = dt.Rows[RowIndex]["rsirunit"].ToString();
             double balqty = Convert.ToDouble(dt.Rows[RowIndex]["balqty"].ToString());
             string useoflocation = dt.Rows[RowIndex]["useoflocation"].ToString();
             string remarks = dt.Rows[RowIndex]["remarks"].ToString();
+            double WrkQty = Convert.ToDouble(dt.Rows[RowIndex]["WrkQty"].ToString());
+            double StdQty = Convert.ToDouble(dt.Rows[RowIndex]["StdQty"].ToString());
+            string WrkUnit= dt.Rows[RowIndex]["WrkUnit"].ToString();
+
 
             DataRow row = dt.NewRow();
             row["comcod"] = GetComCode();
@@ -885,6 +907,9 @@ namespace RealERPWEB.F_09_PImp
             row["balqty"] = balqty;
             row["useoflocation"] = useoflocation;
             row["remarks"] = remarks;
+            row["WrkQty"] = WrkQty;
+            row["StdQty"] = StdQty;
+            row["WrkUnit"] = WrkUnit;
             dt.Rows.Add(row);
 
             //DataView dv = new DataView(dt);
