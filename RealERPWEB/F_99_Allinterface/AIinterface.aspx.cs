@@ -1628,13 +1628,20 @@ namespace RealERPWEB.F_99_Allinterface
 
             try
             {
+                string comcod = this.GetCompCode();
                 string roletype = this.ddlUserRoleType.SelectedValue;
                 double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
+                string prj = this.lblproprjid.Text.ToString();
+                string batch = this.lblabatchid.Text.ToString();
+               
 
-                
+                    DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETPRJWISEBATCH", prj, batch, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
 
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
