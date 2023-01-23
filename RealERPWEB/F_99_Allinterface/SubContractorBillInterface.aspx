@@ -532,6 +532,7 @@
 
                     case 3101://ASIT
                     case 3370:   //cpdl
+                    case 3368: // Finlay
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
@@ -555,7 +556,7 @@
                         break;
 
 
-                    case 3368: // Finlay
+<%--                    case 3368: // Finlay
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
@@ -566,7 +567,7 @@
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
-                        break;
+                        break;--%>
 
 
                     case 3367:
