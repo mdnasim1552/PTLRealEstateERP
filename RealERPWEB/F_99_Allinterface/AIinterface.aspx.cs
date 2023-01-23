@@ -1600,6 +1600,16 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tbl1 = (DataTable)ViewState["tblt01"];
             this.GridVirtual.DataSource = tbl1;
             this.GridVirtual.DataBind();
+            this.FooterCalculation(tbl1);
+        }
+
+        private void FooterCalculation(DataTable tbl1)
+        {
+            if (tbl1.Rows.Count == 0)
+                return;
+
+            ((Label)this.GridVirtual.FooterRow.FindControl("tblsumValoquantity")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("sum(assignqty)", "")) ? 0.00 :
+                tbl1.Compute("sum(assignqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
         }
         private void CreateTableAssign()
         {
@@ -1638,9 +1648,6 @@ namespace RealERPWEB.F_99_Allinterface
                 string batch = this.lblabatchid.Text.ToString();
                
 
-                    DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETPRJWISEBATCH", prj, batch, "", "", "", "", "");
-                if (ds1 == null)
-                    return;
 
 
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
@@ -1662,14 +1669,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty && pedingqc < assignqty)
+                else if (roletype == "95002" && doneannotor < assignqty )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty && pedingqar < assignqty)
+                else if (roletype == "95003" && doneqc < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
