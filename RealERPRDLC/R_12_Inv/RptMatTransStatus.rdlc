@@ -121,6 +121,9 @@
                   <Width>0.90625in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>0.92708in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>0.85417in</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -285,6 +288,43 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Gate Pass</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -774,6 +814,39 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="getpref">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!getpref.Value</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>getpref</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="tdate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1222,6 +1295,40 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox72">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1555,6 +1662,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1577,7 +1685,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
             <Height>0.75in</Height>
-            <Width>13.04167in</Width>
+            <Width>13.96875in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1588,7 +1696,7 @@
         <Height>1.1875in</Height>
         <Style />
       </Body>
-      <Width>13.05209in</Width>
+      <Width>13.96875in</Width>
       <Page>
         <PageHeader>
           <Height>0.8125in</Height>
@@ -1617,7 +1725,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.02222in</Top>
-              <Left>1.85833in</Left>
+              <Left>2.35833in</Left>
               <Height>0.275in</Height>
               <Width>8.68854in</Width>
               <Style>
@@ -1652,7 +1760,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.325in</Top>
-              <Left>1.86042in</Left>
+              <Left>2.36042in</Left>
               <Height>0.2375in</Height>
               <Width>8.68021in</Width>
               <ZIndex>1</ZIndex>
@@ -1687,7 +1795,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.54444in</Top>
-              <Left>1.86042in</Left>
+              <Left>2.36042in</Left>
               <Height>0.2125in</Height>
               <Width>8.67604in</Width>
               <ZIndex>2</ZIndex>
@@ -1767,7 +1875,7 @@
               <Top>0.02812in</Top>
               <Left>7.88979in</Left>
               <Height>0.20417in</Height>
-              <Width>5.10917in</Width>
+              <Width>6.05709in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1787,8 +1895,8 @@
           </Style>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
-        <PageWidth>14in</PageWidth>
-        <LeftMargin>0.45in</LeftMargin>
+        <PageWidth>14.6in</PageWidth>
+        <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>

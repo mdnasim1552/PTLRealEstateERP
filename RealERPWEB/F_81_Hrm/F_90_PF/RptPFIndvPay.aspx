@@ -353,7 +353,7 @@
                             <ItemStyle HorizontalAlign="Right" />
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="SF">
+                        <asp:TemplateField HeaderText="SWF">
                             <ItemTemplate>
                                 <asp:Label ID="lblgvswfamtsattle" runat="server" Font-Size="11PX"
                                     Style="text-align: right"

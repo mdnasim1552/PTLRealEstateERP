@@ -2972,8 +2972,10 @@ namespace RealERPWEB.F_12_Inv
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string mREQNO = ASTUtility.Left(this.lblCurReqNo1.Text.Trim(), 3) + ASTUtility.Right(this.txtCurReqDate.Text.Trim(), 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
             string rescode = ((Label)this.gvReqInfo.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
+
+            string type = Request.QueryString["InputType"].ToString();
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "DELETEREQFORSPCRES",
-                        mREQNO, rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                        mREQNO, rescode, type, "", "", "", "", "", "", "", "", "", "", "", "");
             if (result)
             {
 
