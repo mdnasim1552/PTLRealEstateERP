@@ -582,7 +582,9 @@ namespace RealERPWEB.F_38_AI
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex; 
                 string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
+                
                 this.HiddinTaskid.Value = id;
+                this.lbltaskbatchid.Text = id;
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
@@ -637,7 +639,7 @@ namespace RealERPWEB.F_38_AI
                 string worktype = this.txtworkhour.Text;
                 string annodid = this.ddlAnnotationid.SelectedValue.Trim().ToString();
                 string roletype = this.ddlUserRoleType.SelectedItem.Value;
-                string textrate = this.textrate.Text;
+                string textrate = Convert.ToDouble("0" + this.textrate.Text).ToString();
 
 
                 bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate);

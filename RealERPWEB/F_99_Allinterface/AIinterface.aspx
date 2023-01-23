@@ -688,7 +688,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <asp:Label runat="server" ID="lblprjserchname">Project </asp:Label>
-                                        <asp:DropDownList ID="ddlprjsearch" runat="server" CssClass="chzn-select form-control form-control-sm" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlprjsearch" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-4">
                                         <asp:LinkButton runat="server" ID="prjSearch" OnClick="prjSearch_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
@@ -736,9 +736,9 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="ProjectName">
-                                                
+
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblprojectName" runat="server"  Width="200px"
+                                                    <asp:Label ID="lblprojectName" runat="server" Width="200px"
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -830,7 +830,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlStatus" runat="server" Visible="false">
                                 <div class="row">
-                                       <div class="col-md-2">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label31" runat="server">Page Size</asp:Label>
                                         <asp:DropDownList ID="ddlBatchPage" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBatchPage_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
@@ -845,7 +845,7 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-2">
-                                         <asp:Label ID="Label34" runat="server">Batch List</asp:Label>
+                                        <asp:Label ID="Label34" runat="server">Batch List</asp:Label>
                                         <asp:DropDownList ID="ddlsearchBatchlist" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
@@ -896,7 +896,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                     <asp:Label ID="lblbatchuniqid" runat="server" Height="16px" CssClass="badge badge-pill badge-primary"
+                                                    <asp:Label ID="lblbatchuniqid" runat="server" Height="16px" CssClass="badge badge-pill badge-primary"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
 
                                                     <asp:Label ID="lblbatchbatchid" runat="server" Height="16px" Width="200px"
@@ -1023,7 +1023,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlAssign" runat="server" Visible="false">
                                 <div class="row">
-                                       <div class="col-md-2">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label32" runat="server">Page Size</asp:Label>
                                         <asp:DropDownList ID="ddlassignpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlassignpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
@@ -1037,8 +1037,8 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                     <div class="col-md-3">
-                                         <asp:Label ID="Label35" runat="server">Title List</asp:Label>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label35" runat="server">Title List</asp:Label>
                                         <asp:DropDownList ID="ddlsearchtitle" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
@@ -1102,7 +1102,7 @@
 
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                     <asp:Label ID="lbljobiduniq" runat="server" class="badge badge-pill badge-info"
+                                                    <asp:Label ID="lbljobiduniq" runat="server" class="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>'></asp:Label>
                                                     <asp:Label ID="tblproj" runat="server" Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'></asp:Label>
@@ -1178,10 +1178,10 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlProduction" runat="server" Visible="false">
-                                 <div class="row">
-                                       <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label33" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlProduction_page_Size" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProduction_page_Size_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                        <asp:DropDownList ID="ddlProduction_page_Size" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProduction_page_Size_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -1193,12 +1193,12 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                       <div class="col-md-3">
-                                         <asp:Label ID="Label36" runat="server">Task Title</asp:Label>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label36" runat="server">Task Title</asp:Label>
                                         <asp:DropDownList ID="ddlsearchtasktitle" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
-                                        <asp:LinkButton runat="server" ID="btntasktitle" OnClick="btntasktitle_Click"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btntasktitle" OnClick="btntasktitle_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -1413,10 +1413,10 @@
 
                             </asp:Panel>
                             <asp:Panel ID="pnelQC" runat="server" Visible="false">
-                                 <div class="row">
-                                       <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label37" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="dllQA1search" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="dllQA1search_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                        <asp:DropDownList ID="dllQA1search" runat="server" AutoPostBack="True" OnSelectedIndexChanged="dllQA1search_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -1428,12 +1428,12 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                       <div class="col-md-3">
-                                         <asp:Label ID="Label38" runat="server">Task Title</asp:Label>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label38" runat="server">Task Title</asp:Label>
                                         <asp:DropDownList ID="ddltastileqa1" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
-                                        <asp:LinkButton runat="server" ID="btnqa1search" OnClick="btnqa1search_Click"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnqa1search" OnClick="btnqa1search_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -1638,9 +1638,9 @@
                             </asp:Panel>
                             <asp:Panel ID="pnelQA" runat="server" Visible="false">
                                 <div class="row">
-                                       <div class="col-md-2">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label39" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagingQC1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagingQC1_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                        <asp:DropDownList ID="ddlpagingQC1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagingQC1_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -1652,12 +1652,12 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                       <div class="col-md-3">
-                                         <asp:Label ID="Label40" runat="server">Task Title</asp:Label>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label40" runat="server">Task Title</asp:Label>
                                         <asp:DropDownList ID="ddllistoftask" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
-                                        <asp:LinkButton runat="server" ID="btnsearhqc1" OnClick="btnsearhqc1_Click"   CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnsearhqc1" OnClick="btnsearhqc1_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -2016,10 +2016,10 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnelAReject" runat="server" Visible="false">
-                                 <div class="row">
-                                       <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-md-2">
                                         <asp:Label ID="Label41" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlAcceptReject_pagging" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAcceptReject_pagging_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                        <asp:DropDownList ID="ddlAcceptReject_pagging" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAcceptReject_pagging_SelectedIndexChanged" CssClass="form-control form-control-sm">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -2031,8 +2031,8 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                       <div class="col-md-3">
-                                         <asp:Label ID="Label42" runat="server">Task Title</asp:Label>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label42" runat="server">Task Title</asp:Label>
                                         <asp:DropDownList ID="ddlAcceptRejecttask" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
@@ -2897,6 +2897,10 @@
                                                     <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="80px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="fgvsup" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="Black" Style="text-align: right">Total :</asp:Label>
+                                                </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -2905,6 +2909,9 @@
                                                     <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assignqty")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="tblsumValoquantity" runat="server" Width="100px" ForeColor="Black" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                                </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
