@@ -795,12 +795,12 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                //case "3101":
+                case "3372":
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
 
-                //case "3101":
+               
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;

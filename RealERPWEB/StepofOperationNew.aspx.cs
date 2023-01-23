@@ -53,6 +53,132 @@ namespace RealERPWEB
 
                 //string ModuleID2 = (this.Request.QueryString["Module"].ToString().Length > 0) ? this.Request.QueryString["Module"] : ((DataSet)Session["tblusrlog"]).Tables[0].Rows[0]["moduleid2"].ToString().Trim();
 
+                if(qmoduleid=="05")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Annual Business Plan";
+                    this.Master.Page.Title = "Annual Business Plan";
+                }
+                else if(qmoduleid == "01")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Land Feasibility";
+                    this.Master.Page.Title = "Land Feasibility";
+                }
+                else if (qmoduleid == "02")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Feasibility Module";
+                    this.Master.Page.Title = "Feasibility Module";
+                }
+                else if (qmoduleid == "04")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Budgetary Control";
+                    this.Master.Page.Title = "Budgetary Control";
+                }
+                else if (qmoduleid == "08")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Project Planning";
+                    this.Master.Page.Title = "Project Planning";
+                }
+                else if (qmoduleid == "09")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Project Implementation";
+                    this.Master.Page.Title = "Project Implementation";
+                }
+                else if (qmoduleid == "13")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Central Warehouse";
+                    this.Master.Page.Title = "Central Warehouse";
+                }
+                else if (qmoduleid == "12")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Inventory Control";
+                    this.Master.Page.Title = "Inventory Control";
+                }
+                else if (qmoduleid == "14")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Procurement";
+                    this.Master.Page.Title = "Procurement";
+                }
+                else if (qmoduleid == "21")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Relation Mgt(CRM)";
+                    this.Master.Page.Title = "Customer Relation Mgt(CRM)";
+                }
+                else if (qmoduleid == "16")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Billing Management";
+                    this.Master.Page.Title = "Billing Management";
+                }
+                else if (qmoduleid == "22")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Sales";
+                    this.Master.Page.Title = "Sales";
+                }
+                else if (qmoduleid == "37")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Landowner's Managment";
+                    this.Master.Page.Title = "Landowner's Managment";
+                }
+                else if (qmoduleid == "23")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Credit Realization/Recovery";
+                    this.Master.Page.Title = "Credit Realization/Recovery";
+                }
+                else if (qmoduleid == "24")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Care";
+                    this.Master.Page.Title = "Customer Care";
+                }
+                else if (qmoduleid == "28")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Marketing Procurement";
+                    this.Master.Page.Title = "Marketing Procurement";
+                }
+                else if (qmoduleid == "29")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Fixed Assets";
+                    this.Master.Page.Title = "Fixed Assets";
+                }
+                else if (qmoduleid == "17")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Accounts & Finance";
+                    this.Master.Page.Title = "Accounts & Finance";
+                }
+                else if (qmoduleid == "33")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Documentation";
+                    this.Master.Page.Title = "Documentation";
+                }
+                else if (qmoduleid == "35")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Control Panel";
+                    this.Master.Page.Title = "Control Panel";
+                }
+                else if (qmoduleid == "32")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "MIS Module";
+                    this.Master.Page.Title = "MIS Module";
+                }
+                else if (qmoduleid == "30")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Complain Management";
+                    this.Master.Page.Title = "Complain Management";
+                }
+                else if (qmoduleid == "81")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "HRM";
+                    this.Master.Page.Title = "HRM";
+                }
+                else if (qmoduleid == "38")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Artificial Intelligence(AI)";
+                    this.Master.Page.Title = "Artificial Intelligence(AI)";
+                }
+                else if (qmoduleid == "75")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "KPI";
+                    this.Master.Page.Title = "KPI";
+                }
+
                 string comcod = ASTUtility.Left(((DataSet)Session["tblusrlog"]).Tables[0].Rows[0]["comcod"].ToString().Trim(), 1);
 
                 this.GetCompanyName();
