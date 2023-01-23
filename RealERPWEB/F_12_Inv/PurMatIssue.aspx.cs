@@ -332,7 +332,7 @@ namespace RealERPWEB.F_12_Inv
             string qgenno = this.Request.QueryString["genno"] ?? "";
             string genno = (qgenno.Length == 0 ? "%" : this.Request.QueryString["genno"].ToString()) + "%";
             string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"16";
+            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"1[16]";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVMISSUELIST", CurDate1, genno, pactcodetype, "", "", "", "", "", "");
             if (ds1 == null)
                 return;

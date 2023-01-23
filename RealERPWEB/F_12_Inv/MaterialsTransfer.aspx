@@ -318,7 +318,17 @@
                                     <FooterStyle HorizontalAlign="Center" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="MTRF  Qty">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvmtrfqty" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mtrfqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
 
+                                    <HeaderStyle  HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Balance Qty">
 
@@ -336,16 +346,6 @@
 
 
 
-                                <asp:TemplateField HeaderText="MTRF  Qty">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblgvmtrfqty" runat="server"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mtrfqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
-                                    </ItemTemplate>
-
-                                    <HeaderStyle  HorizontalAlign="Center" />
-                                    <ItemStyle HorizontalAlign="Right" />
-                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText=" Receiving Qty">
                                     <ItemTemplate>
