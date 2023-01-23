@@ -157,7 +157,7 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\Project Reference\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
@@ -227,7 +227,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2293,6 +2293,7 @@
     <Content Include="F_04_Bgd\RptOtherReqStatus.aspx" />
     <Content Include="F_04_Bgd\RptPrjFloorWise.aspx" />
     <Content Include="F_04_Bgd\RptWorkSchedule.aspx" />
+    <Content Include="F_04_Bgd\RptWorkWiResVariance.aspx" />
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
@@ -4265,6 +4266,13 @@
     </Compile>
     <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
       <DependentUpon>RptProductCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.designer.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
