@@ -1426,7 +1426,7 @@
                 var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
 
                 console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
-               
+
                 var cc0 = "";
                 var cc1 = "";
                 var cc2 = "";
@@ -1450,7 +1450,7 @@
                             cc0 = $(arryccc[i]).val();
                             number = gval.length > 0 ? gval + "," : "";
                             console.log(cc0);
-                            
+
                             break;
 
 
@@ -1782,12 +1782,12 @@
                                 $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
                                     if ($(item).val() == status) {
                                         $(item).attr('checked', true);
-                                       // $(item).attr('disabled', '');
+                                        // $(item).attr('disabled', '');
 
                                     }
                                     else {
                                         $(item).attr('checked', false);
-                                       // $(item).attr('disabled', true);
+                                        // $(item).attr('disabled', true);
 
 
                                     }
@@ -2062,10 +2062,10 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
-                                                          
+
                                                             <asp:DropDownList ID="ddlcountryPhone" runat="server" CssClass="custom-select chzn-select" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
-                                                                Width="120px" >
-                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>                                                                
+                                                                Width="120px">
+                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
                                                             </asp:DropDownList>
 
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
@@ -2144,9 +2144,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
-
                                                         <ItemTemplate>
-
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2157,16 +2155,16 @@
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
                                                             <asp:Panel ID="Panegrd" runat="server">
-
                                                                 <div class="form-group mt-2">
-
                                                                     <asp:DropDownList ID="ddlval" runat="server" Width="300px" OnSelectedIndexChanged="ddlval_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
                                                                     </asp:DropDownList>
-
-
                                                                 </div>
-
-
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnlIREmp" runat="server" Visible="false">
+                                                                <div class="form-group mt-2">
+                                                                    <asp:DropDownList ID="ddlIREmp" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+                                                                </div>
                                                             </asp:Panel>
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -2482,7 +2480,6 @@
                                                                     <div class="col-md-12 pading5px">
 
                                                                         <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexChanged">
-
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
@@ -2643,7 +2640,7 @@
 
                                 <div class="w-100">
                                     <%--//OnClientClick="javascript:return funDupAllMobile();"--%> <%--Req by Emdad by for new add country code 20221023--%>
-                                    <asp:LinkButton ID="lnkUpdate" runat="server" 
+                                    <asp:LinkButton ID="lnkUpdate" runat="server"
                                         CssClass="btn btn-primary" OnClick="lnkUpdate_Click">Save</asp:LinkButton>
                                 </div>
 
@@ -3134,7 +3131,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--27--%>
-                                                 <asp:TemplateField HeaderText="Project Visit<br>Status" Visible="false">
+                                                <asp:TemplateField HeaderText="Project Visit<br>Status" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvprojvisit" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projvisit")) %>'></asp:Label>
@@ -3142,8 +3139,8 @@
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
-                                                 <%--28--%>
-                                                 <asp:TemplateField HeaderText="Entry By" Visible="false">
+                                                <%--28--%>
+                                                <asp:TemplateField HeaderText="Entry By" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgventryby" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entryby")) %>'></asp:Label>
