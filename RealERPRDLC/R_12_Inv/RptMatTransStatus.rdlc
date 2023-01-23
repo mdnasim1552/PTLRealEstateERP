@@ -1725,7 +1725,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.02222in</Top>
-              <Left>2.35833in</Left>
+              <Left>2.73333in</Left>
               <Height>0.275in</Height>
               <Width>8.68854in</Width>
               <Style>
@@ -1760,7 +1760,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.325in</Top>
-              <Left>2.36042in</Left>
+              <Left>2.73542in</Left>
               <Height>0.2375in</Height>
               <Width>8.68021in</Width>
               <ZIndex>1</ZIndex>
@@ -1795,7 +1795,7 @@
               </Paragraphs>
               <rd:DefaultName>compNam</rd:DefaultName>
               <Top>0.54444in</Top>
-              <Left>2.36042in</Left>
+              <Left>2.73542in</Left>
               <Height>0.2125in</Height>
               <Width>8.67604in</Width>
               <ZIndex>2</ZIndex>
@@ -1896,7 +1896,7 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>14.6in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
+        <LeftMargin>0.35in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>

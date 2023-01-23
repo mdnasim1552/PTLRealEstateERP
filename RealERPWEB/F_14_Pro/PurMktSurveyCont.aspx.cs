@@ -31,7 +31,7 @@ namespace RealERPWEB.F_14_Pro
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
-                //((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
+               // ((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
