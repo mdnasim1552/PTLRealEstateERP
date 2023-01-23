@@ -408,7 +408,7 @@ namespace RealEntity.C_12_Inv
             public string resdesc { get; set; }
             public string spcfdesc { get; set; }
             public string getpref { get; set; }
-            public double mtrref { get; set; }
+            public string mtrref { get; set; }
             public string sirunit { get; set; }
             public double mtrfqty { get; set; }
             public double balqty { get; set; }

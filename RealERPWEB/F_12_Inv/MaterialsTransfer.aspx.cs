@@ -1072,12 +1072,13 @@ namespace RealERPWEB.F_12_Inv
                     this.PrintMatTransferBridge();
                     break;
 
-                case "3101":
+               
                 case "1205":
                 case "3351":
                 case "3352":
                     this.PrintMatTransferP2P();
                     break;
+                case "3101":
                 case "3370":
                     PrintMatTransferGenCPDL();
                     break;
