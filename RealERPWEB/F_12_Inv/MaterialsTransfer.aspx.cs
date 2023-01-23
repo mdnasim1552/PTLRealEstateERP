@@ -1505,7 +1505,7 @@ namespace RealERPWEB.F_12_Inv
                 dr["spcfdesc"] = drgp[0]["spcfdesc"];
                 dr["sirunit"] = drgp[0]["rsirunit"];
                 dr["mtrfqty"] = drgp[0]["mtrfqty"];
-                dr["balqty"] = drgp[0]["balqty"];
+                dr["balqty"] = drgp[0]["getpqty"];
                 dr["qty"] = drgp[0]["getpqty"];
                 dr["rate"] = drgp[0]["rate"];
                 dr["amt"] = Convert.ToDouble(drgp[0]["getpqty"]) * Convert.ToDouble(drgp[0]["rate"]);   // drgp[0]["getpamt"];
@@ -1553,7 +1553,7 @@ namespace RealERPWEB.F_12_Inv
                     dr["resdesc"] = dr2["rsirdesc"];
                     dr["spcfdesc"] = dr2["spcfdesc"];
                     dr["sirunit"] = dr2["rsirunit"];
-                    dr["balqty"] = dr2["balqty"];
+                    dr["balqty"] = dr2["getpqty"];
                     dr["mtrfqty"] = dr2["mtrfqty"];
                     dr["qty"] = dr2["getpqty"];
                     dr["rate"] = dr2["rate"];
