@@ -1771,7 +1771,7 @@
                       <Value>Approved  By</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontWeight>Bold</FontWeight>
+                        <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
