@@ -370,10 +370,10 @@ namespace RealERPWEB.F_38_AI
                     validtotal = total + assignqty;
 
                 }
-          
+                double pnannotor = pedingannotor==0? (totalassign - validtotal) : (pedingannotor -validtotal);
 
 
-                if ((roletype == "95001" && totalassign < assignqty) || (roletype == "95001" && pedingannotor < validtotal))
+                if ((roletype == "95001" && totalassign < assignqty) || (roletype == "95001" && pnannotor < validtotal))
                 {
 
 
@@ -383,14 +383,14 @@ namespace RealERPWEB.F_38_AI
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty || roletype == "95002" && doneannotor < validtotal)
+                else if ((roletype == "95002" && doneannotor < assignqty) || (roletype == "95002" && doneannotor < validtotal))
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty || roletype == "95003" && doneqc < validtotal)
+                else if ((roletype == "95003" && doneqc < assignqty) || (roletype == "95003" && doneqc < validtotal))
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -493,11 +493,11 @@ namespace RealERPWEB.F_38_AI
                 bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype,
                     createtask, userid, remarks, estimationtime,
                     dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, "", "");
-                //if (!result)
-                //{
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + result.er.Message.ToString() + "');", true);
-                //    return;
-                //}
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ToString() + "');", true);
+                    return;
+                }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create  Successfully');", true);
                 this.perrate.Visible = false;
 
