@@ -400,6 +400,27 @@ namespace RealEntity.C_12_Inv
 
         }
 
+        [Serializable]
+        public class RptMatTransReqcp
+        {
+            public string rsircode { get; set; }
+            public string spcfcod { get; set; }
+            public string resdesc { get; set; }
+            public string spcfdesc { get; set; }
+            public string getpref { get; set; }
+            public double mtrref { get; set; }
+            public string sirunit { get; set; }
+            public double mtrfqty { get; set; }
+            public double balqty { get; set; }
+            public double qty { get; set; }
+            public double rate { get; set; }
+            public double amt { get; set; }
+
+
+            public RptMatTransReqcp() { }
+
+        }
+
 
         #endregion
 
