@@ -431,7 +431,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "1202000", "1202050", "F_12_Inv", "PurPhyStock", "", "Physical Stock", "Inventory", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry&genno=", "Top Sheet(Cash Purchase)", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1202000", "1202060", "F_12_Inv", "PurTopSheetCashPur?", "Type=Entry", "Top Sheet(Cash Purchase)", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202061", "F_12_Inv", "PurReqEntry?", "InputType=LcEntry", "LC Requisition", "Inventory", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "1202000", "1202062", "F_12_Cen", "EntryLostSoldAndDes01", "", " Entry Lost, Sold & Destroyed", "Inventory", "False", "False", "False", "False" }); ;
 
