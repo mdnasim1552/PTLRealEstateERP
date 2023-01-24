@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
       <script type="text/javascript" language="javascript">
 
           $(document).ready(function () {
@@ -14,9 +15,21 @@
           function pageLoaded() {
 
               try {
+                  var gridViewScroll = new GridViewScroll({
+                      elementID: "gvspaymentdetails",
+                      width: 1240,
+                      height: 648,
+                      freezeColumn: true,
+                      freezeFooter: false,
+                      freezeColumnCssClass: "GridViewScrollItemFreeze",
+                      freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                      freezeHeaderRowCount: 1,
+                      freezeColumnCount: 8,
 
-                  var gv = $('#<%=this.gvspaymentdetails.ClientID %>');
-                  gv.Scrollable();
+                  });
+
+                  gridViewScroll.enhance();
+                
                  
              
                   $('.chzn-select').chosen({ search_contains: true });
@@ -236,9 +249,8 @@
                 <asp:View ID="veiwsummary" runat="server">
                    <%-- <div class="card card-fluid" style="min-height: 250px;">
                         <div class="card-body">--%>           
-            
-
-                    <asp:GridView ID="gvspaysummary" runat="server" AutoGenerateColumns="False" 
+            <div class="table-responsive">
+                <asp:GridView ID="gvspaysummary" runat="server" AutoGenerateColumns="False" 
                                 ShowFooter="True" AllowPaging="false" CssClass="table-striped  table-bordered grvContentarea" OnRowDataBound="gvspaysummary_RowDataBound">
                                 <RowStyle />
                                 <Columns>
@@ -520,6 +532,9 @@
                                 <PagerStyle CssClass="gvPagination" />
                                
                             </asp:GridView>
+           </div>
+
+                    
 
 
                        <%-- </div>
@@ -532,8 +547,8 @@
 
                     <%--<div class="card card-fluid">
                         <div class="card-body">--%>
-                            
-                    <asp:GridView ID="gvspaymentdetails" runat="server"  CssClass="table-striped table-hover table-bordered grvContentarea"
+                             
+                    <asp:GridView ID="gvspaymentdetails" runat="server"  CssClass="table-striped table-hover table-bordered grvContentarea" ClientIDMode="Static"
                 AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvspaymentdetails_RowDataBound">
                 <PagerSettings Visible="False" />
                          <FooterStyle CssClass="grvHeader" />
@@ -941,7 +956,7 @@
                                 <PagerStyle CssClass="gvPagination" />
                                
                             </asp:GridView>
-
+                                
                        <%-- </div>
                     </div>--%>
 
