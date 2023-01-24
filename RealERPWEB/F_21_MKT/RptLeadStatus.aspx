@@ -22,8 +22,7 @@
             });
         };
 
-    </script>
-    
+    </script>    
 
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
