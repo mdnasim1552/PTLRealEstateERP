@@ -21,15 +21,16 @@ namespace RealERPWEB.F_21_MKT
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
 
-                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Sales Funnel Reports";
+                this.Master.Page.Title = "Sales Funnel Reports";
 
                 //string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfodate.Text = Convert.ToDateTime("01" + Date.Substring(2)).ToString("dd-MMM-yyyy");
                 //this.txttodate.Text =  Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-               // this.GetOpenDateKPI();
+                // this.GetOpenDateKPI();
                 this.rbtnlst.SelectedIndex = 0;
                 this.GetOpening();
                 //this.rbtnlst_SelectedIndexChanged(null, null);
