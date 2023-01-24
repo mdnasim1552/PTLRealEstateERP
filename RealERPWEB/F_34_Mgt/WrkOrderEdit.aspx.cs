@@ -636,9 +636,10 @@ namespace RealERPWEB.F_34_Mgt
             DataTable tbl1 = (DataTable)Session["tblpurchase"];
             DataTable tbl2 = ((DataTable)Session["tblpurchase"]).Copy();
 
+            
             double reqty = 0;
             double reqty2 = 0;
-            double reqty3 = 0;
+            double reqty3 =0 ;
             DataRow[] dr1;
             DataRow[] dr2;
             DataRow[] dr3;
@@ -687,7 +688,7 @@ namespace RealERPWEB.F_34_Mgt
                         {
                             reqty3 += Convert.ToDouble(dr["qty"]);
                         }
-                        if (reqty2 < reqty3)
+                        if (reqty2 < Math.Round(reqty3,2))
                         {
                             this.RiseError("Order Process Qty Should be Larger then Purchase Order Qty ");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
@@ -716,11 +717,14 @@ namespace RealERPWEB.F_34_Mgt
                             return;
                         }
                         dr3 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' ");
+
                         foreach (DataRow dr in dr3)
                         {
                             reqty3 += Convert.ToDouble(dr["qty"]);
+
                         }
-                        if (reqty2 < reqty3)
+                        
+                        if (reqty2 < Math.Round(reqty3, 2))
                         {
                             this.RiseError("Purchase Order Qty Should be Larger then Receive Qty");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
@@ -753,7 +757,7 @@ namespace RealERPWEB.F_34_Mgt
                         {
                             reqty3 += Convert.ToDouble(dr["qty"]);
                         }
-                        if (reqty2 < reqty3)
+                        if (reqty2 < Math.Round(reqty3,2))
                         {
                             this.RiseError("Receive Qty Should be Larger then Bill Qty");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
@@ -832,7 +836,7 @@ namespace RealERPWEB.F_34_Mgt
                         {
                             reqty3 += Convert.ToDouble(dr["qty"]);
                         }
-                        if (reqty2 < reqty3)
+                        if (reqty2 < Math.Round(reqty3,2))
                         {
                             this.RiseError("Order Process Qty Should be Larger then Purchase Order Qty ");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];

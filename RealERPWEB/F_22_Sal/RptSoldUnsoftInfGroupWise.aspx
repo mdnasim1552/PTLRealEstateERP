@@ -49,6 +49,9 @@
 
         function pageLoaded() {
 
+          
+          
+
             $('.chzn-select').chosen({ search_contains: true });
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
             $(function () {
@@ -60,11 +63,10 @@
 
                 });
 
-                var gvsoldunsold = $('#<%=this.gvsoldunsold.ClientID %>');
-
-                gvsoldunsold.Scrollable();
+              
 
             });
+          
 
         }
 
@@ -149,6 +151,7 @@
             </div>
 
             <div class="card card-fluid">
+                 <div class="table-responsive">
                 <div class="card-body">
                
 
@@ -415,6 +418,7 @@
                     
 
                 </div>
+                     </div>
             </div>
 
         </ContentTemplate>
