@@ -296,6 +296,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMaterialTrnsGatepass": Rpt1a = GetRptMaterialTrnsGatepass(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMaterialTrnsferCPDL": Rpt1a = GetRptMaterialTrnsferCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryCPDL": Rpt1a = SetrptPurMrrEntryCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -4962,6 +4963,11 @@ namespace RealERPRDLC
         private static LocalReport GetRptMaterialTrnsfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReq>)RptDataSet));
+            return Rpt1a;
+
+        }private static LocalReport GetRptMaterialTrnsferCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReqcp>)RptDataSet));
             return Rpt1a;
 
         }

@@ -178,7 +178,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Amount">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFAmt " runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
                                             Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>

@@ -473,7 +473,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             Rpt1.SetParameters(new ReportParameter("joindate", Convert.ToDateTime(empinfo.Rows[0]["joindate"]).ToString("dd-MMM-yy")));
             Rpt1.SetParameters(new ReportParameter("empconfdate", Convert.ToDateTime(empinfo.Rows[0]["confirmdate"]).ToString("dd-MMM-yy")));
             Rpt1.SetParameters(new ReportParameter("slength", empinfo.Rows[0]["slength"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("rptname", "Final Sattlement of PF and WF"));
+            Rpt1.SetParameters(new ReportParameter("rptname", "Final Sattlement of PF and SWF"));
             Rpt1.SetParameters(new ReportParameter("pfstart", empinfo.Rows[0]["pfstart"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contributioncom", contributioncom));
             Rpt1.SetParameters(new ReportParameter("tswf", tswf));
