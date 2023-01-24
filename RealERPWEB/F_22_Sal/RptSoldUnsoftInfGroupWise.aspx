@@ -49,7 +49,7 @@
 
         function pageLoaded() {
 
-            var gv = $('#<%=this.gvsoldunsold.ClientID %>');
+          
           
 
             $('.chzn-select').chosen({ search_contains: true });
@@ -66,7 +66,7 @@
               
 
             });
-            gv.Scrollable();
+          
 
         }
 

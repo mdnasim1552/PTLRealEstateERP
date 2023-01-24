@@ -15,8 +15,7 @@
 
               try {
 
-                  var gv = $('#<%=this.gvspaymentdetails.ClientID %>');
-                  gv.Scrollable();
+                
                  
              
                   $('.chzn-select').chosen({ search_contains: true });
@@ -236,9 +235,8 @@
                 <asp:View ID="veiwsummary" runat="server">
                    <%-- <div class="card card-fluid" style="min-height: 250px;">
                         <div class="card-body">--%>           
-            
-
-                    <asp:GridView ID="gvspaysummary" runat="server" AutoGenerateColumns="False" 
+            <div class="table-responsive">
+                <asp:GridView ID="gvspaysummary" runat="server" AutoGenerateColumns="False" 
                                 ShowFooter="True" AllowPaging="false" CssClass="table-striped  table-bordered grvContentarea" OnRowDataBound="gvspaysummary_RowDataBound">
                                 <RowStyle />
                                 <Columns>
@@ -520,6 +518,9 @@
                                 <PagerStyle CssClass="gvPagination" />
                                
                             </asp:GridView>
+           </div>
+
+                    
 
 
                        <%-- </div>
@@ -532,7 +533,7 @@
 
                     <%--<div class="card card-fluid">
                         <div class="card-body">--%>
-                            
+                            <div class="table-responsive"> 
                     <asp:GridView ID="gvspaymentdetails" runat="server"  CssClass="table-striped table-hover table-bordered grvContentarea"
                 AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvspaymentdetails_RowDataBound">
                 <PagerSettings Visible="False" />
@@ -941,7 +942,7 @@
                                 <PagerStyle CssClass="gvPagination" />
                                
                             </asp:GridView>
-
+                                </div>
                        <%-- </div>
                     </div>--%>
 
