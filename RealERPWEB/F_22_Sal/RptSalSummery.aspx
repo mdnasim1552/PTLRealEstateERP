@@ -86,7 +86,7 @@
 
                 <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="sal" runat="server">
-                        <div class="table table-responsive">
+                        <div class="table-responsive">
                             <asp:GridView ID="gvSalSummery" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
@@ -387,7 +387,7 @@
 
                     </asp:View>
                     <asp:View ID="SalAmt" runat="server">
-                        <div class="table table-responsive">
+                        <div class="table-responsive">
                             <asp:GridView ID="gvSalAmt" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
@@ -1653,7 +1653,7 @@
                     </asp:View>
 
                     <asp:View ID="SalesvscolltypeWise" runat="server">
-                        <%--<div class="table table-responsive">--%>
+                        <div class="table-responsive">
                         <asp:GridView ID="gvsalvscolltypeWise" runat="server" AutoGenerateColumns="False"
                              ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvsalvscolltypeWise_RowCreated">
                             <RowStyle />
@@ -1984,7 +1984,7 @@
                             <PagerStyle CssClass="gvPagination" />
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
-                        <%--</div>--%>
+                        </div>
                     </asp:View>
 
                 </asp:MultiView>
