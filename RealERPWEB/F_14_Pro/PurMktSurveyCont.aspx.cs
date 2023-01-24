@@ -27,12 +27,14 @@ namespace RealERPWEB.F_14_Pro
         {
             if (!IsPostBack)
             {
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+               
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
-                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString().Substring(0, indexofamp);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
@@ -61,6 +63,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3101":
                 case "3370":
+                case "3368":
                     this.printCPDL_cs_approval();
                     break;
                 case "1205":
@@ -550,6 +553,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
                 case "3101": // cpdl
                 case "3370": // cpdl
+                case "3368"://Finlay6
                     this.printCPDL_cs_approval();
                     break;
                 default:
