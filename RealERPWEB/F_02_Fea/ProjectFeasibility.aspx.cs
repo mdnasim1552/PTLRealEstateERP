@@ -27,7 +27,7 @@ namespace RealERPWEB.F_02_Fea
         public static double ToCost = 0, ToSalrate = 0, conarea = 0, ToSamt = 0, Tosalsize = 0;
         public static string Url = "";
         int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -1181,6 +1181,7 @@ namespace RealERPWEB.F_02_Fea
 
             if (!result)
             {
+               
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
                 return;
             }
