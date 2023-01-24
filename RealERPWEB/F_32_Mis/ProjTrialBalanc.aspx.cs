@@ -199,6 +199,10 @@ namespace RealERPWEB.F_32_Mis
                     break;
             }
         }
+
+
+
+        
         private void ShowPrjTriBal()
         {
             Session.Remove("tblprjtbl");
