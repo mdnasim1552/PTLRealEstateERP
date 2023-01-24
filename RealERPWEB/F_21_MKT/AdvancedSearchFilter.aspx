@@ -1511,7 +1511,7 @@
 
 
 
-                                                            <%--<asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>--%>
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
                                                             <%--<asp:LinkButton type="button" runat="server" ToolTip="Re-Shedule Followup" class="btn  btn-primary btn-sm" Style="margin-top: 10px;" ID="lbtnreschedule" OnClick="btnqclink_Click">Re-schedule</asp:LinkButton>--%>
                                                         <button type="button" class="btn  btn-primary btn-sm mt-2" ToolTip="Re-Shedule Followup" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
 

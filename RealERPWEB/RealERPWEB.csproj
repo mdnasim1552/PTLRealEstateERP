@@ -2422,6 +2422,7 @@
     <Content Include="F_21_MKT\LostProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
+    <Content Include="F_21_MKT\RptLeadStatus.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
@@ -4539,6 +4540,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptDailyWorkStatus.aspx.designer.cs">
       <DependentUpon>RptDailyWorkStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptLeadStatus.aspx.cs">
+      <DependentUpon>RptLeadStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptLeadStatus.aspx.designer.cs">
+      <DependentUpon>RptLeadStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
