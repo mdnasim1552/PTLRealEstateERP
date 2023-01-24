@@ -77,7 +77,8 @@
                         </div>
                         <div class="col-md-2">
                             <asp:Label runat="server" ID="Label1" class="form-label">Floor</asp:Label>
-                            <asp:DropDownList ID="ddlFloor" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlFloor" CssClass="form-control select2" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged"></asp:DropDownList>
                         </div>
 
                         <div class=" col-md-1">
@@ -100,7 +101,7 @@
                     <div class="table table-responsive">
                         <asp:GridView ID="gvWrkVsRes" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             OnPageIndexChanging="gvWrkVsRes_PageIndexChanging" ShowFooter="True" Width="640px"
-                            OnDataBound="gvWrkVsRes_DataBound">
+                            OnRowDataBound="gvWrkVsRes_RowDataBound" OnRowCreated="gvWrkVsRes_RowCreated" >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.">
@@ -177,7 +178,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Amount">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lgvFAmt " runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
                                             Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -189,7 +190,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="A Qty">
+                                <asp:TemplateField HeaderText="Qty">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvresqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px"></asp:Label>
@@ -218,7 +219,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="V Qty">
+                                <asp:TemplateField HeaderText="Qty">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvresrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px"></asp:Label>
@@ -234,7 +235,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="V Rate">
+                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvresrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vrat")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px"></asp:Label>

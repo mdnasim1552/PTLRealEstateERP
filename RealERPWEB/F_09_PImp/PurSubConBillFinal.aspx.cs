@@ -1200,7 +1200,7 @@ namespace RealERPWEB.F_09_PImp
                     {
 
                         case "1103":
-                        case "3368": // finlay
+                       // case "3368": // finlay
 
                             break;
 

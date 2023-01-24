@@ -1811,6 +1811,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                         case "3101":
+                        case "3368"://Finlay
                         case "3370":
                             if (dgvQty > balqty)
                             {

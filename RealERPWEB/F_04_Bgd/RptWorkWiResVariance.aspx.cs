@@ -173,21 +173,98 @@ namespace RealERPWEB.F_04_Bgd
             this.Data_Bind();
         }
 
-        protected void gvWrkVsRes_DataBound(object sender, EventArgs e)
+        
+        protected void gvWrkVsRes_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            GridViewRow row = new GridViewRow(6, 6, DataControlRowType.Header, DataControlRowState.Normal);
-            TableHeaderCell cell = new TableHeaderCell();
-            cell.Text = "Customers";
-            cell.ColumnSpan = 2;
-            row.Controls.Add(cell);
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
 
-            cell = new TableHeaderCell();
-            cell.ColumnSpan = 2;
-            cell.Text = "Employees";
-            row.Controls.Add(cell);
+                TableCell cell01 = new TableCell();
+                cell01.Text = "Sl.";
+                cell01.HorizontalAlign = HorizontalAlign.Center;
+                cell01.RowSpan = 2;
+                gvrow.Cells.Add(cell01);
 
-            row.BackColor = ColorTranslator.FromHtml("#3AC0F2");
-            gvWrkVsRes.HeaderRow.Parent.Controls.AddAt(0, row);
+                TableCell cell02 = new TableCell();
+                cell02.Text = "Floor";
+                cell02.HorizontalAlign = HorizontalAlign.Center;
+                cell02.RowSpan = 2;
+                gvrow.Cells.Add(cell02);
+
+                TableCell cell03 = new TableCell();
+                cell03.Text = "Item Description";
+                cell03.HorizontalAlign = HorizontalAlign.Center;
+                cell03.RowSpan = 2;
+                gvrow.Cells.Add(cell03);
+
+                TableCell cell04 = new TableCell();
+                cell04.Text = "Unit";
+                cell04.HorizontalAlign = HorizontalAlign.Center;
+                cell04.RowSpan = 2;
+                gvrow.Cells.Add(cell04);
+
+                TableCell cell05 = new TableCell();
+                cell05.Text = "Qty";
+                cell05.HorizontalAlign = HorizontalAlign.Center;
+                cell05.RowSpan = 2;
+                gvrow.Cells.Add(cell05);
+
+                TableCell cell06 = new TableCell();
+                cell06.Text = "Resource";
+                cell06.HorizontalAlign = HorizontalAlign.Center;
+                cell06.RowSpan = 2;
+                gvrow.Cells.Add(cell06);
+
+                TableCell cell07 = new TableCell();
+                cell07.Text = "Qty";
+                cell07.HorizontalAlign = HorizontalAlign.Center;
+                cell07.RowSpan = 2;
+                gvrow.Cells.Add(cell07);
+
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "Budgeted";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.Attributes["style"] = "font-weight:bold;";
+                cell11.ColumnSpan = 3;
+                gvrow.Cells.Add(cell11);
+
+                TableCell cell12 = new TableCell();
+                cell12.Text = "Actual";
+                cell12.HorizontalAlign = HorizontalAlign.Center;
+                cell12.Attributes["style"] = "font-weight:bold;";
+                cell12.ColumnSpan = 3;
+                gvrow.Cells.Add(cell12);
+
+                TableCell cell13 = new TableCell();
+                cell13.Text = "Variance";
+                cell13.HorizontalAlign = HorizontalAlign.Center;
+                cell13.Attributes["style"] = "font-weight:bold;";
+                cell13.ColumnSpan = 6;
+                gvrow.Cells.Add(cell13);
+                gvWrkVsRes.Controls[0].Controls.AddAt(0, gvrow);
+            }
+        }
+
+        protected void gvWrkVsRes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Visible = false;
+                e.Row.Cells[1].Visible = false;
+                e.Row.Cells[2].Visible = false;
+                e.Row.Cells[3].Visible = false;
+                e.Row.Cells[4].Visible = false;
+                e.Row.Cells[5].Visible = false;
+                e.Row.Cells[6].Visible = false;
+            }
+        }
+
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowWorkVsResource();
         }
     }
 }
