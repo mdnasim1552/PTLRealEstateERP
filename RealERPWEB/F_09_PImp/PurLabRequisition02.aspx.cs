@@ -36,6 +36,9 @@ namespace RealERPWEB.F_09_PImp
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+
+
+
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Entry") ? "Sub-Contractor Bill Requisition"
                 //    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit"
                 //    : (this.Request.QueryString["Type"].ToString() == "CSApproval") ? " Sub-Contractor Bill CS Approval"
@@ -69,8 +72,20 @@ namespace RealERPWEB.F_09_PImp
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+
+
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString() ;
             // Create an event handler for the master page's contentCallEvent event
+
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;            
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+          ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+
+
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -819,7 +834,7 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["tblbillreq"];
             if (dt.Rows.Count == 0)
                 return;
-            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amount)", "")) ? 0.00 : dt.Compute("Sum(amount)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amount)", "")) ? 0.00 : dt.Compute("Sum(amount)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
         }
 
@@ -1545,6 +1560,44 @@ namespace RealERPWEB.F_09_PImp
             Session["tblbillreq"] = dt;
         }
 
-      
+        protected void lbtnDelItem_Click(object sender, EventArgs e)
+        {
+            int gvrowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvrowindex;
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblbillreq"];
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string Labcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+            string Flrcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblgvflrCode")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "DELETELAB_REQUISITION_ITEM", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+               
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblbillreq");
+            ViewState["tblbillreq"] = dv.ToTable();
+            this.grvissue_DataBind();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Labour Requistion Information";
+                string eventdesc = "Delete Requsition Item";
+                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "REQ No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
+                        ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
+        }
     }
 }
