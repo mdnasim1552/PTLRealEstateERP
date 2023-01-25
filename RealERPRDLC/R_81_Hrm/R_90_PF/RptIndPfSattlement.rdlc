@@ -1703,7 +1703,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>In respect of the above, as per company policy the year wise PF and WF statement with company contribution (if </Value>
+                    <Value>In respect of the above, as per company policy the year wise PF and SWF statement with company contribution (if </Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -1849,7 +1849,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>3) Application for PF &amp; WF </Value>
+                    <Value>3) Application for PF &amp; SWF </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Cambria</FontFamily>
@@ -1864,7 +1864,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>4) Monthwise PF &amp; WF status</Value>
+                    <Value>4) Monthwise PF &amp; SWF status</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Cambria</FontFamily>

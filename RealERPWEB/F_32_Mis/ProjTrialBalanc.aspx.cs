@@ -199,6 +199,10 @@ namespace RealERPWEB.F_32_Mis
                     break;
             }
         }
+
+
+
+        
         private void ShowPrjTriBal()
         {
             Session.Remove("tblprjtbl");
@@ -216,7 +220,7 @@ namespace RealERPWEB.F_32_Mis
 
 
             string advance = String.Empty;
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353" || comcod== "1102" || comcod=="3364" || comcod == "3357" || comcod == "3367" || comcod == "3368")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353" || comcod== "1102" || comcod=="3364" || comcod == "3357" || comcod == "3367" || comcod == "3368" || comcod=="3372")
             {
                 advance = "ADVANCE";
             }

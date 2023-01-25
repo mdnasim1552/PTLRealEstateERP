@@ -234,7 +234,7 @@ namespace RealERPWEB.F_32_Mis
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string consolidate = (this.chkconsolidate.Checked) ? "consolidate" : "";
             string calltype = this.CallType();
-            DataSet ds1 = prjData.GetTransInfo(comcod, "SP_REPORT_PROJECT_STATUS", "RPTPROJECTSTATUS", frmdate, consolidate, "", "", "", "", "", "", "");
+            DataSet ds1 = prjData.GetTransInfo(comcod, "SP_REPORT_PROJECT_STATUS", calltype, frmdate, consolidate, "", "", "", "", "", "", "");
             if (ds1 == null)
             {
 

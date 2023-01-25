@@ -632,6 +632,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3352": //p2p
                 case "8306": //p2p
                 case "3370": //cpdl
+                case "3368": //Finaly
                 case "3101": //pintech
 
                     if (this.Request.QueryString["Type"] == "CSApproval" || this.Request.QueryString["Type"] == "CSAppEdit")
@@ -1083,6 +1084,7 @@ namespace RealERPWEB.F_09_PImp
                 switch (comcod)
                 {
                     case "3101":
+                    case "3368"://Finlay
                     case "3370":
                         if (dgvQty > balqty)
                         {
@@ -1276,6 +1278,7 @@ namespace RealERPWEB.F_09_PImp
                         break;
 
                     case "3101": // ptl
+                    case "3368": // Finaly
                     case "3370": // cpdl
                         txtlabrate.ReadOnly = false;
                         txtgvamount.ReadOnly = true;

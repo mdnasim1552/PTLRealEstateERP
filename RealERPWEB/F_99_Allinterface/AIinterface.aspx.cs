@@ -1600,6 +1600,16 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tbl1 = (DataTable)ViewState["tblt01"];
             this.GridVirtual.DataSource = tbl1;
             this.GridVirtual.DataBind();
+            this.FooterCalculation(tbl1);
+        }
+
+        private void FooterCalculation(DataTable tbl1)
+        {
+            if (tbl1.Rows.Count == 0)
+                return;
+
+            ((Label)this.GridVirtual.FooterRow.FindControl("tblsumValoquantity")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("sum(assignqty)", "")) ? 0.00 :
+                tbl1.Compute("sum(assignqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
         }
         private void CreateTableAssign()
         {
@@ -1628,13 +1638,17 @@ namespace RealERPWEB.F_99_Allinterface
 
             try
             {
+                string comcod = this.GetCompCode();
                 string roletype = this.ddlUserRoleType.SelectedValue;
                 double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
+                string prj = this.lblproprjid.Text.ToString();
+                string batch = this.lblabatchid.Text.ToString();
+               
 
-                
+
 
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
@@ -1655,14 +1669,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty && pedingqc < assignqty)
+                else if (roletype == "95002" && doneannotor < assignqty )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty && pedingqar < assignqty)
+                else if (roletype == "95003" && doneqc < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -2435,6 +2449,18 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnAcceptRejectsearch_Click(object sender, EventArgs e)
         {
             this.GetProductionInfo();
+        }
+
+        protected void gv_AcceptReject_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnarlink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
         }
     }
 }

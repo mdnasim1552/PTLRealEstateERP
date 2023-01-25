@@ -5232,6 +5232,8 @@ namespace RealERPWEB.F_01_LPA
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             ViewState["tblempsup"] = ds1.Tables[0];
             ds1.Dispose();
 

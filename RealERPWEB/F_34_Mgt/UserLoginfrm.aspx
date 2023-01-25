@@ -215,7 +215,7 @@
                         OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                         Style="text-align: right"
@@ -512,7 +512,7 @@
                                 OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right"

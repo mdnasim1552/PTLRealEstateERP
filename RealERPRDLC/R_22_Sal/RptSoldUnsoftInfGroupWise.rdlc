@@ -1317,7 +1317,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!tramt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Sum(Fields!balance.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1394,7 +1394,7 @@
       <Width>7.76041in</Width>
       <Page>
         <PageHeader>
-          <Height>1.13542in</Height>
+          <Height>1.0625in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1528,7 +1528,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Project Name  :      </Value>
+                          <Value>Project Name  :  </Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -1551,7 +1551,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox69</rd:DefaultName>
                   <Height>0.17708in</Height>
-                  <Width>2.78125in</Width>
+                  <Width>5.32292in</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -1564,7 +1564,7 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.87778in</Top>
+              <Top>0.79028in</Top>
               <Left>0.02083in</Left>
               <Height>0.19792in</Height>
               <Width>7.71875in</Width>
@@ -1605,10 +1605,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox69</rd:DefaultName>
-              <Top>0.8889in</Top>
-              <Left>4.38541in</Left>
+              <Top>0.8014in</Top>
+              <Left>5.39583in</Left>
               <Height>0.17708in</Height>
-              <Width>3.34375in</Width>
+              <Width>2.33333in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>

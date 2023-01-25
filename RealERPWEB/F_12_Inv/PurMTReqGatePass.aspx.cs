@@ -581,6 +581,8 @@ namespace RealERPWEB.F_12_Inv
         {
             try
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
                 this.Session_tblAprov_Update();
                 DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
                 string mReqNo = this.ddlSpecification.SelectedValue.ToString().Substring(0, 14);
@@ -622,15 +624,46 @@ namespace RealERPWEB.F_12_Inv
                     dr1["balqty"] = dr3[0]["balqty"];
                     dr1["rate"] = dr3[0]["mtrfrat"];
                     dr1["getpamt"] = dr3[0]["mtrfamt"];
+                    DataRow[] drs = dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'");
+                    
+                    double stock= drs.Length==0? 0 : Convert.ToDouble(drs[0]["balqty"].ToString());
+                    // double stockbal = Convert.ToDouble("0" + stock);
 
-                    
-                    
-                        dr1["stockbal"] =dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+
+                    if (comcod == "3367")
+                    {
+                        if (ASTUtility.Left(frmprjcode, 2) == "11" && stock == 0)
+                        {
+                            string msg = "Please Check Material Stock";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                            return;
+
+                        }
+                        else
+                        {
+                            dr1["stockbal"] = stock;
+
+                        }
+
+
+
+                    }
+
+                    else
+                    {
+                        dr1["stockbal"] = 0.00;
+                    }
+
+
+                   
+                   
+
+                   
 
 
                     //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
 
-                  //string ddd=  dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+                    //string ddd=  dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
 
                     tbl1.Rows.Add(dr1);
                 }
@@ -782,6 +815,22 @@ namespace RealERPWEB.F_12_Inv
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
+
+            for (int i = 0; i < this.gvAprovInfo.Rows.Count; i++)
+            {
+
+
+                double balqty = Convert.ToDouble("0" + tbl1.Rows[i]["balqty"].ToString());
+                double aproqty = Convert.ToDouble("0" + tbl1.Rows[i]["getpqty"].ToString());
+                if (balqty < aproqty)
+                {
+                    message = "Balance Qty can not Large Then Approved Qty ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
+                }
+            }
+
+           
 
             DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
             string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();                    

@@ -198,6 +198,8 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3364":
+                case "3372":
+
                     vouprint = "VocherPrintJBS";
                     break;
 
@@ -659,6 +661,8 @@ namespace RealERPWEB.F_17_Acc
 
                 case "3357"://  Cube Holding
                 case "3364"://  JBS 
+                case "3372"://  JBS acc
+
 
                 case "3101"://  Pintech 
                 case "1102"://  Islam Brothers 
@@ -795,12 +799,12 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                //case "3101":
+                case "3372":
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
 
-                //case "3101":
+               
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;

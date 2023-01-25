@@ -721,10 +721,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3338":
                     break;
 
-                case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
+              default:
                     if (this.Request.QueryString["Type"] == "Entry")
                     {
                         if (Refno.Length == 0)
@@ -748,39 +745,29 @@ namespace RealERPWEB.F_12_Inv
                     }
                     break;
 
-                default:
+                //default:
 
-                    if (Refno.Length == 0)
-                    {
-                        msg = "Ref. No. Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                        return;
-                    }
-                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                        ;
+                //    if (Refno.Length == 0)
+                //    {
+                //        msg = "Ref. No. Should Not Be Empty";
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //        return;
+                //    }
+                //    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
+                //    if (ds2.Tables[0].Rows.Count == 0)
+                //        ;
 
-                    else
-                    {
-                        if (ds2.Tables[0].Rows.Count > 0)
-                        {
-                            msg = "Found Duplicate Ref. No.";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                            return;
-                        }
-                        //DataView dv1 = ds2.Tables[0].DefaultView;
-                        //dv1.RowFilter = ("trnno <>'" + transno + "'");
-                        //DataTable dt1 = dv1.ToTable();
-                        //if (dt1.Rows.Count == 0)
-                        //    ;
-                        //else
-                        //{
-                        //    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref. No.";
-
-                        //    return;
-                        //}
-                    }
-                    break;
+                //    else
+                //    {
+                //        if (ds2.Tables[0].Rows.Count > 0)
+                //        {
+                //            msg = "Found Duplicate Ref. No.";
+                //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //            return;
+                //        }
+                        
+                //    }
+                //    break;
             }
 
 
@@ -1085,11 +1072,15 @@ namespace RealERPWEB.F_12_Inv
                     this.PrintMatTransferBridge();
                     break;
 
-                case "3101":
+               
                 case "1205":
                 case "3351":
                 case "3352":
                     this.PrintMatTransferP2P();
+                    break;
+                case "3101":
+                case "3370":
+                    PrintMatTransferGenCPDL();
                     break;
                 default:
                     PrintMatTransferGen();
@@ -1291,7 +1282,77 @@ namespace RealERPWEB.F_12_Inv
             //         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void PrintMatTransferGenCPDL()
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt1 = (DataTable)ViewState["tblmattrns"];
+
+
+            string prjfrm = this.ddlprjlistfrom.SelectedItem.Text.Trim().Substring(13);
+            string prjto = this.ddlprjlistto.SelectedItem.Text.Trim().Substring(13);
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt1.DataTableToList<RealEntity.C_12_Inv.PurEqisition.RptMatTransReqcp>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMaterialTrnsferCPDL", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtComAddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtProjectName", "Transfer From: " + prjfrm));
+            Rpt1.SetParameters(new ReportParameter("txtProjectNameto", "Transfer To: " + prjto));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("MMMM dd, yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txttrnsno", "Transfer No: " + this.lblCurTransNo1.Text.Trim() + this.txtCurTransNo2.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("narrationname", this.txtNarr.Text.ToString()));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Transfer Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+
+            //TextObject rptCname = rptFassttran.ReportDefinition.ReportObjects["txtCompany"] as TextObject;
+            //rptCname.Text = comnam;
+
+            //TextObject rptProjectNameft = rptFassttran.ReportDefinition.ReportObjects["ProjectNamef"] as TextObject;
+            //rptProjectNameft.Text = "Transfer From: " + prjfrm;
+            //TextObject rptProjectNameto = rptFassttran.ReportDefinition.ReportObjects["ProjectNamet"] as TextObject;
+            //rptProjectNameto.Text = "Transfer To: " + prjto;
+
+            //TextObject rptdate = rptFassttran.ReportDefinition.ReportObjects["date"] as TextObject;
+            //rptdate.Text = "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("MMMM dd, yyyy");
+            //TextObject rpttrnno = rptFassttran.ReportDefinition.ReportObjects["txttrnsno"] as TextObject;
+            //rpttrnno.Text = "Transfer No: " + this.lblCurTransNo1.Text.Trim() + this.txtCurTransNo2.Text.Trim();
+            //TextObject txtuserinfo = rptFassttran.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+
+            //if (ConstantInfo.LogStatus == true)
+            //{
+            //    string eventtype = "Materials Transfer";
+            //    string eventdesc = "Print Report";
+            //    string eventdesc2 = "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("MMMM dd, yyyy"); ;
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //}
+            //rptFassttran.SetDataSource(dt1);
+            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            //rptFassttran.SetParameterValue("ComLogo", ComLogo);
+            //Session["Report1"] = rptFassttran;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void PrintMatTransferP2P()
         {
 
@@ -1518,7 +1579,7 @@ namespace RealERPWEB.F_12_Inv
                 dr["spcfdesc"] = drgp[0]["spcfdesc"];
                 dr["sirunit"] = drgp[0]["rsirunit"];
                 dr["mtrfqty"] = drgp[0]["mtrfqty"];
-                dr["balqty"] = drgp[0]["balqty"];
+                dr["balqty"] = drgp[0]["getpqty"];
                 dr["qty"] = drgp[0]["getpqty"];
                 dr["rate"] = drgp[0]["rate"];
                 dr["amt"] = Convert.ToDouble(drgp[0]["getpqty"]) * Convert.ToDouble(drgp[0]["rate"]);   // drgp[0]["getpamt"];
@@ -1566,7 +1627,7 @@ namespace RealERPWEB.F_12_Inv
                     dr["resdesc"] = dr2["rsirdesc"];
                     dr["spcfdesc"] = dr2["spcfdesc"];
                     dr["sirunit"] = dr2["rsirunit"];
-                    dr["balqty"] = dr2["balqty"];
+                    dr["balqty"] = dr2["getpqty"];
                     dr["mtrfqty"] = dr2["mtrfqty"];
                     dr["qty"] = dr2["getpqty"];
                     dr["rate"] = dr2["rate"];

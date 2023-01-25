@@ -296,6 +296,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMaterialTrnsGatepass": Rpt1a = GetRptMaterialTrnsGatepass(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMaterialTrnsferCPDL": Rpt1a = GetRptMaterialTrnsferCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryCPDL": Rpt1a = SetrptPurMrrEntryCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -720,6 +721,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSaleSoldUsold": Rpt1a = SetRptSaleSoldUsold(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDayWiseSales": Rpt1a = SetRptDayWiseSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDWiseRealCollection": Rpt1a = SetRptDWiseRealCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalesVsCollTypeWise": Rpt1a = SetRptSalesVsCollTypeWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptBookingtDues": Rpt1a = SetRptBookingtDues(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCollDetailsInfo": Rpt1a = SetRptCollDetailsInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptOSalesSummary": Rpt1a = SetRptOSalesSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4213,6 +4215,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.SaleSummarySum>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptSalesVsCollTypeWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.SaleVsCollTypeWise>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptRealCollDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -4956,6 +4963,11 @@ namespace RealERPRDLC
         private static LocalReport GetRptMaterialTrnsfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReq>)RptDataSet));
+            return Rpt1a;
+
+        }private static LocalReport GetRptMaterialTrnsferCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReqcp>)RptDataSet));
             return Rpt1a;
 
         }
