@@ -503,7 +503,7 @@
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" Target="_blank" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
 
 
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
+                                    <a class="dropdown-item d-none" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>' target="_blank">Leave Interface</a>
 
 
