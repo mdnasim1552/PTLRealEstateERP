@@ -43,9 +43,17 @@ namespace RealERPWEB.F_17_Acc
                 var dtoday = System.DateTime.Today;
                
                 this.txtfrmdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");               
-                this.SupplierList();
-                this.LoadAllSupplier();
+                this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
+
+               // String Type = this.Request.QueryString["Type"].ToString();
+
+                
+                    this.SupplierList();
+                    this.LoadAllSupplier();
+
+                this.TextChange();
+               
+               
 
             }
 
@@ -55,6 +63,18 @@ namespace RealERPWEB.F_17_Acc
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
             //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+        }
+
+        private void TextChange()
+        {
+            string type = this.Request.QueryString["Type"].ToString();
+
+            if(type== "ConPayment")
+            {
+                this.lblsupname.InnerText = "Contractor Name";
+
+            }
+
         }
 
 
@@ -89,7 +109,8 @@ namespace RealERPWEB.F_17_Acc
         {
             string comcod = this.GetComeCode();
             string SrchSupplier = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPPLIER", SrchSupplier, "", "", "", "", "", "", "", "");
+            string type = this.Request.QueryString["Type"] == "ConPayment" ? "Contractor" : "";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPPLIER", SrchSupplier, type, "", "", "", "", "", "", "");
             this.ddlSuplist.DataTextField = "resdesc";
             this.ddlSuplist.DataValueField = "rescode";
             this.ddlSuplist.DataSource = ds1.Tables[0];
@@ -102,27 +123,130 @@ namespace RealERPWEB.F_17_Acc
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
-            switch (stindex)
+            string type = this.Request.QueryString["Type"].ToString();
+
+            if(type== "SupPayment")
             {
-                case "0":
-                    this.MultiView1.ActiveViewIndex = 0;
-                    this.PaymentSummary();
+                switch (stindex)
+                {
+                    case "0":
+                        this.MultiView1.ActiveViewIndex = 0;
+                        this.PaymentSupSummary();
 
-                    break;
+                        break;
 
-                case "1":
-                    this.MultiView1.ActiveViewIndex = 1;
-                    this.PaymentDetails();
-                    break;
+                    case "1":
+                        this.MultiView1.ActiveViewIndex = 1;
+                        this.PaymentSupDetails();
+                        break;
+
+                }
 
             }
+
+            else
+            {
+                switch (stindex)
+                {
+                    case "0":
+                        this.MultiView1.ActiveViewIndex = 2;
+                        this.PaymentContractorSummary();
+
+                        break;
+
+                    case "1":
+                        this.MultiView1.ActiveViewIndex = 3;
+                        this.PaymentContractorDetails();
+                        break;
+
+                }
+
+            }
+
+
+           
 
 
 
 
         }
 
-        private void PaymentSummary()
+        private void PaymentContractorSummary()
+        {
+            try
+            {
+                Session.Remove("tblspaysum");
+                string comcod = this.GetComeCode();
+
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlSuplist.SelectedValue.ToString() + "%";
+
+                string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
+                string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
+                string withpay = this.chkWithPay.Checked ? "Length" : "";
+                //string mRptGroup = "12";
+                // DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "RPTALLSUPPAYMENTSTATUS", frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUBCONPAYMENTSSUMMARY", frmdate, todate, Rescode, Rescodegrp, withpay, "", "", "", "");
+
+                if (ds1 == null)
+                {
+                    this.gvconsummary.DataSource = null;
+                    this.gvconsummary.DataBind();
+                    return;
+                }
+                Session["tblspaysum"] = ds1.Tables[0];
+                this.Data_Bind();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+
+        private void PaymentContractorDetails()
+        {
+            try
+            {
+                Session.Remove("tblspaysum");
+                string comcod = this.GetComeCode();
+
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlSuplist.SelectedValue.ToString() + "%";
+                string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
+                string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
+                string withpay = this.chkWithPay.Checked ? "Length" : "";
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUBCONPAYMENTSDETAILS", frmdate, todate, Rescode, Rescodegrp, withpay, "", "", "", "");
+
+
+
+                if (ds1 == null)
+                {
+                    this.gvcondetails.DataSource = null;
+                    this.gvcondetails.DataBind();
+                    return;
+                }
+                Session["tblspaysum"] = HiddenSameData(ds1.Tables[0]);
+
+                this.Data_Bind();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+
+    
+
+        private void PaymentSupSummary()
         {
 
             try
@@ -158,7 +282,7 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        private void PaymentDetails()
+        private void PaymentSupDetails()
         {
 
             try
@@ -221,22 +345,47 @@ namespace RealERPWEB.F_17_Acc
 
         private void Data_Bind()
         {
-
+            
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
-            switch (stindex)
+            string type = this.Request.QueryString["Type"].ToString();
+            if(type== "SupPayment")
             {
-                case "0":
-                    this.gvspaysummary.DataSource = (DataTable)Session["tblspaysum"];
-                    this.gvspaysummary.DataBind();
+                switch (stindex)
+                {
+                    case "0":
+                        this.gvspaysummary.DataSource = (DataTable)Session["tblspaysum"];
+                        this.gvspaysummary.DataBind();
 
-                    break;
+                        break;
 
-                case "1":
-                    this.gvspaymentdetails.DataSource = (DataTable)Session["tblspaysum"];
-                    this.gvspaymentdetails.DataBind();
-                    break;
+                    case "1":
+                        this.gvspaymentdetails.DataSource = (DataTable)Session["tblspaysum"];
+                        this.gvspaymentdetails.DataBind();
+                        break;
+
+                }
 
             }
+
+            else
+            {
+                switch (stindex)
+                {
+                    case "0":
+                        this.gvconsummary.DataSource = (DataTable)Session["tblspaysum"];
+                        this.gvconsummary.DataBind();
+
+                        break;
+
+                    case "1":
+                        this.gvcondetails.DataSource = (DataTable)Session["tblspaysum"];
+                        this.gvcondetails.DataBind();
+                        break;
+
+                }
+
+            }
+           
 
         }
 
