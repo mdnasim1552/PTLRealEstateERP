@@ -3703,6 +3703,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>DataSet3</DataSetName>
             <Top>2.09875in</Top>
             <Left>0.00267in</Left>
