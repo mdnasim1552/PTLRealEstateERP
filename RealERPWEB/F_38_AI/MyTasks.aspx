@@ -347,7 +347,7 @@
                                                         <ItemStyle Width="30px" HorizontalAlign="center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Rmarks">
+                                                    <asp:TemplateField HeaderText="Rmarks" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="gvtdremarks" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:Label>
@@ -607,6 +607,7 @@
                                     <div class="form-group">
                                         <label id="lblreason" runat="server">Hold Reason</label>
                                         <asp:DropDownList ID="ddlholdreason" runat="server" CssClass="form-control chzn-select">
+                                             <asp:ListItem Value="0"> ---Select For Reason---</asp:ListItem>
                                             <asp:ListItem Value="89001"> Pray Break</asp:ListItem>
                                             <asp:ListItem Value="89002">Lunch Break</asp:ListItem>
                                             <asp:ListItem Value="89003">Snacks Break</asp:ListItem>
