@@ -370,10 +370,10 @@ namespace RealERPWEB.F_38_AI
                     validtotal = total + assignqty;
 
                 }
-                double pnannotor = pedingannotor==0? (totalassign - validtotal) : (pedingannotor -validtotal);
+                //double pnannotor = pedingannotor== 0? (totalassign - validtotal) : (pedingannotor -validtotal);
 
 
-                if ((roletype == "95001" && totalassign < assignqty) || (roletype == "95001" && pnannotor < validtotal))
+                if ((roletype == "95001" && pedingannotor <= assignqty))
                 {
 
 
@@ -383,14 +383,14 @@ namespace RealERPWEB.F_38_AI
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if ((roletype == "95002" && doneannotor < assignqty) || (roletype == "95002" && doneannotor < validtotal))
+                else if ((roletype == "95002" && doneannotor <= assignqty) || (roletype == "95002" && doneannotor <= validtotal))
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if ((roletype == "95003" && doneqc < assignqty) || (roletype == "95003" && doneqc < validtotal))
+                else if ((roletype == "95003" && doneqc <= assignqty) || (roletype == "95003" && doneqc <= validtotal))
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -426,7 +426,7 @@ namespace RealERPWEB.F_38_AI
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
                         dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
-
+                        this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString())- Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
                     }
                     else
                     {
