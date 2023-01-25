@@ -113,13 +113,28 @@ namespace RealERPWEB.F_12_Inv
             string resListMulti = "";
             string resourcelist = this.chkResourcelist.SelectedValue.ToString();
 
-            foreach (ListItem item in chkResourcelist.Items)
-            {
-                if (item.Selected)
+
+
+            if (resourcelist == "000000000000")
+                resListMulti = "";
+            else
+
+                foreach (ListItem item in chkResourcelist.Items)
                 {
-                    resListMulti += item.Value;
+                    if (item.Selected)
+                    {
+                        resListMulti += item.Value;
+                    }
                 }
-            }
+           
+
+            //foreach (ListItem item in chkResourcelist.Items)
+            //{
+            //    if (item.Selected)
+            //    {
+            //        resListMulti += item.Value;
+            //    }
+            //}
 
             string group = this.group.SelectedValue.ToString();
 

@@ -251,7 +251,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Ammount">
+                                    <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblActualStock" runat="server" Style="text-align: right" Width="85px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actstock")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
