@@ -1883,6 +1883,9 @@
                                                     <asp:Label ID="tblgvdelicurrencydesc" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "currency"))%>'
                                                         Width="80px"></asp:Label>
+                                                    <asp:Label ID="lblgvdelicustomer" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "customer"))%>'
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1964,11 +1967,12 @@
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                          
+                                         
 
 
                                             <asp:TemplateField HeaderText="Action">
                                                 <ItemTemplate>
+
                                                     <asp:HyperLink runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertypedesc"))=="Pilot"? false : true  %>' ID="lnkInvoice" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2"><i class="btn btn-primary btn-sm">Invoice</i></asp:HyperLink>
                                                     <asp:LinkButton runat="server" ID="lnkbtnsow" OnClick="lnkbtnsow_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertypedesc"))=="Pilot"? true : false  %>' CssClass="btn btn-primary btn-sm">Convert SOW</asp:LinkButton>
                                                 </ItemTemplate>

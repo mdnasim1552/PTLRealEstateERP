@@ -2021,7 +2021,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
-                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "clientid")).ToString().Trim();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString().Trim();
                 hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid;
 
             }
