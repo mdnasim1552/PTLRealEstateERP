@@ -42,6 +42,7 @@
         .form-control {
             height: 34px;
         }
+
         .mt20 {
             margin-top: 20px;
         }
@@ -65,12 +66,15 @@
             $('.chzn-select').chosen({ search_contains: true });
 
             $(function () {
-                $('[id*=DropCheck1]').multiselect({
+                $('[id*=lstfloor]').multiselect({
                     includeSelectAllOption: true,
                     enableCaseInsensitiveFiltering: true,
                 });
 
             });
+
+
+           
 
             //gvisu.gridviewScroll({
             //           width: 1165,
@@ -197,33 +201,47 @@
                                     <div class="form-horizontal">
                                         <div class="form-group">
                                             <div class="row">
-                                                <div class="col-sm-3 col-md-3 col-lg-3">
+
+
+                                                <div class="col-sm-1 col-md-1 col-lg-1">
                                                     <div class="form-group">
                                                         <asp:Label ID="lblCatagory" runat="server" CssClass="smLbl_to" Text="Catagory"></asp:Label>
-                                                        <asp:DropDownList ID="ddlcatagory" runat="server" OnSelectedIndexChanged="ddlcatagory_SelectedIndexChanged" TabIndex="12" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" >
-                                                        </asp:DropDownList>
+
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3 col-md-3 col-lg-3">
-                                                    <div class="form-group">
-                                                        <asp:Label ID="lblLabour" runat="server" CssClass="lblTxt lblName" Text="Labour"></asp:Label>
-                                                        <asp:TextBox ID="txtSearchLabour" runat="server"  Visible="false"></asp:TextBox>
-                                                        <asp:LinkButton ID="ibtnSearchMaterisl" CssClass="form-control form-control-sm" runat="server" OnClick="ibtnSearchMaterisl_Click" TabIndex="2" Visible="false"></asp:LinkButton>
-                                                        <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control form-control-sm"  SelectionMode="Multiple"></asp:ListBox>
-                                                    </div>
-                                                </div>
+
                                                 <div class="col-sm-2 col-md-2 col-lg-2">
                                                     <div class="form-group">
-                                                        <asp:Label ID="lblfloorno" runat="server" CssClass="lblTxt lblName" Text="Floor No"></asp:Label>
-                                                        <asp:DropDownList ID="ddlfloorno" runat="server"  OnSelectedIndexChanged="ddlfloorno_SelectedIndexChanged" TabIndex="12" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" >
-                                                            <asp:ListItem Selected="True" Text="Unspecified" Value="00"></asp:ListItem>
+
+                                                        <asp:DropDownList ID="ddlcatagory" runat="server" OnSelectedIndexChanged="ddlcatagory_SelectedIndexChanged" TabIndex="12" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select">
                                                         </asp:DropDownList>
+
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-1 col-md-1 col-lg-1">
+                                                    <asp:Label ID="lblLabour" runat="server" CssClass="lblTxt lblName" Text="Labour"></asp:Label>
+                                                </div>
+
+                                                <div class="col-sm- col-md-2 col-lg-2">
+                                                    <div class="form-group">
+
+                                                        <asp:DropDownList ID="ddlWorkList" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true"  OnSelectedIndexChanged="ddlWorkList_SelectedIndexChanged" ></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <asp:Label ID="lblfloorno" runat="server" CssClass="smLbl_to" Text="Floor No"></asp:Label>
+                                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                                    <asp:ListBox ID="lstfloor" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+                                                </div>
+
+
+
+
                                                 <div class="col-sm-2 col-md-2 col-lg-2">
                                                     <div class="form-group">
-                                                        <asp:LinkButton ID="lbtnSelect" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-primary primaryBtn mt20"
-                                                    TabIndex="17" Style="margin-top: 25px; ">Select</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnSelect" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-primary primaryBtn"
+                                                            TabIndex="17" >Select</asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
