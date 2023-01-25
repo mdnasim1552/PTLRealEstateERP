@@ -168,6 +168,24 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.TextBox lblabs;
 
         /// <summary>
+        /// lnkIncentiveTracker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lnkIncentiveTracker;
+
+        /// <summary>
+        /// hypincentive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypincentive;
+
+        /// <summary>
         /// hrpolicy control.
         /// </summary>
         /// <remarks>
@@ -607,6 +625,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl winUlList;
+
+        /// <summary>
+        /// divIncentive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divIncentive;
 
         /// <summary>
         /// conductid control.

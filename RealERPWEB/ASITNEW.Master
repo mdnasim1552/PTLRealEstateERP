@@ -40,7 +40,7 @@
         
     </asp:PlaceHolder>
 
-     
+
     <!-- SweetAlert2 -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
@@ -67,7 +67,7 @@
     <link href="Content/progressbar.css" rel="stylesheet" />
     <link href="Content/select2.min.css" rel="stylesheet" />
         
-        --%>
+    --%>
 
     <script>
         function submitform() { document.getElementById("form1").submit(); }
@@ -75,7 +75,7 @@
         var unusedLink = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
         unusedLink.setAttribute('rel', '');
         unusedLink.setAttribute('disabled', true);
-     
+
         // setTimeout(function () { manipulate(); }, 3000);
         //  manipulate();
         function manipulate() {
@@ -156,12 +156,14 @@
     </script>
     <!-- END THEME STYLES -->
     <style>
- .ajax__calendar_day {
-       font-weight:100!important;
- }
- .ajax__calendar_dayname{
-     font-weight:100!important;
- }
+        .ajax__calendar_day {
+            font-weight: 100 !important;
+        }
+
+        .ajax__calendar_dayname {
+            font-weight: 100 !important;
+        }
+
         .checkbox-menu li label {
             display: block;
             padding: 3px 10px;
@@ -295,28 +297,30 @@
 
         #pnlTopMenu .nav-link {
             color: #fff !important;
-            font-size:18px;
+            font-size: 18px;
         }
-        .card-header{
-            font-weight:normal !important;
+
+        .card-header {
+            font-weight: normal !important;
         }
-       .ajax__calendar{
-           font-weight:normal !important;
-       }
+
+        .ajax__calendar {
+            font-weight: normal !important;
+        }
     </style>
 
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <%--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--%>
-     
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.5/css/intlTelInput.css" />
-    
-   
+
+
 
 </head>
 <body>
     <%--enctype="multipart/form-data"--%>
-    <form id="form1" runat="server" enctype="multipart/form-data" >
+    <form id="form1" runat="server" enctype="multipart/form-data">
         <asp:TextBox ID="ParentDir" runat="server" CssClass="hidden"></asp:TextBox>
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" SupportsPartialRendering="true" runat="server" AsyncPostBackTimeout="0" EnablePageMethods="true">
 
@@ -493,27 +497,27 @@
                                     <a class="dropdown-item" target="_blank" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
                                     <asp:HyperLink class="dropdown-item" ID="lnkFormLink" Target="_blank" Visible="false" runat="server" Text="bti Form"></asp:HyperLink>
 
-                                    <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" target="_blank" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" Target="_blank" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
 
-                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" target="_blank" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" target="_blank" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Target="_blank" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyReqCommon" Target="_blank" Visible="false" runat="server" Text="Request Apply (MGT)"></asp:HyperLink>
 
 
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
+                                    <a class="dropdown-item d-none" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>' target="_blank">Leave Interface</a>
-                                    
-                                    
+
+
                                     <asp:HyperLink class="dropdown-item" ID="hypUtility" Visible="false" runat="server" Text="Utility SetUp"></asp:HyperLink>
 
-                 
-                                    <asp:HyperLink class="dropdown-item" ID="HypLinkReqInterFace" Visible="false" target="_blank"  runat="server" Text="Request Interface"></asp:HyperLink>
-                                       <asp:HyperLink class="dropdown-item" ID="hypTimeOfleaveMgt" Visible="false" runat="server" target="_blank" Text="Apply Time off (MGT)"></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" target="_blank" Text="Apply Time off"></asp:HyperLink>
+
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkReqInterFace" Visible="false" Target="_blank" runat="server" Text="Request Interface"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleaveMgt" Visible="false" runat="server" Target="_blank" Text="Apply Time off (MGT)"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Target="_blank" Text="Apply Time off"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
 
 
 
-                                     <div id="ProfilMenu" runat="server"></div>
+                                    <div id="ProfilMenu" runat="server"></div>
 
                                 </div>
                                 <!-- /.dropdown-menu -->
@@ -577,8 +581,8 @@
                                                 <a class="dropdown-item" href="#">Employee Confirmation</a>
                                                 <a class="dropdown-item" href="#">Promotion</a>
                                                 <a class="dropdown-item" href="#">Annual Increment</a>
-                                                <a class="dropdown-item" href="#"> Annual Increment Updated</a>
-                                                 
+                                                <a class="dropdown-item" href="#">Annual Increment Updated</a>
+
 
                                             </div>
 
@@ -589,7 +593,7 @@
                                                 <a class="dropdown-item" href="#">Department Wise Employee List</a>
                                                 <a class="dropdown-item" href="#">Employee Manpower Report</a>
                                                 <a class="dropdown-item" href="#">Employee Settlement Top Sheet</a>
-                                                <a class="dropdown-item" href="#"> Increment Report</a>
+                                                <a class="dropdown-item" href="#">Increment Report</a>
 
                                             </div>
                                         </div>
@@ -673,14 +677,14 @@
                                                 <a class="dropdown-item" href="#">Festival Bonus</a>
                                                 <a class="dropdown-item" href="#">Special Purpose Bonus</a>
                                                 <a class="dropdown-item" href="#">Pay Slip</a>
-                                                  <a class="dropdown-item" href="#">Signature Sheet</a>
+                                                <a class="dropdown-item" href="#">Signature Sheet</a>
                                                 <a class="dropdown-item" href="#">Salary Statement (Cash)</a>
                                                 <a class="dropdown-item" href="#">Month Wise Salary</a>
                                                 <a class="dropdown-item" href="#">Salary Transfer Statement</a>
                                             </div>
                                             <div>
                                                 <div class="dropdown-header">Reports</div>
-                                              
+
                                                 <a class="dropdown-item" href="#">Details Salary Summary</a>
                                                 <a class="dropdown-item" href="#">Monthly Loan,Adv,Cell,Arrear Data Sheet</a>
                                                 <a class="dropdown-item" href="#">Overtime Salary</a>
@@ -700,22 +704,22 @@
                                             <div>
                                                 <div class="dropdown-header">Loan Entry</div>
                                                 <a class="dropdown-item" href="#">Loan Installment</a>
-                                                 
+
                                             </div>
-                                           
+
                                             <div>
                                                 <div class="dropdown-header">Fixed Price Services</div>
-                                                <a class="dropdown-item" href="#"> Employee Loan Status</a>
+                                                <a class="dropdown-item" href="#">Employee Loan Status</a>
                                                 <a class="dropdown-item" href="#">Employee Loan Installment Details</a>
-                                                 
+
                                             </div>
                                         </div>
                                     </div>
                                 </li>
 
-                              
 
-                         
+
+
 
 
 
@@ -726,11 +730,11 @@
                                         <div class="d-md-flex align-items-start justify-content-start">
                                             <div>
                                                 <div class="dropdown-header">Reports</div>
-                                                <a class="dropdown-item" href="#"> AIT Purpose Salary Statement</a>
-                                              
+                                                <a class="dropdown-item" href="#">AIT Purpose Salary Statement</a>
+
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                     </div>
                                 </li>
@@ -866,7 +870,7 @@
 
                                         </li>
                                         <li class="menu-item">
-                                            <a href="DashboardHRM"  id="dashHRM" runat="server" visible="false"  target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
+                                            <a href="DashboardHRM" id="dashHRM" runat="server" visible="false" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
 
                                         </li>
 
@@ -893,13 +897,13 @@
                                 <!-- .menu-header -->
                                 <li class="menu-header">Analysis </li>
 
-                                
+
                                 <!-- .menu-item -->
                                 <li class="menu-item has-active">
                                     <a runat="server" id="dbAllinOne" href="#" target="_blank" visible="false" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
                                 </li>
                                 <li class="menu-item has-active">
-                                    <a runat="server" id="prjdash" href="#" target="_blank" visible="false"  class="menu-link"><span class="menu-icon fa fa-th" title="Project DashBoard"></span><span class="menu-text">Project DashBoard</span></a>
+                                    <a runat="server" id="prjdash" href="#" target="_blank" visible="false" class="menu-link"><span class="menu-icon fa fa-th" title="Project DashBoard"></span><span class="menu-text">Project DashBoard</span></a>
                                 </li>
                                 <li class="menu-item has-child" id="AnalysisArea" runat="server" visible="false">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Analysis Graph"></span><span class="menu-text">Analysis Graph</span></a>
@@ -924,7 +928,6 @@
                                         <li class="menu-item">
                                             <a runat="server" id="PrjSummary" class="menu-link">Project Summary</a>
                                         </li>--%>
-
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
@@ -1000,7 +1003,7 @@
                         </div>
                     </div>
                     <!-- .app-footer -->
-                    <footer class="app-footer fixed-bottom" style="background-color: #EEEEEE;">
+                    <footer class="app-footer fixed-bottom p-1" style="background-color: #EEEEEE;">
                         <div class="col-md-12">
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
@@ -1018,7 +1021,8 @@
 
                                         <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btn btn-sm btn-primary " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</asp:LinkButton>
-                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
+                                      <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-success" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-save" aria-hidden="true"></i>&nbsp;Save</asp:LinkButton>
+                                       
                                         <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
@@ -1046,7 +1050,7 @@
 
         $(document).ready(function () {
 
-           // $('.chzn-select').chosen({ search_contains: true });
+            // $('.chzn-select').chosen({ search_contains: true });
 
         });
 
@@ -1079,7 +1083,7 @@
                 })
             })
 
-           
+
         });
 
 
@@ -1162,7 +1166,7 @@
                 return false;
             }
         };
-        
+
 
         function FunCheckConfirm() {
             if (confirm('Are you sure you want to Checked this  Item?')) {
@@ -1210,8 +1214,8 @@
         };
 
         /// Sweet Alert
- 
-      
+
+
 
         /// end by nahid 20221013
 
@@ -1260,7 +1264,7 @@
                 var userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
-                console.log('notification',data)
+                console.log('notification', data)
 
                 var row = "";
                 var img = "";
@@ -1297,16 +1301,16 @@
 
             }
             catch (e) {
-                var urll='<%=ResolveClientUrl("~/Notification/GetNotification ? Id = All & RefId=& notiytype=& ntype=")%>';
+                var urll ='<%=ResolveClientUrl("~/Notification/GetNotification ? Id = All & RefId=& notiytype=& ntype=")%>';
                 location.href = urll;
             }
         }
 
-       
+
 
     </script>
 
-    
+
 
 </body>
 </html>
