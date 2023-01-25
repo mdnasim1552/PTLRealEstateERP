@@ -64,13 +64,15 @@
     font-family: Calibri !important;
     font-size: 11px !important;
     height: 23px !important;
+    font-weight:bold;
 }
 .grvFooterNew {
     background: #346CB0 !important;
     color: #ffffff;
     font-family: Calibri !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     height: 25px !important;
+    font-weight: bold;
 }
 .gvPagination {
     border: none;
