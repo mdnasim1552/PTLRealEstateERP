@@ -482,7 +482,13 @@
                                 <ul class=" navbar-nav topMenu">
                                     <li class="nav-item"><a class="nav-link active btn btn-primary" data-toggle="tab" href="#home">Activities</a> </li>
 
+
+                                        <li class="nav-item ml-2" id="lnkIncentiveTracker" runat="server" visible="false">
+                                        <asp:HyperLink ID="hypincentive" CssClass="nav-link smooth-scrol  btn btn-danger" Visible="true" data-toggle="tab" href="#tabIncentive" runat="server">UM-Tracker</asp:HyperLink>
+
+                                        </li>
                                     <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
+
                                     <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
 
                                     <li class="nav-item"><a id="hrpolicy" runat="server" href="#LeavePolicy" class="nav-link smooth-scroll" data-toggle="tab">HR Policy</a></li>
@@ -613,7 +619,7 @@
                                                         <th>Late </th>
                                                         <th>Absent </th>
                                                         <th>Leave </th>
-                                                        <th>Leave Adjusted </th>
+                                                        <th>Late Deduction</th>
                                                         <th>Late Approval </th>
                                                     </tr>
                                             </HeaderTemplate>
@@ -1844,6 +1850,25 @@
                     </section>
                 </div>
 
+                            <div class="tab-pane fade" id="tabIncentive">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <h1 class="text-center">UM-Tracker</h1>
+                                    <div runat="server" class="text-center" id="divIncentive">
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
@@ -1861,6 +1886,8 @@
                         </div>
                     </section>
                 </div>
+
+
 
                                 <div class="tab-pane fade" id="LnkFrm">
                     <section class="card card-fluid">

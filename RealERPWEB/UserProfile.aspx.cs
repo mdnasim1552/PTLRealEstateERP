@@ -56,6 +56,7 @@ namespace RealERPWEB
 
                 hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
                 //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
+               
             }
 
             this.GetProfile();
@@ -147,8 +148,11 @@ namespace RealERPWEB
             {
                 this.modalPayslipBti.Attributes.Add("class", "d-none");
             }
+            if (comcod == "3365")
+            {
+                this.lnkIncentiveTracker.Visible = true;
+            }
      
-
 
         }
    
@@ -415,6 +419,16 @@ namespace RealERPWEB
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
             }
+            if(ds1==null || ds1.Tables[5].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[5];
+                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+
+            }
 
         }
 
@@ -621,6 +635,7 @@ namespace RealERPWEB
             switch (comcod)
             {
                 // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                case "3369":
                 case "3365":
                 case "3102":
                     calltype = "RPTMYSERVICESBTI";
@@ -713,7 +728,7 @@ namespace RealERPWEB
                         frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                         break;
                 }
-
+           
                 //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/"+ Convert.ToDateTime(ymonid.Substring(4, 2) + "/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
                 //string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 //string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
