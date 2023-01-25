@@ -112,8 +112,26 @@ namespace RealEntity.C_21_Mkt
             public RptProspectTransfer() { }
         }
 
-
         [Serializable]
+        public class RptLeadStatusTimestamp
+        {
+            public string proscod { get; set; }
+            public string proscod1 { get; set; }
+            public string sourcecode { get; set; }
+            public string source { get; set; }
+            public DateTime createdate { get; set; }
+            public string query { get; set; }
+            public string lead { get; set; }
+            public string qualifiedlead { get; set; }
+            public string negotiation { get; set; }
+            public string finalnegotiation { get; set; }
+            public string win { get; set; }
+
+            public RptLeadStatusTimestamp() { }
+        }
+
+
+            [Serializable]
         public class EClassDailyWorkStatus
         {
             public string grp { get; set; }
