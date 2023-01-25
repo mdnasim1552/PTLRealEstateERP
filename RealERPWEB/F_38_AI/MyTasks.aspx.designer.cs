@@ -114,6 +114,33 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.GridView gv_Completejob;
 
         /// <summary>
+        /// hiddenlabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenlabel;
+
+        /// <summary>
+        /// lblwrkassign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblwrkassign;
+
+        /// <summary>
+        /// lblwrkdoneqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblwrkdoneqty;
+
+        /// <summary>
         /// gvTodayList control.
         /// </summary>
         /// <remarks>

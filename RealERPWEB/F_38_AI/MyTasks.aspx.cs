@@ -29,9 +29,9 @@ namespace RealERPWEB.F_38_AI
                 string type = Request.QueryString["Type"];
                 if (type == "MGT")
                 {
-                    this.mgtenplist.Visible = true; 
-                    
-                    
+                    this.mgtenplist.Visible = true;
+
+
                 }
                 this.GetEmployeeName();
                 btnMyTasks_SelectedIndexChanged(null, null);
@@ -265,13 +265,19 @@ namespace RealERPWEB.F_38_AI
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
             int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
+
             string timeid = ((Label)this.gvTodayList.Rows[index].FindControl("lbltimetaskid")).Text.Trim();
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
             string roletype = ((Label)this.gvTodayList.Rows[index].FindControl("lblgvroletypecode")).Text.Trim();
-
+            string assign = ((Label)this.gvTodayList.Rows[index].FindControl("lblwrkassignqty")).Text.Trim();
+            string pending = ((Label)this.gvTodayList.Rows[index].FindControl("lblwrpkdoneqty")).Text.Trim();
+            this.hiddenlabel.Value = jobid;
+            this.lblwrkassign.Text = assign;
+            this.lblwrkdoneqty.Text = pending;
 
             if (roletype == "95001")
             {
@@ -320,6 +326,20 @@ namespace RealERPWEB.F_38_AI
                     trackertype = this.holdstatus.Text.ToString().Trim();
                 }
                 string comcod = this.GetCompCode();
+
+
+                double dnqty = Convert.ToDouble("0" + this.txtDoneQty.Text);
+
+                double assign = Convert.ToDouble("0" + this.lblwrkassign.Text);
+                double donqty = Convert.ToDouble("0" + this.lblwrkdoneqty.Text);
+                double validtotal = assign- donqty;
+
+                if (validtotal < dnqty)
+                {
+                    string msg = "Done QTY Greater Then Assign QTY";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
                 //jobid, assignuser, worktime, trackertype, doneqty, skipqty, remarks,holdreason,returnqty,rejectqty
 
                 bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, returnqty, rejectqty);
@@ -407,7 +427,11 @@ namespace RealERPWEB.F_38_AI
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
-
+            string assign = ((Label)this.gvTodayList.Rows[index].FindControl("lblwrkassignqty")).Text.Trim();
+            string pending = ((Label)this.gvTodayList.Rows[index].FindControl("lblwrpkdoneqty")).Text.Trim();
+            this.hiddenlabel.Value = jobid;
+            this.lblwrkassign.Text = assign;
+            this.lblwrkdoneqty.Text = pending;
             this.donestatus.Text = "99220";
             this.lbltaskmodal.Text = "Task Complete Note";
             this.notetaskid.Text = timeid;
@@ -452,7 +476,7 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
-       
+
 
         protected void gvActivities_RowDataBound(object sender, GridViewRowEventArgs e)
         {
