@@ -865,7 +865,7 @@ namespace RealERPWEB.F_09_PImp
                             dr1["bgdqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode+ "' and flrcod= '" + flrcode + "'")[0]["bgdqty"]).ToString();
 
                             dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balqty"]).ToString();
-                            balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"].ToString());
+                            balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balqty"].ToString());
                             dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balamt"]).ToString();
                             dr1["reqqty"] = (comcod == "3370" || comcod == "3101") ? balqty : 0.00;
                             dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["bgdrat"]).ToString();
