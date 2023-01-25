@@ -340,6 +340,18 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
+
+                                        <asp:TemplateField HeaderText=" Previous Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvprerate3" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "prerate3")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtrate3" runat="server" BorderColor="#99CCFF"
@@ -372,6 +384,18 @@
                                         </asp:TemplateField>
 
 
+                                        <asp:TemplateField HeaderText=" Previous Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvprerate4" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "prerate4")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtrate4" runat="server" BorderColor="#99CCFF"
@@ -399,6 +423,18 @@
 
 
                                             <FooterStyle HorizontalAlign="RIght" />
+                                            <HeaderStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText=" Previous Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvprerate5" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "prerate5")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
