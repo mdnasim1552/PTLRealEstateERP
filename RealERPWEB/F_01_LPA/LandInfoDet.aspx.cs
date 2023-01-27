@@ -48,6 +48,10 @@ namespace RealERPWEB.F_01_LPA
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
 
@@ -1071,8 +1075,15 @@ namespace RealERPWEB.F_01_LPA
                         break;
 
                     case "0301007": //Associate
-                        dv1 = dt1.DefaultView;
-                        dv1.RowFilter =  ("gcod like '93%'");
+                        dv1 = dt1.DefaultView;                        
+                        if (comcod== "3348")
+                        {
+                            dv1.RowFilter = ("gcod="+empid+" ");
+                        }
+                        else
+                        {
+                            dv1.RowFilter = ("gcod like '93%'");
+                        }
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
@@ -5228,6 +5239,8 @@ namespace RealERPWEB.F_01_LPA
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             ViewState["tblempsup"] = ds1.Tables[0];
             ds1.Dispose();
 
@@ -8008,6 +8021,285 @@ namespace RealERPWEB.F_01_LPA
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+            }
+        }
+
+        protected void lblgvkpicall_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601001' or gpcode ='9601001' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpiextmeeting_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601004' or gpcode ='9601004' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpiintmeeting_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601008' or gpcode ='9601008' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpisurvey_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601012' or gpcode ='9601012' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpifeasibility_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601016' or gpcode ='9601016' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpiproposal_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601020' or gpcode ='9601020' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+        }
+
+        protected void lblgvkpileads_Click(object sender, EventArgs e)
+        {
+            //this.lblkpiDetails.Visible = true;
+
+            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            //string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            //lblkpiDetails.Text = "Kpi Details: " + empname;
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = this.GetComeCode();
+            //string frmdate = this.txtdate.Text.Trim();
+            //string todate = this.txtkpitodate.Text.Trim();
+
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            //ViewState["tbltempdt"] = ds1.Tables[0];
+            //DataView dv = new DataView(ds1.Tables[0]);
+            //dv.RowFilter = ("sircode='9601001' or gpcode ='9601001' ");
+            //this.gvSummary.DataSource = null;
+            //this.gvSummary.DataBind();
+            //this.gvkpidet.DataSource = dv;
+            //this.gvkpidet.DataBind();
+
+            //if (gvkpidet.Rows.Count > 0)
+            //{
+            //    Session["Report1"] = gvkpidet;
+            //    ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            //}
+        }
+
+        protected void lblgvkpiclosing_Click(object sender, EventArgs e)
+        {
+            //this.lblkpiDetails.Visible = true;
+
+            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            //string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            //lblkpiDetails.Text = "Kpi Details: " + empname;
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = this.GetComeCode();
+            //string frmdate = this.txtdate.Text.Trim();
+            //string todate = this.txtkpitodate.Text.Trim();
+
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            //ViewState["tbltempdt"] = ds1.Tables[0];
+            //DataView dv = new DataView(ds1.Tables[0]);
+            //dv.RowFilter = ("sircode='9601001' or gpcode ='9601001' ");
+            //this.gvSummary.DataSource = null;
+            //this.gvSummary.DataBind();
+            //this.gvkpidet.DataSource = dv;
+            //this.gvkpidet.DataBind();
+
+            //if (gvkpidet.Rows.Count > 0)
+            //{
+            //    Session["Report1"] = gvkpidet;
+            //    ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            //}
+        }
+
+        protected void lblgvkpiothers_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtdate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601024' or gpcode ='9601024' ");
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
         }
     }

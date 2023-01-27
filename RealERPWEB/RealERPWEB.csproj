@@ -166,7 +166,7 @@
       <HintPath>..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
@@ -244,7 +244,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -344,6 +344,7 @@
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\bin\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -354,9 +355,19 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\bin\System.Drawing.Common.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -365,10 +376,35 @@
     <Reference Include="System.Resources.Extensions">
       <HintPath>..\..\bin\System.Resources.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\bin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\bin\System.Text.Encodings.Web.dll</HintPath>
@@ -402,6 +438,9 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\Project Reference\bin\bin\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <HintPath>..\..\bin\WebGrease.dll</HintPath>
@@ -2279,6 +2318,7 @@
     <Content Include="F_04_Bgd\RptOtherReqStatus.aspx" />
     <Content Include="F_04_Bgd\RptPrjFloorWise.aspx" />
     <Content Include="F_04_Bgd\RptWorkSchedule.aspx" />
+    <Content Include="F_04_Bgd\RptWorkWiResVariance.aspx" />
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
@@ -2336,6 +2376,7 @@
     <Content Include="F_09_PImp\PurIssueWorkWiseEntry.aspx" />
     <Content Include="F_09_PImp\PurLabIssue.aspx" />
     <Content Include="F_09_PImp\PurLabIssue2.aspx" />
+    <Content Include="F_09_PImp\PurLabRequisition02.aspx" />
     <Content Include="F_09_PImp\PurLabRequisition.aspx" />
     <Content Include="F_09_PImp\PurOpenigBillCon.aspx" />
     <Content Include="F_09_PImp\PurSubConBillFinal.aspx" />
@@ -2377,6 +2418,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_12_Inv\ProjectWiseStock.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
@@ -2385,6 +2427,8 @@
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
@@ -2399,8 +2443,11 @@
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
+    <Content Include="F_21_MKT\LostProspect.aspx" />
+    <Content Include="F_21_MKT\LostProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
+    <Content Include="F_21_MKT\RptLeadStatus.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
@@ -4246,6 +4293,13 @@
     <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
       <DependentUpon>RptProductCost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.designer.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4274,6 +4328,13 @@
     <Compile Include="F_09_PImp\BillingMBEntry.aspx.designer.cs">
       <DependentUpon>BillingMBEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\PurLabRequisition02.aspx.cs">
+      <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\PurLabRequisition02.aspx.designer.cs">
+      <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4301,6 +4362,13 @@
     </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.designer.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\ProjectWiseStock.aspx.cs">
+      <DependentUpon>ProjectWiseStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\ProjectWiseStock.aspx.designer.cs">
+      <DependentUpon>ProjectWiseStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\PurReqEntry.aspx.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>
@@ -4357,6 +4425,20 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.cs">
+      <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.designer.cs">
+      <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.designer.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchesStatus.aspx.cs">
       <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
@@ -4456,6 +4538,20 @@
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.designer.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\LostProspect.aspx.cs">
+      <DependentUpon>LostProspect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\LostProspect.aspx.designer.cs">
+      <DependentUpon>LostProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\LostProspectTransfer.aspx.cs">
+      <DependentUpon>LostProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\LostProspectTransfer.aspx.designer.cs">
+      <DependentUpon>LostProspectTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.cs">
       <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4469,6 +4565,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptDailyWorkStatus.aspx.designer.cs">
       <DependentUpon>RptDailyWorkStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptLeadStatus.aspx.cs">
+      <DependentUpon>RptLeadStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptLeadStatus.aspx.designer.cs">
+      <DependentUpon>RptLeadStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
@@ -13252,13 +13355,6 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
-      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
-      <Name>RealERPRDLC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <!--<Analyzer Include="C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll" />-->
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

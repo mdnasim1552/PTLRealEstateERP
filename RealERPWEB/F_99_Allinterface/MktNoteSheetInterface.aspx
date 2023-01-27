@@ -725,7 +725,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvrate" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -810,11 +810,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
                             </div>
@@ -909,7 +907,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvrateaut" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -1000,11 +998,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
 
@@ -1016,7 +1012,7 @@
                         <asp:Panel runat="server" ID="pnlrecommended" Visible="false">
 
                             <div class="table-responsive">
-                               <asp:GridView ID="gvrecommended" runat="server" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvrecommended" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvrecommended_RowDataBound">
                                     <RowStyle />
                                     <Columns>
@@ -1099,7 +1095,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvraterecm" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -1189,11 +1185,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
                             </div>
@@ -1203,7 +1197,7 @@
                         <asp:Panel runat="server" ID="pnlfirstApp" Visible="false">
 
                             <div class="table-responsive">
-                                 <asp:GridView ID="gvfirstapp" runat="server" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvfirstapp" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvfirstapp_RowDataBound">
                                     <RowStyle />
                                     <Columns>
@@ -1286,7 +1280,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvratefirstapp" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -1377,11 +1371,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
 
@@ -1391,7 +1383,7 @@
 
                         <asp:Panel runat="server" ID="pnlapproval" Visible="false">
                             <div class="table-responsive">
-                              
+
                                 <asp:GridView ID="gvfinalapp" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvfinalapp_RowDataBound">
                                     <RowStyle />
@@ -1476,7 +1468,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvratefinalapp" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -1566,11 +1558,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
                             </div>
@@ -1583,7 +1573,7 @@
 
                             <div class="table-responsive">
 
-                             <asp:GridView ID="gvschupdate" runat="server" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvschupdate" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvschupdate_RowDataBound">
                                     <RowStyle />
                                     <Columns>
@@ -1666,7 +1656,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Rate (BDT/Sft)">
+                                        <asp:TemplateField HeaderText="Rate (BDT/Sft)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvrateschup" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "coffurate")).ToString("#,##0;(#,##0); ") %>'
@@ -1741,7 +1731,7 @@
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="">
-                                            <ItemTemplate>                                              
+                                            <ItemTemplate>
                                                 <asp:LinkButton ID="lnkschup" runat="server" CssClass="btn btn-xs btn-default" Visible="false" ToolTip="Note Sheet Approval" OnClick="lnkschup_Click"><span class=" fa fa-check"></span> </asp:LinkButton>
                                                 <asp:HyperLink ID="hlnkViewrschup" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="View Details"><i class="fa fa-eye" aria-hidden="true"></i>
                                                 </asp:HyperLink>
@@ -1756,11 +1746,9 @@
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-
-                                    <HeaderStyle CssClass="grvHeaderNew" />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <RowStyle CssClass="grvRowsNew" />
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
 
 

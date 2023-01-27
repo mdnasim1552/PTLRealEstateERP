@@ -28,7 +28,7 @@ namespace RealERPWEB.F_04_Bgd
         {
             if (!IsPostBack)
             {
-
+                
                 string type = this.Request.QueryString["InputType"].ToString();
                 //string antype = this.Request.QueryString["AnaType"].ToString();
                 if (type == "BgdMainRpt")
@@ -51,6 +51,9 @@ namespace RealERPWEB.F_04_Bgd
                     if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                         Response.Redirect("~/AcceessError.aspx");
 
+                    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 }
 
@@ -62,6 +65,9 @@ namespace RealERPWEB.F_04_Bgd
                         Response.Redirect("~/AcceessError.aspx");
 
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 }
@@ -72,20 +78,15 @@ namespace RealERPWEB.F_04_Bgd
                 //((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["AnaType"].ToString() == "2" ? "Individual material details"
                 //  :(Request.QueryString["InputType"].ToString() == "BgdMain") ? "CONSTRUCTION BUDGET"
                 //  : Request.QueryString["AnaType"].ToString() == "3" ? "Individual work details" : "CONSTRUCTION BUDGET";
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["InputType"].ToString() == "BgdMain") ? "Budget-Engineering"
-                    //: (this.Request.QueryString["AnaType"].ToString() == "1") ? "Budget Engineering-Work Basis"
-                    //: (this.Request.QueryString["AnaType"].ToString() == "0") ? "Budget Engineering-Resource Basis"
-                    //: (this.Request.QueryString["AnaType"].ToString() == "2") ? "Individual Material Details"
-                    //: (this.Request.QueryString["AnaType"].ToString() == "3") ? "Individual Work Details"
-                    //: (this.Request.QueryString["AnaType"].ToString() == "4") ? "Cost-Analysis Sheet"
-                    : (this.Request.QueryString["InputType"].ToString() == "BgdMainRptALL") ? "Budget-Engineering Reports" : "";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["InputType"].ToString() == "BgdMain") ? "Budget-Engineering"
+                //              : (this.Request.QueryString["InputType"].ToString() == "BgdMainRptALL") ? "Budget-Engineering Reports" : "";
 
                 //: ((this.Request.QueryString["InputType"].ToString() == "BgdMain") && (this.Request.QueryString["AnaType"].ToString() == "1")) ? "" : "";
 
                 // rbtnList1.Items.Remove("Special Report");
                 this.ImgbtnFindProject_Click(null, null);
                 this.ChangeName();
-                Master.Page.Title = "Budget-Engineering";
+                //Master.Page.Title = "Budget-Engineering";
                 if (this.Request.QueryString["prjcode"].Length > 0)
                 {
                     this.lbtnOk1_Click(null, null);

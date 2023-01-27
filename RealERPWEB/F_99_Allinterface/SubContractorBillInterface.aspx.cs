@@ -35,9 +35,11 @@ namespace RealERPWEB.F_99_Allinterface
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"])) ;
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "SUB CONTRACTOR INTERFACE";//
+                //((Label)this.Master.FindControl("lblTitle")).Text = "SUB CONTRACTOR INTERFACE";//
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.RadioButtonList1.SelectedIndex = 0;
@@ -77,6 +79,8 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                // case "3101": // ptl
+               
+                case "3368": // Finlay
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -99,7 +103,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void CheckHyperLink()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3101")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3368" || comcod == "3101")
             {
                 hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
             }
@@ -186,6 +190,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3101":
                 case "3370"://
+                case "3368"://
                     billchk = "Bill Checked";
                     break;
 
@@ -275,6 +280,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3101":
+                case "3368"://
                 case "3370"://
                     orderApp = "Bill Generate";
                     break;
@@ -1123,6 +1129,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (GetCompCode())
             {
                 case "3101":
+                case "3368"://Finlay
                 case "3370":
                     isShow = true;
                     break;
@@ -1879,7 +1886,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
 
-
+                    case "3368"://Finaly
                     case "3370":   //cpdl                      
                     case "1205":   //p2p
                     case "3351":   //p2p

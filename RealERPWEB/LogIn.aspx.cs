@@ -349,10 +349,10 @@ namespace RealERPWEB
 
                 //}
                 // else
-                {
+              //  {
                     ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
 
-                }
+              //  }
 
                 if (ds5.Tables[0].Rows.Count == 1)
                 {
@@ -473,25 +473,27 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-                //hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
+                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
 
-                if (ds5.Tables[0].Columns.Contains("comunpost"))
-                {
-                    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
-                }
-                else
-                {
-                    hst["comunpost"] = "0";
-                }
+                //if (ds5.Tables[0].Columns.Contains("comunpost"))
+                //{
+                //    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                //}
+                //else
+                //{
+                //    hst["comunpost"] = "0";
+                //}
 
-                if (ds5.Tables[0].Columns.Contains("homeurl"))
-                {
-                    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
-                }
-                else
-                {
-                    hst["homeurl"] = "UserProfile";
-                }
+                //if (ds5.Tables[0].Columns.Contains("homeurl"))
+                //{
+                //    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+                //}
+                //else
+                //{
+                //    hst["homeurl"] = "UserProfile";
+                //}
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
                 Session["tblLogin"] = hst;
@@ -543,6 +545,12 @@ namespace RealERPWEB
                 String hrmodule = dsmodule.Tables[1].Rows.Count==0 ? "" : dsmodule.Tables[1].Rows[0]["moduleid"].ToString();
 
                 string dptcod = ds5.Tables[0].Rows[0]["deptcode"].ToString().Substring(0, 4);
+
+
+                if (comcod == "3333")
+                {
+                    Url1 = "DeafultMenu?Type=3333";
+                }
 
                 //if (userrole == "2")
                 //{

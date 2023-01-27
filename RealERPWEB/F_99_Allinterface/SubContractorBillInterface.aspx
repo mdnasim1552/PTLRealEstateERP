@@ -532,6 +532,7 @@
 
                     case 3101://ASIT
                     case 3370:   //cpdl
+                    case 3368: // Finlay
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
@@ -555,7 +556,7 @@
                         break;
 
 
-                    case 3368: // Finlay
+<%--                    case 3368: // Finlay
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
@@ -566,7 +567,7 @@
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
-                        break;
+                        break;--%>
 
 
                     case 3367:
@@ -802,7 +803,8 @@
 
                                             <asp:HyperLink ID="HyperLink39" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Floor Wise </asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink40" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Work Wise</asp:HyperLink>
-                                            <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill Requisition</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill Requisition(Floor Wise)</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill Requisition(Work Wise)</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink6" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurMktSurvey02?Type=CS" CssClass="dropdown-item" Style="padding: 0 15px">Comparative Statement - Purchase 02</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=&pactcode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Comparative Statement</asp:HyperLink>
                                         </div>

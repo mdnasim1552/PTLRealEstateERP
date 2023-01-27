@@ -33,6 +33,8 @@ namespace RealERPWEB.F_23_CR
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string date1 = "01-" + ASTUtility.Right(date, 8);
@@ -44,7 +46,7 @@ namespace RealERPWEB.F_23_CR
 
                 //this.NameChange();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Project Wise Client Status";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Project Wise Client Status";
 
 
             }

@@ -33,7 +33,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (dr1.Length==0)
                     Response.Redirect("../AcceessError.aspx");
 
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.GetDateSet();
                 this.GetCompName();
@@ -585,8 +587,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "DateRange":
                     this.PrintDateRange();
                     break;
-
-
+                case "yearlylvRegister":
+                    this.PrintYearlyLv();
+                    break;
 
 
             }
@@ -595,7 +598,46 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         }
+        private void PrintYearlyLv()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+            string yr = Convert.ToDateTime(this.txttoDate.Text).ToString("MMM-yy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.RptLeaveRegister>();
+
+            LocalReport Rpt1 = new LocalReport();
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptLeaveRegister", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", " Leave Register (Yearly)"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Period: " + frmdate + " To " + todate));
+            Rpt1.SetParameters(new ReportParameter("txtaddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("yr", yr));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+
+
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void PrintDateRange()
         {
             DataTable dt = (DataTable)Session["tbldaterng"];

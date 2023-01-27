@@ -56,6 +56,7 @@ namespace RealERPWEB
 
                 hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + fdate + "&todate=" + tdate ;
                 //hlnkattreport.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" + empid;
+               
             }
 
             this.GetProfile();
@@ -147,8 +148,11 @@ namespace RealERPWEB
             {
                 this.modalPayslipBti.Attributes.Add("class", "d-none");
             }
+            if (comcod == "3365")
+            {
+                this.lnkIncentiveTracker.Visible = true;
+            }
      
-
 
         }
    
@@ -300,7 +304,7 @@ namespace RealERPWEB
                     string userrole = hst["userrole"].ToString();
                     this.winsList.Visible = true;
                     this.lnkOrintation.Visible = true;
-                    this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
+                    this.lnkOrintation.NavigateUrl = "http://172.16.0.30/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false);
                     this.PaySlipPart.Visible = true;
@@ -414,6 +418,16 @@ namespace RealERPWEB
             {
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
+            }
+            if(ds1==null || ds1.Tables[5].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[5];
+                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+
             }
 
         }
@@ -621,6 +635,7 @@ namespace RealERPWEB
             switch (comcod)
             {
                 // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                case "3369":
                 case "3365":
                 case "3102":
                     calltype = "RPTMYSERVICESBTI";
@@ -713,7 +728,7 @@ namespace RealERPWEB
                         frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                         break;
                 }
-
+           
                 //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/"+ Convert.ToDateTime(ymonid.Substring(4, 2) + "/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
                 //string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 //string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
@@ -1414,7 +1429,7 @@ namespace RealERPWEB
             this.FoodAndOthrs.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["foodal"])).ToString()??"";
             this.CarAllow.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["haircutal"])).ToString()??"";
 
-            this.EarnLeave.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tptallow"])).ToString();
+            this.EarnLeave.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tptallow"])+ Convert.ToDouble(dt.Rows[0]["extdayamt"])).ToString();
             this.IncomeTax.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["itax"])).ToString()??"";
 
             this.WFfund.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["pfund"])).ToString()??"";

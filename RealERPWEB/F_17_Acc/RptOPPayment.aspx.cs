@@ -32,13 +32,15 @@ namespace RealERPWEB.F_17_Acc
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "HonourBasis" ? "Operational Payment- Summary" : "Operational Payment - Summary(Post Dated)";
-                this.Master.Page.Title = "Summary of Operational Payment";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "HonourBasis" ? "Operational Payment- Summary" : "Operational Payment - Summary(Post Dated)";
+                //this.Master.Page.Title = "Summary of Operational Payment";
 
                 this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.GridColumnChange();
             }

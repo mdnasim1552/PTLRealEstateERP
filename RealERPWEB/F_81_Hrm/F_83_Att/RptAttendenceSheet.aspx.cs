@@ -31,12 +31,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetCompany();
                 this.GetProjectName();
                 this.GetDesignation();
                 this.GetEmpName();
                 //this.SectionName();
-                ((Label)this.Master.FindControl("lblTitle")).Text ="Employee Attendance Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text ="Employee Attendance Information";
                 this.SelectDate();
                 this.hideOptions();
                 string comcod = this.GetComCode();
@@ -73,6 +78,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             switch (comcod)
             {
+                case "3369":
                 case "3367":
                 case "3330":
                 case "3355":

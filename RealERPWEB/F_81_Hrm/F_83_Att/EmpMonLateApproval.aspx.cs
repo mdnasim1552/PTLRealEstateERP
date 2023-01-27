@@ -26,17 +26,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
                 //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetCompName();
                 this.GetDesignation();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Employee Monthly Late Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
-                    : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "MabsentApp") ? "Monthly Approval (LP)"
-                    : "Monthly Absent Approval";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Employee Monthly Late Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
+                //    : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "MabsentApp") ? "Monthly Approval (LP)"
+                //    : "Monthly Absent Approval";
                 this.ViewSaction();
 
             }
@@ -1106,7 +1110,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string sendDptdesc = hst["dptdesc"].ToString();
             string sendUsrdesig = hst["usrdesig"].ToString();
             string compName = hst["comnam"].ToString();
-
+            string Editrmid = hst["compname"].ToString();
             string usrid = hst["usrid"].ToString();
             string deptcode = hst["deptcode"].ToString();
 
@@ -1172,7 +1176,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                     bool ishalfday = (leaveadj <= 0.5 ? true : false);
                                     frmdate = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
                                     string dayid = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("yyyyMMdd");
-                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid);
+                                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid,Editrmid, "", "", "", "", "");
                                     dtel.Rows.RemoveAt(j);
                                     leaveadj = leaveadj - 1;
                                     if (leaveadj <= 0)
@@ -1193,7 +1197,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                     frmdate = Convert.ToDateTime(dtel.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
                                     string dayid = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("yyyyMMdd");
 
-                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid);
+                                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), dayid, usrid,Editrmid,"","","","","");
                                     dtel.Rows.RemoveAt(j);
                                     leaveadjel = leaveadjel - 1;
                                     if (leaveadjel <= 0)

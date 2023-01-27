@@ -29,6 +29,10 @@ namespace RealERPWEB.F_14_Pro
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("~/AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Comparative Statement - Purchase 02";
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
@@ -72,6 +76,7 @@ namespace RealERPWEB.F_14_Pro
                 return;
             Session["tblMat"] = ds1.Tables[0];
             Session["tblSpcf"] = ds1.Tables[1];
+            Session["tbllastprateswise"] = ds1.Tables[2];
         }
         protected string GetStdDate(string Date1)
         {
@@ -354,6 +359,7 @@ namespace RealERPWEB.F_14_Pro
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
                 DataTable tbls1 = (DataTable)Session["tblt01"];
+                string pRATE;
 
                 for (int j = 0; j < tbls1.Rows.Count; j++)
                 {
@@ -362,10 +368,11 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
+                    pRATE = Convert.ToDouble("0" + tbl1.Rows[i]["prerate" + (j + 1).ToString()]).ToString();
 
 
                     result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURMSRINFO1", "PURMSR02B",
-                    mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, "", "", "", "", "", "", "", "");
+                    mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, pRATE, "", "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -552,9 +559,11 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)Session["tblt02"];
             //tbl1.Columns.Add("resrate5", typeof(System.Double), "'0'");
             //tbl1.Columns.Add("amt5", typeof(System.Double), "'0'");
-
+            DataTable dtlpurrate = (DataTable)Session["tbllastprateswise"];
+            DataTable tbls1 = (DataTable)Session["tblt01"];
             string mResCode = this.ddlMSRRes.SelectedValue.ToString();
             string spcfcod = this.ddlSpecificationms.SelectedValue.ToString();
+            string ssircode;
             DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "'");
             if (dr2.Length == 0)
             {
@@ -576,6 +585,12 @@ namespace RealERPWEB.F_14_Pro
                 dr1["amt3"] = 0;
                 dr1["amt4"] = 0;
                 dr1["amt5"] = 0;
+                            
+                dr1["prerate1"] = 0;
+                dr1["prerate2"] = 0;
+                dr1["prerate3"] = 0;
+                dr1["prerate4"] = 0;
+                dr1["prerate5"] = 0;
 
                 DataTable tbl2 = (DataTable)Session["tblMat"];
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
@@ -584,6 +599,25 @@ namespace RealERPWEB.F_14_Pro
                 dr1["msrrmrk"] = "";
                 tbl1.Rows.Add(dr1);
             }
+
+            for (int i = 0; i < tbl1.Rows.Count; i++)
+            {
+               
+                
+
+                for (int j = 0; j < tbls1.Rows.Count; j++)
+                {
+                    ssircode = tbls1.Rows[j]["ssircode"].ToString();
+                    DataRow[] drp = dtlpurrate.Select("rsircode = '" + mResCode + "' and  ssircode='" + ssircode + "'");
+                    string prerate = "prerate" + (j+1).ToString();
+                    tbl1.Rows[i][prerate] = drp.Length == 0 ? "0" : drp[0]["lastpurrate"].ToString();
+                }
+
+                
+            }
+
+
+
             Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
         }
@@ -727,6 +761,7 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void gvMSRInfo2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TextBox txtrate1 = (TextBox)e.Row.FindControl("txtrate1");
@@ -778,7 +813,7 @@ namespace RealERPWEB.F_14_Pro
                     TableCell cell = new TableCell();
                     cell.Text = dt.Rows[i]["ssirdesc1"].ToString();
                     cell.HorizontalAlign = HorizontalAlign.Center;
-                    cell.ColumnSpan = 2;
+                    cell.ColumnSpan = 3;
                     cell.Font.Bold = true;
                     gvrow.Cells.Add(cell);
 
@@ -792,7 +827,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell celll = new TableCell();
                 celll.Text = "";
                 celll.HorizontalAlign = HorizontalAlign.Center;
-                celll.ColumnSpan = 2;
+                celll.ColumnSpan = 3;
                 gvrow.Cells.Add(celll);
 
 

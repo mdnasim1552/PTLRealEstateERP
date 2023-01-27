@@ -30,11 +30,14 @@ namespace RealERPWEB.F_12_Inv
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 // Session.Remove("Unit");
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS STOCK REPORT EVALUATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS STOCK REPORT EVALUATION";
 
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
@@ -110,13 +113,28 @@ namespace RealERPWEB.F_12_Inv
             string resListMulti = "";
             string resourcelist = this.chkResourcelist.SelectedValue.ToString();
 
-            foreach (ListItem item in chkResourcelist.Items)
-            {
-                if (item.Selected)
+
+
+            if (resourcelist == "000000000000")
+                resListMulti = "";
+            else
+
+                foreach (ListItem item in chkResourcelist.Items)
                 {
-                    resListMulti += item.Value;
+                    if (item.Selected)
+                    {
+                        resListMulti += item.Value;
+                    }
                 }
-            }
+           
+
+            //foreach (ListItem item in chkResourcelist.Items)
+            //{
+            //    if (item.Selected)
+            //    {
+            //        resListMulti += item.Value;
+            //    }
+            //}
 
             string group = this.group.SelectedValue.ToString();
 
@@ -156,10 +174,16 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
-                    string strstkValuation = this.group.SelectedValue.ToString();
-                    if (strstkValuation != "1") {
-                        dt1.Rows[0]["pactdesc"] = "";
-                    }
+                    //string strstkValuation = this.group.SelectedValue.ToString();
+                    //if (strstkValuation != "1")
+                    //{
+                    //    dt1.Rows[0]["pactdesc"] = "";
+                    //}
+                    //else
+                    //{
+                        
+                    //}
+                    dt1.Rows[1]["pactdesc"] = "";
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
@@ -298,7 +322,7 @@ namespace RealERPWEB.F_12_Inv
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("StockValuation", "Stock Valuation : " + strstock));
 
-            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
+            //Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
 
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
@@ -328,6 +352,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "2325":
                 case "3325":
+                case "3370":
                     ctype = "GETPURPROJECTNAMELEISURE";
                     break;
                 default:

@@ -182,6 +182,7 @@
 
 
 
+
                     </div>
                 </div>
             </div>
@@ -614,12 +615,18 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <asp:Panel ID="pnlmodpay" runat="server">
-                                    <div class="col-md-8 ">
+                                <div class="col-md-12">
+                                    <asp:Panel ID="pnlmodpay" runat="server">
+                                    <div class="row">
+                                        <div class="col-md-8 ">
                                         <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Mode Of Payment:"></asp:Label>
-                                        <asp:TextBox ID="mofpay" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Style="margin-bottom: 20px"></asp:TextBox>
+                                        <asp:TextBox ID="mofpay" runat="server" class="form-control" Rows="5" TextMode="MultiLine" Style="margin-bottom: 20px"></asp:TextBox>
                                     </div>
+                                    </div>
+                                    
                                 </asp:Panel>
+                                </div>
+                                
                             </div>
 
                         </asp:Panel>

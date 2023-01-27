@@ -36,7 +36,8 @@ namespace RealERPWEB.F_22_Sal
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date1 = this.Request.QueryString["Date1"];
                 string date2 = this.Request.QueryString["Date2"];
@@ -60,9 +61,9 @@ namespace RealERPWEB.F_22_Sal
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "SalesRegister" ? "Sales Register"
-                    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
-                    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "SalesRegister" ? "Sales Register"
+                //    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
+                //    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
 
                 this.lbtnOk_Click(null, null);
             }
@@ -126,6 +127,9 @@ namespace RealERPWEB.F_22_Sal
                     this.MultiView1.ActiveViewIndex = 7;
                     break;
 
+                case "SaleVsCollTypeWise":
+                    this.MultiView1.ActiveViewIndex = 8;
+                    break;
 
 
             }
@@ -287,6 +291,10 @@ namespace RealERPWEB.F_22_Sal
                 //    this.ShowmSalesTarget();
                 //    break;
 
+                 case "SaleVsCollTypeWise":
+                    this.ShowSaleVsCollTypeWise();
+                    break;
+
 
             }
         }
@@ -360,6 +368,34 @@ namespace RealERPWEB.F_22_Sal
             {
 
 
+            }
+
+        }
+
+        private void ShowSaleVsCollTypeWise()
+        {
+            try
+            {
+                Session.Remove("tblsalsum");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComeCode();
+                string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                string pactcode = "18%";
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvsalvscolltypeWise.DataSource = null;
+                    this.gvsalvscolltypeWise.DataBind();
+                    return;
+                }
+                Session["tblsalsum"] = ds1.Tables[0];
+                this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
+                this.gvsalvscolltypeWise.DataBind();
+            }
+            catch (Exception ex)
+            {
             }
 
         }
@@ -656,6 +692,10 @@ namespace RealERPWEB.F_22_Sal
                 case "CollectStatus":
                     this.PrintCollection();
                     break;
+                case "SaleVsCollTypeWise":
+                    this.PrintSaleVsCollTypeWise();
+                    break;
+
             }
             if (ConstantInfo.LogStatus == true)
             {
@@ -959,6 +999,38 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        private void PrintSaleVsCollTypeWise()
+        {
+           
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataTable dt = (DataTable)Session["tblsalsum"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.SaleVsCollTypeWise>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsCollTypeWise", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate","Print Date : " +printdate));
+            Rpt1.SetParameters(new ReportParameter("Date", "( From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("d-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")+" )"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Achievement (Sales & Collection Executive Wise)"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
 
 
         protected void gvSalVsColl_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1120,6 +1192,99 @@ namespace RealERPWEB.F_22_Sal
         protected void gvmSalesTarget_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
+        }
+
+
+
+        protected void gvsalvscolltypeWise_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell1 = new TableCell();
+                cell1.Text = "";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell1.ColumnSpan = 1;
+             
+                gvrow.Cells.Add(cell1);
+
+                TableCell cell2 = new TableCell();
+                cell2.Text = "";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 1;
+               
+                gvrow.Cells.Add(cell2);
+
+                TableCell cell3 = new TableCell();
+                cell3.Text = "Sales Target";
+                cell3.HorizontalAlign = HorizontalAlign.Center;
+                cell3.ColumnSpan = 2;
+                cell3.Font.Bold = true;
+                gvrow.Cells.Add(cell3);
+
+                TableCell cell4 = new TableCell();
+                cell4.Text = "Sales Actual";
+                cell4.HorizontalAlign = HorizontalAlign.Center;
+                cell4.ColumnSpan = 2;
+                cell4.Font.Bold = true;
+                gvrow.Cells.Add(cell4);
+
+                TableCell cell5 = new TableCell();
+                cell5.Text = "Short Fall";
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
+
+                TableCell cell6 = new TableCell();
+                cell6.Text = "Achieved In (%)";
+                cell6.HorizontalAlign = HorizontalAlign.Center;
+                cell6.ColumnSpan = 2;
+                cell6.Font.Bold = true;
+                gvrow.Cells.Add(cell6);
+
+                TableCell cell7 = new TableCell();
+                cell7.Text = "";
+                cell7.HorizontalAlign = HorizontalAlign.Center;
+                cell7.ColumnSpan = 1;
+                cell7.Font.Bold = true;
+                gvrow.Cells.Add(cell7);
+
+
+                TableCell cell8 = new TableCell();
+                cell8.Text = "Collection Target";
+                cell8.HorizontalAlign = HorizontalAlign.Center;
+                cell8.ColumnSpan = 2;
+                cell8.Font.Bold = true;
+                gvrow.Cells.Add(cell8);
+
+                TableCell cell9 = new TableCell();
+                cell9.Text = "Collection Actual";
+                cell9.HorizontalAlign = HorizontalAlign.Center;
+                cell9.ColumnSpan = 2;
+                cell9.Font.Bold = true;
+                gvrow.Cells.Add(cell9);
+
+                TableCell cell10= new TableCell();
+                cell10.Text = "Short Fall";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 2;
+                cell10.Font.Bold = true;
+                gvrow.Cells.Add(cell10);
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "Achieved In (%)";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.ColumnSpan = 2;
+                cell11.Font.Bold = true;
+                gvrow.Cells.Add(cell11);
+       
+                gvsalvscolltypeWise.Controls[0].Controls.AddAt(0, gvrow);
+
+            }
         }
 
         protected void gvCollvsHonoured_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -21,7 +21,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE ABSENT COUNT LIST";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE ABSENT COUNT LIST";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetDate();
                 this.GetCompName();
                 this.GetYearMonth();

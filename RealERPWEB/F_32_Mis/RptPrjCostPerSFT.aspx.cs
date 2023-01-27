@@ -43,7 +43,8 @@ namespace RealERPWEB.F_32_Mis
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
@@ -52,9 +53,9 @@ namespace RealERPWEB.F_32_Mis
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.gvVisibility();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Const") ? "Project Cost Per SFT" :
-                    (this.Request.QueryString["Type"].ToString() == "ProTarVsAchievement") ? "Construction Target Vs. Achievement"
-                    : (this.Request.QueryString["Type"].ToString() == "RemainingCost") ? "Additional Budget for Influation" : "Cost of Sales Per SFT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Const") ? "Project Cost Per SFT" :
+                //    (this.Request.QueryString["Type"].ToString() == "ProTarVsAchievement") ? "Construction Target Vs. Achievement"
+                //    : (this.Request.QueryString["Type"].ToString() == "RemainingCost") ? "Additional Budget for Influation" : "Cost of Sales Per SFT";
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             }

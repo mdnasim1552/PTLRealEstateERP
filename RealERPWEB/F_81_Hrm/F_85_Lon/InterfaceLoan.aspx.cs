@@ -34,6 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.txtcreateDate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy");
                 DateTime now = DateTime.Now;

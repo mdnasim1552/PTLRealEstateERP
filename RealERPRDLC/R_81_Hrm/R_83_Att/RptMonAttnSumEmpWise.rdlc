@@ -1424,26 +1424,11 @@
                       <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Sr. Executive HR</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                          <FontSize>9pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox209</rd:DefaultName>
-                <Top>0.54444in</Top>
-                <Left>0.05245in</Left>
-                <Height>0.36458in</Height>
+                <Top>0.59444in</Top>
+                <Left>0.02745in</Left>
+                <Height>0.25in</Height>
                 <Width>1.40055in</Width>
                 <Style>
                   <Border>
@@ -1465,7 +1450,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Checked By Sr. DGM</Value>
+                        <Value>Checked By</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -1480,7 +1465,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Finance &amp; Acc</Value>
+                        <Value />
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -1494,9 +1479,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox209</rd:DefaultName>
-                <Top>0.55833in</Top>
-                <Left>3.34383in</Left>
-                <Height>0.36458in</Height>
+                <Top>0.60833in</Top>
+                <Left>3.33133in</Left>
+                <Height>0.23611in</Height>
                 <Width>1.40055in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
@@ -1519,7 +1504,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Approved By COO</Value>
+                        <Value>Approved By</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -1533,8 +1518,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox209</rd:DefaultName>
-                <Top>0.54444in</Top>
-                <Left>6.387in</Left>
+                <Top>0.59444in</Top>
+                <Left>6.4745in</Left>
                 <Height>0.25in</Height>
                 <Width>1.32763in</Width>
                 <ZIndex>2</ZIndex>
@@ -1567,7 +1552,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>2.26237in</Height>
+        <Height>2.24154in</Height>
         <Style />
       </Body>
       <Width>7.89051in</Width>

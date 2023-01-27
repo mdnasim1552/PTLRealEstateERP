@@ -45,9 +45,11 @@ namespace RealERPWEB.F_99_Allinterface
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "General Bill";//
+                //((Label)this.Master.FindControl("lblTitle")).Text = "General Bill";//
 
 
 
@@ -615,7 +617,7 @@ namespace RealERPWEB.F_99_Allinterface
             string userwise = "";
             switch (comcod)
             {
-                case "3368"://Finlay
+              //  case "3368"://Finlay
                 case "3370"://CPDL
                 case "3101":
                     userwise = "UserWise";
@@ -676,7 +678,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
-                case "3368"://Finlay
+               // case "3368"://Finlay
                 case "3370"://CPDL
                 case "3101":
                     dv.RowFilter = ("checkbyid = ''and (suserid='"+ usrid + "' or asuserid='"+usrid+"' )");
@@ -1586,7 +1588,7 @@ namespace RealERPWEB.F_99_Allinterface
                     string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                     switch (comcod)
                     {
-                        case "3368"://Finlay
+                        //case "3368"://Finlay
                         case "3370"://CPDL
                         case "3101":                           
                             string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "suserid")).ToString();

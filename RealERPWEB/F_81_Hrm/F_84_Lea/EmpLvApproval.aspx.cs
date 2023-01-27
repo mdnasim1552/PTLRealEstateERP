@@ -73,7 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtdate.Text = Date;
 
                 this.IsApprovalCheck();
-                this.GetDptUserCheck();
+               // this.GetDptUserCheck(); Emdad/16.01.2023
 
                 // this.CommonButton();
                 this.GetProjectName();
@@ -716,7 +716,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void LeaveUpdate()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ApprovByid = hst["usrid"].ToString();
+            string Approvtrmid = hst["compname"].ToString();
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetCompCode();
             string trnid = this.lstOrderNo.SelectedValue.ToString();
@@ -745,7 +747,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", ApprovByid, Approvtrmid);
 
                     if (!result)
                     {

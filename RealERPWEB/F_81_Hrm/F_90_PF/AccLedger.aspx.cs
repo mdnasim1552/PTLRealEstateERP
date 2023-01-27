@@ -35,6 +35,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                     Response.Redirect("../../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
@@ -42,7 +44,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 if (Request.QueryString["Type"].ToString() == "SubLedger")
                 {
 
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "accounts subsidiary Ledger";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "accounts subsidiary Ledger";
                     this.Panel1.Visible = true;
                 }
                 this.rbtnList1.SelectedIndex = 0;

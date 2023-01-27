@@ -23,7 +23,9 @@ namespace RealERPWEB.F_14_Pro
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order Top Sheet";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order Top Sheet";
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 this.GetPrjName();

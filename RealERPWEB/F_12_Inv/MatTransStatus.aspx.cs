@@ -29,14 +29,42 @@ namespace RealERPWEB.F_12_Inv
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Materials Transfer Screen";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Materials Transfer Screen";
                 this.txtFDate.Text = DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 this.txtToDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.GetMaterial();
                 this.GetToProject();
+                this.GridHeaderName();
             }
+        }
+
+        private void GridHeaderName()
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+
+
+
+
+
+
+                case "3370": //CPDL
+                    this.grvacc.Columns[3].HeaderText = "MRR No";
+                    break;
+                default:
+                    
+                    break;
+
+            }
+
+
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -234,11 +262,26 @@ namespace RealERPWEB.F_12_Inv
             DataTable dt1 = (DataTable)Session["tblMatTranStatus"];
             var list = dt1.DataTableToList<RealEntity.C_12_Inv.EClassMaterial.MatTransStatus>();
             LocalReport rpt = new LocalReport();
-            string txtTmrrData = "MTRF No";
-            if (comcod == "3330")
+            
+           
+            
+            
+            string txtTmrrData = "";
+           
+            switch (comcod)
             {
-                txtTmrrData = "TMRR No";
+
+                case "3330": //Bridge
+                    txtTmrrData = "TMRR No";
+                    break;
+                default:
+                    txtTmrrData="MTRF No";
+                    break;
+
             }
+
+
+
 
             rpt = RptSetupClass1.GetLocalReport("R_12_Inv.RptMatTransStatus", list, null, null);
             rpt.SetParameters(new ReportParameter("compNam", comnam));

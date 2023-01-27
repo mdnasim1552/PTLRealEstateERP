@@ -37,8 +37,12 @@ namespace RealERPWEB.F_09_LCM
             {
                 ViewState.Remove("tblupdata");
                 prevPage = Request.UrlReferrer.ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["tname"].ToString() == "order") ? "L/C Openning" :
-                    (Request.QueryString["tname"].ToString() == "receive") ? "Foreign Material Recived" : "L/C Costing";   //=
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["tname"].ToString() == "order") ? "L/C Openning" :
+                //    (Request.QueryString["tname"].ToString() == "receive") ? "Foreign Material Recived" : "L/C Costing";   //=
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.ViewState.Remove("TblOrder");
                 string imp = Request.QueryString["tid"].ToString();

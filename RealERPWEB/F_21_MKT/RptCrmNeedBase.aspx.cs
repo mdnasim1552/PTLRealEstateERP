@@ -19,7 +19,10 @@ namespace RealERPWEB.F_21_MKT
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Need Base";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Client Need Base";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 GridSummary();
             }
@@ -47,13 +50,13 @@ namespace RealERPWEB.F_21_MKT
             string TxtVal = "%";
             string srchempid = "%";           
             string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+            string mgt = "Management";
            
 
           
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                 Pri, Status, Other, TxtVal, todate, srchempid);
+                 Pri, Status, Other, TxtVal, todate, srchempid, mgt);
 
 
             // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,

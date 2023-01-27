@@ -34,30 +34,35 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     Response.Redirect("../../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
                 // this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.lblfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Overtime") ? "EMPLOYEE  OVERTIME ALLOWANCE "
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "BankPayment") ? "BANK PAYMENT INFORMATION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "Lencashment") ? "LEAVE ENCASHMENT"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "salaryencashment") ? "Salary ENCASHMENT"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "OtherDeduction") ? "EMPLOYEE OTHER DEDCUTION"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "otherearn") ? "Employee Other Earning"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "bonusextra") ? "Additional Bonus"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "SalaryReduction") ? "Salary Reduction" : "EMPLOYEE ARREAR INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Overtime") ? "EMPLOYEE  OVERTIME ALLOWANCE "
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "BankPayment") ? "BANK PAYMENT INFORMATION"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "Lencashment") ? "LEAVE ENCASHMENT"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "salaryencashment") ? "Salary ENCASHMENT"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "OtherDeduction") ? "EMPLOYEE OTHER DEDCUTION"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "otherearn") ? "Employee Other Earning"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "bonusextra") ? "Additional Bonus"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "SalaryReduction") ? "Salary Reduction" : "EMPLOYEE ARREAR INFORMATION";
 
 
                 this.ViewVisibility();
                 this.GetCompName();
                 this.GetYearMonth();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+
+       
 
             }
             //Excel Upload (Deduction Upload)
@@ -1687,10 +1692,26 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
             string ymon = this.ddlyearmon.SelectedValue.ToString();
-            string txtdate =Convert.ToDateTime( ASTUtility.DateFormat("01-" + ymon.Substring(4, 2) + "-" + ymon.Substring(0, 4))).ToString("MMMMM-yyyy");
+            string ymon2 = ymon.Substring(4, 2) +"-01"  + "-" + ymon.Substring(0, 4);
+            string txtdate = Convert.ToDateTime(ymon2).ToString("MMM-yyyy");
+
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            DataTable dt = (DataTable)Session["tblencashment"];
+
+            int index = this.btnRadio.SelectedIndex;
+
+            DataTable dt = new DataTable();
+
+            switch (index)
+            {
+                case 0:
+                    dt = (DataTable)Session["tblencashment"];
+                    break;
+                case 1:
+                    dt = (DataTable)Session["tblencashsaved"];
+                    break;
+            }
+
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>();
             LocalReport Rpt1 = new LocalReport();
@@ -1700,7 +1721,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Salaray encashment report -"+ txtdate));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Salary Encashment Report -"+ txtdate));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
@@ -4329,6 +4350,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblencashment"];
             string comcod = this.GetComeCode();
+            string yearMon = this.ddlyearmon.SelectedValue.ToString();
+            string encashMon = this.ddlyearmon.SelectedValue.ToString();
 
 
             bool result = false;
@@ -4347,9 +4370,32 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double dueelve = Convert.ToDouble(dt.Rows[i]["ttlv"]);
                 double enjoyday = Convert.ToDouble(dt.Rows[i]["avail"]);
                 double balleave = Convert.ToDouble(dt.Rows[i]["elencashday"]);
+                double servday = Convert.ToDouble(dt.Rows[i]["servday"]);
+                string day = Convert.ToDateTime(dt.Rows[i]["doj"]).ToString("dd");
+   
+   
+
+                if ((servday < 365.00))
+                {
+                    if (Convert.ToInt32(day) > 25)
+                    {
+
+                        encashMon = Convert.ToDateTime(dt.Rows[i]["doj"]).AddMonths(1).AddYears(1).ToString("yyyyMM");
+                    }
+                    else
+                    {
+                        encashMon = Convert.ToDateTime(dt.Rows[i]["doj"]).AddYears(1).ToString("yyyyMM");
+                    }
+
+                }
+                else
+                {
+                    encashMon = yearMon;
+                }
 
 
-                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "INSERTUPDATENCASHMENT", empid,rowid, fdate, tdate, salary.ToString(), duration.ToString(), dueelve.ToString(), enjoyday.ToString(), balleave.ToString(),"","","","","","","","","","","","");
+
+                result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "INSERTUPDATENCASHMENT", empid,rowid, fdate, tdate, salary.ToString(), duration.ToString(), dueelve.ToString(), enjoyday.ToString(), balleave.ToString(), yearMon,encashMon, servday.ToString(), "","","","","","","","","");
                     if (!result)
                         return;
 
@@ -4361,6 +4407,50 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
+
+        protected void savedEncash_CheckedChanged(object sender, EventArgs e)
+        {
+
+            DataTable dt = (DataTable)Session["tblencashment"];
+            DataView dv = dt.DefaultView;
+          dv.RowFilter = "issaved = '" + 1 + "'";
+   
+        }
+
+        protected void btnRadio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.btnRadio.SelectedIndex;
+
+
+            DataView dv = new DataView();
+            DataTable dt = (DataTable)Session["tblencashment"];
+
+
+            switch (index)
+            {
+                case 0:
+
+                    dv = dt.DefaultView;
+        
+                    this.gvEncashment.DataSource = dv;
+                 this.gvEncashment.DataBind();
+                    break;
+
+                case 1:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "issaved = '" + 1 + "'";
+                    this.gvEncashment.DataSource = dv;
+                    this.gvEncashment.DataBind();
+                    Session["tblencashsaved"] = dv.Table;
+                    break;
+
+
+
+
+            }
+
+
+            }
     }
 
 

@@ -32,17 +32,18 @@ namespace RealERPWEB.F_09_PImp
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Current") ? "Sub-Contractor Bill-Work Wise"
-                    : (this.Request.QueryString["Type"].ToString() == "CheckaVerify") ? "Sub-Contractor Bill-Checked"
-                    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Sub-Contractor Bill-First Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Sub-Contractor Bill-Second Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Sub-Contractor Bill-Third Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill-Work Wise Edit"
-                    : (this.Request.QueryString["Type"].ToString() == "BillApproval") ? " Sub-Contractor Bill Approval"
-                    : "Labour Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Current") ? "Sub-Contractor Bill-Work Wise"
+                //    : (this.Request.QueryString["Type"].ToString() == "CheckaVerify") ? "Sub-Contractor Bill-Checked"
+                //    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Sub-Contractor Bill-First Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Sub-Contractor Bill-Second Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Sub-Contractor Bill-Third Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill-Work Wise Edit"
+                //    : (this.Request.QueryString["Type"].ToString() == "BillApproval") ? " Sub-Contractor Bill Approval"
+                //    : "Labour Issue Information";
 
                 this.GetProjectList();
                 this.GetConList();
@@ -314,9 +315,9 @@ namespace RealERPWEB.F_09_PImp
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=ConBillPrint&lisuno=" + lisuno + "&pactcode=" + pactcode;
-            string totalpath = hostname + currentptah;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-
+            //string totalpath = hostname + currentptah;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+            Response.Redirect("~/F_99_Allinterface/" + currentptah);
             //string comcod = this.GetCompCode();
 
             //switch (comcod)

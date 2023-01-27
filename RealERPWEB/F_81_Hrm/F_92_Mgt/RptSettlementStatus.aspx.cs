@@ -28,6 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.CommonButton();
                 this.txtDatefrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -149,10 +150,101 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PrintEmpFinalSett(empId);
                     break;
 
+                case "3370":
+                    this.PrintEmpFinalSettCPDL(empId);
+                    break;
+
                 default:
                     this.PrintEmpFinalSett(empId);
                     break;
             }
+        }
+
+
+        private void PrintEmpFinalSettCPDL(string empId) {
+            string comcod = this.GetComCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string calltype = getcallType();
+
+
+            //select comcod, empid, empname, septypedesc, billdate, refno, ttlamt = isnull(ttlamt, 0.00), retdat, joindat, idno, designation, deptcode,
+            // deptname, servleng, aprvstatus from #tblsttopsheet1 where deptcode like @Desc3 and deptcode like @Desc4 and deptcode like @Desc5 and deptcode like @Desc6
+            DataTable dt = (DataTable)ViewState["tblSetTopInfo"];
+            string  name       = dt.Rows[0]["empname"].ToString()??"";
+            string  idno       = dt.Rows[0]["idno"].ToString() ?? "";
+            string  joindat    = Convert.ToDateTime(dt.Rows[0]["joindat"]).ToString("dd-MMM-yyyy") ?? "";
+            string  resigndat  = Convert.ToDateTime(dt.Rows[0]["retdat"]).ToString("dd-MMM-yyyy") ?? "";
+            string  servlen    = dt.Rows[0]["servleng"].ToString() ?? "";
+            string  desig      = dt.Rows[0]["designation"].ToString() ?? "";
+            string  dept       = dt.Rows[0]["deptname"].ToString() ?? "";
+            string  septype     = dt.Rows[0]["septypedesc"].ToString() ?? "";
+            string  aplydat    =Convert.ToDateTime( dt.Rows[0]["billdate"]).ToString("dd-MMM-yyyy") ?? "";
+            string  confirmdat = Convert.ToDateTime(dt.Rows[0]["billdate"]).ToString("dd-MMM-yyyy") ?? "";
+
+
+            DataSet ds2 = feaData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", calltype, empId, "", "", "", "", "", "", "");
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+                return;
+           var list= ds2.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>().FindAll(p => p.hrgcod.Substring(0, 3) == "351").OrderBy(x => x.hrgcod).ToList();
+           var list2 = ds2.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>().FindAll(p => p.hrgcod.Substring(0, 3) == "352").OrderBy(x => x.hrgcod).ToList();
+
+            double ttlearn= Math.Round(Convert.ToDouble(list.Sum(x => x.ttlamt)));
+            double ttlded =Math.Round( Convert.ToDouble(list2.Sum(x => x.ttlamt)));
+            double netpay = Math.Round(ttlearn - ttlded);
+
+            string inwords =  ASTUtility.Trans(netpay, 2);
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptFinalSettlmntCP", list, list2, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comlogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("rpttitle", "Final Settlement Salary"));
+            Rpt1.SetParameters(new ReportParameter("name", name));
+            Rpt1.SetParameters(new ReportParameter("idno", idno));
+            Rpt1.SetParameters(new ReportParameter("joindat", joindat));
+            Rpt1.SetParameters(new ReportParameter("resigndat", resigndat));
+            Rpt1.SetParameters(new ReportParameter("servlen", servlen));
+            Rpt1.SetParameters(new ReportParameter("desig", desig));
+            Rpt1.SetParameters(new ReportParameter("dept", dept));
+            Rpt1.SetParameters(new ReportParameter("aplydat", aplydat));
+            Rpt1.SetParameters(new ReportParameter("confirmdat", confirmdat));
+            Rpt1.SetParameters(new ReportParameter("septype", septype));
+            Rpt1.SetParameters(new ReportParameter("inwords", inwords));
+            Rpt1.SetParameters(new ReportParameter("ttlearning", ttlearn.ToString()));
+            Rpt1.SetParameters(new ReportParameter("ttldeduct", ttlded.ToString()));
+            Rpt1.SetParameters(new ReportParameter("netpay", netpay.ToString()));
+
+            Rpt1.SetParameters(new ReportParameter("txtfooter", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + printype + "');", true);
+
+        }
+
+        private string getcallType()
+        {
+            string calltype = "";
+            
+            string comcod = GetComCode();
+            switch (comcod)
+            {
+                case "3365":
+                    calltype = "GET_EMP_SETTLEMENT_INFO";
+                    break;
+
+                case "3370":
+                    calltype = "GET_EMP_SETTLEMENT_INFO_CPDL";
+                    break;
+            }
+            return calltype;
         }
 
         private void PrintEmpFinalSett(string empId)

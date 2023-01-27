@@ -43,6 +43,8 @@ namespace RealERPWEB.F_23_CR
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -53,10 +55,10 @@ namespace RealERPWEB.F_23_CR
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string Type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text =
-                    Type == "ClLedger" ? "Client Ledger": 
-                    Type == "LOClLedger" ? "Client Ledger(L/O)":
-                    Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
+                //((Label)this.Master.FindControl("lblTitle")).Text =
+                //    Type == "ClLedger" ? "Client Ledger": 
+                //    Type == "LOClLedger" ? "Client Ledger(L/O)":
+                //    Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
 
                 
                 //Type == "RecPayABal" ? "RECEIVED AND PAYMENT STATUS" : "CUSTOMER PAYMENT STATUS"; // "RECEIVED AND PAYMENT STATUS";
@@ -2378,10 +2380,13 @@ namespace RealERPWEB.F_23_CR
             double treceived = Convert.ToDouble((Convert.IsDBNull(tblins.Compute("Sum(paidamt)", "")) ? 0.00
                     : tblins.Compute("Sum(paidamt)", "")));
 
+
+
             double fcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["fcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["fcheque"]) : 0.00;
             double retcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["retcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["retcheque"]) : 0.00;
             double pcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["pcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["pcheque"]) : 0.00;
             double reconamt = treceived - (fcheque + retcheque + pcheque);
+            double cheqeinhand = tsalevalue - treceived;
             double netbal = tsalevalue - reconamt;
 
 

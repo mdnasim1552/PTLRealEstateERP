@@ -42,7 +42,7 @@
                 var gridViewScroll = new GridViewScroll
                     ({
                         elementID: _gridview,
-                        width: 1400,
+                        width: 1300,
                         height: 500,
                         freezeColumn: true,
                         freezeFooter: true,
@@ -175,10 +175,10 @@
                         <div class="col-md-1">
                             <asp:Label ID="lblgroup" runat="server" CssClass="lblTxt lblName" Text="Level"></asp:Label>
                             <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control">
-                                <asp:ListItem>Sub-1</asp:ListItem>
+                                <asp:ListItem Selected="True">Sub-1</asp:ListItem>
                                 <asp:ListItem>Sub-2</asp:ListItem>
                                 <asp:ListItem>Sub-3</asp:ListItem>
-                                <asp:ListItem Selected="True">Details</asp:ListItem>
+                                <asp:ListItem >Details</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="col-md-1">
