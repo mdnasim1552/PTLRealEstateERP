@@ -202,6 +202,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassClientSum.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EclassClientSummary1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassInterestDummyPay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassMonthly.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />

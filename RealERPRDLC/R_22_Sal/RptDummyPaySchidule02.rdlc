@@ -42,7 +42,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9a7bbad6-1397-4758-a451-a87c1599423a</rd:DataSourceID>
+      <rd:DataSourceID>a34aebc6-5d28-41d4-b984-96b158149655</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -186,79 +186,68 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="advday">
+          <DataField>advday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="balamt">
+          <DataField>balamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="cinsam">
           <DataField>cinsam</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="cinsdat">
-          <DataField>cinsdat</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="comcod">
-          <DataField>comcod</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cumbalance">
-          <DataField>cumbalance</DataField>
+        <Field Name="delamt">
+          <DataField>delamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="cumdue">
-          <DataField>cumdue</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="cuminterest">
-          <DataField>cuminterest</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="cumpaid">
-          <DataField>cumpaid</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="day">
-          <DataField>day</DataField>
+        <Field Name="delday">
+          <DataField>delday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="delodis">
           <DataField>delodis</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="disamt">
+          <DataField>disamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="dodisday">
           <DataField>dodisday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="dueamt">
-          <DataField>dueamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="gdesc">
+          <DataField>gdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="intamtpday">
           <DataField>intamtpday</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="interest">
-          <DataField>interest</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="intrate">
           <DataField>intrate</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="paiddate">
+          <DataField>paiddate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="pamount">
           <DataField>pamount</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="recndat">
-          <DataField>recndat</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="trdat">
-          <DataField>trdat</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="schdate">
+          <DataField>schdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>EClasInterestCalculation</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+EClasInterestCalculation, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>Eclassdummyschedule</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>Lst07EClassInterestDummyPay02</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -2674,7 +2663,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(cDate(Fields!paiddate.Value),"dd-MMM-yyyy")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
