@@ -140,6 +140,12 @@ namespace RealERPWEB.F_12_Inv
                 this.gvMatIssueStatus.DataBind();
                 return;
             }
+
+            if(this.Request.QueryString["Type"] == "QtyBasis")
+            {
+                this.gvMatIssueStatus.Columns[11].Visible = true;
+                this.gvMatIssueStatus.Columns[12].Visible = true;
+            }
             this.gvMatIssueStatus.Columns[1].Visible = (this.ddlProName.SelectedValue.ToString() == "000000000000") ? true : false;
             Session["tbMatIsuStatus"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
