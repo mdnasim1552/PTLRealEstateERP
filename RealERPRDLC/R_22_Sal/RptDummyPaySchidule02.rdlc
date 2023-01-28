@@ -42,7 +42,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>90841100-e854-4f3f-b80d-2d1555b5a740</rd:DataSourceID>
+      <rd:DataSourceID>9a7bbad6-1397-4758-a451-a87c1599423a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -190,6 +190,34 @@
           <DataField>cinsam</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="cinsdat">
+          <DataField>cinsdat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="comcod">
+          <DataField>comcod</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cumbalance">
+          <DataField>cumbalance</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="cumdue">
+          <DataField>cumdue</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="cuminterest">
+          <DataField>cuminterest</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="cumpaid">
+          <DataField>cumpaid</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="day">
+          <DataField>day</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="delodis">
           <DataField>delodis</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -198,35 +226,39 @@
           <DataField>dodisday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="gdesc">
-          <DataField>gdesc</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="dueamt">
+          <DataField>dueamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="intamtpday">
           <DataField>intamtpday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="interest">
+          <DataField>interest</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="intrate">
           <DataField>intrate</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="paiddate">
-          <DataField>paiddate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="pamount">
           <DataField>pamount</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="schdate">
-          <DataField>schdate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="recndat">
+          <DataField>recndat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="trdat">
+          <DataField>trdat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>EClassInterestDummyPay02</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+EClassInterestDummyPay02, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>EClasInterestCalculation</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+EClasInterestCalculation, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -2747,7 +2779,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!intrate.Value &amp;"%"</Value>
+                                  <Value>=Format(Fields!intrate.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3049,7 +3081,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!intrate.Value)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
