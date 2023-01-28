@@ -1077,11 +1077,19 @@
                                         <asp:Label ID="lblvaltrans" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <div class="clearfix"></div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <asp:Label ID="lbllsdq" runat="server" CssClass="lblName lblTxt" Text="Sold/Lost/Demage Qty"></asp:Label>
+                                        <asp:Label ID="lbllsdqty" runat="server" CssClass="smLbl_to"></asp:Label>
+                                        <div class="clearfix"></div>
+                                    </div>
                                     <div class="form-group">
                                         <asp:Label ID="lbltxtOpenig3" runat="server" CssClass="lblName lblTxt" Text="Total Qty"></asp:Label>
                                         <asp:Label ID="lblvalTotalSupp" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <div class="clearfix"></div>
                                     </div>
+
+                                    
                                     <div class="form-group">
                                         <asp:Label ID="lbltxtOpenig2" runat="server" CssClass="lblName lblTxt" Text="Balance"></asp:Label>
                                         <asp:Label ID="lblvalBalance" runat="server" CssClass="smLbl_to"></asp:Label>

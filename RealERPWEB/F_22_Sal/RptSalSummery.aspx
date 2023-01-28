@@ -1666,13 +1666,26 @@
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
+
+                                   <%-- <asp:TemplateField HeaderText="Month">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvmonthname" runat="server" BorderColor="#99CCFF"
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Size="12px" 
+                                            Style="text-align: Left; background-color: Transparent" ForeColor="#ff0000"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "yearmon2")) %>'
+                                            Width="40px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                </asp:TemplateField>--%>
+
+
                                 <asp:TemplateField HeaderText="Sales Team Name">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvsalesteamname" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: Left; background-color: Transparent"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                            Width="200px"></asp:Label>
+                                            Width="180px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1704,7 +1717,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptqty")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1716,7 +1729,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopqty")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1728,7 +1741,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actaptqty")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1740,7 +1753,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actshopqty")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1752,7 +1765,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salaptsfall")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1764,7 +1777,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salshopsfall")).ToString("#,##0;-#,##0; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1777,7 +1790,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perontapt")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="40px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1789,7 +1802,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perontshop")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="40px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1836,8 +1849,8 @@
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvtypeseprationsale" runat="server" BorderColor="#99CCFF"
-                                            BorderStyle="Solid" BorderWidth="0px" Font-Bold="true" Font-Size="11px"
-                                            Style="background-color: Transparent" Text=":" Width="20px"></asp:Label>
+                                            BorderStyle="Solid" BorderWidth="0px" Font-Bold="true" Font-Size="12px"
+                                            Style="background-color: Transparent" Text=":"  Width="10px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="center" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1926,7 +1939,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "peronaptcoll")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
@@ -1938,7 +1951,7 @@
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: right; background-color: Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "peronshopcoll")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
