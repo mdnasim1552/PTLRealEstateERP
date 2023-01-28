@@ -1208,8 +1208,14 @@ namespace RealERPWEB.F_22_Sal
                 cell1.Text = "";
                 cell1.HorizontalAlign = HorizontalAlign.Center;
                 cell1.ColumnSpan = 1;
-             
+           
                 gvrow.Cells.Add(cell1);
+
+                //TableCell cell12 = new TableCell();
+                //cell12.Text = "";
+                //cell1.HorizontalAlign = HorizontalAlign.Center;
+                //cell12.ColumnSpan = 1;
+                //gvrow.Cells.Add(cell12);
 
                 TableCell cell2 = new TableCell();
                 cell2.Text = "";
