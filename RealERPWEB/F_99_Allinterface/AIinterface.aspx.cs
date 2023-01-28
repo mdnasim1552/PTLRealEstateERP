@@ -809,8 +809,31 @@ namespace RealERPWEB.F_99_Allinterface
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
+
+                double totalqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.lbltotalprjqty.Text.Trim()));
                 //comcod,batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
                 //editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+
+                double total = 0;
+                double validtotal = 0;
+                if (this.gv_gridBatch.Rows.Count != 0)
+                {
+                    total = Convert.ToDouble("0" + ((Label)this.gv_gridBatch.FooterRow.FindControl("tblsumPrjqty")).Text.ToString());
+                    validtotal = total + dtquantity;
+
+                }
+
+                if(totalqty < validtotal)
+                {
+                    string msg = "Please Check Project Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    return;
+
+                }
+
+
+
 
                 bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate,
                     deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
@@ -2050,7 +2073,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid;
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid +"&Pactcode="+ pactcode;
 
             }
 
