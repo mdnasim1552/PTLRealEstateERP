@@ -723,6 +723,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
                 string deliverydate = ((Label)this.gvInterface.Rows[index].FindControl("lbldeliverydate")).Text.ToString();
                 string currncy = ((Label)this.gvInterface.Rows[index].FindControl("lblcurrncy")).Text.ToString();
+                string ordertype = ((Label)this.gvInterface.Rows[index].FindControl("lblordertype")).Text.ToString();
+                string aty = ((Label)this.gvInterface.Rows[index].FindControl("tbladdress")).Text.ToString();
+                string hour = ((Label)this.gvInterface.Rows[index].FindControl("tblinhour")).Text.ToString();
 
                 //currncy
                 this.hiddPrjid.Value = project;
@@ -734,6 +737,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 //this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.spnCurrncy.InnerText = currncy;
+                this.lblprjordertype.Text = ordertype;
+                this.lbltotalprjqty.Text = aty;
+                this.lblprjhour.Text = hour;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
 
@@ -758,10 +764,25 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             Session["tblbatchassignlist"] = ds.Tables[0];
-            this.gv_gridBatch.DataSource = ds;
+
+            DataTable tbl21 = (DataTable)Session["tblbatchassignlist"];
+            this.gv_gridBatch.DataSource = tbl21;
             this.gv_gridBatch.DataBind();
+            this.gridFooterCalculation(tbl21);
+
 
         }
+
+        
+        private void gridFooterCalculation(DataTable tbl21)
+        {
+            if (tbl21.Rows.Count == 0)
+                return;
+
+            ((Label)this.gv_gridBatch.FooterRow.FindControl("tblsumPrjqty")).Text = Convert.ToDouble((Convert.IsDBNull(tbl21.Compute("sum(datasetqty)", "")) ? 0.00 :
+                tbl21.Compute("sum(datasetqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+        }
+
 
         protected void tblSaveBatch_Click(object sender, EventArgs e)
         {
@@ -788,8 +809,31 @@ namespace RealERPWEB.F_99_Allinterface
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
+
+                double totalqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.lbltotalprjqty.Text.Trim()));
                 //comcod,batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
                 //editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+
+                double total = 0;
+                double validtotal = 0;
+                if (this.gv_gridBatch.Rows.Count != 0)
+                {
+                    total = Convert.ToDouble("0" + ((Label)this.gv_gridBatch.FooterRow.FindControl("tblsumPrjqty")).Text.ToString());
+                    validtotal = total + dtquantity;
+
+                }
+
+                if(totalqty < validtotal)
+                {
+                    string msg = "Please Check Project Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    return;
+
+                }
+
+
+
 
                 bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate,
                     deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
@@ -1645,8 +1689,7 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
                 string prj = this.lblproprjid.Text.ToString();
-                string batch = this.lblabatchid.Text.ToString();
-               
+                string batch = this.lblabatchid.Text.ToString();       
 
 
 
@@ -1657,7 +1700,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
+                if (roletype == "95001" && pedingannotor <= assignqty && pedingannotor !=0)
                 {
 
 
@@ -1669,7 +1712,7 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty )
+                else if (roletype == "95002" && doneannotor < assignqty  )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
@@ -1716,6 +1759,14 @@ namespace RealERPWEB.F_99_Allinterface
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
                         dr1["workrate"] = this.textrate.Text.Trim()==""?"0": this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
+                        if(roletype == "95002")
+                        {
+                            this.lblDoneAnnot.Text = (Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
+                        }
+                        if (roletype == "95003")
+                        {
+                            this.lblDoneQC.Text = (Convert.ToDouble("0" + this.lblDoneQC.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
+                        }
 
                     }
                     else
@@ -2022,7 +2073,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid;
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid +"&Pactcode="+ pactcode;
 
             }
 
