@@ -1369,6 +1369,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303117", "F_23_CR", "EntryPrjCollSumAdj", "", "Project wise Summary of Collection (Adjustment)", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303118", "F_23_CR", "RptPrjwisecollofSummDetails", "", "Project wise Summary of Collection Details", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303119", "F_23_CR", "RptUtilityAndOtherCollection", "", "Utility & Other Collection", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303124", "F_23_CR", "RptReceivedList02?", "Type=yCollectionDetails", "Yearly Collection Details", "Credit Realization", "False", "False", "False", "False" });
 
 
 
@@ -7925,7 +7926,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Report ALL", "F_23_CR/RptDuesReportAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "27. Other's Collection History", "F_23_CR/RptOtherCollHistory", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "28. Monthly Probable Collection Report", "F_23_CR/RptMonthlyProbCollection?Type=MonProColl", "", true, "" });
-             
+            mnuTbl1.Rows.Add(new Object[] { "0401000016", "21. Yearly Collection Details", "F_23_CR/RptReceivedList02?Type=yCollectionDetails&prjcode=", "", true, "" });
+
 
 
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "27. Project Wise Clieint Status", "F_23_CR/RptReceivedList02?Type=ProClientst&prjcode=", "", true, "" });
