@@ -16,7 +16,7 @@
 
             var gridViewScroll = new GridViewScroll({
                 elementID: "gvySalbgd",
-                width: 1300,
+                width: 1330,
                 height: 500,
                 freezeColumn: true,
                 freezeFooter: false,
@@ -82,7 +82,7 @@
         }
 
         .table td, .table th {
-            padding: 0rem;
+            padding: 0px;
         }
 
         .chzn-single {
@@ -163,17 +163,17 @@
                                     </div>--%>
                     </div>
                 </div>
-
-                <asp:MultiView ID="MultiView1" runat="server">
+                <div class="card-body">
+                    <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="ViewYearly" runat="server">
 
-                        <asp:GridView ID="gvySalbgd" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" ShowFooter="True"
+                        <asp:GridView ID="gvySalbgd" runat="server"  AutoGenerateColumns="False" ShowFooter="True"
                             OnRowDataBound="gvySalbgd_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
-                                        <asp:Label ID="serialnoidy" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'
+                                        <asp:Label ID="serialnoidy" runat="server" Style="text-align: center !important; vertical-align: middle !important" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'
                                             Width="20px"></asp:Label>
                                     </ItemTemplate>
 
@@ -181,7 +181,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description" HeaderStyle-Width="120px" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblDesc2" runat="server" BackColor="Transparent" Style="text-align: left !important; vertical-align: top !important"
+                                        <asp:Label ID="lblDesc2" runat="server" BackColor="Transparent" Style="text-align: center !important; vertical-align: middle !important"
                                             Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
@@ -318,7 +318,7 @@
                                             Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbYearbgdTotal" runat="server" CssClass="btn btn-primary primarygrdBtn" OnClick="lbYearbgdTotal_Click">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbYearbgdTotal" runat="server" CssClass="btn btn-sm btn-primary primarygrdBtn" OnClick="lbYearbgdTotal_Click">Total</asp:LinkButton>
                                         <%--<asp:Label ID="lgvFqty7" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="White"
                                                     Style="text-align: right" Width="80px"></asp:Label>--%>
                                     </FooterTemplate>
@@ -333,7 +333,7 @@
                                             Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnYBgdUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnYBgdUpdate_Click">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnYBgdUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lbtnYBgdUpdate_Click">Final Update</asp:LinkButton>
                                         <%--<asp:Label ID="lgvFqty8" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="White"
                                                     Style="text-align: right" Width="80px"></asp:Label>--%>
                                     </FooterTemplate>
@@ -630,7 +630,7 @@
                                 </asp:TemplateField>
                             </Columns>
 
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooter"/>
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
@@ -1076,6 +1076,8 @@
                         </asp:GridView>
                     </asp:View>
                 </asp:MultiView>
+                </div>
+                
 
             </div>
             </div>
