@@ -25,6 +25,8 @@ namespace RealEntity.C_12_Inv
         public string sirdesc { get; set; }
         public string sirunit { get; set; }
         public string spcfdesc { get; set; }
+        public double avragerate { get; set; }
+        public double isuamt { get; set; }
         public RptMatIssStatus()
         {
 
