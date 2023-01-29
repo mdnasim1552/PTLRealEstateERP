@@ -303,6 +303,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMatIssueStatusQtyBasis": Rpt1a = GetRptMatIssueStatusQtyBasis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptProPhyStock": Rpt1a = SetRptProPhyStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptInterComTransStatus": Rpt1a = SetRptInterComTransStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialsStock": Rpt1a = SetRptMaterialsStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3509,6 +3510,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport GetRptMatIssueStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport GetRptMatIssueStatusQtyBasis(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
             return Rpt1a;

@@ -233,7 +233,16 @@ namespace RealERPWEB.F_12_Inv
 
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.RptMatIssStatus>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+
+            if(this.Request.QueryString["Type"] == "AmountBasis")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusQtyBasis", lst, null, null);
+            }
+          
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
