@@ -141,7 +141,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-            if(this.Request.QueryString["Type"] == "QtyBasis")
+            if(this.Request.QueryString["Type"] == "AmountBasis")
             {
                 this.gvMatIssueStatus.Columns[11].Visible = true;
                 this.gvMatIssueStatus.Columns[12].Visible = true;

@@ -42,7 +42,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a34aebc6-5d28-41d4-b984-96b158149655</rd:DataSourceID>
+      <rd:DataSourceID>e41e8fbb-7faa-4f8d-b607-7b87ae342e0a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -245,9 +245,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>Eclassdummyschedule</rd:TableName>
-        <rd:ObjectDataSourceSelectMethod>Lst07EClassInterestDummyPay02</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>EClasInterestCalculation</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+EClasInterestCalculation, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -2652,6 +2651,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

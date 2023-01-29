@@ -166,7 +166,7 @@ namespace RealERPWEB.F_38_AI
             view.Table = ds.Tables[0];
             view.RowFilter = " trackertype='99220'";
             dt1 = view.ToTable();
-            Session["tblcompletejob"] = dt1;
+            Session["tblcompletejob"] = ds.Tables[1];
             this.data_Bind();
 
         }
