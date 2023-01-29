@@ -1325,6 +1325,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202280", "F_22_Sal", "SalesAllReports?", "Type=AllReports", "Sales All Reports", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202281", "F_22_Sal", "RptClientDateFile?", "Type=LandO", "Client Data File(L/O)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
 
@@ -10524,7 +10525,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "02. Day Wise Collection(L/O)", "F_22_Sal/RptTransactionSt?Type=LOTransDateWise", "", true, "" });          
             mnuTbl1.Rows.Add(new Object[] { "0303000000", "03. Client Ledger (L/O)", "F_23_CR/RptCustPayStatus?Type=LOClLedger", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000000", "04. Monthly Probable Collection(L/O)", "F_23_CR/RptMonthlyProbCollection?Type=LoMonProColl", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0305000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000000", "05. Client Data File(L/O)", "F_22_Sal/RptClientDateFile?Type=LandO", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0307000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
