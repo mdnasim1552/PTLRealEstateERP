@@ -95,7 +95,7 @@
                                 </div>
                                 <asp:Label ID="Label1" CssClass="col-lg-1 col-form-label" runat="server">Project Name</asp:Label>
                                 <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <asp:DropDownList ID="ddlprojname" runat="server" AutoPostBack="true" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlprojname_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlprojname" runat="server"  AutoPostBack="true" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlprojname_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <asp:Label ID="Label2" CssClass="col-lg-1 col-form-label" runat="server">&nbsp; Batch Name</asp:Label>

@@ -1886,6 +1886,9 @@
                                                     <asp:Label ID="lblgvdelicustomer" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "customer"))%>'
                                                         Width="80px"></asp:Label>
+                                                    <asp:Label ID="lbldeliverypactcode" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode"))%>'
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

@@ -69,6 +69,7 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void Resource_List(string pmSrchTxt)
         {
+            try { 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST1", pmSrchTxt, "", "", "", "", "", "", "", "");
@@ -77,6 +78,11 @@ namespace RealERPWEB.F_14_Pro
             Session["tblMat"] = ds1.Tables[0];
             Session["tblSpcf"] = ds1.Tables[1];
             Session["tbllastprateswise"] = ds1.Tables[2];
+            }
+            catch(Exception exp)
+            {
+
+            }
         }
         protected string GetStdDate(string Date1)
         {
@@ -555,6 +561,8 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void lbtnMSRSelect_Click(object sender, EventArgs e)
         {
+
+            try { 
             this.Session_tblMSR_Update();
             DataTable tbl1 = (DataTable)Session["tblt02"];
             //tbl1.Columns.Add("resrate5", typeof(System.Double), "'0'");
@@ -620,6 +628,10 @@ namespace RealERPWEB.F_14_Pro
 
             Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
+            }catch(Exception exp)
+            {
+
+            }
         }
 
 

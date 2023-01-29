@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -140,6 +140,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+RptMatTransReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+RptMatTransReqcp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptMatIssStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassPurchasesummaryvspayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptDateWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptPOMRRBillStatus.datasource" />
@@ -201,6 +202,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassClientSum.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EclassClientSummary1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassInterestDummyPay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassMonthly.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />
