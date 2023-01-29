@@ -449,7 +449,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203085", "F_12_Inv", "RptProjectStockEva?", "Type=inveva", "Materials Stock Evaluation", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203086", "F_12_Inv", "ProjectWiseStock", "", "Project Wise Stock", "Inventory", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "1203000", "1203090", "F_12_Inv", "RptMatIssueStatus", "", "Materials Issue Status", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203090", "F_12_Inv", "RptMatIssueStatus?", "Type=QtyBasis", "Materials Issue Status(QtyBasis)", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203091", "F_12_Inv", "RptMatIssueStatus?", "Type=AmountBasis", "Materials Issue Status(AmountBasis)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203100", "F_12_Inv", "MatTransStatus", "", "Material Transfer Status", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203110", "F_12_Inv", "RptMatStock", "", "Materials Stock Details(Inventory)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202120", "F_12_Inv", "PurMTReqEntry?", "Type=Entry", "Transfer Requisition", "Inventory", "False", "False", "False", "False" }); ;
@@ -5332,7 +5333,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "	Entry Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "05. Materials Stock Information(Inventory)", "F_12_Inv/RptProjectStock?Type=inv&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000002", "09. Materials Issue Status (SMCR / DMIRF Search)", "F_12_Inv/RptMatIssueStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000002", "09. Materials Issue Status (Quantity Basis)", "F_12_Inv/RptMatIssueStatus?Type=QtyBasis", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000002", "09. Materials Issue Status (Amount Basis)", "F_12_Inv/RptMatIssueStatus?Type=AmountBasis", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000003", "10. Material Transfer Status (TMRR / MTRF Search)", "F_12_Inv/MatTransStatus", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004", "11. Material Transfer Tracking", "F_14_Pro/RptPurchasetracking?Type=TransferReqtrk&mtreqno=&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005", "12. Materials Transfer Status (Inter Company)", "F_12_Inv/RptInterMatTransStatus", "", true, "" });
