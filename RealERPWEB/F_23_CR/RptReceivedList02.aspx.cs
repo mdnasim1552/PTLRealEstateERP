@@ -88,7 +88,7 @@ namespace RealERPWEB.F_23_CR
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "AllProDuesCollect":
-
+                    this.prjname.Attributes.Add("class", "d-none col-md-2");
                     this.chkPayDateWise.Visible = true;
                     this.lblProjectname.Visible = false;
                     //this.txtSrcProject.Visible = false;

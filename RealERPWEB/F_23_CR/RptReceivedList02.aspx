@@ -8,7 +8,10 @@
 
     <script type="text/javascript">
 
+
+
         $(document).ready(function () {
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -37,7 +40,19 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
-
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "{{ __('No results found') }}";
+                        }
+                    }
+                });
+            });
 
         }
     </script>
@@ -68,7 +83,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
-                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass=" form-control" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control-sm form-control" AutoCompleteType="Disabled"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
@@ -77,7 +92,7 @@
                             <div class="form-group">
                                 <asp:Label ID="Label8" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled"
-                                    CssClass="form-control"></asp:TextBox>
+                                    CssClass=" form-control-sm form-control"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
@@ -87,7 +102,7 @@
                                 <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Project Name
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click"><span class="fas fa-search"> </span></asp:LinkButton>
                                 </asp:Label>
-                                <asp:DropDownList runat="server" ID="DropCheck1" CssClass="form-control chzn-select " AutoPostBack="true"></asp:DropDownList>
+                                <asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>
                             </div>
                         </div>
 
@@ -95,7 +110,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="lblAmount0" runat="server" Text="Amount:" CssClass="  lblTxt lblName"></asp:Label>
-                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="form-control " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
+                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="form-control form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                     <asp:ListItem Value="=">Equal</asp:ListItem>
                                     <asp:ListItem Value="&lt;">Less Then</asp:ListItem>
@@ -109,7 +124,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:Label ID="lbl1" runat="server">Balance</asp:Label>
-                                <asp:TextBox ID="txtAmountC1" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtAmountC1" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
 
                             </div>
                         </div>
@@ -117,7 +132,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblToCash" runat="server" CssClass=" smLbl_to blName lblTxt" Text="To:" Visible="false"></asp:Label>
 
-                                <asp:TextBox ID="txtAmountC2" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtAmountC2" runat="server" Visible="false" CssClass="form-control-sm  form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-2 mt-4">
@@ -131,7 +146,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to " Text="Size :"></asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" CssClass="form-control chzn-select " TabIndex="13" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" CssClass="form-control form-control-sm  chzn-select "  runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -165,7 +180,7 @@
 
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
-                            <div class=" table-responsive">
+                            <div class="table-responsive">
                                 <asp:GridView ID="dgvAccRec" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     OnPageIndexChanging="dgvAccRec_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     Width="654px">
@@ -174,7 +189,7 @@
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
@@ -196,7 +211,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgacuname" runat="server" Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "custname"))+"</b>"+"<br>"+
                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "custadd")) %>'
-                                                    Width="220px"></asp:Label>
+                                                    Width="280px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
@@ -323,14 +338,13 @@
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
+                                    <PagerSettings Mode="NumericFirstLast" />
                                 </asp:GridView>
                             </div>
                         </asp:View>
                         <asp:View ID="ViewRecList02" runat="server">
 
-                            <div class="table table-responsive">
-
-
+                            <div class="table-responsive">
                                 <asp:GridView ID="dgvAccRec02" OnRowCreated="dgvAccRec02_RowCreated" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     OnPageIndexChanging="dgvAccRec02_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     Width="654px">
@@ -338,7 +352,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"  Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -387,7 +401,8 @@
                                                                        %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Left" />
+                                            <ItemStyle  HorizontalAlign="Left" VerticalAlign="Middle"/>
+                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
 
@@ -397,7 +412,8 @@
                                                                        %>'
                                                     Width="90px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Left" />
+                                           <ItemStyle  HorizontalAlign="Left" VerticalAlign="Middle"/>
+                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
 
@@ -763,7 +779,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <div class="table table-responsive">
+                                        <div class="table-responsive">
                                             <asp:GridView ID="gvinpro" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                                 Width="337px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                                 <PagerSettings Position="Top" />
@@ -774,6 +790,8 @@
                                                             <asp:Label ID="serialnoid0" runat="server" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'
                                                                 Width="10px"></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Decription">
                                                         <ItemTemplate>
@@ -1189,10 +1207,10 @@
 
                                     <div class="col-md-12">
 
-                                        <div class="table table-responsive">
+                                        <div class="table-responsive">
                                             <asp:GridView ID="gvinproal" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                                 Width="337px" CssClass=" table-striped table-hover table-bordered grvContentarea">
-                                                <PagerSettings Position="Top" />
+                                               
                                                 <RowStyle />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -1548,7 +1566,7 @@
                         </asp:View>
 
                         <asp:View ID="ViewProStatus" runat="server">
-                            <div class="table table-responsive">
+                            <div class="table-responsive">
                                 <asp:GridView ID="gvProClientst" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" ShowFooter="True"
                                     Width="654px" OnPageIndexChanging="gvProClientst_PageIndexChanging">
