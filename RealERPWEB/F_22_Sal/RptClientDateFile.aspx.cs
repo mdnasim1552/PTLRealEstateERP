@@ -34,6 +34,7 @@ namespace RealERPWEB.F_22_Sal
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Client Data File";
 
+                string type = this.Request.QueryString["Type"].ToString().Trim();
 
                 this.GetProjectName();
                 this.GetEnvType();
