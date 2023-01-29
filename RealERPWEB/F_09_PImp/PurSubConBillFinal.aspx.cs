@@ -1603,7 +1603,9 @@ namespace RealERPWEB.F_09_PImp
                         case "3367"://epic
                         case "3366": //Lanco
                         case "3101": //ptl
+                        case "3374": //Angan
 
+                            
                             break;
 
                         default:
