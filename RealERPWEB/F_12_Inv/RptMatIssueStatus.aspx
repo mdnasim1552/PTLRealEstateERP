@@ -187,9 +187,11 @@
                            
                     </div>
                     </div>
-                <div class="card-header">
+                 <div class="table-responsive">
 
-                    <asp:GridView ID="gvMatIssueStatus" runat="server" AutoGenerateColumns="False"
+                <div class="card-header">
+                   
+                        <asp:GridView ID="gvMatIssueStatus" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                         OnPageIndexChanging="gvMatIssueStatus_PageIndexChanging">
                         <RowStyle />
@@ -279,6 +281,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+                             
 
                              <asp:TemplateField HeaderText="Use of Location">
                                 <ItemTemplate>
@@ -286,6 +289,24 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "useoflocation")) %>'
                                         Width="120px"></asp:Label>
                                 </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Issue Rate" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvBgdrate" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "avragerate")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                        Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Issue Amount" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvBgdamt" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                        Width="90px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
@@ -297,7 +318,10 @@
                         <HeaderStyle CssClass="grvHeader" />
 
                     </asp:GridView>
+                    
+                    
                 </div>
+                     </div>
             </div>
 
         </ContentTemplate>

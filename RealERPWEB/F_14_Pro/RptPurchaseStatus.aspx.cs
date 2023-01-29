@@ -1316,6 +1316,7 @@ namespace RealERPWEB.F_14_Pro
                     this.BillRegTrack();
                     break;
                 case "GenBillTrack":
+                    this.pnlnrbilltrac.Visible = true;
                     this.GeneralBillTrack();
                     break;
 
@@ -1523,6 +1524,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
             //DataTable dt = ds1.Tables[0];
             Session["tblpurchase"] = ds1.Tables[0];
+            this.txtnrr.Text = ds1.Tables[0].Rows[0]["narr"].ToString();
 
             //this.gvGenBillTracking.DataSource = dt;
             //this.gvGenBillTracking.DataBind();

@@ -251,7 +251,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2393,6 +2393,7 @@
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
     <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
+    <Content Include="F_09_PImp\WorkWithSubCon.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
@@ -4341,6 +4342,13 @@
     </Compile>
     <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.designer.cs">
       <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkWithSubCon.aspx.cs">
+      <DependentUpon>WorkWithSubCon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkWithSubCon.aspx.designer.cs">
+      <DependentUpon>WorkWithSubCon.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>

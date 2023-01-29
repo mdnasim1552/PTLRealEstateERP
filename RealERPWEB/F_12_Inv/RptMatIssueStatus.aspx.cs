@@ -140,6 +140,12 @@ namespace RealERPWEB.F_12_Inv
                 this.gvMatIssueStatus.DataBind();
                 return;
             }
+
+            if(this.Request.QueryString["Type"] == "AmountBasis")
+            {
+                this.gvMatIssueStatus.Columns[11].Visible = true;
+                this.gvMatIssueStatus.Columns[12].Visible = true;
+            }
             this.gvMatIssueStatus.Columns[1].Visible = (this.ddlProName.SelectedValue.ToString() == "000000000000") ? true : false;
             Session["tbMatIsuStatus"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
@@ -227,7 +233,16 @@ namespace RealERPWEB.F_12_Inv
 
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.RptMatIssStatus>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+
+            if(this.Request.QueryString["Type"] == "AmountBasis")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusQtyBasis", lst, null, null);
+            }
+          
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
