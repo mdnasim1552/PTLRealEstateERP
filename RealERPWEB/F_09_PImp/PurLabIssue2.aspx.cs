@@ -704,6 +704,11 @@ namespace RealERPWEB.F_09_PImp
             string Worklist = this.ddlWorkList.SelectedValue.ToString();
 
             DataTable dt = ((DataTable)ViewState["itemlist"]).Copy();
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return;
+            }
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("rsircode= " + Worklist);
             dt = dv.ToTable(true, "flrcod", "flrdes", "flrdes1");

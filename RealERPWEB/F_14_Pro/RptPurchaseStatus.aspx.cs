@@ -1663,6 +1663,8 @@ namespace RealERPWEB.F_14_Pro
                 this.lblvaltrans.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["trnqty"]).ToString("#,##0;(#,##0); ");
 
                 this.lblvalTotalSupp.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tosupqty"]).ToString("#,##0;(#,##0); ");
+                this.lbllsdqty.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tsldqty"]).ToString("#,##0;(#,##0); ");
+
                 this.lblvalBalance.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["bgdbal"]).ToString("#,##0;(#,##0); ");
                 this.LoadGrid();
             }

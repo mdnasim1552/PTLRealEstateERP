@@ -678,6 +678,26 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+  
+
+        protected void btnlink_Click(object sender, EventArgs e)
+        {
+            DateTime frmdate, date1, date2;
+            string comcod = this.GetCompCode();
+            string date = this.ddlmonthtypeWise.SelectedValue.ToString();
+            date1 = Convert.ToDateTime(ASTUtility.DateFormat("01" + "." + date.Substring(4, 2) + "." + date.Substring(0, 4)));
+            date2 = Convert.ToDateTime(date1.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");           
+            string date3 = Convert.ToDateTime(date1).ToString("dd-MMM-yyyy");
+            string date4 = Convert.ToDateTime(date2).ToString("dd-MMM-yyyy");
+
+            //btnlink.Attributes.Add("href", "~/F_22_Sal/RptSalSummery?Type=SaleVsCollTypeWise&comcod " + comcod + "&date1=" + date3 + "&date2=" + date4);
+            //btnlink.Attributes.Add("target", "_blank");
+             Response.Redirect("~/F_22_Sal/RptSalSummery?Type=SaleVsCollTypeWise&comcod=" + comcod + "&date1=" + date3 + "&date2="+ date4);
+
+      
+
+        }
+
         protected void gvsbgdTypeWise_RowCreated(object sender, GridViewRowEventArgs e)
         {
 

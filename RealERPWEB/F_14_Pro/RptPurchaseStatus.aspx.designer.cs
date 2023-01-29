@@ -816,6 +816,24 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblvaltrans;
 
         /// <summary>
+        /// lbllsdq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbllsdq;
+
+        /// <summary>
+        /// lbllsdqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbllsdqty;
+
+        /// <summary>
         /// lbltxtOpenig3 control.
         /// </summary>
         /// <remarks>
