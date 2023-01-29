@@ -118,7 +118,22 @@ namespace RealERPWEB.F_17_Acc
             int pageCount = (int)Math.Ceiling(getPageCount);
             this.lblCurPage.ToolTip = "Page 1 of " + pageCount;
         }
+        public string getcomchknum()
+        {
 
+            string comcod = this.GetCompCode();
+            string orderbychknum = "";
+            switch(comcod)
+            {
+                case "3368"://finlay
+                    orderbychknum = "orderbychknum";
+                    break;
+                default:
+                    break;
+            }
+
+            return orderbychknum;
+        }
 
         private void ShowData()
         {
@@ -129,14 +144,18 @@ namespace RealERPWEB.F_17_Acc
                 Session.Remove("tblMrr");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
+
+                string orderbycjlnum = this.getcomchknum();
+
                 string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
                 string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                          
                 string voutype = (this.Request.QueryString["Type"].ToString() == "AccIsu") ? "PV%" : (this.Request.QueryString["Type"].ToString() == "AccRec") ? "DV%" : "%";
                 int startRow = PageNumber * 100;
                 int endRow = (PageNumber + 1) * 100;
                 string SrchChequeno = "%" + this.txtserchChequeno.Text.Trim() + "%";
                 string BankName = ((this.ddlBankName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlBankName.SelectedValue.ToString()) + "%";
-                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "REPORTCHEQUEUPDATE", frmdate, todate, voutype, startRow.ToString(), endRow.ToString(), SrchChequeno, BankName, "", "");
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "REPORTCHEQUEUPDATE", frmdate, todate, voutype, startRow.ToString(), endRow.ToString(), SrchChequeno, BankName, orderbycjlnum, "");
                 if (ds1 == null)
                 {
                     this.dgv1.DataSource = null;
