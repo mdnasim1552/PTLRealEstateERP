@@ -226,6 +226,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassYearlyColletionDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+PaymentStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSales_03+ProjectWiseClientStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
@@ -1050,6 +1051,7 @@
     <EmbeddedResource Include="R_23_CR\RptUtilityAndOtherCollAll.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptUtilityAndOtherCollInd.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptWeeklyCollection.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptYearlyCollectionDetails.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptYearlyCollectionForecasting.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptAddTopSheet.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptAddWorkSuvastu.rdlc" />

@@ -837,7 +837,7 @@ namespace RealERPRDLC
                 case "R_23_CR.RptClientLedgerBridge": Rpt1a = SetRptClientLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptClientLedgerManama": Rpt1a = SetRptClientLedgerManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
-
+                case "R_23_CR.RptYearlyCollectionDetails": Rpt1a = SetRptYearlyCollectionDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptYearlyCollectionForecasting": Rpt1a = SetRptYearlyCollction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptDishonourCheque": Rpt1a = SetRptDishonourCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptSalClPayDetails": Rpt1a = SetRptSalClPayDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6643,6 +6643,13 @@ namespace RealERPRDLC
         {
 
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionForcasting>)RptDataSet));
+            return Rpt1a;
+
+        }
+        private static LocalReport SetRptYearlyCollectionDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionDetails>)RptDataSet));
             return Rpt1a;
 
         }
