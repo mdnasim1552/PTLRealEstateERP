@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -48,11 +48,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -137,7 +137,10 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.MatStockIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.MatStockReportEvaluation.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+RptMatTransReq.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+RptMatTransReqcp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptMatIssStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassPurchasesummaryvspayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptDateWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptPOMRRBillStatus.datasource" />
@@ -172,6 +175,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassBaseGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet.datasource" />
@@ -198,6 +202,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassClientSum.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EclassClientSummary1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassInterestDummyPay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClassMonthly.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />
@@ -296,6 +301,8 @@
     <EmbeddedResource Include="R_12_Inv\rptGroupStockEva.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialStock.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMaterialStockEva.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferCPDL.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMatIssueStatusQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2CPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
@@ -863,6 +870,7 @@
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
@@ -1272,6 +1280,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalEncashment - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalEncashment.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryFinlay.rdlc" />

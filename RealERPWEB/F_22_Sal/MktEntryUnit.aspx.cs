@@ -641,6 +641,7 @@ namespace RealERPWEB.F_22_Sal
                 TextBox txt20 = (TextBox)e.Row.FindControl("txtItemdescbn");
 
 
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string sales = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sales")).ToString();
 
@@ -665,6 +666,8 @@ namespace RealERPWEB.F_22_Sal
 
                 if (sales == "True")
                 {
+
+
                     txt01.Style.Add("color", "red");
 
 

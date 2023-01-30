@@ -296,12 +296,14 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMaterialTrnsGatepass": Rpt1a = GetRptMaterialTrnsGatepass(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMaterialTrnsferCPDL": Rpt1a = GetRptMaterialTrnsferCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryCPDL": Rpt1a = SetrptPurMrrEntryCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMatIssueStatusQtyBasis": Rpt1a = GetRptMatIssueStatusQtyBasis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptProPhyStock": Rpt1a = SetRptProPhyStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptInterComTransStatus": Rpt1a = SetRptInterComTransStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialsStock": Rpt1a = SetRptMaterialsStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -701,6 +703,7 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptProspectTransfer": SetRptProspectTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.ClientLetter": SetRptClientLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptDailyWorkStatus": SetRptDailyWorkStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptLeadStatusTimestamp": SetRptLeadStatusTimestamp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -3511,6 +3514,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport GetRptMatIssueStatusQtyBasis(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
+            return Rpt1a;
+        }
 
 
         private static LocalReport SetRptInterComTransStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -4962,6 +4970,11 @@ namespace RealERPRDLC
         private static LocalReport GetRptMaterialTrnsfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReq>)RptDataSet));
+            return Rpt1a;
+
+        }private static LocalReport GetRptMaterialTrnsferCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReqcp>)RptDataSet));
             return Rpt1a;
 
         }
@@ -7026,6 +7039,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptProspectTransfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptLeadStatusTimestamp(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptLeadStatusTimestamp>)RptDataSet));
             return Rpt1a;
         }
 

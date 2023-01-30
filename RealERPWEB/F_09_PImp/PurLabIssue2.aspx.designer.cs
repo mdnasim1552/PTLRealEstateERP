@@ -78,15 +78,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblddlProject;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// lblconList control.
         /// </summary>
         /// <remarks>
@@ -213,6 +204,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::AjaxControlToolkit.CalendarExtender txtCurISSDate_CalendarExtender;
 
         /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+
+        /// <summary>
         /// lblPage control.
         /// </summary>
         /// <remarks>
@@ -229,15 +229,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
-
-        /// <summary>
-        /// lblmsg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
 
         /// <summary>
         /// lbtnPrevISSList control.
@@ -573,6 +564,24 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.TextBox txtISSNarr;
 
         /// <summary>
+        /// lblTrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTrade;
+
+        /// <summary>
+        /// ddltrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddltrade;
+
+        /// <summary>
         /// lblPreparedBy control.
         /// </summary>
         /// <remarks>
@@ -625,24 +634,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtApprovalDate;
-
-        /// <summary>
-        /// lblTrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTrade;
-
-        /// <summary>
-        /// ddltrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltrade;
 
         /// <summary>
         /// lblBillno control.

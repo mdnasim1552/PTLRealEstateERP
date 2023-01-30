@@ -872,6 +872,7 @@ namespace RealEntity.C_22_Sal
             public double interest { get; set; }
             public double cuminterest { get; set; }
             public double dueamt { get; set; }
+           
             public EClasInterestCalculation()
             { }
         }

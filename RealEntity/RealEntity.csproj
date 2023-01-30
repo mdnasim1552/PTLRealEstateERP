@@ -221,8 +221,10 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+PWRPDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectWorking.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+Eclassdummyschedule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+Rptalloreport.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+AllotmentInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />

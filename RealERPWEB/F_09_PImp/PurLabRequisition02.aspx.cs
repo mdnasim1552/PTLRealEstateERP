@@ -36,6 +36,9 @@ namespace RealERPWEB.F_09_PImp
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+
+
+
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Entry") ? "Sub-Contractor Bill Requisition"
                 //    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit"
                 //    : (this.Request.QueryString["Type"].ToString() == "CSApproval") ? " Sub-Contractor Bill CS Approval"
@@ -69,8 +72,20 @@ namespace RealERPWEB.F_09_PImp
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+
+
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString() ;
             // Create an event handler for the master page's contentCallEvent event
+
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;            
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+          ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+
+
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -449,15 +464,15 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlPrevISSList.Items.Clear();
 
 
-                this.ddlfloorno.Items.Clear();
-                DropCheck1.Items.Clear();
+
+                lstfloor.Items.Clear();
                 this.PnlRes.Visible = false;
                 this.PnlNarration.Visible = false;
                 this.grvissue.DataSource = null;
                 this.grvissue.DataBind();
                 this.lblBillno.Text = "";
                 this.lblvalvounum.Text = "";
-                this.txtSearchLabour.Text = "";
+               
                 // this.txtRefno.Text = "";
                 //this.lbljavascript.Text = "";
 
@@ -478,8 +493,9 @@ namespace RealERPWEB.F_09_PImp
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
-            this.GetFloorCode();
+           
             this.GetCataGory();
+            //this.GetFloorCode();
             this.Get_Issue_Info();
             //this.PenelVisiblity();
 
@@ -508,10 +524,10 @@ namespace RealERPWEB.F_09_PImp
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEFLRLIST", pactcode, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-            this.ddlfloorno.DataTextField = "flrdes";
-            this.ddlfloorno.DataValueField = "flrcod";
-            this.ddlfloorno.DataSource = ds1.Tables[0];
-            this.ddlfloorno.DataBind();
+            this.lstfloor.DataTextField = "flrdes";
+            this.lstfloor.DataValueField = "flrcod";
+            this.lstfloor.DataSource = ds1.Tables[0];
+            this.lstfloor.DataBind();
             this.ddlfloorno_SelectedIndexChanged(null, null);
 
         }
@@ -588,10 +604,10 @@ namespace RealERPWEB.F_09_PImp
             }
 
             this.lblfloorno.Visible = true;
-            this.ddlfloorno.Visible = true;
+            this.lstfloor.Visible = true;
             // this.txtSearchLabour.Visible = true;
             //this.ibtnSearchMaterisl.Visible = true;
-            DropCheck1.Visible = true;
+            lstfloor.Visible = true;
             this.lbtnSelect.Visible = true;
             this.txtRefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
             this.lblCurISSNo1.Text = ds1.Tables[1].Rows[0]["lreqno1"].ToString().Substring(0, 6);
@@ -714,9 +730,9 @@ namespace RealERPWEB.F_09_PImp
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            string flrcode = this.ddlfloorno.SelectedValue.ToString();
+            string flrcode ="";
             string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string SearchMat = "%" + this.txtSearchLabour.Text.Trim() + "%";
+            string SearchMat = "%" ;
             string withmat = this.ComCalltype();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCATAGORY", pactcode, date, flrcode, SearchMat, withmat, "", "", "", "");
@@ -736,58 +752,65 @@ namespace RealERPWEB.F_09_PImp
 
         private void GetMaterials()
         {
-            //DropCheck1.Text = "";
+            
             string comcod = this.GetCompCode();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            string flrcode = this.ddlfloorno.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            //string SearchMat = "%"+this.txtSearchLabour.Text.Trim() + "%";
+            string flrcode = "";
+            string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");          
             string SearchMat = (ddlcatagory.SelectedValue.ToString() == "") ? "%" : this.ddlcatagory.SelectedValue.Substring(0, 4) + "%";
-            //string SearchMat = (ddlcatagory.SelectedValue.ToString() == "") ? "%" : this.ddlcatagory.SelectedValue.Substring(0, 9) + "%";
+           
 
 
             string withmat = this.ComCalltype();
             string zerobal = this.ComZeroBal();
+            
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLABFLRCODE", pactcode, date, flrcode, SearchMat, withmat, zerobal, "", "", "");
             ViewState["itemlist"] = ds1.Tables[0];
             if (ds1 == null)
                 return;
 
-            this.DropCheck1.DataTextField = "rsirdesc1";
-            this.DropCheck1.DataValueField = "rsircode";
-            this.DropCheck1.DataSource = ds1.Tables[0];
-            this.DropCheck1.DataBind();
+            this.ddlWorkList.DataTextField = "rsirdesc1";
+            this.ddlWorkList.DataValueField = "rsircode";
+            this.ddlWorkList.DataSource = ds1.Tables[1];
+            this.ddlWorkList.DataBind();
             ds1.Dispose();
+            this.GetFloor();
+           
 
 
         }
-        private void GetChargingItem()
+        private void GetFloor()
         {
+            try
+            {
+
+                string Worklist = this.ddlWorkList.SelectedValue.ToString();
+
+                DataTable dt = ((DataTable)ViewState["itemlist"]).Copy();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("rsircode= '" + Worklist + "'");
+                dt = dv.ToTable(true, "flrcod", "flrdes", "flrdes1");
+                this.lstfloor.DataTextField = "flrdes";
+                this.lstfloor.DataValueField = "flrcod";
+                this.lstfloor.DataSource = dt;
+                this.lstfloor.DataBind();
+            }
+            catch (Exception ex)
+            {
 
 
-            //DropCheck1.Text = "";
-            string comcod = this.GetCompCode();
-            string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            string flrcode = this.ddlfloorno.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            //string SearchMat = "%"+this.txtSearchLabour.Text.Trim() + "%";
-            string SearchMat = (ddlcatagory.SelectedValue.ToString() == "") ? "%" : this.ddlcatagory.SelectedValue.Substring(0, 4) + "%";
 
-            string withmat = this.ComCalltype();
-            string zerobal = this.ComZeroBal();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCHARGINGITEM", "", "", "", "", "", "", "", "", "");
-            ViewState["itemlist"] = ds1.Tables[0];
-            if (ds1 == null)
-                return;
-
-            this.DropCheck1.DataTextField = "rsirdesc1";
-            this.DropCheck1.DataValueField = "rsircode";
-            this.DropCheck1.DataSource = ds1.Tables[0];
-            this.DropCheck1.DataBind();
-            ds1.Dispose();
+            }
 
 
         }
+
+        protected void ddlWorkList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetFloor();
+
+        }
+     
         protected void grvissue_DataBind()
         {
             string comcod = this.GetCompCode();
@@ -811,7 +834,7 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["tblbillreq"];
             if (dt.Rows.Count == 0)
                 return;
-            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amount)", "")) ? 0.00 : dt.Compute("Sum(amount)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amount)", "")) ? 0.00 : dt.Compute("Sum(amount)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
         }
 
@@ -823,15 +846,18 @@ namespace RealERPWEB.F_09_PImp
             try
             {
                 this.SaveValue();
-                string flrcode = this.ddlfloorno.SelectedValue.ToString().Trim();
-                string flrdes = this.ddlfloorno.SelectedItem.Text.Trim();
-                string comcod = this.GetCompCode();
-                foreach (ListItem lab1 in DropCheck1.Items)
-                {
-                    if (lab1.Selected)
-                    {
-                        string rsircode = lab1.Value;
 
+                string rsircode = this.ddlWorkList.SelectedValue.ToString();
+                
+                string comcod = this.GetCompCode();
+                foreach (ListItem flr in lstfloor.Items)
+                {
+                    if (flr.Selected)
+                    {
+
+
+                        string flrcode = flr.Value;
+                        string flrdesc = flr.Text;
 
                         // string rsirdesc = lab1.Substring(13);
 
@@ -845,20 +871,20 @@ namespace RealERPWEB.F_09_PImp
 
                             DataRow dr1 = dt.NewRow();
                             dr1["flrcod"] = flrcode;
-                            dr1["flrdes"] = flrdes;
+                            dr1["flrdes"] = flrdesc;
                             dr1["rsircode"] = rsircode;
-                            dr1["rsirdesc"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["rsirdesc"];
+                            dr1["rsirdesc"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["rsirdesc"];
                             //dr1["grp"] = grp;
                             //dr1["grpdesc"] = grpdesc;
-                            dr1["rsirunit"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["rsirunit"];
-                            dr1["bgdqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdqty"]).ToString();
+                            dr1["rsirunit"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["rsirunit"];
+                            dr1["bgdqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode+ "' and flrcod= '" + flrcode + "'")[0]["bgdqty"]).ToString();
 
-                            dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"]).ToString();
-                            balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"].ToString());
-                            dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balamt"]).ToString();
+                            dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balqty"]).ToString();
+                            balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balqty"].ToString());
+                            dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["balamt"]).ToString();
                             dr1["reqqty"] = (comcod == "3370" || comcod == "3101") ? balqty : 0.00;
-                            dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdrat"]).ToString();
-                            dr1["reqrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["isurat"]).ToString();
+                            dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["bgdrat"]).ToString();
+                            dr1["reqrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "' and flrcod= '" + flrcode + "'")[0]["isurat"]).ToString();
                             dr1["amount"] = 0.00;
                             dr1["reqamt"] = 0.00;
                             dr1["csircode"] = "000000000000";
@@ -1532,6 +1558,46 @@ namespace RealERPWEB.F_09_PImp
                 }
             }
             Session["tblbillreq"] = dt;
+        }
+
+        protected void lbtnDelItem_Click(object sender, EventArgs e)
+        {
+            int gvrowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvrowindex;
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblbillreq"];
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string Labcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+            string Flrcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblgvflrCode")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "DELETELAB_REQUISITION_ITEM", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+               
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblbillreq");
+            ViewState["tblbillreq"] = dv.ToTable();
+            this.grvissue_DataBind();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Labour Requistion Information";
+                string eventdesc = "Delete Requsition Item";
+                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "REQ No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
+                        ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
         }
     }
 }

@@ -1019,9 +1019,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("printdate","PrintDate : " +printdate));
+            Rpt1.SetParameters(new ReportParameter("printdate","Print Date : " +printdate));
             Rpt1.SetParameters(new ReportParameter("Date", "( From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("d-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")+" )"));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Achievement (Sales & Collection Type Wise)"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Achievement (Sales & Collection Executive Wise)"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Session["Report1"] = Rpt1;
@@ -1208,8 +1208,14 @@ namespace RealERPWEB.F_22_Sal
                 cell1.Text = "";
                 cell1.HorizontalAlign = HorizontalAlign.Center;
                 cell1.ColumnSpan = 1;
-             
+           
                 gvrow.Cells.Add(cell1);
+
+                //TableCell cell12 = new TableCell();
+                //cell12.Text = "";
+                //cell1.HorizontalAlign = HorizontalAlign.Center;
+                //cell12.ColumnSpan = 1;
+                //gvrow.Cells.Add(cell12);
 
                 TableCell cell2 = new TableCell();
                 cell2.Text = "";

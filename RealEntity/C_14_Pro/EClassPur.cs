@@ -323,6 +323,12 @@ namespace RealEntity.C_14_Pro
             public string msrrmrk { get; set; }
             public double aprovrate { get; set; }
             public string spcfdesc { get; set; }
+
+            public double prerate1 { get; set; }
+            public double prerate2 { get; set; }
+            public double prerate3 { get; set; }
+            public double prerate4 { get; set; }
+            public double prerate5 { get; set; }
             public MkrServay02() { }
         }
 

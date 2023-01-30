@@ -669,115 +669,118 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.31477in</Width>
+                  <Width>1.1695in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.4038in</Width>
+                  <Width>0.46686in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29024in</Width>
+                  <Width>0.26997in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30917in</Width>
+                  <Width>0.2889in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29233in</Width>
+                  <Width>0.27206in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29214in</Width>
+                  <Width>0.27187in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30304in</Width>
+                  <Width>0.28277in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30899in</Width>
+                  <Width>0.28872in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29214in</Width>
+                  <Width>0.27187in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.32995in</Width>
+                  <Width>0.30968in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30697in</Width>
+                  <Width>0.2867in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29654in</Width>
+                  <Width>0.27627in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29033in</Width>
+                  <Width>0.27006in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29437in</Width>
+                  <Width>0.2741in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30431in</Width>
+                  <Width>0.28404in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29775in</Width>
+                  <Width>0.27748in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29621in</Width>
+                  <Width>0.27594in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30381in</Width>
+                  <Width>0.28354in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29314in</Width>
+                  <Width>0.27287in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.27819in</Width>
+                  <Width>0.25792in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29253in</Width>
+                  <Width>0.27226in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29922in</Width>
+                  <Width>0.27895in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30124in</Width>
+                  <Width>0.28097in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.32358in</Width>
+                  <Width>0.30331in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.2903in</Width>
+                  <Width>0.27003in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.30292in</Width>
+                  <Width>0.28265in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.3009in</Width>
+                  <Width>0.28063in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29486in</Width>
+                  <Width>0.27459in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29517in</Width>
+                  <Width>0.2749in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.29082in</Width>
+                  <Width>0.27055in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.28426in</Width>
+                  <Width>0.26399in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.27986in</Width>
+                  <Width>0.30126in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.31269in</Width>
+                  <Width>0.29167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.38321in</Width>
+                  <Width>0.29242in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.39167in</Width>
+                  <Width>0.36294in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.39515in</Width>
+                  <Width>0.3714in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.44602in</Width>
+                  <Width>0.36446in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.35283in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -831,7 +834,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Id Card</Value>
+                                  <Value>ID</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value> Card</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -2002,6 +2020,44 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox79">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Parameters!txtDate31.Value</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox79</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.6pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -2164,7 +2220,7 @@
                                   <Value>Total</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3269,6 +3325,40 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox72</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox80">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox80</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -4608,6 +4698,42 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox81">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!col31s.Value</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox81</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>=iif(Fields!col30s.Value="W","LightGrey" ,"Transparent")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox7">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -4824,6 +4950,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -4852,7 +4979,7 @@
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.76736in</Height>
-            <Width>12.58259in</Width>
+            <Width>12.04092in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4863,14 +4990,10 @@
         <Height>0.76736in</Height>
         <Style />
       </Body>
-      <Width>12.58259in</Width>
+      <Width>12.04092in</Width>
       <Page>
-        <PageHeight>8.5in</PageHeight>
-        <PageWidth>14in</PageWidth>
-        <LeftMargin>0.15in</LeftMargin>
-        <RightMargin>0.15in</RightMargin>
-        <TopMargin>0.15in</TopMargin>
-        <BottomMargin>0.15in</BottomMargin>
+        <PageHeight>8.27in</PageHeight>
+        <PageWidth>11.69in</PageWidth>
         <Style />
       </Page>
     </ReportSection>

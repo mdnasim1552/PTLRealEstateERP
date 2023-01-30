@@ -2470,6 +2470,18 @@
 
 
                         <asp:View ID="Encashment" runat="server">
+                                                    <div>
+                                        <asp:RadioButtonList ID="btnRadio" runat="server" AutoPostBack="True"
+                                            CssClass="custom-control custom-control-inline custom-checkbox rbt p-0"
+                                            Font-Bold="True" Font-Size="12px" ForeColor="Black"
+                                            OnSelectedIndexChanged="btnRadio_SelectedIndexChanged"
+                                            RepeatDirection="Horizontal">
+                                          <asp:ListItem>All</asp:ListItem>
+                                            <asp:ListItem>Saved Data</asp:ListItem>
+                                  
+
+                                        </asp:RadioButtonList>
+                                    </div>
 
                             <asp:GridView ID="gvEncashment" runat="server" AllowPaging="False" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True">
 
