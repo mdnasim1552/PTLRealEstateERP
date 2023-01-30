@@ -125,7 +125,8 @@ namespace RealEntity.C_12_Inv
             public string rsircode { get; set; }
             public string sircode { get; set; }
             public string sirdesc { get; set; }
-           
+            public double trninqty { get; set; }
+            public double trnoutqty { get; set; }
             public double opqty { get; set; }
             public double rcvqty { get; set; }
             public double tminqty { get; set; }

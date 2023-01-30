@@ -119,7 +119,7 @@
                   <Width>0.49219in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62153in</Width>
+                  <Width>0.65278in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.55903in</Width>
@@ -1163,7 +1163,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tminamt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trninamt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1200,7 +1200,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tmoutamt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trnoutamt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1524,7 +1524,7 @@ Consumption	</Value>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.12583in</Top>
             <Height>0.60417in</Height>
-            <Width>7.71092in</Width>
+            <Width>7.74217in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1535,7 +1535,7 @@ Consumption	</Value>
         <Height>0.80209in</Height>
         <Style />
       </Body>
-      <Width>7.72791in</Width>
+      <Width>7.74217in</Width>
       <Page>
         <PageHeader>
           <Height>1.11333in</Height>

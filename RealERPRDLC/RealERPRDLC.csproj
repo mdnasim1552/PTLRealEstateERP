@@ -164,6 +164,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAdvancedAgainstLoan.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptDuesReportAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
