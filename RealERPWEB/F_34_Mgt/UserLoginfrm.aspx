@@ -43,7 +43,7 @@
         }
         function IsNumberWithOneDecimal(txt, evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+            if (charCode < 33 && (charCode > 57 && charCode < 64 ) && !(charCode == 46 || charCode == 8)) {
                 return false;
             } else {
                 var len = txt.value.length;

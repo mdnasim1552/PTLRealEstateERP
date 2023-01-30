@@ -1091,7 +1091,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -1106,7 +1106,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row">
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1241,6 +1241,40 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
+                                            <div class="row"  style="background-color:#346cb0;color:white;font-weight:bold; margin-top:5px">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin ">
+                                                        <label id="lbldisorexcesspsft" runat="server" >Discount/(Excess per SFT)</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+                                                        <label id="lblvaldisorexcesspsft" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row" style="background-color:#346cb0;color:white; font-weight:bold;">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin ">
+                                                        <label id="lbltodisorexcessamt" runat="server" >Total Discount/(Excess Amt)</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+                                                        <label id="lblvaltodisorexcessamt" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
 
 
                                             <div class="row" style="margin-top: 10px;">

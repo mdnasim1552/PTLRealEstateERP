@@ -61,8 +61,12 @@
 
             $('.chzn-select').chosen({ search_contains: true });
             $('#<%=this.dgvBE.ClientID%>').tblScrollable();
+<<<<<<< HEAD
             $('#<%=this.dgvPS.ClientID%>').tblScrollable();
             
+=======
+        
+>>>>>>> cd164b324206083cce2789b8de6417cec48f44c4
 
         }
 
