@@ -1077,11 +1077,19 @@
                                         <asp:Label ID="lblvaltrans" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <div class="clearfix"></div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <asp:Label ID="lbllsdq" runat="server" CssClass="lblName lblTxt" Text="Sold/Lost/Demage Qty"></asp:Label>
+                                        <asp:Label ID="lbllsdqty" runat="server" CssClass="smLbl_to"></asp:Label>
+                                        <div class="clearfix"></div>
+                                    </div>
                                     <div class="form-group">
                                         <asp:Label ID="lbltxtOpenig3" runat="server" CssClass="lblName lblTxt" Text="Total Qty"></asp:Label>
                                         <asp:Label ID="lblvalTotalSupp" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <div class="clearfix"></div>
                                     </div>
+
+                                    
                                     <div class="form-group">
                                         <asp:Label ID="lbltxtOpenig2" runat="server" CssClass="lblName lblTxt" Text="Balance"></asp:Label>
                                         <asp:Label ID="lblvalBalance" runat="server" CssClass="smLbl_to"></asp:Label>
@@ -2067,7 +2075,8 @@
 
                             </asp:View>
                             <asp:View runat="server" ID="VBillTracking">
-                                <asp:GridView ID="gvBillRegTrack" runat="server" AutoGenerateColumns="False" ShowFooter="True"
+                                <div class="table-responsive">
+                                    <asp:GridView ID="gvBillRegTrack" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                     CssClass="table-striped table-hover table-bordered grvContentarea">
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
@@ -2147,6 +2156,10 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                                 </asp:GridView>
+                                </div>
+                                
+
+                               
                             </asp:View>
                             <asp:View ID="ViewOrderTracking" runat="server">
                                 <fieldset class="scheduler-border fieldset_B">
@@ -2666,6 +2679,32 @@
                                     </asp:GridView>
 
                                 </div>
+
+                                 <asp:Panel ID="pnlnrbilltrac" runat="server" Visible="false">
+                                    <fieldset class="scheduler-border fieldset_D">
+                                        <div class="form-horizontal">
+
+                                            <div class="form-group">
+                                                <div class="col-md-6 pading5px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon glypingraddon">
+                                                            <asp:Label ID="lblnrr" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
+                                                        </span>
+                                                        <asp:TextBox ID="txtnrr" runat="server" class="form-control" TextMode="MultiLine" Height="40px"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                               
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </fieldset>
+
+                                </asp:Panel>
+
                             </asp:View>
 
                         </asp:MultiView>

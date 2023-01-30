@@ -48,7 +48,8 @@
                                                 </asp:DropDownList>
                                                 <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
 
-                                            </div>
+                                            </div>                                       
+
                                             <div class="col-md-3">
                                                 <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                             </div>
@@ -485,6 +486,11 @@
                                                 <asp:LinkButton ID="lblMontypeWise" runat="server" OnClick="lblMontypeWise_Click" CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
 
                                             </div>
+                                            <div class="col-md-1">
+                                            <asp:LinkButton ID="btnlink" runat="server" ClientIDMode="Static" CssClass="btn btn-success pull-left" OnClick="btnlink_Click"  PostBackUrl="#" OnClientClick="NewWindow();" >Report</asp:LinkButton>
+
+                                            </div>
+
                                             <div class="col-md-3">
                                                 <asp:Label ID="Label3" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                             </div>

@@ -212,11 +212,11 @@
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                                 Style="text-align: center;"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid1")) %>' Width="40px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Width="40px"
                                                                 ForeColor="Black"></asp:Label>
                                                             <asp:Label ID="lblgvtimetaskid" runat="server" Text="0" Visible="false"></asp:Label>
                                                             <asp:Label ID="lblgvempid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assignuser")) %>' Visible="false"></asp:Label>
-                                                            <asp:Label ID="lblgvjobid1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Visible="false" ></asp:Label>
+                                                            <%--<asp:Label ID="lblgvjobid1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Visible="false" ></asp:Label>--%>
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>

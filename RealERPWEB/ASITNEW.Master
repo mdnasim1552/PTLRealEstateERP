@@ -29,7 +29,6 @@
         <%: Scripts.Render("~/bundles/tablescroll") %>
         <%: Scripts.Render("~/bundles/chosen") %>
         <%: Scripts.Render("~/bundles/keynavigation") %>
-        <%--<%: Scripts.Render("~/bundles/richtext") %>--%>
         <%: Scripts.Render("~/bundles/multiselect") %>
         <%: Scripts.Render("~/bundles/User") %>
         <%: Scripts.Render("~/bundles/Counter") %>
