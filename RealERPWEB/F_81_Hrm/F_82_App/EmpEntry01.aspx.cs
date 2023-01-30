@@ -1009,7 +1009,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj)
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj && comcod!="3354")
                     {
                         Gvalue = doj;
                         //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
@@ -1106,7 +1106,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat)
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat && comcod!="3354")
                     {
                         Gvalue = retdat;
                         islocksal = true;
@@ -1288,7 +1288,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 //txtgvValBn.Text = "";
-                if (code == "01003")
+                if (code == "01003" && GetComeCode()!="3354")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
@@ -1974,7 +1974,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 TextBox txtjoindat = (TextBox)e.Row.FindControl("txtgvdVal");
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
      
-                if (code == "01999")
+                if (code == "01999" && GetCompCode()!="3354")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
