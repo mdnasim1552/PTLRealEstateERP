@@ -822,8 +822,8 @@
 
                 <asp:View ID="viewconsummary" runat="server">
                             
- 
-                <asp:GridView ID="gvconsummary" runat="server" AutoGenerateColumns="False" 
+ <div class="table-responsibe">
+     <asp:GridView ID="gvconsummary" runat="server" AutoGenerateColumns="False" 
                                 ShowFooter="True" AllowPaging="false" CssClass="table-striped  table-bordered grvContentarea" OnRowDataBound="gvconsummary_RowDataBound">
                                 <RowStyle />
                                 <Columns>
@@ -1016,6 +1016,8 @@
                                 <PagerStyle CssClass="gvPagination" />
                                
                             </asp:GridView>
+                    </div>
+                
                           
                 </asp:View>
 

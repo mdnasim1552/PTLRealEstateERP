@@ -67,7 +67,14 @@ namespace RealERPWEB.F_09_PImp
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
@@ -840,7 +847,12 @@ namespace RealERPWEB.F_09_PImp
                 case "3337":
                     this.grvissue.Columns[1].Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "Opening" || this.Request.QueryString["Type"].ToString().Trim() == "Edit" || this.Request.QueryString["Type"].ToString().Trim() == "Current")) && (this.lblBillno.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
                     ((LinkButton)this.grvissue.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit" && this.lblBillno.Text.Trim() == "00000000000000");
-                    ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (this.lblBillno.Text.Trim() == "00000000000000" || this.lblBillno.Text.Trim() == "");
+                    
+                  //  ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (this.lblBillno.Text.Trim() == "00000000000000" || this.lblBillno.Text.Trim() == "");
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblBillno.Text.Trim() == "00000000000000" || this.lblBillno.Text.Trim() == "");
+
+                  
+
 
                     for (int i = 0; i < this.grvissue.Rows.Count; i++)
                         ((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Enabled = false;
@@ -850,7 +862,7 @@ namespace RealERPWEB.F_09_PImp
                 default:
                     this.grvissue.Columns[1].Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "Opening" || this.Request.QueryString["Type"].ToString().Trim() == "Edit" || this.Request.QueryString["Type"].ToString().Trim() == "Current")) && (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
                     ((LinkButton)this.grvissue.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit" && this.lblBillno.Text.Trim() == "00000000000000");
-                    ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
 
                     break;
             }
@@ -1962,6 +1974,44 @@ namespace RealERPWEB.F_09_PImp
 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
+        }
+        protected void lbtnDelItem_Click(object sender, EventArgs e)
+        {
+            int gvrowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvrowindex;
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblmatissue"];
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string Labcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+            string Flrcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblgvflrCode")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "DELETELAB_REQUISITION_ITEM", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblmatissue");
+            ViewState["tblmatissue"] = dv.ToTable();
+            this.grvissue_DataBind();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Labour Requistion Information";
+                string eventdesc = "Delete Requsition Item";
+                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "REQ No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
+                        ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
         }
     }
 }

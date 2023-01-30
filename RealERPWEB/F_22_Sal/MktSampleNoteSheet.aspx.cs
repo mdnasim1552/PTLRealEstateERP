@@ -944,8 +944,8 @@ namespace RealERPWEB.F_22_Sal
 
 
                 DateTime coffbookingdate, benddate, finalinsdate;
-                double usize, bfv, bpv, pamt, utility, others, intratio, noofemi, bfvpsft, bpowbpart, bpvpsft,
-                    cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi;
+                double brate, usize, bfv, bpv, pamt, utility, others, intratio, noofemi, bfvpsft, bpowbpart, bpvpsft, coffurate,
+                    cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi, disoexcesspsft, disoexamt; 
 
 
                 //uzize =
@@ -1039,6 +1039,15 @@ namespace RealERPWEB.F_22_Sal
                 this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
                 this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
 
+
+                brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
+                coffurate= Convert.ToDouble("0" + this.txtcoffrate.Text.ToString());
+                disoexcesspsft = brate - coffurate;
+                disoexamt = disoexcesspsft * usize;
+                this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
+                this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
+
+
             }
 
 
@@ -1065,7 +1074,7 @@ namespace RealERPWEB.F_22_Sal
                 DateTime coffbookingdate, finalinsdate, benddate;
                 int noofemi, badins = 0;
 
-                double intratio, usize, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam;
+                double brate, intratio, usize, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam, disoexcesspsft, disoexamt; 
 
 
                 usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
@@ -1142,9 +1151,22 @@ namespace RealERPWEB.F_22_Sal
                 double baseFVsft = Convert.ToDouble(lblvalfvpsft.InnerText == "" ? "0.00" : lblvalfvpsft.InnerText);
                 double basePVsft = Convert.ToDouble(lblvalpvpersft.InnerText == "" ? "0.00" : lblvalpvpersft.InnerText);
 
+                brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());               
+                disoexcesspsft = brate - coffurate;
+                disoexamt = disoexcesspsft * usize;
+                this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
+                this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
+
+
+
 
                 lblDiffFV.InnerText = (cofffvpsft - baseFVsft).ToString("#,##0.00;-#,##0.00; ");
                 lblDiffPV.InnerText = (coffpvpsft - basePVsft).ToString("#,##0.00;-#,##0.00; ");
+
+
+
+
+
 
 
 
@@ -1813,7 +1835,8 @@ namespace RealERPWEB.F_22_Sal
 
             int bcasenofemi, noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
-            double uzize, bfv, bpv, pamt, utility, others, bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, upsftwiopuaoth;
+            double brate, uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffurate, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, 
+                coffpv, upsftwiopuaoth, disoexcesspsft, disoexamt;
 
 
             usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
@@ -1890,6 +1913,15 @@ namespace RealERPWEB.F_22_Sal
             newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
             this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
 
+
+
+         
+            brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
+           coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text.ToString());
+            disoexcesspsft = brate - coffurate;
+            disoexamt = disoexcesspsft * usize;
+            this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
+            this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
 
 
             //cofffv = bfvpsft * usize + (coffpamt + coffutility + coffothers);

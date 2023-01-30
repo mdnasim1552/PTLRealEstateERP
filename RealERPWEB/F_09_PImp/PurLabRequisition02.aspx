@@ -148,7 +148,7 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:Label ID="lblCurNo1" runat="server" Text="Req No:"></asp:Label>
+                                <asp:Label ID="lblCurNo1" runat="server" Text="Req No"></asp:Label>
                                 <asp:Label ID="lblCurISSNo1" runat="server" CssClass="form-control form-control-sm" Text="LRQ00-"></asp:Label>
                             </div>
 
@@ -162,7 +162,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
 
-                                <asp:Label ID="Label7" runat="server" Text="Ref No:"></asp:Label>
+                                <asp:Label ID="Label7" runat="server" Text="Ref No"></asp:Label>
 
                                 <asp:TextBox ID="txtRefno" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
@@ -180,7 +180,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" Text="Page"></asp:Label>
 
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" Style="margin-left: 6px;" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm " OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
                                     <asp:ListItem Value="15">15</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
                                     <asp:ListItem Value="30">30</asp:ListItem>
@@ -200,7 +200,9 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnPrevISSList" runat="server" OnClick="lbtnPrevISSList_Click">Prev. List:</asp:LinkButton>
+                                <asp:Label ID="lbtnPrevISSList" runat="server">Prev. List</asp:Label>
+
+                               
                                 <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnPreBillList" runat="server" OnClick="ibtnPreBillList_Click"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="chzn-select form-control  form-control-sm"></asp:DropDownList>

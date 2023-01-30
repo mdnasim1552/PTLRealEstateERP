@@ -6,6 +6,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style>
+         .chzn-drop {
+            width: 100% !important;
+        }
+
+        .chzn-container {
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+
+    </style>
     <script type="text/javascript">
 
 
@@ -78,9 +93,9 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card mt-3">
-                <div class="card-header pt-2 pb-2 ">
+                <div class="card-header  pt-2 pb-2">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control-sm form-control" AutoCompleteType="Disabled"></asp:TextBox>
@@ -88,7 +103,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="Label8" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled"
@@ -97,7 +112,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-2" ID="prjname" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-6" ID="prjname" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Project Name
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click"><span class="fas fa-search"> </span></asp:LinkButton>
@@ -107,10 +122,10 @@
                         </div>
 
 
-                        <div class="col-md-2">
+                        <div class="col-lg-2 col-md-2 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblAmount0" runat="server" Text="Amount:" CssClass="  lblTxt lblName"></asp:Label>
-                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="form-control form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
+                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="form-control chzn-select form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                     <asp:ListItem Value="=">Equal</asp:ListItem>
                                     <asp:ListItem Value="&lt;">Less Then</asp:ListItem>
@@ -121,30 +136,28 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1 col-md-1 col-sm-6" >
                             <div class="form-group">
-                                <asp:Label ID="lbl1" runat="server">Balance</asp:Label>
+                                <asp:Label ID="lbl1" runat="server" CssClass=" smLbl_to blName lblTxt">Balance</asp:Label>
                                 <asp:TextBox ID="txtAmountC1" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
 
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblToCash" runat="server" CssClass=" smLbl_to blName lblTxt" Text="To:" Visible="false"></asp:Label>
 
                                 <asp:TextBox ID="txtAmountC2" runat="server" Visible="false" CssClass="form-control-sm  form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-2 mt-4">
+                        <div class="col-lg-1 col-md-1 col-sm-6 mt-3">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
+                         <div class="col-lg-1 col-md-1 col-sm-6">
+                              <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to " Text="Size :"></asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" CssClass="form-control form-control-sm  chzn-select "  runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
@@ -166,14 +179,28 @@
                                     <asp:ListItem>8000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                        </div>
-                        <div class="col-md-2 mt-3">
+                         </div>
+                          <div class="col-lg-2 col-md-2 col-sm-6" runat="server" ID="salestatus">
                             <div class="form-group">
-                                <asp:CheckBox ID="chkPayDateWise" runat="server" TabIndex="10" Visible="false" Text="Pay Date Wise" CssClass="btn btn-primary checkBox" />
-
+                                <asp:Label ID="Label1" runat="server" Text="Sales Status" CssClass="  lblTxt lblName"></asp:Label>
+                                <asp:DropDownList ID="ddlsalestatus" runat="server" CssClass="form-control chzn-select form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
+                                    
+                                    <asp:ListItem Value="0">Current Sales</asp:ListItem>
+                                    <asp:ListItem Value="1">Previous Sales</asp:ListItem>
+                                    <asp:ListItem Value="2" Selected="True">Total</asp:ListItem>
+                                   
+                                </asp:DropDownList>
                             </div>
                         </div>
+                         <div class="col-md-2 col-sm-6 mt-4 d-none"  runat="server" ID="Paydate">
+                             <div class="form-group">
+                                <asp:CheckBox ID="chkPayDateWise" runat="server" TabIndex="10"  Text="Pay Date Wise" CssClass="btn btn-primary btn-sm checkBox" />
+
+                            </div>
+                         </div>
+                       
                     </div>
+                 
 
                 </div>
                 <div class="card-body">
@@ -1837,6 +1864,13 @@
                                                     Width="140px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Customer Name" >
+                                             <ItemTemplate>
+                                                <asp:Label ID="lgacustname" runat="server" CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "salestatus")) =="Current" ? "text-primary":"text-danger " %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
+                                                    Width="140px"></asp:Label>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Value">
                                             <FooterTemplate>

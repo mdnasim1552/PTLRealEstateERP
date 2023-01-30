@@ -406,9 +406,9 @@ namespace RealERPWEB.F_01_LPA
             string ddlempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
             string date = this.txtdate.Text.Trim();
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETNOTIFICATIONNUMBER", "8305%", Empid, ddlempid, date, "");
-
             if (ds1 == null)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
             DataTable dt = ds1.Tables[0];
@@ -6508,7 +6508,11 @@ namespace RealERPWEB.F_01_LPA
             string date = this.txtdate.Text.Trim();
             string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETNOTIFICATIONDETAILS", "8305%", empid, rtype, date, fempid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
 
             if (ds1.Tables[0].Rows.Count != 0)
             {

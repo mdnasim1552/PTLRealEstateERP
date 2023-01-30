@@ -44,6 +44,7 @@
         });
 
         function pageLoaded() {
+            $('.chzn-select').chosen({ search_contains: true });
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
@@ -76,7 +77,7 @@
                 });
             });
 
-            $('.chzn-select').chosen({ search_contains: true });
+          
 
 
         }
@@ -114,7 +115,7 @@
             <div class="card card-fluid mb-1 mt-2">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="lblProjectList" runat="server" Text="Project Name"></asp:Label>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
@@ -146,7 +147,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-0" style="margin-top: 22px;">
+                        <div class="col-md-1" style="margin-top: 22px;">
                             <div class="form-group">
                                 <asp:TextBox ID="txtCurISSNo2" runat="server" CssClass="form-control form-control-sm" TabIndex="3">000</asp:TextBox>
 
@@ -176,7 +177,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-0" style="margin-top: 22px;">
+                        <div class="col-md-1" style="margin-top: 22px;">
 
 
                             <div class="form-group">
@@ -203,9 +204,10 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnPrevISSList" runat="server">Prev. List:</asp:LinkButton>
+                                <asp:Label ID="lbtnPrevISSList" runat="server" >Prev. List:</asp:Label>
+
                                 <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnPreBillList" runat="server" OnClick="ibtnPreBillList_Click" TabIndex="2"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="chzn-select form-control  form-control-sm" TabIndex="3"></asp:DropDownList>
@@ -303,7 +305,7 @@
                     <div class="card-body">
                         <div class="row">
                             <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
-                                CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                CssClass=" table-striped  table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20" OnRowDataBound="grvissue_RowDataBound"
                                 OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
                                 <RowStyle />
@@ -315,7 +317,16 @@
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:CommandField ShowDeleteButton="True" />
+                                   <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+
+                                    <asp:LinkButton ID="lbtnDelItem" OnClick="lbtnDelItem_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
+
+
+                                </ItemTemplate>
+                                <ItemStyle Width="30px" HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+                            </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item Code" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemcode" runat="server"
@@ -359,9 +370,8 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Unit">
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True" Font-Size="14px"
-                                                ForeColor="#000" OnClick="lnkTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                          <FooterTemplate>
+                                            <asp:Label ID="lblgvTotal" runat="server" Font-Bold="True">Total</asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label14" runat="server"
@@ -478,9 +488,7 @@
 
 
                                     <asp:TemplateField HeaderText="Qty">
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
-                                        </FooterTemplate>
+                                       
 
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtisuqty" runat="server" Font-Size="11px"
@@ -527,7 +535,7 @@
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                                Width="70px" Font-Size="12px" ></asp:Label>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
@@ -548,7 +556,7 @@
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lblFissueamt" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                                Width="70px" Font-Size="12px" ></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtissueamt" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -561,11 +569,12 @@
 
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                 <FooterStyle CssClass="grvFooterNew" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                 <RowStyle CssClass="grvRowsNew" />
+                                <PagerStyle CssClass="" />
+                                 <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
                         </div>
                     </div>
