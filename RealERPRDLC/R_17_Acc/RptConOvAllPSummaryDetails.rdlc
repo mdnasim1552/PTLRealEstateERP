@@ -1166,7 +1166,7 @@ Amount</Value>
             <Top>0.03472in</Top>
             <Left>0.01042in</Left>
             <Height>0.5521in</Height>
-            <Width>10.97097in</Width>
+            <Width>10.97096in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1602,7 +1602,7 @@ Amount</Value>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.1in</LeftMargin>
+        <LeftMargin>0.4in</LeftMargin>
         <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>

@@ -53,7 +53,7 @@
                         <div class="col-md-0" style="margin-top: 20px;">
                             <asp:LinkButton ID="ImgbtnFindItem" CssClass="btn btn-sm btn-primary" runat="server" OnClick="ImgbtnFindItem_Click"><span class="fa fa-search"> </span></asp:LinkButton>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <asp:Label ID="lblItem" runat="server" Font-Size="11px" CssClass="form-label">Description of Items</asp:Label>
                             <asp:DropDownList ID="ddlItem" runat="server" CssClass="chzn-select form-control form-control-sm">
                             </asp:DropDownList>
@@ -88,8 +88,9 @@
                     </div>
                 </div>
                 
-                <div class="card-body">
+              
                     <asp:Panel ID="PnlAnalysis" runat="server" Visible="False">
+                          <div class="card-body">
                         <div class="row">
                             <div class="col-md-1" style="margin-top: 20px;">
                                 <asp:TextBox ID="txtResSearch" AutoCompleteType="Disabled" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
@@ -97,7 +98,7 @@
                             <div class="col-md-0" style="margin-top: 20px;">
                                 <asp:LinkButton ID="ImgbtnFindResource" CssClass="btn btn-sm btn-primary" runat="server" OnClick="ImgbtnFindResource_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <asp:Label ID="Label2" runat="server" Font-Size="11px" CssClass="form-label">Desc of Resources</asp:Label>
                                 <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResource_SelectedIndexChanged">
                                 </asp:DropDownList>
@@ -161,6 +162,8 @@
                                 <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-sm btn-danger" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
                             </div>
                         </div>
+                               </div>
+                        <div class="card-body">
                         <div class="row mt-4">
                             <asp:GridView ID="gvAnalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 Width="16px" OnRowDeleting="gvAnalysis_RowDeleting" HeaderStyle-CssClass="HeaderStyle" ShowFooter="true">
@@ -641,8 +644,9 @@
                                     OnClick="lbtnCopyData_Click">Copy Data</asp:LinkButton>
                             </div>
                         </div>
+                             </div>
                     </asp:Panel>
-            </div>
+           
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

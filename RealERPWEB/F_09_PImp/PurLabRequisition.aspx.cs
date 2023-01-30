@@ -482,7 +482,7 @@ namespace RealERPWEB.F_09_PImp
 
                 this.lbtnPrevISSList.Visible = true;
                 this.ddlPrevISSList.Visible = true;
-                this.txtSrcPreBill.Visible = true;
+               
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
@@ -511,7 +511,7 @@ namespace RealERPWEB.F_09_PImp
 
             this.lbtnPrevISSList.Visible = false;
             this.ddlPrevISSList.Visible = false;
-            this.txtSrcPreBill.Visible = false;
+          
             this.ibtnPreBillList.Visible = false;
 
             this.PnlRes.Visible = true;
