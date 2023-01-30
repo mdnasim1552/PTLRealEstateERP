@@ -33,11 +33,7 @@
         }
     </style>
 
-    <script language="javascript" type="text/javascript">
-
-
-
-
+    <script type="text/javascript">
 
 
 
@@ -715,7 +711,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
 
-                                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
+                                                        <asp:TextBox ID="txtInterestRateBase" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1241,12 +1237,41 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="Label4" runat="server">Difference in FV</label>
+                                                    </div>
 
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+                                                        <label id="lblDiffFV" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="Label8" runat="server">Difference in PV</label>
+                                                    </div>
 
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+
+                                                        <label id="lblDiffPV" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row" style="margin-top: 10px;">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="lbtnGoalSeekRate" runat="server" CssClass=" form-control form-control-sm  btn  btn-info" OnClick="lbtnGoalSeekRate_Click">Goal Seek</asp:LinkButton>
+                                                    </div>
+                                                </div>
 
-
-                                                <div class="col-md-4 offset-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn  btn-warning" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
                                                     </div>
@@ -1591,10 +1616,61 @@
                 </asp:View>
             </asp:MultiView>
 
+            <div id="modalGoalSeek" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block;">
+
+                            <button type="button" class="close btn btn-xs bg-danger" data-dismiss="modal">
+                                <span class="fa fa-close"></span>
+
+                            </button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-sm fa-table pr-2" runat="server" id="txtheader">Goal Seek For Rate</span></h4>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+
+                                <div class="form-group" runat="server">
+                                    <asp:Label ID="lblId" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbltype" class="col-md-4">Target Difference in PV Value</asp:Label>
+                                    <div class="col-md-12">
+                                        <asp:TextBox ID="txtTargetDifference" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkGoalSeekExecute" runat="server" CssClass="btn btn-sm btn-success"
+                                OnClientClick="CloseGoalSeek();" OnClick="lnkGoalSeekExecute_Click"><span class="glyphicon glyphicon-save"></span>Execute</asp:LinkButton>
+
+
+                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function loadGoalSeek() {
+                    $('#modalGoalSeek').modal('toggle', {
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+                function CloseGoalSeek() {
+                    $('#modalGoalSeek').modal('hide');
+                }
+            </script>
+
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
 </asp:Content>
+
 
 
 
