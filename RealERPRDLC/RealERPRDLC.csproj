@@ -163,6 +163,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+EClassRptIssueVsPaymentSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAdvancedAgainstLoan.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptDuesReportAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
@@ -841,8 +842,10 @@
     <EmbeddedResource Include="R_17_Acc\RptSalPerWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptShareQty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAdvancedAgainstLoan.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummary.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummary.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummarydemo.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummaryDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummaryDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedger02Intech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedgerIntect.rdlc" />
