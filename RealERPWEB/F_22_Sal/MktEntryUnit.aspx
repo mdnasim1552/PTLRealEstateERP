@@ -31,7 +31,11 @@
 
     <style>
         #ContentPlaceHolder1_ddlProjectName_chzn {
-            width:289 px!important;
+            width: 289 px !important;
+        }
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
         }
     </style>
 
@@ -60,29 +64,29 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="lblPrjName" runat="server" CssClass="control-label" Text=""></asp:Label>
-                                <asp:LinkButton ID="ibtnFindProject" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2">Project Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:Label ID="lblPrjName" runat="server" CssClass="control-label" Text="Project Name "></asp:Label>
+                                <asp:LinkButton ID="ibtnFindProject" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" style="width:290px;" TabIndex="3">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" Style="width: 290px;" TabIndex="3">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblProjectdesc" runat="server" Visible="false" CssClass="form-control form-control-sm"></asp:Label>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-lg-2">
                             <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" CssClass="control-label" Text=""></asp:Label>
-                                <asp:LinkButton ID="btnType" CssClass="srearchBtn" OnClick="btnType_Click" runat="server" TabIndex="2">Type Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:Label ID="Label1" runat="server" CssClass="control-label" Text="Type Name "></asp:Label>
+                                <asp:LinkButton ID="btnType" CssClass="srearchBtn" OnClick="btnType_Click" runat="server" TabIndex="2">&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtType" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
-                                <asp:DropDownList ID="ddlUnitType" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:185px;" AutoPostBack="true" TabIndex="4" OnSelectedIndexChanged="ddlUnitType_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlUnitType" runat="server" CssClass="form-control form-control-sm chzn-select" Style="width: 185px;" AutoPostBack="true" TabIndex="4" OnSelectedIndexChanged="ddlUnitType_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 col-lg-2">
                             <div class="form-group">
-                                <asp:Label ID="lblMaterials" runat="server" CssClass="lblTxt lblName" Text=""></asp:Label>
+                                <asp:Label ID="lblMaterials" runat="server" CssClass="lblTxt lblName" Text="Group Name"></asp:Label>
                                 <asp:TextBox ID="txtSrcMat" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnGroup" CssClass="srearchBtn" runat="server" OnClick="ibtnGroup_Click" TabIndex="2">Group Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
-                                <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control form-control-sm  chzn-select" style="width:185px;" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
+                                <asp:LinkButton ID="ibtnGroup" CssClass="srearchBtn" runat="server" OnClick="ibtnGroup_Click" TabIndex="2">&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control form-control-sm  chzn-select" Style="width: 185px;" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -91,15 +95,15 @@
                                 <asp:Label ID="Label2" runat="server" CssClass="control-label" Text="Category Name"></asp:Label>
                                 <asp:TextBox ID="txtsrchfloor" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnFloor" CssClass="srearchBtn" runat="server" OnClick="ibtnFloor_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                <asp:DropDownList ID="ddlFloor" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:180px;" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="6" AutoPostBack="true">
+                                <asp:DropDownList ID="ddlFloor" runat="server" CssClass="form-control form-control-sm chzn-select" Style="width: 180px;" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="6" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-1 col-sm-1 col-lg-1">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
-                                    BackColor="#CCFFCC" Font-Bold="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm custom-select"
+                                    Font-Bold="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                                     Width="70px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
                                     <asp:ListItem Value="15">15</asp:ListItem>
@@ -110,11 +114,10 @@
                                     <asp:ListItem Value="150">150</asp:ListItem>
                                     <asp:ListItem Value="200">200</asp:ListItem>
                                     <asp:ListItem Value="300">300</asp:ListItem>
-                                    <asp:ListItem Value="400">400</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top:20px;">
+                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
                             <div class="form-group">
                                 <asp:CheckBox ID="chkAllSInf" runat="server" AutoPostBack="True"
                                     Font-Bold="True"
@@ -125,7 +128,7 @@
                                 <asp:LinkButton ID="ibtnTotal" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnTotal_Click" TabIndex="2" Style="display: none;"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top:20px;">
+                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
                             <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
                         </div>
@@ -135,9 +138,9 @@
             <asp:Panel ID="PanelGroup" runat="server" Visible="False">
             </asp:Panel>
             <div class="card card-fluid">
-                <div class="card-body" style="min-height:400px;">
-                    <div class=" row table-responsive">
-                        <asp:GridView ID="gvUnit" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                <div class="card-body" style="min-height: 400px;">
+                    <div class=" row table-responsive" style="overflow-x: scroll ;">
+                        <asp:GridView ID="gvUnit" runat="server" AllowPaging="True" CssClass="table-striped  table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging="gvUnit_PageIndexChanging"
                             OnRowDataBound="gvUnit_RowDataBound" OnRowDeleting="gvUnit_RowDeleting"
                             ShowFooter="True">
@@ -151,12 +154,12 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                 <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
+                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
 
                                 <asp:TemplateField HeaderText="Code">
-                                    <FooterTemplate>
+                                    <%--<FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" OnClick="lbtnTotal_Click" CssClass="btn btn-primary checkBox">Total</asp:LinkButton>
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvItmCod" runat="server" Font-Size="11px" Height="16px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usircode")) %>'
@@ -176,9 +179,9 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Item">
-                                    <FooterTemplate>
+                                    <%--<FooterTemplate>
                                         <asp:LinkButton ID="lFinalUpdate" runat="server" OnClick="lFinalUpdate_Click" CssClass="btn  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtItemdesc" runat="server" AutoCompleteType="Disabled"
                                             BackColor="Transparent" BorderStyle="None" Font-Size="11px"
@@ -189,6 +192,9 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Unit ">
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvTotal" runat="server" CssClass="grvFooterTotal">Total</asp:Label>
+                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgUnitnum" runat="server" AutoCompleteType="Disabled"
                                             BackColor="Transparent" BorderStyle="None" Font-Size="11px"
@@ -205,8 +211,8 @@
                                             Width="50px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lFUsize" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lFUsize" runat="server" 
+                                          Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -214,7 +220,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtgvRate" runat="server" BackColor="Transparent"
+                                        <asp:TextBox ID="txtgvRate" runat="server" 
                                             BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "urate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="60px"></asp:TextBox>
@@ -230,8 +236,8 @@
                                             Width="70px" BorderStyle="None"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvFAmt" runat="server"  Font-Size="11px"
+                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -246,8 +252,8 @@
                                             Width="50px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvPAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvPAmt" runat="server" Font-Bold="True" Font-Size="11px"
+                                           Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -263,8 +269,8 @@
                                             Width="50px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvPUtility" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvPUtility" runat="server" Font-Bold="True" Font-Size="11px"
+                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -279,8 +285,8 @@
                                             Width="60px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvPCooprative" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvPCooprative" runat="server" Font-Bold="True" Font-Size="11px"
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -296,8 +302,8 @@
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvTAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvTAmt" runat="server" Font-Bold="True" Font-Size="11px"
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -312,8 +318,8 @@
                                             Width="50px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvfAptqty" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvfAptqty" runat="server" Font-Bold="True" Font-Size="11px"
+                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -331,8 +337,8 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvfParkingqty" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvfParkingqty" runat="server" Font-Bold="True" Font-Size="11px"
+                                         Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Parking Number">
@@ -471,11 +477,11 @@
 
 
                             </Columns>
-                            <FooterStyle CssClass="grvFooter" />
-                            <EditRowStyle />
+                            <FooterStyle CssClass="grvFooterNew" />
+                            <EditRowStyle  CssClass="grvRowsNew" />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
                 </div>

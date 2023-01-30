@@ -78,6 +78,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "CustApp":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -87,6 +88,7 @@ namespace RealERPWEB.F_22_Sal
                     this.lbtnOk.Visible = false;
                     break;
                 case "CustNoteSheet":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -98,6 +100,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "PaymentSchedule":
                 case "LO":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -110,10 +113,12 @@ namespace RealERPWEB.F_22_Sal
                 case "DueCollAll":
                     this.MultiView1.ActiveViewIndex = 2;
                     this.chkInvoicePrint.Visible = true;
+                    this.divCust.Visible = false;
                     this.lblCustName.Visible = false;
                     this.txtSrcCustomer.Visible = false;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     break;
