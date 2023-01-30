@@ -50,6 +50,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                         Response.Redirect("~/AcceessError.aspx");
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
+                    this.Master.Page.Title = "APPLY LEAVE (MGT)";
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
                     getVisibilty();
@@ -64,6 +65,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                         Response.Redirect("~/AcceessError.aspx");
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (COMMON)";
+                    this.Master.Page.Title = "APPLY LEAVE (COMMON)";
 
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
@@ -73,6 +75,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 else
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE";
+                    this.Master.Page.Title = "APPLY LEAVE";
+
                     CreateTable();
                     GetLeavType();
                     GetSupvisorCheck();
