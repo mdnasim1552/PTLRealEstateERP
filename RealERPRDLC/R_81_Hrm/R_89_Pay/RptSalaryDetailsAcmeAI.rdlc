@@ -2713,7 +2713,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!wld.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!wld.Value,"#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
