@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -163,6 +163,8 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+EClassRptIssueVsPaymentSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAdvancedAgainstLoan.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptDuesReportAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
@@ -841,8 +843,10 @@
     <EmbeddedResource Include="R_17_Acc\RptSalPerWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptShareQty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAdvancedAgainstLoan.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummary.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummary.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummarydemo.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummaryDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummaryDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedger02Intech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedgerIntect.rdlc" />
