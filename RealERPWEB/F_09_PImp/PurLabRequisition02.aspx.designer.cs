@@ -183,7 +183,7 @@ namespace RealERPWEB.F_09_PImp
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPrevISSList;
+        protected global::System.Web.UI.WebControls.Label lbtnPrevISSList;
 
         /// <summary>
         /// txtSrcPreBill control.
