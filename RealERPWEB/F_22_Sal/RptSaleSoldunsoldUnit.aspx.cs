@@ -116,7 +116,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.lbltodate.Visible = true;
                     this.txttodate.Visible = true;
-                    this.Label15.Text = "From: ";
+                    //this.Label15.Text = "From: ";
                     //this.Label15.Visible = false;
                     //this.txtDate.Visible = false;
                     //this.lblGroup.Visible = false;

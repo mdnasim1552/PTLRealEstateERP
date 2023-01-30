@@ -580,6 +580,43 @@
                   <WritingMode>Vertical</WritingMode>
                 </Style>
               </Textbox>
+              <Textbox Name="Textbox47">
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="  " + Parameters!amtWord1.Value</Value>
+                        <Style>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>=iif(Len(Trim(Parameters!amtWord.Value)) &gt; 50, "7pt", "8pt")</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox16</rd:DefaultName>
+                <Top>0.46206in</Top>
+                <Left>0.56058in</Left>
+                <Height>1.66294in</Height>
+                <Width>0.46107in</Width>
+                <ZIndex>4</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <VerticalAlign>Top</VerticalAlign>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                  <WritingMode>Vertical</WritingMode>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.26741in</Top>

@@ -348,7 +348,7 @@ namespace RealERPWEB.F_24_CC
                 return;
 
             Session["tbladwork"] = ds1.Tables[0];
-            Session["tbltaddwork"] = ds1.Tables[3];
+          //  Session["tbltaddwork"] = ds1.Tables[3];
 
             if (mAdNo == "NEWAD")
             {
@@ -524,9 +524,14 @@ namespace RealERPWEB.F_24_CC
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
           
             DataTable dt = (DataTable)Session["tbladwork"];
-            DataTable dt1 = (DataTable)Session["tbltaddwork"];
-            string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
-            double tnet = Convert.ToDouble(dt1.Rows[0]["tnetamt"]);
+            //DataTable dt1 = (DataTable)Session["tbltaddwork"];
+
+
+
+            double tnet = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netamt)", "")) ? 0.00 :
+                 dt.Compute("sum(netamt)", "")));
+            //string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+            
           
 
             string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
