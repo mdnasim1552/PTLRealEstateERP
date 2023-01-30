@@ -34,8 +34,6 @@ namespace RealERPWEB.F_22_Sal
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Client Data File";
 
-                string type = this.Request.QueryString["Type"].ToString().Trim();
-
                 this.GetProjectName();
                 this.GetEnvType();
             }
@@ -103,7 +101,13 @@ namespace RealERPWEB.F_22_Sal
             Session.Remove("tblconsddetails");
             string comcod = this.GetCompCode();
             string PactCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "CLIENTINFODETAILS", PactCode, "", "", "", "", "", "", "", "");
+            string type = "";
+            if (this.Request.QueryString["Type"] != null)
+            {
+                type = this.Request.QueryString["Type"].ToString().Trim();
+            }
+            
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "CLIENTINFODETAILS", PactCode, type, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblfiledetails"] = HiddenSameData(ds1.Tables[0]);
