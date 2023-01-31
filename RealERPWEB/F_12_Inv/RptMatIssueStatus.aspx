@@ -273,6 +273,10 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Qty">
+                                 <FooterTemplate>
+                                                    <asp:Label ID="lblissueqty" runat="server"  Width="80px" Font-Bold="True" Font-Size="12px"
+                                                         Style="text-align: right" >Total</asp:Label>
+                                         </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lgvBgdQty" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
@@ -301,6 +305,10 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Issue Amount" Visible="false">
+                                 <FooterTemplate>
+                                                    <asp:Label ID="lblIssueAmount" runat="server"  Width="90px" Font-Bold="True" Font-Size="12px"
+                                                         Style="text-align: right" ></asp:Label>
+                                         </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lgvBgdamt" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt")).ToString("#,##0.0000;(#,##0.0000); ") %>'
