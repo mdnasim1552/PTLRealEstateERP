@@ -1005,50 +1005,85 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtinterestrate;
 
         /// <summary>
-
-        /// lbldisorexcesspsft control.
-
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
 
+        /// <summary>
+        /// lblDiffFV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDiffFV;
+
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label8;
+
+        /// <summary>
+        /// lbldisorexcesspsft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldisorexcesspsft;
 
         /// <summary>
         /// lblvaldisorexcesspsft control.
-
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaldisorexcesspsft;
 
         /// <summary>
         /// lbltodisorexcessamt control.
-
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltodisorexcessamt;
 
         /// <summary>
         /// lblvaltodisorexcessamt control.
-
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaltodisorexcessamt;
 
+        /// <summary>
+        /// lblDiffPV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDiffPV;
+
+        /// <summary>
+        /// lbtnGoalSeekRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnGoalSeekRate;
 
         /// <summary>
         /// lbtnCalCulation control.
