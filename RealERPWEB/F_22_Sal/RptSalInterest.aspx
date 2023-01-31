@@ -36,6 +36,9 @@
         .mt20 {
             margin-top: 20px;
         }
+        .mt22 {
+            margin-top: 22px;
+        }
      .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
@@ -106,10 +109,14 @@
                             </div>
                         </div>
                        
-                        <div class="col-md-3">
-                            <div class="form-group mt20">
-                                <asp:CheckBox ID="chkInvoicePrint" runat="server" CssClass="smLbl_to " Text="Invoice Print" Visible="False" />
-                                <asp:CheckBox ID="chkPayment" runat="server" CssClass="smLbl_to " Text="Payment" Visible="False" />
+                        <div class="col-md-2" id="divchkInvoicePrint"  Visible="False" runat="server">
+                            <div class="form-group mt22">
+                                <asp:CheckBox ID="chkInvoicePrint" runat="server" CssClass="smLbl_to " Text="&nbsp; Invoice Print" Visible="False" />                                
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="divchkPayment"  Visible="False" runat="server">
+                            <div class="form-group mt22">
+                                <asp:CheckBox ID="chkPayment" runat="server" CssClass="smLbl_to " Text="&nbsp; Payment" Visible="False" />
                                 <asp:Label ID="lmsg" runat="server" CssClass="btn-danger btn disabled" Visible="false"></asp:Label>
                             </div>
                         </div>
@@ -147,21 +154,17 @@
                     <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewInterest" runat="server">
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <asp:Label ID="lblDelayCharge" runat="server" CssClass="lblTxt lblName" Text="Delay Charge:" Visible="False"></asp:Label>
-
                                     </div>
-
-
-                                    <div class="clearfix"></div>
                                 </div>
 
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvInterest" runat="server" AllowPaging="false"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
                                         CssClass="table table-striped table-bordered grvContentarea">
-                                        <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
+                                        <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="bottom"
                                             Mode="NumericFirstLast" />
 
                                         <Columns>
@@ -176,7 +179,7 @@
 
                                             <asp:TemplateField HeaderText="Schedule Desc">
                                                 <HeaderTemplate>
-                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Schedule Desc" Width="80px"></asp:Label>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Schedule Desc" Width="100px"></asp:Label>
                                                     <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" far fa-file-excel "></i>
                                                     </asp:HyperLink>
                                                 </HeaderTemplate>
@@ -368,16 +371,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="row">
                                         <asp:Label ID="lblchqnotyetCleared" runat="server" CssClass="lblTxt lblName" Text="Cheque not yet Cleared:" Visible="False"></asp:Label>
-
                                     </div>
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                    </div>
-                                    <div class="clearfix"></div>
                                 </div>
 
                                 <div class="table-responsive">
@@ -719,7 +715,7 @@
 
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvDueCollAll" runat="server" AllowPaging="True"
-                                        AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
+                                        AutoGenerateColumns="False" PageSize="15" ShowFooter="true" OnPageIndexChanging="gvDueCollAll_PageIndexChanging"
                                         CssClass="table table-striped table-bordered grvContentarea">
                                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="bottom"
                                             Mode="NumericFirstLast" />
