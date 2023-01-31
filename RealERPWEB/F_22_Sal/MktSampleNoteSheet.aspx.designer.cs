@@ -1005,65 +1005,75 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtinterestrate;
 
         /// <summary>
-<<<<<<< HEAD
         /// Label4 control.
-=======
-        /// lbldisorexcesspsft control.
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
 
         /// <summary>
         /// lblDiffFV control.
-=======
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldisorexcesspsft;
-
-        /// <summary>
-        /// lblvaldisorexcesspsft control.
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDiffFV;
 
         /// <summary>
         /// Label8 control.
-=======
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label8;
+
+        /// <summary>
+        /// lbldisorexcesspsft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldisorexcesspsft;
+
+        /// <summary>
+        /// lblvaldisorexcesspsft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaldisorexcesspsft;
 
         /// <summary>
         /// lbltodisorexcessamt control.
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label8;
-
-        /// <summary>
-        /// lblDiffPV control.
-=======
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltodisorexcessamt;
 
         /// <summary>
         /// lblvaltodisorexcessamt control.
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaltodisorexcessamt;
+
+        /// <summary>
+        /// lblDiffPV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDiffPV;
 
         /// <summary>
@@ -1074,9 +1084,6 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnGoalSeekRate;
-=======
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaltodisorexcessamt;
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
 
         /// <summary>
         /// lbtnCalCulation control.

@@ -1243,7 +1243,7 @@
                                                         <label id="Label4" runat="server">Difference in FV</label>
                                                     </div>
 
-<<<<<<< HEAD
+
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
@@ -1256,7 +1256,7 @@
                                                     <div class="form-group lblmargin">
                                                         <label id="Label8" runat="server">Difference in PV</label>
                                                     </div>
-=======
+
                                             
                                             <div class="row"  style="background-color:#346cb0;color:white;font-weight:bold; margin-top:5px">
                                                 <div class="col-md-8">
@@ -1291,7 +1291,7 @@
                                             </div>
 
 
->>>>>>> c6e921ae6d71d981d85f427cd7f22aeb3111b826
+
 
                                                 </div>
                                                 <div class="col-md-4">
