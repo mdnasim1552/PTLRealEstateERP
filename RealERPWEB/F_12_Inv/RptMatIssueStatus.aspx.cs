@@ -236,7 +236,17 @@ namespace RealERPWEB.F_12_Inv
 
             if(this.Request.QueryString["Type"] == "AmountBasis")
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+                switch (comcod)
+                {
+                    case "3370":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusCPDL", lst, null, null);
+
+                        break;
+                    default:
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+                        break;
+                }
+               
             }
             else
             {

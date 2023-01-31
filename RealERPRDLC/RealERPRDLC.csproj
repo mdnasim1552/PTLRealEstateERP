@@ -305,6 +305,7 @@
     <EmbeddedResource Include="R_12_Inv\RptMaterialStock.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMaterialStockEva.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferCPDL.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMatIssueStatusCPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMatIssueStatusQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2CPDL.rdlc" />
