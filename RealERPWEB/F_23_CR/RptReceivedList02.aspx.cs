@@ -108,6 +108,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "yCollectionfc":
                     this.prjname.Attributes.Add("class", "d-none col-md-2");
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
                     this.lblProjectname.Visible = false;
                     //this.txtSrcProject.Visible = false;
                     this.imgbtnFindProject.Visible = false;
@@ -1058,31 +1059,8 @@ namespace RealERPWEB.F_23_CR
 
 
                         this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                        string salesvalue = this.ddlsalestatus.SelectedValue;
-                        double salesType = Convert.ToDouble(salesvalue);
-
-                        DataTable dt2 = new DataTable();
-                        DataView view = new DataView();
-                        if (salesType == 0)
-                        {
-                            view.Table = dt1;
-                            view.RowFilter = " salestatus='Current'";
-                            dt2 = view.ToTable();
-                        }
-                        else if(salesType == 1)
-                        {
-                            view.Table = dt1;
-                            view.RowFilter = " salestatus='Previous'";
-                            dt2 = view.ToTable();
-                        }
-                        else
-                        {
-                            dt2 = dt1;
-                           
-                        }
-                        //view.Table = ds.Tables[0];
-                        //view.RowFilter = " roletype='95001'";
-                        //dt1 = view.ToTable();
+                       
+                       
 
                         this.gv_YCollectionDetails.DataSource = dt1;
                         this.gv_YCollectionDetails.DataBind();
@@ -1717,6 +1695,7 @@ namespace RealERPWEB.F_23_CR
                 string frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string searchinfo = "";
+                string salesvalue = this.ddlsalestatus.SelectedValue;
                 if (this.ddlSrchCash.SelectedValue != "")
                 {
 
@@ -1734,7 +1713,7 @@ namespace RealERPWEB.F_23_CR
                 }
 
 
-                DataSet dt1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTYEARLYCOLLECTIONDETAILS", "", frmdate, todate, searchinfo, ProjectCode, "", "", "", "");
+                DataSet dt1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTYEARLYCOLLECTIONDETAILS", "", frmdate, todate, searchinfo, ProjectCode, salesvalue, "", "", "");
 
                 if (dt1 == null)
                     return;
