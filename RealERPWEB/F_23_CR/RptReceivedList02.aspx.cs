@@ -78,16 +78,22 @@ namespace RealERPWEB.F_23_CR
             switch (type)
             {
                 case "Receivedlist":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
 
                 case "DuesCollect":
                 case "DuesCollCR":
                 case "CurDues":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.chkPayDateWise.Visible = true;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "AllProDuesCollect":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.prjname.Attributes.Add("class", "d-none col-md-2");
                     this.chkPayDateWise.Visible = true;
                     this.lblProjectname.Visible = false;
@@ -102,6 +108,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "yCollectionfc":
                     this.prjname.Attributes.Add("class", "d-none col-md-2");
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
                     this.lblProjectname.Visible = false;
                     //this.txtSrcProject.Visible = false;
                     this.imgbtnFindProject.Visible = false;
@@ -112,6 +119,8 @@ namespace RealERPWEB.F_23_CR
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
                 case "ProClientst":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
                 case "yCollectionDetails":
@@ -258,7 +267,7 @@ namespace RealERPWEB.F_23_CR
                     this.PrintProWiseClientSt();
                     break;
                 case "yCollectionDetails":
-                    this.PrintYearlyCollection();
+                    this.PrintYearlyCollectionDetails();
 
                     break;
             }
@@ -656,7 +665,76 @@ namespace RealERPWEB.F_23_CR
 
         }
 
+        private void PrintYearlyCollectionDetails()
+        {
+            try
+            {
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comnam = hst["comnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string comcod = hst["comcod"].ToString();
+                //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                DateTime frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
+                DateTime todate = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+                string frmdt = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("MMM yy");
+                string todt = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMM yy");
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                DataTable dt1 = (DataTable)Session["tblyAccRecde"];             
+
+                string txtuserinfo = "Print Source " + compname + " ,User: " + username + " ,Time: " + printdate;
+                var lst = dt1.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionDetails>();
+
+
+                LocalReport Rpt1 = new LocalReport();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptYearlyCollectionDetails", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "YEARLY COLLECTION DETAILS"));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+                Rpt1.SetParameters(new ReportParameter("date", "From(" + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text + ")"));
+                Rpt1.SetParameters(new ReportParameter("cdate", "(" + frmdt + "-" + todt + ")"));
+
+                for (int i = 1; i <= 12; i++)
+                {
+                    if (frmdate > todate)
+                        break;
+
+                    Rpt1.SetParameters(new ReportParameter("duemonth" + i.ToString(), frmdate.ToString("MMM yy")));
+                    frmdate = frmdate.AddMonths(1);
+
+                }
+
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc = "Print Report:";
+                    string eventdesc2 = "Yearly Collection Details ";
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
 
         private void PrintYearlyCollection()
         {
@@ -697,7 +775,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", Request.QueryString["Type"] == "yCollectionDetails"? "YEARLY COLLECTION DETAILS" : "YEARLY COLLECTION FORCASTING"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "YEARLY COLLECTION FORCASTING"));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From(" + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text + ")"));
             Rpt1.SetParameters(new ReportParameter("cdate", "("+frmdt+"-"+todt +")"));
@@ -980,10 +1058,10 @@ namespace RealERPWEB.F_23_CR
                         }
 
 
-
-
-
                         this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                       
+                       
+
                         this.gv_YCollectionDetails.DataSource = dt1;
                         this.gv_YCollectionDetails.DataBind();
                         this.FooterCalculation();
@@ -1617,6 +1695,7 @@ namespace RealERPWEB.F_23_CR
                 string frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string searchinfo = "";
+                string salesvalue = this.ddlsalestatus.SelectedValue;
                 if (this.ddlSrchCash.SelectedValue != "")
                 {
 
@@ -1634,7 +1713,7 @@ namespace RealERPWEB.F_23_CR
                 }
 
 
-                DataSet dt1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTYEARLYCOLLECTIONDETAILS", "", frmdate, todate, searchinfo, ProjectCode, "", "", "", "");
+                DataSet dt1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTYEARLYCOLLECTIONDETAILS", "", frmdate, todate, searchinfo, ProjectCode, salesvalue, "", "", "");
 
                 if (dt1 == null)
                     return;

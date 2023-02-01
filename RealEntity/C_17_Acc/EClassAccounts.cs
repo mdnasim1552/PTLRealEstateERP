@@ -1300,7 +1300,65 @@ namespace RealEntity.C_17_Acc
 
             }
         }
+        [Serializable]
+        public class RptConOverAllPSummary
+        {
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public string actdesc { get; set; }
+            public string grp { get; set; }
+            public double opnam { get; set; }
+            public double sdamt { get; set; }
+            public double payamt { get; set; }
+            public double taxamt { get; set; }
+            public double vatamt { get; set; }
+            public double netbillamt { get; set; }
+            public double afterdiscount { get; set; }
 
+            public double dram { get; set; }
+            public double cram { get; set; }
+
+            public double netpayable { get; set; }
+
+         
+
+            public RptConOverAllPSummary()
+            {
+
+            }
+        }
+
+        [Serializable]
+        public class RptConOverAllPSummaryDetails
+        {
+           
+            public string resdesc { get; set; }
+            public string actdesc { get; set; }
+            public string grp { get; set; }
+            public double opnam { get; set; }
+            public double sdamt { get; set; }
+            public double taxamt { get; set; }
+            public string vounum1 { get; set; }
+            public string voudat { get; set; }
+            public string billno { get; set; }
+            public string billref { get; set; }
+            public double vatamt { get; set; }
+            public double netbillamt { get; set; }
+            public double payamt { get; set; }
+            public double discountamt { get; set; }
+            public double afterdiscount { get; set; }
+            public double dram { get; set; }
+            public double cram { get; set; }
+
+            public double netpayble { get; set; }
+
+
+
+            public RptConOverAllPSummaryDetails()
+            {
+
+            }
+        }
         [Serializable]
         public class RptAdvancedAgainstLoan
         {

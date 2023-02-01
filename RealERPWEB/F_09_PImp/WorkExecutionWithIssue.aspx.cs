@@ -315,6 +315,8 @@ namespace RealERPWEB.F_09_PImp
                 CreateTable();
                 GetPerMatIssu();
                 Get_Issue_Info();
+                GetConList();
+                GetTrade();
                 LoopForSession();
                 DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
                 DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
@@ -917,6 +919,67 @@ namespace RealERPWEB.F_09_PImp
             ViewState["materialexefinal"] = dt;
             GridTwo_DataBind();
             GridTwoLoopForSession();
+        }
+
+        private void GetConList()
+        {
+            string comcod = this.GetComCode();
+            //string conlist = "%" + this.txtSrcSub.Text + "%";
+            string conlist = "%%";
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUECONTLIST", conlist, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlSubContractor.DataTextField = "sircode1";
+            this.ddlSubContractor.DataValueField = "sircode";
+            this.ddlSubContractor.DataSource = ds1.Tables[0];
+            this.ddlSubContractor.DataBind();
+
+
+            //this.ddlgroup.DataTextField = "grpdesc";
+            //this.ddlgroup.DataValueField = "grp";
+            //this.ddlgroup.DataSource = ds1.Tables[1];
+            //this.ddlgroup.DataBind();
+        }
+        private void GetTrade()
+        {
+            string comcod = this.GetComCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETTRADENAME", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddltrade.DataTextField = "tradedesc";
+            this.ddltrade.DataValueField = "tradecod";
+            this.ddltrade.DataSource = ds1.Tables[0];
+            this.ddltrade.DataBind();
+
+            DataTable dt = ds1.Tables[1];
+            DataView dv;
+
+            switch (comcod)
+            {
+                case "3335":                    
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("racode<>''");
+                    break;
+                default:
+                    dv = dt.DefaultView;
+                    break;
+            }
+            this.ddlRA.DataTextField = "radesc";
+            this.ddlRA.DataValueField = "racode";
+            this.ddlRA.DataSource = dv.ToTable();
+            this.ddlRA.DataBind();
+            ds1.Dispose();
+            this.ddlRA_SelectedIndexChanged(null, null);
+        }
+        protected void lbtnDepost_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlRA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtRefno.Text = this.ddlRA.SelectedItem.Text.Trim();
         }
     }
 }

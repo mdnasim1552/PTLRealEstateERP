@@ -303,6 +303,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMatIssueStatusCPDL": Rpt1a = GetRptMatIssueStatusCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatusQtyBasis": Rpt1a = GetRptMatIssueStatusQtyBasis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptProPhyStock": Rpt1a = SetRptProPhyStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptInterComTransStatus": Rpt1a = SetRptInterComTransStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -689,7 +690,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccOpening": Rpt1a = SetRptAccOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccOpeningDetails": Rpt1a = SetRptAccOpeningDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummary": Rpt1a = SetRptSupplierOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptConOvAllPSummary": Rpt1a = SetRptConOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummaryDetails": Rpt1a = SetRptSupplierOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptConOvAllPSummaryDetails": Rpt1a = SetRptConOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -835,7 +838,7 @@ namespace RealERPRDLC
                 case "R_23_CR.RptClientLedgerBridge": Rpt1a = SetRptClientLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptClientLedgerManama": Rpt1a = SetRptClientLedgerManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
-
+                case "R_23_CR.RptYearlyCollectionDetails": Rpt1a = SetRptYearlyCollectionDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptYearlyCollectionForecasting": Rpt1a = SetRptYearlyCollction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptDishonourCheque": Rpt1a = SetRptDishonourCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptSalClPayDetails": Rpt1a = SetRptSalClPayDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1672,9 +1675,19 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummary>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptConOvAllPSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConOverAllPSummary>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptSupplierOvAllPSummaryDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummaryDetails>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptConOvAllPSummaryDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConOverAllPSummaryDetails>)RptDataSet));
             return Rpt1a;
         }
 
@@ -3510,6 +3523,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport GetRptMatIssueStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport GetRptMatIssueStatusCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMatIssStatus>)RptDataSet));
             return Rpt1a;
@@ -6631,6 +6649,13 @@ namespace RealERPRDLC
         {
 
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionForcasting>)RptDataSet));
+            return Rpt1a;
+
+        }
+        private static LocalReport SetRptYearlyCollectionDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionDetails>)RptDataSet));
             return Rpt1a;
 
         }

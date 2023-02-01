@@ -480,10 +480,141 @@
 
                             </div>
                         </div>
+
+                        <asp:Panel runat="server" ID="pnl3">
+                            <div class="row mt-1">
+                                <div class="col-lg-2 d-flex align-items-center">
+                                    <h6 class="mb-0">Sub-Contractor Bill</h6>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row">
+                                        <div class="col-4 d-flex align-items-center">
+                                            <asp:Label runat="server" ID="Label8" class="form-label">Bill No</asp:Label>
+                                        </div>
+                                        <div class="col-4 px-1">
+                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtCurNo1" disabled></asp:TextBox>
+                                        </div>
+                                        <div class="col-4 p-0">
+                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtCurNo2" disabled></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row">
+                                        <div class="col-4 d-flex align-items-center">
+                                            <asp:Label runat="server" ID="Label15" class="form-label">Contractor List</asp:Label>
+                                        </div>
+                                        <div class="col-8 p-0">
+                                            <asp:DropDownList ID="ddlSubContractor" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row">
+                                        <div class="col-4 d-flex align-items-center">
+                                            <asp:Label runat="server" ID="Label10" class="form-label">RA List</asp:Label>
+                                        </div>
+                                        <div class="col-8 p-0">
+                                            <asp:DropDownList ID="ddlRA" runat="server" AutoPostBack="True" CssClass="select2 form-control" OnSelectedIndexChanged="ddlRA_SelectedIndexChanged" TabIndex="18">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <asp:TextBox ID="txtRefno" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                </div>
+                            </div>
+                            <div class="backgroundColorContainer mt-1">
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblsecurity" runat="server" Text="Security Deposit:"></asp:Label>
+                                            <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm" Text=""></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <asp:LinkButton ID="lbtnDepost" runat="server" OnClick="lbtnDepost_Click">Amt</asp:LinkButton>
+                                            <asp:TextBox ID="txtSDAmount" runat="server" CssClass="form-control form-control-sm" Style="text-align: right;"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+
+                                            <asp:Label ID="lbldeduction" runat="server"
+                                                Text="Deduction" CssClass=" smLbl_to"></asp:Label>
+                                            <asp:TextBox ID="txtDedAmount" runat="server" CssClass="form-control form-control-sm" Style="text-align: right;"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+
+                                            <asp:Label ID="lblpenalty" runat="server"
+                                                Text="Penalty" CssClass=" smLbl_to"></asp:Label>
+                                            <asp:TextBox ID="txtPenaltyAmount" runat="server" CssClass="form-control form-control-sm" Style="width: 60px; text-align: right;"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+
+                                            <asp:Label ID="lblAdvanced" runat="server"
+                                                Text="Advanced" CssClass=" smLbl_to"></asp:Label>
+                                            <asp:TextBox ID="txtAdvanced" runat="server" CssClass="form-control form-control-sm" Style="width: 60px; text-align: right;"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+
+                                            <asp:Label ID="lblReward" runat="server"
+                                                Text="Reward" CssClass=" smLbl_to"></asp:Label>
+                                            <asp:TextBox ID="txtreward" runat="server" CssClass="form-control form-control-sm" Style="width: 60px; text-align: right;"></asp:TextBox>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+
+                                            <asp:Label ID="lblnettotal" runat="server"
+                                                Text="Net Total:"></asp:Label>
+
+                                            <asp:Label ID="lblvalnettotal" runat="server" CssClass="form-control form-control-sm" Style="text-align: right; color: blue;"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </asp:Panel>
+
+
+
+
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-lg-2">
                                 <asp:Label runat="server" ID="Label9" class="form-label">Narration</asp:Label>
                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="lblTrade" runat="server" Text="Trade"></asp:Label>
+                                    <asp:DropDownList ID="ddltrade" runat="server" CssClass="form-control from-control-sm">
+                                    </asp:DropDownList>
+                                </div>
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center">
@@ -491,6 +622,8 @@
                                 OnClientClick="return onSaveValidate()"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
 
                         </div>
+                    </asp:Panel>
+                    <asp:Panel runat="server">
                     </asp:Panel>
 
 

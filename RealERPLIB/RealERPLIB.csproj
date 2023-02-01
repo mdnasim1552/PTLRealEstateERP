@@ -93,6 +93,7 @@
     <Compile Include="DeleteLog.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GoalSeekImplementation.cs" />
     <Compile Include="Inword.cs" />
     <Compile Include="ProcessAccess.cs" />
     <Compile Include="ProcessRAccess.cs" />

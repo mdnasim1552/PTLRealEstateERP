@@ -180,7 +180,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server" Text="Page"></asp:Label>
 
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" Style="margin-left: 6px;" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm " OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
                                     <asp:ListItem Value="15">15</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
                                     <asp:ListItem Value="30">30</asp:ListItem>
