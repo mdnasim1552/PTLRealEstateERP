@@ -720,11 +720,12 @@ namespace RealERPWEB.F_34_Mgt
 
                         foreach (DataRow dr in dr3)
                         {
+                            
                             reqty3 += Convert.ToDouble(dr["qty"]);
 
                         }
                         
-                        if (reqty2 < Math.Round(reqty3, 2))
+                        if (reqty2 < reqty3)
                         {
                             this.RiseError("Purchase Order Qty Should be Larger then Receive Qty");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
@@ -757,7 +758,7 @@ namespace RealERPWEB.F_34_Mgt
                         {
                             reqty3 += Convert.ToDouble(dr["qty"]);
                         }
-                        if (reqty2 < Math.Round(reqty3,2))
+                        if (reqty2 < reqty3)
                         {
                             this.RiseError("Receive Qty Should be Larger then Bill Qty");
                             tbl1.Rows[index]["qty"] = tbl2.Rows[index]["qty"];
