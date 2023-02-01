@@ -27,9 +27,12 @@ namespace RealERPWEB.F_22_Sal
             if (!IsPostBack)
             {
 
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Link(Cost Resource Basis)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Sale Unit Mapping";
 
                 this.ShowInformation();
                 this.GetACGCode();
@@ -86,14 +89,7 @@ namespace RealERPWEB.F_22_Sal
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
-            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            //if (!Convert.ToBoolean(dr1[0]["entry"]))
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
+            
 
             string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
