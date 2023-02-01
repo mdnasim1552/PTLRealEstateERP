@@ -813,7 +813,7 @@ namespace RealERPWEB.F_09_PImp
 
             this.grvissue_DataBind();
 
-            // ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (ds1.Tables[1].Rows[0]["billno"].ToString() == "00000000000000");
+            
 
         }
 
@@ -848,7 +848,7 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[1].Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "Opening" || this.Request.QueryString["Type"].ToString().Trim() == "Edit" || this.Request.QueryString["Type"].ToString().Trim() == "Current")) && (this.lblBillno.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
                     ((LinkButton)this.grvissue.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit" && this.lblBillno.Text.Trim() == "00000000000000");
                     
-                  //  ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (this.lblBillno.Text.Trim() == "00000000000000" || this.lblBillno.Text.Trim() == "");
+                 
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblBillno.Text.Trim() == "00000000000000" || this.lblBillno.Text.Trim() == "");
 
                   
@@ -873,14 +873,15 @@ namespace RealERPWEB.F_09_PImp
                 {
                     case "3101":
                     case "3370":
-                        ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = true;
+                        //((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = true;
+                        ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = true;
                         break;
                     default:
-                        ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = false;
+                        ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = false;
                         break;
                 }
-               
-                ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = false;
+
+                ((LinkButton)Master.FindControl("lnkbtnSave")).Visible = false;               
                 ((LinkButton)this.grvissue.FooterRow.FindControl("lnkApproved")).Visible = true;
             }
             this.FooterCalculaton();
