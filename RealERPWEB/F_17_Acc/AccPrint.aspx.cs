@@ -669,6 +669,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3368"://  Finlay  Properties
                 case "3367"://  Epic  Properties
                 case "3370"://  cpdl
+                case "3374"://  angan
+
 
                     break;
 
