@@ -41,6 +41,9 @@ namespace RealERPWEB.F_09_PImp
                 this.GetConTractorName();
                 this.GetProjectName();
                 this.SelectView();
+                this.Visibility();
+                
+
                 CommonButton();
             }
 
@@ -85,6 +88,17 @@ namespace RealERPWEB.F_09_PImp
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+
+        }
+
+        private void Visibility()
+        {
+            string comcod = this.GetCompCode();
+            if(comcod=="3101" || comcod == "3348")
+            {
+                this.rbtnRa.Visible = true;
+
+            }
 
         }
 
@@ -219,7 +233,8 @@ namespace RealERPWEB.F_09_PImp
 
             string SubconName = this.ddlSubName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "RPTSUBCONSDDETAILS", PactCode, SubconName, date, "", "", "", "", "", "");
+            string rbtbillType = (this.rbtbillType.SelectedIndex == 0) ? "RABill" : (this.rbtbillType.SelectedIndex == 1) ? "WithoutRABill" : "";
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "RPTSUBCONSDDETAILS", PactCode, SubconName, date, rbtbillType, "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblconsddetails"] = HiddenSameData(ds1.Tables[0]);
