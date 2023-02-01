@@ -149,6 +149,7 @@ namespace RealERPWEB.F_12_Inv
             this.gvMatIssueStatus.Columns[1].Visible = (this.ddlProName.SelectedValue.ToString() == "000000000000") ? true : false;
             Session["tbMatIsuStatus"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
+           
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -207,12 +208,24 @@ namespace RealERPWEB.F_12_Inv
             return dt1;
 
         }
+       
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tbMatIsuStatus"];
             this.gvMatIssueStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvMatIssueStatus.DataSource = dt;
             this.gvMatIssueStatus.DataBind();
+            this.FooterCal();
+
+        }
+        private void FooterCal()
+        {
+            DataTable dt = (DataTable)Session["tbMatIsuStatus"];
+            if (dt.Rows.Count == 0)
+                return;
+            ((Label)this.gvMatIssueStatus.FooterRow.FindControl("lblIssueAmount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(isuamt)", "")) ? 0.00 :
+                dt.Compute("sum(isuamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
 
         }
 
@@ -236,7 +249,17 @@ namespace RealERPWEB.F_12_Inv
 
             if(this.Request.QueryString["Type"] == "AmountBasis")
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+                switch (comcod)
+                {
+                    case "3370":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusCPDL", lst, null, null);
+
+                        break;
+                    default:
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+                        break;
+                }
+               
             }
             else
             {
