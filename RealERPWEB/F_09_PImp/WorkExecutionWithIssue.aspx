@@ -19,7 +19,6 @@
         .backgroundColorContainer {
             background: #F9F9F9;
         }
-
         .table th, .table td {
             padding: 4px;
         }
