@@ -884,6 +884,7 @@
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsCollTypeWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEarlybenefitADelayCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
