@@ -215,7 +215,7 @@
                         <asp:View ID="View1" runat="server">
                             <div class="table-responsive">
                                 <asp:GridView ID="dgvAccRec" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    OnPageIndexChanging="dgvAccRec_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    OnPageIndexChanging="dgvAccRec_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea"
                                     Width="654px">
                                     <RowStyle />
                                     <Columns>
@@ -379,7 +379,7 @@
 
                             <div class="table-responsive">
                                 <asp:GridView ID="dgvAccRec02" OnRowCreated="dgvAccRec02_RowCreated" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    OnPageIndexChanging="dgvAccRec02_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    OnPageIndexChanging="dgvAccRec02_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea"
                                     Width="654px">
                                     <RowStyle />
                                     <Columns>
@@ -814,7 +814,7 @@
                                     <div class="col-md-12">
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvinpro" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                                                Width="337px" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                                Width="337px" CssClass=" table-striped  table-bordered grvContentarea">
                                                 <PagerSettings Position="Top" />
                                                 <RowStyle />
                                                 <Columns>
@@ -891,7 +891,7 @@
                         <asp:View ID="ViewallProDues" runat="server">
                             <div class=" table-responsive">
                                 <asp:GridView ID="dgvAccRec03" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    OnPageIndexChanging="dgvAccRec03_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    OnPageIndexChanging="dgvAccRec03_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea"
                                     Width="654px">
                                     <RowStyle />
                                     <Columns>
@@ -1242,7 +1242,7 @@
 
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvinproal" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                                                Width="337px" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                                Width="337px" CssClass=" table-striped  table-bordered grvContentarea">
 
                                                 <RowStyle />
                                                 <Columns>
@@ -1317,7 +1317,7 @@
                         <asp:View ID="ViewYearLyCollection" runat="server">
                             <div class="  table-responsive">
                                 <asp:GridView ID="gvyCollection" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    OnPageIndexChanging="gvyCollection_PageIndexChanging" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    OnPageIndexChanging="gvyCollection_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea"
                                     Width="654px">
                                     <RowStyle />
                                     <Columns>
@@ -1851,16 +1851,16 @@
                                             <HeaderTemplate>
                                                 <table style="width: 200px;">
                                                     <tr>
-                                                        <td class="style58">
+                                                        <td class="">
                                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="Project Name" Width="90px"></asp:Label>
+                                                                Text="Project Name" ></asp:Label>
                                                         </td>
-                                                        <td class="style60">&nbsp;</td>
+                                                        <td class="">&nbsp;</td>
                                                         <td>
 
-                                                            <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" BackColor="#000066"
-                                                                BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
-                                                                ForeColor="White" Style="text-align: center" Width="90px">Export Exel</asp:HyperLink>
+                                                            <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
+                                                                BorderColor="White"  Font-Bold="True"
+                                                                ForeColor="White" Style="text-align: center" Width="90px"><i class="fa fa-file-export"></i></asp:HyperLink>
 
                                                         </td>
                                                     </tr>
@@ -1872,7 +1872,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Customer Name">
+                                        <asp:TemplateField HeaderText="Client Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgacustname" runat="server" CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "salestatus")) =="Current" ? "text-primary":"text-danger " %>'
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
