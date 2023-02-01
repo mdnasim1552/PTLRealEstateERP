@@ -1649,7 +1649,7 @@
               <Top>0.01733in</Top>
               <Left>1.07374in</Left>
               <Height>0.275in</Height>
-              <Width>5.97751in</Width>
+              <Width>6.38584in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1671,7 +1671,7 @@
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
+                        <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1684,7 +1684,7 @@
               <Top>0.2967in</Top>
               <Left>1.07374in</Left>
               <Height>0.22917in</Height>
-              <Width>5.97751in</Width>
+              <Width>6.38584in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1720,7 +1720,7 @@
               <Top>0.53559in</Top>
               <Left>1.07374in</Left>
               <Height>0.27666in</Height>
-              <Width>5.97751in</Width>
+              <Width>6.38584in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
