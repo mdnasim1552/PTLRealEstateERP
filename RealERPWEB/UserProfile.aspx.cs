@@ -419,6 +419,8 @@ namespace RealERPWEB
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
             }
+
+            //UM Tracker
             if(ds1==null || ds1.Tables[5].Rows.Count == 0)
             {
                 return;
@@ -426,8 +428,28 @@ namespace RealERPWEB
             else
             {
                 DataTable dt = ds1.Tables[5];
-                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+                this.divUmTrack.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
 
+            //Incentive
+            if (ds1 == null || ds1.Tables[6].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[6];
+                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
+            //Sales Support
+            if (ds1 == null || ds1.Tables[7].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[7];
+                this.divSales.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
         }

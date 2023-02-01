@@ -34,12 +34,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
+                if (this.GetCompCode() != "3315") { 
+
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect(this.ResolveUrl("~/AcceessError"));
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
-
+                 }
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
                 this.GetCompany();
@@ -50,7 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 this.visibilityBracnh();
-              //  this.GetBranch();
+              //  this.GetBranch();r
             
                 this.GetStep();
                 this.SaleRequRpt();
