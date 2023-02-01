@@ -36,13 +36,24 @@ namespace RealERPWEB.F_23_CR
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                string comcod =GetCompCode();
+                if (comcod == "3348")
+                {
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    DateTime nowDate = DateTime.Now;
+                    DateTime yearfday = new DateTime(nowDate.Year, 1, 1);
+                    DateTime date1 = new DateTime(nowDate.Year, 12, 31);
+                    this.txtfrmdate.Text = yearfday.ToString("dd-MMM-yyyy"); 
+                    this.txttodate.Text = date1.ToString("dd-MMM-yyyy");
+                }
+                else
+                {
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    string date1 = "01-" + ASTUtility.Right(date, 8);
+                    this.txtfrmdate.Text = date1;
+                    this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                }
 
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                string date1 = "01-" + ASTUtility.Right(date, 8);
-                this.txtfrmdate.Text = date1;
-
-
-                this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.ViewSelection();
                 this.NameChange();
@@ -125,9 +136,6 @@ namespace RealERPWEB.F_23_CR
                     break;
                 case "yCollectionDetails":
                     //this.prjname.Attributes.Add("class", "d-none col-md-2");
-                    string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.txtfrmdate.Text = Convert.ToDateTime("01" + date1.Substring(2)).ToString("dd-MMM-yyyy");
-                    this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddMonths(12).AddDays(-1).ToString("dd-MMM-yyyy"); ;
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
 
@@ -1031,23 +1039,23 @@ namespace RealERPWEB.F_23_CR
                         amt012 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam12)", "")) ? 0.00 : dt1.Compute("sum(dueam12)", "")));
 
 
-                        this.gv_YCollectionDetails.Columns[6].Visible = (amt01 != 0);
-                        this.gv_YCollectionDetails.Columns[7].Visible = (amt02 != 0);
-                        this.gv_YCollectionDetails.Columns[8].Visible = (amt03 != 0);
-                        this.gv_YCollectionDetails.Columns[9].Visible = (amt04 != 0);
-                        this.gv_YCollectionDetails.Columns[10].Visible = (amt05 != 0);
-                        this.gv_YCollectionDetails.Columns[11].Visible = (amt06 != 0);
-                        this.gv_YCollectionDetails.Columns[12].Visible = (amt07 != 0);
-                        this.gv_YCollectionDetails.Columns[13].Visible = (amt08 != 0);
-                        this.gv_YCollectionDetails.Columns[14].Visible = (amt09 != 0);
-                        this.gv_YCollectionDetails.Columns[15].Visible = (amt010 != 0);
-                        this.gv_YCollectionDetails.Columns[16].Visible = (amt011 != 0);
-                        this.gv_YCollectionDetails.Columns[17].Visible = (amt012 != 0);
+                        this.gv_YCollectionDetails.Columns[11].Visible = (amt01 != 0);
+                        this.gv_YCollectionDetails.Columns[12].Visible = (amt02 != 0);
+                        this.gv_YCollectionDetails.Columns[13].Visible = (amt03 != 0);
+                        this.gv_YCollectionDetails.Columns[14].Visible = (amt04 != 0);
+                        this.gv_YCollectionDetails.Columns[15].Visible = (amt05 != 0);
+                        this.gv_YCollectionDetails.Columns[16].Visible = (amt06 != 0);
+                        this.gv_YCollectionDetails.Columns[17].Visible = (amt07 != 0);
+                        this.gv_YCollectionDetails.Columns[18].Visible = (amt08 != 0);
+                        this.gv_YCollectionDetails.Columns[19].Visible = (amt09 != 0);
+                        this.gv_YCollectionDetails.Columns[20].Visible = (amt010 != 0);
+                        this.gv_YCollectionDetails.Columns[21].Visible = (amt011 != 0);
+                        this.gv_YCollectionDetails.Columns[22].Visible = (amt012 != 0);
 
                         this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         DateTime frmdate1 = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
                         DateTime todate1 = Convert.ToDateTime(this.txttodate.Text.Trim());
-                        for (int i = 6; i < 18; i++)
+                        for (int i = 11; i < 23; i++)
                         {
                             if (frmdate1 > todate1)
                                 break;

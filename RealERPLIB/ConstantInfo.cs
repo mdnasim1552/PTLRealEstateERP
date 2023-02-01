@@ -1326,18 +1326,17 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202280", "F_22_Sal", "SalesAllReports?", "Type=AllReports", "Sales All Reports", "Sales & Recovery", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2203000", "2202281", "F_22_Sal", "SaleUnitMapping", "", "Sale Unit Mapping", "Sales", "False", "False", "False", "False" });
 
 
 
 
             tblObj.Rows.Add(new Object[] { "2203000", "2202272", "F_22_Sal", "RptCustomerBill?", "Type=CustBill", "Customer Bill Info", "Sales & Recovery", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2203000", "2202273", "F_22_Sal", "ProjectFileDetailsEntry", "", "Project File Details", "Sales", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2203000", "2202273", "F_22_Sal", "ProjectFileDetailsEntry", "", "Project File Details", "Sales", "False", "False", "False", "False" });            
             tblObj.Rows.Add(new Object[] { "2251000", "2251001", "F_99_Allinterface", "SalesInterface?Type=Report", "", "Sales", "Sales & Recovery-Interface", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2251000", "2251002", "F_99_Allinterface", "MktNoteSheetInterface?", "Type=Report", "Grand Note Sheet Interface", "Sales & Recovery-Interfac", "False", "False", "False", "False" });
-
+            
 
             //tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptSalSummeryDetails", "", "Sale Summary Details ", "Sales & Recovery", "False", "False", "False", "False" });
 
@@ -7513,6 +7512,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "08. Sales Increase Info", "F_24_CC/CustMaintenanceWork?Type=EntrySales&Date1=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000015", "16. Project File Details", "F_22_Sal/ProjectFileDetailsEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000016", "17. Sale Unit Mapping", "F_22_Sal/SaleUnitMapping", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Modification-Landowner's ", "", "", false, "" });

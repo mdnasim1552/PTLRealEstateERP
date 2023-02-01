@@ -376,6 +376,8 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherAngan.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherAngan02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL.rdlc" />
@@ -882,6 +884,7 @@
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsCollTypeWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEarlybenefitADelayCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />

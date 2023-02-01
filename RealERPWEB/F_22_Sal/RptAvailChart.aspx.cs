@@ -335,6 +335,7 @@ namespace RealERPWEB.F_22_Sal
                 Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
                 Session["grpname"] = (DataTable)ds2.Tables[4];
                 Session["floorname"] = (DataTable)ds2.Tables[5];
+                Session["buildingtype"] = (DataTable)ds2.Tables[6];
 
                 //Session["tblAvChartPrint"]= (DataTable)ds3.Tables[0];
 
@@ -446,7 +447,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 DataTable dtgrp = (DataTable)Session["grpname"];
                 DataTable dtglorname = (DataTable)Session["floorname"];
-
+                DataTable dunittype = (DataTable)Session["buildingtype"];
 
                 this.ddlGroup.DataTextField = "groupdesc";
                 this.ddlGroup.DataValueField = "groupcode";
@@ -457,6 +458,11 @@ namespace RealERPWEB.F_22_Sal
                 this.ddlFloor.DataValueField = "floorcode";
                 this.ddlFloor.DataSource = dtglorname;
                 this.ddlFloor.DataBind();
+              
+                this.ddlUnitType.DataTextField = "unitgdesc";
+                this.ddlUnitType.DataValueField = "unitgcode";
+                this.ddlUnitType.DataSource = dunittype;
+                this.ddlUnitType.DataBind();
 
                 GetAvailabilityChartFilterData();
             }
@@ -469,6 +475,10 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        protected void ddlUnitType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void GetAvailabilityChartFilterData()
         {
