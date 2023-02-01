@@ -1860,7 +1860,9 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
@@ -1874,7 +1876,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.90834in</Top>
-            <Left>5.80292in</Left>
+            <Left>5.84042in</Left>
             <Height>0.21875in</Height>
             <Width>1.83333in</Width>
             <ZIndex>5</ZIndex>
@@ -1931,12 +1933,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>2.15626in</Top>
-            <Left>5.80292in</Left>
+            <Left>5.84042in</Left>
             <Height>0.1875in</Height>
             <Width>1.82917in</Width>
             <ZIndex>7</ZIndex>
