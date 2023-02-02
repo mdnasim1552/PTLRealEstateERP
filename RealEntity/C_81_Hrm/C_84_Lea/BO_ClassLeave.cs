@@ -583,6 +583,23 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
 
             public EmpBasicInf() { }
         }
+        [Serializable]
+        public class RptEmpAbsCount
+        {
+            public string comcod { get; set; }
+           
+            public string empid { get; set; }
+            public string empname { get; set; }
+            public string deptcode { get; set; }
+            public string deptname { get; set; }
+            public string secid { get; set; }
+            public string section { get; set; }
+            public string desig { get; set; }
+            public double abscount { get; set; }
+           
+            public RptEmpAbsCount() { 
+            }
+        }
 
     }
 }
