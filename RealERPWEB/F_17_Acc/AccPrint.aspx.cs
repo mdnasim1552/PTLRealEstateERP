@@ -670,6 +670,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3367"://  Epic  Properties
                 case "3370"://  cpdl
                 case "3374"://  angan
+                case "1211"://  Bricks & Bridges Ltd
 
 
                     break;
@@ -791,9 +792,14 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCPDL";
                     break;
 
-                case "3101": // Angan
+                //case "3101": // Angan
                 case "3374": // Angan
                     vouprint = "VocherPrintAngan";
+                    break;
+
+                case "3101": // Bricks & Bridges Ltd
+                case "1211": // Bricks & Bridges Ltd
+                    vouprint = "VocherPrintBricksBridges";
                     break;
 
                 //manama, p2p 
@@ -1267,6 +1273,36 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherAngan", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+
+                    }
+                    Rpt1.SetParameters(new ReportParameter("signprep", postuser));
+                    Rpt1.SetParameters(new ReportParameter("signapp", aprvuser));
+                    Rpt1.SetParameters(new ReportParameter("Vounum", ": " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", ": " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No : " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("voutype", (ASTUtility.Left(vounum, 2) == "CC") ? "Cash Received Voucher" : voutype));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("username", postuser));
+                    Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                    Rpt1.SetParameters(new ReportParameter("txtcheckby", Checkby));
+                    Rpt1.SetParameters(new ReportParameter("txtauthorizeby", aprvby1));
+                    Rpt1.SetParameters(new ReportParameter("txtaprvby1", authorizeby));
+
+                }
+
+                else if (Type == "VocherPrintBricksBridges")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                    if (ASTUtility.Left(vounum, 2) == "JV")
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherBBL02", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                    }
+                    else
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherBBL", list, null, null);
                         Rpt1.EnableExternalImages = true;
 
                     }
