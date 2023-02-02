@@ -7138,7 +7138,7 @@ namespace RealERPWEB.F_21_MKT
             }
 
             //IR EPIC
-            if (ddlValue == "3101010") 
+            if (ddlValue == "3101010" && comcod == "3367") 
             {
                 DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
                 if (ds3 == null)
