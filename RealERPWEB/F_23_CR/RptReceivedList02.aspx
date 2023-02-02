@@ -1916,7 +1916,7 @@
                                             </FooterTemplate>
 
                                             <HeaderTemplate>
-<<<<<<< HEAD
+
                                                 <table style="width: 200px;">
                                                     <tr>
                                                         <td class="">
@@ -1926,18 +1926,13 @@
                                                         <td class="">&nbsp;</td>
                                                         <td>
 
-                                                            <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
-                                                                BorderColor="White"  Font-Bold="True"
-                                                                ForeColor="White" Style="text-align: center" Width="90px"><i class="fa fa-file-export"></i></asp:HyperLink>
-=======
-                                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="Project Name" Width="90px"></asp:Label>
+                                                            
 
                                                             <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
                                                                 BorderColor="White"  Font-Bold="True"
                                                                 ForeColor="White" Style="text-align: center" Width="90px"><button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
                                                                 </asp:HyperLink>
->>>>>>> 966725299df3e9dddb9aeee1f7d76f7c8a3973e6
+
 
                                             </HeaderTemplate>
                                             <ItemTemplate>
@@ -1946,9 +1941,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
-<<<<<<< HEAD
-                                        <asp:TemplateField HeaderText="Client Name">
-=======
+
 
                                         <asp:TemplateField HeaderText="Unit Id">
                                             <ItemTemplate>
@@ -1976,7 +1969,7 @@
                                          </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Customer Name">
->>>>>>> 966725299df3e9dddb9aeee1f7d76f7c8a3973e6
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lgacustname" runat="server" CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "salestatus")) =="Current" ? "text-primary":"text-danger " %>'
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'

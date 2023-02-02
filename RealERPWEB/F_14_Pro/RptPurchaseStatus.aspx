@@ -2396,8 +2396,6 @@
 
 
 
-
-
                                             <asp:TemplateField HeaderText="Req No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvreqno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
@@ -2610,8 +2608,8 @@
                                             </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Amount">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvamount1" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="60px"></asp:Label>
+                                                    <asp:TextBox ID="lgvamount1" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="60px"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="lgvamount2" runat="server" CssClass="form-control inputTxt"
