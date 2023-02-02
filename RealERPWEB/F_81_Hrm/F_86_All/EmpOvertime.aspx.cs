@@ -1132,7 +1132,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[17].Visible = false;
                         this.gvEmpOverTime.Columns[18].Visible = false;
                         this.gvEmpOverTime.Columns[19].Visible = true;
-                        this.gvEmpOverTime.Columns[20].Visible = false;
+                        this.gvEmpOverTime.Columns[20].Visible = true;
                         this.gvEmpOverTime.Columns[21].Visible = false;
                         this.gvEmpOverTime.Columns[22].Visible = false;
                     }

@@ -1172,9 +1172,21 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             string empid = this.ddlPEmpName.SelectedValue.ToString().Trim();
             DataTable dt = (DataTable)ViewState["tblemp"];
+    
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
             if (dr.Length > 0)
-            {
+            {   
+                //for multiple compane (Rakib)
+                if (GetCompCode() == "3315")
+                {
+                    string Company = "%"+ dt.Rows[0]["deptcode"].ToString().Substring(0, 4)+"%";
+                    string txtSProject = this.txtsrchdeptagg.Text.Trim() + "%";
+                    DataSet ds4 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAMENEW", Company, txtSProject, "", "", "", "", "", "", "");
+                    this.ddldepartmentagg.DataTextField = "deptdesc";
+                    this.ddldepartmentagg.DataValueField = "deptcode";
+                    this.ddldepartmentagg.DataSource = ds4.Tables[0];
+                    this.ddldepartmentagg.DataBind();
+                }
                 this.ddlCompanyAgg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
                 this.ddldepartmentagg.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
                 this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
