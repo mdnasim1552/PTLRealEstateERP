@@ -79,13 +79,13 @@ namespace RealERPWEB.F_09_PImp
                 btnOK.Text = "<span class='fa fa-arrow-circle-left' style='color: white;' aria-hidden='true'></span> New";
                 GetCategory();
                 GetItem();
-                GetDivision();               
+                GetDivision();
                 GetWorkWithIssue();
                 GetMaterials();
                 GetWENIssueNo();
                 GridOne_DataBind();
                 CreateTable();
-                GridTwo_DataBind();                
+                GridTwo_DataBind();
             }
             else
             {
@@ -270,8 +270,43 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetComCode();
             DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEINFOFROMWORK", "", "", "", "", "", "", "", "", "");
             ViewState["WorkExeWithIssue"] = ds.Tables[0];
+            ViewState["WorkExeWithLabour"] = ds.Tables[1];
         }
+        private string ComCalltype()
+        {
 
+            string withmat = "";
+            string comcod = this.GetComCode();
+            switch (comcod)
+            {
+                case "3335":
+                case "3333":
+
+                    // case "3101":
+                    withmat = "WithMat";
+                    break;
+                default:
+                    withmat = "";
+                    break;
+            }
+            return withmat;
+        }
+        private string ComZeroBal()
+        {
+            string zerobal = "";
+            string comcod = this.GetComCode();
+            switch (comcod)
+            {
+                case "3336":
+                    zerobal = "Zero";
+                    break;
+
+                default:
+                    zerobal = "";
+                    break;
+            }
+            return zerobal;
+        }
         private void GetMaterials()
         {
             string comcod = this.GetComCode();
@@ -279,10 +314,19 @@ namespace RealERPWEB.F_09_PImp
             string date = Convert.ToDateTime(txtEntryDate.Text).ToString("dd-MMM-yyyy");
             string SearchMat = "%";
 
+            string withmat = this.ComCalltype();
+            string zerobal = this.ComZeroBal();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, "", "", "", "", "", "");
+
+           // DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLABFLRCODE", pactcode, date, "", SearchMat, withmat, zerobal, "", "", "", "");
+
             ViewState["itemlistMaterialsBalance"] = ds1.Tables[0];
             ViewState["specification"] = ds1.Tables[2];
+            //ViewState["itemlistLabourBalance"] = ds2.Tables[0];
+
+
         }
+
         private void CreateTable()
         {
             DataTable tblt01 = new DataTable();
@@ -315,9 +359,15 @@ namespace RealERPWEB.F_09_PImp
                 CreateTable();
                 GetPerMatIssu();
                 Get_Issue_Info();
+                GetConList();
+                GetTrade();
                 LoopForSession();
                 DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
                 DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
+
+                DataTable dtlabour = ((DataTable)ViewState["WorkExeWithLabour"]).Copy();
+
+
                 DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
                 DataView dv = dt.DefaultView;
                 DataTable dt1 = (DataTable)ViewState["materialexefinal"];
@@ -340,10 +390,11 @@ namespace RealERPWEB.F_09_PImp
                 DataColumn colNew6 = new DataColumn(strColName6, typeof(string));
                 DataColumn colNew7 = new DataColumn(strColName7, typeof(double));
                 DataColumn colNew8 = new DataColumn(strColName8, typeof(double));
-                DataColumn colNew9 = new DataColumn(strColName9, typeof(string));                
+                DataColumn colNew9 = new DataColumn(strColName9, typeof(string));
                 colNew.DefaultValue = 0.00;
                 colNew1.DefaultValue = 0.00;
                 colNew2.DefaultValue = "000000000000";
+
                 if (!dt.Columns.Contains(strColName))
                     dt.Columns.Add(colNew);
                 if (!dt.Columns.Contains(strColName1))
@@ -364,6 +415,29 @@ namespace RealERPWEB.F_09_PImp
                     dt.Columns.Add(colNew8);
                 if (!dt.Columns.Contains(strColName9))
                     dt.Columns.Add(colNew9);
+
+                if (!dtlabour.Columns.Contains(strColName))
+                    dtlabour.Columns.Add(colNew);
+                if (!dtlabour.Columns.Contains(strColName1))
+                    dtlabour.Columns.Add(colNew1);
+                if (!dtlabour.Columns.Contains(strColName2))
+                    dtlabour.Columns.Add(colNew2);
+                if (!dtlabour.Columns.Contains(strColName3))
+                    dtlabour.Columns.Add(colNew3);
+                if (!dtlabour.Columns.Contains(strColName4))
+                    dtlabour.Columns.Add(colNew4);
+                if (!dtlabour.Columns.Contains(strColName5))
+                    dtlabour.Columns.Add(colNew5);
+                if (!dtlabour.Columns.Contains(strColName6))
+                    dtlabour.Columns.Add(colNew6);
+                if (!dtlabour.Columns.Contains(strColName7))
+                    dtlabour.Columns.Add(colNew7);
+                if (!dtlabour.Columns.Contains(strColName8))
+                    dtlabour.Columns.Add(colNew8);
+                if (!dtlabour.Columns.Contains(strColName9))
+                    dtlabour.Columns.Add(colNew9);
+
+
                 string flag = "1";
                 if (tempforgrid.Rows.Count == 0)
                 {
@@ -410,6 +484,28 @@ namespace RealERPWEB.F_09_PImp
                             }
 
                             dt1.Merge(dt.Select("rsirunit<>''").CopyToDataTable());
+
+
+                            foreach (DataRow dr in dtlabour.Rows)
+                            {
+                                string rsircode = dr["rsircode"].ToString();
+                                string specification = dr["spcfcod"].ToString();
+
+                                if (((dtMatList).Select("rsircode='" + rsircode + "'")).Length > 0)
+                                {
+                                    dr["WrkUnit"] = wrkunit;
+                                    dr["StdQty"] = stdqty;
+                                    dr["WrkQty"] = wrkqty;
+                                    dr["Ratio"] = stdqty == 0 ? 0.00 : wrkqty / stdqty;
+                                    dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
+                                    dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
+                                    dr["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+                                    dr["useoflocation"] = "";
+                                    dr["remarks"] = "";
+                                }
+                            }
+
+
                         }
                     }
                     if (flag != "0")
@@ -760,7 +856,7 @@ namespace RealERPWEB.F_09_PImp
                 double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
                 string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
                 string txtremarks = tbl02.Rows[i]["remarks"].ToString();
-                string flrcod= tbl02.Rows[i]["flrcod"].ToString();
+                string flrcod = tbl02.Rows[i]["flrcod"].ToString();
                 if (Isuqty > 0)
                 {
 
@@ -888,7 +984,7 @@ namespace RealERPWEB.F_09_PImp
             string remarks = dt.Rows[RowIndex]["remarks"].ToString();
             double WrkQty = Convert.ToDouble(dt.Rows[RowIndex]["WrkQty"].ToString());
             double StdQty = Convert.ToDouble(dt.Rows[RowIndex]["StdQty"].ToString());
-            string WrkUnit= dt.Rows[RowIndex]["WrkUnit"].ToString();
+            string WrkUnit = dt.Rows[RowIndex]["WrkUnit"].ToString();
 
 
             DataRow row = dt.NewRow();
@@ -917,6 +1013,67 @@ namespace RealERPWEB.F_09_PImp
             ViewState["materialexefinal"] = dt;
             GridTwo_DataBind();
             GridTwoLoopForSession();
+        }
+
+        private void GetConList()
+        {
+            string comcod = this.GetComCode();
+            //string conlist = "%" + this.txtSrcSub.Text + "%";
+            string conlist = "%%";
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUECONTLIST", conlist, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlSubContractor.DataTextField = "sircode1";
+            this.ddlSubContractor.DataValueField = "sircode";
+            this.ddlSubContractor.DataSource = ds1.Tables[0];
+            this.ddlSubContractor.DataBind();
+
+
+            //this.ddlgroup.DataTextField = "grpdesc";
+            //this.ddlgroup.DataValueField = "grp";
+            //this.ddlgroup.DataSource = ds1.Tables[1];
+            //this.ddlgroup.DataBind();
+        }
+        private void GetTrade()
+        {
+            string comcod = this.GetComCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETTRADENAME", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddltrade.DataTextField = "tradedesc";
+            this.ddltrade.DataValueField = "tradecod";
+            this.ddltrade.DataSource = ds1.Tables[0];
+            this.ddltrade.DataBind();
+
+            DataTable dt = ds1.Tables[1];
+            DataView dv;
+
+            switch (comcod)
+            {
+                case "3335":
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("racode<>''");
+                    break;
+                default:
+                    dv = dt.DefaultView;
+                    break;
+            }
+            this.ddlRA.DataTextField = "radesc";
+            this.ddlRA.DataValueField = "racode";
+            this.ddlRA.DataSource = dv.ToTable();
+            this.ddlRA.DataBind();
+            ds1.Dispose();
+            this.ddlRA_SelectedIndexChanged(null, null);
+        }
+        protected void lbtnDepost_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlRA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtRefno.Text = this.ddlRA.SelectedItem.Text.Trim();
         }
     }
 }

@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>ba7d0030-cdc8-46fa-bb59-0705d677781c</rd:DataSourceID>
+      <rd:DataSourceID>b16da83d-31c6-4663-925b-c0a99d5aebee</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -61,11 +61,19 @@
           <DataField>tmoutqty</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="trninqty">
+          <DataField>trninqty</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="trnoutqty">
+          <DataField>trnoutqty</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_12_Inv</rd:DataSetName>
         <rd:TableName>InventoryQtyBasisPeriodic</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.EclassPurchase+InventoryQtyBasisPeriodic, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.EclassPurchase+InventoryQtyBasisPeriodic, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -654,7 +662,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!tminqty.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!trninqty.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -690,7 +698,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!tmoutqty.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!trnoutqty.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1023,7 +1031,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tminqty.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trninqty.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1060,7 +1068,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tmoutqty.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trnoutqty.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>

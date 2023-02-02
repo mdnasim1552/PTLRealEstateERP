@@ -15,6 +15,15 @@ namespace RealERPWEB.F_22_Sal
     {
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
@@ -33,15 +42,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lblProName;
 
         /// <summary>
-        /// txtSrcProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcProject;
-
-        /// <summary>
         /// imgbtnFindProject control.
         /// </summary>
         /// <remarks>
@@ -49,6 +49,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindProject;
+
+        /// <summary>
+        /// txtSrcProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcProject;
 
         /// <summary>
         /// ddlProjectName control.
@@ -60,13 +69,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
 
         /// <summary>
-        /// lbtnOk control.
+        /// divCust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCust;
 
         /// <summary>
         /// lblCustName control.
@@ -78,15 +87,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lblCustName;
 
         /// <summary>
-        /// txtSrcCustomer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcCustomer;
-
-        /// <summary>
         /// imgbtnFindCustomer control.
         /// </summary>
         /// <remarks>
@@ -94,6 +94,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindCustomer;
+
+        /// <summary>
+        /// txtSrcCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcCustomer;
 
         /// <summary>
         /// ddlCustName control.
@@ -159,6 +168,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::AjaxControlToolkit.CalendarExtender txttoDate_CalendarExtender1;
 
         /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+
+        /// <summary>
+        /// divchkInvoicePrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchkInvoicePrint;
+
+        /// <summary>
         /// chkInvoicePrint control.
         /// </summary>
         /// <remarks>
@@ -166,6 +193,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkInvoicePrint;
+
+        /// <summary>
+        /// divchkPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchkPayment;
 
         /// <summary>
         /// chkPayment control.
@@ -186,6 +222,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lmsg;
 
         /// <summary>
+        /// divinterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divinterest;
+
+        /// <summary>
         /// lblinterest control.
         /// </summary>
         /// <remarks>
@@ -202,15 +247,6 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtinpermonth;
-
-        /// <summary>
-        /// upben control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upben;
 
         /// <summary>
         /// lblentryben control.

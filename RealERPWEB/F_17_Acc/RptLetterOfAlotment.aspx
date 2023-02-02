@@ -74,7 +74,7 @@
             </div>
 
             <div class="card mt-3">
-                <div class="card-header well">
+                <div class="card-header well p-1">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">

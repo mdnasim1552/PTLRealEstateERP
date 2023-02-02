@@ -637,6 +637,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void Session_tblAprov_Update()
         {
+            string comcod = this.GetCompCode();
             DataTable tbl1 = (DataTable)ViewState["tblAprov"];
             int TblRowIndex2;
             for (int j = 0; j < this.gvAprovInfo.Rows.Count; j++)
@@ -649,15 +650,30 @@ namespace RealERPWEB.F_14_Pro
                 double aprovsrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvApprovsRate")).Text.Trim()));
                 double dispercnt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", "")));
                 double aprovrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvNewApprovRate")).Text.Trim()));
-
-                if (aprovsrate < aprovrate)
+                if (comcod == "3368")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
+                    if (aprovrate < aprovsrate)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+
+                    }
+                }
+                else
+                {
+                    if (aprovsrate < aprovrate)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+
+                    }
 
                 }
+                
 
 
                 dispercnt = (aprovrate > 0) ? ((aprovsrate - aprovrate) * 100) / aprovsrate : dispercnt;

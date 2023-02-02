@@ -352,6 +352,9 @@ namespace RealERPWEB.F_22_Sal
                 string frdate = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
+                //string frdate = "01-Jan-2023";
+                //string todate = "31-Jan-2023";
+
                 DataSet ds1 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTDAYWISHSAL", "%", frdate, todate, "12", "%", "", "", "", "");
                 if (ds1 == null)
                 {

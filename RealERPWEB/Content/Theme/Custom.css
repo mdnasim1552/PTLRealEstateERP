@@ -70,6 +70,15 @@
     background: #346CB0 !important;
     color: #ffffff;
     font-family: Calibri !important;
+    font-size: 11px !important;
+    height: 25px !important;
+    font-weight: bold;
+}
+
+.grvFooterTotal {
+    background: #346CB0 !important;
+    color: #ffffff;
+    font-family: Calibri !important;
     font-size: 12px !important;
     height: 25px !important;
     font-weight: bold;
@@ -453,6 +462,23 @@ text-align:right;
 .textbold {
     text-align: right;
 }
+
+.ddlPage {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #000;
+    font-size: 12px;
+    height: 24px;
+    float: left;
+    line-height: 1.42857;
+    padding: 1px 1px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 80px;
+}
+
 
 /*Switch Rounded sliders */
 

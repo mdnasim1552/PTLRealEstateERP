@@ -290,10 +290,46 @@ namespace RealEntity.C_23_CRR
 
 
       }
+        [Serializable]
+        public class EClassYearlyColletionDetails
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string custname { get; set; }
+            public double bgdcost { get; set; }
+            public double tocost { get; set; }
+            public double ramt { get; set; }
+            public double bamt { get; set; }
+            public double pdueam { get; set; }
+            public double dueam1 { get; set; }
+            public double dueam2 { get; set; }
+            public double dueam3 { get; set; }
+            public double dueam4 { get; set; }
+            public double dueam5 { get; set; }
+            public double dueam6 { get; set; }
+            public double dueam7 { get; set; }
+            public double dueam8 { get; set; }
+            public double dueam9 { get; set; }
+            public double dueam10 { get; set; }
+            public double dueam11 { get; set; }
+            public double dueam12 { get; set; }
+            public double todueam { get; set; }
+            public double gtodueam { get; set; }
+            public string pactdesc { get; set; }
+
+            public EClassYearlyColletionDetails()
+            {
+
+            }
 
 
 
-     [Serializable]
+        }
+
+
+
+        [Serializable]
      public class EClassMonthlyCollectionSchedule   
      {
          public string comcod { get; set; }

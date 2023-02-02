@@ -189,8 +189,8 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnPrevISSList" runat="server" OnClick="lbtnPrevISSList_Click">Prev. List:</asp:LinkButton>
-                                <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
+                                <asp:Label ID="lbtnPrevISSList" runat="server" >Prev. List:</asp:Label>
+                               
                                 <asp:LinkButton ID="ibtnPreBillList" runat="server" OnClick="ibtnPreBillList_Click" TabIndex="2"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="chzn-select form-control  form-control-sm" TabIndex="3"></asp:DropDownList>
                             </div>
@@ -505,7 +505,7 @@
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                                Width="70px" Font-Size="12px" ></asp:Label>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />

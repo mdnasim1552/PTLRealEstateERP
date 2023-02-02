@@ -76,6 +76,16 @@
                                         <cc1:ListSearchExtender ID="ddlSubName_ListSearchExtender" runat="server"
                                             QueryPattern="Contains" TargetControlID="ddlSubName">
                                         </cc1:ListSearchExtender>
+                                 <div class="col-md-3" id="rbtnRa" runat="server" visible="false">
+                                 <asp:RadioButtonList ID="rbtbillType" RepeatDirection="Horizontal" CssClass="rbtnList1" runat="server">
+                                <asp:ListItem Value="ra">Only R/A </asp:ListItem>
+                                <asp:ListItem Value="withoutra">Without R/A </asp:ListItem>                               
+                                <asp:ListItem Selected="True">Both</asp:ListItem>
+
+                            </asp:RadioButtonList>
+                                    </div>
+
+                              
                                         
                                     </div>
 
@@ -97,7 +107,11 @@
                                             AutoPostBack="True"
                                             OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
                                         </asp:DropDownList>
+
+                                                                                                                    
                                     </div>
+
+                             
 
 
 

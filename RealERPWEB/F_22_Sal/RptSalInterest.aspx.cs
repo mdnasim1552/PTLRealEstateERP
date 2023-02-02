@@ -70,6 +70,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "registration":
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.divchkPayment.Visible = true;
                     this.chkPayment.Visible = true;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
@@ -78,6 +79,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "CustApp":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -87,6 +89,7 @@ namespace RealERPWEB.F_22_Sal
                     this.lbtnOk.Visible = false;
                     break;
                 case "CustNoteSheet":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -98,6 +101,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "PaymentSchedule":
                 case "LO":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -109,11 +113,14 @@ namespace RealERPWEB.F_22_Sal
 
                 case "DueCollAll":
                     this.MultiView1.ActiveViewIndex = 2;
+                    this.divchkInvoicePrint.Visible = true;
                     this.chkInvoicePrint.Visible = true;
+                    this.divCust.Visible = false;
                     this.lblCustName.Visible = false;
                     this.txtSrcCustomer.Visible = false;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     break;
@@ -2709,6 +2716,10 @@ namespace RealERPWEB.F_22_Sal
                 this.GetProjectName();
         }
 
-
+        protected void gvDueCollAll_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvDueCollAll.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
     }
 }
