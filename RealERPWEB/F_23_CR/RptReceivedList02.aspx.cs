@@ -1064,12 +1064,7 @@ namespace RealERPWEB.F_23_CR
                             frmdate1 = frmdate1.AddMonths(1);
 
                         }
-
-
                         this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                       
-                       
-
                         this.gv_YCollectionDetails.DataSource = dt1;
                         this.gv_YCollectionDetails.DataBind();
                         this.FooterCalculation();
@@ -1077,14 +1072,7 @@ namespace RealERPWEB.F_23_CR
                         if (dt1.Rows.Count > 0)
                             ((HyperLink)this.gv_YCollectionDetails.HeaderRow.FindControl("hlbtntbdeCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                         break;
-
-
                 }
-
-
-
-
-
             }
 
             catch (Exception e)
