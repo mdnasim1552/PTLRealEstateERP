@@ -34,7 +34,8 @@ namespace RealERPWEB.F_37_LOwner
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Money Receipt Approval(L/O)";
-               
+                this.txtfrmdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.GetProjectName();
 
@@ -73,8 +74,10 @@ namespace RealERPWEB.F_37_LOwner
             {
 
                 string comcod = this.GetCompCode();
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
                 string pactcode = (this.ddlProjectName.SelectedValue.ToString()=="000000000000"?"18":this.ddlProjectName.SelectedValue.ToString())+"%";
-                DataSet ds1 = LownerData.GetTransInfo(comcod, "SP_ENTRY_LANDOWNERMGT", "GETMONEYRECIPTAPPROVAL", pactcode, "", "",
+                DataSet ds1 = LownerData.GetTransInfo(comcod, "SP_ENTRY_LANDOWNERMGT", "GETMONEYRECIPTAPPROVAL", pactcode, frmdate, todate,
                     "", "", "", "", "", "");
                 Session["tblapprecpt"] = ds1.Tables[0];
                 this.Data_Bind();

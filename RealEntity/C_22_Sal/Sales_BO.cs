@@ -1274,6 +1274,7 @@ namespace RealEntity.C_22_Sal
             public string nationality { get; set; }
            
             public string phonenumber { get; set; }
+            public string alternativecontact { get; set; }
             public string email { get; set; }
            
         }
