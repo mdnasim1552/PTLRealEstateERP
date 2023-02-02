@@ -336,7 +336,7 @@
                                                 <asp:TextBox ID="txtgvpursupDat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent" Text='<%# DataBinder.Eval(Container.DataItem, "pursdate").ToString() %>' Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Budgeted Rate" Visible="False">
+                                        <asp:TemplateField HeaderText="Budgeted Rate" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvbgdrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.000;-#,##0.000; ") %>' Width="60px"></asp:Label>
                                             </ItemTemplate>
