@@ -1915,23 +1915,16 @@
                                                     Text="Total"></asp:Label>
                                             </FooterTemplate>
 
-                                            <HeaderTemplate>
+                                            <HeaderTemplate>                                                       
 
-                                                <table style="width: 200px;">
-                                                    <tr>
-                                                        <td class="">
-                                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="Project Name" ></asp:Label>
-                                                        </td>
-                                                        <td class="">&nbsp;</td>
-                                                        <td>
 
-                                                            
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                        Text="Project Name" Width="90px"></asp:Label>
 
-                                                            <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
-                                                                BorderColor="White"  Font-Bold="True"
-                                                                ForeColor="White" Style="text-align: center" Width="90px"><button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
-                                                                </asp:HyperLink>
+                                                    <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
+                                                        BorderColor="White"  Font-Bold="True"
+                                                        ForeColor="White" Style="text-align: center" Width="90px"><button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
+                                                        </asp:HyperLink>
 
 
                                             </HeaderTemplate>
@@ -2004,10 +1997,10 @@
                                         <asp:TemplateField HeaderText="Total Received">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvdeFtoreceivedyc" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    Style="text-align: right"></asp:Label>
+                                                    Style="text-align: right;"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvdetotreceivedyc" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ramt")).ToString("#,##0;(#,##0); ") %>' Style="text-align: right"
+                                                <asp:Label ID="lgvdetotreceivedyc" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ramt")).ToString("#,##0;(#,##0); ") %>' Style="text-align: right;"
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
