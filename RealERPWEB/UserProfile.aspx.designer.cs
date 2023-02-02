@@ -177,15 +177,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lnkIncentiveTracker;
 
         /// <summary>
-        /// hypincentive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypincentive;
-
-        /// <summary>
         /// hrpolicy control.
         /// </summary>
         /// <remarks>
@@ -627,6 +618,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl winUlList;
 
         /// <summary>
+        /// divUmTrack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUmTrack;
+
+        /// <summary>
         /// divIncentive control.
         /// </summary>
         /// <remarks>
@@ -634,6 +634,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divIncentive;
+
+        /// <summary>
+        /// divSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSales;
 
         /// <summary>
         /// conductid control.
