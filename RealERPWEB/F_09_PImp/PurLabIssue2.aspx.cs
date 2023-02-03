@@ -1120,8 +1120,6 @@ namespace RealERPWEB.F_09_PImp
                                 dr1["fiapptrmid"] = trmnid;
                                 dr1["fiappseson"] = session;
                                 dt.Rows.Add(dr1);
-
-
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
