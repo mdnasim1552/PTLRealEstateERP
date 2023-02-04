@@ -419,6 +419,8 @@ namespace RealERPWEB
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
             }
+
+            //UM Tracker
             if(ds1==null || ds1.Tables[5].Rows.Count == 0)
             {
                 return;
@@ -426,8 +428,28 @@ namespace RealERPWEB
             else
             {
                 DataTable dt = ds1.Tables[5];
-                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+                this.divUmTrack.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
 
+            //Incentive
+            if (ds1 == null || ds1.Tables[6].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[6];
+                this.divIncentive.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
+            //Sales Support
+            if (ds1 == null || ds1.Tables[7].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[7];
+                this.divSales.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
         }
@@ -1040,6 +1062,8 @@ namespace RealERPWEB
                     string innHTML = "";
                     string innHTMLTopnot = "";
                     string BirthdayHTML = "";
+                    string BirthdayHTMLCaro = "";
+
                     string status = "";
                     int i = 0;
 
@@ -1051,13 +1075,7 @@ namespace RealERPWEB
                         {
                             url = "../../" + dr["imgurl2"].ToString().Remove(0, 2);
                         }
-                        //else if (dr["imgurl"] != null && dr["imgurl"].ToString() != "")
-                        //{
-                        //    string byturl = dr["imgurl"].ToString();
-                        //    byte[] biempimg = (byte[])byturl;
-                        //    //byte[] biempimg = (byte[])dr["imgurl"];
-                        //    url = "data:image;base64," + Convert.ToBase64String(biempimg);
-                        //}
+     
                         else
                         {
                             url = "Content/Theme/images/avatars/human_avatar.png";
@@ -1067,7 +1085,14 @@ namespace RealERPWEB
                         if (type == "Birthday")
                         {
                             BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+
+                            if (comcod == "3367" || comcod=="3101")
+                            {
+                                BirthdayHTMLCaro = @"<p>" + dr["eventitle"] +"</p>";
+                            }
                         }
+
+                        
                         i++;
                     }
 
@@ -1083,7 +1108,7 @@ namespace RealERPWEB
                     this.gvAllNotice.DataBind();
 
                     this.EventBirthday.InnerHtml = BirthdayHTML;
-                    this.EventCaro.InnerHtml = innHTMLTopnot;
+                    this.EventCaro.InnerHtml = innHTMLTopnot+ BirthdayHTMLCaro;
                     break;
 
               

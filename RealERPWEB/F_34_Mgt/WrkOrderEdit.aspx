@@ -166,7 +166,7 @@
 
                             <asp:TemplateField HeaderText="Spcf Code" Visible="False">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
+                                    <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcodo")) %>'
                                         Width="60px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>

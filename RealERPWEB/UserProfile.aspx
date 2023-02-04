@@ -483,11 +483,23 @@
                                     <li class="nav-item"><a class="nav-link active btn btn-primary" data-toggle="tab" href="#home">Activities</a> </li>
 
 
-                                        <li class="nav-item ml-2" id="lnkIncentiveTracker" runat="server" visible="false">
-                                        <asp:HyperLink ID="hypincentive" CssClass="nav-link smooth-scrol  btn btn-danger" Visible="true" data-toggle="tab" href="#tabIncentive" runat="server">UM-Tracker</asp:HyperLink>
+                                   <%--     <li class="nav-item ml-2" id="lnkIncentiveTracker" runat="server" visible="false">
+                                        <%--<asp:HyperLink ID="hypincentive" CssClass="nav-link smooth-scrol  btn btn-danger" Visible="true" data-toggle="tab" href="#tabUmTrack" runat="server">UM-Tracker</asp:HyperLink>
 
-                                        </li>
-                                    <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
+  </li>--%>
+
+   <li class="nav-item ml-2" id="lnkIncentiveTracker" runat="server" visible="false">         
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    UM Tracker
+  </button>
+  <div class="dropdown-menu">
+   <a class="dropdown-item"  data-toggle="tab" href="#tabUmTrack" runat="server">UM-Tracker</a>
+   <a class="dropdown-item"  data-toggle="tab" href="#tabIncentive" runat="server">Incentive Policy</a>
+   <a class="dropdown-item"  data-toggle="tab" href="#tabSalesSupport" runat="server">Sales Supporters</a>
+  </div>
+</div>
+           </li>                              <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
 
                                     <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
 
@@ -1850,13 +1862,13 @@
                     </section>
                 </div>
 
-                            <div class="tab-pane fade" id="tabIncentive">
+                            <div class="tab-pane fade" id="tabUmTrack">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 550px">
                             <div class="col-12">
                                 <div class="card-body">
-                                    <h1 class="text-center">UM-Tracker</h1>
-                                    <div runat="server" class="text-center" id="divIncentive">
+                                    <h5 class="text-center">UM-Tracker</h5>
+                                    <div runat="server" class="text-center" id="divUmTrack">
                                     </div>
 
                                 </div>
@@ -1868,6 +1880,40 @@
                     </section>
                 </div>
 
+                      <div class="tab-pane fade" id="tabIncentive">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <h5 class="text-center">Incentive Tracker</h5>
+                                    <div runat="server" class="text-center" id="divIncentive">
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="tabSalesSupport">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <h5 class="text-center">Sales Supporters</h5>
+                                    <div runat="server" class="text-center" id="divSales">
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
 
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">

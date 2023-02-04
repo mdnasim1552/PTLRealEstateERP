@@ -2392,6 +2392,7 @@
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
+    <Content Include="F_09_PImp\WorkExecutionFinal.aspx" />
     <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
     <Content Include="F_09_PImp\WorkWithSubCon.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
@@ -4336,6 +4337,13 @@
     </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionFinal.aspx.cs">
+      <DependentUpon>WorkExecutionFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionFinal.aspx.designer.cs">
+      <DependentUpon>WorkExecutionFinal.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.cs">
       <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>

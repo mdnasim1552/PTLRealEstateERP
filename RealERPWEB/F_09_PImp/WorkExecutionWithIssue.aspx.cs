@@ -318,11 +318,11 @@ namespace RealERPWEB.F_09_PImp
             string zerobal = this.ComZeroBal();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, "", "", "", "", "", "");
 
-           // DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLABFLRCODE", pactcode, date, "", SearchMat, withmat, zerobal, "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLABFLRCODE", pactcode, date, "", SearchMat, withmat, zerobal, "", "", "", "");
 
             ViewState["itemlistMaterialsBalance"] = ds1.Tables[0];
             ViewState["specification"] = ds1.Tables[2];
-            //ViewState["itemlistLabourBalance"] = ds2.Tables[0];
+            ViewState["itemlistLabourBalance"] = ds2.Tables[0];
 
 
         }
@@ -369,6 +369,8 @@ namespace RealERPWEB.F_09_PImp
 
 
                 DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
+                DataTable dtLabourList = (DataTable)ViewState["itemlistLabourBalance"];
+
                 DataView dv = dt.DefaultView;
                 DataTable dt1 = (DataTable)ViewState["materialexefinal"];
                 string strColName = "Ratio";
@@ -416,26 +418,6 @@ namespace RealERPWEB.F_09_PImp
                 if (!dt.Columns.Contains(strColName9))
                     dt.Columns.Add(colNew9);
 
-                if (!dtlabour.Columns.Contains(strColName))
-                    dtlabour.Columns.Add(colNew);
-                if (!dtlabour.Columns.Contains(strColName1))
-                    dtlabour.Columns.Add(colNew1);
-                if (!dtlabour.Columns.Contains(strColName2))
-                    dtlabour.Columns.Add(colNew2);
-                if (!dtlabour.Columns.Contains(strColName3))
-                    dtlabour.Columns.Add(colNew3);
-                if (!dtlabour.Columns.Contains(strColName4))
-                    dtlabour.Columns.Add(colNew4);
-                if (!dtlabour.Columns.Contains(strColName5))
-                    dtlabour.Columns.Add(colNew5);
-                if (!dtlabour.Columns.Contains(strColName6))
-                    dtlabour.Columns.Add(colNew6);
-                if (!dtlabour.Columns.Contains(strColName7))
-                    dtlabour.Columns.Add(colNew7);
-                if (!dtlabour.Columns.Contains(strColName8))
-                    dtlabour.Columns.Add(colNew8);
-                if (!dtlabour.Columns.Contains(strColName9))
-                    dtlabour.Columns.Add(colNew9);
 
 
                 string flag = "1";
@@ -1075,5 +1057,63 @@ namespace RealERPWEB.F_09_PImp
         {
             this.txtRefno.Text = this.ddlRA.SelectedItem.Text.Trim();
         }
+
+
+
+
+        private void Get_IssueLabour_Info()
+        {
+
+            string comcod = this.GetComCode();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+            string CurDate1 = Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("dd-MMM-yyyy");
+
+            string mISSNo = "NEWLISS";           
+            DataSet ds1 = new DataSet();
+            ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", mISSNo, CurDate1,
+                         pactcode, "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ViewState["tblmatissue"] = this.HiddenSameData(ds1.Tables[0]);
+
+            if (mISSNo == "NEWLISS")
+            {
+
+                string Prefix = (this.Request.QueryString["Type"] == "Opening") ? "OPB" : "LIS";
+
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTLABISSUENO", CurDate1,
+                       Prefix, "", "", "", "", "", "", "");
+
+                if (ds1 == null)
+                    return;
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+
+                    this.txtCurNo1.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(0, 6);
+                    this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(6, 5);
+                }
+                return;
+            }
+        }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string grp = dt1.Rows[0]["grp"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["grp"].ToString() == grp)
+                    dt1.Rows[j]["grpdesc"] = "";
+
+
+                grp = dt1.Rows[j]["grp"].ToString();
+
+
+            }
+
+            return dt1;
+        }
+
     }
 }
