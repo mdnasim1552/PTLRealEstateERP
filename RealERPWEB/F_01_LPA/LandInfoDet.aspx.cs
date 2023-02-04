@@ -6566,7 +6566,8 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
             string date = this.txtdate.Text.Trim();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETNOTIFICATIONDETAILS", "8305%", empid, rtype, date, "");
+            string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETNOTIFICATIONDETAILS", "8305%", empid, rtype, date, fempid);
             DataTable dt = new DataTable();
             if (ds1.Tables[0].Rows.Count != 0)
             {
