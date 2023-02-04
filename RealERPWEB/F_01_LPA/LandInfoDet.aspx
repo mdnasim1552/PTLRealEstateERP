@@ -16,8 +16,6 @@
             font-family: "Century Gothic" !important;
         }
 
-
-
         .multiselect-container {
             width: 100%;
             overflow-y: scroll !important;
@@ -3907,17 +3905,17 @@
 
 
             <div id="modalComments" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-dialog-mid-width">
-                    <div class="modal-content modal-content-mid-width">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content modal-xl">
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <i class="fa fa-hand-point-right"></i>Comments Information </h4>
                             <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
 
                         </div>
-                        <div class="modal-body ">
+                        <div class="modal-body responsive">
                             <asp:GridView ID="gvComments" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered  grvContentarea ml-3">
+                                CssClass="table-striped  table-bordered  grvContentarea ml-3">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
