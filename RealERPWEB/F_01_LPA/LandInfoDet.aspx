@@ -16,8 +16,6 @@
             font-family: "Century Gothic" !important;
         }
 
-
-
         .multiselect-container {
             width: 100%;
             overflow-y: scroll !important;
