@@ -2608,7 +2608,7 @@
                                             </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Amount">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="lgvamount1" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
+                                                    <asp:TextBox ID="lgvamount1" runat="server" AutoPostBack="true" OnTextChanged="lgvamount1_TextChanged" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <EditItemTemplate>
