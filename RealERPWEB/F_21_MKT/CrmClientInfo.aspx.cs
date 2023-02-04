@@ -3077,7 +3077,7 @@ namespace RealERPWEB.F_21_MKT
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Please Select Source!');", true);
                         return;
                     }
-                    else if (sourcecode == "3101010")//IR EPIC
+                    if (sourcecode == "3101010" && comcod == "3367")//IR EPIC
                     {
                         string empIR = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlIREmp")).SelectedValue.ToString();
                         if (empIR.Trim().Length == 0)
