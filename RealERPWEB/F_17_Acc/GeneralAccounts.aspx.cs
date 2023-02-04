@@ -2114,36 +2114,37 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                        case "3356": // intech
-                            for (int i = 0; i < dgv1.Rows.Count; i++)
-                            {
-                                string actcode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
-                                string rescode = ((Label)this.dgv1.Rows[i].FindControl("lblResCod")).Text.Trim();
-                                string spclcode = ((Label)this.dgv1.Rows[i].FindControl("lblSpclCod")).Text.Trim();
-                                double Dramt = ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text.Trim());
-                                double hntrndram = -1 * (ASTUtility.StrPosOrNagative(((Label)this.dgv1.Rows[i].FindControl("lblgvssbalamt")).Text.Trim()));
+                        //case "3356": // intech
+                        //    for (int i = 0; i < dgv1.Rows.Count; i++)
+                        //    {
+                        //        string actcode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
+                        //        string rescode = ((Label)this.dgv1.Rows[i].FindControl("lblResCod")).Text.Trim();
+                        //        string spclcode = ((Label)this.dgv1.Rows[i].FindControl("lblSpclCod")).Text.Trim();
+                        //        double Dramt = ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text.Trim());
+                        //        double hntrndram = -1 * (ASTUtility.StrPosOrNagative(((Label)this.dgv1.Rows[i].FindControl("lblgvssbalamt")).Text.Trim()));
 
-                                if (actcode.Substring(0, 2) == "26" && (rescode.Substring(0, 2) == "99" || rescode.Substring(0, 2) == "98") && vouno != "JV")
-                                {
-                                    if (Dramt > hntrndram)
-                                    {
-                                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = true;
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Amount Exceed, please check balance!!!.');", true);
-                                        return;
-                                    }
+                        //        if (actcode.Substring(0, 2) == "26" && (rescode.Substring(0, 2) == "99" || rescode.Substring(0, 2) == "98") && vouno != "JV")
+                        //        {
+                        //            if (Dramt > hntrndram)
+                        //            {
+                        //                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = true;
+                        //                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Amount Exceed, please check balance!!!.');", true);
+                        //                return;
+                        //            }
 
-                                }
-                                else if (actcode.Substring(0, 2) == "23" && rescode.Substring(0, 2) == "97" && (spclcode.Substring(0, 2) == "98"|| spclcode.Substring(0, 2) == "99"))
-                                {
-                                    if (Dramt > hntrndram)
-                                    {
-                                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = true;
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Amount Exceed, please check balance!!!.');", true);
-                                        return;
-                                    }
-                                }
-                            }                           
-                            break;
+                        //        }
+                        //        else if (actcode.Substring(0, 2) == "23" && rescode.Substring(0, 2) == "97" && (spclcode.Substring(0, 2) == "98"|| spclcode.Substring(0, 2) == "99"))
+                        //        {
+                        //            if (Dramt > hntrndram)
+                        //            {
+                        //                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = true;
+                        //                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Amount Exceed, please check balance!!!.');", true);
+                        //                return;
+                        //            }
+                        //        }
+                        //    }                           
+                        //    break;
+
                         default:
                             break;
                     }
