@@ -701,7 +701,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox41</rd:DefaultName>
@@ -710,6 +712,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -832,8 +835,8 @@
                       <TextRun>
                         <Value>Project Name</Value>
                         <Style>
-                          <FontFamily>times New Roman</FontFamily>
-                          <FontSize>11pt</FontSize>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -864,7 +867,8 @@
                       <TextRun>
                         <Value>:</Value>
                         <Style>
-                          <FontFamily>times New Roman</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -912,7 +916,7 @@
                 <Top>0.01042in</Top>
                 <Left>1.11097in</Left>
                 <Height>0.17708in</Height>
-                <Width>2.7582in</Width>
+                <Width>2.16445in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -929,7 +933,7 @@
             <Top>0.04375in</Top>
             <Left>0.01542in</Left>
             <Height>0.1875in</Height>
-            <Width>3.86917in</Width>
+            <Width>3.30667in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1736,119 +1740,6 @@
               </Border>
             </Style>
           </Tablix>
-          <Rectangle Name="Rectangle4">
-            <ReportItems>
-              <Textbox Name="Textbox42">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Unit Description</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                          <FontSize>9pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox35</rd:DefaultName>
-                <Top>0.01042in</Top>
-                <Height>0.17708in</Height>
-                <Width>1in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox43">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>:</Value>
-                        <Style>
-                          <FontFamily>times New Roman</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox35</rd:DefaultName>
-                <Top>0.01042in</Top>
-                <Left>0.98389in</Left>
-                <Height>0.17708in</Height>
-                <Width>0.10764in</Width>
-                <ZIndex>1</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox44">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value />
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox35</rd:DefaultName>
-                <Top>0.01042in</Top>
-                <Left>1.11097in</Left>
-                <Height>0.17708in</Height>
-                <Width>2.62278in</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </ReportItems>
-            <KeepTogether>true</KeepTogether>
-            <Top>0.06188in</Top>
-            <Left>3.94129in</Left>
-            <Height>0.1875in</Height>
-            <Width>3.73375in</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
           <Textbox Name="Textbox1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -1879,7 +1770,7 @@
             <Left>5.84042in</Left>
             <Height>0.21875in</Height>
             <Width>1.83333in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1909,7 +1800,7 @@
             <Left>0.0125in</Left>
             <Height>0.25in</Height>
             <Width>1.83333in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1927,7 +1818,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Discount in (%) 0%</Value>
+                    <Value>=Parameters!lbldisamt.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                     </Style>
@@ -1940,10 +1831,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>2.15626in</Top>
-            <Left>5.84042in</Left>
+            <Left>5.33in</Left>
             <Height>0.1875in</Height>
-            <Width>1.82917in</Width>
-            <ZIndex>7</ZIndex>
+            <Width>2.35in</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1979,7 +1870,7 @@
             <Left>0.03208in</Left>
             <Height>0.25in</Height>
             <Width>2.05208in</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2018,7 +1909,7 @@
             <Left>5.64938in</Left>
             <Height>0.25in</Height>
             <Width>2.01042in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2032,6 +1923,60 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Unit Description: </Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!aprtno.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>, Unit Size: </Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!aprtsize.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox9</rd:DefaultName>
+            <Top>0.05001in</Top>
+            <Left>3.79042in</Left>
+            <Height>0.16667in</Height>
+            <Width>3.83333in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>5.06125in</Height>
         <Style />
@@ -2039,7 +1984,7 @@
       <Width>7.69668in</Width>
       <Page>
         <PageHeader>
-          <Height>0.54041in</Height>
+          <Height>0.73833in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2052,7 +1997,9 @@
                     <TextRun>
                       <Value>Payment Schedule</Value>
                       <Style>
+                        <FontFamily>Cambria</FontFamily>
                         <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2062,8 +2009,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ComName</rd:DefaultName>
-              <Top>0.0125in</Top>
-              <Left>1.11806in</Left>
+              <Top>0.2125in</Top>
+              <Left>1.30556in</Left>
               <Height>0.30208in</Height>
               <Width>5.3036in</Width>
               <Style>
@@ -2080,8 +2027,8 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Height>0.51042in</Height>
-              <Width>0.97917in</Width>
+              <Height>0.67709in</Height>
+              <Width>1.23959in</Width>
               <ZIndex>1</ZIndex>
               <ToolTip>=Parameters!ComLogo.Value</ToolTip>
               <Style>
@@ -2178,7 +2125,7 @@
         </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
-        <LeftMargin>0.15in</LeftMargin>
+        <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
         <TopMargin>0.1in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>
