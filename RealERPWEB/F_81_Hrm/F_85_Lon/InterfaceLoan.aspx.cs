@@ -1127,7 +1127,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-           
+            this.txtPloanAmt.Text = Convert.ToDouble(dt.Rows[0]["prelnbal"]).ToString("#,##0.00;(#,##0.00);");
             this.txtLoanAmt.Text = Convert.ToDouble(dt.Rows[0]["loanamt"]).ToString("#,##0.00;(#,##0.00); ");
             this.txtInstNum.Text = Convert.ToInt32(dt.Rows[0]["instlnum"]).ToString("#,##0;(#,##0); "); 
             this.txtAmtPerIns.Text = Convert.ToDouble(dt.Rows[0]["perinstlamt"]).ToString("#,##0.00;(#,##0.00); "); 
