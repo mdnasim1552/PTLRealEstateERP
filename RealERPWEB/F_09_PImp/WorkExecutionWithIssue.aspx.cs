@@ -363,6 +363,9 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("isurat", Type.GetType("System.Double"));
             tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
             tblt01.Columns.Add("balqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("subcontractor", Type.GetType("System.String"));
+            tblt01.Columns.Add("billno", Type.GetType("System.String"));
+            tblt01.Columns.Add("rano", Type.GetType("System.String"));
             ViewState["labourexefinal"] = tblt01;
         }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
@@ -452,6 +455,11 @@ namespace RealERPWEB.F_09_PImp
                 string LstrColName7 = "WrkQty";
                 string LstrColName8 = "StdQty";
                 string LstrColName9 = "WrkUnit";
+                string LstrColName10 = "SubContractor";
+                string LstrColName11 = "billno";
+                string LstrColName12 = "RANo";
+
+
                 DataColumn LcolNew = new DataColumn(LstrColName, typeof(double));
                 DataColumn LcolNew1 = new DataColumn(LstrColName1, typeof(double));
                 DataColumn LcolNew2 = new DataColumn(LstrColName2, typeof(string));
@@ -462,6 +470,9 @@ namespace RealERPWEB.F_09_PImp
                 DataColumn LcolNew7 = new DataColumn(LstrColName7, typeof(double));
                 DataColumn LcolNew8 = new DataColumn(LstrColName8, typeof(double));
                 DataColumn LcolNew9 = new DataColumn(LstrColName9, typeof(string));
+                DataColumn LcolNew10 = new DataColumn(LstrColName10, typeof(string));
+                DataColumn LcolNew11 = new DataColumn(LstrColName11, typeof(string));
+                DataColumn LcolNew12 = new DataColumn(LstrColName12, typeof(string));
                 LcolNew.DefaultValue = 0.00;
                 LcolNew1.DefaultValue = 0.00;
                 LcolNew2.DefaultValue = "000000000000";
@@ -486,6 +497,12 @@ namespace RealERPWEB.F_09_PImp
                     dtlabour.Columns.Add(LcolNew8);
                 if (!dtlabour.Columns.Contains(LstrColName9))
                     dtlabour.Columns.Add(LcolNew9);
+                if (!dtlabour.Columns.Contains(LstrColName10))
+                    dtlabour.Columns.Add(LcolNew10);
+                if (!dtlabour.Columns.Contains(LstrColName11))
+                    dtlabour.Columns.Add(LcolNew11);
+                if (!dtlabour.Columns.Contains(LstrColName12))
+                    dtlabour.Columns.Add(LcolNew12);
 
                 string flag = "1";
                 if (tempforgrid.Rows.Count == 0)
@@ -541,6 +558,8 @@ namespace RealERPWEB.F_09_PImp
                             dvlabour.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
 
                             dtlabour = dvlabour.ToTable();
+                            string mISUNO = this.txtCurNo1.Text.Trim().Substring(0, 3) + this.txtEntryDate.Text.Trim().Substring(7, 4) + this.txtCurNo1.Text.Trim().Substring(3, 2) + this.txtCurNo2.Text.Trim();
+
                             foreach (DataRow dr in dtlabour.Rows)
                             {
                                 string rsircode = dr["rsircode"].ToString();
@@ -556,6 +575,9 @@ namespace RealERPWEB.F_09_PImp
                                     dr["balqty"] = (((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'"))[0]["balqty"]).ToString();
                                     dr["isurat"] = Convert.ToDouble(dtLabourList.Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'")[0]["isurat"]);
                                     dr["isuamt"] = Convert.ToDouble(dr["isurat"]) * Convert.ToDouble(dr["isuqty"]);
+                                    dr["SubContractor"] = ddlSubContractor.SelectedValue.ToString();
+                                    dr["billno"] = mISUNO;
+                                    dr["RANO"] = "";
                                 }
                             }
                             if (dtlabour.Select("rsirunit<>''").Length > 0)
@@ -678,11 +700,12 @@ namespace RealERPWEB.F_09_PImp
                 ddlSpec.DataBind();
                 if (dv.ToTable().Rows.Count > 1)
                 {
-                    lnk.Enabled = true;
+                    lnk.Visible = true;
                 }
                 else
                 {
                     lnk.Enabled = false;
+                    lnk.Visible = false;
                 }
                 ddlSpec.SelectedValue = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "spcfcod"));
             }
@@ -1353,11 +1376,8 @@ namespace RealERPWEB.F_09_PImp
             this.ddlSubContractor.DataSource = ds1.Tables[0];
             this.ddlSubContractor.DataBind();
 
-
-            //this.ddlgroup.DataTextField = "grpdesc";
-            //this.ddlgroup.DataValueField = "grp";
-            //this.ddlgroup.DataSource = ds1.Tables[1];
-            //this.ddlgroup.DataBind();
+            ViewState["ListSubContractor"] = ds1.Tables[0];
+            
         }
         private void GetTrade()
         {
@@ -1382,8 +1402,7 @@ namespace RealERPWEB.F_09_PImp
             this.ddlRA.DataValueField = "racode";
             this.ddlRA.DataSource = dv.ToTable();
             this.ddlRA.DataBind();
-            ds1.Dispose();
-            this.ddlRA_SelectedIndexChanged(null, null);
+            ViewState["ListRA"] = dv.ToString();
         }
         protected void lbtnDepost_Click(object sender, EventArgs e)
         {
@@ -1465,6 +1484,29 @@ namespace RealERPWEB.F_09_PImp
 
             ((Label)this.DataGridThree.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.0000;(#,##0.00); ");
 
+        }
+
+        protected void DataGridThree_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dtsubcon = (DataTable)ViewState["ListSubContractor"];
+            DataTable dtra = (DataTable)ViewState["ListRA"];
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DropDownList ddlsubcon = (DropDownList)e.Row.FindControl("ddlsubcon");
+                DropDownList ddlRA = (DropDownList)e.Row.FindControl("ddlRANo");
+               
+                ddlsubcon.DataSource = dtsubcon;
+                ddlsubcon.DataTextField = "sircode1";
+                ddlsubcon.DataValueField = "sircode";
+                ddlsubcon.DataBind();
+
+                ddlRA.DataSource = dtra;
+                ddlRA.DataTextField = "radesc";
+                ddlRA.DataValueField = "racode";
+                ddlRA.ToString();
+                //ddlsubcon.SelectedValue = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "spcfcod"));
+            }
         }
     }
 }
