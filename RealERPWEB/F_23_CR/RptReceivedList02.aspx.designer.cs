@@ -159,6 +159,15 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.TextBox txtAmountC1;
 
         /// <summary>
+        /// divtocash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtocash;
+
+        /// <summary>
         /// lblToCash control.
         /// </summary>
         /// <remarks>
