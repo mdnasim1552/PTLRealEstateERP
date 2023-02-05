@@ -5920,7 +5920,7 @@ namespace RealERPWEB.F_01_LPA
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 string comcod = this.GetComeCode();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string empid = hst["empid"].ToString(); ;
+                string empid = hst["empid"].ToString(); 
                 // start
                 string hempid = this.lbleditempid.Value;
                 DataTable dt = ((DataTable)ViewState["tblempsup"]).Copy();
@@ -6001,9 +6001,18 @@ namespace RealERPWEB.F_01_LPA
 
                     else if (Gcode == "810100102019")
                     {
+                        //Commented on 05-Feb-2023
+                        //Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
+                        //    : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).SelectedValue.ToString();
 
-                        Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
-                            : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).SelectedValue.ToString();
+                        //For Multiple Next Followup
+                        foreach (ListItem chkfollow in ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items)
+                        {
+                            if (chkfollow.Selected)
+                            {
+                                Gvalue += chkfollow.Value;
+                            }
+                        }
                     }
 
 
@@ -6890,22 +6899,18 @@ namespace RealERPWEB.F_01_LPA
                 empid = "%";
             }
 
-
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTMONTHLYKPI", "8305%", frmdate, todate, empid);
-
+            if(ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpi.DataSource = ds1.Tables[0];
             this.gvkpi.DataBind();
             this.footerCalculations();
-
-
-
-
-
-
 
         }
 
@@ -8036,15 +8041,17 @@ namespace RealERPWEB.F_01_LPA
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
             string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
-
             lblkpiDetails.Text = "Kpi Details: " + empname;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if(ds1 == null )
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601001' or gpcode ='9601001' ");
@@ -8075,7 +8082,11 @@ namespace RealERPWEB.F_01_LPA
             string todate = this.txtkpitodate.Text.Trim();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601004' or gpcode ='9601004' ");
@@ -8106,7 +8117,11 @@ namespace RealERPWEB.F_01_LPA
             string todate = this.txtkpitodate.Text.Trim();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601008' or gpcode ='9601008' ");
@@ -8137,7 +8152,11 @@ namespace RealERPWEB.F_01_LPA
             string todate = this.txtkpitodate.Text.Trim();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601012' or gpcode ='9601012' ");
@@ -8168,7 +8187,11 @@ namespace RealERPWEB.F_01_LPA
             string todate = this.txtkpitodate.Text.Trim();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601016' or gpcode ='9601016' ");
@@ -8199,7 +8222,11 @@ namespace RealERPWEB.F_01_LPA
             string todate = this.txtkpitodate.Text.Trim();
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
             dv.RowFilter = ("sircode='9601020' or gpcode ='9601020' ");
@@ -8217,33 +8244,40 @@ namespace RealERPWEB.F_01_LPA
 
         protected void lblgvkpileads_Click(object sender, EventArgs e)
         {
-            //this.lblkpiDetails.Visible = true;
+            try
+            {
+                this.lblkpiDetails.Visible = true;
+                int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+                string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+                string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
 
-            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            //string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
-            //string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+                lblkpiDetails.Text = "Kpi Details: " + empname;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetComeCode();
+                string frmdate = this.txtdate.Text.Trim();
+                string todate = this.txtkpitodate.Text.Trim();
+                DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPT_EMPKPI_LEAD_DETAILS", "8305%", frmdate, todate, empid);
+                if (ds1 == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                    return;
+                }
+                this.gvSummary.DataSource = null;
+                this.gvSummary.DataBind();
+                this.gvkpidet.DataSource = ds1.Tables[0];
+                this.gvkpidet.DataBind();
 
-            //lblkpiDetails.Text = "Kpi Details: " + empname;
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = this.GetComeCode();
-            //string frmdate = this.txtdate.Text.Trim();
-            //string todate = this.txtkpitodate.Text.Trim();
+                if (gvkpidet.Rows.Count > 0)
+                {
+                    Session["Report1"] = gvkpidet;
+                    ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                }
+            }
+            catch (Exception ex)
+            {
 
-            //DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
-
-            //ViewState["tbltempdt"] = ds1.Tables[0];
-            //DataView dv = new DataView(ds1.Tables[0]);
-            //dv.RowFilter = ("sircode='9601001' or gpcode ='9601001' ");
-            //this.gvSummary.DataSource = null;
-            //this.gvSummary.DataBind();
-            //this.gvkpidet.DataSource = dv;
-            //this.gvkpidet.DataBind();
-
-            //if (gvkpidet.Rows.Count > 0)
-            //{
-            //    Session["Report1"] = gvkpidet;
-            //    ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-            //}
+                throw;
+            }            
         }
 
         protected void lblgvkpiclosing_Click(object sender, EventArgs e)
