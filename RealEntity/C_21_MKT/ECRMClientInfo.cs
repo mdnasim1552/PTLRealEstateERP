@@ -117,6 +117,7 @@ namespace RealEntity.C_21_Mkt
         {
             public string proscod { get; set; }
             public string proscod1 { get; set; }
+            public string teamleader { get; set; }
             public string sourcecode { get; set; }
             public string source { get; set; }
             public DateTime createdate { get; set; }
@@ -126,7 +127,7 @@ namespace RealEntity.C_21_Mkt
             public string negotiation { get; set; }
             public string finalnegotiation { get; set; }
             public string win { get; set; }
-
+            public string lstatus { get; set; }
             public RptLeadStatusTimestamp() { }
         }
 
