@@ -2164,24 +2164,28 @@ namespace RealERPWEB.F_12_Inv
 
                 if (comcod =="3368")
                 {
-                    
-                    
-                    for (int i = 0; i < this.dgv1.Rows.Count; i++)
+                    string pactcode = Request.QueryString["prjcode"].Substring(0,2);
+                    if (pactcode != "11")
                     {
-                        string bgtqty = ((Label)this.dgv1.Rows[i].FindControl("lblgvboqRate")).Text.Trim();
-                        string newrate = ((TextBox)this.dgv1.Rows[i].FindControl("txtgvsupRat")).Text.Trim();
 
-                        double aproqty = Convert.ToDouble("0" + newrate);
-                        double intbalqty = Convert.ToDouble("0" + bgtqty);
 
-                        if (intbalqty < aproqty)
+
+                        for (int i = 0; i < this.dgv1.Rows.Count; i++)
                         {
-                           string message = "New rate can not greater than Budget rate ";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                            return;
+                            string bgtqty = ((Label)this.dgv1.Rows[i].FindControl("lblgvboqRate")).Text.Trim();
+                            string newrate = ((TextBox)this.dgv1.Rows[i].FindControl("txtgvsupRat")).Text.Trim();
+
+                            double aproqty = Convert.ToDouble("0" + newrate);
+                            double intbalqty = Convert.ToDouble("0" + bgtqty);
+
+                            if (intbalqty < aproqty)
+                            {
+                                string message = "New rate can not greater than Budget rate ";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                                return;
+                            }
                         }
                     }
-
 
                 }
 
