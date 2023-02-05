@@ -854,8 +854,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000" ? "94" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
             string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string curr_yr = DateTime.Today.AddYears(-1).ToString("yyyy");
             string dayid = ymon + "01";
-            string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+            //string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+            string txtdate ="01-" +"Dec-"  + curr_yr.Substring(0, 4);
+
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
 
           //  string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
