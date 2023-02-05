@@ -209,7 +209,7 @@
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvMSRSlNo" runat="server" Height="16px"
                                                     Style="text-align: right"
@@ -509,44 +509,44 @@
                         <asp:Panel runat="server" ID="pnlLab" Visible="false">
                             <div class="row mt-1">
                                 <div class="col-lg-2 d-flex align-items-center">
-                                    <h6 class="mb-0">Sub-Contractor Bill</h6>
+                                    <h6 class="my-2">SUB-CONTRACTOR BILL</h6>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="row">
                                         <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label8" class="form-label">Bill No</asp:Label>
+                                            <asp:Label runat="server" ID="Label8" class="form-label" Visible="false">Bill No</asp:Label>
                                         </div>
                                         <div class="col-4 px-1">
-                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtCurNo1" disabled></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm"  Visible="false" ID="txtCurNo1" disabled></asp:TextBox>
                                         </div>
                                         <div class="col-4 p-0">
-                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtCurNo2" disabled></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm"  Visible="false" ID="txtCurNo2" disabled></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="row">
                                         <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label15" class="form-label">Contractor List</asp:Label>
+                                            <asp:Label runat="server" ID="Label15" class="form-label"  Visible="false">Contractor List</asp:Label>
                                         </div>
                                         <div class="col-8 p-0">
-                                            <asp:DropDownList ID="ddlSubContractor" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlSubContractor" CssClass="form-control select2"  Visible="false" runat="server"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="row">
                                         <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label10" class="form-label">RA List</asp:Label>
+                                            <asp:Label runat="server" ID="Label10" class="form-label"  Visible="false">RA List</asp:Label>
                                         </div>
                                         <div class="col-8 p-0">
-                                            <asp:DropDownList ID="ddlRA" runat="server" AutoPostBack="True" CssClass="select2 form-control" OnSelectedIndexChanged="ddlRA_SelectedIndexChanged" TabIndex="18">
+                                            <asp:DropDownList ID="ddlRA" runat="server"  Visible="false" AutoPostBack="True" CssClass="select2 form-control" OnSelectedIndexChanged="ddlRA_SelectedIndexChanged" TabIndex="18">
                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-1">
-                                    <asp:TextBox ID="txtRefno" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox ID="txtRefno" runat="server" CssClass="form-control form-control-sm"  Visible="false"></asp:TextBox>
 
                                 </div>
                             </div>
