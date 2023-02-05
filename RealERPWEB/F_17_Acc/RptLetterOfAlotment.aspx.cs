@@ -230,15 +230,15 @@ namespace RealERPWEB.F_17_Acc
                 string aprtsize = size + " " + unit;
                 string Location = ds3.Tables[0].Rows[0]["location"].ToString();
                 string enrolldate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["enrolldate"]).ToString("dd-MMM-yyyy");                 
-                string unitcost = Convert.ToDouble("0"+ ds3.Tables[3].Rows[0]["uamt"].ToString()).ToString("#,##0.00;(#,##0.00); ");             
+                string unitcost = uamt.ToString("#,##0.00;(#,##0.00); ");             
                
                 string othercharge = "0.00";
                 string discount = "0.00";
-                string initialpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string dnpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string Uppay = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string totalcost = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string initialpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string dnpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string Uppay = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+               // string totalcost = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
 
                 string expectdate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["handoverdat"].ToString()).ToString("dd-MMM-yyyy");
 
@@ -286,7 +286,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("totalcost", totalcost));
+                Rpt1.SetParameters(new ReportParameter("totalcost", tamt.ToString("#,##0.00;(#,##0.00); ")));
                
 
 

@@ -55,12 +55,6 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="App_Code">
-      <HintPath>..\..\bin\App_Code.dll</HintPath>
-    </Reference>
-    <Reference Include="App_global.asax">
-      <HintPath>..\..\bin\App_global.asax.dll</HintPath>
-    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
