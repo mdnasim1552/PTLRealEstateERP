@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
@@ -33,7 +34,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
+        }
         private void GetDate()
         {
             DataSet datSetup = compUtility.GetCompUtility();
@@ -317,7 +322,39 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             return dt1;
 
         }
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataTable dt = (DataTable)Session["tblabscount"];
+
+            LocalReport Rpt1 = new LocalReport();
+
+            var lst = dt.DataTableToList <RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.RptEmpAbsCount> ();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptEmpAbsCount", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Absent Count"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printdate","Print Date : "+ printdate));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
         protected void ddlpage_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.gvabscount.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());

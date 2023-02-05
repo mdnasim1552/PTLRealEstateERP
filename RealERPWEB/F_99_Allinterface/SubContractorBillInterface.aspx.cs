@@ -277,16 +277,26 @@ namespace RealERPWEB.F_99_Allinterface
             string frecon = this.Gettxtfrecon();
             string billchk = this.GettxtBillChecked();
             string orderApp = "";
+            string billcs = "";
+            string ratecsapp = "";
             switch (comcod)
             {
-                case "3101":
-                case "3368"://
+                case "3101":              
                 case "3370"://
                     orderApp = "Bill Generate";
+                    billcs = "Bill CS";
+                    ratecsapp = "Bill CS APP";
+                    break;
+                case "3368"://
+                    orderApp = "Bill Generate";
+                    billcs = "Rate CS";
+                    ratecsapp = "Rate CS APP";
                     break;
 
                 default:
                     orderApp = "Order App.";
+                    billcs = "Bill CS";
+                    ratecsapp = "Bill CS APP";
                     break;
             }
 
@@ -294,8 +304,9 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Monthly Plan</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["execount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Execution</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["allreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Req. Status</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Bill CS</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>Bill CS APP</div></div></div>";
+            
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>"+billcs+"</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>"+ratecsapp+"</div></div></div>";
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>Work Order</div></div></div>";
 

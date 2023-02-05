@@ -2420,7 +2420,66 @@ namespace RealERPWEB.F_14_Pro
 
         protected void Checksamehead_CheckedChanged(object sender, EventArgs e)
         {
+           
             //this.gvGenBillTracking_RowEditing(null, null);
+            //this.gvGenBillTracking_RowUpdating(null,null);
+        }
+
+        protected void lgvamount1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+                string amont = ((TextBox)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvamount1")).Text.Trim();             
+
+                string targetrPactcode = ((Label)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvpactcode")).Text.Trim();
+                string targetrSircode = ((Label)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvrsircode")).Text.Trim();
+                string selectedactcode = ((Label)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvpactcode")).Text.Trim();
+                string selectedrescode = ((Label)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvrsircode")).Text.Trim();
+                string spcfcod = ((Label)this.gvGenBillTracking.Rows[RowIndex].FindControl("lgvspcfcod")).Text.Trim();
+               
+
+                if (Checksamehead.Checked)
+                {
+                    DataTable tbl1 = (DataTable)Session["tblpurchase"];
+                    for (int i = 0; i < gvGenBillTracking.Rows.Count; i++)
+                    {
+                        
+                        string pactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvpactcode")).Text.Trim();
+                        string rsircode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvrsircode")).Text.Trim();
+                       
+
+                       
+
+                        if (targetrPactcode == pactcode && targetrSircode == rsircode)
+                        {
+                            tbl1.Rows[i]["pactcode"] = selectedactcode;
+                            tbl1.Rows[i]["rsircode"] = selectedrescode;                      
+                            
+                            tbl1.Rows[i]["spcfcod"] = spcfcod;
+                            tbl1.Rows[i]["amt"] = amont;
+                            
+                        }
+                    }
+                    Session["tblpurchase"] = tbl1;
+
+                    
+                    gvGenBillTracking.DataSource = tbl1;
+                    gvGenBillTracking.DataBind();
+                }
+                else
+                {
+                    return;
+                }
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
         }
 
 

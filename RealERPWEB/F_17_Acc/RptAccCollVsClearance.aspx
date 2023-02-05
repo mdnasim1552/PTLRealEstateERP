@@ -21,7 +21,10 @@
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+            
+
         });
+        
         function pageLoaded() {
 
             try {
@@ -802,10 +805,9 @@
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
 
-                                                <li class="menu-item has-active"><a href="#tab1primary" class="nav-link " data-toggle="tab" style="font-size: 18px"><span class="fas fa-chart-bar" aria-hidden="true"></span>&nbsp; Bar Chart</a></li>
-
-                                                <li><a href="#tab2primary" class="nav-link "  data-toggle="tab" style="font-size: 18px"><span class="fas fa-chart-line" aria-hidden="true"></span>&nbsp; Line Chart</a></li>
-                                                <li><a href="#tab3primary" class="nav-link "  data-toggle="tab" style="font-size: 18px"><span class="fas fa-chart-pie" aria-hidden="true"></span>&nbsp;Pie Chart</a></li>
+                                                <li  class="nav-item" ><a href="#tab1primary" class="nav-link active" data-toggle="tab" onclick="return tab1primarybarshow()" style="font-size: 18px" ><span class="fas fa-chart-bar" aria-hidden="true" ></span>&nbsp; Bar Chart</a></li>
+                                                <li  class="nav-item"><a href="#tab2primary" class="nav-link " onclick="return tab2primarybarhide()"  data-toggle="tab" style="font-size: 18px"><span class="fas fa-chart-line" aria-hidden="true"></span>&nbsp; Line Chart</a></li>
+                                                <li  class="nav-item"><a href="#tab3primary" class="nav-link " onclick="return tab2primarybarhide()"  data-toggle="tab" style="font-size: 18px"><span class="fas fa-chart-pie" aria-hidden="true"></span>&nbsp;Pie Chart</a></li>
 
 
                                             </ul>
@@ -813,7 +815,7 @@
                                         <div class="panel-body">
                                             <div class="tab-content  ">
 
-                                                <div class="tab-pane fade has-active" id="tab1primary">
+                                                <div class="nav-item" id="tab1primary">
                                                     <div id="MonthlySales" style="width: 700px; height: 250px; margin: 0 auto"></div>
                                                 </div>
                                                 <div class="tab-pane fade " id="tab2primary">
@@ -832,7 +834,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive table">
-                                    <asp:GridView ID="gvMonCollect" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="gvMonCollect" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-bordered grvContentarea"
                                         ShowFooter="True" Width="616px" OnRowDataBound="gvMonCollect_RowDataBound">
                                         <RowStyle />
                                         <Columns>
@@ -1055,11 +1057,11 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
 
                                     </asp:GridView>
                                 </div>
@@ -2051,9 +2053,7 @@
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
 
-                                                <li class="menu-item has-active"><a href="#tab1primary1" class="nav-link " data-toggle="tab" style="font-size: 18px"><i class="fas fa-chart-bar" aria-hidden="true"></i>&nbsp; Bar Chart</a></li>
-
-
+                                                <li class="menu-item "><a href="#tab1primary1" class="nav-link " data-toggle="tab" style="font-size: 18px"><i class="fas fa-chart-bar" aria-hidden="true"></i>&nbsp; Bar Chart</a></li>
                                                 <li><a href="#tab2primary2" class="nav-link " data-toggle="tab" style="font-size: 18px"><i class="fas fa-chart-line" aria-hidden="true"></i>&nbsp; Line Chart</a></li>
                                                 <li><a href="#tabprimary3" class="nav-link " data-toggle="tab" style="font-size: 18px"><i class="fas fa-chart-pie" aria-hidden="true"></i>&nbsp; Pie Chart</a></li>
 
@@ -2543,6 +2543,12 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <script language="javascript" type="text/javascript">
+        function tab1primarybarshow() {
+            $("#MonthlySales").show();
+        }
+        function tab2primarybarhide() {
+            $("#MonthlySales").hide();
+        }
         function ExecuteSalesGraph(data) {
             //console.log(JSON.parse(data));
             var sdata = JSON.parse(data);

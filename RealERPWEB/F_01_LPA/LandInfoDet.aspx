@@ -16,8 +16,6 @@
             font-family: "Century Gothic" !important;
         }
 
-
-
         .multiselect-container {
             width: 100%;
             overflow-y: scroll !important;
@@ -2557,7 +2555,7 @@
 
                                                 <asp:TemplateField HeaderText="Retreive" Visible="false">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" 
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()"
                                                             OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -3726,7 +3724,7 @@
 
                                                     <FooterTemplate>
 
-                                                        <asp:LinkButton ID="lbtnUpdateDiscussiont" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussiont_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnUpdateDiscussiont" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussiont_Click" CssClass="btn btn-success btn-sm" ToolTip="Followup Final Update">Final Update</asp:LinkButton>
 
                                                     </FooterTemplate>
                                                     <ItemTemplate>
@@ -3901,30 +3899,26 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-            <div id="modalComments" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-dialog-mid-width">
-                    <div class="modal-content modal-content-mid-width">
+            <%--Modal Comment--%>
+            <div id="modalComments" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content modal-xl">
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <i class="fa fa-hand-point-right"></i>Comments Information </h4>
                             <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
 
                         </div>
-                        <div class="modal-body ">
+                        <div class="modal-body responsive">
                             <asp:GridView ID="gvComments" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered  grvContentarea ml-3">
+                                CssClass="table-striped  table-bordered  grvContentarea ml-3">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblcomSl" runat="server" Height="10px"
                                                 Style="text-align: left" Font-Size="11px"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="40px">
+                                                Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="30px">
 
                                             </asp:Label>
                                         </ItemTemplate>
@@ -3942,7 +3936,7 @@
 
                                     <asp:TemplateField HeaderText="Generated">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblcomgenerated" runat="server" Width="60px" Font-Size="11px"
+                                            <asp:Label ID="lblcomgenerated" runat="server" Width="70px" Font-Size="11px"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -3951,7 +3945,7 @@
 
                                     <asp:TemplateField HeaderText="Prospect Details">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblcomdesc" runat="server" Width="80px" Font-Size="11px"
+                                            <asp:Label ID="lblcomdesc" runat="server" Width="150px" Font-Size="11px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ownname"))%>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -4022,9 +4016,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

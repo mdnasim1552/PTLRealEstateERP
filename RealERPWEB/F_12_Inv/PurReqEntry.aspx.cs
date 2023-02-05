@@ -232,6 +232,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3364":// Jbs
                 case "3353":
                 case "3366":
+                case "3374": //Angan
                     this.lblmrfno.Text = "MPR No: ";
 
                     break;
