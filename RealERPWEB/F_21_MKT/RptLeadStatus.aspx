@@ -108,13 +108,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data">
-                <div class="card-body mb-0 pb-0">
+                <div class="card-body mb-0 pb-0" style="min-height:400px">
                     <div class="row mb-0 pb-0">
                         <div class="col-md-8">
                             <div class="row">
                                 <asp:GridView ID="gvLeadStatus" runat="server" AutoGenerateColumns="False"
                                     PageSize="10" AllowPaging="true" OnPageIndexChanging="gvLeadStatus_PageIndexChanging"
-                                    ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea"
                                     HeaderStyle-Font-Size="14px" Width="800px">
                                     <RowStyle />
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -128,11 +128,20 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Prospect Code" HeaderStyle-Width="30px">
+                                        <asp:TemplateField HeaderText="P-ID" HeaderStyle-Width="30px">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvproscod1" runat="server" Height="16px" 
                                                     Style="text-align: center"
                                                     Text='<%# "P-" + Convert.ToString(DataBinder.Eval(Container.DataItem, "proscod1")) %>' Width="100px"
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Associate Name" HeaderStyle-Width="110px" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvteamleader" runat="server" Height="16px" 
+                                                    Style="text-align: left"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamleader")) %>'  Width="120px"
                                                     ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -201,12 +210,20 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Last Status">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvlstatus" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
                         </div>
