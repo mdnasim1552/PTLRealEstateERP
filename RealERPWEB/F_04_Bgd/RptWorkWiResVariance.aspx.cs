@@ -34,6 +34,7 @@ namespace RealERPWEB.F_04_Bgd
                 }
                 GetProjectName();
                 ShowFloorcode();
+                GetCategory();
             }
         }
 
@@ -77,6 +78,26 @@ namespace RealERPWEB.F_04_Bgd
             this.ddlFloor.DataBind();
             this.ddlFloor.SelectedValue = "AAA";
         }
+        private void GetCategory()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_BGDANALYSIS", "GETCATEGORYDDL", "", "", "", "", "", "", "", "", "");
+            DataTable dt = ds1.Tables[0];
+            DataRow dr3 = dt.NewRow();
+            dr3["sircode"] = "%%";
+            dr3["sirdesc"] = "All Categories";
+            dt.Rows.Add(dr3);
+            DataView dv = dt.DefaultView;
+            dv.Sort = "sircode";
+            dt = dv.ToTable();
+            this.ddlCategory.DataTextField = "sirdesc";
+            this.ddlCategory.DataValueField = "sircode";
+            this.ddlCategory.DataSource = dt;
+            this.ddlCategory.DataBind();
+            this.ddlCategory.SelectedValue = "%%";
+        }
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
@@ -88,7 +109,8 @@ namespace RealERPWEB.F_04_Bgd
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProject.SelectedValue.ToString();
             string Floorcode = this.ddlFloor.SelectedValue.ToString();
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_BGDANALYSIS", "RPTWORKVSRESOURCEWITHVARIANCE", pactcode, Floorcode, "", "", "", "", "", "", "");
+            string Category = ddlCategory.SelectedValue.ToString();
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_BGDANALYSIS", "RPTWORKVSRESOURCEWITHVARIANCE", pactcode, Floorcode, Category, "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvWrkVsRes.DataSource = null;
@@ -122,6 +144,12 @@ namespace RealERPWEB.F_04_Bgd
             ((Label)this.gvWrkVsRes.FooterRow.FindControl("lgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(resamt)", "")) ?
                                        0 : dt.Compute("sum(resamt)", ""))).ToString("#,##0;(#,##0); ");
 
+            ((Label)this.gvWrkVsRes.FooterRow.FindControl("lgvIsuFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(isuamt)", "")) ?
+                                      0 : dt.Compute("sum(isuamt)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvWrkVsRes.FooterRow.FindControl("lgvVFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(vcost)", "")) ?
+                                     0 : dt.Compute("sum(vcost)", ""))).ToString("#,##0;(#,##0); ");
+
+            
         }
         private DataTable HiddenSameData(DataTable dt1)
         {
@@ -129,23 +157,29 @@ namespace RealERPWEB.F_04_Bgd
                 return dt1;
             string flrcod = dt1.Rows[0]["flrcod"].ToString();
             string isircode = dt1.Rows[0]["isircode"].ToString();
+            string isircodegrp = dt1.Rows[0]["isircodegrp"].ToString();
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["flrcod"].ToString() == flrcod && dt1.Rows[j]["isircode"].ToString() == isircode)
+                if (dt1.Rows[j]["flrcod"].ToString() == flrcod && dt1.Rows[j]["isircode"].ToString() == isircode && dt1.Rows[j]["isircodegrp"].ToString() == isircodegrp)
                 {
                     flrcod = dt1.Rows[j]["flrcod"].ToString();
                     isircode = dt1.Rows[j]["isircode"].ToString();
+                    isircodegrp = dt1.Rows[j]["isircodegrp"].ToString();
+                    dt1.Rows[j]["isirdescgrp"] = "";
                     dt1.Rows[j]["flrdes"] = "";
                     dt1.Rows[j]["isirdesc"] = "";
                     dt1.Rows[j]["isirunit"] = "";
                     dt1.Rows[j]["itemqty"] = 0.00;
                 }
-
                 else
                 {
                     if (dt1.Rows[j]["flrcod"].ToString() == flrcod)
                     {
                         dt1.Rows[j]["flrdes"] = "";
+                    }
+                    if (dt1.Rows[j]["isircodegrp"].ToString() == isircodegrp)
+                    {
+                        dt1.Rows[j]["isirdescgrp"] = "";
                     }
                     if (dt1.Rows[j]["isircode"].ToString() == isircode)
                     {
@@ -156,6 +190,7 @@ namespace RealERPWEB.F_04_Bgd
 
                     flrcod = dt1.Rows[j]["flrcod"].ToString();
                     isircode = dt1.Rows[j]["isircode"].ToString();
+                    isircodegrp = dt1.Rows[j]["isircodegrp"].ToString();
                 }
 
             }
@@ -173,7 +208,7 @@ namespace RealERPWEB.F_04_Bgd
             this.Data_Bind();
         }
 
-        
+
         protected void gvWrkVsRes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             GridViewRow gvRow = e.Row;
@@ -193,6 +228,11 @@ namespace RealERPWEB.F_04_Bgd
                 cell02.RowSpan = 2;
                 gvrow.Cells.Add(cell02);
 
+                TableCell cell14 = new TableCell();
+                cell14.Text = "Category.";
+                cell14.HorizontalAlign = HorizontalAlign.Center;
+                cell14.RowSpan = 2;
+                gvrow.Cells.Add(cell14);
                 TableCell cell03 = new TableCell();
                 cell03.Text = "Item Description";
                 cell03.HorizontalAlign = HorizontalAlign.Center;
@@ -218,7 +258,7 @@ namespace RealERPWEB.F_04_Bgd
                 gvrow.Cells.Add(cell06);
 
                 TableCell cell07 = new TableCell();
-                cell07.Text = "Qty";
+                cell07.Text = "Unit";
                 cell07.HorizontalAlign = HorizontalAlign.Center;
                 cell07.RowSpan = 2;
                 gvrow.Cells.Add(cell07);
@@ -259,10 +299,28 @@ namespace RealERPWEB.F_04_Bgd
                 e.Row.Cells[4].Visible = false;
                 e.Row.Cells[5].Visible = false;
                 e.Row.Cells[6].Visible = false;
+                e.Row.Cells[7].Visible = false;
+            }
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int index = e.Row.RowIndex;
+                int rowindex = (this.gvWrkVsRes.PageSize * this.gvWrkVsRes.PageIndex) + index;
+                string item = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "isirdesc")).ToString();
+                if (item != "")
+                {
+                    e.Row.Attributes["style"] = "background-color:#D0D7FE; font-weight:bold;";
+                }
+
             }
         }
 
+
         protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowWorkVsResource();
+        }
+
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowWorkVsResource();
         }
