@@ -476,6 +476,13 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                     <asp:TemplateField HeaderText="Last Discussion" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllastdiscuss" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
@@ -486,7 +493,6 @@
 
                         </div>
                     </div>
-
                     <div class="modal fade" id="GridHeader" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -579,8 +585,9 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <asp:LinkButton ID="lnkgvListShow" Style="float: right; margin-right: 10px;" runat="server" class="btn btn-success" OnClientClick="CloseGvModal();" OnClick="lnkgvListShow_Click">Update List</asp:LinkButton>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    <asp:LinkButton ID="lnkgvListShow" Style="float: right; margin-right: 10px;" runat="server" class="btn btn-success btn-sm" 
+                                        ToolTip="Update Report View" OnClientClick="CloseGvModal();" OnClick="lnkgvListShow_Click">Update List</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
@@ -589,10 +596,6 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
-
-
 </asp:Content>
 
 
