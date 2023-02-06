@@ -1002,7 +1002,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>1.29389in</Top>
             <Left>0.09376in</Left>
-            <Height>1.88124in</Height>
+            <Height>1.88123in</Height>
             <Width>7in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -1777,7 +1777,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!aprtsize.Value</Value>
+                                  <Value>=Parameters!usize.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2320,7 +2320,7 @@
             <Top>5.71056in</Top>
             <Left>0.08334in</Left>
             <Height>0.5in</Height>
-            <Width>7.40624in</Width>
+            <Width>7.40623in</Width>
             <ZIndex>15</ZIndex>
             <Style>
               <Border>
@@ -2556,7 +2556,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!peribookam.Value</Value>
+                                  <Value>=Parameters!dnpayment.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2677,7 +2677,7 @@
             <Top>6.63in</Top>
             <Left>0.09376in</Left>
             <Height>0.60416in</Height>
-            <Width>7.12165in</Width>
+            <Width>7.12166in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -4120,6 +4120,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="usize">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -4330,6 +4336,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
           <ParameterName>peribookam</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>usize</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -208,7 +208,7 @@ namespace RealERPWEB.F_17_Acc
                 string custid = ds3.Tables[0].Rows[0]["customerno"].ToString();
                 string floorno = ds3.Tables[0].Rows[0]["floorno"].ToString();
                 string unitno = ds3.Tables[0].Rows[0]["unitno"].ToString();
-                string size =ds3.Tables[0].Rows[0]["size"].ToString();
+                string size =ds3.Tables[0].Rows[0]["usize"].ToString();
                 string carno = ds3.Tables[0].Rows[0]["carno"].ToString();
                 string floordesc= ds3.Tables[0].Rows[0]["flrdesc"].ToString();
                 string parkingqty= Convert.ToDouble(ds3.Tables[0].Rows[0]["pqty"]).ToString("#,##0.00;(#,##0.00); ");
@@ -271,6 +271,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("stbokking", stbokking));                       
                 Rpt1.SetParameters(new ReportParameter("prjname", ProjectName));                       
                 Rpt1.SetParameters(new ReportParameter("Location", Location));                       
+                Rpt1.SetParameters(new ReportParameter("usize", size));                       
                 Rpt1.SetParameters(new ReportParameter("size", unitno));                       
                 Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));                       
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));                       
