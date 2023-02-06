@@ -62,7 +62,8 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            string filter = comcod == "3374" ? "namdesgsec" : "";
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", filter, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
 

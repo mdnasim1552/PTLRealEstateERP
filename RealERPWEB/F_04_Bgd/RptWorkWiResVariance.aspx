@@ -78,9 +78,15 @@
                         <div class="col-md-2">
                             <asp:Label runat="server" ID="Label1" class="form-label">Floor</asp:Label>
                             <asp:DropDownList ID="ddlFloor" CssClass="form-control select2" runat="server" AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged"></asp:DropDownList>
+                                OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged">
+                            </asp:DropDownList>
                         </div>
-
+                        <div class="col-md-2">
+                            <asp:Label runat="server" ID="Label2" class="form-label">Category</asp:Label>
+                            <asp:DropDownList ID="ddlCategory" CssClass="form-control select2" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
                         <div class=" col-md-1">
                             <asp:Label ID="lblPage" CssClass="smLbl_to" runat="server" Text="Page"></asp:Label>
                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control select2" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -101,7 +107,7 @@
                     <div class="table table-responsive">
                         <asp:GridView ID="gvWrkVsRes" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             OnPageIndexChanging="gvWrkVsRes_PageIndexChanging" ShowFooter="True" Width="640px"
-                            OnRowDataBound="gvWrkVsRes_RowDataBound" OnRowCreated="gvWrkVsRes_RowCreated" >
+                            OnRowDataBound="gvWrkVsRes_RowDataBound" OnRowCreated="gvWrkVsRes_RowCreated">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.">
@@ -119,6 +125,16 @@
                                     <ItemStyle HorizontalAlign="left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Category">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvItemDesCategory" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdescgrp"))     %>'
+                                            Width="150px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="#000" HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Item Description" FooterText="Total">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvItemDes" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdesc"))     %>'
@@ -208,7 +224,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Amount">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lgvIsuFAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
                                             Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -235,7 +251,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Rate">
+                                <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvresrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vrat")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px"></asp:Label>
@@ -251,7 +267,11 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="V Cost">
+                                <asp:TemplateField HeaderText="V Cost">
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvVFAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                            Style="text-align: right" Width="90px"></asp:Label>
+                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvresrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vcost")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="90px"></asp:Label>
