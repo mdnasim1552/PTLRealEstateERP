@@ -197,6 +197,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+soldunsoldstatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+TransactionSt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
@@ -890,6 +891,7 @@
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSoldUnsoldUnitStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsCollTypeWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEarlybenefitADelayCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDLOLD.rdlc" />

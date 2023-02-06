@@ -306,7 +306,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -421,7 +421,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -536,7 +536,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -651,7 +651,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -766,7 +766,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -881,7 +881,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1127,6 +1127,7 @@
                     <Value>=Parameters!method.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1135,7 +1136,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>8.38208in</Top>
+            <Top>13.55708in</Top>
             <Left>0.09376in</Left>
             <Height>0.1875in</Height>
             <Width>7.39582in</Width>
@@ -1157,7 +1158,15 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Land Registration Cost &amp; Transfer Cost : </Value>
+                    <Value>Land Registration Fees &amp; Transfer Fees :</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1167,6 +1176,7 @@
                     <Value>=Parameters!head01.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -1175,7 +1185,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>8.61125in</Top>
+            <Top>13.78625in</Top>
             <Left>0.09376in</Left>
             <Height>0.19792in</Height>
             <Width>7.39582in</Width>
@@ -1200,6 +1210,7 @@
                     <Value>=Parameters!headtitle01.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1207,6 +1218,7 @@
                     <Value>=Parameters!bodytitle01.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -1215,7 +1227,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>8.86056in</Top>
+            <Top>14.03556in</Top>
             <Left>0.09376in</Left>
             <Height>0.19792in</Height>
             <Width>7.39582in</Width>
@@ -1240,6 +1252,7 @@
                     <Value>=Parameters!OptionalCost.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1254,6 +1267,7 @@
                     <Value>=Parameters!optionalDetails.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -1262,7 +1276,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>9.10014in</Top>
+            <Top>14.27514in</Top>
             <Left>0.09376in</Left>
             <Height>0.19792in</Height>
             <Width>7.39582in</Width>
@@ -1288,6 +1302,7 @@
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1296,7 +1311,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>9.36472in</Top>
+            <Top>14.53972in</Top>
             <Left>0.09376in</Left>
             <Height>0.1875in</Height>
             <Width>7.39582in</Width>
@@ -1322,6 +1337,7 @@
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1329,7 +1345,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>9.62028in</Top>
+            <Top>14.79528in</Top>
             <Left>0.09376in</Left>
             <Height>0.25in</Height>
             <Width>7.39582in</Width>
@@ -1355,6 +1371,7 @@
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1362,7 +1379,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>9.89875in</Top>
+            <Top>15.07375in</Top>
             <Left>0.09376in</Left>
             <Height>0.25in</Height>
             <Width>7.39582in</Width>
@@ -1446,7 +1463,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Property Name </Value>
+                                  <Value>Name </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1482,7 +1499,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Property Address</Value>
+                                  <Value>Address</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1626,7 +1643,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Parking Qty</Value>
+                                  <Value>Car Parking Qty</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2085,7 +2102,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Cost</Value>
+                                  <Value>Total Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2346,7 +2363,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.35416in</Height>
+                  <Height>0.38541in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2393,7 +2410,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Payable Booking Money(%)</Value>
+                                  <Value>Payable Booking Money(</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Parameters!peribookam.Value</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2429,7 +2460,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Up to Date Payment(%)</Value>
+                                  <Value>Up to Date Payment(</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Parameters!Uppay.Value</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2592,7 +2638,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!Uppay.Value</Value>
+                                  <Value>=Parameters!upDatePaym.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2676,7 +2722,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>6.63in</Top>
             <Left>0.09376in</Left>
-            <Height>0.60416in</Height>
+            <Height>0.63541in</Height>
             <Width>7.12166in</Width>
             <ZIndex>16</ZIndex>
             <Style>
@@ -2689,21 +2735,21 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.35417in</Width>
+                  <Width>0.32552in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.05623in</Width>
+                  <Width>2.23592in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.43751in</Width>
+                  <Width>1.98178in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.70833in</Width>
+                  <Width>1.85677in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.19792in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2717,7 +2763,6 @@
                                   <Value>Sl.</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2753,7 +2798,6 @@
                                   <Value>Mode Of Payment</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2789,7 +2833,6 @@
                                   <Value>Amount</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2825,7 +2868,6 @@
                                   <Value>Due Date (On or Before)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2852,7 +2894,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.23958in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3022,10 +3064,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>7.6925in</Top>
-            <Left>1.13126in</Left>
-            <Height>0.5in</Height>
-            <Width>5.55624in</Width>
+            <Top>10.21333in</Top>
+            <Left>0.53751in</Left>
+            <Height>0.4375in</Height>
+            <Width>6.39999in</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -3043,6 +3085,7 @@
                     <Value>Payment Schedule Of</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -3053,9 +3096,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox44</rd:DefaultName>
-            <Top>7.3925in</Top>
+            <Top>9.84042in</Top>
             <Left>0.09376in</Left>
-            <Height>0.1875in</Height>
+            <Height>0.23958in</Height>
             <Width>7.39582in</Width>
             <ZIndex>18</ZIndex>
             <Style>
@@ -3094,7 +3137,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox21</rd:DefaultName>
                 <Top>0.87917in</Top>
-                <Left>1.56597in</Left>
+                <Left>1.45139in</Left>
                 <Height>0.25in</Height>
                 <Width>4.31945in</Width>
                 <Style>
@@ -3118,6 +3161,7 @@
                         <MarkupType>HTML</MarkupType>
                         <Style>
                           <FontFamily>cambria</FontFamily>
+                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -3150,6 +3194,7 @@
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>cambria</FontFamily>
+                          <FontSize>11pt</FontSize>
                           <FontWeight>Normal</FontWeight>
                           <TextDecoration>None</TextDecoration>
                           <Color>#000000</Color>
@@ -3161,6 +3206,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox28</rd:DefaultName>
                 <Top>2.69167in</Top>
+                <Left>0.01042in</Left>
                 <Height>0.25in</Height>
                 <Width>7.39582in</Width>
                 <ZIndex>2</ZIndex>
@@ -3196,7 +3242,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox31</rd:DefaultName>
                 <Top>3.62487in</Top>
-                <Left>0.23833in</Left>
+                <Left>0.24875in</Left>
                 <Height>0.1875in</Height>
                 <Width>2.08459in</Width>
                 <ZIndex>3</ZIndex>
@@ -3251,7 +3297,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox34</rd:DefaultName>
                 <Top>5.15in</Top>
-                <Left>0.23833in</Left>
+                <Left>0.24875in</Left>
                 <Height>0.32764in</Height>
                 <Width>2.67833in</Width>
                 <ZIndex>4</ZIndex>
@@ -3302,7 +3348,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox62</rd:DefaultName>
                 <Top>4.77917in</Top>
-                <Left>0.26957in</Left>
+                <Left>0.27999in</Left>
                 <Height>0.30208in</Height>
                 <Width>2.65625in</Width>
                 <ZIndex>5</ZIndex>
@@ -3361,7 +3407,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox34</rd:DefaultName>
                 <Top>5.12813in</Top>
-                <Left>4.24333in</Left>
+                <Left>4.25375in</Left>
                 <Height>0.32764in</Height>
                 <Width>2.67833in</Width>
                 <ZIndex>6</ZIndex>
@@ -3412,7 +3458,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox62</rd:DefaultName>
                 <Top>4.75729in</Top>
-                <Left>4.26041in</Left>
+                <Left>4.27083in</Left>
                 <Height>0.30208in</Height>
                 <Width>2.65625in</Width>
                 <ZIndex>7</ZIndex>
@@ -3435,10 +3481,10 @@
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>10.70708in</Top>
-            <Left>0.09376in</Left>
+            <Top>15.55708in</Top>
+            <Left>0.08334in</Left>
             <Height>5.96306in</Height>
-            <Width>7.39582in</Width>
+            <Width>7.40624in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -3777,7 +3823,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>17.04514in</Height>
+        <Height>21.92014in</Height>
         <Style />
       </Body>
       <Width>7.48958in</Width>

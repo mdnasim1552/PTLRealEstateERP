@@ -493,6 +493,19 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Wise Collection for the month of " + ptodate));
                
             }
+           else if(this.ddlReport.SelectedValue == "SoldUnSoldUnit")
+            {
+                string ptodate = Convert.ToDateTime(this.txttoDate.Text).ToString("MMMM,yyyy");
+                DataTable dt = (DataTable)ViewState["prjcoll"];
+
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.soldunsoldstatus>();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoldUnitStatus", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Sold And Unsold Unit Status " + ptodate));
+            }
             else
             {
                 string ptodate = Convert.ToDateTime(this.txttoDate.Text).ToString("MMMM,yyyy");
