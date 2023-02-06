@@ -45,6 +45,7 @@ namespace RealERPWEB.F_22_Sal
                 //this.txtDate.Text =(this.Request.QueryString["Date1"].Length>0)?this.Request.QueryString["Date1"]: System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.lbltodate.Visible = false;
+                this.divtodate.Visible = false;
                 this.txttodate.Visible = false;
                 this.GetSalesTeam();
                 this.gvVisibility();
@@ -115,6 +116,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
                     this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.lbltodate.Visible = true;
+                    this.divtodate.Visible = true;
                     this.txttodate.Visible = true;
                     //this.Label15.Text = "From: ";
                     //this.Label15.Visible = false;
