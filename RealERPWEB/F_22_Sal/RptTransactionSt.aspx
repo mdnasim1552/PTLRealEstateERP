@@ -1665,6 +1665,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="amt34">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvamt34" runat="server" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt34")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFamt34" runat="server" Font-Size="11px" ForeColor="Black"
+                                                        Style="text-align: right" Width="70px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
 
 
 
