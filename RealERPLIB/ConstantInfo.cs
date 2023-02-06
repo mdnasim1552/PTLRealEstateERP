@@ -406,7 +406,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902078", "F_09_PImp", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementation", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902080", "InvResourceRequirement", "", "Resource Requirement-All Project", "Project Implementaion", "False", "False", "False", "False" }); ;//rihan
-            tblObj.Rows.Add(new Object[] { "0902000", "0902082", "F_09_PImp", "WorkExecutionWithIssue?", "Type=Entry", "Work Execution With Material Issue", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902082", "F_09_PImp", "WorkExecutionWithIssue?", "Type=Entry", "Execution 360", "Project Implementation", "False", "False", "False", "False" }); ;
 
 
 
@@ -5047,7 +5047,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "11. Contractor Assessment", "F_22_Sal/ConAssessment?Type=ConcAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Work Execution With Material Issue", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Execution 360", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
