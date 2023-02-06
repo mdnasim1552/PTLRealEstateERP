@@ -114,6 +114,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::AjaxControlToolkit.CalendarExtender txtDate_CalendarExtender;
 
         /// <summary>
+        /// divtodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtodate;
+
+        /// <summary>
         /// lbltodate control.
         /// </summary>
         /// <remarks>

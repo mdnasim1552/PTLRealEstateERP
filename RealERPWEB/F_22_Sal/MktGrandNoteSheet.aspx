@@ -6,8 +6,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
- 
+
+
 
 
 
@@ -34,11 +34,7 @@
         }
     </style>
 
-    <script language="javascript" type="text/javascript">
-
-
-
-
+    <script type="text/javascript">
 
 
 
@@ -73,7 +69,7 @@
                 var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
                 gvcoff.Scrollable();
 
-                
+
 
                 $('.chzn-select').chosen({ search_contains: true });
 
@@ -184,10 +180,7 @@
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblProjectmDesc" runat="server" Visible="False" CssClass="form-control "></asp:Label>
-
                             </div>
-
-
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
@@ -195,24 +188,15 @@
                                 <asp:LinkButton ID="lbtnsrchunit" runat="server" OnClick="lbtnsrchunit_Click"> <i class="fa fa-search" aria-hidden="true"></i>
                                 </asp:LinkButton>
                                 <asp:TextBox ID="txtsrchunit" runat="server" CssClass="form-control"></asp:TextBox>
-
-
                             </div>
-
-
                         </div>
-
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label id="Label1" runat="server">Prospective</label>
                                 <asp:LinkButton ID="lbtnProspective" runat="server" OnClick="lbtnProspective_Click"> <i class="fa fa-search" aria-hidden="true"></i>
-                                </asp:LinkButton>                             
-
-                                 <asp:TextBox ID="txtprospective" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
-                                
-                              
+                                </asp:LinkButton>
+                                <asp:TextBox ID="txtprospective" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
                             </div>
-
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
@@ -222,29 +206,21 @@
                                 <asp:DropDownList ID="ddlPrevious" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                 </asp:DropDownList>
                             </div>
-
                         </div>
-
-                          <div class="col-md-2">
-                             <label class="control-label" for="ddlUserName" id="Label3" runat="server">Type</label>
-                               <asp:DropDownList ID="ddlPrintType" runat="server" CssClass="form-control chzn-select" TabIndex="12">
-                                   <asp:ListItem Value="samnotesheet" Enabled="true">Sample Note Sheet</asp:ListItem>
-                                   <asp:ListItem Value="grandnotesheet">Grand Note Sheet(Summary)</asp:ListItem>
-                                   <asp:ListItem Value="grandnotesheetdet">Grand Note Sheet(Details)</asp:ListItem>
-                                </asp:DropDownList>
-
+                        <div class="col-md-2">
+                            <label class="control-label" for="ddlUserName" id="Label3" runat="server">Type</label>
+                            <asp:DropDownList ID="ddlPrintType" runat="server" CssClass="form-control chzn-select" TabIndex="12">
+                                <asp:ListItem Value="samnotesheet" Enabled="true">Sample Note Sheet</asp:ListItem>
+                                <asp:ListItem Value="grandnotesheet">Grand Note Sheet(Summary)</asp:ListItem>
+                                <asp:ListItem Value="grandnotesheetdet">Grand Note Sheet(Details)</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
-
                         <div class="col-md-1">
                             <div class="form-group">
-
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary btn-sm  margin-top30px" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -259,7 +235,7 @@
                                 <Columns>
                                     <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='glyphicon glyphicon-remove pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class='glyphicon glyphicon-remove'&gt;&lt;/span&gt;" EditText="&lt;span class='glyphicon glyphicon-pencil'&gt;&lt;/span&gt;" UpdateText="&lt;span class='glyphicon glyphicon-ok'&gt;&lt;/span&gt;" />
 
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
 
 
 
@@ -410,11 +386,12 @@
 
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooterNew" />
+                                <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="" />
-                                <HeaderStyle CssClass="grvHeaderNew" />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                                <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </div>
 
@@ -445,7 +422,7 @@
                         <div class="card-body">
                             <div class="row">
 
-                                 <div class="col-md-3">
+                                <div class="col-md-3">
 
                                     <div class="card card-fluid">
                                         <div class="card-body">
@@ -558,10 +535,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
 
 
-                                               <div class="row">
+
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin ">
                                                         <label id="lbltxtdownpayper" runat="server">Down Payment  %</label>
@@ -572,7 +549,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
                                                         <label id="lblvaldownpayper" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -611,9 +588,9 @@
                                             </div>
 
 
-                                           
 
-                                              
+
+
 
                                             <div class="row">
                                                 <div class="col-md-8">
@@ -643,7 +620,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row d-none" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lblfvpsft" runat="server">FV per SFT</label>
@@ -657,7 +634,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row d-none">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lblpvpersft" runat="server">PV per SFT</label>
@@ -671,11 +648,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
-                                           
 
 
-                                             <div class="row">
+
+
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
                                                         <label id="lblfinstallmentper" runat="server">Final Installment %</label>
@@ -683,20 +660,20 @@
 
                                                 </div>
 
-                                                 
+
                                                 <div class="col-md-4">
-                                                    <div class="form-group lblmargin  font-weight-bold">
+                                                    <div class="form-group lblmargin textalignright font-weight-bold">
 
                                                         <label id="lblfvalinstallmentper" runat="server" clss="form-control form-control-sm "></label>
                                                     </div>
                                                 </div>
 
-                                                
+
                                             </div>
-                                          
 
 
-                                             <div class="row">
+
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
                                                         <label id="lbltxthandovdate" runat="server">Handover  Date</label>
@@ -704,7 +681,7 @@
 
                                                 </div>
 
-                                                 
+
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin  font-weight-bold">
 
@@ -712,12 +689,12 @@
                                                     </div>
                                                 </div>
 
-                                                
+
                                             </div>
 
 
 
-                                            
+
 
 
 
@@ -735,7 +712,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
 
-                                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
+                                                        <asp:TextBox ID="txtInterestRateBase" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -745,8 +722,174 @@
                                         </div>
                                     </div>
 
+                                     <div class="card card-fluid">
+                                            <div class="card-body tittlensheetsumm">
+
+                                                 <div class="row" >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumratepersft" runat="server">Rate per SFT</label>
+                                                        </div>
+
+                                                    </div>    
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumratepersft" runat="server" class="">50000</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumspacevalue" runat="server">Space Value</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumspacevalue" runat="server"></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row" >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lbldisorexcesspsft" runat="server">Discount/(Excess per SFT)</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvaldisorexcesspsft" runat="server" ></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row" >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lbltodisorexcessamt" runat="server">Total Discount/(Excess Amt)</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvaltodisorexcessamt" runat="server" ></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumacratepersft" runat="server">Rate per SFT</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumacratepersft" runat="server" >14500</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                   <div class="row"   >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumacspacevalue" runat="server">Space Value</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumacspacevalue" runat="server" ></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                  <div class="row"  style=" background-color: #00b0f0; color: white; font-weight: bold; margin-top: 5px" >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumacparking" runat="server">Parking</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumacparking" runat="server"></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                   <div class="row"   >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumacutility" runat="server">Utility</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumacutility" runat="server"> </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="row"  >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumacothers" runat="server">Others</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumacothers" runat="server" ></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                 <div class="row"   >
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin ">
+                                                            <label id="lblsumactotalvalue" runat="server">Total</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin textalignright">
+                                                            <label id="lblvalsumactotalvalue" runat="server" ></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
                                 </div>
-                                    <div class="col-md-3">
+                                <div class="col-md-3">
 
                                     <div class="card card-fluid">
                                         <div class="card-body">
@@ -816,7 +959,7 @@
 
 
 
-                                                       
+
 
 
                                                         <asp:TemplateField HeaderText="PV">
@@ -1111,7 +1254,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" >
+                                            <div class="row d-none">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -1126,7 +1269,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row">
+                                            <div class="row d-none">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1261,12 +1404,49 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row d-none">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="Label4" runat="server">Difference in FV</label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+                                                        <label id="lblDiffFV" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row d-none">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="Label8" runat="server">Difference in PV</label>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+
+                                                        <label id="lblDiffPV" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
 
 
                                             <div class="row" style="margin-top: 10px;">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="lbtnGoalSeekRate" runat="server" CssClass=" form-control form-control-sm  btn  btn-info d-none" OnClick="lbtnGoalSeekRate_Click">Goal Seek</asp:LinkButton>
+                                                    </div>
+                                                </div>
 
-
-                                                <div class="col-md-4 offset-4">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn  btn-warning" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
                                                     </div>
@@ -1584,9 +1764,10 @@
                                         <asp:HiddenField ID="lblhiddenbpamt" runat="server" />
                                         <asp:HiddenField ID="lblhiddenothers" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
-                                        <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />                                        
+                                        <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />
                                         <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />
                                         <asp:HiddenField ID="lblminunitrate" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenncoffurate" runat="server" />
 
                                     </div>
 
@@ -1595,6 +1776,17 @@
 
 
                                 </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                       
+                                    </div>
+
+                                </div>
+
+
                             </div>
                         </div>
 
@@ -1610,10 +1802,61 @@
                 </asp:View>
             </asp:MultiView>
 
+            <div id="modalGoalSeek" class="modal animated slideInLeft" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: block;">
+
+                            <button type="button" class="close btn btn-xs bg-danger" data-dismiss="modal">
+                                <span class="fa fa-close"></span>
+
+                            </button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-sm fa-table pr-2" runat="server" id="txtheader">Goal Seek For Rate</span></h4>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+
+                                <div class="form-group" runat="server">
+                                    <asp:Label ID="lblId" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lbltype" class="col-md-4">Target Difference in PV Value</asp:Label>
+                                    <div class="col-md-12">
+                                        <asp:TextBox ID="txtTargetDifference" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lnkGoalSeekExecute" runat="server" CssClass="btn btn-sm btn-success"
+                                OnClientClick="CloseGoalSeek();" OnClick="lnkGoalSeekExecute_Click"><span class="glyphicon glyphicon-save"></span>Execute</asp:LinkButton>
+
+
+                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function loadGoalSeek() {
+                    $('#modalGoalSeek').modal('toggle', {
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+                function CloseGoalSeek() {
+                    $('#modalGoalSeek').modal('hide');
+                }
+            </script>
+
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
 </asp:Content>
+
 
 
 

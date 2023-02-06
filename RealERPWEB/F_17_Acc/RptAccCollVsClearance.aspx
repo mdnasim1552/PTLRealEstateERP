@@ -833,17 +833,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive table">
-                                    <asp:GridView ID="gvMonCollect" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-bordered grvContentarea"
-                                        ShowFooter="True" Width="616px" OnRowDataBound="gvMonCollect_RowDataBound">
+                                <div class="table-responsive">
+                                    <asp:GridView ID="gvMonCollect" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea"
+                                        ShowFooter="True" OnRowDataBound="gvMonCollect_RowDataBound">
                                         <RowStyle />
                                         <Columns>
 
-                                            <asp:TemplateField HeaderText="Sl.">
+                                            <asp:TemplateField HeaderText="Sl."  HeaderStyle-Width="30px">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNomon" runat="server" Font-Bold="True"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                        Style="text-align: center"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
@@ -859,201 +859,200 @@
 
                                                     <asp:HyperLink ID="HygvResDesc" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                        Width="180px"></asp:HyperLink>
+                                                        Width="140px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Total Amount">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="hlnkgvtoamt" runat="server" Style="text-align: right"
+                                                    <asp:HyperLink ID="hlnkgvtoamt" runat="server" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "toamt")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="75px"></asp:HyperLink>
+                                                        Width="80px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lgvFtoamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                    <asp:Label ID="lgvFtoamt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                                         Width="80px"></asp:Label>
                                                 </FooterTemplate>
-
-                                                <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />                                                
                                             </asp:TemplateField>
 
 
                                             <asp:TemplateField HeaderText="amt1">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt1" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                        Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt1" runat="server" Target="_blank"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt1")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt2">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt2" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt2")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt2" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                       Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt3">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt3" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt3")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt3" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                        Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt4">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt4" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt4")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt4" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt5">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt5" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt5")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt5" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt6">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt6" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt6")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt6" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt7">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt7" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt7")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt7" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                        Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt8">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt8" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt8")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt8" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                        Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt9">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt9" runat="server" Target="_blank" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt9")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt9" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                        Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt10">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt10" Target="_blank" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt10")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt10" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt11">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt11" Target="_blank" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt11")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt11" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="amt12">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkgvamt12" Target="_blank" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt12")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="70px"></asp:HyperLink>
+                                                        Width="75px"></asp:HyperLink>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFamt12" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right;" Width="75px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                <FooterStyle  HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                         </Columns>
