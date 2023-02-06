@@ -509,51 +509,12 @@
                         <asp:Panel runat="server" ID="pnlLab" Visible="false">
                             <div class="row mt-1">
                                 <div class="col-lg-2 d-flex align-items-center">
-                                    <h6 class="my-2">SUB-CONTRACTOR BILL</h6>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="row">
-                                        <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label8" class="form-label" Visible="false">Bill No</asp:Label>
-                                        </div>
-                                        <div class="col-4 px-1">
-                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm"  Visible="false" ID="txtCurNo1" disabled></asp:TextBox>
-                                        </div>
-                                        <div class="col-4 p-0">
-                                            <asp:TextBox runat="server" CssClass="form-control form-control-sm"  Visible="false" ID="txtCurNo2" disabled></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="row">
-                                        <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label15" class="form-label"  Visible="false">Contractor List</asp:Label>
-                                        </div>
-                                        <div class="col-8 p-0">
-                                            <asp:DropDownList ID="ddlSubContractor" CssClass="form-control select2"  Visible="false" runat="server"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="row">
-                                        <div class="col-4 d-flex align-items-center">
-                                            <asp:Label runat="server" ID="Label10" class="form-label"  Visible="false">RA List</asp:Label>
-                                        </div>
-                                        <div class="col-8 p-0">
-                                            <asp:DropDownList ID="ddlRA" runat="server"  Visible="false" AutoPostBack="True" CssClass="select2 form-control" OnSelectedIndexChanged="ddlRA_SelectedIndexChanged" TabIndex="18">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1">
-                                    <asp:TextBox ID="txtRefno" runat="server" CssClass="form-control form-control-sm"  Visible="false"></asp:TextBox>
-
+                                    <h6 class="my-2">SUB-CONTRACTOR EXECUTION</h6>
                                 </div>
                             </div>
-
                             <div class="backgroundColorContainer mt-1">
                                 <div class="row">
-                                    <asp:GridView ID="DataGridThree" runat="server" AutoGenerateColumns="False" OnRowDataBound="DataGridThree_RowDataBound"
+                                    <asp:GridView ID="DataGridThree" runat="server" AutoGenerateColumns="False" 
                                         CssClass="table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True">
                                         <RowStyle />
@@ -656,6 +617,17 @@
                                                 <FooterStyle ForeColor="Black" />
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Work Quantity">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="txtWorkAnaQty" runat="server" BackColor="Transparent"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lwrkqty")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                        Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                                <FooterStyle ForeColor="Black" />
+                                                <FooterStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Quantity">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtAnaQty" runat="server" BackColor="Transparent"
@@ -693,26 +665,7 @@
                                                 <FooterStyle ForeColor="Black" />
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Sub Contractor">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlsubcon" CssClass="form-control select2" runat="server" Width="70px"
-                                                       >
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Left" />
-                                                <FooterStyle ForeColor="Black" />
-                                                <FooterStyle HorizontalAlign="Right" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="R/A No">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlRANo" CssClass="form-control select2" runat="server" Width="70px"
-                                                        >
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Left" />
-                                                <FooterStyle ForeColor="Black" />
-                                                <FooterStyle HorizontalAlign="Right" />
-                                            </asp:TemplateField>
+                                          
                                         </Columns>
 
 

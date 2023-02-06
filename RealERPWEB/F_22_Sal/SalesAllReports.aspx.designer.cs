@@ -177,6 +177,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlCustName;
 
         /// <summary>
+        /// grpid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl grpid;
+
+        /// <summary>
+        /// ddlgrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlgrp;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -267,21 +285,21 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.GridView gvpaystatus;
 
         /// <summary>
-        /// View1 control.
+        /// ViewSoldunsold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View ViewSoldunsold;
 
         /// <summary>
-        /// dvQtyBasisPeriodic control.
+        /// dvsoldunsold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dvQtyBasisPeriodic;
+        protected global::System.Web.UI.WebControls.GridView dvsoldunsold;
     }
 }
