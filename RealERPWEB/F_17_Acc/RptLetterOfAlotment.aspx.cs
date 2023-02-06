@@ -110,8 +110,7 @@ namespace RealERPWEB.F_17_Acc
 
         private void LetterofAllotmentCPDL()
         {
-            try
-            {
+          
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
@@ -211,6 +210,10 @@ namespace RealERPWEB.F_17_Acc
                 string unitno = ds3.Tables[0].Rows[0]["unitno"].ToString();
                 string size =ds3.Tables[0].Rows[0]["size"].ToString();
                 string carno = ds3.Tables[0].Rows[0]["carno"].ToString();
+                string floordesc= ds3.Tables[0].Rows[0]["flrdesc"].ToString();
+                string parkingqty= Convert.ToDouble(ds3.Tables[0].Rows[0]["pqty"]).ToString("#,##0.00;(#,##0.00); ");
+                string stbokking= Convert.ToDouble(ds3.Tables[0].Rows[0]["stdbookam"]).ToString("#,##0.00;(#,##0.00); ");
+                string peribookam= Convert.ToDouble(ds3.Tables[0].Rows[0]["peribookam"]).ToString("#,##0.00;(#,##0.00); ");
 
 
 
@@ -230,15 +233,16 @@ namespace RealERPWEB.F_17_Acc
                 string aprtsize = size + " " + unit;
                 string Location = ds3.Tables[0].Rows[0]["location"].ToString();
                 string enrolldate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["enrolldate"]).ToString("dd-MMM-yyyy");                 
-                string unitcost = Convert.ToDouble("0"+ ds3.Tables[3].Rows[0]["uamt"].ToString()).ToString("#,##0.00;(#,##0.00); ");             
+                string unitcost = uamt.ToString("#,##0.00;(#,##0.00); ");             
                
                 string othercharge = "0.00";
                 string discount = "0.00";
-                string initialpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string dnpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string Uppay = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string totalcost = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+              
+                string initialpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string dnpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string Uppay = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+               // string totalcost = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
 
                 string expectdate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["handoverdat"].ToString()).ToString("dd-MMM-yyyy");
 
@@ -260,17 +264,20 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("bodytitle01", bodytitle01));                
                 Rpt1.SetParameters(new ReportParameter("OptionalCost", OptionalCost));                
                 Rpt1.SetParameters(new ReportParameter("optionalDetails", optionalDetails));                
+                Rpt1.SetParameters(new ReportParameter("peribookam", peribookam));                
                 Rpt1.SetParameters(new ReportParameter("condition", condition));                
                 Rpt1.SetParameters(new ReportParameter("body", body));                       
                 Rpt1.SetParameters(new ReportParameter("totalamt", totalamt));                       
+                Rpt1.SetParameters(new ReportParameter("stbokking", stbokking));                       
                 Rpt1.SetParameters(new ReportParameter("prjname", ProjectName));                       
                 Rpt1.SetParameters(new ReportParameter("Location", Location));                       
                 Rpt1.SetParameters(new ReportParameter("size", unitno));                       
+                Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));                       
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));                       
                 Rpt1.SetParameters(new ReportParameter("floorno", floorno));                       
                 Rpt1.SetParameters(new ReportParameter("enrolldate", enrolldate));                       
                 Rpt1.SetParameters(new ReportParameter("price", rate));                       
-                Rpt1.SetParameters(new ReportParameter("ParkingQty", carno));                       
+                Rpt1.SetParameters(new ReportParameter("ParkingQty", parkingqty));                       
                 Rpt1.SetParameters(new ReportParameter("unitcost", unitcost));                       
                 Rpt1.SetParameters(new ReportParameter("parkingcost", pamt));                       
                 Rpt1.SetParameters(new ReportParameter("utilityCharge", utility));                       
@@ -286,19 +293,14 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("totalcost", totalcost));
+                Rpt1.SetParameters(new ReportParameter("totalcost", tamt.ToString("#,##0.00;(#,##0.00); ")));
                
 
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            }
-            catch(Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
-
-            }
+           
         }
 
         protected void btnok_Click(object sender, EventArgs e)

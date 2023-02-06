@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <style>
         
-        
+        .mt20 {
+            margin-top: 20px;
+        }
         .GridViewScrollHeader TH, .GridViewScrollHeader TD {
             font-weight: normal;
             white-space: nowrap;
@@ -76,7 +78,7 @@
         $(document).ready(function () {
             $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
             try {
@@ -169,37 +171,37 @@
             <div class="card mt-3">
                 <div class="card-header  pt-2 pb-2">
                     <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="col-lg-1 col-md-1 col-sm-1">
                             <div class="form-group">
-                                <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control-sm form-control" AutoCompleteType="Disabled"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="col-lg-1 col-md-1 col-sm-1">
                             <div class="form-group">
-                                <asp:Label ID="Label8" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
+                                <asp:Label ID="Label8" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled"
                                     CssClass=" form-control-sm form-control"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6" id="prjname" runat="server">
+                        <div class="col-lg-2 col-md-2 col-sm-2" id="prjname" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Project Name
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click"><span class="fas fa-search"> </span></asp:LinkButton>
                                 </asp:Label>
-                                <asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>
+                                <asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>
                             </div>
                         </div>
 
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
                             <div class="form-group">
-                                <asp:Label ID="lblAmount0" runat="server" Text="Amount:" CssClass="  lblTxt lblName"></asp:Label>
-                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="form-control chzn-select form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
+                                <asp:Label ID="lblAmount0" runat="server" Text="Amount" CssClass="  lblTxt lblName"></asp:Label>
+                                <asp:DropDownList ID="ddlSrchCash" runat="server" CssClass="chzn-select form-control  form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
                                     <asp:ListItem Value="">--Select--</asp:ListItem>
                                     <asp:ListItem Value="=">Equal</asp:ListItem>
                                     <asp:ListItem Value="&lt;">Less Then</asp:ListItem>
@@ -210,21 +212,21 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-1">
                             <div class="form-group">
                                 <asp:Label ID="lbl1" runat="server" CssClass=" smLbl_to blName lblTxt">Balance</asp:Label>
                                 <asp:TextBox ID="txtAmountC1" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
 
                             </div>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-1" id="divtocash"  Visible="false" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblToCash" runat="server" CssClass=" smLbl_to blName lblTxt" Text="To:" Visible="false"></asp:Label>
 
                                 <asp:TextBox ID="txtAmountC2" runat="server" Visible="false" CssClass="form-control-sm  form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6 mt-3">
+                        <div class="col-lg-1 col-md-1 col-sm-1 mt20">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
@@ -232,7 +234,7 @@
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
-                                <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to " Text="Size :"></asp:Label>
+                                <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to " Text="Size "></asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" CssClass="form-control form-control-sm  chzn-select " runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
@@ -254,8 +256,8 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6" runat="server" id="salestatus">
-                            <div class="form-group">
+                        <div class="col-lg-2 col-md-2 col-sm-2" runat="server" id="salestatus">
+                            <div class="form-group" style="width:180px;">
                                 <asp:Label ID="Label1" runat="server" Text="Sales Status" CssClass="  lblTxt lblName"></asp:Label>
                                 <asp:DropDownList ID="ddlsalestatus" runat="server" CssClass="form-control chzn-select form-control-sm  " TabIndex="13" AutoPostBack="True" OnSelectedIndexChanged="ddlSrchCash_SelectedIndexChanged" Width="209px">
 
@@ -1385,7 +1387,7 @@
                         <asp:View ID="ViewYearLyCollection" runat="server">
                             <div class="  table-responsive">
                                 <asp:GridView ID="gvyCollection" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                    OnPageIndexChanging="gvyCollection_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea"
+                                    OnPageIndexChanging="gvyCollection_PageIndexChanging" ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea" OnRowDataBound="gvyCollection_RowDataBound"
                                     Width="654px">
                                     <RowStyle />
                                     <Columns>
@@ -1397,34 +1399,19 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Project Name">
-
                                             <FooterTemplate>
                                                 <asp:Label ID="Label9" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Text="Total"></asp:Label>
                                             </FooterTemplate>
-
-
-                                            <HeaderTemplate>
-                                                <table style="width: 200px;">
-                                                    <tr>
-                                                        <td class="style58">
-                                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="Project Name" Width="90px"></asp:Label>
-                                                        </td>
-                                                        <td class="style60">&nbsp;</td>
-                                                        <td>
-
-                                                            <asp:HyperLink ID="hlbtntbCdataExel" runat="server" BackColor="#000066"
-                                                                BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
-                                                                ForeColor="White" Style="text-align: center" Width="90px">Export Exel</asp:HyperLink>
-
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                            <HeaderTemplate>                                                
+                                                <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Name"></asp:Label>                                                        
+                                                <asp:HyperLink ID="hlbtntbCdataExel" runat="server"  BorderColor="White"  Font-Bold="True" ForeColor="White" Style="text-align: center" >
+                                                    <button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
+                                                </asp:HyperLink>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lgactdescyc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                    Width="140px"></asp:Label>
+                                                <asp:HyperLink ID="lgactdescyc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                Width="140px"></asp:HyperLink>                                           
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
@@ -1463,6 +1450,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Received">
                                             <FooterTemplate>
@@ -1475,6 +1463,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Previous Dues">
                                             <FooterTemplate>
@@ -1487,6 +1476,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues1">
                                             <FooterTemplate>
@@ -1499,6 +1489,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues2">
                                             <FooterTemplate>
@@ -1511,6 +1502,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues3">
                                             <FooterTemplate>
@@ -1523,6 +1515,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues4">
                                             <FooterTemplate>
@@ -1535,6 +1528,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues5">
                                             <FooterTemplate>
@@ -1547,6 +1541,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues6">
                                             <FooterTemplate>
@@ -1559,6 +1554,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues7">
                                             <FooterTemplate>
@@ -1571,6 +1567,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues8">
                                             <FooterTemplate>
@@ -1583,6 +1580,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues9">
                                             <FooterTemplate>
@@ -1595,6 +1593,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues10">
                                             <FooterTemplate>
@@ -1607,6 +1606,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues11">
                                             <FooterTemplate>
@@ -1619,6 +1619,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues12">
                                             <FooterTemplate>
@@ -1631,6 +1632,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Dues">
                                             <FooterTemplate>
@@ -1643,6 +1645,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Grand Total">
                                             <FooterTemplate>
@@ -1655,6 +1658,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooterNew" />
@@ -1919,11 +1923,11 @@
 
 
                                                     <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                        Text="Project Name" Width="90px"></asp:Label>
+                                                        Text="Project Name" ></asp:Label>
 
                                                     <asp:HyperLink ID="hlbtntbdeCdataExel" runat="server" 
                                                         BorderColor="White"  Font-Bold="True"
-                                                        ForeColor="White" Style="text-align: center" Width="90px"><button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
+                                                        ForeColor="White" Style="text-align: center" ><button class="btn btn-sm btn-success"><i class='far fa-file-excel'></i></button>
                                                         </asp:HyperLink>
 
 
@@ -1944,7 +1948,7 @@
                                          </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit Size">
                                             <ItemTemplate>
-                                                <asp:Label runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0;(#,##0); ") %>' Width="90px"> </asp:Label>
+                                                <asp:Label runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0;(#,##0); ") %>' Width="70px"> </asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                          </asp:TemplateField>
@@ -1993,6 +1997,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Received">
                                             <FooterTemplate>
@@ -2005,6 +2010,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Previous Dues">
                                             <FooterTemplate>
@@ -2029,6 +2035,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues2">
                                             <FooterTemplate>
@@ -2041,6 +2048,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues3">
                                             <FooterTemplate>
@@ -2053,6 +2061,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues4">
                                             <FooterTemplate>
@@ -2065,6 +2074,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues5">
                                             <FooterTemplate>
@@ -2077,6 +2087,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues6">
                                             <FooterTemplate>
@@ -2089,6 +2100,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues7">
                                             <FooterTemplate>
@@ -2101,6 +2113,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues8">
                                             <FooterTemplate>
@@ -2113,6 +2126,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues9">
                                             <FooterTemplate>
@@ -2125,6 +2139,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues10">
                                             <FooterTemplate>
@@ -2137,6 +2152,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues11">
                                             <FooterTemplate>
@@ -2149,6 +2165,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Dues12">
                                             <FooterTemplate>
@@ -2161,6 +2178,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Total Dues">
                                             <FooterTemplate>
@@ -2173,6 +2191,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Grand Total">
                                             <FooterTemplate>
@@ -2185,6 +2204,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
                                     </Columns>
 

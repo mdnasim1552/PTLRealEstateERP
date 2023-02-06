@@ -1791,6 +1791,7 @@ namespace RealERPWEB.F_23_CR
 
         protected void ddlSrchCash_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.divtocash.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.lblToCash.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.txtAmountC2.Visible = (this.ddlSrchCash.SelectedValue == "between");
         }
@@ -1877,6 +1878,21 @@ namespace RealERPWEB.F_23_CR
         {
             gv_YCollectionDetails.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void gvyCollection_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink lgactdescyc = (HyperLink)e.Row.FindControl("lgactdescyc");
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                //string pactdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactdesc")).ToString();
+                string comcod = this.GetCompCode();
+                string frmdate = this.txtfrmdate.Text;
+                string todate = this.txttodate.Text;
+                lgactdescyc.NavigateUrl = "~/F_23_CR/RptReceivedList02.aspx?Type=yCollectionDetails&prjcode=" + comcod + "&pactcode=" + code + "&Date1=" + frmdate + "&Date2=" + todate;
+
+            }
         }
     }
 }

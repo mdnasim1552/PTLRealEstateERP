@@ -260,13 +260,50 @@ namespace RealERPWEB.F_04_Bgd
             //Session["tblflr"] = ds1.Tables[0];
             //Session["tblflbdesc"] = ds1.Tables[1];
             DataTable dt = (DataTable)Session["tblflr"];
+            DataTable dt1 = (DataTable)Session["tblflbdesc"];
+            string qty1 = dt1.Rows[0]["flrdes"].ToString();
+          
             var lst = dt.DataTableToList<RealEntity.C_04_Bgd.PrjFoorWise>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptPrjFloorWise", lst, null, null);
             Rpt1.EnableExternalImages = true;
+
+            if (dt1.Rows.Count > 1)
+            {
+                string qty2 = dt1.Rows[1]["flrdes"].ToString();
+                string qty3 = dt1.Rows[2]["flrdes"].ToString();
+                string qty4 =  dt1.Rows[3]["flrdes"].ToString();
+                string qty5 = dt1.Rows[4]["flrdes"].ToString();
+                string qty6 = dt1.Rows[5]["flrdes"].ToString();
+                string qty7 = dt1.Rows[6]["flrdes"].ToString();
+                string qty8 = dt1.Rows[7]["flrdes"].ToString();
+                string qty9 = dt1.Rows[8]["flrdes"].ToString();
+                string qty10 = dt1.Rows[9]["flrdes"].ToString();
+                string qty11 = dt1.Rows[10]["flrdes"].ToString();
+                string qty12 = dt1.Rows[11]["flrdes"].ToString();
+                string qty13 = dt1.Rows[12]["flrdes"].ToString();
+                string qty14 = dt1.Rows[13]["flrdes"].ToString();
+                Rpt1.SetParameters(new ReportParameter("qty2", qty2));
+                Rpt1.SetParameters(new ReportParameter("qty3", qty3));
+                Rpt1.SetParameters(new ReportParameter("qty4", qty4));
+                Rpt1.SetParameters(new ReportParameter("qty5", qty5));
+                Rpt1.SetParameters(new ReportParameter("qty6", qty6));
+                Rpt1.SetParameters(new ReportParameter("qty7", qty7));
+                Rpt1.SetParameters(new ReportParameter("qty8", qty8));
+                Rpt1.SetParameters(new ReportParameter("qty9", qty9));
+                Rpt1.SetParameters(new ReportParameter("qty10", qty10));
+                Rpt1.SetParameters(new ReportParameter("qty11", qty11));
+                Rpt1.SetParameters(new ReportParameter("qty12", qty12));
+                Rpt1.SetParameters(new ReportParameter("qty13", qty13));
+                Rpt1.SetParameters(new ReportParameter("qty14", qty14));
+
+            }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("qty1", qty1));
+           
+           
             //  Rpt1.SetParameters(new ReportParameter("date", "As On: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("ProjectNam", this.ddlProjectName.SelectedItem.Text.Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("ProjectNam", this.ddlProjectName.SelectedItem.Text.Substring(17)));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "PROJECT FLOOR WISE"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
