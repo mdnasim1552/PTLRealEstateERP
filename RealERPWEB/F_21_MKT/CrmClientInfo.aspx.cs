@@ -294,7 +294,10 @@ namespace RealERPWEB.F_21_MKT
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            string filter = comcod == "3374" ? "namdesgsec" : "";
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", filter, "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             ViewState["tblsubddl"] = ds2.Tables[0];
             ViewState["tblstatus"] = ds2.Tables[1];
             ViewState["tblproject"] = ds2.Tables[2];

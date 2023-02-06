@@ -196,7 +196,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsalableunit" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="0px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="center" />

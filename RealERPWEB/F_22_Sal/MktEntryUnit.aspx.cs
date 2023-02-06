@@ -316,8 +316,7 @@ namespace RealERPWEB.F_22_Sal
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('You have no permission');", true);
                 return;
             }
             this.SaveValue();
@@ -355,16 +354,14 @@ namespace RealERPWEB.F_22_Sal
                     var dtrows = testtble.AsEnumerable().GroupBy(x => x["fcode"]).Where(x => x.Count() > 1).Count();
                     if (dtrows > 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Code";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Found Duplicate Code');", true);                     
                         return;
                     }
 
                     var udescdesc = desctable.AsEnumerable().GroupBy(x => x["udesc"]).Where(x => x.Count() > 1).Count();
                     if (udescdesc > 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Description";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Found Duplicate Description');", true);                      
                         return;
                     }
                     break;
@@ -420,8 +417,7 @@ namespace RealERPWEB.F_22_Sal
 
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Failed');", true);
 
                     }
 
@@ -435,8 +431,9 @@ namespace RealERPWEB.F_22_Sal
 
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+       
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
             this.LoadGrid();
 
             if (ConstantInfo.LogStatus == true)

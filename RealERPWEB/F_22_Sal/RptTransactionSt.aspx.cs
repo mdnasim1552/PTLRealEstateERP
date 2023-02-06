@@ -1667,6 +1667,9 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvTransSum.FooterRow.FindControl("lgvFamt33")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt33)", "")) ?
                             0 : dt1.Compute("sum(amt33)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvTransSum.FooterRow.FindControl("lgvFamt34")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt34)", "")) ?
+                            0 : dt1.Compute("sum(amt34)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvTransSum.FooterRow.FindControl("lgvFnetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(netamt)", "")) ?
                                0 : dt1.Compute("sum(netamt)", ""))).ToString("#,##0;(#,##0); ");
 
