@@ -763,6 +763,7 @@
                         //Added 
                         // $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         break;
+<<<<<<< HEAD
                     case 3374: //ANGAN
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
@@ -775,6 +776,9 @@
                         //$(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
                        // $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
+=======
+
+>>>>>>> b8b09c97d122a19efb0fb4ac6763dfc548ee1c20
                     default:
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval

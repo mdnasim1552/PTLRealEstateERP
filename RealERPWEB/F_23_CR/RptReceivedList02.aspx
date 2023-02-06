@@ -1958,7 +1958,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                          </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Sales Person Nmae">
+                                        <asp:TemplateField HeaderText="Sales Person Name">
                                             <ItemTemplate>
                                                 <asp:Label runat="server" Style="text-align: left" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "saleperson")) %>' Width="140px"> </asp:Label>
                                             </ItemTemplate>

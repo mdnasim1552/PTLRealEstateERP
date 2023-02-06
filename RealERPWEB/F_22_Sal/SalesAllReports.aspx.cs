@@ -75,6 +75,7 @@ namespace RealERPWEB.F_22_Sal
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
+                    this.grpid.Visible = false;
                     break;
 
                 case "PrjCollTilldate":
@@ -84,6 +85,7 @@ namespace RealERPWEB.F_22_Sal
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
+                    this.grpid.Visible = false;
                     break;
 
                 case "PaymentStatus":
@@ -93,7 +95,25 @@ namespace RealERPWEB.F_22_Sal
                     this.imgbtnFindCustomer.Visible = true;
                     this.ddlCustName.Visible = true;
                     this.clcust.Visible = true;
+                    this.grpid.Visible = false;
                     break;
+
+                case "SoldUnSoldUnit":
+                    this.lblDate.Visible = false;
+                    this.txtFDate.Visible = false;
+                    this.clfdate.Visible = false;
+                    this.imgbtnFindCustomer.Visible = false;
+                    this.ddlCustName.Visible = false;
+                    this.clcust.Visible = false;
+                    this.grpid.Visible = true;
+                    this.GetGroup();
+
+
+
+                    break;
+
+
+
                 default:
                     this.lblDate.Visible = true;
                     this.txtFDate.Visible = true;
@@ -104,8 +124,32 @@ namespace RealERPWEB.F_22_Sal
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
+                    this.grpid.Visible = false;
                     break;
             }
+        }
+
+        private void GetGroup()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETGROUP", "", "", "", "", "", "", "", "", "");
+
+            DataTable dt = ds1.Tables[0];
+            DataRow dr1 = dt.NewRow();
+            dr1["grpcode"] = "000000000000";
+            dr1["grpdesc"] = "All Type";
+            dt.Rows.Add(dr1);
+
+
+            this.ddlgrp.DataTextField = "grpdesc";
+            this.ddlgrp.DataValueField = "grpcode";
+            this.ddlgrp.DataSource = ds1.Tables[0];
+            this.ddlgrp.DataBind();
+            this.ddlgrp.SelectedValue = "000000000000";
+           
+
+
+
         }
 
 
@@ -177,9 +221,9 @@ namespace RealERPWEB.F_22_Sal
                 case "PaymentStatus":
                     this.ShowPaymentStatus();
                     break;
-                //case "qtybasisp":
-                //    this.InventoryAmtBasisPeriodic();
-                //    break;
+                case "SoldUnSoldUnit":
+                    this.GetSoldUnsoldUnit();
+                    break;
 
                 default:
                     break;
@@ -265,6 +309,52 @@ namespace RealERPWEB.F_22_Sal
             this.Data_Bind();
         }
 
+        private  void GetSoldUnsoldUnit()
+        {
+            string comcod = this.GetComeCode();          
+            string todate = this.txttoDate.Text.Trim();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDUNITSTATUS", pactcode, "", todate, grpcode, "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.dvsoldunsold.DataSource = null;
+                this.dvsoldunsold.DataBind();
+
+                return;
+
+            }
+
+            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+
+            ViewState["prjcoll"] = dt;
+            this.Data_Bind();
+
+        }
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["pactdesc"] = "";
+                }
+
+                else
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                }
+            }
+            return dt1;
+
+        }
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["prjcoll"];
@@ -272,9 +362,7 @@ namespace RealERPWEB.F_22_Sal
             string rpt = this.ddlReport.SelectedValue;
             switch (rpt)
             {
-                case "amtbasis":
-
-                    break;
+               
                 case "PrjCollect":
                     this.MultiView1.ActiveViewIndex = 0;
                     this.gvprjcoll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
@@ -295,6 +383,15 @@ namespace RealERPWEB.F_22_Sal
                     this.gvpaystatus.DataSource = dt;
                     this.gvpaystatus.DataBind();
                     this.FooterCal();
+                    break;
+
+
+                case "SoldUnSoldUnit":
+                    this.MultiView1.ActiveViewIndex = 3;
+                    this.dvsoldunsold.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.dvsoldunsold.DataSource = dt;
+                    this.dvsoldunsold.DataBind();
+                    //this.FooterCal();                   
                     break;
                 default:
                     break;
@@ -344,70 +441,8 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
-        //private void FooterCalperiodicqty()
-        //{
-        //    DataTable dt = (DataTable)Session["qtybasisp"];
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lblopnfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(opqty)", "")) ?
-        //        0.00 : dt.Compute("Sum(opqty)", ""))).ToString("#,##0;(#,##0); ");
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lblrcvfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(rcvqty)", "")) ?
-        //       0.00 : dt.Compute("Sum(rcvqty)", ""))).ToString("#,##0;(#,##0); ");
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lbltinfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trninqty)", "")) ?
-        //        0.00 : dt.Compute("Sum(trninqty)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lbltoutfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trnoutqty)", "")) ?
-        //       0.00 : dt.Compute("Sum(trnoutqty)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lbllstfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(lqty)", "")) ?
-        //        0.00 : dt.Compute("Sum(lqty)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lblnetrcvfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netrcvqty)", "")) ?
-        //       0.00 : dt.Compute("Sum(netrcvqty)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lblisufq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(issueqty)", "")) ?
-        //        0.00 : dt.Compute("Sum(issueqty)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.dvQtyBasisPeriodic.FooterRow.FindControl("lblactstktfq")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(actstock)", "")) ?
-        //        0.00 : dt.Compute("Sum(actstock)", ""))).ToString("#,##0;(#,##0); ");
-        //}
-        //protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    this.gvMatStock.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-        //    this.Data_Bind();
-        //}
-
-        //protected void gvMatStock_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    this.gvMatStock.PageIndex = e.NewPageIndex;
-        //    this.Data_Bind();
-        //}
-
-        //protected void gvQtyBasis_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    this.gvQtyBasis.PageIndex = e.NewPageIndex;
-        //    this.Data_Bind();
-        //}
-        //protected void gvMatStock_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkgcResDesc");
-        //        HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkqtyBasis");
-        //        string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-        //        hlink1.NavigateUrl = "~/F_12_Inv/RptIndPrjAmtBasisRes.aspx?prjcode=" + pactcode;
-        //        hlink2.NavigateUrl = "~/F_12_Inv/RptProjectStock.aspx?Type=inv&prjcode=" + pactcode;
-        //    }
-        //}
-        //protected void gvAmtPeriodic_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    this.gvAmtPeriodic.PageIndex = e.NewPageIndex;
-        //    this.Data_Bind();
-        //}
-        protected void dvQtyBasisPeriodic_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.dvQtyBasisPeriodic.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.Data_Bind();
-        }
+      
+       
 
         protected void gvAmtPeriodic_RowDataBound(object sender, GridViewRowEventArgs e)
         {
