@@ -1298,7 +1298,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.PrintLeaveform2();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "4330":
                 case "4305":
                 case "4315":
@@ -1342,6 +1342,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("txtEmpName1", this.ddlEmpNamelApp.SelectedItem.Text.Substring(7)));
             Rpt1.SetParameters(new ReportParameter("txtDesig", this.lblDesignationlApp.Text));
             Rpt1.SetParameters(new ReportParameter("txtDesig1", this.lblDesignationlApp.Text));
+            Rpt1.SetParameters(new ReportParameter("txtJoindat", this.lblJoiningDatelApp.Text));
+
+            
             Rpt1.SetParameters(new ReportParameter("txtApplydate", ""));
             Rpt1.SetParameters(new ReportParameter("txtReasons", ""));
             Rpt1.SetParameters(new ReportParameter("txttitlelappslip", "Leave Approval Slip"));
