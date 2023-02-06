@@ -3064,7 +3064,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>10.21333in</Top>
+            <Top>10.46333in</Top>
             <Left>0.53751in</Left>
             <Height>0.4375in</Height>
             <Width>6.39999in</Width>
@@ -3096,8 +3096,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox44</rd:DefaultName>
-            <Top>9.84042in</Top>
-            <Left>0.09376in</Left>
+            <Top>10.09042in</Top>
+            <Left>0.03126in</Left>
             <Height>0.23958in</Height>
             <Width>7.39582in</Width>
             <ZIndex>18</ZIndex>
@@ -3231,6 +3231,7 @@
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>cambria</FontFamily>
+                          <FontSize>11pt</FontSize>
                           <FontWeight>Normal</FontWeight>
                           <TextDecoration>None</TextDecoration>
                           <Color>#000000</Color>
@@ -3243,7 +3244,7 @@
                 <rd:DefaultName>Textbox31</rd:DefaultName>
                 <Top>3.62487in</Top>
                 <Left>0.24875in</Left>
-                <Height>0.1875in</Height>
+                <Height>0.26042in</Height>
                 <Width>2.08459in</Width>
                 <ZIndex>3</ZIndex>
                 <Style>

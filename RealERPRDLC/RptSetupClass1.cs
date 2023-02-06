@@ -671,6 +671,7 @@ namespace RealERPRDLC
 
 
                 case "R_17_Acc.RptAccCashbook1": Rpt1a = SetRptAccCashbook1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAccCashbook1Intech": Rpt1a = SetRptAccCashbook1Intech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccCashbook1Credence": Rpt1a = SetRptAccCashbook1Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptDailyPayProposal": Rpt1a = SetRptDailyPayProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptDelDailyTransaction": Rpt1a = SetRptDelDailyTransaction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2227,6 +2228,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptAccCashbook1(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.AccCashBankBook1>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptAccCashbook1Intech(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.AccCashBankBook1>)RptDataSet));
             return Rpt1a;

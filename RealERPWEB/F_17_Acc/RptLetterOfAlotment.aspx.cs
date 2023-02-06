@@ -205,8 +205,7 @@ namespace RealERPWEB.F_17_Acc
                 
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
-                string custid = ds3.Tables[0].Rows[0]["customerno"].ToString();
-
+                
             DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds3 == null)
                     return;
