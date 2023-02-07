@@ -634,7 +634,9 @@ namespace RealERPWEB.F_14_Pro
             string ssircode = dt.Rows[0]["ssircode"].ToString();
             this.ddlSupList.SelectedValue = ssircode;
         }
-
+        /// <summary>
+        /// check
+        /// </summary>
         protected void Session_tblAprov_Update()
         {
             string comcod = this.GetCompCode();

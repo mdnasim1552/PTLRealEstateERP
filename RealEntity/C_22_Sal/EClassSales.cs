@@ -352,5 +352,26 @@ namespace RealEntity.C_22_Sal
             }
         }
 
+        [Serializable]
+        public class soldunsoldstatus
+        {
+            public string comcod { get; set; }
+
+            public string pactdesc { get; set; }
+            public string catdesc { get; set; }
+
+            public double tunit { get; set; }
+            public double tsize { get; set; }
+            public double soldunit { get; set; }
+            public double soldsize { get; set; }
+            public double unsoldunit { get; set; }
+            public double unsoldsize { get; set; }
+
+            public soldunsoldstatus()
+            {
+
+            }
+        }
+
     }
 }
