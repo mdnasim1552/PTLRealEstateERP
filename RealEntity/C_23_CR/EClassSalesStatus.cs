@@ -297,6 +297,10 @@ namespace RealEntity.C_23_CRR
             public string pactcode { get; set; }
             public string usircode { get; set; }
             public string custname { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public string saleperson { get; set; }
+            public string installdate { get; set; }
             public double bgdcost { get; set; }
             public double tocost { get; set; }
             public double ramt { get; set; }

@@ -53,6 +53,9 @@ namespace RealERPWEB.F_23_CR
                     this.txtfrmdate.Text = date1;
                     this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 }
+                string qprjcode = this.Request.QueryString["prjcode"] ?? "";
+                string fdate = this.Request.QueryString["Date1"] ?? "";
+                string tdate = this.Request.QueryString["Date2"] ?? "";
 
                 this.GetProjectName();
                 this.ViewSelection();
@@ -64,7 +67,12 @@ namespace RealERPWEB.F_23_CR
                 //  : (this.Request.QueryString["Type"].ToString() == "yCollectionfc") ? "Yearly Collection Forcasting"
                 //  : (this.Request.QueryString["Type"].ToString() == "CurDues") ? "Current Dues"
                 //  : (this.Request.QueryString["Type"].ToString() == "ProClientst") ? "Project Wise Client Status" : "Dues Collection -Summary";
-
+                if(qprjcode.Length > 0)
+                {
+                    this.txtfrmdate.Text = fdate;
+                    this.txttodate.Text = tdate;
+                    this.lbtnOk_Click(null, null);
+                }
 
             }
 
@@ -1714,7 +1722,7 @@ namespace RealERPWEB.F_23_CR
                 if (dt1 == null)
                     return;
 
-                Session["tblyAccRecde"] =  this.HiddenSameData(dt1.Tables[0]); ;
+                Session["tblyAccRecde"] =  this.HiddenSameData(dt1.Tables[0]); 
                 this.Data_Bind();
             }
             catch(Exception exp)
@@ -1890,7 +1898,7 @@ namespace RealERPWEB.F_23_CR
                 string comcod = this.GetCompCode();
                 string frmdate = this.txtfrmdate.Text;
                 string todate = this.txttodate.Text;
-                lgactdescyc.NavigateUrl = "~/F_23_CR/RptReceivedList02.aspx?Type=yCollectionDetails&prjcode=" + comcod + "&pactcode=" + code + "&Date1=" + frmdate + "&Date2=" + todate;
+                lgactdescyc.NavigateUrl = "~/F_23_CR/RptReceivedList02.aspx?Type=yCollectionDetails&prjcode=" + code + "&Date1=" + frmdate + "&Date2=" + todate;
 
             }
         }
