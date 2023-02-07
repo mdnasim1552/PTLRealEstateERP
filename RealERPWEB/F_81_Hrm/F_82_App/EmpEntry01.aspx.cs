@@ -1009,7 +1009,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj && comcod!="3354")
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj && comcod=="3365")
                     {
                         Gvalue = doj;
                         //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
@@ -1288,7 +1288,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 //txtgvValBn.Text = "";
-                if (code == "01003" && GetComeCode()!="3354")
+                if (code == "01003" && GetComeCode()=="3365")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
