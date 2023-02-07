@@ -97,6 +97,25 @@ namespace RealEntity.C_22_Sal
         }
         [Serializable]
 
+        public class MonthlySalesBudget
+        {
+            public string comcod { get; set; }
+            public string empname { get; set; }
+            public string pactcode { get; set; }
+            public double aptqty { get; set; }
+            public double shopqty { get; set; }
+            public double aptamt { get; set; }
+            public double shopamt { get; set; }
+
+            public MonthlySalesBudget()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+
         public class SoldUnsoltInfavg
         {
             public string comcod { get; set; }
@@ -347,6 +366,27 @@ namespace RealEntity.C_22_Sal
             public double ramt { get; set; }
 
             public PrjWiseCollectiontilldate()
+            {
+
+            }
+        }
+
+        [Serializable]
+        public class soldunsoldstatus
+        {
+            public string comcod { get; set; }
+
+            public string pactdesc { get; set; }
+            public string catdesc { get; set; }
+
+            public double tunit { get; set; }
+            public double tsize { get; set; }
+            public double soldunit { get; set; }
+            public double soldsize { get; set; }
+            public double unsoldunit { get; set; }
+            public double unsoldsize { get; set; }
+
+            public soldunsoldstatus()
             {
 
             }

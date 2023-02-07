@@ -93,6 +93,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3352": //P2P 360
                 case "3354": //Edison Real Estate
                 case "3353": //Manama
+                case "3374": //ANGAN
 
                 case "3368": //finlay
                     this.chkdupMRR.Enabled = false;
@@ -1130,6 +1131,7 @@ namespace RealERPWEB.F_12_Inv
 
                             case "3348": // Credence
                             case "3368": // Finlay
+                            case "3374": // ANGAN
                                 break;
 
                             default:
@@ -1307,6 +1309,7 @@ namespace RealERPWEB.F_12_Inv
                 case "1205": //p2p Engineering
                 case "3351": //WECON Properties
                 case "3352": //P2P 360
+                case "3374": //ANGAN
 
                     if (mrrno.Length <= 0)
                     {

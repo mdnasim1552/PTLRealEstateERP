@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\project(old)oooooooooooooo\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -186,6 +186,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet02+EClassCoffGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet02+EClassRevGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+CollectionStatement.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+MonthlySalesBudget.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusReconcile.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollection.datasource" />
@@ -197,6 +198,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+soldunsoldstatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+TransactionSt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
@@ -345,6 +347,7 @@
     <EmbeddedResource Include="R_14_Pro\RptSummaryProject.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccCashbook1Intech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeCityBankCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankCPDL.rdlc" />
@@ -890,6 +893,8 @@
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMonthlySalesBudget.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSoldUnsoldUnitStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsCollTypeWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEarlybenefitADelayCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDLOLD.rdlc" />

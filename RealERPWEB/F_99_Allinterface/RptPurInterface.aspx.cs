@@ -653,6 +653,11 @@ namespace RealERPWEB.F_99_Allinterface
                     OrderfApproved = "Order App";                   
                     break;
 
+                case "3374": //ANGAN
+                    ReceivedApp = "QC. Checked";
+
+                    break;
+
                 default:
                     reqcheck = "Checked";
                     reqforward = "Forward";

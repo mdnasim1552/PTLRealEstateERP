@@ -722,7 +722,7 @@ namespace RealERPWEB.F_22_Sal
                 DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFANDUNITINFO", PactCode, group, totno, isLO, "", "", "", "", "");
                 if (ds3 == null)
                     return;
-                this.gvUnit.Columns[1].Visible = false;
+                //this.gvUnit.Columns[1].Visible = false;
                 ViewState["tblUnit"] = ds3.Tables[0];
                 this.Data_bind();
             }
