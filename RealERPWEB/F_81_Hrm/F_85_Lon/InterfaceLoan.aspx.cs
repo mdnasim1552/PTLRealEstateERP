@@ -1792,8 +1792,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 return;
             }
-
             DataTable dt = ds.Tables[0];
+    
+
+      
+
+
+            double  prevloan = Convert.ToDouble(dt.Rows[0]["prevloan"]);
+
             string desig= dt.Rows[0]["desig"].ToString();
             string dept = dt.Rows[0]["dept"].ToString();
             string cdate = dt.Rows[0]["cdate"].ToString();
@@ -1805,7 +1811,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string instNo = this.txtInstNum.Text.ToString() == "" ? "0" : this.txtInstNum.Text.ToString();
             double amtPerInst = Convert.ToDouble("0" + this.txtAmtPerIns.Text);
             double stdeduct = Convert.ToDouble("0" + this.txtStd.Text);
-            double prevloan = Convert.ToDouble("0" + this.txtPloanAmt.Text);
             double grossMonth = Convert.ToDouble("0" + this.txtGMS.Text);
             double othincome = Convert.ToDouble("0" + this.txtOI.Text);
             double intrest = Convert.ToDouble("0" + this.txtrt.Text);
