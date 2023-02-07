@@ -65,7 +65,7 @@ namespace RealERPWEB.F_22_Sal
                 //    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
                 //    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
 
-                this.lbtnOk_Click(null, null);
+               
             }
 
         }

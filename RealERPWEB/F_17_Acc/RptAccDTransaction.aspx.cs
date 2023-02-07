@@ -1268,6 +1268,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1Intech", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("netamt", netamt));
+                    Rpt1.SetParameters(new ReportParameter("rptTitle", "CASH & BANK TRANSACTION"));
                     break;
 
                 default:

@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MonthlySalesBudget : System.Web.UI.Page
@@ -40,6 +42,13 @@ namespace RealERPWEB.F_22_Sal
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private string GetComeCode()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
 
         }
 
@@ -402,6 +411,9 @@ namespace RealERPWEB.F_22_Sal
                 case "DailyEntry":
                     this.RptPrintDailyreport();
                     break;
+                case "MonthlyTypeWise":
+                    this.RptPrintMonthlyTypeWise();
+                    break;
             }
 
         }
@@ -578,7 +590,44 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void RptPrintMonthlyTypeWise()
 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+            string yearmon = this.ddlmonthtypeWise.SelectedItem.Text;
+            
+          
+            DataTable dt = (DataTable)ViewState["tblsal"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.MonthlySalesBudget>();
+           
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlySalesBudget", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+           
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "MONTHLY SALES & COLLECTION TARGET (EXECUTIVE WISE)"));
+            Rpt1.SetParameters(new ReportParameter("Rptprintdate", "Month Of " + yearmon));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+        }
         protected void gvSalbgd_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

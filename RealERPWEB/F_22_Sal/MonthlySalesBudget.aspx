@@ -502,7 +502,7 @@
                                 ShowFooter="True" Width="531px" OnRowCreated="gvsbgdTypeWise_RowCreated">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl #">
                                         <ItemTemplate>
                                             <asp:Label ID="serialnoidbgd" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -512,7 +512,7 @@
                                         </FooterTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Emp Name">
+                                    <asp:TemplateField HeaderText="Employee Name">
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnbgdFinalUpdate"
                                                 CssClass="btn btn-danger primaryBtn" runat="server" OnClick="lbtnbgdFinalUpdate_Click">Update</asp:LinkButton>
@@ -538,7 +538,7 @@
                                                                     %>'
                                                  
                                                  
-                                                  Width="200px"></asp:HyperLink>
+                                                  Width="400px"></asp:HyperLink>
 
 
 
@@ -555,7 +555,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptqty")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                                Width="80px"></asp:TextBox>
+                                                Width="100px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                             VerticalAlign="Middle" />
@@ -572,7 +572,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopqty")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                                Width="80px"></asp:TextBox>
+                                                Width="100px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                             VerticalAlign="Middle" />
@@ -590,7 +590,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptamt")).ToString("#,##0;-#,##0; ") %>'
-                                                Width="80px"></asp:TextBox>
+                                                Width="100px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                             VerticalAlign="Middle" />
@@ -607,7 +607,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopamt")).ToString("#,##0;-#,##0; ") %>'
-                                                Width="80px"></asp:TextBox>
+                                                Width="100px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                             VerticalAlign="Middle" />
