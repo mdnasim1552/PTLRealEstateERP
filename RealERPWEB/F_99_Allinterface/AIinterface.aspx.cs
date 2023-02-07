@@ -141,13 +141,11 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.TasktState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qc"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QA1</div></div></div>"; //2nd App.
 
-            this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["accpt"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Accept/Reject</div></div></div>";
-
-            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA2</div></div></div>";
-            this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
-            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Feedback</div></div></div>";
-            this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
-            this.TasktState.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
+            this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA2</div></div></div>";
+            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
+            this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Feedback</div></div></div>";
+            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
+            this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
 
 
 
@@ -243,8 +241,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
+                    this.pnelQC.Visible = false;                   
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -261,8 +258,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = true;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
+                    this.pnelQC.Visible = false;                   
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -277,8 +273,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = true;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
+                    this.pnelQC.Visible = false;                   
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -293,8 +288,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = true;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
+                    this.pnelQC.Visible = false;                   
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -309,8 +303,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = true;
-                    this.pnelAReject.Visible = false;
+                    this.pnelQC.Visible = true;                   
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -320,23 +313,23 @@ namespace RealERPWEB.F_99_Allinterface
                     this.GetQcList();
                     this.TasktState.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
+                //case "5":
+                //    this.pnlAllProject.Visible = false;
+                //    this.pnlStatus.Visible = false;
+                //    this.pnlAssign.Visible = false;
+                //    this.pnlProduction.Visible = false;
+                //    this.pnelQC.Visible = false;
+                    
+                //    this.penlInvoice.Visible = false;
+                //    this.pnelCollection.Visible = false;
+                //    this.pnelQA.Visible = false;
+                //    this.pnelFeedBack.Visible = false;
+                //    this.Pneldelivery.Visible = false;
+                //    this.GetSearchAssign();
+                //    this.GetProductionInfo();
+                //    this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
+                //    break;
                 case "5":
-                    this.pnlAllProject.Visible = false;
-                    this.pnlStatus.Visible = false;
-                    this.pnlAssign.Visible = false;
-                    this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = true;
-                    this.penlInvoice.Visible = false;
-                    this.pnelCollection.Visible = false;
-                    this.pnelQA.Visible = false;
-                    this.pnelFeedBack.Visible = false;
-                    this.Pneldelivery.Visible = false;
-                    this.GetSearchAssign();
-                    this.GetProductionInfo();
-                    this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
-                    break;
-                case "6":
                     this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
@@ -350,7 +343,36 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Pneldelivery.Visible = false;
                     this.GetSearchAssign();
                     this.GetAssignQa();
+                    this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
+                    break;
+                case "6":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                  
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = true;
+                    this.GetAIDelivery();
                     this.TasktState.Items[6].Attributes["class"] = "lblactive blink_me";
+                    break;
+                case "7":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;                  
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = true;
+                    this.Pneldelivery.Visible = false;
+                    
+                    this.TasktState.Items[7].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "8":
                     this.pnlAllProject.Visible = false;
@@ -358,27 +380,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
-                    this.penlInvoice.Visible = false;
-                    this.pnelCollection.Visible = false;
-                    this.pnelQA.Visible = false;
-                    this.pnelFeedBack.Visible = true;
-                    this.Pneldelivery.Visible = false;
-                    this.TasktState.Items[7].Attributes["class"] = "lblactive blink_me";
-                    break;
-                case "7":
-                    this.pnlAllProject.Visible = false;
-                    this.pnlStatus.Visible = false;
-                    this.pnlAssign.Visible = false;
-                    this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
-                    this.penlInvoice.Visible = false;
+                  
+                    this.penlInvoice.Visible = true;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
-                    this.Pneldelivery.Visible = true;
-                    this.GetAIDelivery();
+                    this.Pneldelivery.Visible = false;
+                    this.GetInvoiceList();
                     this.TasktState.Items[8].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "9":
@@ -387,28 +395,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
-                    this.penlInvoice.Visible = true;
-                    this.pnelCollection.Visible = false;
-                    this.pnelQA.Visible = false;
-                    this.pnelFeedBack.Visible = false;
-                    this.Pneldelivery.Visible = false;
-                    this.GetInvoiceList();
-                    this.TasktState.Items[9].Attributes["class"] = "lblactive blink_me";
-                    break;
-                case "10":
-                    this.pnlAllProject.Visible = false;
-                    this.pnlStatus.Visible = false;
-                    this.pnlAssign.Visible = false;
-                    this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;
-                    this.pnelAReject.Visible = false;
+                  
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = true;
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
-                    this.TasktState.Items[10].Attributes["class"] = "lblactive blink_me";
+                    this.TasktState.Items[9].Attributes["class"] = "lblactive blink_me";
                     break;
 
             }
@@ -445,7 +438,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt1 = new DataTable();
             DataView view = new DataView();
             view.Table = ds.Tables[0];
-            view.RowFilter = " roletype='95001'";
+            view.RowFilter = " roletype='95001' and qcdoneqty<>assignqty";
             dt1 = view.ToTable();
             this.gv_Production.DataSource = dt1;
             this.gv_Production.DataBind();
@@ -463,7 +456,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataView view1 = new DataView();
 
             view1.Table = ds.Tables[0];
-            view1.RowFilter = "roletype='95002'";
+            view1.RowFilter = "roletype='95002' and qcdoneqty<>assignqty";
             dt1 = view1.ToTable();
             this.gv_QCQA.DataSource = dt1;
             this.gv_QCQA.DataBind();
@@ -482,7 +475,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt1 = new DataTable();
             DataView view2 = new DataView();
             view2.Table = ds.Tables[0];
-            view2.RowFilter = "roletype='95003'";
+            view2.RowFilter = "roletype='95003' and qcdoneqty=0 and assignqty<>compqty";
             dt1 = view2.ToTable();
             this.gv_AssignQA.DataSource = dt1;
             this.gv_AssignQA.DataBind();
@@ -1543,10 +1536,11 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
+                string jobid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
-                string assignqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
+                string assignqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvqcbalqty")).Text.ToString();
                 string assigntype = ((Label)this.gv_Production.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
 
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
@@ -1576,6 +1570,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.HiddinTaskid.Value = taskid;
                 this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
+                this.lblassignjobid.Text = jobid;
                 this.ddlassigntype.SelectedValue = assigntype;
 
 
@@ -1856,6 +1851,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string taskid = this.HiddinTaskid.Value;
                 string postedbyid = userid;
                 string editdat = "01-Jan-1900";
+                string jobid = this.lblassignjobid.Text;
 
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
@@ -1863,7 +1859,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
                 //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
 
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, "", "", "", "");
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1910,9 +1906,11 @@ namespace RealERPWEB.F_99_Allinterface
                 int index = row.RowIndex;
                 string batchid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcbatchid")).Text.ToString();
                 string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblQCtaskid")).Text.ToString();
+                string jobid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcjobid")).Text.ToString();
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
-                string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+                //string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+                string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqaBalqty")).Text.ToString();
 
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
                 if (ds1 == null)
@@ -1939,6 +1937,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.HiddinTaskid.Value = taskid;
                 this.lblproprjid.Text = prjid;
                 this.lblabatchid.Text = batchid;
+                this.lblassignjobid.Text = jobid;
 
 
                 this.pnlSidebar.Visible = true;

@@ -159,8 +159,8 @@ namespace RealERPWEB.F_22_Sal
 
                 DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
                 DataTable dt = ds.Tables[0];
-                this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
-                this.txtCustmerNumber.Enabled = false;
+                this.lblCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
+                //this.txtCustmerNumber.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -313,7 +313,7 @@ namespace RealERPWEB.F_22_Sal
 
             if (dt.Rows.Count > 0 && dt.Rows[0]["customerno"].ToString().Length > 0)
             {
-                this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+                this.lblCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
             }
 
             ds2.Dispose();
@@ -932,7 +932,7 @@ namespace RealERPWEB.F_22_Sal
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
-            string customerMaxNo = this.txtCustmerNumber.Text.Trim();
+            string customerMaxNo = this.lblCustmerNumber.Text.Trim();
 
             string InstallmentDate = this.txtInstallmentDate.Text.Trim().ToString();
 
