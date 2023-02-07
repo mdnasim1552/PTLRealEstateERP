@@ -99,8 +99,15 @@ namespace RealERPWEB.F_17_Acc
             {
                 case "3370":
                 case "3101":
-                    this.LetterofAllotmentCPDL();
-
+                    string qtype = this.Request.QueryString["Type"].ToString().Trim();
+                    if(qtype== "Allotment")
+                    {
+                        this.LetterofAllotmentCPDL();
+                    }
+                    else if (qtype == "CustomerSettlement")
+                    {
+                        this.CustomerSettlementCPDL();
+                    }
                     break;
                 default:
                     break;
@@ -210,7 +217,7 @@ namespace RealERPWEB.F_17_Acc
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
                 
-            DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds3 == null)
                     return;
                 string custid = ds3.Tables[0].Rows[0]["customerno"].ToString();
@@ -311,8 +318,47 @@ namespace RealERPWEB.F_17_Acc
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
            
         }
+        private void CustomerSettlementCPDL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string prjname = this.ddlprjname.SelectedValue.ToString();
+            string ProjectName = this.ddlprjname.SelectedItem.ToString();
+            string custname = this.ddlcustomerName.SelectedValue.ToString();
 
-        protected void btnok_Click(object sender, EventArgs e)
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+
+            string customername = ds2.Tables[0].Rows[0]["custname"].ToString();
+            string unitno = ds3.Tables[0].Rows[0]["udesc"].ToString();
+            string usize = Convert.ToDouble(ds3.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
+            string floordesc = ds3.Tables[0].Rows[0]["flrdesc"].ToString();
+            string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
+            string aprtsize = usize + " " + unit;
+            string location = ds3.Tables[0].Rows[0]["location"].ToString();
+
+
+            double urate = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
+            double uamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
+            double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["uamt"]);
+            double pramt = Convert.ToDouble(ds3.Tables[0].Rows[0]["pamt"]);
+            double ucharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["utility"]);
+            double others = Convert.ToDouble(ds3.Tables[0].Rows[0]["others"]);
+
+            string totalamt = tamt.ToString("#,##0.00;(#,##0.00); ");
+            string utility = ucharge.ToString("#,##0.00;(#,##0.00); ");
+            string pamt = pramt.ToString("#,##0.00;(#,##0.00); ");
+            string othercharge = others.ToString("#,##0.00;(#,##0.00); ");
+
+        }
+            protected void btnok_Click(object sender, EventArgs e)
         {
             try
             {

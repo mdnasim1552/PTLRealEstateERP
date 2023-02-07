@@ -31,12 +31,16 @@
             background-color: #E8E3E3;
             padding: 0 !important;
         }
+        .mt20{
+            margin-top: 20px;
+        }
     </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             //<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
+            $('.chzn-select').chosen({ search_contains: true });
 
 
         });
@@ -88,9 +92,9 @@
                                 <asp:DropDownList runat="server" ID="ddlcustomerName"  AutoPostBack="True" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1 mt-4">
+                        <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm ">OK</asp:LinkButton>
+                                <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm mt20">OK</asp:LinkButton>
                             </div>
                         </div>
                     </div>
