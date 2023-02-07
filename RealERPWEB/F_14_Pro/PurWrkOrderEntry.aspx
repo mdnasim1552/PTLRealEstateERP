@@ -108,7 +108,7 @@
 
 
 
-                                        <div class="msgHandSt">
+                                       <%-- <div class="msgHandSt">
 
 
                                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="50">
@@ -119,7 +119,7 @@
                                                 </ProgressTemplate>
                                             </asp:UpdateProgress>
 
-                                        </div>
+                                        </div>--%>
 
 
 
