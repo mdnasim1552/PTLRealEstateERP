@@ -814,7 +814,7 @@ namespace RealERPRDLC
                 //availbility 
                 case "R_22_Sal.RptAvailbilityPrint": Rpt1a = SetRptAvailbilityPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RtpAvailChartPrint": Rpt1a = SetRtpAvailChartPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
+                case "R_22_Sal.RptTransactionSummary": Rpt1a = SetRptTransactionSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Credit Realization(CR)
@@ -4741,6 +4741,11 @@ namespace RealERPRDLC
         private static LocalReport SetRtpAvailChartPrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RtpAvailChartPrint>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptTransactionSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptTransactionSummary>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptSoldUnsoftInfGroupWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

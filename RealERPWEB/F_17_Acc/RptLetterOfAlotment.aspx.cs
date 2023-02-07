@@ -132,17 +132,23 @@ namespace RealERPWEB.F_17_Acc
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string ProjectName = this.ddlprjname.SelectedItem.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
-                
 
-                string method = "OTHER PAYMENTS ON CUSTOMERS ACCOUNT";
+
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+
+
+
+            string method = "OTHER PAYMENTS ON CUSTOMERS ACCOUNT";
                 string head01 = "At actual with incidental expenses at the time of Registration";
 
                 string headtitle01 = "Payment of other Govt. Charges, Gain or Source Tax, Apt VAT, AIT, Stamp Duties etc. : ";
                 string bodytitle01 = "At actual with last Installment.";
                 string OptionalCost = "Optional Up Gradation Cost : ";
                 string optionalDetails = "On acceptance of customers request";
-                string type = "Apartment";
-                string type01 = "APARTMENT";
+                string type = ds2.Tables[0].Rows[0]["flrdesc"].ToString();
+                string type01 = ds2.Tables[0].Rows[0]["flrdesc"].ToString(); ;
 
                 string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR " + "<strong>" + type01 + "<strong>";
                 string companyname = "CPDL";
@@ -209,10 +215,7 @@ namespace RealERPWEB.F_17_Acc
 
                
 
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
-                if (ds2 == null)
-                    return;
-
+             
                 
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
