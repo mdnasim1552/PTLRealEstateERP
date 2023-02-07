@@ -6,8 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <style>
-        .chzn-container{
-            width:100% !important;
+        .chzn-container {
+            width: 100% !important;
         }
     </style>
     <script type="text/javascript" language="javascript">
@@ -29,7 +29,7 @@
 
     </script>
 
-    
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -104,7 +104,7 @@
                             <div class="form-group row well">
                                 <div class="col-lg-2 col-md-2 col-sm-12 pl-0 ">
                                     <asp:Label ID="Label4" runat="server">Batch</asp:Label>
-                                    <asp:DropDownList ID="ddlbatch" runat="server" CssClass="form-control chzn-select"  OnSelectedIndexChanged="ddlbatch_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlbatch" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlbatch_SelectedIndexChanged" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-12">
@@ -118,9 +118,9 @@
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-12">
                                     <asp:Label ID="Label22" runat="server">Total Hour</asp:Label>
-                                    <asp:TextBox ID="txtTTLhour" runat="server" CssClass="form-control"  Enabled="false" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtTTLhour" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
-                                 <div class="col-lg-1 col-md-1 col-sm-12">
+                                <div class="col-lg-1 col-md-1 col-sm-12">
                                     <asp:Label ID="Label21" runat="server">Manpower</asp:Label>
                                     <asp:TextBox ID="txtManpower" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
@@ -133,7 +133,7 @@
                                     <asp:Label ID="Label20" runat="server">Delivery Date</asp:Label>
                                     <asp:TextBox ID="txtbdeldate" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
-                               
+
                             </div>
                             <div class="form-group row">
                                 <asp:Label ID="Label11" runat="server">Task Name</asp:Label>
@@ -167,11 +167,11 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                 
+
                             </div>
                             <div class="form-group row">
 
-                                 <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
+                                <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
                                     <asp:Label ID="Label8" runat="server">Velocity Type</asp:Label>
                                     <asp:DropDownList ID="ddlvalocitytype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
@@ -185,7 +185,7 @@
                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                     <asp:TextBox ID="txtworkhour" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                                
+
                                 <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
                                     <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
@@ -208,7 +208,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Member" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'  ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Member">
@@ -216,7 +216,7 @@
                                                 <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="250px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Role Type">
+                                        <asp:TemplateField HeaderText="Role Type">
                                             <ItemTemplate>
                                                 <asp:Label ID="tblroleType" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocitycode")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
@@ -250,8 +250,9 @@
                                     <%--<FooterStyle CssClass="grvFooter" />--%>
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
+                                    <FooterStyle BackColor="#F5F5F5" />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                 </asp:GridView>
                             </div>
 
@@ -260,10 +261,10 @@
 
 
                         </div>
-                        
+
                     </div>
-                    
-                  
+
+
                     <div class="row ">
                         <div class="col-lg-12 col-md-12 col-sm-22 mt-4">
                             <div class="form-group text-center">
