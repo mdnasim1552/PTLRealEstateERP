@@ -510,6 +510,8 @@ namespace RealERPWEB.F_12_Inv
                         case "3351": // p2p
                         case "3352": // p2p
                         case "3370": // cpdl
+                        case "3368": // finlay
+
 
                             break;
 

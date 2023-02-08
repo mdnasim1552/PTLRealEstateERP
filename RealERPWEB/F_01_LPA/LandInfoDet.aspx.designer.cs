@@ -420,6 +420,15 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lUpdatInfo;
 
         /// <summary>
+        /// chkboxPIDWise control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkboxPIDWise;
+
+        /// <summary>
         /// lblIntputtype control.
         /// </summary>
         /// <remarks>

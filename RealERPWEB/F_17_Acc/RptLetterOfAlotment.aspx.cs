@@ -97,8 +97,8 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3370":
                 case "3101":
+                case "3370":
                     string qtype = this.Request.QueryString["Type"].ToString().Trim();
                     if(qtype== "Allotment")
                     {

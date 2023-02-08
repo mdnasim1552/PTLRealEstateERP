@@ -725,6 +725,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3351": // p2p
                 case "3352": // p2p
                 case "8306":
+                case "3368": //finlay
                     ptype = "Approved";
                     break;
 

@@ -2332,8 +2332,9 @@
                                         <asp:TextBox ID="txtVal" runat="server" CssClass="form-control col-md-1 ml-1" TextMode="Search"></asp:TextBox>
 
                                         <asp:LinkButton ID="lUpdatInfo" runat="server" OnClick="lUpdatInfo_Click" class="btn btn-success form-control col-md-1 ml-1" OnClientClick="CloseModal();">Search</asp:LinkButton>
-
-                                    </div>
+                                         
+                                        <asp:CheckBox ID="chkboxPIDWise" runat="server" CssClass="orm-control col-md-1 ml-1 checkbox" style="margin-top: 10px;" Visible="false" Text="PID Wise" />
+                                    </div>                                   
                                 </div>
 
                             </div>
