@@ -204,8 +204,9 @@
                                             <ItemStyle Width="250" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <FooterStyle BackColor="#F5F5F5" />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                 </asp:GridView>
                                 <asp:LinkButton ID="btnProjectSave" runat="server" OnClick="btnProjectSave_Click" CssClass="btn btn-primary btn-sm  float-right">Project Save</asp:LinkButton>
                             </div>
@@ -323,9 +324,9 @@
                                     </Columns>
                                     <%--<FooterStyle CssClass="grvFooter" />--%>
 
+                                    <FooterStyle BackColor="#F5F5F5" />
                                     <PagerStyle CssClass="gvPagination" />
-
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                 </asp:GridView>
                             </div>
                         </div>
@@ -514,9 +515,9 @@
 
 
                                             </Columns>
+                                            <FooterStyle BackColor="#F5F5F5" />
                                             <PagerStyle CssClass="gvPagination" />
-
-                                            <HeaderStyle CssClass="grvHeader" />
+                                            <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                         </asp:GridView>
                                     </div>
                                 </div>
@@ -576,51 +577,51 @@
                                 </div>
                             </div>
                         </div>
-                         </div>
+                    </div>
 
-                        <%-- Add field --%>
-                        <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-                            <div class="modal-dialog  modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-light p-1">
-                                        <h6 class="modal-title">Create Project Field</h6>
-                                        <span type="button" csscss="text-danger border border-0" data-dismiss="modal"><i class="fa fa-times-circle"></i></span>
-                                    </div>
-                                    <div class="modal-body well">
-                                        <div class="row ">
-                                            <div class="p-0 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group ">
-                                                    <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
-                                                    <asp:TextBox ID="txtfieldname" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <%--<asp:RequiredFieldValidator runat="server" ID="reqFieldvalidation" ControlToValidate="txtfieldname" ErrorMessage="Field Name is Required Field"></asp:RequiredFieldValidator>--%>
-                                                </div>
+                    <%-- Add field --%>
+                    <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-1">
+                                    <h6 class="modal-title">Create Project Field</h6>
+                                    <span type="button" csscss="text-danger border border-0" data-dismiss="modal"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                                <div class="modal-body well">
+                                    <div class="row ">
+                                        <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
+                                                <asp:TextBox ID="txtfieldname" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <%--<asp:RequiredFieldValidator runat="server" ID="reqFieldvalidation" ControlToValidate="txtfieldname" ErrorMessage="Field Name is Required Field"></asp:RequiredFieldValidator>--%>
                                             </div>
-                                            <div class=" col-lg-2 col-md-3 col-sm-12">
-                                                <div class="form-group ">
-                                                    <asp:Label ID="Label13" runat="server">Type</asp:Label>
-                                                    <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
-                                                        <asp:ListItem Selected="True" Value="T">Text</asp:ListItem>
-                                                        <asp:ListItem Value="N">Number</asp:ListItem>
-                                                        <asp:ListItem Value="D">Date</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
+                                        </div>
+                                        <div class=" col-lg-2 col-md-3 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label13" runat="server">Type</asp:Label>
+                                                <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
+                                                    <asp:ListItem Selected="True" Value="T">Text</asp:ListItem>
+                                                    <asp:ListItem Value="N">Number</asp:ListItem>
+                                                    <asp:ListItem Value="D">Date</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
-                                            <div class="p-0 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="form-group ">
-                                                    <asp:Label ID="Label15" runat="server">Order By</asp:Label>
-                                                    <asp:TextBox ID="txtorder" runat="server" CssClass="form-control" TextMode="Number" Text="99"></asp:TextBox>
-                                                </div>
+                                        </div>
+                                        <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label15" runat="server">Order By</asp:Label>
+                                                <asp:TextBox ID="txtorder" runat="server" CssClass="form-control" TextMode="Number" Text="99"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer text-center d-block">
-                                        <asp:LinkButton runat="server" ID="Linkbtnfieldadd" OnClick="Linkbtnfieldadd_Click" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
-                                    </div>
                                 </div>
-
+                                <div class="modal-footer text-center d-block">
+                                    <asp:LinkButton runat="server" ID="Linkbtnfieldadd" OnClick="Linkbtnfieldadd_Click" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+                                </div>
                             </div>
+
                         </div>
-                   
+                    </div>
+
 
                 </div>
             </div>
