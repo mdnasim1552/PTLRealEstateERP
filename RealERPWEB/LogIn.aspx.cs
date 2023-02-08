@@ -788,6 +788,7 @@ namespace RealERPWEB
                 case "3364":  // jbs
                 case "3366": // lanco
                 case "3370": // cpdl
+                case "3374": // Angan
                     refno = "MPR No";
                     break;
                 default:
