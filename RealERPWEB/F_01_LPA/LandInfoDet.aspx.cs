@@ -6864,10 +6864,19 @@ namespace RealERPWEB.F_01_LPA
         protected void lnkbtnkpi_Click(object sender, EventArgs e)
         {
 
-
+            string comcod = this.GetComeCode();
             this.lbltodatekpi.Visible = true;
             this.txtkpitodate.Visible = true;
             this.hdnlblattribute.Value = "Kpi";
+            //CHL
+            if (comcod == "3348")
+            {
+                this.chkboxPIDWise.Visible = true;
+            }
+            else
+            {
+                this.chkboxPIDWise.Visible = false;
+            }
             this.EmpMonthlyKPI();
 
             if (ConstantInfo.LogStatus == true)
@@ -6875,13 +6884,8 @@ namespace RealERPWEB.F_01_LPA
                 string eventtype = "Show kpi Information (Land CRM)";
                 string eventdesc = "Show kpi Information (Land CRM)";
                 string eventdesc2 = "";
-                string comcod = this.GetComeCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-
-
-
-
 
         }
         private void EmpMonthlyKPI()
@@ -6898,7 +6902,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 empid = "%";
             }
-
+               
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTMONTHLYKPI", "8305%", frmdate, todate, empid);
             if(ds1 == null)
             {
@@ -7153,8 +7157,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid, pidwise);
 
             ViewState["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;
@@ -7710,16 +7715,6 @@ namespace RealERPWEB.F_01_LPA
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         protected void GetValue(object sender, EventArgs e)
         {
             //Reference the Repeater Item using Button.
@@ -8046,7 +8041,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if(ds1 == null )
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8080,8 +8077,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if (ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8115,8 +8113,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if (ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8150,8 +8149,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if (ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8185,8 +8185,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if (ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8220,8 +8221,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
             if (ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8256,7 +8258,9 @@ namespace RealERPWEB.F_01_LPA
                 string comcod = this.GetComeCode();
                 string frmdate = this.txtdate.Text.Trim();
                 string todate = this.txtkpitodate.Text.Trim();
-                DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPT_EMPKPI_LEAD_DETAILS", "8305%", frmdate, todate, empid);
+                //CHL
+                string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+                DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPT_EMPKPI_LEAD_DETAILS", "8305%", frmdate, todate, empid,pidwise);
                 if (ds1 == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
@@ -8324,8 +8328,9 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
             string frmdate = this.txtdate.Text.Trim();
             string todate = this.txtkpitodate.Text.Trim();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTEMPKPIDETAILS", "8305%", frmdate, todate, empid,pidwise);
 
             ViewState["tbltempdt"] = ds1.Tables[0];
             DataView dv = new DataView(ds1.Tables[0]);
