@@ -772,13 +772,14 @@ namespace RealERPWEB.F_21_MKT
 
                 switch (gcod)
                 {
-                    case "0302001": //Source
+                    //Source
+                    case "0302001": 
                         switch (comcod)
                         {
-                            //For Not Changing Source without Team Leader
-                            //Epic
-                            case "3367":
-                                //case "3101":
+                            //For Not Changing Source without Team Leader                            
+                            case "3367"://Epic
+                            case "3354"://Edison
+                            case "3101":
                                 dv1 = dt1.DefaultView;
                                 dv1.RowFilter = ("gcod like '31%'");
                                 dt1 = dv1.ToTable();
@@ -808,27 +809,7 @@ namespace RealERPWEB.F_21_MKT
                                 else
                                 {
                                     ddlgval.Enabled = true;
-                                }
-
-                               
-                                //IR EPIC
-                                empid = dt.Rows[i]["empid"].ToString();
-                                if (lbllandname.Text.Length > 0)
-                                {
-                                    DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
-                                    if (ds3 == null)
-                                        return;
-
-                                    ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                                    ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                                    ((Panel)this.gvSourceInfo.Rows[i].FindControl("pnlIREmp")).Visible = true;
-                                    ddlgval = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlIREmp"));
-                                    ddlgval.DataTextField = "empname";
-                                    ddlgval.DataValueField = "empid";
-                                    ddlgval.DataSource = ds3.Tables[0];
-                                    ddlgval.DataBind();
-                                    ddlgval.SelectedValue = empid == "" ? "" : empid;
-                                }                                   
+                                }      
                                 break;
 
                             default:
@@ -848,9 +829,37 @@ namespace RealERPWEB.F_21_MKT
                                 ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                                 break;
                         }
+
+                        //IR EPIC
+                        switch (comcod)
+                        {
+                            case "3367":                                
+                                empid = dt.Rows[i]["empid"].ToString();
+                                if (lbllandname.Text.Length > 0)
+                                {
+                                    DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
+                                    if (ds3 == null)
+                                        return;
+
+                                    ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                                    ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    ((Panel)this.gvSourceInfo.Rows[i].FindControl("pnlIREmp")).Visible = true;
+                                    ddlgval = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlIREmp"));
+                                    ddlgval.DataTextField = "empname";
+                                    ddlgval.DataValueField = "empid";
+                                    ddlgval.DataSource = ds3.Tables[0];
+                                    ddlgval.DataBind();
+                                    ddlgval.SelectedValue = empid == "" ? "" : empid;
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
                         break;
 
-                    case "0302003": //Team Leader
+                    //Team Leader
+                    case "0302003": 
 
                         gempid = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
@@ -882,8 +891,8 @@ namespace RealERPWEB.F_21_MKT
 
                         break;
 
-                    case "0302005": //Assign Persion   
-
+                    //Assign Persion 
+                    case "0302005":   
                         dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         if (userrole == "1")
                             dv1.RowFilter = ("gcod like '93%'");
@@ -6367,20 +6376,19 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void lnkbtnKpi_Click(object sender, EventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
             this.lbltodatekpi.Visible = true;
             this.txtkpitodate.Visible = true;
-            this.hdnlblattribute.Value = "Kpi";
+            this.hdnlblattribute.Value = "Kpi";           
             this.EmpMonthlyKPI();
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Show Key Performance Indicator (Sales CRM)";
                 string eventdesc = "Show Key Performance Indicator (Sales CRM)";
                 string eventdesc2 = "";
-                string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
@@ -6957,7 +6965,7 @@ namespace RealERPWEB.F_21_MKT
 
             if (!Convert.ToBoolean(dr1[0]["delete"]))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission to retrieve prospect!');", true);
                 return;
             }
 
@@ -6971,29 +6979,21 @@ namespace RealERPWEB.F_21_MKT
             int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
             string proscod = dt.Rows[RowIndex]["sircode"].ToString();
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "RETREIVEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
             if (!result)
             {
-
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Retreive Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + instcrm.ErrorObject["Msg"].ToString() + "');", true);
                 return;
 
             }
 
-
             //dt.Rows[RowIndex].Delete();
             dt.Rows[rowno].Delete();
-
             DataView dv = dt.DefaultView;
             Session.Remove("tblsummData");
             Session["tblsummData"] = dv.ToTable();
             this.Data_Bind();
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Retreived";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Retrieved Prospect');", true);
         }
 
 
