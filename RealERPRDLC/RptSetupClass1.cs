@@ -861,6 +861,7 @@ namespace RealERPRDLC
                 case "R_23_CR.RptMonthlyCollReceiptType": Rpt1a = SetRptMonCollReceiptType(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_23_CR.RptProjectWiseCollection": SetRptProjectWiseCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptProjectWiseCollectionAll": SetRptProjectWiseCollectionAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptCustomerInvoice02S": SetRptCustomerInvoice02S(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptCustomerInvoice02": SetRptCustomerInvoice02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -2528,6 +2529,10 @@ namespace RealERPRDLC
         private static LocalReport SetRptProjectWiseCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.RptProjectWiseCollectionStatus>)RptDataSet));
+            return Rpt1a;
+        }private static LocalReport SetRptProjectWiseCollectionAll(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.RptProjectWiseCollectionStatusall>)RptDataSet));
             return Rpt1a;
         }
         //RptCustomerInvoice02S
