@@ -4234,6 +4234,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205": //P2P
                     case "3351": //P2P
                     case "3352": //P2P 
+                    case "3374": //Angan 
                         terms1 = terms.ToString();
                         break;
 
@@ -4495,6 +4496,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno =ASTUtility.CustomReqFormat(wrkid);
                         break;
+                    case "3374": // Angan                        
+
+                        Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
+                        porderno = ASTUtility.CustomReqFormat(wrkid);
+                        break;
 
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
@@ -4598,6 +4604,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
                         
                     case "3370": // cpdl
+                    case "3374": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
                         Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
