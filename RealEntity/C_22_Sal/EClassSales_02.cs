@@ -1718,6 +1718,21 @@ namespace RealEntity.C_22_Sal
 
         }
 
+        [Serializable]
+
+        public class RptCustomerSettlement
+        {
+            public string comcod { get; set; }
+            public string code { get; set; }
+            public string codedesc { get; set; }
+            public double amt { get; set; }
+            public RptCustomerSettlement()
+            {
+
+            }
+
+        }
+
     }
 
 }

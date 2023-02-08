@@ -327,38 +327,61 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
             string prjname = this.ddlprjname.SelectedValue.ToString();
             string ProjectName = this.ddlprjname.SelectedItem.ToString();
             string custname = this.ddlcustomerName.SelectedValue.ToString();
+            if (custname != "")
+            {
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
-            if (ds2 == null)
-                return;
-            DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
-            if (ds3 == null)
-                return;
-
-            string customername = ds2.Tables[0].Rows[0]["custname"].ToString();
-            string unitno = ds3.Tables[0].Rows[0]["udesc"].ToString();
-            string usize = Convert.ToDouble(ds3.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
-            string floordesc = ds3.Tables[0].Rows[0]["flrdesc"].ToString();
-            string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
-            string aprtsize = usize + " " + unit;
-            string location = ds3.Tables[0].Rows[0]["location"].ToString();
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                DataTable dt = (DataTable)ds3.Tables[0];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = "code='05AAA'";
+                DataRow[] dr = dt.Select("code='05AAA'");
+                double totaltk = Convert.ToDouble(dr[0]["amt"]);
 
 
-            double urate = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
-            double uamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
-            double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["uamt"]);
-            double pramt = Convert.ToDouble(ds3.Tables[0].Rows[0]["pamt"]);
-            double ucharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["utility"]);
-            double others = Convert.ToDouble(ds3.Tables[0].Rows[0]["others"]);
+                string amginword = ASTUtility.Trans(Convert.ToDouble(totaltk), 2);
 
-            string totalamt = tamt.ToString("#,##0.00;(#,##0.00); ");
-            string utility = ucharge.ToString("#,##0.00;(#,##0.00); ");
-            string pamt = pramt.ToString("#,##0.00;(#,##0.00); ");
-            string othercharge = others.ToString("#,##0.00;(#,##0.00); ");
+
+                if (ds3 == null)
+                    return;
+                LocalReport Rpt1 = new LocalReport();
+                var lst = ds3.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustomerSettlement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerSettlementCPDL", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+
+
+                string customername = ds3.Tables[1].Rows[0]["custname"].ToString();
+                string projectname = ds3.Tables[1].Rows[0]["projectname"].ToString();
+                string unitname = ds3.Tables[1].Rows[0]["udesc"].ToString();
+                string usize = Convert.ToDouble(ds3.Tables[1].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
+                string floordesc = ds3.Tables[1].Rows[0]["flrdesc"].ToString();
+                string unit = ds3.Tables[1].Rows[0]["munit"].ToString();
+                string aprtsize = usize + " " + unit;
+                string location = ds3.Tables[1].Rows[0]["location"].ToString();
+
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("customername", customername));
+                Rpt1.SetParameters(new ReportParameter("projectname", projectname));
+                Rpt1.SetParameters(new ReportParameter("unitname", unitname));
+                Rpt1.SetParameters(new ReportParameter("location", location));
+                Rpt1.SetParameters(new ReportParameter("usize", usize));
+                Rpt1.SetParameters(new ReportParameter("unit", unit));
+                Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));
+                Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));
+                Rpt1.SetParameters(new ReportParameter("totaltk", amginword));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+          
 
         }
             protected void btnok_Click(object sender, EventArgs e)
