@@ -1327,6 +1327,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202280", "F_22_Sal", "SalesAllReports?", "Type=AllReports", "Sales All Reports", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202281", "F_22_Sal", "SaleUnitMapping", "", "Sale Unit Mapping", "Sales", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202282", "F_17_Acc", "RptLetterOfAlotment?", "Type=CustomerSettlement", "Customer Settlement Report", "Sales", "False", "False", "False", "False" });
 
 
 
@@ -7714,6 +7715,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Customer Sales Report", "F_17_Acc/RptLetterOfAlotment?Type=Allotment", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "19. Executive Wise Sales", "F_22_Sal/RptSalesVsCollTeamWise?Type=SalesTeam", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000004", "20. Customer Settlement Report", "F_17_Acc/RptLetterOfAlotment?Type=CustomerSettlement", "", true, "" });           
 
 
 

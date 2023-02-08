@@ -96,13 +96,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// txtCustmerNumber control.
+        /// lblCustmerNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustmerNumber;
+        protected global::System.Web.UI.WebControls.Label lblCustmerNumber;
 
         /// <summary>
         /// lbtnOk control.

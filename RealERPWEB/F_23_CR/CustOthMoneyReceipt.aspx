@@ -10,6 +10,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
 
@@ -19,6 +20,7 @@
             });
             $('.chzn-select').chosen({ search_contains: true });
         };
+      
     </script>
 
     <style type="text/css">
@@ -68,7 +70,7 @@
                             <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Project Name:"></asp:Label>
                             <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="chzn-select form-control form-control-sm" TabIndex="2" AutoPostBack="true">
                             </asp:DropDownList>
-                            <asp:Label ID="lblProjectdesc" CssClass="form-control form-control-sm" Visible="False" runat="server"></asp:Label>
+                            <asp:Label ID="lblProjectdesc" CssClass="chzn-select form-control form-control-sm" Visible="False" runat="server"></asp:Label>
 
                         </div>
 
@@ -77,7 +79,7 @@
 
                         <asp:DropDownList ID="ddlCustomer" runat="server" CssClass="chzn-select form-control form-control-sm " TabIndex="5" AutoPostBack="true">
                         </asp:DropDownList>
-                        <asp:Label ID="lblCustomer" CssClass="form-control form-control-sm" Visible="False" runat="server"></asp:Label>
+                        <asp:Label ID="lblCustomer" CssClass="chzn-select form-control form-control-sm" Visible="False" runat="server"></asp:Label>
                         </div>
                         <div class="col-md-1" style="margin-top:22px;">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click" TabIndex="6">Ok</asp:LinkButton>

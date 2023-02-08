@@ -74,7 +74,7 @@
                 <div class="table table-responsive">
                     <asp:GridView ID="grDep" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                 AutoGenerateColumns="False" OnPageIndexChanging="grDep_PageIndexChanging"
-                ShowFooter="True" Style="text-align: left" Width="810px" OnRowCreated="grDep_RowCreated">
+                ShowFooter="True" Style="text-align: left" Width="810px" OnRowCreated="grDep_RowCreated" PageSize="20">
 
                 <Columns>
                     <asp:TemplateField HeaderText="Sl.No.">

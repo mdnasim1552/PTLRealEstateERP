@@ -726,6 +726,51 @@ namespace RealEntity.C_22_Sal
         }
 
         [Serializable]
+        public class RptTransactionSummary
+        {
+	        public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public double netamt { get; set; }
+            public double amt1 { get; set; }
+            public double amt2 { get; set; }
+            public double amt3 { get; set; }
+            public double amt4 { get; set; }
+            public double amt5 { get; set; }
+            public double amt6 { get; set; }
+            public double amt7 { get; set; }
+            public double amt8 { get; set; }
+            public double amt9 { get; set; }
+            public double amt10 { get; set; }
+            public double amt11 { get; set; }
+            public double amt12 { get; set; }
+            public double amt13 { get; set; }
+            public double amt14 { get; set; }
+            public double amt15 { get; set; }
+            public double amt16 { get; set; }
+            public double amt17 { get; set; }
+            public double amt18 { get; set; }
+            public double amt19 { get; set; }
+            public double amt20 { get; set; }
+            public double amt21 { get; set; }
+            public double amt22 { get; set; }
+            public double amt23 { get; set; }
+            public double amt24 { get; set; }
+            public double amt25 { get; set; }
+            public double amt26 { get; set; }
+            public double amt27 { get; set; }
+            public double amt28 { get; set; }
+            public double amt29 { get; set; }
+            public double amt30 { get; set; }
+            public double amt31 { get; set; }
+            public double amt32 { get; set; }
+            public double amt33 { get; set; }
+            public double amt34 { get; set; }
+
+
+        }
+
+            [Serializable]
         public class CustomerImagePath
         {
             public string imgath { get; set; }
