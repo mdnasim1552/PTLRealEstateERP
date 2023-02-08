@@ -2422,7 +2422,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103031", "F_81_Hrm/F_89_Pay", "RptSalarySummary?", "Type=SalSum02", "Month Wise Salary", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103032", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSalary", "Salary Top Sheet", "PayRoll", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8103000", "8103033", "F_81_Hrm/F_92_Mgt", "RetiredEmployee", "", "Employee Seperation", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103033", "F_81_Hrm/F_92_Mgt", "RetiredEmployee", "", "Employee Resign", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103034", "F_81_Hrm/F_83_Att", "RptHREmpStatus?", "Type=Approval", "Employee Status(Approval)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103035", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpDyInfo", "Need Base Report", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103036", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpDyInfo02", "Need Base Report 01", "HR Management", "False", "False", "False", "False" }); ;

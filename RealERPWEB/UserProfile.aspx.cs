@@ -1088,7 +1088,14 @@ namespace RealERPWEB
 
                             if (comcod == "3367" || comcod=="3101")
                             {
-                                BirthdayHTMLCaro = @"<p>" + dr["eventitle"] +"</p>";
+
+                      
+                                    status = (i == 0) ? "active" : "";
+                                BirthdayHTMLCaro += @"<div class='carousel-item " + status + "'><div class='row'><div class='col-md-1'><a href ='#' class='font-size-sm'><span class='position-relative mx-2 badge badge-primary rounded-0 '>" + dr["evtype"] + "</span></a></div><div class='col-md-10'> <a class='label font-size-sm' href='#'>" + dr["eventitle"] + "</a></div></div></div>";
+                                    i++;
+                      
+
+                                //BirthdayHTMLCaro = @"<p>" + dr["eventitle"] +"</p>";
                             }
                         }
 
@@ -1099,7 +1106,9 @@ namespace RealERPWEB
                     foreach (DataRow dr in ds1.Tables[1].Rows)
                     {
                         status = (i == 0) ? "active" : "";
-                        innHTMLTopnot += @"<p>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</p>";
+                        //innHTMLTopnot += @"<p>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</p>";
+                        innHTMLTopnot += @"<div class='carousel-item " + status + "'><div class='row'><div class='col-md-1'><a href ='#' class='font-size-sm'><span class='position-relative mx-2 badge badge-primary rounded-0 '>" + dr["evtype"] + "</span></a></div><div class='col-md-10'> <a class='label font-size-sm' href='#'>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</a></div></div></div>";
+
                         i++;
                     }
 
