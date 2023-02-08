@@ -1420,7 +1420,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303252", "F_23_CR", "RptCustomerInvoice", "", "Customer Invoice", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303253", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonAR", "Month Wise Collection", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303254", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollBuyer", "Month Wise Collection(Buyer & Project)", "Credit Realization", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2302000", "2303255", "F_23_CR", "RptProjectWiseCollection", "", "Project Wise Collection Status", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2302000", "2303255", "F_23_CR", "RptProjectWiseCollection?", "Type=CollectionStatus", "Project Wise Status(Collection Status)", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2302000", "2303256", "F_23_CR", "RptProjectWiseCollection?", "Type=CollectionStatusAll", "Project Wise Status(Collection Status All)", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303260", "F_23_CR", "RptInvoice02", "", "Invoice 360 <sup>0", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303261", "F_23_CR", "RptCustPayStatusMerge?", "Type=Payment", "Payment Status(Merge)", "Credit Realization", "False", "False", "False", "False" });
 
@@ -2423,7 +2424,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103031", "F_81_Hrm/F_89_Pay", "RptSalarySummary?", "Type=SalSum02", "Month Wise Salary", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103032", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSalary", "Salary Top Sheet", "PayRoll", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8103000", "8103033", "F_81_Hrm/F_92_Mgt", "RetiredEmployee", "", "Employee Seperation", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103033", "F_81_Hrm/F_92_Mgt", "RetiredEmployee", "", "Employee Resign", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103034", "F_81_Hrm/F_83_Att", "RptHREmpStatus?", "Type=Approval", "Employee Status(Approval)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103035", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpDyInfo", "Need Base Report", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103036", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpDyInfo02", "Need Base Report 01", "HR Management", "False", "False", "False", "False" }); ;
@@ -7852,7 +7853,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000012", "27. Invoice Print", "F_22_Sal/RptSalInterest?Type=DueCollAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000013", "26. Current Dues", "F_23_CR/RptReceivedList02?Type=CurDues&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000014", "29. Month Wise Collection", "F_17_Acc/RptAccCollVsClearance?Type=MonAR&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000015", "30. Project Wise Collection Status", "F_23_CR/RptProjectWiseCollection", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000015", "30. Project Wise Status (Collection Status) ", "F_23_CR/RptProjectWiseCollection?Type=CollectionStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000015", "30. Project Wise Status (Collection Status All) ", "F_23_CR/RptProjectWiseCollection?Type=CollectionStatusAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000016", "30. Monthly Collection Schedule", "F_23_CR/RptReceivedList04?Type=MonthlyColSchedule", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000017", "30. Monthly Collection Schedule(Summary)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleSum", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000018", "30. Monthly Collection (Schedule Vs Actual)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleDet", "", true, "" });
