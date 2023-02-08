@@ -155,7 +155,28 @@ namespace RealEntity.C_17_Acc
 
     }
 
+    [Serializable]
+    public class RptProjectWiseCollectionStatusall
+    {
+        public string comcod { get; set; }
+        public string pactcode { get; set; }
+        public string usircode { get; set; }
+        public string custname { get; set; }
+        public string udesc { get; set; }
+        public double usize { get; set; }
+        public double uamt { get; set; }
+        public double paidamt { get; set; }
+        public double balance { get; set; }
+      
 
+
+        public RptProjectWiseCollectionStatusall()
+        {
+
+        }
+
+
+    }
 
 
 }
