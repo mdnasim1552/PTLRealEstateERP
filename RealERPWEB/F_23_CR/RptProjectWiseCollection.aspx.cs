@@ -211,7 +211,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptProjectWiseCollectionAll", lst, null, null);
             
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
