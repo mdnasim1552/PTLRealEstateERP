@@ -6902,8 +6902,9 @@ namespace RealERPWEB.F_01_LPA
             {
                 empid = "%";
             }
-               
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTMONTHLYKPI", "8305%", frmdate, todate, empid);
+            //CHL
+            string pidwise = chkboxPIDWise.Checked ? "pidwise" : "";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "RPTMONTHLYKPI", "8305%", frmdate, todate, empid,pidwise);
             if(ds1 == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
