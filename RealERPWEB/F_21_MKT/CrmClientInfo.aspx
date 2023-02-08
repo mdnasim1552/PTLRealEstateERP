@@ -1951,7 +1951,14 @@
             }
         };
         //// for selected follow then selected lead status
-
+        //Retreive Confirmation
+        function FunRetProsConfirm() {
+            if (confirm('Are you sure you want to retrieve this Prospect?')) {
+                return;
+            } else {
+                return false;
+            }
+        };
 
 
     </script>
@@ -1978,8 +1985,6 @@
             </div>
 
             <div class="card card-fluid container-data">
-
-
                 <div class="popup-container">
                     <div class="popup">
                         <div class="icons">
@@ -2707,21 +2712,11 @@
                                         <asp:ListItem Selected="True" Value="9">Choose One.....</asp:ListItem>
                                     </asp:DropDownList>
 
-
-
-
-
-
                                     <asp:TextBox ID="txtVal" runat="server" CssClass="form-control col-md-1 ml-1" TextMode="Search"></asp:TextBox>
 
-
                                     <div class="col-md-1">
-
-
                                         <asp:LinkButton ID="SrchBtn" runat="server" class="btn btn-success" OnClientClick="CloseModal();" OnClick="SrchBtn_Click">Search</asp:LinkButton>
-
-
-                                    </div>
+                                    </div>                                   
 
                                 </div>
                             </asp:Panel>
@@ -3114,7 +3109,7 @@
 
                                                 <asp:TemplateField HeaderText="Retreive" Visible="false">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retrieve Prospect" Style="text-align: right" OnClientClick="javascript:return  FunRetProsConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <ItemStyle HorizontalAlign="center" />
