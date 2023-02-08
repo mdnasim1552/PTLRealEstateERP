@@ -830,6 +830,7 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
 
+
            
 
             DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
@@ -846,11 +847,8 @@ namespace RealERPWEB.F_12_Inv
 
             }
 
-            
 
-
-
-            //log Report
+           
             string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
             string getpref = this.txtGatemPassNo.Text.ToString();
             string mtrnar = this.txtgetpNarr.Text.ToString();
@@ -914,6 +912,8 @@ namespace RealERPWEB.F_12_Inv
 
 
 
+
+
             //For Balace Req Qty
 
             if (this.Request.QueryString["Type"].ToString().Trim() == "Entry")
@@ -937,7 +937,7 @@ namespace RealERPWEB.F_12_Inv
                 }
 
             }
-            ////////
+            ////////privious
 
             if (this.ddlPrevList.Items.Count == 0)
                 this.GetGetPassNo();
