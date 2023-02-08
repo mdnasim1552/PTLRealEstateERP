@@ -164,7 +164,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group" style="margin-top: 10px;">
                                         <asp:Label ID="Label3" runat="server" CssClass="control-label" Text="Customer Number"></asp:Label><br>
-                                        <asp:TextBox ID="txtCustmerNumber" runat="server" TabIndex="3" CssClass="form-control form-control-sm"></asp:TextBox>
+                                        <asp:Label ID="lblCustmerNumber" runat="server" ></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-md-1" style="margin-top: 30px;">

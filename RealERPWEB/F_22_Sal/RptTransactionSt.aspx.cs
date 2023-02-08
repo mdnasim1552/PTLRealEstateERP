@@ -603,7 +603,113 @@ namespace RealERPWEB.F_22_Sal
         }
         private void RptTransSummary()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
 
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "TRANSSTSUMMARY", fromdate, todate, pactcode, "", "", "", "", "", "");
+            DataTable dt =(DataTable) ds1.Tables[0];
+
+            string rpthead = "Transaction Summary";
+            if (dt == null)
+                return;
+            //Getting Report Column Value
+            DataTable dt1 = ds1.Tables[1];
+            string coldesc = "";
+            
+            var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptTransactionSummary>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransactionSummary", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                coldesc = dt1.Rows[i]["colfrmdesc"].ToString();
+                if (i + 1 == 1)
+                    Rpt1.SetParameters(new ReportParameter("cl1", coldesc));
+                if (i + 1 == 2)
+                    Rpt1.SetParameters(new ReportParameter("cl2", coldesc));
+                if (i + 1 == 3)
+                    Rpt1.SetParameters(new ReportParameter("cl3", coldesc));
+                if (i + 1 == 4)
+                    Rpt1.SetParameters(new ReportParameter("cl4", coldesc));
+                if (i + 1 == 5)
+                    Rpt1.SetParameters(new ReportParameter("cl5", coldesc));
+                if (i + 1 == 6)
+                    Rpt1.SetParameters(new ReportParameter("cl6", coldesc));
+                if (i + 1 == 7)
+                    Rpt1.SetParameters(new ReportParameter("cl7", coldesc));
+                if (i + 1 == 8)
+                    Rpt1.SetParameters(new ReportParameter("cl8", coldesc));
+                if (i + 1 == 9)
+                    Rpt1.SetParameters(new ReportParameter("cl9", coldesc));
+                if (i + 1 == 10)
+                    Rpt1.SetParameters(new ReportParameter("cl10", coldesc));
+                if (i + 1 == 11)
+                    Rpt1.SetParameters(new ReportParameter("cl11", coldesc));
+                if (i + 1 == 12)
+                    Rpt1.SetParameters(new ReportParameter("cl12", coldesc));
+                if (i + 1 == 13)
+                    Rpt1.SetParameters(new ReportParameter("cl13", coldesc));
+                if (i + 1 == 14)
+                    Rpt1.SetParameters(new ReportParameter("cl14", coldesc));
+                if (i + 1 == 15)
+                    Rpt1.SetParameters(new ReportParameter("cl15", coldesc));
+                if (i + 1 == 16)
+                    Rpt1.SetParameters(new ReportParameter("cl16", coldesc));
+                if (i + 1 == 17)
+                    Rpt1.SetParameters(new ReportParameter("cl17", coldesc));
+                if (i + 1 == 18)
+                    Rpt1.SetParameters(new ReportParameter("cl18", coldesc));
+                if (i + 1 == 19)
+                    Rpt1.SetParameters(new ReportParameter("cl19", coldesc));
+                if (i + 1 == 20)
+                    Rpt1.SetParameters(new ReportParameter("cl20", coldesc));
+                if (i + 1 == 21)
+                    Rpt1.SetParameters(new ReportParameter("cl21", coldesc));
+                if (i + 1 == 22)
+                    Rpt1.SetParameters(new ReportParameter("cl22", coldesc));
+                if (i + 1 == 23)
+                    Rpt1.SetParameters(new ReportParameter("cl23", coldesc));
+                if (i + 1 == 24)
+                    Rpt1.SetParameters(new ReportParameter("cl24", coldesc));
+                if (i + 1 == 25)
+                    Rpt1.SetParameters(new ReportParameter("cl25", coldesc));
+                if (i + 1 == 26)
+                    Rpt1.SetParameters(new ReportParameter("cl26", coldesc));
+                if (i + 1 == 27)
+                    Rpt1.SetParameters(new ReportParameter("cl27", coldesc));
+                if (i + 1 == 28)
+                    Rpt1.SetParameters(new ReportParameter("cl28", coldesc));
+                if (i + 1 == 29)
+                    Rpt1.SetParameters(new ReportParameter("cl29", coldesc));
+                if (i + 1 == 30)
+                    Rpt1.SetParameters(new ReportParameter("cl30", coldesc));
+                if (i + 1 == 31)
+                    Rpt1.SetParameters(new ReportParameter("cl31", coldesc));
+                if (i+1 == 32)
+                    Rpt1.SetParameters(new ReportParameter("cl32", coldesc));
+                if (i + 1 == 33)
+                    Rpt1.SetParameters(new ReportParameter("cl33", coldesc));
+                if (i + 1 == 34)
+                    Rpt1.SetParameters(new ReportParameter("cl34", coldesc));
+
+            }
+
+            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
+            Rpt1.SetParameters(new ReportParameter("txtdate", "Date:  " + fromdate + " To " + todate ));
+            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            /*
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -648,6 +754,8 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = rptstate;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            */
 
         }
 

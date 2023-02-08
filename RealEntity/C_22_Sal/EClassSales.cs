@@ -97,6 +97,25 @@ namespace RealEntity.C_22_Sal
         }
         [Serializable]
 
+        public class MonthlySalesBudget
+        {
+            public string comcod { get; set; }
+            public string empname { get; set; }
+            public string pactcode { get; set; }
+            public double aptqty { get; set; }
+            public double shopqty { get; set; }
+            public double aptamt { get; set; }
+            public double shopamt { get; set; }
+
+            public MonthlySalesBudget()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+
         public class SoldUnsoltInfavg
         {
             public string comcod { get; set; }
