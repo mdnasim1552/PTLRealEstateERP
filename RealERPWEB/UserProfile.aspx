@@ -332,13 +332,35 @@
 
                         <div class="col-md-10 col-lg-10 pl-md-4 py-2">
                             <div class="breaking-box">
-                                <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+              <%--                  <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
 
                                     <div class="marquee">
                                         <div id="EventCaro" runat="server"></div>
                                     </div>
 
+                                </div>--%>
+
+                                        <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+                                <!--breaking news-->
+                                <div class="carousel-inner " id="EventCaro" runat="server">
                                 </div>
+                                <!--end breaking news-->
+
+                                <!--navigation slider-->
+                                <div class="navigation-box p-2 d-none d-sm-block">
+                                    <!--nav left-->
+                                    <a class="carousel-control-prev text-primary" href="#carouselbreaking" role="button" data-slide="prev">
+                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <!--nav right-->
+                                    <a class="carousel-control-next text-primary" href="#carouselbreaking" role="button" data-slide="next">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <!--end navigation slider-->
+                            </div>
                             </div>
                         </div>
 
