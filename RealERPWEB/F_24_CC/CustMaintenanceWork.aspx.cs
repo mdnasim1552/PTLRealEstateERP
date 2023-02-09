@@ -431,6 +431,10 @@ namespace RealERPWEB.F_24_CC
                     CompAddWork = "PrintAddWorkEpic";
                     break;
 
+                case "3374":
+                    CompAddWork = "PrintAddWorkAngan";
+                    break;
+
                 default:
                     CompAddWork = "PrintAddWork";
                     break;
@@ -459,6 +463,10 @@ namespace RealERPWEB.F_24_CC
 
                 case "PrintAddWorkEpic":
                     this.PrintAddWorkEpic();
+                    break;
+
+                case "PrintAddWorkAngan":
+                    this.PrintAddWorkAngan();
                     break;
 
                 default:
@@ -659,7 +667,65 @@ namespace RealERPWEB.F_24_CC
             }
 
         }
-        private void PrintAddWorkSan()
+        private void PrintAddWorkAngan()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
+            string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
+
+            DataTable dt = (DataTable)Session["tbladwork"];
+            //DataTable dt1 = (DataTable)Session["tbltaddwork"];
+
+
+            double tnet = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netamt)", "")) ? 0.00 :
+                 dt.Compute("sum(netamt)", "")));
+            //string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+
+
+            string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
+
+
+           
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAngan", lst, null, null);
+
+                double tpay = Convert.ToDouble(tnet);
+                Rpt1.EnableExternalImages = true;
+                if (tpay < 0)
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet * -1));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tnet));
+                }
+                Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " + inword));
+          
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
+            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("unitName", unitName));
+
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
+            Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+            private void PrintAddWorkSan()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
