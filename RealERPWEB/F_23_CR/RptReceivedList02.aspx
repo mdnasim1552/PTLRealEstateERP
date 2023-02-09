@@ -188,15 +188,27 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2" id="prjname" runat="server">
+                        <div class="col-lg-3 col-md-3 col-sm-3" id="prjname" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Project Name
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click"><span class="fas fa-search"> </span></asp:LinkButton>
                                 </asp:Label>
-                                <asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>
+                                <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
+                                   <cc2:DropCheck ID="DropCheck1" runat="server" BackColor="Black"
+                                        MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="333px" Height="23px" CssClass="chzn-select" >
+                                    </cc2:DropCheck>
                             </div>
-                        </div>
 
+                          
+
+
+                        </div>
+                   
+                             
+                         
+
+                        
+                           
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
                             <div class="form-group">
