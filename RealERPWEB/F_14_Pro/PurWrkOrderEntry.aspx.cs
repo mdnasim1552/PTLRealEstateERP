@@ -1833,6 +1833,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3357": // Cube
                 case "3368": // finlay
                 case "3370": // cpdl 
+                case "3374": //angan
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2516,6 +2517,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3366": //lanco
                 case "3368": // finlay
                 case "3370": // cpdl
+                case "3374"://Angan
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
@@ -2572,6 +2574,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "3370":
+                case "3374":
                     msg = "1. Delivery should be made as per sample & specifications." +
                         "\n2. Quantity should be ensured at the time of delivery" +
                         "\n3. Unspecified / bad quality material would be rejected and taken back by the supplier's own cost" +
