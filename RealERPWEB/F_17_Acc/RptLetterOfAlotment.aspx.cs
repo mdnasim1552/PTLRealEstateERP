@@ -91,14 +91,15 @@ namespace RealERPWEB.F_17_Acc
         {
             this.GetCustomerName();
         }
+       
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
                 case "3370":
+                case "3101":
                     string qtype = this.Request.QueryString["Type"].ToString().Trim();
                     if(qtype== "Allotment")
                     {
@@ -392,11 +393,26 @@ namespace RealERPWEB.F_17_Acc
                 string comcod = hst["comcod"].ToString();
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
+                string type = this.Request.QueryString["Type"].ToString();
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
-
                 Session["tblcudtomerdetails"] = ds2.Tables[0];
+
+                if (type == "CustomerSettlement")
+                {
+                    DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                    if (ds1.Tables[0].Rows.Count == 0)
+                    {
+                        this.gvcustsettlement.DataSource = null;
+                        this.gvcustsettlement.DataBind();
+                        return;
+                    }
+
+                    Session["storedata"] = ds1.Tables[0];
+                    this.gvcustsettlement.DataSource = ds1.Tables[0];
+                    this.gvcustsettlement.DataBind();
+                }                
 
             }
             catch(Exception exp)
