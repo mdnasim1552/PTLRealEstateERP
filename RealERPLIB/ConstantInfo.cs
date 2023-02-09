@@ -741,8 +741,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1701000", "1701830", "F_17_Acc", "FinCodeBook", "", "Code Book", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1701000", "1701840", "F_17_Acc", "AccGenAdjJournal", "", "Requisition Adjustment", "Accounts", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1701000", "1701841", "F_17_Acc", "AccIndentUpdate", "Type=Entry", "Indent Update", "Accounts", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "1701000", "1701841", "F_17_Acc", "AccIndentUpdate?", "Type=Entry", "Indent Update", "Accounts", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1701000", "1701842", "F_17_Acc", "AccIssueUpdate?", "Type=Entry", "Issue Update", "Accounts", "False", "False", "False", "False" });
 
             //Oprerational Manu
 
