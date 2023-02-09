@@ -1005,6 +1005,7 @@
     <EmbeddedResource Include="R_22_Sal\RtpAvailChartPrint.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RTypeWiseTransaction02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\test.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedger02Angan.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02P2P.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptCollectionStatusLO.rdlc" />
     <EmbeddedResource Include="R_23_CR\Reporttest.rdlc" />
@@ -1086,6 +1087,7 @@
     <EmbeddedResource Include="R_24_CC\RptCustLnStatus.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptHandOverWork.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptLoanStatus.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAngan.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrk.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkEpic.rdlc" />
