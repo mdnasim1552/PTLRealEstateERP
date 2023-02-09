@@ -292,6 +292,7 @@ namespace RealERPWEB.F_12_Inv
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
+           
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
