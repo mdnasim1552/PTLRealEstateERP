@@ -3925,39 +3925,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="Textbox41">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!body02.Value</Value>
-                        <MarkupType>HTML</MarkupType>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox41</rd:DefaultName>
-                <Top>1.83646in</Top>
-                <Height>0.25in</Height>
-                <Width>7.39582in</Width>
-                <ZIndex>6</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
             </ReportItems>
             <PageBreak>
               <BreakLocation>Start</BreakLocation>
@@ -4064,8 +4031,8 @@
         <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.55in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
-        <TopMargin>0.5in</TopMargin>
-        <BottomMargin>0.25in</BottomMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>0.35in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
