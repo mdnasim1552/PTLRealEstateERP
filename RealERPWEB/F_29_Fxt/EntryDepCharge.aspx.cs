@@ -234,7 +234,7 @@ namespace RealERPWEB.F_29_Fxt
             string comcod = hst["comcod"].ToString();
             string frdate = Convert.ToDateTime(this.txtFromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txtTodate.Text).ToString("dd-MMM-yyyy");
-
+            this.txtDays.Visible = true;
             string straight = (this.chkStraight.Checked) ? "straight" : "";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_FIXEDASSET_INFO", "RPTDEPRECIATION", frdate, todate, straight, "", "", "", "", "", "");
             if (ds1 == null)
