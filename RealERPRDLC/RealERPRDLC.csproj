@@ -175,6 +175,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.RptProjectWiseCollectionStatusall.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
@@ -213,6 +214,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustBookApp2.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustomerSettlement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNominatedBookApp2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNomineeBookApp2.datasource" />
@@ -834,6 +836,7 @@
     <EmbeddedResource Include="R_17_Acc\RptProjectCostPerSft.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectPettyCash.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectSpecification.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptProjectWiseCollectionAll.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectWiseCollection.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectwiseReceptsandPayment.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPurNotUpdated.rdlc" />
@@ -892,6 +895,7 @@
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthlySalesBudget.rdlc" />

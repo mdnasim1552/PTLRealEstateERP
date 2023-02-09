@@ -35,6 +35,8 @@ namespace RealERPWEB.F_23_CR
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Project Wise Collection Status";
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+               
+                this.selectview();
             }
         }
 
@@ -108,43 +110,32 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
-            this.PrintProjectWiseCollection();
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "CollectionStatus":
+                    this.PrintProjectWiseCollection();
+                    break;
+                case "CollectionStatusAll":
+                    this.PrintProjectWiseCollectionAll();
+                    break;
+            }
 
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string comsnam = hst["comsnam"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string session = hst["session"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+          
+        }
 
-            //DataTable dt = (DataTable)Session["tbsoldinf"];
-
-
-            ////string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd.MM.yyyy");
-            ////string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd.MM.yyyy");
-
-            //LocalReport Rpt1 = new LocalReport();
-
-
-            //var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCalTValAvgVal>();
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCalTValAvgVal", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
-            //Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            ////Rpt1.SetParameters(new ReportParameter("txtDate", " (" + "From  " + frmdate + " To " + todate + ")"));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            //Rpt1.SetParameters(new ReportParameter("rptTitle", "Calculation of Total Value & Average Value of Sold Units"));
-            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-
-            //Session["Report1"] = Rpt1;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
+        public void selectview()
+        {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "CollectionStatus":
+                    this.MultiView1.ActiveViewIndex = 0;
+                    break;
+                case "CollectionStatusAll":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    break;
+            }
         }
 
 
@@ -193,11 +184,70 @@ namespace RealERPWEB.F_23_CR
 
 
         }
+        private void PrintProjectWiseCollectionAll()
+        {
 
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+
+            string Date = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string ProjectName = "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString();
+
+            DataTable dt = (DataTable)Session["tblPrjstatusall"];
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.RptProjectWiseCollectionStatusall>();
+            LocalReport Rpt1 = new LocalReport();
+           
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptProjectWiseCollectionAll", lst, null, null);
+            
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status All"));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+
+        }
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
 
+            switch (Type)
+            {
+               
+                case "CollectionStatus":
+                    this.ProjectWiseCollectionStatus();
+                    break;
+                case "CollectionStatusAll":
+                    this.ProjectWiseCollectionStatusAll();
+                    break;
+
+            }
+           
+        }
+
+        private void ProjectWiseCollectionStatus()
+        {
             string comcod = this.GetCompCode();
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string ProjectCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18%" : this.ddlProjectName.SelectedValue.ToString() + "%";
@@ -212,6 +262,25 @@ namespace RealERPWEB.F_23_CR
 
             Session["tblPrjstatus"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
+
+        }
+        private void ProjectWiseCollectionStatusAll()
+        {
+            string comcod = this.GetCompCode();
+            string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string ProjectCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+
+            DataSet ds2 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTSALESVSCOLLECTION", Date, ProjectCode, "", "", "", "", "", "", "");
+            if (ds2 == null)
+            {
+                this.gvprjcolstall.DataSource = null;
+                this.gvprjcolstall.DataBind();
+                return;
+            }
+
+            Session["tblPrjstatusall"] = ds2.Tables[0];
+            this.Data_Bind();
+
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -240,13 +309,27 @@ namespace RealERPWEB.F_23_CR
 
         private void Data_Bind()
         {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
             DataTable dt = (DataTable)Session["tblPrjstatus"];
-            this.gvprjstatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvprjstatus.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
-            this.gvprjstatus.DataSource = dt;
-            this.gvprjstatus.DataBind();
+            DataTable dt1 = (DataTable)Session["tblPrjstatusall"];
+            switch (Type)
+            {
+                case "CollectionStatus":
+                    this.gvprjstatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvprjstatus.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
+                    this.gvprjstatus.DataSource = dt;
+                    this.gvprjstatus.DataBind();
 
-            this.FooterCalculation();
+                    this.FooterCalculation();
+                    break;
+                case "CollectionStatusAll":
+                    this.gvprjcolstall.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvprjcolstall.DataSource = dt1;
+                    this.gvprjcolstall.DataBind();
+                    break;
+            }
+           
+           
 
         }
 
@@ -254,7 +337,8 @@ namespace RealERPWEB.F_23_CR
         private void FooterCalculation()
         {
             DataTable dt = (DataTable)Session["tblPrjstatus"];
-            if (dt.Rows.Count == 0)
+            DataTable dt1 = (DataTable)Session["tblPrjstatusall"];
+            if (dt.Rows.Count == 0 || dt1.Rows.Count == 0)
                 return;
 
 
@@ -303,7 +387,17 @@ namespace RealERPWEB.F_23_CR
 
         protected void gvprjstatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            this.gvprjstatus.PageIndex = e.NewPageIndex;
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "CollectionStatus":
+                    this.gvprjstatus.PageIndex = e.NewPageIndex;
+                    break;
+                case "CollectionStatusAll":
+                    this.gvprjcolstall.PageIndex = e.NewPageIndex;
+                    break;
+            }
+            
             this.Data_Bind();
         }
     }
