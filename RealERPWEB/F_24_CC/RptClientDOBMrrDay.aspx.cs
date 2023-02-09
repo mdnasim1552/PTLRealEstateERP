@@ -28,13 +28,15 @@ namespace RealERPWEB.F_24_CC
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "prosClient") ? "Prospective Client List " :
-            (this.Request.QueryString["Type"].ToString().Trim() == "ClientBrthDay") ? "Client's Birthday" :
-            (this.Request.QueryString["Type"].ToString().Trim() == "ClientMrgDay") ? "Client's Marriage Anniversary" : "";
+            //    ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "prosClient") ? "Prospective Client List " :
+            //(this.Request.QueryString["Type"].ToString().Trim() == "ClientBrthDay") ? "Client's Birthday" :
+            //(this.Request.QueryString["Type"].ToString().Trim() == "ClientMrgDay") ? "Client's Marriage Anniversary" : "";
 
 
                 this.SectionView();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 

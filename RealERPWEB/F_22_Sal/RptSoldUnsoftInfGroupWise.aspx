@@ -49,6 +49,9 @@
 
         function pageLoaded() {
 
+          
+          
+
             $('.chzn-select').chosen({ search_contains: true });
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
             $(function () {
@@ -60,11 +63,10 @@
 
                 });
 
-                var gvsoldunsold = $('#<%=this.gvsoldunsold.ClientID %>');
-
-                gvsoldunsold.Scrollable();
+              
 
             });
+          
 
         }
 
@@ -149,6 +151,7 @@
             </div>
 
             <div class="card card-fluid">
+                 <div class="table-responsive">
                 <div class="card-body">
                
 
@@ -193,7 +196,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsalableunit" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="0px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -415,6 +418,7 @@
                     
 
                 </div>
+                     </div>
             </div>
 
         </ContentTemplate>

@@ -35,11 +35,14 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "interest") ? "DELAY CHARGES "
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "registration") ? "REGISTRATION CLEARENCE"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "CustApp") ? "CUSTOMER APPLICATION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "DueCollAll") ? "Invoice Print" : "CUSTOMER PAYMENT SCHEDULE";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "interest") ? "DELAY CHARGES "
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "registration") ? "REGISTRATION CLEARENCE"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "CustApp") ? "CUSTOMER APPLICATION"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "DueCollAll") ? "Invoice Print" : "CUSTOMER PAYMENT SCHEDULE";
 
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -67,6 +70,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "registration":
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.divchkPayment.Visible = true;
                     this.chkPayment.Visible = true;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
@@ -75,6 +79,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "CustApp":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -84,6 +89,7 @@ namespace RealERPWEB.F_22_Sal
                     this.lbtnOk.Visible = false;
                     break;
                 case "CustNoteSheet":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -95,6 +101,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "PaymentSchedule":
                 case "LO":
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
@@ -106,11 +113,14 @@ namespace RealERPWEB.F_22_Sal
 
                 case "DueCollAll":
                     this.MultiView1.ActiveViewIndex = 2;
+                    this.divchkInvoicePrint.Visible = true;
                     this.chkInvoicePrint.Visible = true;
+                    this.divCust.Visible = false;
                     this.lblCustName.Visible = false;
                     this.txtSrcCustomer.Visible = false;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.divinterest.Visible = false;
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     break;
@@ -2706,6 +2716,10 @@ namespace RealERPWEB.F_22_Sal
                 this.GetProjectName();
         }
 
-
+        protected void gvDueCollAll_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvDueCollAll.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
     }
 }

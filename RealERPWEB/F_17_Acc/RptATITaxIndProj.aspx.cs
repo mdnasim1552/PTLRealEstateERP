@@ -30,9 +30,12 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "AIT TAX VAT Project Wise ";
-                this.Master.Page.Title = "AIT TAX VAT Project Wise ";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "AIT TAX VAT Project Wise ";
+                //this.Master.Page.Title = "AIT TAX VAT Project Wise ";
                 this.GetResList();
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtDateFrom.Text = "01" + ASTUtility.Right(Date, 9);

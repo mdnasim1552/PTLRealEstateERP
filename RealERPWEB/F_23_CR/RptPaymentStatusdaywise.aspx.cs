@@ -28,9 +28,12 @@ namespace RealERPWEB.F_23_CR
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Payment Status (Date Wise)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Payment Status (Date Wise)";
                 //string date1 = this.Request.QueryString["Date1"];
                 //string date2 = this.Request.QueryString["Date2"];
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -163,10 +166,11 @@ namespace RealERPWEB.F_23_CR
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            string frmdate = this.txtFDate.Text;
-            string todate = this.txttoDate.Text;
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+           
             string prjname = this.ddlPrjName.SelectedItem.Text.Trim();
            
             DataTable dt2 = (DataTable)ViewState["prjcust"];
@@ -186,7 +190,7 @@ namespace RealERPWEB.F_23_CR
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, list1, null);
                 Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status (Date Wise)"));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status"));
           
 
 
@@ -195,6 +199,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("custname", custname));
             Rpt1.SetParameters(new ReportParameter("udesc", udesc));
             Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("frmto", "( "+frmdate +" to " +todate+" )"));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
             Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
 

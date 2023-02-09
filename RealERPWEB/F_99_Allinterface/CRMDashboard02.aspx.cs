@@ -19,12 +19,15 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
-               
+
                 //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("~/AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Dashboard";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "CRM Dashboard";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //  string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -59,7 +62,8 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            string filter = comcod == "3374" ? "namdesgsec" : "";
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", filter, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
 

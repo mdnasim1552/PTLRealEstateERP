@@ -269,6 +269,18 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                     </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Budget Rate" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvboqRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="60px"></asp:Label>
+                                        </ItemTemplate>
+
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Last Purchase Rate">
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnFinalUpdate" runat="server" OnClientClick="return Confirmation();" OnClick="lbtnFinalUpdate_Click" CssClass="btn btn-danger primarygrdBtn">Update </asp:LinkButton>
@@ -283,16 +295,6 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Budget Rate" Visible="false">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvboqRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="60px"></asp:Label>
-                                        </ItemTemplate>
-
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Approved Rate(Mgt)" Visible="false">
                                         <ItemTemplate>

@@ -26,9 +26,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
-             
                 string ctype = this.Request.QueryString["Type"].ToString();
                 string title = "";
                 if (ctype == "EmpMarket")

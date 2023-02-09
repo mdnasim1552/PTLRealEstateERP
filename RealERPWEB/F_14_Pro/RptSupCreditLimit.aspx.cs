@@ -30,12 +30,14 @@ namespace RealERPWEB.F_14_Pro
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "RptSupCredit" ? "Supplier Overall Position-2" : "Monthly Supplier & Group Wise Payable";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "RptSupCredit" ? "Supplier Overall Position-2" : "Monthly Supplier & Group Wise Payable";
                 this.ShowView();
 
             }

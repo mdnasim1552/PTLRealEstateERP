@@ -32,15 +32,18 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Todaysdis") ? "TODAY'S DISCUSSION REPORT"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "DiscussHis" ? "DISCUSSION HISTORY REPORT"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "NextApp" ? "NEXT APPOINTMENT REPORT"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "SalePerformance" ? "SALES PERFORMANCE REPORT"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "OffPerformance" ? "SALES PERSON HISTORY"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "SendOnlineLetter" ? "Send Letter(Online)"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "AllOffPerformance" ? "SALES PERSON HISTORY (ALL)"
-                    : this.Request.QueryString["Type"].ToString().Trim() == "ClientTrans" ? "Client Transfer" : "CLIENT LETTER INFORMATION REPORT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Todaysdis") ? "TODAY'S DISCUSSION REPORT"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "DiscussHis" ? "DISCUSSION HISTORY REPORT"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "NextApp" ? "NEXT APPOINTMENT REPORT"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "SalePerformance" ? "SALES PERFORMANCE REPORT"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "OffPerformance" ? "SALES PERSON HISTORY"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "SendOnlineLetter" ? "Send Letter(Online)"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "AllOffPerformance" ? "SALES PERSON HISTORY (ALL)"
+                //    : this.Request.QueryString["Type"].ToString().Trim() == "ClientTrans" ? "Client Transfer" : "CLIENT LETTER INFORMATION REPORT";
                 this.GetSalesList();
                 this.ShowView();
 

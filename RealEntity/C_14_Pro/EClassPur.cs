@@ -323,6 +323,12 @@ namespace RealEntity.C_14_Pro
             public string msrrmrk { get; set; }
             public double aprovrate { get; set; }
             public string spcfdesc { get; set; }
+
+            public double prerate1 { get; set; }
+            public double prerate2 { get; set; }
+            public double prerate3 { get; set; }
+            public double prerate4 { get; set; }
+            public double prerate5 { get; set; }
             public MkrServay02() { }
         }
 
@@ -566,6 +572,15 @@ namespace RealEntity.C_14_Pro
             public double qty { get; set; }
             public double rate { get; set; }
             public double amt { get; set; }
+        }
+        public class RptSummaryProject
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+
+            public double amt { get; set; }
+            public double percnt { get; set; }
+            public string pactdesc { get; set; }
         }
 
 
@@ -1443,9 +1458,13 @@ namespace RealEntity.C_14_Pro
             public DateTime mrrdat { get; set; }
             public string chlnno { get; set; }
             public double amount { get; set; }
+            public double taxam { get; set; }
+            public double netamount { get; set; }
+            public double payment { get; set; }
+            public double actualorder { get; set; }
             public string chequeno { get; set; }
 
-            public DateTime voudat { get; set; }
+            public string voudat { get; set; }
             public string rmrks { get; set; }
 
             public RptSupAdvanceDetails()

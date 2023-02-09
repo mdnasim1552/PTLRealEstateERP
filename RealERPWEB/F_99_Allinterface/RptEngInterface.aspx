@@ -597,7 +597,7 @@
 
                     case 3368://finlay
 
-                        //$(".tbMenuWrp table tr td:nth-child(2)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();

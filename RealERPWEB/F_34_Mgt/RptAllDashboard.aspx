@@ -1125,7 +1125,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'In Quantity'
+                            text: 'In Amount'
                         }
 
                     },

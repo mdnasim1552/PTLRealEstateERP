@@ -29,6 +29,8 @@ namespace RealERPWEB.F_28_MPro
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

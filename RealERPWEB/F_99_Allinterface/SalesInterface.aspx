@@ -601,6 +601,9 @@
                                 <li>
                                     <asp:HyperLink ID="HyplDelRoprt" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_23_CR/RptReceivedList04?Type=AllProDuesCollect&comcod=">Revenue Status</asp:HyperLink>
                                 </li>
+                                 <li>
+                                    <asp:HyperLink ID="HyperLink22" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/RptAvailChart?Type=BookingChart">Booking Chart</asp:HyperLink>
+                                </li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/RptSaleSoldunsoldUnit?Type=soldunsold&comcod=&prjcode=&Date1=">Sold & Unslod Info</asp:HyperLink>
                                 </li>

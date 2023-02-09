@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptBgdSales.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptBgdSales" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptBgdSales.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptBgdSales" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,84 +6,57 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
+    <div class="card card-fluid">
+        <div class="card-body">
             <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Font-Bold="True"
-                                    Text="Project Name:"></asp:Label>
-
-                                <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                            </div>
-                            <div class="col-md-3 pading5px asitCol3">
-                               
-
-
-                                <asp:DropDownList ID="ddlProName" CssClass="ddlPage form-control" runat="server" Font-Bold="True"
-                                    
-                                    >
-                                </asp:DropDownList>
-                                
-                            </div>
-                            <div class="cl-md-1 pading5px">
-                                <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
-                                    CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
-                            </div>
-
-
-
-
-
-
-
-
-
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-3 pading5px asitCol3">
-
-                                <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Visible="False" Text="Size:"></asp:Label>
-
-                                <asp:DropDownList ID="ddlpagesize" CssClass="ddlPage" runat="server" AutoPostBack="True"
-                                    
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False"
-                                    Width="71px">
-                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                    <asp:ListItem Value="20">20</asp:ListItem>
-                                    <asp:ListItem Value="30">30</asp:ListItem>
-                                    <asp:ListItem Value="50">50</asp:ListItem>
-                                    <asp:ListItem Value="100">100</asp:ListItem>
-                                    <asp:ListItem Value="150">150</asp:ListItem>
-                                    <asp:ListItem Value="200">200</asp:ListItem>
-                                    <asp:ListItem Value="300">300</asp:ListItem>
-                                </asp:DropDownList>
-
-                            </div>
-                        </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <asp:Label ID="Label4" runat="server" CssClass="control-label" Font-Bold="True" Text=""></asp:Label>
+                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-sontrol form-control-sm" Visible="false"></asp:TextBox>
+                        <asp:LinkButton ID="ibtnFindProject" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2">Project Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                        <asp:DropDownList ID="ddlProName" CssClass="form-control form-control-sm" runat="server" Font-Bold="True"></asp:DropDownList>
                     </div>
-
-                </fieldset>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <asp:Label ID="lblPage" runat="server" CssClass="control-label" Text="Size:"></asp:Label>
+                        <asp:DropDownList ID="ddlpagesize" CssClass="form-control form-control-sm" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="71px">
+                            <asp:ListItem Value="10">10</asp:ListItem>
+                            <asp:ListItem Value="20">20</asp:ListItem>
+                            <asp:ListItem Value="30">30</asp:ListItem>
+                            <asp:ListItem Value="50">50</asp:ListItem>
+                            <asp:ListItem Value="100">100</asp:ListItem>
+                            <asp:ListItem Value="150">150</asp:ListItem>
+                            <asp:ListItem Value="200">200</asp:ListItem>
+                            <asp:ListItem Value="300">300</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm primaryBtn" Style="margin-top: 20px;">Ok</asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-fluid">
+        <div class="card-body" style="min-height: 400px;">
+            <div class="row">
                 <div class="table-responsive">
                     <asp:GridView ID="gvBgdSales" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -226,9 +199,9 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Status">
+                            <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
-                                    <asp:Label ID="lgvstatis" runat="server" Style ="color:red;"
+                                    <asp:Label ID="lgvstatis" runat="server" Style="color: red;"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sustatus")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>

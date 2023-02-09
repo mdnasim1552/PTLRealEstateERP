@@ -542,7 +542,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.11667in</Top>
             <Height>0.76042in</Height>
-            <Width>7.88542in</Width>
+            <Width>7.88543in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -570,7 +570,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Finance &amp; Accounts</Value>
+                    <Value />
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -624,7 +624,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Finance &amp; Accounts</Value>
+                    <Value />
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -678,7 +678,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Managing Director</Value>
+                    <Value />
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>

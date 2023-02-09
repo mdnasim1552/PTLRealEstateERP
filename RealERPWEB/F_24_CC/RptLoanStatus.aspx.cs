@@ -30,14 +30,17 @@ namespace RealERPWEB.F_24_CC
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Loan" ? "CUSTOMER LOAN  " : (TypeDesc == "Letter" ? "CUSTOMER LETTER "
-                        : (TypeDesc == "Registration" ? "CUSTOMER REGISTRATION" : (TypeDesc == "ADWork" ? "CLIENT'S MODIFICATION" : "")))) + " INFORMATIOIN VIEW/EDIT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Loan" ? "CUSTOMER LOAN  " : (TypeDesc == "Letter" ? "CUSTOMER LETTER "
+                //        : (TypeDesc == "Registration" ? "CUSTOMER REGISTRATION" : (TypeDesc == "ADWork" ? "CLIENT'S MODIFICATION" : "")))) + " INFORMATIOIN VIEW/EDIT";
                 this.GetProjectName();
                 this.ViewSection();
                 this.chekAss.Visible = false;
                 this.panAss.Visible = false;
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
             }

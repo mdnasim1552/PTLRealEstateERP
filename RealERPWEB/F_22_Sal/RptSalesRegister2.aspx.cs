@@ -38,10 +38,13 @@ namespace RealERPWEB.F_22_Sal
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //    ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Sales Register 2";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Sales Register 2";
                 this.GetProjectName();
 
             }
@@ -91,9 +94,7 @@ namespace RealERPWEB.F_22_Sal
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-
             return comcod;
-
         }
         private void GetProjectName()
         {

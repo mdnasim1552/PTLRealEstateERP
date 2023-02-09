@@ -27,10 +27,12 @@ namespace RealERPWEB.F_29_Fxt
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "FIXED ASSET RENT BILL INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "FIXED ASSET RENT BILL INFORMATION";
                 this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy ddd");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy ddd");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
             if (this.ddlProjectName.Items.Count == 0)

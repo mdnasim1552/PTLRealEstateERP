@@ -30,8 +30,11 @@ namespace RealERPWEB.F_16_Bill
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Rate Variance";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Rate Variance";
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmDate.Text = (this.Request.QueryString["Date1"].ToString().Length > 0) ? this.Request.QueryString["Date1"] : ("01" + date.Substring(2));

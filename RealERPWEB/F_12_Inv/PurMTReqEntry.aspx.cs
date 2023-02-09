@@ -30,6 +30,9 @@ namespace RealERPWEB.F_12_Inv
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string title = "";
@@ -107,7 +110,7 @@ namespace RealERPWEB.F_12_Inv
 
                 }
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
             }
 
             this.txtCurTransDate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -289,6 +292,7 @@ namespace RealERPWEB.F_12_Inv
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
+           
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
@@ -722,6 +726,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3351": // p2p
                 case "3352": // p2p
                 case "8306":
+                case "3368": //finlay
                     ptype = "Approved";
                     break;
 

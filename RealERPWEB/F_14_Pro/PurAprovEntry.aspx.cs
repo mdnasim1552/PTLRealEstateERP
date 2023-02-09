@@ -32,13 +32,15 @@ namespace RealERPWEB.F_14_Pro
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Order Process";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Order Process";
                 if (Request.QueryString["InputType"].ToString() == "PurApproval" || Request.QueryString["InputType"].ToString() == "ProposalEdit")
                 {
 
@@ -632,9 +634,12 @@ namespace RealERPWEB.F_14_Pro
             string ssircode = dt.Rows[0]["ssircode"].ToString();
             this.ddlSupList.SelectedValue = ssircode;
         }
-
+        /// <summary>
+        /// check
+        /// </summary>
         protected void Session_tblAprov_Update()
         {
+            string comcod = this.GetCompCode();
             DataTable tbl1 = (DataTable)ViewState["tblAprov"];
             int TblRowIndex2;
             for (int j = 0; j < this.gvAprovInfo.Rows.Count; j++)
@@ -647,15 +652,30 @@ namespace RealERPWEB.F_14_Pro
                 double aprovsrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvApprovsRate")).Text.Trim()));
                 double dispercnt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", "")));
                 double aprovrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvNewApprovRate")).Text.Trim()));
-
-                if (aprovsrate < aprovrate)
+                if (comcod == "3368")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
+                    if (aprovrate < aprovsrate)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+
+                    }
+                }
+                else
+                {
+                    if (aprovsrate < aprovrate)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier rate must be greater then Actual Rate";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+
+                    }
 
                 }
+                
 
 
                 dispercnt = (aprovrate > 0) ? ((aprovsrate - aprovrate) * 100) / aprovsrate : dispercnt;

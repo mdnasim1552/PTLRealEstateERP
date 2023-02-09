@@ -34,6 +34,8 @@ namespace RealERPWEB.F_24_CC
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetProjectName();
                 this.GetUnitName();
                 this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -346,6 +348,7 @@ namespace RealERPWEB.F_24_CC
                 return;
 
             Session["tbladwork"] = ds1.Tables[0];
+          //  Session["tbltaddwork"] = ds1.Tables[3];
 
             if (mAdNo == "NEWAD")
             {
@@ -423,9 +426,13 @@ namespace RealERPWEB.F_24_CC
                     CompAddWork = "PrintAddWorkSanSuvastu";
                     break;
 
-                case "3101":
+               
                 case "3367":
                     CompAddWork = "PrintAddWorkEpic";
+                    break;
+
+                case "3374":
+                    CompAddWork = "PrintAddWorkAngan";
                     break;
 
                 default:
@@ -456,6 +463,10 @@ namespace RealERPWEB.F_24_CC
 
                 case "PrintAddWorkEpic":
                     this.PrintAddWorkEpic();
+                    break;
+
+                case "PrintAddWorkAngan":
+                    this.PrintAddWorkAngan();
                     break;
 
                 default:
@@ -519,28 +530,67 @@ namespace RealERPWEB.F_24_CC
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
-
+          
             DataTable dt = (DataTable)Session["tbladwork"];
+            //DataTable dt1 = (DataTable)Session["tbltaddwork"];
+
+
+
+            double tnet = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netamt)", "")) ? 0.00 :
+                 dt.Compute("sum(netamt)", "")));
+            //string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+            
+          
+
+            string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
-            switch (comcod)
+          
+
+
+            if (comcod== "3316" || comcod == "3315" || comcod == "1109" || comcod == "1108")
             {
-                case "3101":
-                case "1108":
-                case "1109":
-                case "3315":
-                case "3316":
-                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
-                    break;
-                default:
-                    Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
-                    break;
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
+                Rpt1.EnableExternalImages = true;
             }
-            Rpt1.EnableExternalImages = true;
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+               
+                double tpay = Convert.ToDouble(tnet);
+                Rpt1.EnableExternalImages = true;
+                if (tpay < 0)
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet*-1));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tnet));
+                }
+                Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " + inword));
+            }
+
+            //switch (comcod)
+            //{
+            //    case "3101":
+            //    case "1108":
+            //    case "1109":
+            //    case "3315":
+            //    case "3316":
+            //        Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAssure", lst, null, null);
+            //        break;
+            //    default:
+            //        Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrk", lst, null, null);
+            //        break;
+            //}
+          
+
+          
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
+           
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
@@ -559,7 +609,7 @@ namespace RealERPWEB.F_24_CC
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
+            //string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
             //string unitName = this.ddlUnitName.SelectedItem.Text.Substring(1,10);
             string Client = this.ddlUnitName.SelectedItem.Text.Substring(12);
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -575,8 +625,9 @@ namespace RealERPWEB.F_24_CC
            
             string unitName = dt1.Rows[0]["udesc"].ToString(); 
             string ClientName = dt1.Rows[0]["custname"].ToString(); 
+            string projectName = dt1.Rows[0]["pactdesc"].ToString();
 
-            string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
+            string ftxtcheck = "";// ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
             string ftxtapp2nd = ds1.Tables[2].Rows[0]["sapvusr"].ToString();
             string ftxtapp3rd = ds1.Tables[2].Rows[0]["auditusr"].ToString();
@@ -592,7 +643,7 @@ namespace RealERPWEB.F_24_CC
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
             Rpt1.SetParameters(new ReportParameter("ClientName", ClientName));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Modification Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Modification Date: " + Convert.ToDateTime(dt1.Rows[0]["addate"].ToString()).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + txtAddNo));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
@@ -616,7 +667,65 @@ namespace RealERPWEB.F_24_CC
             }
 
         }
-        private void PrintAddWorkSan()
+        private void PrintAddWorkAngan()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
+            string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
+
+            DataTable dt = (DataTable)Session["tbladwork"];
+            //DataTable dt1 = (DataTable)Session["tbltaddwork"];
+
+
+            double tnet = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netamt)", "")) ? 0.00 :
+                 dt.Compute("sum(netamt)", "")));
+            //string inwrd = Convert.ToDouble(dt1.Rows[0]["tnetamt"]).ToString("#,##0.00;(#,##0.00); ");
+
+
+            string inword = ASTUtility.Trans(Convert.ToDouble(tnet), 2);
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>();
+
+
+           
+                Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptMaintenanceWrkAngan", lst, null, null);
+
+                double tpay = Convert.ToDouble(tnet);
+                Rpt1.EnableExternalImages = true;
+                if (tpay < 0)
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet * -1));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tnet));
+                }
+                Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " + inword));
+          
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
+            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("unitName", unitName));
+
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
+            Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+            private void PrintAddWorkSan()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];

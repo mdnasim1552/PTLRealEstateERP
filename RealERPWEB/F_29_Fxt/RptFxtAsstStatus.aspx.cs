@@ -30,11 +30,13 @@ namespace RealERPWEB.F_29_Fxt
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "";
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Fix") ? "Fixed Assets Status" : "Fixed Assets Schedule";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Fix") ? "Fixed Assets Status" : "Fixed Assets Schedule";
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.rbtnList1.SelectedIndex = 0;
                 this.gvVisibility();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
             if (this.ddlProjectName.Items.Count == 0)

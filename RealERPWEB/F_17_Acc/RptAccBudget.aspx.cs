@@ -30,10 +30,12 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Working Budget Vs. Achievement";
-                this.Master.Page.Title = "Working Budget Vs. Achievement";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Working Budget Vs. Achievement";
+                //this.Master.Page.Title = "Working Budget Vs. Achievement";
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = Convert.ToDateTime("01-" + ASTUtility.Right(date, 8)).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

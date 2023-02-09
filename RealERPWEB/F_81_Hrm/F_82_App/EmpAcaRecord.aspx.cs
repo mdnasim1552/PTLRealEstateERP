@@ -30,9 +30,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (!IsPostBack)
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
             if (this.ddlEmpAcarecord.Items.Count == 0)
                 this.Load_CodeBooList();
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Academic Degree Title";
+            //((Label)this.Master.FindControl("lblTitle")).Text = "Academic Degree Title";
             Session["listid"] = "";
 
             this.ddlEmpAcarecord_SelectedIndexChanged(null,null);

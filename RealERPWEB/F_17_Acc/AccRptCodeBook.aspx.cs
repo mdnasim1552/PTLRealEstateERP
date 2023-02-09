@@ -31,10 +31,12 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "REPORTING CODE BOOK INFORMATION";
-                this.Master.Page.Title = "REPORTING CODE BOOK INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "REPORTING CODE BOOK INFORMATION";
+                //this.Master.Page.Title = "REPORTING CODE BOOK INFORMATION";
                 this.Load_CodeBooList();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
 

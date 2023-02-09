@@ -25,6 +25,11 @@ namespace RealERPWEB.F_12_Inv
         {
             if (!IsPostBack)
             {
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFDate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

@@ -49,8 +49,10 @@ namespace RealERPWEB.F_17_Acc
                 this.txtEntryDate.Text = "01" + date.Substring(2);
                 this.txtVouDate_CalendarExtender.EndDate = System.DateTime.Today;
                 //   string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Petty cash Bill Update";
-                this.Master.Page.Title = "Petty cash Bill Update";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Petty cash Bill Update";
+                //this.Master.Page.Title = "Petty cash Bill Update";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //((Label)this.Master.FindControl("lblTitle")).Text = (type == "pttycash") ? "Petty cash Bill Approval Sheet" : "";
                 this.GetBankCOde();
             }

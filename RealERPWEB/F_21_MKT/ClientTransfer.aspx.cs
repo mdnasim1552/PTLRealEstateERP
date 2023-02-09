@@ -25,12 +25,18 @@ namespace RealERPWEB.F_21_MKT
 
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //  this.txtcurdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurTransNo1.Enabled = false;
 
+
                 // this.LoadddlPaper();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Transfer List";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Client Transfer List";
                 this.GetFromTeam();
                 this.Get_Trnsno();
                 this.tableintosession();

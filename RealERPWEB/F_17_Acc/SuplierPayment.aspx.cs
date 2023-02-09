@@ -29,12 +29,15 @@ namespace RealERPWEB.F_17_Acc
             if (!IsPostBack)
             {
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = this.Master.Page.Title = "Supplier Payment Voucher";
+                //((Label)this.Master.FindControl("lblTitle")).Text = this.Master.Page.Title = "Supplier Payment Voucher";
 
                 lblTitle = Request.QueryString["tname"].ToString();
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.lnkFinalUpdate.Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
 

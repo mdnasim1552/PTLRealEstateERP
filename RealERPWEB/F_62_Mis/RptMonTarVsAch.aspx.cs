@@ -33,13 +33,15 @@ namespace RealERPWEB.F_62_Mis
                 this.txtfromdate.Text = Convert.ToDateTime("01" + Date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(txtfromdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string Type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "QtyBasis") ? "SALES  SUMMARY REPORT(QTY BASIS)" : (Type == "SalesRegister") ? "SALES REGISTER"
-                   : (Type == "dSaleVsColl") ? "DAILY SALES & COLLECTION STATUS" : (Type == "CollectStatus") ? "REAL COLLECTION STATUS"
-                   : (Type == "BankRecon") ? "Bank Reconcillation Summary" : "SALES  SUMMARY REPORT (AMOUNT BASIS)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Type == "QtyBasis") ? "SALES  SUMMARY REPORT(QTY BASIS)" : (Type == "SalesRegister") ? "SALES REGISTER"
+                //   : (Type == "dSaleVsColl") ? "DAILY SALES & COLLECTION STATUS" : (Type == "CollectStatus") ? "REAL COLLECTION STATUS"
+                //   : (Type == "BankRecon") ? "Bank Reconcillation Summary" : "SALES  SUMMARY REPORT (AMOUNT BASIS)";
 
 
                 this.ViewSection();

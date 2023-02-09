@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptOngoingProjects.aspx.cs" Inherits="RealERPWEB.F_38_AI.RptOngoingProjects" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -127,9 +126,10 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                            </Columns>             
+                            </Columns>
+                            <FooterStyle BackColor="#F5F5F5" />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                         </asp:GridView>
                     </div>
                 </div>
@@ -138,3 +138,4 @@
     </asp:UpdatePanel>
 
 </asp:Content>
+

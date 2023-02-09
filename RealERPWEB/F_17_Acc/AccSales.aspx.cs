@@ -35,11 +35,13 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
            
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Collection Update";
-                this.Master.Page.Title = "Collection Update";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Collection Update";
+                //this.Master.Page.Title = "Collection Update";
                 this.GetProjectName();
                 this.txtfrmdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -910,6 +912,9 @@ namespace RealERPWEB.F_17_Acc
                 chkdramt = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(dramt)", ""))
                     ? 0
                     : dts1.Compute("sum(dramt)", "")));
+
+
+
                 string Cactcode = (dt1.Rows[0]["Cactcode"].ToString());
                 string RefNo = dt1.Rows[0]["chqno"].ToString();
                 string recondat =
@@ -958,42 +963,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                    ///-----------------------------------------------------///////////////////
-                    ///
-
-
-
-                    //string type = dt.Rows[0]["paydesc"].ToString();
-                    //if (type == "CASH")
-                    //{
-                    //    //RefNo = dt1.Rows[0]["chqno"].ToString();
-                    //    Narration = "Mr" + dt1.Rows[0]["mrno"].ToString() + ", Date:" +
-                    //                Convert.ToDateTime(dt1.Rows[0]["paydate"]).ToString("dd.MM.yyyy") + ", Ref:" +
-                    //                dt1.Rows[0]["refno"].ToString() + "; ";
-                    //}
-
-                    //else
-                    //{
-                    //    RefNo = dt1.Rows[0]["chqno"].ToString();
-                    //    Narration = "Mr" + dt1.Rows[0]["mrno"].ToString() + ", " + "Date:" +
-                    //                Convert.ToDateTime(dt1.Rows[0]["paydate"]).ToString("dd.MM.yyyy") + ", Ref:" +
-                    //                dt1.Rows[0]["refno"].ToString()
-                    //                + (dt1.Rows[0]["bankname"].ToString() == ""
-                    //                    ? ""
-                    //                    : ", " + "Bank: " + dt1.Rows[0]["bankname"].ToString()) +
-                    //                (dt1.Rows[0]["bbranch"].ToString() == ""
-                    //                    ? ""
-                    //                    : ", " + "Branch: " + dt1.Rows[0]["bbranch"].ToString()) + "; ";
-
-                    //}
-
-
-
-                    //int Reflenght = RefNo.Length;
-                    //if (Reflenght > 0)
-                    //{
-                    //    RefNo = RefNo.Substring(0, Reflenght - 2);
-                    //}
+                   
                     int lenght = Narration.Length;
                     Narration = Narration.Substring(0, lenght - 2);
                     /////////---------------------------------------
@@ -1190,19 +1160,14 @@ namespace RealERPWEB.F_17_Acc
 
                     }
 
-                    //string comcod = this.GetCompCode();
-                   
-                    switch (comcod)
-                    {
-                        //case "3101":
-                        case "3356": // intech
-                           this.CollectionUpdateSMS(pactcode, usircode);
-                            break;
 
-                        default:
-                       
-                            break;
+                    if (hst["compsms"].ToString() == "True")
+                    {
+                        this.CollectionUpdateSMS(pactcode, usircode, chkcramt, cheqno);
+
                     }
+
+                    
 
 
 
@@ -1412,7 +1377,7 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        private void CollectionUpdateSMS(string pactcode, string usercode)       
+        private void CollectionUpdateSMS(string pactcode, string usercode, double chkcramt, string cheqno)       
         {
             string comcod = this.GetCompCode();
 
@@ -1437,13 +1402,29 @@ namespace RealERPWEB.F_17_Acc
             tempeng = tempeng.Replace("[name]", cutname);
             tempeng = tempeng.Replace("[date]", paymentdate);
             tempeng = tempeng.Replace("[payamt]", payment);
+            tempeng = tempeng.Replace("[taka]", chkcramt.ToString("#,##0;(#,##0);"));
+            tempeng = tempeng.Replace("[chequeno]", cheqno);           
             tempeng = tempeng.Replace("[duesamt]", dues);
+          
 
             string  smtext = tempeng;
 
             SendSmsProcess sms = new SendSmsProcess();
+            bool resultsms;
+            switch (comcod)
+            {
 
-            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+                case "3101"://LanCo
+                case "3366"://LanCo
+                    resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
+                    break;
+
+                default:
+                    resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+                    break;
+            
+            
+            }
             if (resultsms == true)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Message sent Successfully.";

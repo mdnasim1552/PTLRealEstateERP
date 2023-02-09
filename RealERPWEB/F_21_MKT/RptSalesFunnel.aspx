@@ -1687,6 +1687,7 @@
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>400</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -1780,6 +1781,18 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="P-ID">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgvproscod1" runat="server" Width="50px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "proscod1")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                        
 
                                         <asp:TemplateField
                                             HeaderText="Project Name">

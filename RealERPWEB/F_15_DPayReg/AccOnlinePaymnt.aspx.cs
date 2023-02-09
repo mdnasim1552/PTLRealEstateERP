@@ -42,8 +42,11 @@ namespace RealERPWEB.F_15_DPayReg
                 this.GetSelectedBillNo();
                 this.txtReceiveDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Create Proposal";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Create Proposal";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             }
 
@@ -752,10 +755,26 @@ namespace RealERPWEB.F_15_DPayReg
 
 
                 this.SaveValue();
+               
 
-                DataTable dt1 = (DataTable)ViewState["tblpayment"];
+                    DataTable dt1 = (DataTable)ViewState["tblpayment"];
+
+                for (int i = 0; i < this.gvPayment.Rows.Count; i++)
+                {
 
 
+                    double billamt = Convert.ToDouble(dt1.Rows[i]["billamt"]);
+                    double payamt = Convert.ToDouble("0" + ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvpayamt")).Text.Trim());
+                    string billno = dt1.Rows[i]["billno"].ToString();
+                    if (billamt < payamt)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Payment Amount Greater then Bill Amount";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                        return;
+
+                    }
+                }
 
 
                 bool result = true;
@@ -910,6 +929,7 @@ namespace RealERPWEB.F_15_DPayReg
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
                     return;
 
                 }
@@ -920,8 +940,10 @@ namespace RealERPWEB.F_15_DPayReg
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
                         return;
                     }
+
                 }
                 else
                 {
@@ -936,6 +958,7 @@ namespace RealERPWEB.F_15_DPayReg
                 dt.Rows[i]["apppaydate"] = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvpaymentdate")).Text.Trim();
                 dt.Rows[i]["amt"] = payamt;
 
+
             }
 
 
@@ -946,6 +969,8 @@ namespace RealERPWEB.F_15_DPayReg
 
 
         }
+ 
+
         protected void lbtnRefresh_Click(object sender, EventArgs e)
         {
 

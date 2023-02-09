@@ -202,6 +202,9 @@
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
                                                 </Columns>
+                                                <FooterStyle BackColor="#F5F5F5" />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
 
                                             </asp:GridView>
 
@@ -323,8 +326,9 @@
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
                                                 </Columns>
+                                                <FooterStyle BackColor="#F5F5F5" />
                                                 <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
+                                                <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                             </asp:GridView>
                                         </div>
                                     </div>
@@ -342,7 +346,7 @@
                                                     <asp:TemplateField HeaderText="SL # ">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                                                Style="text-align: right; font-size: 12px;"
+                                                                Style="text-align: right; font-size: 14px;"
                                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
                                                                 ForeColor="Black"></asp:Label>
                                                         </ItemTemplate>
@@ -354,43 +358,43 @@
                                                             <asp:Label ID="lblgvjobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Task Title">
+                                                    <asp:TemplateField HeaderText="TaskTitle">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvtasktitle" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgvtasktitle" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle")) %>' Width="120px" ForeColor="Black" Font-Size="14px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Employee">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblempid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="200px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblempid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="200px" ForeColor="Black" Font-Size="14px"></asp:Label>
                                                             <asp:Label ID="lblgvempname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="180px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Batch Name" Visible="false">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvbatchname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgvbatchname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>' Width="100px" ForeColor="Black" Font-Size="14px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Role <br> Type">
+                                                    <asp:TemplateField HeaderText="RoleType">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblrolettpcode" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypcode")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
-                                                            <asp:Label ID="lblgvroletype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgvroletype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' ForeColor="Black" Width="70px" Font-Size="14px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Annotor <br> ID">
+                                                    <asp:TemplateField HeaderText="Ann.ID">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvannoid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgvannoid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' Width="70px" ForeColor="Black" Font-Size="14px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned  <br> Type">
+                                                    <asp:TemplateField HeaderText="Ass.Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvassigntype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
-
+                                                            <asp:Label ID="lblgvassigntype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntypedesc")) %>' Width="70px" ForeColor="Black" Font-Size="14px"></asp:Label>
+                                                            <asp:Label ID="lblgrassigincode" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Role <br> QTY">
+                                                    <asp:TemplateField HeaderText="Ass. QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvassignqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
@@ -398,14 +402,14 @@
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Work <br> Hour">
+                                                    <asp:TemplateField HeaderText="Work Hour">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvwrkhour" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "workhour")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Work <br> Rate">
+                                                    <asp:TemplateField HeaderText="Rate" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvworkrate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "workrate")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
@@ -419,19 +423,19 @@
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Complete <br> QTY">
+                                                    <asp:TemplateField HeaderText="Done QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvdoneqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")).ToString("#,##0;(#,##0); ") %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Skip <br> QTY">
+                                                    <asp:TemplateField HeaderText="Skip QTY" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvskipqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "skipqty")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Pendding <br> QTY">
+                                                    <asp:TemplateField HeaderText="Pend. QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvpenddingqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "penddingqty")).ToString("#,##0;(#,##0); ") %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
@@ -459,8 +463,9 @@
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
                                                 <EditRowStyle />
                                                 <AlternatingRowStyle />
+                                                <FooterStyle BackColor="#F5F5F5" />
                                                 <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
+                                                <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                             </asp:GridView>
                                         </div>
 
@@ -547,8 +552,9 @@
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
                                                 <EditRowStyle />
                                                 <AlternatingRowStyle />
+                                                <FooterStyle BackColor="#F5F5F5" />
                                                 <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
+                                                <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                             </asp:GridView>
 
 
@@ -636,8 +642,9 @@
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
                                                 <EditRowStyle />
                                                 <AlternatingRowStyle />
+                                                <FooterStyle BackColor="#F5F5F5" />
                                                 <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
+                                                <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                             </asp:GridView>
 
 
@@ -707,7 +714,7 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
-                                                    <asp:TextBox ID="txtquantity" min="0" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtquantity" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">
@@ -825,8 +832,9 @@
                                                     <%--<FooterStyle CssClass="grvFooter" />--%>
                                                     <EditRowStyle />
                                                     <AlternatingRowStyle />
+                                                    <FooterStyle BackColor="#F5F5F5" />
                                                     <PagerStyle CssClass="gvPagination" />
-                                                    <HeaderStyle CssClass="grvHeader" />
+                                                    <HeaderStyle BackColor="#007c69" ForeColor="#ffffff" />
                                                 </asp:GridView>
                                             </div>
                                             <asp:LinkButton runat="server" ID="btntaskSave" OnClick="btntaskSave_Click" CssClass="btn btn-primary btn-sm  float-right">Task Save</asp:LinkButton>

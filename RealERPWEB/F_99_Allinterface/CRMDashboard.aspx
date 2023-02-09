@@ -315,7 +315,7 @@
                     <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary" runat="server">Ok</asp:LinkButton>
                 </div>
                 <div class="col-md-2">
-                    <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Go Interface</a>
+                    <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Interface</a>
 
 
                 </div>

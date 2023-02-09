@@ -15,13 +15,22 @@ namespace RealERPWEB.F_22_Sal
     {
 
         /// <summary>
-        /// UpdateProgress2 control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
+        /// UpdateProgress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
 
         /// <summary>
         /// lblPage0 control.
@@ -42,6 +51,33 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
+        /// tblleabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tblleabel;
+
+        /// <summary>
+        /// ddlprojectname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlprojectname;
+
+        /// <summary>
+        /// prjSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton prjSearch;
+
+        /// <summary>
         /// grvInvRpt control.
         /// </summary>
         /// <remarks>
@@ -49,14 +85,5 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvInvRpt;
-
-        /// <summary>
-        /// ReportViewer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
     }
 }

@@ -27,17 +27,20 @@ namespace RealERPWEB.F_05_Busi
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 string type = this.Request.QueryString["Type"].ToString().Trim();
                 string rtype = this.Request.QueryString["rType"].ToString().Trim();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Yearly") ? "Annual Business Plan"
-                    : (type == "BgdAmtBasis") ? "Yearly Revenue Target/Cost Report Amount Basis"
-                    : (type == "BgdIncome") ? "Yearly Budgeted Income Statement" : "Yearly Revenue Target/Cost Report Qty Basis";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "Yearly") ? "Annual Business Plan"
+                //    : (type == "BgdAmtBasis") ? "Yearly Revenue Target/Cost Report Amount Basis"
+                //    : (type == "BgdIncome") ? "Yearly Budgeted Income Statement" : "Yearly Revenue Target/Cost Report Qty Basis";
 
                 if (rtype == "Cash")
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Cash Budget";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Cash Budget";
                 }
 
 

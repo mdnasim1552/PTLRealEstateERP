@@ -29,11 +29,14 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "BillStatus") ? "Group Wise Bill Report" : "Project Wise Bill Quantity Report";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "BillStatus") ? "Group Wise Bill Report" : "Project Wise Bill Quantity Report";
                 //this.txtDateFrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtDateFrom.Text = "01" + this.txtDateFrom.Text.Trim().Substring(2);
                 //this.txtDateto.Text = Convert.ToDateTime(this.txtDateFrom.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");

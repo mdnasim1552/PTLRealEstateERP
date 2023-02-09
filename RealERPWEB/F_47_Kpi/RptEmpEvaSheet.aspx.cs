@@ -39,8 +39,11 @@ namespace RealERPWEB.F_47_Kpi
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Employee KPI Evaluation Sheet";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Employee KPI Evaluation Sheet";
                 this.chktwise.Visible = (this.Request.QueryString["Type"].ToString() == "Mgt");
                 this.lblPage.Visible = (this.Request.QueryString["Type"].ToString() == "Mgt");
                 this.ddlpagesize.Visible = (this.Request.QueryString["Type"].ToString() == "Mgt");

@@ -78,15 +78,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblddlProject;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// lblCurNo1 control.
         /// </summary>
         /// <remarks>
@@ -177,13 +168,13 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// lblmsg1 control.
+        /// lbtnOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// lbtnPrevISSList control.
@@ -192,16 +183,7 @@ namespace RealERPWEB.F_09_PImp
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPrevISSList;
-
-        /// <summary>
-        /// txtSrcPreBill control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcPreBill;
+        protected global::System.Web.UI.WebControls.Label lbtnPrevISSList;
 
         /// <summary>
         /// ibtnPreBillList control.
@@ -238,15 +220,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel3;
-
-        /// <summary>
-        /// divgrp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divgrp;
 
         /// <summary>
         /// lblfloorno control.
@@ -366,6 +339,24 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.TextBox txtISSNarr;
 
         /// <summary>
+        /// lblTrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTrade;
+
+        /// <summary>
+        /// ddltrade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddltrade;
+
+        /// <summary>
         /// lblPreparedBy control.
         /// </summary>
         /// <remarks>
@@ -418,24 +409,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtApprovalDate;
-
-        /// <summary>
-        /// lblTrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTrade;
-
-        /// <summary>
-        /// ddltrade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltrade;
 
         /// <summary>
         /// gvMSRInfo2 control.

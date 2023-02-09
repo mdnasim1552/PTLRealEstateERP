@@ -34,6 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.txtcreateDate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy");
                 DateTime now = DateTime.Now;
@@ -1126,7 +1127,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
             this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-           
+            this.txtPloanAmt.Text = Convert.ToDouble(dt.Rows[0]["prelnbal"]).ToString("#,##0.00;(#,##0.00);");
             this.txtLoanAmt.Text = Convert.ToDouble(dt.Rows[0]["loanamt"]).ToString("#,##0.00;(#,##0.00); ");
             this.txtInstNum.Text = Convert.ToInt32(dt.Rows[0]["instlnum"]).ToString("#,##0;(#,##0); "); 
             this.txtAmtPerIns.Text = Convert.ToDouble(dt.Rows[0]["perinstlamt"]).ToString("#,##0.00;(#,##0.00); "); 
@@ -1791,8 +1792,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 return;
             }
-
             DataTable dt = ds.Tables[0];
+    
+
+      
+
+
+            double  prevloan = Convert.ToDouble(dt.Rows[0]["prevloan"]);
+
             string desig= dt.Rows[0]["desig"].ToString();
             string dept = dt.Rows[0]["dept"].ToString();
             string cdate = dt.Rows[0]["cdate"].ToString();
@@ -1804,7 +1811,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string instNo = this.txtInstNum.Text.ToString() == "" ? "0" : this.txtInstNum.Text.ToString();
             double amtPerInst = Convert.ToDouble("0" + this.txtAmtPerIns.Text);
             double stdeduct = Convert.ToDouble("0" + this.txtStd.Text);
-            double prevloan = Convert.ToDouble("0" + this.txtPloanAmt.Text);
             double grossMonth = Convert.ToDouble("0" + this.txtGMS.Text);
             double othincome = Convert.ToDouble("0" + this.txtOI.Text);
             double intrest = Convert.ToDouble("0" + this.txtrt.Text);

@@ -23,9 +23,12 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Land Owner Payment Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Land Owner Payment Information";
                 this.GetAccCode();
                 this.txtFDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 

@@ -29,12 +29,15 @@ namespace RealERPWEB.F_02_Fea
                 this.ProjectName();
                 this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "PriceList01" ? "Price List 01" : type == "PriceList02" ? "Price List 01" : "";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "PriceList01" ? "Price List 01" : type == "PriceList02" ? "Price List 01" : "";
                 this.SelectView();
             }
         }

@@ -25,10 +25,12 @@ namespace RealERPWEB.F_23_CR
             if (!IsPostBack)
             {
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("~/AcceessError.aspx");
 
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                //this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
 
@@ -632,49 +634,55 @@ namespace RealERPWEB.F_23_CR
         protected void lblAddToTable_Click(object sender, EventArgs e)
         {
 
-
-
-            string chequeno = this.txtchqno.Text.Trim();
-            if ((DataTable)Session["tblfincoll"] == null)
-                this.Sessiontable();
-            DataTable dt = (DataTable)Session["tblfincoll"];
-
-            DataRow[] projectrow1 = dt.Select("chequeno = '" + chequeno + "'"); //repchqno
-            if (projectrow1.Length == 0)
+            try
             {
-                DataRow drforgrid = dt.NewRow();
-                //  drforgrid["paidamount"] = Convert.ToDouble("0" + this.txtPaidamt.Text.Trim());
-                drforgrid["paidamount"] = ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
-                drforgrid["paytype"] = this.ddlpaytype.SelectedItem.Text.Trim();
-                drforgrid["paytypecod"] = this.ddlpaytype.SelectedValue.ToString();
-                drforgrid["chequeno"] = this.txtchqno.Text.Trim();
-                drforgrid["bankname"] = this.txtBName.Text.Trim();
-                drforgrid["branchname"] = this.txtBranchName.Text.Trim();
-                drforgrid["paydate"] = this.txtpaydate.Text.Trim();
-                drforgrid["refid"] = this.txtrefid.Text.Trim();
-                drforgrid["repchqno"] = this.txtRpChqNo.Text.Trim();
-                drforgrid["remarks"] = this.txtremarks.Text.Trim();
-                drforgrid["collfrm"] = this.ddlCollType.SelectedValue.ToString();
-                drforgrid["collfrmd"] = this.ddlCollType.SelectedValue.ToString() == "" ? "" : this.ddlCollType.SelectedItem.Text.Trim();
-                drforgrid["RecType"] = this.ddlRecType.SelectedValue.ToString();
-                drforgrid["RecTyped"] = this.ddlRecType.SelectedItem.Text.Trim();
-                drforgrid["billno"] = this.ddlbilno.SelectedValue.ToString();
-                drforgrid["billno1"] = this.ddlbilno.Text;
-                dt.Rows.Add(drforgrid);
-            }
 
-            else
+                string chequeno = this.txtchqno.Text.Trim();
+                if ((DataTable)Session["tblfincoll"] == null)
+                    this.Sessiontable();
+                DataTable dt = (DataTable)Session["tblfincoll"];
+
+                DataRow[] projectrow1 = dt.Select("chequeno = '" + chequeno + "'"); //repchqno
+                if (projectrow1.Length == 0)
+                {
+                    DataRow drforgrid = dt.NewRow();
+                    //  drforgrid["paidamount"] = Convert.ToDouble("0" + this.txtPaidamt.Text.Trim());
+                    drforgrid["paidamount"] = ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
+                    drforgrid["paytype"] = this.ddlpaytype.SelectedItem.Text.Trim();
+                    drforgrid["paytypecod"] = this.ddlpaytype.SelectedValue.ToString();
+                    drforgrid["chequeno"] = this.txtchqno.Text.Trim();
+                    drforgrid["bankname"] = this.txtBName.Text.Trim();
+                    drforgrid["branchname"] = this.txtBranchName.Text.Trim();
+                    drforgrid["paydate"] = this.txtpaydate.Text.Trim();
+                    drforgrid["refid"] = this.txtrefid.Text.Trim();
+                    drforgrid["repchqno"] = this.txtRpChqNo.Text.Trim();
+                    drforgrid["remarks"] = this.txtremarks.Text.Trim();
+                    drforgrid["collfrm"] = this.ddlCollType.SelectedValue.ToString();
+                    drforgrid["collfrmd"] = this.ddlCollType.SelectedValue.ToString() == "" ? "" : this.ddlCollType.SelectedItem.Text.Trim();
+                    drforgrid["RecType"] = this.ddlRecType.SelectedValue.ToString();
+                    drforgrid["RecTyped"] = this.ddlRecType.SelectedItem.Text.Trim();
+                    drforgrid["billno"] = this.ddlbilno.SelectedValue.ToString();
+                    drforgrid["billno1"] = this.ddlbilno.Text;
+                    dt.Rows.Add(drforgrid);
+                }
+
+                else
+                {
+                    projectrow1[0]["collfrm"] = this.ddlCollType.SelectedValue.ToString();
+                    projectrow1[0]["collfrmd"] = this.ddlCollType.SelectedItem.Text.Trim();
+                    projectrow1[0]["RecType"] = this.ddlRecType.SelectedValue.ToString();
+                    projectrow1[0]["RecTyped"] = this.ddlRecType.SelectedItem.Text.Trim();
+
+                }
+
+                Session["tblfincoll"] = dt;
+                this.Data_Bind();
+                this.txtPaidamt.Focus();
+            }
+            catch(Exception exp)
             {
-                projectrow1[0]["collfrm"] = this.ddlCollType.SelectedValue.ToString();
-                projectrow1[0]["collfrmd"] = this.ddlCollType.SelectedItem.Text.Trim();
-                projectrow1[0]["RecType"] = this.ddlRecType.SelectedValue.ToString();
-                projectrow1[0]["RecTyped"] = this.ddlRecType.SelectedItem.Text.Trim();
 
             }
-
-            Session["tblfincoll"] = dt;
-            this.Data_Bind();
-            this.txtPaidamt.Focus();
         }
 
         protected void Sessiontable()
@@ -704,15 +712,23 @@ namespace RealERPWEB.F_23_CR
 
         protected void Data_Bind()
         {
-            DataTable tbl1 = (DataTable)Session["tblfincoll"];
-            this.gvMoneyreceipt.DataSource = tbl1;
-            this.gvMoneyreceipt.DataBind();
-
-            if (tbl1.Rows.Count > 0)
+            try
             {
-                ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0;(#,##0); -");
+                DataTable tbl1 = (DataTable)Session["tblfincoll"];
+                this.gvMoneyreceipt.DataSource = tbl1;
+                this.gvMoneyreceipt.DataBind();
 
+                if (tbl1.Rows.Count > 0)
+                {
+                    ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0;(#,##0); -");
+
+                }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }           
 
         }
 

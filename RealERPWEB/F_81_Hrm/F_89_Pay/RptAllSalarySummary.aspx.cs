@@ -202,6 +202,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void GetTotalSalSum()
         {
+            
             string comcod = this.GetComCode();
             string prevmon = "";
             string monthid = this.ddlmon.SelectedValue.ToString();
@@ -351,133 +352,141 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void Data_bind()
         {
-            string comcod = this.GetComCode();
-
-            DataTable dt = (DataTable)Session["tblSalSummary"];
-
-            int index = this.rbtnAtten.SelectedIndex;
-            switch (index)
+            try
             {
-                case 0:
-                    this.GvBankSummary.DataSource = dt;
-                    this.GvBankSummary.DataBind();
-                    Session["Report1"] = GvBankSummary;
-                    ((HyperLink)this.GvBankSummary.HeaderRow.FindControl("hlbtntbCdataExcelbank")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
+                string comcod = this.GetComCode();
 
-                case 1:
-                    DataTable dtp = (DataTable)Session["tblbankdesc"];
-                    if (dtp == null)
-                    {
-                        return;
-                    }
-                    int i, j;
-                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
-                    //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 2;
+                DataTable dt = (DataTable)Session["tblSalSummary"];
 
-                    for (i = 0; i < dtp.Rows.Count; i++)
-                    {
-                        this.GvModPayment.Columns[j].HeaderText = dtp.Rows[i]["bankname"].ToString();
-                        j++;
-                    }
-                    this.GvModPayment.DataSource = dt;
-                    this.GvModPayment.DataBind();
-                    Session["Report1"] = GvModPayment;
-                    ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
-                case 2:
-                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
-                    //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 1;
-                    DataTable dtmon = (DataTable)Session["tblmondesc"];
-                    if (dtmon == null)
-                    {
-                        return;
-                    }
-                    for (i = 0; i < dtmon.Rows.Count; i++)
-                    {
-                        this.GvNetComparison.Columns[j].HeaderText = dtmon.Rows[i]["monname"].ToString();
-                        j++;
-                    }
-                    this.GvNetComparison.DataSource = dt;
-                    this.GvNetComparison.DataBind();
-                    Session["Report1"] = GvNetComparison;
-                    ((HyperLink)this.GvNetComparison.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
+                int index = this.rbtnAtten.SelectedIndex;
+                switch (index)
+                {
+                    case 0:
+                        this.GvBankSummary.DataSource = dt;
+                        this.GvBankSummary.DataBind();
+                        Session["Report1"] = GvBankSummary;
+                        ((HyperLink)this.GvBankSummary.HeaderRow.FindControl("hlbtntbCdataExcelbank")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
 
-                case 3:
-                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
-                    //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 1;
-                    DataTable dtmongross = (DataTable)Session["tblmondesc"];
-                    if (dtmongross == null)
-                    {
-                        return;
-                    }
-                    for (i = 0; i < dtmongross.Rows.Count; i++)
-                    {
-                        this.GvgrossSalSummary.Columns[j].HeaderText = dtmongross.Rows[i]["monname"].ToString();
-                        j++;
-                    }
-                    this.GvgrossSalSummary.DataSource = dt;
-                    this.GvgrossSalSummary.DataBind();
+                    case 1:
+                        DataTable dtp = (DataTable)Session["tblbankdesc"];
+                        if (dtp == null)
+                        {
+                            return;
+                        }
+                        int i, j;
+                        //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                        //    this.GvModPayment.Columns[i].Visible = false;
+                        j = 2;
 
-                    Session["Report1"] = GvgrossSalSummary;
-                    ((HyperLink)this.GvgrossSalSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
+                        for (i = 0; i < dtp.Rows.Count; i++)
+                        {
+                            this.GvModPayment.Columns[j].HeaderText = dtp.Rows[i]["bankname"].ToString();
+                            j++;
+                        }
+                        this.GvModPayment.DataSource = dt;
+                        this.GvModPayment.DataBind();
+                        Session["Report1"] = GvModPayment;
+                        ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
+                    case 2:
+                        //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                        //    this.GvModPayment.Columns[i].Visible = false;
+                        j = 1;
+                        DataTable dtmon = (DataTable)Session["tblmondesc"];
+                        if (dtmon == null)
+                        {
+                            return;
+                        }
+                        for (i = 0; i < dtmon.Rows.Count; i++)
+                        {
+                            this.GvNetComparison.Columns[j].HeaderText = dtmon.Rows[i]["monname"].ToString();
+                            j++;
+                        }
+                        this.GvNetComparison.DataSource = dt;
+                        this.GvNetComparison.DataBind();
+                        Session["Report1"] = GvNetComparison;
+                        ((HyperLink)this.GvNetComparison.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
 
+                    case 3:
+                        //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                        //    this.GvModPayment.Columns[i].Visible = false;
+                        j = 1;
+                        DataTable dtmongross = (DataTable)Session["tblmondesc"];
+                        if (dtmongross == null)
+                        {
+                            return;
+                        }
+                        for (i = 0; i < dtmongross.Rows.Count; i++)
+                        {
+                            this.GvgrossSalSummary.Columns[j].HeaderText = dtmongross.Rows[i]["monname"].ToString();
+                            j++;
+                        }
+                        this.GvgrossSalSummary.DataSource = dt;
+                        this.GvgrossSalSummary.DataBind();
 
-                case 4:
-                    this.GvGrossRecon.DataSource = dt;
-                    this.GvGrossRecon.DataBind();
-
-                    Session["Report1"] = GvGrossRecon;
-                    ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
-
-                case 5:
-                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
-                    //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 0;
-                    DataTable dtmontotal = (DataTable)Session["tblmondesc"];
-                    if (dtmontotal == null)
-                    {
-                        return;
-                    }
-                    for (i = 0; i < dtmontotal.Rows.Count; i++)
-                    {
-                        this.GvTotalSumm.Columns[j].HeaderText = dtmontotal.Rows[i]["monname"].ToString();
-                        j++;
-                    }
-                    this.GvTotalSumm.DataSource = dt;
-                    this.GvTotalSumm.DataBind();
-                    Session["Report1"] = GvTotalSumm;
-                    ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
+                        Session["Report1"] = GvgrossSalSummary;
+                        ((HyperLink)this.GvgrossSalSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
 
 
-                case 6:
-                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
-                    //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 1;
-                    DataTable dtdept = (DataTable)Session["tblmondesc"];
-                    if (dtdept == null)
-                    {
-                        return;
-                    }
-                    for (i = 0; i < dtdept.Rows.Count; i++)
-                    {
-                        this.gvdeptwise.Columns[j].HeaderText = dtdept.Rows[i]["monname"].ToString();
-                        j++;
-                    }
-                    this.gvdeptwise.DataSource = dt;
-                    this.gvdeptwise.DataBind();
-                    Session["Report1"] = gvdeptwise;
-                    ((HyperLink)this.gvdeptwise.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    break;
-                default:
-                    break;
+                    case 4:
+                        this.GvGrossRecon.DataSource = dt;
+                        this.GvGrossRecon.DataBind();
+
+                        Session["Report1"] = GvGrossRecon;
+                        ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
+
+                    case 5:
+                        //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                        //    this.GvModPayment.Columns[i].Visible = false;
+                        j = 1;
+                        DataTable dtmontotal = (DataTable)Session["tblmondesc"];
+                        if (dtmontotal == null)
+                        {
+                            return;
+                        }
+                        for (i = 0; i < dtmontotal.Rows.Count; i++)
+                        {
+                            this.GvTotalSumm.Columns[j].HeaderText = dtmontotal.Rows[i]["monname"].ToString();
+                            j++;
+                        }
+                        this.GvTotalSumm.DataSource = dt;
+                        this.GvTotalSumm.DataBind();
+                        Session["Report1"] = GvTotalSumm;
+                        ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
+
+
+                    case 6:
+                        //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                        //    this.GvModPayment.Columns[i].Visible = false;
+                        j = 1;
+                        DataTable dtdept = (DataTable)Session["tblmondesc"];
+                        if (dtdept == null)
+                        {
+                            return;
+                        }
+                        for (i = 0; i < dtdept.Rows.Count; i++)
+                        {
+                            this.gvdeptwise.Columns[j].HeaderText = dtdept.Rows[i]["monname"].ToString();
+                            j++;
+                        }
+                        this.gvdeptwise.DataSource = dt;
+                        this.gvdeptwise.DataBind();
+                        Session["Report1"] = gvdeptwise;
+                        ((HyperLink)this.gvdeptwise.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)

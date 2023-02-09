@@ -35,8 +35,10 @@ namespace RealERPWEB.F_17_Acc
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Type01" ? " Account Control Schedule - 01" : type == "Type02" ? "Account Control Schedule - 02" : "ACCOUNT CONTROL SCHEDULE";
-                this.Master.Page.Title = "ACCOUNT CONTROL SCHEDULE";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "Type01" ? " Account Control Schedule - 01" : type == "Type02" ? "Account Control Schedule - 02" : "ACCOUNT CONTROL SCHEDULE";
+                //this.Master.Page.Title = "ACCOUNT CONTROL SCHEDULE";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.imgsearch_Click(null, null);
             }

@@ -29,13 +29,15 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //----------------udate-20150120---------
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "Contractor Work Order" : "Contractor Work Order Edit";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "Contractor Work Order" : "Contractor Work Order Edit";
                 this.GetContractorList();
                 this.GetProjectList();
 
@@ -198,6 +200,7 @@ namespace RealERPWEB.F_09_PImp
                 //case "3351":
 
                 case "3101": // pintech
+                case "3368": // Finaly
                 case "3370": // cpdl
                 case "1205": // p2p
                 case "3351": // p2p
@@ -420,7 +423,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
             }
-            else if (comcod == "3370" || comcod == "3101")
+            else if (comcod == "3370" || comcod == "3368" || comcod == "3101")
             {
                 refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
                 string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
@@ -551,6 +554,7 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 case "3101":
+                case "3368":
                 case "3370": // cpdl
                 case "1205": // p2p 
                 case "3351":  // p2p 

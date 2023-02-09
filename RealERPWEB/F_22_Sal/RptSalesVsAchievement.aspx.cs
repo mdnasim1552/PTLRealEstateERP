@@ -29,23 +29,26 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 if (this.Request.QueryString["Type"] == "MonsalVsAchieve")
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation)";
                 }
                 else if (this.Request.QueryString["Type"] == "DownpayClearnce")
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Down Payment Status (Prev.Sales)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Down Payment Status (Prev.Sales)";
                 }
                 else if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation L/O)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation L/O)";
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Collection Status)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Collection Status)";
                 }
 
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");

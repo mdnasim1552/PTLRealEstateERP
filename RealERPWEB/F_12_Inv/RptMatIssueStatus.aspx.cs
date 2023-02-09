@@ -29,8 +29,11 @@ namespace RealERPWEB.F_12_Inv
                     if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                         Response.Redirect("../AcceessError.aspx");
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS ISSUE STATUS";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS ISSUE STATUS";
 
                 }
                 // Session.Remove("Unit");
@@ -40,6 +43,7 @@ namespace RealERPWEB.F_12_Inv
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy");
                 this.GetProjectName();
                 this.GridViewHeaderName();
+                this.GetMaterialCode();
             }
         }
 
@@ -79,7 +83,7 @@ namespace RealERPWEB.F_12_Inv
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
+       
         protected void GetProjectName()
         {
 
@@ -94,7 +98,19 @@ namespace RealERPWEB.F_12_Inv
             this.ddlProName.DataSource = ds1.Tables[0];
             this.ddlProName.DataBind();
         }
+        private void GetMaterialCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
+
+            DataSet ds3 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETRESOURCE", "%%", "", "", "", "", "", "", "", "");
+            this.ddlmatlist.DataTextField = "sirdesc";
+            this.ddlmatlist.DataValueField = "sircode";
+            this.ddlmatlist.DataSource = ds3.Tables[0];
+            this.ddlmatlist.DataBind();
+          
+        }
         protected void ibtnFindProject_Click(object sender, EventArgs e)
         {
             this.GetProjectName();
@@ -115,16 +131,25 @@ namespace RealERPWEB.F_12_Inv
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
             string refno = "%" + this.txtSrcRefNo.Text.Trim() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, "", "", "", "", "");
+            string rescode = ((this.ddlmatlist.SelectedValue.ToString() == "000000000000") ? ""
+              : ((this.ddlmatlist.SelectedValue.ToString().Substring(9) == "000") ? this.ddlmatlist.SelectedValue.ToString().Substring(0,9):  this.ddlmatlist.SelectedValue.ToString())) + "%";
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, rescode, "", "", "", "");
             if (ds1 == null)
             {
                 this.gvMatIssueStatus.DataSource = null;
                 this.gvMatIssueStatus.DataBind();
                 return;
             }
+
+            if(this.Request.QueryString["Type"] == "AmountBasis")
+            {
+                this.gvMatIssueStatus.Columns[11].Visible = true;
+                this.gvMatIssueStatus.Columns[12].Visible = true;
+            }
             this.gvMatIssueStatus.Columns[1].Visible = (this.ddlProName.SelectedValue.ToString() == "000000000000") ? true : false;
             Session["tbMatIsuStatus"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
+           
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -183,12 +208,24 @@ namespace RealERPWEB.F_12_Inv
             return dt1;
 
         }
+       
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tbMatIsuStatus"];
             this.gvMatIssueStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvMatIssueStatus.DataSource = dt;
             this.gvMatIssueStatus.DataBind();
+            this.FooterCal();
+
+        }
+        private void FooterCal()
+        {
+            DataTable dt = (DataTable)Session["tbMatIsuStatus"];
+            if (dt.Rows.Count == 0)
+                return;
+            ((Label)this.gvMatIssueStatus.FooterRow.FindControl("lblIssueAmount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(isuamt)", "")) ? 0.00 :
+                dt.Compute("sum(isuamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
 
         }
 
@@ -209,7 +246,26 @@ namespace RealERPWEB.F_12_Inv
 
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.RptMatIssStatus>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+
+            if(this.Request.QueryString["Type"] == "AmountBasis")
+            {
+                switch (comcod)
+                {
+                    case "3370":
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusCPDL", lst, null, null);
+
+                        break;
+                    default:
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatus", lst, null, null);
+                        break;
+                }
+               
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMatIssueStatusQtyBasis", lst, null, null);
+            }
+          
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));

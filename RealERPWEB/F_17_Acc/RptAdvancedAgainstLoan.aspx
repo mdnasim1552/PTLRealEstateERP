@@ -113,6 +113,13 @@
                                 <asp:DropDownList ID="ddlDeptName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
+
+                         <div class="col-md-2">
+                            <div class="from-group">
+                                <label class="control-label">Employee Name</label>
+                                <asp:DropDownList ID="ddlempname" runat="server" CssClass="chzn-select form-control" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                        </div>
                          
 
                         <div class="col-md-1">

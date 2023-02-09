@@ -34,9 +34,11 @@ namespace RealERPWEB.F_29_Fxt
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Depreciation Schedule ";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Depreciation Schedule ";
                 this.ShowInformation();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
         }

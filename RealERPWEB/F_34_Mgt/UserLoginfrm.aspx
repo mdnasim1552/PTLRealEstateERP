@@ -43,7 +43,7 @@
         }
         function IsNumberWithOneDecimal(txt, evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+            if (charCode < 33 && (charCode > 57 && charCode < 64 ) && !(charCode == 46 || charCode == 8)) {
                 return false;
             } else {
                 var len = txt.value.length;
@@ -215,7 +215,7 @@
                         OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                         Style="text-align: right"
@@ -512,7 +512,7 @@
                                 OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right"

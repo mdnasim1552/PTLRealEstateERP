@@ -29,10 +29,12 @@ namespace RealERPWEB.F_09_PImp
                     Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //----------------udate-20150120---------
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Contractor Work Order(Standard)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Contractor Work Order(Standard)";
                 this.InitialLoad();
                 this.GetContractorList();
                 this.GetProjectList();

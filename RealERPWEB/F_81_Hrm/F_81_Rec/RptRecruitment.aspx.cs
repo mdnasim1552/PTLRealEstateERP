@@ -28,9 +28,13 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     Response.Redirect("../../AcceessError.aspx");
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string Type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "JobAdvertise") ? "JOB ADVERTISEMENT INFORMATION"
-                    : (Type == "SortListing") ? "Short Listing Process" : (Type == "InterviewResult") ? "Interview Result" : (Type == "FinalSelect") ? "Final Selection" : "";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Type == "JobAdvertise") ? "JOB ADVERTISEMENT INFORMATION"
+                //    : (Type == "SortListing") ? "Short Listing Process" : (Type == "InterviewResult") ? "Interview Result" : (Type == "FinalSelect") ? "Final Selection" : "";
 
 
                 this.GetDate();

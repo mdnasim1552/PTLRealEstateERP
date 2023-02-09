@@ -28,15 +28,18 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.gvUnit.Columns[1].Visible = (Convert.ToBoolean(dr1[0]["entry"]));
                 if (Request.QueryString["Type"] != null)
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales(Land Owner) ";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales(Land Owner) ";
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales ";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Budget-Sales ";
                 }
                 
                 this.GetProjectName();
@@ -50,8 +53,14 @@ namespace RealERPWEB.F_22_Sal
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lFinalUpdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -307,8 +316,7 @@ namespace RealERPWEB.F_22_Sal
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('You have no permission');", true);
                 return;
             }
             this.SaveValue();
@@ -346,16 +354,14 @@ namespace RealERPWEB.F_22_Sal
                     var dtrows = testtble.AsEnumerable().GroupBy(x => x["fcode"]).Where(x => x.Count() > 1).Count();
                     if (dtrows > 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Code";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Found Duplicate Code');", true);                     
                         return;
                     }
 
                     var udescdesc = desctable.AsEnumerable().GroupBy(x => x["udesc"]).Where(x => x.Count() > 1).Count();
                     if (udescdesc > 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Description";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Found Duplicate Description');", true);                      
                         return;
                     }
                     break;
@@ -411,8 +417,7 @@ namespace RealERPWEB.F_22_Sal
 
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Failed');", true);
 
                     }
 
@@ -426,8 +431,9 @@ namespace RealERPWEB.F_22_Sal
 
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+       
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
             this.LoadGrid();
 
             if (ConstantInfo.LogStatus == true)
@@ -638,6 +644,7 @@ namespace RealERPWEB.F_22_Sal
                 TextBox txt20 = (TextBox)e.Row.FindControl("txtItemdescbn");
 
 
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string sales = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sales")).ToString();
 
@@ -662,6 +669,8 @@ namespace RealERPWEB.F_22_Sal
 
                 if (sales == "True")
                 {
+
+
                     txt01.Style.Add("color", "red");
 
 
@@ -713,7 +722,7 @@ namespace RealERPWEB.F_22_Sal
                 DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFANDUNITINFO", PactCode, group, totno, isLO, "", "", "", "", "");
                 if (ds3 == null)
                     return;
-                this.gvUnit.Columns[1].Visible = false;
+                //this.gvUnit.Columns[1].Visible = false;
                 ViewState["tblUnit"] = ds3.Tables[0];
                 this.Data_bind();
             }
@@ -733,6 +742,12 @@ namespace RealERPWEB.F_22_Sal
 
         protected void lbtnOk_Click1(object sender, EventArgs e)
         {
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
 
         }
     }

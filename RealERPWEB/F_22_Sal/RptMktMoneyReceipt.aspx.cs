@@ -33,10 +33,12 @@ namespace RealERPWEB.F_22_Sal
                 this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.PrintDupOrOrginal();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "MONEY RECEIPT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "MONEY RECEIPT";
 
             }
             if (this.ddlMRNO.Items.Count == 0)

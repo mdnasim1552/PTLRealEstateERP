@@ -35,7 +35,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-                
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.CommonButton();
                 this.GetCompany();
                 this.visibilityBracnh();

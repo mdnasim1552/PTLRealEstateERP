@@ -45,6 +45,9 @@ namespace RealERPWEB.F_12_Inv
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtdate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -54,8 +57,8 @@ namespace RealERPWEB.F_12_Inv
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string reqapproval = this.GetReqApproval();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
-                this.Master.Page.Title = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
+                //this.Master.Page.Title = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
 
 
 
@@ -494,12 +497,14 @@ namespace RealERPWEB.F_12_Inv
                     case "3352":
                     case "3101":
 
-                        this.dgv1.Columns[14].Visible = true;
+                        this.dgv1.Columns[13].Visible = true;
                         this.dgv1.Columns[19].Visible = true;
                         break;
-
+                    case "3368":
+                        this.dgv1.Columns[13].Visible = true;
+                        break;
                     default:
-                        this.dgv1.Columns[14].Visible = false;
+                        this.dgv1.Columns[13].Visible = false;
                         this.dgv1.Columns[19].Visible = false;
                         break;
                 }
@@ -2156,6 +2161,39 @@ namespace RealERPWEB.F_12_Inv
                 //string Reqno1 = "XXXXXXXXXXXXXX";
                 string rateidate = this.txtdate.Text.Trim();
 
+
+                if (comcod =="3368")
+                {
+                    string pactcode = Request.QueryString["prjcode"].Substring(0,2);
+                    if (pactcode != "11")
+                    {
+
+
+
+                        for (int i = 0; i < this.dgv1.Rows.Count; i++)
+                        {
+                            string bgtqty = ((Label)this.dgv1.Rows[i].FindControl("lblgvboqRate")).Text.Trim();
+                            string newrate = ((TextBox)this.dgv1.Rows[i].FindControl("txtgvsupRat")).Text.Trim();
+
+                            double aproqty = Convert.ToDouble("0" + newrate);
+                            double intbalqty = Convert.ToDouble("0" + bgtqty);
+
+                            if (intbalqty < aproqty)
+                            {
+                                string message = "New rate can not greater than Budget rate ";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                                return;
+                            }
+                        }
+                    }
+
+                }
+
+
+
+
+
+
                 foreach (DataRow dr in dt1.Rows)
                 {
 
@@ -2287,7 +2325,7 @@ namespace RealERPWEB.F_12_Inv
 
                 //string Type = this.Request.QueryString["Type"];
 
-                if (comcod == "3315" || comcod == "3316")
+                if (comcod == "3315" || comcod == "3316"|| comcod == "3333") //Alliance  As per Instruction Hafiz     
                 {
                 }
 
@@ -2300,14 +2338,37 @@ namespace RealERPWEB.F_12_Inv
                         if (Type == "RateInput")
                         {
 
-
+                            string comnam, compname, frmname, SMSHead, SMSText;
+                            bool resultsms;
                             SendSmsProcess sms = new SendSmsProcess();
-                            string comnam = hst["comnam"].ToString();
-                            string compname = hst["compname"].ToString();
-                            string frmname = "PurReqApproval.aspx?Type=Approval";
-                            string SMSHead = "Ready To Requisiton Approval(Purchase Requisition)";
-                            string SMSText = comnam + ":\n" + SMSHead + "\n" + "MRF No: " + mrfno;
-                            bool resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+
+                            comnam = hst["comnam"].ToString();
+                            compname = hst["compname"].ToString();
+                            frmname = "PurReqApproval?Type=Approval";
+                            SMSHead = "Ready To Requisiton Approval(Purchase Requisition)";
+                            SMSText = comnam + ":\n" + SMSHead + "\n" + "MRF No: " + mrfno;
+
+                            switch (comcod)
+                            {
+
+                                case "3101"://PTL
+                                 //case "3333"://Alliance                          
+
+                                    resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);
+                                    break;
+
+
+                                default:                                
+                                   
+                                     resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+                                   
+
+                                    break;
+                            
+                            
+                            }
+
+
                             if (!resultsms)
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Message Send Fail.');", true);
@@ -2316,6 +2377,7 @@ namespace RealERPWEB.F_12_Inv
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Message Send Successfully.');", true);
                             }
+
 
                         }
 

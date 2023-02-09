@@ -32,6 +32,9 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
+            ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+            this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
             lnkFinalUpdate.Attributes.Add("onClick",
            " javascript:return confirm('You sure you want to Save the record?');");
             this.TableCreate();

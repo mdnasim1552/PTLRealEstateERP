@@ -44,6 +44,7 @@ namespace RealERPWEB.F_17_Acc
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.RbtnVisibility();
                 this.GetAccCode();
@@ -1249,6 +1250,9 @@ namespace RealERPWEB.F_17_Acc
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccCashBankBook1>();
             LocalReport Rpt1 = new LocalReport();
             string Tittle = "";
+             
+                   
+                  string netamt = ((Label)this.gvcashbook.FooterRow.FindControl("lgvnetTotal")).Text;
 
             switch (comcod)
             {
@@ -1257,6 +1261,14 @@ namespace RealERPWEB.F_17_Acc
                     Tittle = "CASH BOOK";
                     //rptsl = new RealERPRPT.R_17_Acc.RPTSpecialLedgerRup();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1Credence", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    break;
+                case "3101":
+                case "3356":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1Intech", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("netamt", netamt));
+                    Rpt1.SetParameters(new ReportParameter("rptTitle", "CASH & BANK TRANSACTION"));
                     break;
 
                 default:
@@ -1281,14 +1293,14 @@ namespace RealERPWEB.F_17_Acc
                     }
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1", lst, null, null);
-
+                    Rpt1.EnableExternalImages = true;
 
                     break;
 
 
             }
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger", lst, null, null);
-            Rpt1.EnableExternalImages = true;
+           
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("txtrptTitle", Tittle));
            // Rpt1.SetParameters(new ReportParameter("txtdate", "CASH BOOK"));

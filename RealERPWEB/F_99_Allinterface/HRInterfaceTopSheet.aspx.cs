@@ -31,7 +31,12 @@ namespace RealERPWEB.F_99_Allinterface
                 //DataRow[] dr1 = ASTUtility.PagePermission1 (HttpContext.Current.Request.Url.AbsoluteUri.ToString (), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl ("lnkPrint")).Enabled = (Convert.ToBoolean (dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Salary  360 <sup>0</span>";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(),
+                    (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Salary  360 <sup>0</span>";
                 //     : (this.Request.QueryString["Type"].ToString ().Trim () == "BankPayment") ? "BANK PAYMENT INFORMATION"
                 //    : (this.Request.QueryString["Type"].ToString ().Trim () == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
                 //    : (this.Request.QueryString["Type"].ToString ().Trim () == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"

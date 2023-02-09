@@ -284,7 +284,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime" runat="server" CssClass="lblTxt lblName">Launch InTime</asp:Label>
+                                            <asp:Label ID="lbltLantime" runat="server" CssClass="lblTxt lblName">Lunch InTime</asp:Label>
                                             <asp:Label ID="lbllanintime" runat="server" Width="98" ReadOnly="true" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
                                         <div class="col-md-1 pading5px">
@@ -293,7 +293,7 @@
                                         </div>
 
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime0" runat="server" CssClass="lblTxt lblName">Launch OutTime</asp:Label>
+                                            <asp:Label ID="lbltLantime0" runat="server" CssClass="lblTxt lblName">Lunch OutTime</asp:Label>
                                             <asp:Label ID="lbllanouttime" runat="server" Width="98" ReadOnly="true" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
                                         <div class="col-md-1 pading5px">
@@ -1010,13 +1010,13 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime1" runat="server" CssClass="lblTxt lblName">Launch InTime</asp:Label>
+                                            <asp:Label ID="lbltLantime1" runat="server" CssClass="lblTxt lblName">Lunch InTime</asp:Label>
                                             <asp:DropDownList ID="ddlLanintimedw" runat="server" CssClass=" ddlPage" TabIndex="2">
                                             </asp:DropDownList>
                                         </div>
 
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltLantime2" runat="server" CssClass="lblTxt lblName">Launch OutTime</asp:Label>
+                                            <asp:Label ID="lbltLantime2" runat="server" CssClass="lblTxt lblName">Lunch OutTime</asp:Label>
                                             <asp:DropDownList ID="ddlLanouttimedw" runat="server" CssClass=" ddlPage" TabIndex="2">
                                             </asp:DropDownList>
                                         </div>

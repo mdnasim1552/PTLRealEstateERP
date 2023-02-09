@@ -60,6 +60,33 @@ namespace RealERPWEB.F_32_Mis
         protected global::AjaxControlToolkit.CalendarExtender Calfromdate;
 
         /// <summary>
+        /// lbltodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltodate;
+
+        /// <summary>
+        /// txttoDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttoDate;
+
+        /// <summary>
+        /// Caltodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender Caltodate;
+
+        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>
@@ -103,6 +130,33 @@ namespace RealERPWEB.F_32_Mis
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectInd;
+
+        /// <summary>
+        /// chkbod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chkbod;
+
+        /// <summary>
+        /// chkasondate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkasondate;
+
+        /// <summary>
+        /// lblnetbalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblnetbalance;
 
         /// <summary>
         /// MultiView1 control.

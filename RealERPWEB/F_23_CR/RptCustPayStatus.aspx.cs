@@ -43,6 +43,8 @@ namespace RealERPWEB.F_23_CR
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -53,10 +55,10 @@ namespace RealERPWEB.F_23_CR
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string Type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text =
-                    Type == "ClLedger" ? "Client Ledger": 
-                    Type == "LOClLedger" ? "Client Ledger(L/O)":
-                    Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
+                //((Label)this.Master.FindControl("lblTitle")).Text =
+                //    Type == "ClLedger" ? "Client Ledger": 
+                //    Type == "LOClLedger" ? "Client Ledger(L/O)":
+                //    Type == "ClPayDetails" ? "Client Payment Details" : "PAYMENT STATUS";
 
                 
                 //Type == "RecPayABal" ? "RECEIVED AND PAYMENT STATUS" : "CUSTOMER PAYMENT STATUS"; // "RECEIVED AND PAYMENT STATUS";
@@ -2378,10 +2380,13 @@ namespace RealERPWEB.F_23_CR
             double treceived = Convert.ToDouble((Convert.IsDBNull(tblins.Compute("Sum(paidamt)", "")) ? 0.00
                     : tblins.Compute("Sum(paidamt)", "")));
 
+
+
             double fcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["fcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["fcheque"]) : 0.00;
             double retcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["retcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["retcheque"]) : 0.00;
             double pcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["pcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["pcheque"]) : 0.00;
             double reconamt = treceived - (fcheque + retcheque + pcheque);
+            double cheqeinhand = tsalevalue - treceived;
             double netbal = tsalevalue - reconamt;
 
 
@@ -2598,6 +2603,148 @@ namespace RealERPWEB.F_23_CR
             //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+
+        private void PrintCleintLedgergenAngan()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string comcod = this.GetComeCode();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string custid = this.ddlCustName.SelectedValue.ToString();
+            string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+
+            string CallType = this.ClientCalltype();
+            string Procedure = this.ProcedureType();
+            // DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            DataSet ds5 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, "", "", "", "", "", "");
+
+            DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
+
+            double aprment = Convert.ToDouble(ds5.Tables[1].Rows[0]["aptprice"]);
+            double carparking = Convert.ToDouble(ds5.Tables[1].Rows[0]["carparking"]);
+            double utility = Convert.ToDouble(ds5.Tables[1].Rows[0]["utility"]);
+            double modicharge = Convert.ToDouble(ds5.Tables[1].Rows[0]["adwrk"]);
+            double delcharge = Convert.ToDouble(ds5.Tables[1].Rows[0]["delchg"]);
+            double regisfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["regavat"]);
+            double assciationfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["devcharge"]);
+            double transfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["transfee"]);
+            double bgcost = Convert.ToDouble(ds5.Tables[1].Rows[0]["bgcost"]);
+            double pother = Convert.ToDouble(ds5.Tables[1].Rows[0]["pother"]);
+            double tamount = Convert.ToDouble(ds5.Tables[1].Rows[0]["tamt"]);
+            //double proadd = Convert.ToDouble(ds5.Tables[1].Rows[0]["proadd"]);
+
+
+
+
+            // rdlc start
+
+            string rptwelfarefund = Convert.ToDecimal(ds5.Tables[1].Rows[0]["wefund"]).ToString("#,##0;(#,##0); ");
+            string rptothers = Convert.ToDecimal(ds5.Tables[1].Rows[0]["others"]).ToString("#,##0;(#,##0); ");
+            string rpttoprice = Convert.ToDecimal(ds5.Tables[1].Rows[0]["acprice"]).ToString("#,##0;(#,##0); ");
+            string rptcooperative = Convert.ToDecimal(ds5.Tables[1].Rows[0]["coorcost"]).ToString("#,##0;(#,##0); ");
+            string rptdiscount = Convert.ToDecimal(ds5.Tables[1].Rows[0]["discount"]).ToString("#,##0;(#,##0); ");
+
+
+            DataTable dtsum = ds5.Tables[2];
+            double tsalevalue = Convert.ToDouble(ds5.Tables[1].Rows[0]["acprice"]);
+            double treceived = Convert.ToDouble((Convert.IsDBNull(tblins.Compute("Sum(paidamt)", "")) ? 0.00
+                    : tblins.Compute("Sum(paidamt)", "")));
+
+
+
+            double fcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["fcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["fcheque"]) : 0.00;
+            double retcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["retcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["retcheque"]) : 0.00;
+            double pcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["pcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["pcheque"]) : 0.00;
+            double reconamt = treceived - (fcheque + retcheque + pcheque);
+            double cheqeinhand = tsalevalue - treceived;
+            double netbal = tsalevalue - reconamt;
+
+
+
+            string rptunittype = ds5.Tables[1].Rows[0]["unittype"].ToString();
+            string txtdate = "Print date: " + this.txtDate.Text.Trim();
+            string rptcustname = ds5.Tables[1].Rows[0]["name"].ToString();
+            string rptcustadd = ds5.Tables[1].Rows[0]["peraddress"].ToString();
+            string rptcustphone = ds5.Tables[1].Rows[0]["telephone"].ToString();
+            string rptpactdesc = ds5.Tables[1].Rows[0]["projectname"].ToString();
+            string projadd = ds5.Tables[1].Rows[0]["proadd"].ToString();
+
+            string rptunitdesc = ds5.Tables[1].Rows[0]["aptname"].ToString();
+            string rptusize = ds5.Tables[1].Rows[0]["aptsize"].ToString();
+            string rptsalesteam = ds5.Tables[1].Rows[0]["salesteam"].ToString();
+            string rptsalesdate = Convert.ToDateTime(ds5.Tables[1].Rows[0]["saledate"]).ToString("dd-MMM-yyyy");
+            string rptagreementdate = (Convert.ToDateTime(ds5.Tables[1].Rows[0]["agdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds5.Tables[1].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
+            string rpthandoverdate = (Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy");
+
+            string rptdelcharge = (delcharge > 0) ? delcharge.ToString("#,##0;(#,##0); ") : "";
+
+            //string txtearlyben = (ebenamt > 0) ? ("early benefit: " + ebenamt.ToString("#,##0;(#,##0); ")) : ""; ;
+
+            string printFooter = ASTUtility.Concat(compname, username, printdate);
+            string comlogo = new Uri(Server.MapPath(@"~\image\logo" + comcod + ".jpg")).AbsoluteUri;
+
+            var lst = tblins.DataTableToList<RealEntity.C_23_CRR.EClassSales_03.EClassClientPayDetails>();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedger02Angan", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("ComLogo", comlogo));
+            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            Rpt1.SetParameters(new ReportParameter("Compadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("title", "Client Ledger"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", txtdate));
+
+            Rpt1.SetParameters(new ReportParameter("rptcustname", rptcustname));
+            Rpt1.SetParameters(new ReportParameter("rptCustAdd", rptcustadd));
+            Rpt1.SetParameters(new ReportParameter("rptCustPhone", rptcustphone));
+            Rpt1.SetParameters(new ReportParameter("rptpactdesc", rptpactdesc));
+            Rpt1.SetParameters(new ReportParameter("projAddress", projadd));
+            Rpt1.SetParameters(new ReportParameter("rptUnitDesc", rptunitdesc));
+            Rpt1.SetParameters(new ReportParameter("rptUsize", rptusize));
+            Rpt1.SetParameters(new ReportParameter("rptSalesteam", rptsalesteam));
+            Rpt1.SetParameters(new ReportParameter("rptsalesdate", rptsalesdate));
+            Rpt1.SetParameters(new ReportParameter("rptagreementdate", rptagreementdate));
+            Rpt1.SetParameters(new ReportParameter("rptHandoverdate", rpthandoverdate));
+
+            Rpt1.SetParameters(new ReportParameter("txtbgcost", bgcost.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("rptapartmentprice", aprment.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("rptcarparking", carparking.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("rptUtility", utility.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("pother", pother.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("tamount", tamount.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("rptcooperative", rptcooperative));
+            Rpt1.SetParameters(new ReportParameter("regisfee", regisfee.ToString("#,##0;(#,##0); ")));
+            //Rpt1.SetParameters(new ReportParameter("transfee", transfee.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("modicharge", modicharge.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("welfarefund", rptwelfarefund));
+            Rpt1.SetParameters(new ReportParameter("rptOthers", rptothers));
+            Rpt1.SetParameters(new ReportParameter("receivableTotal", rpttoprice));
+            Rpt1.SetParameters(new ReportParameter("lessdisamt", rptdiscount));
+
+            Rpt1.SetParameters(new ReportParameter("txttovalueamt", rpttoprice));
+            Rpt1.SetParameters(new ReportParameter("txttoreceived", treceived.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtfcheque", fcheque.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtrcheque", retcheque.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtpcheque", pcheque.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtnetencash", reconamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtnetbalance", netbal.ToString("#,##0;(#,##0); ")));
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            // rdlc  end 
+
+
+        }
+
         private void PrintCleintLedgerFinlay()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -3325,10 +3472,15 @@ namespace RealERPWEB.F_23_CR
                     break;
                 case "3351":
                 case "3352":
-                case "3101":
+                //case "3101":
                     this.PrintCleintLedgergenP2P();
                     break;
-              
+
+                case "3374":
+                case "3101":
+                    this.PrintCleintLedgergenAngan();
+                    break;
+
                 default:
                     this.PrintCleintLedgergen();
                     break;

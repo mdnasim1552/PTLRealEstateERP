@@ -32,14 +32,15 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Entry") ? "Sub-Contractor Bill Requisition"
-                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit"
-                    : (this.Request.QueryString["Type"].ToString() == "CSApproval") ? " Sub-Contractor Bill CS Approval"
-                    : (this.Request.QueryString["Type"].ToString() == "CSAppEdit") ? " Sub-Contractor Bill CS Approval Edit"
-                    : "Labour Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Entry") ? "Sub-Contractor Bill Requisition"
+                //    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit"
+                //    : (this.Request.QueryString["Type"].ToString() == "CSApproval") ? " Sub-Contractor Bill CS Approval"
+                //    : (this.Request.QueryString["Type"].ToString() == "CSAppEdit") ? " Sub-Contractor Bill CS Approval Edit"
+                //    : "Labour Issue Information";
 
 
 
@@ -68,8 +69,15 @@ namespace RealERPWEB.F_09_PImp
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -180,6 +188,38 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
+        protected void lbtnDelItem_Click(object sender, EventArgs e)
+        {
+            int gvrowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowindex = (this.grvissue.PageSize) * (this.grvissue.PageIndex) + gvrowindex;
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblbillreq"];
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string Labcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+            string Flrcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblgvflrCode")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "DELETELAB_REQUISITION_ITEM", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblbillreq");
+            ViewState["tblbillreq"] = dv.ToTable();
+            this.grvissue_DataBind();
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Labour Requistion Information";
+                string eventdesc = "Delete Requsition Item";
+                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "REQ No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
+                        ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
 
@@ -442,7 +482,7 @@ namespace RealERPWEB.F_09_PImp
 
                 this.lbtnPrevISSList.Visible = true;
                 this.ddlPrevISSList.Visible = true;
-                this.txtSrcPreBill.Visible = true;
+               
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
@@ -471,7 +511,7 @@ namespace RealERPWEB.F_09_PImp
 
             this.lbtnPrevISSList.Visible = false;
             this.ddlPrevISSList.Visible = false;
-            this.txtSrcPreBill.Visible = false;
+          
             this.ibtnPreBillList.Visible = false;
 
             this.PnlRes.Visible = true;
@@ -631,6 +671,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3352": //p2p
                 case "8306": //p2p
                 case "3370": //cpdl
+                case "3368": //Finaly
                 case "3101": //pintech
 
                     if (this.Request.QueryString["Type"] == "CSApproval" || this.Request.QueryString["Type"] == "CSAppEdit")
@@ -1082,6 +1123,7 @@ namespace RealERPWEB.F_09_PImp
                 switch (comcod)
                 {
                     case "3101":
+                    case "3368"://Finlay
                     case "3370":
                         if (dgvQty > balqty)
                         {
@@ -1275,6 +1317,7 @@ namespace RealERPWEB.F_09_PImp
                         break;
 
                     case "3101": // ptl
+                    case "3368": // Finaly
                     case "3370": // cpdl
                         txtlabrate.ReadOnly = false;
                         txtgvamount.ReadOnly = true;
@@ -1531,6 +1574,12 @@ namespace RealERPWEB.F_09_PImp
                 }
             }
             Session["tblbillreq"] = dt;
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
         }
     }
 }

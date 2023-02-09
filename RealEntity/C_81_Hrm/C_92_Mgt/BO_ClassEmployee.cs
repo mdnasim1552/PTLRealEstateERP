@@ -38,6 +38,18 @@ namespace RealEntity.C_81_Hrm.C_92_mgt
 
       }
         [Serializable]
+        public class RtpServiceHistoryProjectWise
+        {
+            public string empid { get; set; }
+            public string desig { get; set; }
+            public string empname { get; set; }
+            public string idcardno { get; set; }
+            public string serlength { get; set; }
+
+            public RtpServiceHistoryProjectWise() { }
+        }
+
+            [Serializable]
         public class EmployeeIDCardInfo
         {
             //a.comcod,  a.rowid,  a.company, a.secid, a.desigid,  a.empid, a.idcardno, a.companyname, a.section, a.desig, a.empname, joindate=format(a.joindate,'dd-MMM-yyy'), a.birthdate, a.slength,resdat

@@ -28,12 +28,14 @@ namespace RealERPWEB.F_32_Mis
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "PrjIncome") ? "BUDGETED INCOME - ALL PROJECT(SUMMARY)" :
-                    (this.Request.QueryString["Type"].ToString().Trim() == "MasPVsMonPVsExAllPro") ? "Master Plan, Monthly Plan Vs Executon - All Project" :
-                    (this.Request.QueryString["Type"].ToString().Trim() == "PrjExecution") ? "Work Execuation - All Project" :
-                    (this.Request.QueryString["Type"].ToString().Trim() == "ConBgdVsExe") ? "Budget Vs Execution. All Project" : "PROJECT ISSUE STATEMENT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "PrjIncome") ? "BUDGETED INCOME - ALL PROJECT(SUMMARY)" :
+                //    (this.Request.QueryString["Type"].ToString().Trim() == "MasPVsMonPVsExAllPro") ? "Master Plan, Monthly Plan Vs Executon - All Project" :
+                //    (this.Request.QueryString["Type"].ToString().Trim() == "PrjExecution") ? "Work Execuation - All Project" :
+                //    (this.Request.QueryString["Type"].ToString().Trim() == "ConBgdVsExe") ? "Budget Vs Execution. All Project" : "PROJECT ISSUE STATEMENT";
                 this.SectionView();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //  this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }

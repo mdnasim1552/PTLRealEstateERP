@@ -31,9 +31,12 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Advanced Details";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Advanced Details";
 
                 var dtoday = System.DateTime.Today;
                 this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
@@ -122,8 +125,8 @@ namespace RealERPWEB.F_14_Pro
             {
 
             }
-            //Session["Report1"] = gvsupstatus;
-            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            Session["Report1"] = gvsupstatus;
+            ((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 
@@ -142,7 +145,7 @@ namespace RealERPWEB.F_14_Pro
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["tblsupinfo"];
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
-
+            String Suppliername = this.ddlSuplist.SelectedItem.Text.Trim();
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSupAdvanceDetails", lst, null, null);
@@ -152,6 +155,7 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.SetParameters(new ReportParameter("RptTitle", stindex=="0"? "Supplier Advance Details": "Supplier Bill Details"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Suppliername","Supplier Name :" + Suppliername));
             Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
             Session["Report1"] = Rpt1;

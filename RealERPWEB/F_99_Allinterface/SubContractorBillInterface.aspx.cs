@@ -35,9 +35,11 @@ namespace RealERPWEB.F_99_Allinterface
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"])) ;
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "SUB CONTRACTOR INTERFACE";//
+                //((Label)this.Master.FindControl("lblTitle")).Text = "SUB CONTRACTOR INTERFACE";//
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.RadioButtonList1.SelectedIndex = 0;
@@ -77,6 +79,8 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                // case "3101": // ptl
+               
+                case "3368": // Finlay
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -99,7 +103,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void CheckHyperLink()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3101")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3368" || comcod == "3101")
             {
                 hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
             }
@@ -186,6 +190,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3101":
                 case "3370"://
+                case "3368"://
                     billchk = "Bill Checked";
                     break;
 
@@ -272,15 +277,26 @@ namespace RealERPWEB.F_99_Allinterface
             string frecon = this.Gettxtfrecon();
             string billchk = this.GettxtBillChecked();
             string orderApp = "";
+            string billcs = "";
+            string ratecsapp = "";
             switch (comcod)
             {
-                case "3101":
+                case "3101":              
                 case "3370"://
                     orderApp = "Bill Generate";
+                    billcs = "Bill CS";
+                    ratecsapp = "Bill CS APP";
+                    break;
+                case "3368"://
+                    orderApp = "Bill Generate";
+                    billcs = "Rate CS";
+                    ratecsapp = "Rate CS APP";
                     break;
 
                 default:
                     orderApp = "Order App.";
+                    billcs = "Bill CS";
+                    ratecsapp = "Bill CS APP";
                     break;
             }
 
@@ -288,8 +304,9 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Monthly Plan</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["execount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Execution</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["allreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Req. Status</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Bill CS</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>Bill CS APP</div></div></div>";
+            
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billreq"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>"+billcs+"</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>"+ratecsapp+"</div></div></div>";
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>Work Order</div></div></div>";
 
@@ -1123,6 +1140,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (GetCompCode())
             {
                 case "3101":
+                case "3368"://Finlay
                 case "3370":
                     isShow = true;
                     break;
@@ -1879,7 +1897,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
 
-
+                    case "3368"://Finaly
                     case "3370":   //cpdl                      
                     case "1205":   //p2p
                     case "3351":   //p2p

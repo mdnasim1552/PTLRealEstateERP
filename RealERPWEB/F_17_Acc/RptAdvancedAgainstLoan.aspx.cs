@@ -30,14 +30,18 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Advance Againts Loan";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Advance Againts Loan";
 
                 var dtoday = System.DateTime.Today;
                 this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = new System.DateTime(dtoday.Year, dtoday.Month, 1).ToString("dd-MMM-yyyy");
                 this.DepartName();
+                this.EmployeeName();
             }
 
         }
@@ -76,10 +80,25 @@ namespace RealERPWEB.F_17_Acc
             this.ddlDeptName.DataBind();
             ViewState["tbldept"] = ds1.Tables[0];
         }
+        private void EmployeeName()
+        {
+            string comcod = this.GetComeCode();
+            string SrchSupplier = "%%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "GETEMPLOYEENAME", SrchSupplier, "", "", "", "", "", "", "", "");
+            if(ds1 == null)
+            {
+                return;
+            }
+            
+            this.ddlempname.DataTextField = "empname";
+            this.ddlempname.DataValueField = "empcode";
+            this.ddlempname.DataSource = ds1.Tables[0];
+            this.ddlempname.DataBind();
+            ViewState["tblemp"] = ds1.Tables[0];
+        }
 
 
-
-    protected void lnkbtnOk_Click(object sender, EventArgs e)
+        protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
 
             try
@@ -89,7 +108,8 @@ namespace RealERPWEB.F_17_Acc
                 string frmdate = txtfrmdate.Text.ToString();
                 string todate = txttodate.Text.ToString();
                 string deptcode = this.ddlDeptName.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddlDeptName.SelectedValue.ToString() + "%";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTADVANCEDLOAN", frmdate, todate, deptcode, "", "", "", "", "", "");
+                string empcode = this.ddlempname.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlempname.SelectedValue.ToString() + "%";
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTADVANCEDLOAN", frmdate, todate, deptcode, empcode, "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvadvLoan.DataSource = null;

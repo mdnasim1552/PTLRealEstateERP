@@ -272,7 +272,7 @@ namespace RealERPWEB.F_15_DPayReg
             this.ddlpayeelist.DataTextField = "gdesc";
             this.ddlpayeelist.DataValueField = "gcod";
             this.ddlpayeelist.DataSource = ds1.Tables[0];
-            Session["tblpayeetype"] = ds1.Tables[0];
+            ViewState["tblpayeetype"] = ds1.Tables[0];
             this.ddlpayeelist.DataBind();
             this.ddlpayeelist.SelectedValue = "";
         }
@@ -347,7 +347,7 @@ namespace RealERPWEB.F_15_DPayReg
 
         public void GetRecAndPayto()
         {
-            Session.Remove("tblrecandPayto");
+           
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
 
@@ -361,7 +361,7 @@ namespace RealERPWEB.F_15_DPayReg
 
             try
             {
-                Session.Remove("tbChqSign");
+                
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -380,7 +380,7 @@ namespace RealERPWEB.F_15_DPayReg
 
 
 
-                Session["tbChqSign"] = this.HiddenSameDate(ds1.Tables[0]);
+                ViewState["tbChqSign"] = this.HiddenSameDate(ds1.Tables[0]);
 
 
 
@@ -465,7 +465,7 @@ namespace RealERPWEB.F_15_DPayReg
 
         private void Data_Bind()
         {
-            DataTable dt = (DataTable)Session["tbChqSign"];
+            DataTable dt = (DataTable)ViewState["tbChqSign"];
             this.dgv1.DataSource = dt;
             this.dgv1.DataBind();
 
@@ -488,7 +488,7 @@ namespace RealERPWEB.F_15_DPayReg
 
         private void SaveValue()
         {
-            DataTable dt = (DataTable)Session["tbChqSign"];
+            DataTable dt = (DataTable)ViewState["tbChqSign"];
             double chequeamt = 0.00;
             double tax = 0.00;
             string chequedate;
@@ -582,8 +582,8 @@ namespace RealERPWEB.F_15_DPayReg
         }
         protected void CalculatrGridTotal()
         {
-            DataTable dttotal = (DataTable)Session["tbltopage"];
-            double cramt = Convert.ToDouble(((DataTable)Session["tbltopage"]).Rows[0]["cramt"]);
+            DataTable dttotal = (DataTable)ViewState["tbltopage"];
+            double cramt = Convert.ToDouble(((DataTable)ViewState["tbltopage"]).Rows[0]["cramt"]);
             ((Label)this.dgv1.FooterRow.FindControl("lgvFCrAmt")).Text = cramt.ToString("#,##0;-#,##0; ");
         }
 
@@ -1664,7 +1664,7 @@ namespace RealERPWEB.F_15_DPayReg
         }
         protected void dgv1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            DataTable tbl1 = (DataTable)Session["tbChqSign"];
+            DataTable tbl1 = (DataTable)ViewState["tbChqSign"];
 
             string Cactcode = ((DropDownList)this.dgv1.Rows[e.RowIndex].FindControl("ddlCactcode")).SelectedValue.ToString();
             string Cactdesc = ((DropDownList)this.dgv1.Rows[e.RowIndex].FindControl("ddlCactcode")).SelectedItem.Text.Trim();
@@ -1683,14 +1683,14 @@ namespace RealERPWEB.F_15_DPayReg
             tbl1.Rows[index]["amount"] = Amount;
             //  tbl1.Rows[index]["narr"] = Narration;
 
-            Session["tbChqSign"] = tbl1;
+            ViewState["tbChqSign"] = tbl1;
             this.dgv1.EditIndex = -1;
             this.Data_Bind();
         }
 
         private void Session_tbChqSign_Update()
         {
-            DataTable tbl1 = (DataTable)Session["tbChqSign"];
+            DataTable tbl1 = (DataTable)ViewState["tbChqSign"];
             int index = 0;
 
             foreach (GridViewRow gv1 in dgv1.Rows)
@@ -1710,7 +1710,7 @@ namespace RealERPWEB.F_15_DPayReg
 
 
 
-            Session["tbChqSign"] = tbl1;
+            ViewState["tbChqSign"] = tbl1;
         }
 
 
@@ -1951,7 +1951,7 @@ namespace RealERPWEB.F_15_DPayReg
                 string cactcode = this.ddlBankName.SelectedValue.ToString();
                 string vtcode = "";
                 /////////////////////////////////////////////////////////
-                DataTable dt = (DataTable)Session["tbChqSign"];
+                DataTable dt = (DataTable)ViewState["tbChqSign"];
                 DataTable dt1 = dt.Copy();
                 DataView dv = dt1.DefaultView;
                 dv.RowFilter = ("slnum='" + slnum + "'");
@@ -2057,8 +2057,8 @@ namespace RealERPWEB.F_15_DPayReg
                 else
                 {
                     DataSet ds5 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "GETNEWVOUCHER", voudat, "PV", "", "", "", "", "", "", "");
-                    Session["NEWVOU"] = ds5.Tables[0];
-                    DataTable dt12 = (DataTable)Session["NEWVOU"];
+                    ViewState["NEWVOU"] = ds5.Tables[0];
+                    DataTable dt12 = (DataTable)ViewState["NEWVOU"];
 
                     if (this.Request.QueryString["Type"] == "Acc")
                     {
@@ -2392,7 +2392,7 @@ namespace RealERPWEB.F_15_DPayReg
                     }
 
                 }
-                Session["tbChqSign"] = dt;
+                ViewState["tbChqSign"] = dt;
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully.";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                 this.btnUpdate.Visible = false;
@@ -2470,7 +2470,7 @@ namespace RealERPWEB.F_15_DPayReg
         {
             try
             {
-                Session.Remove("tbChqSign");
+               
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -2482,7 +2482,7 @@ namespace RealERPWEB.F_15_DPayReg
                 if (ds1.Tables[0].Rows.Count == 0)
                     return;
 
-                Session["dscheqeinfo"] = ds1;
+                ViewState["dscheqeinfo"] = ds1;
                 this.printChequeIssue();
 
             }
@@ -2504,7 +2504,7 @@ namespace RealERPWEB.F_15_DPayReg
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
 
-            DataSet ds1 = (DataSet)Session["dscheqeinfo"];
+            DataSet ds1 = (DataSet)ViewState["dscheqeinfo"];
             DataTable dt1 = ds1.Tables[0];
             DataTable dt2 = ds1.Tables[1];
             DataTable dt3 = ds1.Tables[2];

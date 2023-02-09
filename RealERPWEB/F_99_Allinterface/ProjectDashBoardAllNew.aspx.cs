@@ -21,7 +21,13 @@ namespace RealERPWEB.F_99_Allinterface
             if (!IsPostBack)
             {
                 //  this.Master.FindControl("printpart").Visible = false;
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Project Status At a Glance";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Project Status At a Glance";
+                //this.Master.Page.Title = "Project Status At a Glance";
+
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("=")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('=') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp+1), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 getprojmodule();

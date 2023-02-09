@@ -30,10 +30,12 @@ namespace RealERPWEB.F_02_Fea
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["lnkPrint"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "PROJECT FEASIBILITY REPORT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "PROJECT FEASIBILITY REPORT";
 
                 this.ProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
         }

@@ -110,7 +110,7 @@
                 k1.textBoxHandler(event);
             });
 
-           // var gvisu = $('#<%=this.grvissue.ClientID %>');
+          
             //$.keynavigation(gvisu);
             // gvisu.Scrollable();
            // $('.chzn-select').chosen({ search_contains: true });
@@ -122,6 +122,7 @@
                 });
             });
 
+             var gvisu = $('#<%=this.grvissue.ClientID %>');
             //gvisu.gridviewScroll({
             //    width: 1265,
             //    height: 420,
@@ -138,7 +139,7 @@
 
             var gridViewScroll = new GridViewScroll({
                 elementID: "grvissue",
-                width: 1265,
+                width: 1600,
                 height: 300,
                 freezeColumn: true,
                 freezeFooter: true,
@@ -321,7 +322,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvMSRSlNo" runat="server" Height="16px"
+                                        <asp:Label ID="lblgvMSRSlNo" runat="server" 
                                             Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                     </ItemTemplate>
@@ -346,12 +347,12 @@
 
                                 <asp:TemplateField HeaderText="Floor Desc.">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnDeleteBill" runat="server" Font-Bold="True"
+                                        <asp:LinkButton ID="lbtnDeleteBill" runat="server" Font-Bold="True" 
                                             Font-Size="13px" ForeColor="#000" OnClick="lbtnDeleteBill_Click"
                                             Style="text-align: center;" Width="90px" CssClass="btn btn-primary primarygrdBtn">Delete All</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblFloordes" runat="server"
+                                        <asp:Label ID="lblFloordes" runat="server"  CssClass="textwrap" 
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdes")) %>' Width="90px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -359,9 +360,9 @@
                                 <asp:TemplateField HeaderText="Description">
 
                                     <ItemTemplate>
-                                        <asp:Label ID="gvlblgrp" runat="server" CssClass="d-none"
+                                        <asp:Label ID="gvlblgrp" runat="server" CssClass="d-none"  
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'></asp:Label>
-                                        <asp:Label ID="lbllabdesc" runat="server" style="word-wrap: break-word"
+                                        <asp:Label ID="lbllabdesc" runat="server"  CssClass="textwrap"
                                             Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>" +
                                                                          (DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ? "<br>" : "") + 

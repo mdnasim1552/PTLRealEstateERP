@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>bc0ae58d-2240-4ed2-9a1f-ceb0e0611efa</rd:DataSourceID>
+      <rd:DataSourceID>3918f546-945e-4d35-8e6d-d93923047d02</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -41,6 +41,10 @@
           <DataField>netrcvamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="opamt">
+          <DataField>opamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="pactcode">
           <DataField>pactcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -69,6 +73,14 @@
           <DataField>tmoutamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="trninamt">
+          <DataField>trninamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="trnoutamt">
+          <DataField>trnoutamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="varamt">
           <DataField>varamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -77,7 +89,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_12_Inv</rd:DataSetName>
         <rd:TableName>InventoryAmountBasis</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.EclassPurchase+InventoryAmountBasis, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.EclassPurchase+InventoryAmountBasis, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -107,7 +119,7 @@
                   <Width>0.49219in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62153in</Width>
+                  <Width>0.65278in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.55903in</Width>
@@ -700,7 +712,6 @@ Consumption	</Value>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -712,7 +723,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!tminamt.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!trninamt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -748,7 +759,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Fields!tmoutamt.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!trnoutamt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1152,7 +1163,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tminamt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trninamt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1189,7 +1200,7 @@ Consumption	</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!tmoutamt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Sum(Fields!trnoutamt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1513,7 +1524,7 @@ Consumption	</Value>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.12583in</Top>
             <Height>0.60417in</Height>
-            <Width>7.71092in</Width>
+            <Width>7.74217in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1524,7 +1535,7 @@ Consumption	</Value>
         <Height>0.80209in</Height>
         <Style />
       </Body>
-      <Width>7.72791in</Width>
+      <Width>7.74217in</Width>
       <Page>
         <PageHeader>
           <Height>1.11333in</Height>

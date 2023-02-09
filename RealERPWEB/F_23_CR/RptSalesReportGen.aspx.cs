@@ -30,11 +30,14 @@ namespace RealERPWEB.F_23_CR
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmDate.Text = date;
                 //   this.txttodate.Text = Convert.ToDateTime(txtfrmDate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Account Receivable & Unsold Flates Statement";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Account Receivable & Unsold Flates Statement";
                 this.GetProjectName();
             }
         }

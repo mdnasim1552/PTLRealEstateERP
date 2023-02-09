@@ -920,8 +920,13 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string encashamt { get; set; }
 
             public string rmks { get; set; }
-
+            
             public string ttlencashamt { get; set; }
+
+            public string monthid { get; set; }
+            public string encashmonid { get; set; }
+            public string encashmondesc { get; set; }
+
 
 
             public SalEncashment()

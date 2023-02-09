@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace RealERPWEB.F_38_AI
 {
     public partial class RptOngoingProjects : System.Web.UI.Page
@@ -18,11 +19,18 @@ namespace RealERPWEB.F_38_AI
         {
             if (!IsPostBack)
             {
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //if (dr1.Length == 0)
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "On Going Projects";
+                this.Master.Page.Title = "On Going Projects";
+
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                //this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -33,7 +41,7 @@ namespace RealERPWEB.F_38_AI
 
         private string GetCompCode()
         {
-            
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
@@ -42,7 +50,7 @@ namespace RealERPWEB.F_38_AI
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-           
+
         }
 
         protected void lnkbtnok_Click(object sender, EventArgs e)
@@ -63,7 +71,7 @@ namespace RealERPWEB.F_38_AI
 
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -75,7 +83,7 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = this.GetCompCode();               
+                string comcod = this.GetCompCode();
                 string comnam = hst["comnam"].ToString();
                 string compname = hst["compname"].ToString();
                 string comsnam = hst["comsnam"].ToString();
@@ -85,7 +93,7 @@ namespace RealERPWEB.F_38_AI
                 string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
                 string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-                DataTable ds =(DataTable)Session["tblongoingproject"];
+                DataTable ds = (DataTable)Session["tblongoingproject"];
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds.DataTableToList<RealEntity.C_38_AI.AIallPrint.RptOngoingProject>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptOngoingProjectPrint", lst, null, null);
@@ -95,7 +103,7 @@ namespace RealERPWEB.F_38_AI
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "ONGOING PROJECTS"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("date", "From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() ));
+                Rpt1.SetParameters(new ReportParameter("date", "From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim()));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

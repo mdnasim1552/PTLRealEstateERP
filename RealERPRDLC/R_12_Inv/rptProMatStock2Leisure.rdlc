@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>443963a8-0474-42a8-8694-f89c7beaf965</rd:DataSourceID>
+      <rd:DataSourceID>79f50ad2-e638-46b3-aa6c-c5a6ec1b3974</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -28,6 +28,10 @@
         <Field Name="avgrate">
           <DataField>avgrate</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="bgdbla">
+          <DataField>bgdbla</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="bgdqty">
           <DataField>bgdqty</DataField>
@@ -97,7 +101,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_12_Inv</rd:DataSetName>
         <rd:TableName>ErptStock</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.ErptStock, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_12_Inv.ErptStock, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -130,34 +134,37 @@
                   <Width>0.59999in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60833in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.58542in</Width>
-                </TablixColumn>
-                <TablixColumn>
                   <Width>0.59375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.68126in</Width>
+                  <Width>0.57708in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.56459in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.5625in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63541in</Width>
+                  <Width>0.62918in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.58959in</Width>
+                  <Width>0.52083in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.76041in</Width>
+                  <Width>0.55208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.74167in</Width>
+                  <Width>0.54792in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.72918in</Width>
+                  <Width>0.60416in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.67917in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.6771in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -322,22 +329,25 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.67917in</Width>
+                                <Width>0.6634in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.675in</Width>
+                                <Width>0.69077in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.59999in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.60833in</Width>
-                              </TablixColumn>
-                              <TablixColumn>
-                                <Width>0.58542in</Width>
-                              </TablixColumn>
-                              <TablixColumn>
                                 <Width>0.59375in</Width>
+                              </TablixColumn>
+                              <TablixColumn>
+                                <Width>0.57321in</Width>
+                              </TablixColumn>
+                              <TablixColumn>
+                                <Width>0.56131in</Width>
+                              </TablixColumn>
+                              <TablixColumn>
+                                <Width>0.56964in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -382,9 +392,10 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
-                                      <ColSpan>6</ColSpan>
+                                      <ColSpan>7</ColSpan>
                                     </CellContents>
                                   </TablixCell>
+                                  <TablixCell />
                                   <TablixCell />
                                   <TablixCell />
                                   <TablixCell />
@@ -501,6 +512,64 @@
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>Textbox28</rd:DefaultName>
+                                        <Style>
+                                          <Border>
+                                            <Color>LightGrey</Color>
+                                            <Style>Solid</Style>
+                                          </Border>
+                                          <BackgroundColor>WhiteSmoke</BackgroundColor>
+                                          <PaddingLeft>2pt</PaddingLeft>
+                                          <PaddingRight>2pt</PaddingRight>
+                                          <PaddingTop>2pt</PaddingTop>
+                                          <PaddingBottom>2pt</PaddingBottom>
+                                        </Style>
+                                      </Textbox>
+                                    </CellContents>
+                                  </TablixCell>
+                                  <TablixCell>
+                                    <CellContents>
+                                      <Textbox Name="Textbox11">
+                                        <CanGrow>true</CanGrow>
+                                        <KeepTogether>true</KeepTogether>
+                                        <Paragraphs>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Budget.</Value>
+                                                <Style>
+                                                  <FontStyle>Normal</FontStyle>
+                                                  <FontFamily>cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                  <TextDecoration>None</TextDecoration>
+                                                  <Color>#000000</Color>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Balance</Value>
+                                                <Style>
+                                                  <FontStyle>Normal</FontStyle>
+                                                  <FontFamily>cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                  <TextDecoration>None</TextDecoration>
+                                                  <Color>#000000</Color>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                        </Paragraphs>
+                                        <rd:DefaultName>Textbox11</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -665,6 +734,7 @@
                               <TablixMember />
                               <TablixMember />
                               <TablixMember />
+                              <TablixMember />
                             </TablixMembers>
                           </TablixColumnHierarchy>
                           <TablixRowHierarchy>
@@ -679,9 +749,10 @@
                             </Border>
                           </Style>
                         </Tablix>
-                        <ColSpan>6</ColSpan>
+                        <ColSpan>7</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -857,10 +928,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.76041in</Width>
+                                <Width>0.60416in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.74167in</Width>
+                                <Width>0.67917in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1297,6 +1368,42 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>rcvqty1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="bgdbla">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!bgdbla.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>bgdbla</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1830,6 +1937,43 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Sum(Fields!bgdbla.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="trninqty1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -2221,6 +2365,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -2242,7 +2387,7 @@
             <Top>0.04167in</Top>
             <Left>0.00292in</Left>
             <Height>1.05208in</Height>
-            <Width>11.33125in</Width>
+            <Width>11.35209in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2253,7 +2398,7 @@
         <Height>1.15625in</Height>
         <Style />
       </Body>
-      <Width>11.33417in</Width>
+      <Width>11.35501in</Width>
       <Page>
         <PageHeader>
           <Height>0.83056in</Height>

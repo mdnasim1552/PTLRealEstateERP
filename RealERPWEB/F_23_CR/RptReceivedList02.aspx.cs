@@ -34,24 +34,45 @@ namespace RealERPWEB.F_23_CR
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                string comcod =GetCompCode();
+                if (comcod == "3348")
+                {
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    DateTime nowDate = DateTime.Now;
+                    DateTime yearfday = new DateTime(nowDate.Year, 1, 1);
+                    DateTime date1 = new DateTime(nowDate.Year, 12, 31);
+                    this.txtfrmdate.Text = yearfday.ToString("dd-MMM-yyyy"); 
+                    this.txttodate.Text = date1.ToString("dd-MMM-yyyy");
+                }
+                else
+                {
+                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    string date1 = "01-" + ASTUtility.Right(date, 8);
+                    this.txtfrmdate.Text = date1;
+                    this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                }
+                string qprjcode = this.Request.QueryString["prjcode"] ?? "";
+                string fdate = this.Request.QueryString["Date1"] ?? "";
+                string tdate = this.Request.QueryString["Date2"] ?? "";
 
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                string date1 = "01-" + ASTUtility.Right(date, 8);
-                this.txtfrmdate.Text = date1;
-
-
-                this.txttodate.Text = Convert.ToDateTime(date1).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.ViewSelection();
                 this.NameChange();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Receivedlist") ? "Accounts Receivable - 02 Report"
-                  : (this.Request.QueryString["Type"].ToString() == "DuesCollect") ? "Dues Collection Statment Report"
-                  : (this.Request.QueryString["Type"].ToString() == "DuesCollCR") ? "Dues Collection Statment 02 Report"
-                  : (this.Request.QueryString["Type"].ToString() == "yCollectionfc") ? "Yearly Collection Forcasting"
-                  : (this.Request.QueryString["Type"].ToString() == "CurDues") ? "Current Dues"
-                  : (this.Request.QueryString["Type"].ToString() == "ProClientst") ? "Project Wise Client Status" : "Dues Collection -Summary";
-
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Receivedlist") ? "Accounts Receivable - 02 Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "DuesCollect") ? "Dues Collection Statment Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "DuesCollCR") ? "Dues Collection Statment 02 Report"
+                //  : (this.Request.QueryString["Type"].ToString() == "yCollectionfc") ? "Yearly Collection Forcasting"
+                //  : (this.Request.QueryString["Type"].ToString() == "CurDues") ? "Current Dues"
+                //  : (this.Request.QueryString["Type"].ToString() == "ProClientst") ? "Project Wise Client Status" : "Dues Collection -Summary";
+                if(qprjcode.Length > 0)
+                {
+                    this.txtfrmdate.Text = fdate;
+                    this.txttodate.Text = tdate;
+                    this.lbtnOk_Click(null, null);
+                }
 
             }
 
@@ -76,20 +97,26 @@ namespace RealERPWEB.F_23_CR
             switch (type)
             {
                 case "Receivedlist":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
 
                 case "DuesCollect":
                 case "DuesCollCR":
                 case "CurDues":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.chkPayDateWise.Visible = true;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "AllProDuesCollect":
-
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
+                    this.prjname.Attributes.Add("class", "d-none col-md-2");
                     this.chkPayDateWise.Visible = true;
                     this.lblProjectname.Visible = false;
-                    this.txtSrcProject.Visible = false;
+                    //this.txtSrcProject.Visible = false;
                     this.imgbtnFindProject.Visible = false;
                     this.DropCheck1.Visible = false;
                     //this.pnlfilter.Visible = false;
@@ -99,8 +126,10 @@ namespace RealERPWEB.F_23_CR
                     break;
 
                 case "yCollectionfc":
+                    this.prjname.Attributes.Add("class", "d-none col-md-2");
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
                     this.lblProjectname.Visible = false;
-                    this.txtSrcProject.Visible = false;
+                    //this.txtSrcProject.Visible = false;
                     this.imgbtnFindProject.Visible = false;
                     this.DropCheck1.Visible = false;
                     string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -109,8 +138,15 @@ namespace RealERPWEB.F_23_CR
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
                 case "ProClientst":
+                    this.salestatus.Attributes.Add("class", "d-none col-md-2");
+                    this.Paydate.Attributes.Add("class", "mt-3 col-md-2");
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
+                case "yCollectionDetails":
+                    //this.prjname.Attributes.Add("class", "d-none col-md-2");
+                    this.MultiView1.ActiveViewIndex = 5;
+                    break;
+
 
 
             }
@@ -140,7 +176,7 @@ namespace RealERPWEB.F_23_CR
         }
         private void GetProjectName()
         {
-            string txtSProject = (this.Request.QueryString["prjcode"].ToString().Trim() == "") ? ("%" + this.txtSrcProject.Text + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
+            string txtSProject = (this.Request.QueryString["prjcode"].ToString().Trim() == "") ? ("%" + this.DropCheck1.SelectedValue + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
 
             if (Request.QueryString["Type"].ToString() == "DuesCollectInd")
             {
@@ -245,6 +281,10 @@ namespace RealERPWEB.F_23_CR
 
                 case "ProClientst":
                     this.PrintProWiseClientSt();
+                    break;
+                case "yCollectionDetails":
+                    this.PrintYearlyCollectionDetails();
+
                     break;
             }
         }
@@ -641,7 +681,76 @@ namespace RealERPWEB.F_23_CR
 
         }
 
+        private void PrintYearlyCollectionDetails()
+        {
+            try
+            {
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comnam = hst["comnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string comcod = hst["comcod"].ToString();
+                //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                DateTime frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
+                DateTime todate = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+                string frmdt = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("MMM yy");
+                string todt = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMM yy");
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                DataTable dt1 = (DataTable)Session["tblyAccRecde"];             
+
+                string txtuserinfo = "Print Source " + compname + " ,User: " + username + " ,Time: " + printdate;
+                var lst = dt1.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionDetails>();
+
+
+                LocalReport Rpt1 = new LocalReport();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptYearlyCollectionDetails", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "YEARLY COLLECTION DETAILS"));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+                Rpt1.SetParameters(new ReportParameter("date", "From(" + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text + ")"));
+                Rpt1.SetParameters(new ReportParameter("cdate", "(" + frmdt + "-" + todt + ")"));
+
+                for (int i = 1; i <= 12; i++)
+                {
+                    if (frmdate > todate)
+                        break;
+
+                    Rpt1.SetParameters(new ReportParameter("duemonth" + i.ToString(), frmdate.ToString("MMM yy")));
+                    frmdate = frmdate.AddMonths(1);
+
+                }
+
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc = "Print Report:";
+                    string eventdesc2 = "Yearly Collection Details ";
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
 
         private void PrintYearlyCollection()
         {
@@ -660,13 +769,24 @@ namespace RealERPWEB.F_23_CR
             string frmdt = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("MMM yy");
             string todt = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMM yy");
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt1 = (DataTable)Session["tblAccRec"];
+            DataTable dt1 = new DataTable();
+            if (Request.QueryString["Type"]== "yCollectionDetails")
+            {
+                 dt1 = (DataTable)Session["tblyAccRecde"];
+
+            }
+            else
+            {
+                 dt1 = (DataTable)Session["tblAccRec"];
+
+            }
 
             string txtuserinfo = "Print Source " + compname + " ,User: " + username + " ,Time: " + printdate;
             var lst = dt1.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassYearlyColletionForcasting>();
 
 
             LocalReport Rpt1 = new LocalReport();
+
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptYearlyCollectionForecasting", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
@@ -738,6 +858,9 @@ namespace RealERPWEB.F_23_CR
                 case "ProClientst":
                     this.ShowProWiseClientSt();
                     break;
+                case "yCollectionDetails":
+                    this.YCollectionDetails();
+                    break;
             }
 
 
@@ -796,6 +919,7 @@ namespace RealERPWEB.F_23_CR
             try
             {
                 DataTable dt = (DataTable)Session["tblAccRec"];
+                DataTable dt1 = (DataTable)Session["tblyAccRecde"];
                 string type = this.Request.QueryString["Type"].ToString();
                 switch (type)
                 {
@@ -906,14 +1030,57 @@ namespace RealERPWEB.F_23_CR
                         this.gvProClientst.DataBind();
                         this.FooterCalculation();
                         break;
+                    case "yCollectionDetails":
+
+                        double amt01, amt02, amt03, amt04, amt05, amt06, amt07, amt08, amt09, amt010, amt011, amt012;
+                        amt01 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam1)", "")) ? 0.00 : dt1.Compute("sum(dueam1)", "")));
+                        amt02 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam2)", "")) ? 0.00 : dt1.Compute("sum(dueam2)", "")));
+                        amt03 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam3)", "")) ? 0.00 : dt1.Compute("sum(dueam3)", "")));
+                        amt04 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam4)", "")) ? 0.00 : dt1.Compute("sum(dueam4)", "")));
+                        amt05 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam5)", "")) ? 0.00 : dt1.Compute("sum(dueam5)", "")));
+                        amt06 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam6)", "")) ? 0.00 : dt1.Compute("sum(dueam6)", "")));
+                        amt07 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam7)", "")) ? 0.00 : dt1.Compute("sum(dueam7)", "")));
+                        amt08 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam8)", "")) ? 0.00 : dt1.Compute("sum(dueam8)", "")));
+                        amt09 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam9)", "")) ? 0.00 : dt1.Compute("sum(dueam9)", "")));
+                        amt010 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam10)", "")) ? 0.00 : dt1.Compute("sum(dueam10)", "")));
+                        amt011 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam11)", "")) ? 0.00 : dt1.Compute("sum(dueam11)", "")));
+                        amt012 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(dueam12)", "")) ? 0.00 : dt1.Compute("sum(dueam12)", "")));
 
 
+                        this.gv_YCollectionDetails.Columns[11].Visible = (amt01 != 0);
+                        this.gv_YCollectionDetails.Columns[12].Visible = (amt02 != 0);
+                        this.gv_YCollectionDetails.Columns[13].Visible = (amt03 != 0);
+                        this.gv_YCollectionDetails.Columns[14].Visible = (amt04 != 0);
+                        this.gv_YCollectionDetails.Columns[15].Visible = (amt05 != 0);
+                        this.gv_YCollectionDetails.Columns[16].Visible = (amt06 != 0);
+                        this.gv_YCollectionDetails.Columns[17].Visible = (amt07 != 0);
+                        this.gv_YCollectionDetails.Columns[18].Visible = (amt08 != 0);
+                        this.gv_YCollectionDetails.Columns[19].Visible = (amt09 != 0);
+                        this.gv_YCollectionDetails.Columns[20].Visible = (amt010 != 0);
+                        this.gv_YCollectionDetails.Columns[21].Visible = (amt011 != 0);
+                        this.gv_YCollectionDetails.Columns[22].Visible = (amt012 != 0);
+
+                        this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        DateTime frmdate1 = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
+                        DateTime todate1 = Convert.ToDateTime(this.txttodate.Text.Trim());
+                        for (int i = 11; i < 23; i++)
+                        {
+                            if (frmdate1 > todate1)
+                                break;
+
+                            this.gv_YCollectionDetails.Columns[i].HeaderText = frmdate1.ToString("MMM yy");
+                            frmdate1 = frmdate1.AddMonths(1);
+
+                        }
+                        this.gv_YCollectionDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gv_YCollectionDetails.DataSource = dt1;
+                        this.gv_YCollectionDetails.DataBind();
+                        this.FooterCalculation();
+                        Session["Report1"] = gv_YCollectionDetails;
+                        if (dt1.Rows.Count > 0)
+                            ((HyperLink)this.gv_YCollectionDetails.HeaderRow.FindControl("hlbtntbdeCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        break;
                 }
-
-
-
-
-
             }
 
             catch (Exception e)
@@ -926,7 +1093,16 @@ namespace RealERPWEB.F_23_CR
 
         private void FooterCalculation()
         {
-            DataTable dt = (DataTable)Session["tblAccRec"];
+            DataTable dt = new DataTable();
+            if(Request.QueryString["Type"]== "yCollectionDetails")
+            {
+                 dt = (DataTable)Session["tblyAccRecde"];
+            }
+            else
+            {
+                 dt = (DataTable)Session["tblAccRec"];
+            }           
+           
             if (dt.Rows.Count == 0)
                 return;
             string pactcode = "";
@@ -1166,6 +1342,46 @@ namespace RealERPWEB.F_23_CR
                     ((Label)this.gvProClientst.FooterRow.FindControl("lgvFregiscst")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(stdamt)", "")) ?
                       0.00 : dt.Compute("Sum(stdamt)", ""))).ToString("#,##0;(#,##0); ");
 
+                    break;
+                case "yCollectionDetails":
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFtoBgdCost")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdcost)", "")) ?
+                        0.00 : dt.Compute("Sum(bgdcost)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFtsoldcalue")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tocost)", "")) ?
+                         0.00 : dt.Compute("Sum(tocost)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFtoreceivedyc")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ramt)", "")) ?
+                         0.00 : dt.Compute("Sum(ramt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFpduesyc")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(pdueam)", "")) ?
+                         0.00 : dt.Compute("Sum(pdueam)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam1)", "")) ?
+                         0.00 : dt.Compute("Sum(dueam1)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam2)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam2)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam3)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam3)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam4)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam4)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam5)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam5)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam6)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam6)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam7)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam7)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam8)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam8)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam9)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam9)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam10)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam10)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam11)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam11)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFdueam12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueam12)", "")) ?
+                            0.00 : dt.Compute("Sum(dueam12)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFtdueam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(todueam)", "")) ?
+                            0.00 : dt.Compute("Sum(todueam)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gv_YCollectionDetails.FooterRow.FindControl("lgvdeFgtdueam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(gtodueam)", "")) ?
+                            0.00 : dt.Compute("Sum(gtodueam)", ""))).ToString("#,##0;(#,##0); ");
 
 
 
@@ -1463,7 +1679,58 @@ namespace RealERPWEB.F_23_CR
             Session["tblAccRec"] = ds2.Tables[0];
             this.Data_Bind();
         }
+        private void YCollectionDetails()
+        {
+            try
+            {
+                Session.Remove("tblyAccRecde");
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                string comcod = this.GetCompCode();
+                ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                int mon = ASTUtility.Datediff(Convert.ToDateTime(this.txttodate.Text.Trim()), Convert.ToDateTime(this.txtfrmdate.Text.Trim()));
 
+                
+                if (mon > 12)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Month Less Than Equal Twelve";
+                    return;
+                }
+                string ProjectCode = ((this.DropCheck1.SelectedValue.ToString() == "000000000000") ? "18" : this.DropCheck1.SelectedValue.ToString()) + "%";
+                string frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string searchinfo = "";
+                string salesvalue = this.ddlsalestatus.SelectedValue;
+                if (this.ddlSrchCash.SelectedValue != "")
+                {
+
+                    if (this.ddlSrchCash.SelectedValue == "between")
+                    {
+                        searchinfo = "(dueamt between " + Convert.ToDouble("0" + this.txtAmountC1.Text.Trim()).ToString() + " and " + Convert.ToDouble("0" + this.txtAmountC2.Text.Trim()).ToString() + " )";
+
+                    }
+
+                    else
+                    {
+                        searchinfo = "( dueamt " + this.ddlSrchCash.SelectedValue.ToString() + " " + Convert.ToDouble("0" + this.txtAmountC1.Text.Trim()).ToString() + " )";
+
+                    }
+                }
+
+
+                DataSet dt1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTYEARLYCOLLECTIONDETAILS", "", frmdate, todate, searchinfo, ProjectCode, salesvalue, "", "", "");
+
+                if (dt1 == null)
+                    return;
+
+                Session["tblyAccRecde"] =  this.HiddenSameData(dt1.Tables[0]); 
+                this.Data_Bind();
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
 
 
         private void ShowProWiseClientSt()
@@ -1532,6 +1799,7 @@ namespace RealERPWEB.F_23_CR
 
         protected void ddlSrchCash_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.divtocash.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.lblToCash.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.txtAmountC2.Visible = (this.ddlSrchCash.SelectedValue == "between");
         }
@@ -1611,6 +1879,27 @@ namespace RealERPWEB.F_23_CR
                 gvrow.Cells.Add(cell06);
 
                 dgvAccRec02.Controls[0].Controls.AddAt(0, gvrow);
+            }
+        }
+
+        protected void gv_YCollectionDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_YCollectionDetails.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void gvyCollection_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink lgactdescyc = (HyperLink)e.Row.FindControl("lgactdescyc");
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                //string pactdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactdesc")).ToString();
+                string comcod = this.GetCompCode();
+                string frmdate = this.txtfrmdate.Text;
+                string todate = this.txttodate.Text;
+                lgactdescyc.NavigateUrl = "~/F_23_CR/RptReceivedList02.aspx?Type=yCollectionDetails&prjcode=" + code + "&Date1=" + frmdate + "&Date2=" + todate;
+
             }
         }
     }

@@ -39,6 +39,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         Response.Redirect("~/AcceessError.aspx");
 
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 }
                 Session.Remove("tblEmpstatus");                
                 this.GetDate();
@@ -46,15 +48,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.SelectView();
                 this.GetDesignation();
                
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type=="Pabx")?"List of PABX Information": (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
-                    : (Type == "EmpList") ? "Employee List" : (Type == "TransList") ? "Employee Transfer List"
-                    : (Type == "PenEmpCon") ? "Pending Employee Confirmation" : (Type == "SepType") ? "Employee Seperation List Report"
-                    : (Type == "EmpHold") ? "Employee Hold List" : (Type == "Manpower") ? "Employee Manpower List"
-                    : (Type == "EmpGradeADesig") ? "Grade & Designation Wise  Salary Detail"
-                    : (Type == "InActiveEmpList") ? "Inactive Employee List"
-                    : (Type == "TotalEmplist") ? "Total Employee List"
-                    : (Type == "EmpIDCard") ? "Employee ID Card"
-                    : "Employee Confirmation";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Type=="Pabx")?"List of PABX Information": (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
+                //    : (Type == "EmpList") ? "Employee List" : (Type == "TransList") ? "Employee Transfer List"
+                //    : (Type == "PenEmpCon") ? "Pending Employee Confirmation" : (Type == "SepType") ? "Employee Seperation List Report"
+                //    : (Type == "EmpHold") ? "Employee Hold List" : (Type == "Manpower") ? "Employee Manpower List"
+                //    : (Type == "EmpGradeADesig") ? "Grade & Designation Wise  Salary Detail"
+                //    : (Type == "InActiveEmpList") ? "Inactive Employee List"
+                //    : (Type == "TotalEmplist") ? "Total Employee List"
+                //    : (Type == "EmpIDCard") ? "Employee ID Card"
+                //    : "Employee Confirmation";
 
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
                 {

@@ -35,16 +35,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             if (!IsPostBack)
             {
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("~/AcceessError.aspx");
                 ////if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 ////    Response.Redirect("../../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetInformation();
                 this.GetEmployeeName();
 
                 //this.GetEmployeeName();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = true;
                 CommonButton();
@@ -1005,7 +1009,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj)
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj && comcod=="3365")
                     {
                         Gvalue = doj;
                         //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
@@ -1078,7 +1082,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
-                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
+                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn, "", "", "", "", "", userid, Editrmid);
 
 
                 if (!result)
@@ -1102,7 +1106,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat)
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat && comcod!="3354")
                     {
                         Gvalue = retdat;
                         islocksal = true;
@@ -1119,7 +1123,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
-                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
+                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn, "", "", "", "", "", userid, Editrmid);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail" + "');", true);
@@ -1284,7 +1288,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 //txtgvValBn.Text = "";
-                if (code == "01003")
+                if (code == "01003" && GetComeCode()=="3365")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
@@ -1970,7 +1974,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 TextBox txtjoindat = (TextBox)e.Row.FindControl("txtgvdVal");
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
      
-                if (code == "01999")
+                if (code == "01999" && GetCompCode()!="3354")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");

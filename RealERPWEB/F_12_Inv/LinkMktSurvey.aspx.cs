@@ -45,6 +45,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void ImgbtnFindPreMR_Click(object sender, EventArgs e)
         {
+            try { 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string premrlist = "%" + this.txtPreMSRSearch.Text + "%";
@@ -53,6 +54,7 @@ namespace RealERPWEB.F_12_Inv
 
             string msrType = this.getMsrType();
 
+            
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", calltype, CurDate1, premrlist, msrType, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -61,6 +63,10 @@ namespace RealERPWEB.F_12_Inv
             this.ddlPrevMSRList.DataValueField = "msrno";
             this.ddlPrevMSRList.DataSource = ds1.Tables[0];
             this.ddlPrevMSRList.DataBind();
+            }catch(Exception exp)
+            {
+
+            }
         }
 
         private string getMsrType()
@@ -75,6 +81,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3364": //JBS
                 case "3370": //cpdl
+                case "3374": //angan
+
                     msrType = "MSR02";
                     break;
 
@@ -96,6 +104,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3353"://Manama
                 case "3364": //JBS
                 case "3370": //cpdl
+                case "3374": //cpdl
                     this.Multiview1.ActiveViewIndex = 1;
                     this.Get_Survey_Info();
                     break;
@@ -163,6 +172,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3353"://Manama
                 case "3364": //JBS
                 case "3370": //cpdl
+                case "3374": //angan
 
                     this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
                     this.gvMSRInfo2.DataBind();

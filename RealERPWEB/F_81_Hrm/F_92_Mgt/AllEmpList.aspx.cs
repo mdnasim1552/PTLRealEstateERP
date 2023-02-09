@@ -33,6 +33,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 Session.Remove("tblEmpstatus");
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -52,7 +56,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "All Employe Details";
+               // ((Label)this.Master.FindControl("lblTitle")).Text = "All Employe Details";
                 this.lbtnOk_Click(null,null);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;

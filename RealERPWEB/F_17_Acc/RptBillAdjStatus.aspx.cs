@@ -29,12 +29,15 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Bill Status Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Bill Status Information";
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttoDate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                this.Master.Page.Title = "Bill Status Information";
+                //this.Master.Page.Title = "Bill Status Information";
 
             }
 

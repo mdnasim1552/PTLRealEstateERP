@@ -1511,7 +1511,7 @@
 
 
 
-                                                            <%--<asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>--%>
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
                                                             <%--<asp:LinkButton type="button" runat="server" ToolTip="Re-Shedule Followup" class="btn  btn-primary btn-sm" Style="margin-top: 10px;" ID="lbtnreschedule" OnClick="btnqclink_Click">Re-schedule</asp:LinkButton>--%>
                                                         <button type="button" class="btn  btn-primary btn-sm mt-2" ToolTip="Re-Shedule Followup" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
 
@@ -1557,11 +1557,11 @@
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body" id="followup">
-                                        <asp:LinkButton runat="server" ClientIDMode="Static" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
-
+                                        <asp:LinkButton runat="server" ClientIDMode="Static" type="button" class="btn  btn-info btn-sm mt-2" ID="lbtntfollowup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
+                                        <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server"   OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-sm mt-2">Final Update</asp:LinkButton>
                                 <asp:GridView ID="gvInfo" runat="server" AllowPaging="false"
                                     AutoGenerateColumns="False" ShowFooter="true" ClientIDMode="Static"
-                                    CssClass="table-condensed table-hover table-bordered grvContentarea">
+                                    CssClass="table-condensed table-hover table-bordered grvContentarea mt-2">
 
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -1624,13 +1624,12 @@
                                             <ItemTemplate>
 
  
-                                                        <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px"
+                                                        <asp:TextBox ID="txtgvValdis" runat="server"  BorderWidth="0" BackColor="Transparent" Font-Size="14px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="txtgvValdis_CalendarExtender" runat="server"
+                                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvValdis"></cc1:CalendarExtender>
 
-
-
-
-                                                        <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                        <asp:TextBox ID="txtgvdValdis" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
                                                         <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
                                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
@@ -1794,11 +1793,11 @@
 
 
                                             </ItemTemplate>
-                                            <FooterTemplate>
+                                            <%--<FooterTemplate>
 
                                                 <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server"   OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
 
-                                            </FooterTemplate>
+                                            </FooterTemplate>--%>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle Width="700px" />
                                         </asp:TemplateField>

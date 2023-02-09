@@ -44,7 +44,7 @@
 
                                         <asp:Label ID="Label8" runat="server" CssClass=" lblName lblTxt" Text="Date:"></asp:Label>
 
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" AutoPostBack="true" OnTextChanged="txtCurDate_TextChanged" ></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
 

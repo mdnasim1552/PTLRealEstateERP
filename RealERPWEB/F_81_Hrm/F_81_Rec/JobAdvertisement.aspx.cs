@@ -28,12 +28,16 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     Response.Redirect("../../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // for Mettroo
                 this.txtADVText.Enabled = false;
                 this.ImgbtnReqse.Enabled = false;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Job Advertisement Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Job Advertisement Information";
                 this.GetCompany();
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);

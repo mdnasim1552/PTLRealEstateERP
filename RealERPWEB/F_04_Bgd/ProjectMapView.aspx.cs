@@ -16,7 +16,10 @@ namespace RealERPWEB.F_04_Bgd
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Project Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Project Information";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 if (this.Request.QueryString["prjcode"].Length > 0)
                 {
                     Get_Project_Details();

@@ -22,6 +22,12 @@
 
     </script>
 
+    <style type="text/css">
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 32px !important;}
+    </style>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -45,26 +51,36 @@
                 <div class=" card-body" style="min-height: 300px;">
 
                     <div class="row">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">Project Name</label>
-
-
-                            </div>
-                        </div>
+                        
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="3">
+                                 <label for="Label5" runat="server">Project Name</label>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="3">
                                 </asp:DropDownList>
 
                             </div>
                         </div>
-
-
-                        <div class="col-md-2">
+                         <div class="col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                <label for="FromDate" runat="server">From Date</label>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control form-control-sm" autocomplete="off"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                           <div class="col-md-2">
+                            <div class="form-group">
+                                <label  for="ToDate" runat="server">To Date</label>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" autocomplete="off"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2" style="margin-top:27px;">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
 

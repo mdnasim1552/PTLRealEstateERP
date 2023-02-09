@@ -40,6 +40,9 @@ namespace RealERPWEB.F_23_CR
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 Session.Remove("Unit");
                 this.tableintosession();
                 if (this.Request.QueryString["Type"] == "CustCare")
@@ -59,7 +62,7 @@ namespace RealERPWEB.F_23_CR
                 // this.GetCollectTeam();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Collection Sales";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Collection Sales";
                 this.txtSrcPro.Focus();
 
                 this.txtReceiveDate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -960,6 +963,9 @@ namespace RealERPWEB.F_23_CR
                     case "3340":
                     case "3337":
                     case "3101":
+                    case "3354":
+
+
                         string refno = this.txtrefid.Text.Trim();
                         DataSet ds1 = MktData.GetTransInfo(compcod, "SP_ENTRY_PURCHASE_01", "CHECKMRRREFNO", refno, "", "", "",
                             "", "", "", "", "");

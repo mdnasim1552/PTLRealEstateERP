@@ -29,15 +29,21 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "BillDetails" ? "Sub-Contractor Status (R/A Bill All)" : "Sub-Contractor Bill - R/A Wise";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "BillDetails" ? "Sub-Contractor Status (R/A Bill All)" : "Sub-Contractor Bill - R/A Wise";
                 this.GetConTractorName();
                 this.GetProjectName();
                 this.SelectView();
+                this.Visibility();
+                
+
                 CommonButton();
             }
 
@@ -82,6 +88,17 @@ namespace RealERPWEB.F_09_PImp
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+
+        }
+
+        private void Visibility()
+        {
+            string comcod = this.GetCompCode();
+            if(comcod=="3101" || comcod == "3348")
+            {
+                this.rbtnRa.Visible = true;
+
+            }
 
         }
 
@@ -216,7 +233,8 @@ namespace RealERPWEB.F_09_PImp
 
             string SubconName = this.ddlSubName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "RPTSUBCONSDDETAILS", PactCode, SubconName, date, "", "", "", "", "", "");
+            string rbtbillType = (this.rbtbillType.SelectedIndex == 0) ? "RABill" : (this.rbtbillType.SelectedIndex == 1) ? "WithoutRABill" : "";
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "RPTSUBCONSDDETAILS", PactCode, SubconName, date, rbtbillType, "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblconsddetails"] = HiddenSameData(ds1.Tables[0]);

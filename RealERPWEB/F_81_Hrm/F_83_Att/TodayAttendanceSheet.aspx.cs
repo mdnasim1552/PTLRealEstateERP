@@ -23,8 +23,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
+
                 ((Label)this.Master.FindControl("lblTitle")).Text = " Today Employee Attendance Information";
-                // (Label)this.Master.FindControl("lblTitle").Text  = " Today Employee Attendance Information";
+                this.Master.Page.Title = "Today Employee Attendance Information";
+
                 this.GetCompany();
                 //this.GetProjectName();
                 this.SelectDate();

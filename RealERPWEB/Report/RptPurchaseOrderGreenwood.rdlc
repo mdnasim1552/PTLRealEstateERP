@@ -1380,10 +1380,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Rate</Value>
+                                  <Value>Rate (After Discount)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>6pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1454,10 +1454,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Rate (After Discount)</Value>
+                                  <Value>Rate</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>6pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1770,7 +1770,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1840,7 +1840,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>

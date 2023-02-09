@@ -32,6 +32,8 @@ namespace RealERPWEB.F_32_Mis
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
@@ -44,10 +46,10 @@ namespace RealERPWEB.F_32_Mis
                 this.ImgbtnFindProjind_Click(null, null);
                 this.SelectView();
                 string type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "PrjTrailBal") ? "Project Trail Balance"
-                    : (type == "LandPrj") ? "Project Trail Balance"
-                    : (type == "PrjCost") ? "Project Cost" : (type == "PrjTrailBal3") ? "Trail Balance 3"
-                    : (type == "RecAPayment") ? "Receipts & Payments (Project)" : "Trail Balance 2";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "PrjTrailBal") ? "Project Trail Balance"
+                //    : (type == "LandPrj") ? "Project Trail Balance"
+                //    : (type == "PrjCost") ? "Project Cost" : (type == "PrjTrailBal3") ? "Trail Balance 3"
+                //    : (type == "RecAPayment") ? "Receipts & Payments (Project)" : "Trail Balance 2";
 
 
             }
@@ -197,6 +199,10 @@ namespace RealERPWEB.F_32_Mis
                     break;
             }
         }
+
+
+
+        
         private void ShowPrjTriBal()
         {
             Session.Remove("tblprjtbl");
@@ -214,7 +220,7 @@ namespace RealERPWEB.F_32_Mis
 
 
             string advance = String.Empty;
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353" || comcod== "1102" || comcod=="3364" || comcod == "3357" || comcod == "3367" || comcod == "3368")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353" || comcod== "1102" || comcod=="3364" || comcod == "3357" || comcod == "3367" || comcod == "3368" || comcod=="3372")
             {
                 advance = "ADVANCE";
             }

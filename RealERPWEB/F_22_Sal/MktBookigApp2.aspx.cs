@@ -42,8 +42,11 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "BOOKING APPLICATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "BOOKING APPLICATION";
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtbookdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -156,8 +159,8 @@ namespace RealERPWEB.F_22_Sal
 
                 DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
                 DataTable dt = ds.Tables[0];
-                this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
-                this.txtCustmerNumber.Enabled = false;
+                this.lblCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
+                //this.txtCustmerNumber.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -310,7 +313,7 @@ namespace RealERPWEB.F_22_Sal
 
             if (dt.Rows.Count > 0 && dt.Rows[0]["customerno"].ToString().Length > 0)
             {
-                this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+                this.lblCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
             }
 
             ds2.Dispose();
@@ -701,13 +704,11 @@ namespace RealERPWEB.F_22_Sal
             }
             Session["tblperinfo"] = dtp;
             this.Data_BindPer();
-
         }
 
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
             if (this.saleDeclaration.Checked)
             {
                 this.PrintSaleDeclaration();
@@ -931,7 +932,7 @@ namespace RealERPWEB.F_22_Sal
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
-            string customerMaxNo = this.txtCustmerNumber.Text.Trim();
+            string customerMaxNo = this.lblCustmerNumber.Text.Trim();
 
             string InstallmentDate = this.txtInstallmentDate.Text.Trim().ToString();
 

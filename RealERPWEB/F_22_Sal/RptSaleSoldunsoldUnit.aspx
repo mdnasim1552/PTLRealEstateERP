@@ -37,6 +37,15 @@
             // });
         };
     </script>
+    <style>
+        .mt5{
+            margin-top: 8px;
+        }
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
@@ -60,27 +69,11 @@
             </div>
             <div class="card card-fluid">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <asp:Label class="control-label" ID="Label15" runat="server">Date:</asp:Label>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control flatpickr-input"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label class="control-label" for="lbltodate" id="lbltodate" runat="server">To:</label>
-                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-                            </div>
-                        </div>
+                    <div class="row">                        
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select  chzn-select form-control">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
 
                             </div>
@@ -88,7 +81,7 @@
                         <div class="col-md-2" id="salesteamdv" runat="server">
                             <div class="form-group">
                                 <label class="control-label" for="lblSalesTeam" id="lblSalesTeam" runat="server">Sales Team:</label>
-                                <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="custom-select  chzn-select">
+                                <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
 
                             </div>
@@ -96,7 +89,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName" id="lblGroup" runat="server">Group</label>
-                                <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="custom-select  chzn-select">
+                                <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control form-control-sm chzn-select">
                                     <asp:ListItem>Main</asp:ListItem>
                                     <asp:ListItem>Sub-1</asp:ListItem>
                                     <asp:ListItem>Sub-2</asp:ListItem>
@@ -106,7 +99,22 @@
 
                             </div>
                         </div>
-
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label class="control-label" ID="Label15" runat="server">From</asp:Label>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm  mt5"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                        <div class="col-md-2" id="divtodate" runat="server" visible="true">
+                            <div class="form-group">
+                                <Label class="control-label" ID="lbltodate" runat="server"  >To</Label>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
 
                         <div class="col-md-2" id="SoldType" runat="server" visible="false">
                             <label class="control-label" for="ddlUserName" id="Label1" runat="server">Type</label>
@@ -124,7 +132,7 @@
                             <div class="form-group">
                                 <label class="control-label d-block" for="ddlpagesize" id="lblPage" visible="false" runat="server">Page Size</label>
                            
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select form-control"
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False"
                                     Width="85px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
@@ -140,7 +148,7 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="margin-top30px btn btn-primary btn-sm" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
 
@@ -153,7 +161,7 @@
 
 
                                     <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" AllowPaging="False"
+                                        ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" AllowPaging="False"
                                         OnPageIndexChanging="gvSpayment_PageIndexChanging" OnRowDataBound="gvSpayment_RowDataBound">
                                         <RowStyle />
                                         <Columns>
@@ -198,8 +206,8 @@
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lgvditem" runat="server" Text="Total" Font-Bold="True" HorizontalAlign="Left"
-                                                        ForeColor="Black" Style="text-align: right" Width="80px"></asp:Label>
+                                                    <asp:Label ID="lgvditem" runat="server" Text="Total" Font-Bold="True" HorizontalAlign="Left" Font-Size="12px"
+                                                        ForeColor="Black" Style="text-align: center" Width="80px"></asp:Label>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -224,7 +232,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFTqty" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                         Style="text-align: right" Width="35px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -239,7 +247,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFTAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
+                                                       Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -259,7 +267,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFSqty" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right; color: red;" Width="35px"></asp:Label>
+                                                        Style="text-align: right; color: red;" Width="35px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -270,13 +278,14 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvsusize" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "susize")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="40px" Style="text-align: right"></asp:Label>
+                                                        Width="40px" Style="text-align: right;"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFTsusize" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="40px"></asp:Label>
+                                                         Style="text-align: right" Width="40px"></asp:Label>
                                                 </FooterTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
@@ -284,11 +293,12 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvsrate" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "srate")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="50px" Style="text-align: right"></asp:Label>
+                                                        Width="50px" Style="text-align: right;"></asp:Label>
                                                 </ItemTemplate>
 
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
 
@@ -303,7 +313,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFSAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
+                                                         Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -318,7 +328,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFParking" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                         Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -333,7 +343,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFutility" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                         Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -348,7 +358,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFothers" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                         Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -363,7 +373,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFtotal" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                         Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -385,8 +395,6 @@
                                             </asp:TemplateField>
 
 
-
-
                                             <asp:TemplateField HeaderText="Unsold Qty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvUsqty" runat="server"
@@ -395,7 +403,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFUsqty" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                        Style="text-align: right" Width="35px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -410,7 +418,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFTusize" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="40px"></asp:Label>
+                                                         Style="text-align: right" Width="40px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -437,7 +445,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFUsAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
+                                                         Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -454,7 +462,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDisAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                        Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -469,7 +477,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFColAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right" Width="80px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -484,7 +492,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFRcvAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="80px"></asp:Label>
+                                                         Style="text-align: right" Width="80px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -506,19 +514,19 @@
 
 
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                        <RowStyle CssClass="grvRows" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
+                                        <RowStyle CssClass="grvRowsNew" />
                                     </asp:GridView>
 
                                 </asp:View>
                                 <asp:View ID="ParkingStatus" runat="server">
 
                                     <asp:GridView ID="gvparking" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" AllowPaging="True"
+                                        ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" AllowPaging="True"
                                         OnPageIndexChanging="gvparking_PageIndexChanging">
                                         <RowStyle />
                                         <Columns>
@@ -616,12 +624,12 @@
 
 
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                        <RowStyle CssClass="grvRows" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
+                                        <RowStyle CssClass="grvRowsNew" />
                                     </asp:GridView>
 
 
@@ -629,7 +637,7 @@
 
                                 <asp:View ID="RptDayWSale" runat="server">
                                     <asp:GridView ID="gvDayWSale" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" AllowPaging="True"
+                                        ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" AllowPaging="True"
                                         OnPageIndexChanging="gvDayWSale_PageIndexChanging"
                                         OnRowDataBound="gvDayWSale_RowDataBound">
                                         <RowStyle />
@@ -669,10 +677,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lgvFditem" runat="server" Text="Total" Font-Bold="True" HorizontalAlign="Left"
-                                                        ForeColor="Black" Style="text-align: right" Width="150px"></asp:Label>
-                                                </FooterTemplate>
+                                                
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Unit">
@@ -682,9 +687,11 @@
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "munit"))
                                                                          %>'
                                                         Width="35px"></asp:Label>
-
-
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFditem" runat="server" Text="Total" Font-Bold="True" CssClass="grvFooterTotal" HorizontalAlign="Left"
+                                                        Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
@@ -729,7 +736,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDTAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
+                                                        Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -746,7 +753,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDSAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
+                                                         Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -774,7 +781,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDDisAmt" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
+                                                         Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -798,12 +805,12 @@
 
 
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                        <RowStyle CssClass="grvRows" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
+                                        <RowStyle CssClass="grvRowsNew" />
                                     </asp:GridView>
 
 
@@ -811,7 +818,7 @@
 
                                 <asp:View ID="ViewUWCosting" runat="server">
 
-                                    <asp:GridView ID="gvUnit" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="gvUnit" runat="server" CssClass="table-striped  table-bordered grvContentarea"
                                         AutoGenerateColumns="False"
                                         ShowFooter="True" OnRowCreated="gvUnit_RowCreated">
                                         <RowStyle />
@@ -1012,12 +1019,12 @@
 
 
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                        <RowStyle CssClass="grvRows" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
+                                        <RowStyle CssClass="grvRowsNew" />
                                     </asp:GridView>
                                 </asp:View>
 

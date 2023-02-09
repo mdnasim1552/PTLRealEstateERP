@@ -28,12 +28,14 @@ namespace RealERPWEB.F_32_Mis
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Loan Interest Calculation Sheet";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Loan Interest Calculation Sheet";
                 double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
                 this.txtfDat.Text = System.DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
                 this.txttDat.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
         }

@@ -26,11 +26,13 @@ namespace RealERPWEB.F_23_CR
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string Type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "Payment" ? "PAYMENT STATUS MERGE" : "PAYMENT STATUS MERGE");
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Type == "Payment" ? "PAYMENT STATUS MERGE" : "PAYMENT STATUS MERGE");
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetComeCode();
                 this.GetlinkComp();

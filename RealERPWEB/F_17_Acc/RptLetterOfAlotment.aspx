@@ -31,12 +31,17 @@
             background-color: #E8E3E3;
             padding: 0 !important;
         }
+
+        .mt20 {
+            margin-top: 20px;
+        }
     </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             //<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
+            $('.chzn-select').chosen({ search_contains: true });
 
 
         });
@@ -73,31 +78,72 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-3">
-                <div class="card-header well">
+            <div class="card mt-3 mb-1">
+                <div class="card-header well p-1">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblprjname">Project Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlprjname" AutoPostBack="True" OnSelectedIndexChanged="ddlprjname_SelectedIndexChanged" CssClass="form-control chzn-select form-control-sm " ></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlprjname" AutoPostBack="True" OnSelectedIndexChanged="ddlprjname_SelectedIndexChanged" CssClass="form-control chzn-select form-control-sm "></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label1">Customer Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlcustomerName"  AutoPostBack="True" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlcustomerName" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1 mt-4">
+                        <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm ">OK</asp:LinkButton>
+                                <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm mt20">OK</asp:LinkButton>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+            <div class="card card-fluid mt-0" style="min-height: 550px;">
+                <div class="card-body">
+                    <div class="row ">
+                        <asp:GridView ID="gvcustsettlement" runat="server" AllowPaging="false" CssClass="table-condensed table-bordered grvContentarea" AutoGenerateColumns="False"
+                            ShowFooter="True" BorderStyle="None" Width="600px">
+                            
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl" HeaderStyle-Width="30px">
+                                    <ItemTemplate>
+                                        <asp:Label ID="serialnoid" runat="server" Style="text-align: center"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Description of Cost">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblcostdesc" runat="server" Style="font-size: 12px" 
+                                            CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "code")).Substring(2,3)=="AAA" ? "font-weight-bold":"" %>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "codedesc")) %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="center" />
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblamt" runat="server" Style="font-size: 12px"
+                                            CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "code")).Substring(2,3)=="AAA" ? "font-weight-bold":"" %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="center" />
+                                    <ItemStyle HorizontalAlign="Right"/>
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle CssClass="grvFooterNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />                            
+                            <HeaderStyle CssClass="grvHeaderNew" />
+                            <RowStyle CssClass="grvRowsNew" />
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

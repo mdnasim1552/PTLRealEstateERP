@@ -37,6 +37,10 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 string qtype = this.Request.QueryString["Type"].ToString();
                 if (qtype == "MktClAss")
                 {
@@ -44,7 +48,7 @@ namespace RealERPWEB.F_21_MKT
                     LoadddlEmp();
                     this.GetProspectClient();
 
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Client Assign";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Client Assign";
                 }
                 else
                 {
@@ -54,7 +58,7 @@ namespace RealERPWEB.F_21_MKT
                     this.GetProspectClient();
                     this.Createtable();
 
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Accept Prospective Client List";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Accept Prospective Client List";
                 }
 
 

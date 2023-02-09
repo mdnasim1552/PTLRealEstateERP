@@ -2389,7 +2389,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2914,7 +2913,22 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Property Consulantant</Value>
+                      <Value>Property </Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Consultant</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -3112,7 +3126,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Cheif Business Officer</Value>
+                      <Value>Chief Business Officer</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -3151,7 +3165,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Pressident</Value>
+                      <Value>President</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>8pt</FontSize>

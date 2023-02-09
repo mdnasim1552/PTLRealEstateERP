@@ -27,9 +27,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.ShowView();
                 this.GetCompany();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE RULE";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE RULE";
                 this.GetProjectName();
                 Create_table();
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -1293,7 +1298,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.PrintLeaveform2();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "4330":
                 case "4305":
                 case "4315":
@@ -1337,6 +1342,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("txtEmpName1", this.ddlEmpNamelApp.SelectedItem.Text.Substring(7)));
             Rpt1.SetParameters(new ReportParameter("txtDesig", this.lblDesignationlApp.Text));
             Rpt1.SetParameters(new ReportParameter("txtDesig1", this.lblDesignationlApp.Text));
+            Rpt1.SetParameters(new ReportParameter("txtJoindat", this.lblJoiningDatelApp.Text));
+
+            
             Rpt1.SetParameters(new ReportParameter("txtApplydate", ""));
             Rpt1.SetParameters(new ReportParameter("txtReasons", ""));
             Rpt1.SetParameters(new ReportParameter("txttitlelappslip", "Leave Approval Slip"));

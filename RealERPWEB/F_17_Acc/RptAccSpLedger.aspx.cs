@@ -33,6 +33,9 @@ namespace RealERPWEB.F_17_Acc
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
 
@@ -46,9 +49,9 @@ namespace RealERPWEB.F_17_Acc
                         : (Request.QueryString["Type"].ToString().Trim() == "IssPaySum") ? "Issue Vs. Payment Summary(Main Head)"
                         : (Request.QueryString["Type"].ToString().Trim() == "ASupConPayment") ? "Overall Position(Supplier & Contractor)" : "Sub-Contractor Overal Position";
 
-                this.Master.Page.Title = title;
+                //this.Master.Page.Title = title;
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
                 this.txtDateFrom.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetResList();

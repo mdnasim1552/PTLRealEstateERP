@@ -33,6 +33,7 @@ namespace RealERPWEB.F_28_MPro
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 this.CommonButton();
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");

@@ -485,7 +485,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Total Weight ">
+                                        <asp:TemplateField HeaderText="Total Qty ">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvtotalweight" runat="server" BackColor="Transparent"
                                                     BorderStyle="None" Style="text-align: right"

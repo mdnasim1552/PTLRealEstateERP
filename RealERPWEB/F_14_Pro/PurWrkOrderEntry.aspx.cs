@@ -47,6 +47,8 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
@@ -55,8 +57,8 @@ namespace RealERPWEB.F_14_Pro
                    : (Request.QueryString["InputType"].ToString() == "SecondApp") ? "Purchase Order Final Approval"
                    : "Purchase Order";
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
-                this.Master.Page.Title = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //this.Master.Page.Title = title;
 
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
@@ -178,8 +180,8 @@ namespace RealERPWEB.F_14_Pro
             var port = HttpContext.Current.Request.Url.IsDefaultPort ? "" : ":"+HttpContext.Current.Request.Url.Port.ToString();
             string hostname = scheme+"://" + host + port + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
             **/
-
-            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
@@ -1831,6 +1833,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3357": // Cube
                 case "3368": // finlay
                 case "3370": // cpdl 
+                case "3374": //angan
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2514,6 +2517,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3366": //lanco
                 case "3368": // finlay
                 case "3370": // cpdl
+                case "3374"://Angan
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
@@ -2570,6 +2574,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "3370":
+                case "3374":
                     msg = "1. Delivery should be made as per sample & specifications." +
                         "\n2. Quantity should be ensured at the time of delivery" +
                         "\n3. Unspecified / bad quality material would be rejected and taken back by the supplier's own cost" +

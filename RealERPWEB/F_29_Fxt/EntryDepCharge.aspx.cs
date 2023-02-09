@@ -29,17 +29,43 @@ namespace RealERPWEB.F_29_Fxt
                     Response.Redirect("../AcceessError.aspx");
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "DEPRECIATION CHARGE CALCULATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "DEPRECIATION CHARGE CALCULATION";
 
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.GetOpeningDate();
+                this.GetComBalanceMethod();
 
             }
 
         }
+
+
+
+        private void GetComBalanceMethod()
+        {
+            string comcod = this.GetComcod();
+            switch (comcod)
+            {
+
+                case "3348"://Crednce
+                    this.chkStraight.Visible = false;
+                    break;
+
+                default:
+                    break;
+            
+            
+            }
+        
+        
+        }
+
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -197,6 +223,7 @@ namespace RealERPWEB.F_29_Fxt
             this.grDep.Columns[12].HeaderText = "W.D Values as on " + Convert.ToDateTime(this.txtTodate.Text).ToString("dd.MM.yyyy");
             this.grDep.DataSource = tbl1;
             this.grDep.DataBind();
+            this.FooterRowCal();
 
         }
 
@@ -207,7 +234,7 @@ namespace RealERPWEB.F_29_Fxt
             string comcod = hst["comcod"].ToString();
             string frdate = Convert.ToDateTime(this.txtFromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txtTodate.Text).ToString("dd-MMM-yyyy");
-
+            this.txtDays.Visible = true;
             string straight = (this.chkStraight.Checked) ? "straight" : "";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_FIXEDASSET_INFO", "RPTDEPRECIATION", frdate, todate, straight, "", "", "", "", "", "");
             if (ds1 == null)
@@ -224,7 +251,7 @@ namespace RealERPWEB.F_29_Fxt
             this.txtDays.Text = "Days: " + Convert.ToDouble(ds1.Tables[1].Rows[0]["cday"]).ToString("#,##0;(#,##0);");
             Session["tblDepcost"] = (DataTable)ds1.Tables[0];
             this.grDep_DataBind();
-            this.FooterRowCal();
+            
         }
         private void FooterRowCal()
         {

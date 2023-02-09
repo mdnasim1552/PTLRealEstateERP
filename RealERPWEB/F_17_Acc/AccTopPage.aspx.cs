@@ -41,8 +41,10 @@ namespace RealERPWEB.F_17_Acc
                 this.txtEntryDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "pttycash") ? "Petty cash Bill List" : "";
-                this.Master.Page.Title = (type == "pttycash") ? "Petty cash Bill Approval Sheet" : "";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "pttycash") ? "Petty cash Bill List" : "";
+                //this.Master.Page.Title = (type == "pttycash") ? "Petty cash Bill Approval Sheet" : "";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
             }
 
 

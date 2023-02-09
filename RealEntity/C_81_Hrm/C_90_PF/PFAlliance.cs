@@ -62,4 +62,38 @@ namespace RealEntity.C_81_Hrm.C_90_PF
 
         public ProvidedFund() { }
     }
+    [Serializable]
+
+    public class IndPfSattlement
+    {
+        public string comcod { get; set; }
+        public string yearid { get; set; }
+        public double salary { get; set; }
+        public double pfamt { get; set; }
+        public double swf { get; set; }
+        public double totalamt { get; set; }
+
+
+        public IndPfSattlement()
+        {
+        }
+    }
+
+    [Serializable]
+
+    public class EmpWiseSWF
+    {
+        public string comcod { get; set; }
+        public string monthid { get; set; }
+        public string paydate { get; set; }
+        public double salary { get; set; }
+        public double pfamt { get; set; }
+        public double swf { get; set; }
+        public double totalamt { get; set; }
+
+
+        public EmpWiseSWF()
+        {
+        }
+    }
 }

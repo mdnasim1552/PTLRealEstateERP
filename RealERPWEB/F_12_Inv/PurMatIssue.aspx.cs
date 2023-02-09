@@ -34,10 +34,13 @@ namespace RealERPWEB.F_12_Inv
                     Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //----------------udate-20150120---------
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Materials Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Materials Issue Information";
                 this.GetProjectList();
                 string qgenno = this.Request.QueryString["genno"] ?? "";
                 if (qgenno.Length > 0)
@@ -329,7 +332,7 @@ namespace RealERPWEB.F_12_Inv
             string qgenno = this.Request.QueryString["genno"] ?? "";
             string genno = (qgenno.Length == 0 ? "%" : this.Request.QueryString["genno"].ToString()) + "%";
             string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"16";
+            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"1[16]";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVMISSUELIST", CurDate1, genno, pactcodetype, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -599,12 +602,6 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnSelectReaSpesAll_Click(object sender, EventArgs e)
         {
-
-
-
-
-
-
             //////////
             DataTable dt = (DataTable)ViewState["tblmatissue"];
 

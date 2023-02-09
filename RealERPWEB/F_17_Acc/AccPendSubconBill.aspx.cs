@@ -30,8 +30,11 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Pending Contractor Bill";
-                this.Master.Page.Title = "Pending Contractor Bill";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Pending Contractor Bill";
+                //this.Master.Page.Title = "Pending Contractor Bill";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.imgbtnFindAccount_Click(null, null);
             }

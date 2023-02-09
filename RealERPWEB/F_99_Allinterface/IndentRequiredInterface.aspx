@@ -879,7 +879,17 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvpenissueno" runat="server" Height="16px"  Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueno")) %>'></asp:Label>
-
+                                                     
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue No" Visible="false" >
+                                                <ItemTemplate>
+                                                    
+                                                     <asp:Label ID="lblgvcomactcode" runat="server" Height="16px"  Width="200px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
+                                                    <asp:Label ID="lblgvcomdeptcode" runat="server" Height="16px"  Width="200px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptcode")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -938,7 +948,7 @@
                             <div class="table-responsive">
                                   <div class="table-responsive">
                                   <asp:GridView ID="gv_Complete" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"  OnRowDataBound="gv_Complete_RowDataBound" >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"   >
                                         <Columns>
 
                                             <asp:TemplateField HeaderText="SL # ">
@@ -971,10 +981,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvcomissueno" runat="server" Height="16px"  Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueno")) %>'></asp:Label>
-                                                    <asp:Label ID="lblgvcomactcode" runat="server" Height="16px"  Width="200px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
-                                                    <asp:Label ID="lblgvcomdeptcode" runat="server" Height="16px"  Width="200px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptcode")) %>'></asp:Label>
+                                                   
 
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1007,15 +1014,6 @@
                                             </asp:TemplateField>                                        
                                            
 
-                                            <asp:TemplateField HeaderText="Action">
-                                                <ItemTemplate>
-                                                    <asp:HyperLink runat="server" ID="hybtncompleteidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-check"></i></asp:HyperLink>
-                                                    
-                                                   
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
 
                                         </Columns>
 

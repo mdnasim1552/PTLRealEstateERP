@@ -31,8 +31,14 @@ namespace RealERPWEB.F_09_LCM
             if (!IsPostBack)
             {
                 // prevPage = Request.UrlReferrer.ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "LC Costing";//
-                                                                                 //((Label)this.Master.FindControl("lblANMgsBox")).Visible = false;
+                //((Label)this.Master.FindControl("lblTitle")).Text = "LC Costing";//
+                //((Label)this.Master.FindControl("lblANMgsBox")).Visible = false;
+
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 this.imgbtnLcsearch_Click(null, null);

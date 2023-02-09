@@ -102,7 +102,7 @@
                             PageSize="100">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -282,7 +282,7 @@
                                     OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True" OnRowDataBound="gvPermission_RowDataBound">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"

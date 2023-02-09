@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MonthlySalesBudget : System.Web.UI.Page
@@ -26,8 +28,11 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Budget (Sales & Collection)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Budget (Sales & Collection)";
                 this.ViewSection();
             }
         }
@@ -37,6 +42,13 @@ namespace RealERPWEB.F_22_Sal
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private string GetComeCode()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
 
         }
 
@@ -59,6 +71,11 @@ namespace RealERPWEB.F_22_Sal
                 case "DailyEntry":
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 2;
+                    break;
+
+                case "MonthlyTypeWise":
+                    this.GetYearMonth02();
+                    this.MultiView1.ActiveViewIndex = 3;
                     break;
             }
 
@@ -102,6 +119,26 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+
+
+        private void GetYearMonth02()
+        {
+            string comcod = this.GetCompCode();
+
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT02", "GETYEARMON", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlmonthtypeWise.DataTextField = "yearmon";
+            this.ddlmonthtypeWise.DataValueField = "ymon";
+            this.ddlmonthtypeWise.DataSource = ds1.Tables[0];
+            this.ddlmonthtypeWise.DataBind();
+            this.ddlmonthtypeWise.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
+            ds1.Dispose();
+
+
+        }
+
+        
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
@@ -145,6 +182,13 @@ namespace RealERPWEB.F_22_Sal
                     this.gvDailyEntry.DataSource = tbl1;
                     this.gvDailyEntry.DataBind();
                     break;
+
+                case "MonthlyTypeWise":
+                    this.gvsbgdTypeWise.DataSource = tbl1;
+                    this.gvsbgdTypeWise.DataBind();
+                    break;
+
+                    
 
             }
 
@@ -281,6 +325,20 @@ namespace RealERPWEB.F_22_Sal
 
                     break;
 
+                case "MonthlyTypeWise":
+                    for (int i = 0; i < this.gvsbgdTypeWise.Rows.Count; i++)
+                    {
+
+                        tbl1.Rows[i]["aptqty"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvaptqty")).Text.Trim()).ToString();
+                        tbl1.Rows[i]["shopqty"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvshopqty")).Text.Trim()).ToString();
+                        tbl1.Rows[i]["aptamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvAptcollamt")).Text.Trim()).ToString();
+                        tbl1.Rows[i]["shopamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvShopcollamt")).Text.Trim()).ToString();
+
+                    }
+                    break;
+
+
+
             }
             ViewState["tblsal"] = tbl1;
 
@@ -352,6 +410,9 @@ namespace RealERPWEB.F_22_Sal
 
                 case "DailyEntry":
                     this.RptPrintDailyreport();
+                    break;
+                case "MonthlyTypeWise":
+                    this.RptPrintMonthlyTypeWise();
                     break;
             }
 
@@ -529,7 +590,44 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void RptPrintMonthlyTypeWise()
 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+            string yearmon = this.ddlmonthtypeWise.SelectedItem.Text;
+            
+          
+            DataTable dt = (DataTable)ViewState["tblsal"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.MonthlySalesBudget>();
+           
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlySalesBudget", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+           
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "MONTHLY SALES & COLLECTION TARGET (EXECUTIVE WISE)"));
+            Rpt1.SetParameters(new ReportParameter("Rptprintdate", "Month Of " + yearmon));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+
+        }
         protected void gvSalbgd_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -547,5 +645,154 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        protected void lblMontypeWise_Click(object sender, EventArgs e)
+        {
+
+            ((Label)this.Master.FindControl("lblmsg")).Text = "";
+            string comcod = this.GetCompCode();
+            string YearMon = this.ddlmonthtypeWise.SelectedValue.ToString();
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT02", "GETSALCOLLTARTYPEWISE", YearMon, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvsbgdTypeWise.DataSource = null;
+                this.gvsbgdTypeWise.DataBind();
+                return;
+
+
+            }
+            ViewState["tblsal"] = this.HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+
+        }
+
+        protected void lbTotalbgd_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.Data_Bind();
+
+        }
+
+        protected void lbtnbgdFinalUpdate_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                return;
+            }
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                this.SaveValue();
+                DataTable dt1 = (DataTable)ViewState["tblsal"];
+                string Yearmon = this.ddlmonthtypeWise.SelectedValue.ToString();
+                bool result = true;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+
+
+                    string empid = dt1.Rows[i]["empid"].ToString();
+                    string aptqty = Convert.ToDouble(dt1.Rows[i]["aptqty"].ToString()).ToString();
+                    string shopqty = Convert.ToDouble(dt1.Rows[i]["shopqty"].ToString()).ToString();
+                    string aptamt = Convert.ToDouble(dt1.Rows[i]["aptamt"].ToString()).ToString();
+                    string shopamt = Convert.ToDouble(dt1.Rows[i]["shopamt"].ToString()).ToString();
+
+                    result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "INSERTORUPDATESALCOLTARTYPEINF", Yearmon, empid, aptqty, shopqty, aptamt, shopamt, "", "", "", "", "", "", "", "", "");
+
+
+                    if (result == false)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                        return;
+                    }
+                    else
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                    }
+
+
+
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Errp:" + ex.Message;
+            }
+
+        }
+
+  
+
+        protected void btnlink_Click(object sender, EventArgs e)
+        {
+            DateTime frmdate, date1, date2;
+            string comcod = this.GetCompCode();
+            string date = this.ddlmonthtypeWise.SelectedValue.ToString();
+            date1 = Convert.ToDateTime(ASTUtility.DateFormat("01" + "." + date.Substring(4, 2) + "." + date.Substring(0, 4)));
+            date2 = Convert.ToDateTime(date1.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");           
+            string date3 = Convert.ToDateTime(date1).ToString("dd-MMM-yyyy");
+            string date4 = Convert.ToDateTime(date2).ToString("dd-MMM-yyyy");
+
+            //btnlink.Attributes.Add("href", "~/F_22_Sal/RptSalSummery?Type=SaleVsCollTypeWise&comcod " + comcod + "&date1=" + date3 + "&date2=" + date4);
+            //btnlink.Attributes.Add("target", "_blank");
+             Response.Redirect("~/F_22_Sal/RptSalSummery?Type=SaleVsCollTypeWise&comcod=" + comcod + "&date1=" + date3 + "&date2="+ date4);
+
+      
+
+        }
+
+        protected void gvsbgdTypeWise_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell1 = new TableCell();
+                cell1.Text = "";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell1.ColumnSpan = 1;
+                gvrow.Cells.Add(cell1);
+
+                TableCell cell2 = new TableCell();
+                cell2.Text = "";
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 1;
+                gvrow.Cells.Add(cell2);
+
+
+
+                TableCell cell3 = new TableCell();
+                cell3.Text = "Quantity";
+                cell3.HorizontalAlign = HorizontalAlign.Center;
+                cell3.ColumnSpan = 2;
+                cell3.Font.Bold = true;
+                gvrow.Cells.Add(cell3);
+
+
+
+
+
+                TableCell cell4 = new TableCell();
+                cell4.Text = "Collection";
+                cell4.HorizontalAlign = HorizontalAlign.Center;
+                cell4.ColumnSpan = 2;
+                cell4.Font.Bold = true;
+                gvrow.Cells.Add(cell4);
+
+
+
+
+                gvsbgdTypeWise.Controls[0].Controls.AddAt(0, gvrow);
+            }
+        }
+            
     }
 }

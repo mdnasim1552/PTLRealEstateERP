@@ -1100,7 +1100,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Weight</Value>
+                                  <Value>Total</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Qty</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1720,7 +1735,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.85916in</Top>
             <Height>0.76041in</Height>
-            <Width>7.92708in</Width>
+            <Width>7.92707in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>

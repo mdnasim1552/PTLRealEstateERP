@@ -86,8 +86,8 @@
 
 
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlProject" runat="server" style="width:336px" CssClass="chzn-select form-control  inputTxt" TabIndex="13" AutoPostBack="true" 
-                                                >
+                                            <asp:DropDownList ID="ddlProject" runat="server" style="width:336px" CssClass="chzn-select form-control  inputTxt" TabIndex="13" AutoPostBack="true" >
+                                                
                                             </asp:DropDownList>
                                             <asp:Label ID="lblProjectDesc" runat="server" Visible="False" style="width:336px" CssClass="form-control inputTxt"></asp:Label>
                                         </div>

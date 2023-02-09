@@ -387,14 +387,14 @@
                                         <div class="col-md-12  pading5px">
                                             <asp:Label ID="lblsecurity" runat="server" CssClass="lblTxt lblName" Text="SD in %"></asp:Label>
                                             
-                                            <asp:TextBox ID="txtpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" Text="5%"></asp:TextBox>
+                                            <asp:TextBox ID="txtpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" ></asp:TextBox>
                                             <asp:Label ID="lblsecamt" runat="server"
                                                 Text="SD in Amt." CssClass=" smLbl_to"></asp:Label>
 
                                             <asp:TextBox ID="txtSDAmount" runat="server" CssClass="inputtextbox" Style="text-align: right;"></asp:TextBox>
 
                                             <asp:Label ID="lbltaxper" runat="server" Text="Tax in %" CssClass=" smLbl_to"></asp:Label>
-                                            <asp:TextBox ID="txttaxpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" Text="5%"></asp:TextBox>
+                                            <asp:TextBox ID="txttaxpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" ></asp:TextBox>
 
                                             <asp:Label ID="lblTax" runat="server"
                                                 Text="Tax in Amt." CssClass=" smLbl_to"></asp:Label>
@@ -403,7 +403,7 @@
 
                                             <asp:Label ID="lblvatinper" runat="server"
                                                 Text="Vat In %" CssClass=" smLbl_to"></asp:Label>
-                                            <asp:TextBox ID="txtvatpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" Text="6%"></asp:TextBox>
+                                            <asp:TextBox ID="txtvatpercentage" runat="server" CssClass="inputtextbox" Style="width: 40px; text-align: right;" ></asp:TextBox>
 
 
                                             <asp:Label ID="lblvat" runat="server"

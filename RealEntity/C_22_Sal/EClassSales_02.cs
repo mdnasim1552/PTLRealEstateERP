@@ -606,8 +606,171 @@ namespace RealEntity.C_22_Sal
             public double famt { get; set; }
 
         }
+        [Serializable]
+        public class RtpAvailChartPrint
+        {
+            public string comcod { get; set; }
+            public string flrcod { get; set; }
+            public string flrdesc { get; set; }
+            public string untd1 { get; set; }
+            public string untd2 { get; set; }
+            public string untd3 { get; set; }
+            public string untd4 { get; set; }
+            public string untd5 { get; set; }
+            public string untd6 { get; set; }
+            public string untd7 { get; set; }
+            public string untd8 { get; set; }
+            public string untd9 { get; set; }
+            public string untd10 { get; set; }
+            public string untd11 { get; set; }
+            public string untd12 { get; set; }
+            public string untd13 { get; set; }
+            public string untd14 { get; set; }
+            public string untd15 { get; set; }
+            public string untd16 { get; set; }
+            public string untd17 { get; set; }
+            public string untd18 { get; set; }
+            public string untd19 { get; set; }
+            public string untd20 { get; set; }
+            public string untd21 { get; set; }
+            public string untd22 { get; set; }
+            public string untd23 { get; set; }
+            public string untd24 { get; set; }
+            public string untd25 { get; set; }
+            public string untd26 { get; set; }
+            public string untd27 { get; set; }
+            public string untd28 { get; set; }
+            public string untd29 { get; set; }
+            public string untd30 { get; set; }
+            public string untd31 { get; set; }
+            public string untd32 { get; set; }
+            public string untd33 { get; set; }
+            public string untd34 { get; set; }
+            public string untd35 { get; set; }
+            public string untd36 { get; set; }
+            public string untd37 { get; set; }
+            public string untd38 { get; set; }
+            public string untd39 { get; set; }
+            public string untd40 { get; set; }
+            public string untd41 { get; set; }
+            public string untd42 { get; set; }
+            public string untd43 { get; set; }
+            public string untd44 { get; set; }
+            public string untd45 { get; set; }
+            public string untd46 { get; set; }
+            public string untd47 { get; set; }
+            public string untd48 { get; set; }
+            public string untd49 { get; set; }
+            public string untd50 { get; set; }
+            public string unts1 { get; set; }
+            public string unts2 { get; set; }
+            public string unts3 { get; set; }
+            public string unts4 { get; set; }
+            public string unts5 { get; set; }
+            public string unts6 { get; set; }
+            public string unts7 { get; set; }
+            public string unts8 { get; set; }
+            public string unts9 { get; set; }
+            public string unts10 { get; set; }
+            public string unts11 { get; set; }
+            public string unts12 { get; set; }
+            public string unts13 { get; set; }
+            public string unts14 { get; set; }
+            public string unts15 { get; set; }
+            public string unts16 { get; set; }
+            public string unts17 { get; set; }
+            public string unts18 { get; set; }
+            public string unts19 { get; set; }
+            public string unts20 { get; set; }
+            public string unts21 { get; set; }
+            public string unts22 { get; set; }
+            public string unts23 { get; set; }
+            public string unts24 { get; set; }
+            public string unts25 { get; set; }
+            public string unts26 { get; set; }
+            public string unts27 { get; set; }
+            public string unts28 { get; set; }
+            public string unts29 { get; set; }
+            public string unts30 { get; set; }
+            public string unts31 { get; set; }
+            public string unts32 { get; set; }
+            public string unts33 { get; set; }
+            public string unts34 { get; set; }
+            public string unts35 { get; set; }
+            public string unts36 { get; set; }
+            public string unts37 { get; set; }
+            public string unts38 { get; set; }
+            public string unts39 { get; set; }
+            public string unts40 { get; set; }
+            public string unts41 { get; set; }
+            public string unts42 { get; set; }
+            public string unts43 { get; set; }
+            public string unts44 { get; set; }
+            public string unts45 { get; set; }
+            public string unts46 { get; set; }
+            public string unts47 { get; set; }
+            public string unts48 { get; set; }
+            public string unts49 { get; set; }
+            public string unts50 { get; set; }
+            public string untsz1 { get; set; }
+            public string untsz2 { get; set; }
+            public string untsz3 { get; set; }
+            public string untsz4 { get; set; }
+            public string untsz5 { get; set; }
+            public string untsz6 { get; set; }
+            public string untsz7 { get; set; }
+            public string untsz8 { get; set; }
+            public string untsz9 { get; set; }
+            public string untsz10 { get; set; }
+           
+        }
 
         [Serializable]
+        public class RptTransactionSummary
+        {
+	        public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public double netamt { get; set; }
+            public double amt1 { get; set; }
+            public double amt2 { get; set; }
+            public double amt3 { get; set; }
+            public double amt4 { get; set; }
+            public double amt5 { get; set; }
+            public double amt6 { get; set; }
+            public double amt7 { get; set; }
+            public double amt8 { get; set; }
+            public double amt9 { get; set; }
+            public double amt10 { get; set; }
+            public double amt11 { get; set; }
+            public double amt12 { get; set; }
+            public double amt13 { get; set; }
+            public double amt14 { get; set; }
+            public double amt15 { get; set; }
+            public double amt16 { get; set; }
+            public double amt17 { get; set; }
+            public double amt18 { get; set; }
+            public double amt19 { get; set; }
+            public double amt20 { get; set; }
+            public double amt21 { get; set; }
+            public double amt22 { get; set; }
+            public double amt23 { get; set; }
+            public double amt24 { get; set; }
+            public double amt25 { get; set; }
+            public double amt26 { get; set; }
+            public double amt27 { get; set; }
+            public double amt28 { get; set; }
+            public double amt29 { get; set; }
+            public double amt30 { get; set; }
+            public double amt31 { get; set; }
+            public double amt32 { get; set; }
+            public double amt33 { get; set; }
+            public double amt34 { get; set; }
+
+
+        }
+
+            [Serializable]
         public class CustomerImagePath
         {
             public string imgath { get; set; }
@@ -754,6 +917,7 @@ namespace RealEntity.C_22_Sal
             public double interest { get; set; }
             public double cuminterest { get; set; }
             public double dueamt { get; set; }
+           
             public EClasInterestCalculation()
             { }
         }
@@ -1551,6 +1715,21 @@ namespace RealEntity.C_22_Sal
 
             }
 
+
+        }
+
+        [Serializable]
+
+        public class RptCustomerSettlement
+        {
+            public string comcod { get; set; }
+            public string code { get; set; }
+            public string codedesc { get; set; }
+            public double amt { get; set; }
+            public RptCustomerSettlement()
+            {
+
+            }
 
         }
 

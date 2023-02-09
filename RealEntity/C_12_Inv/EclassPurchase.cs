@@ -107,6 +107,9 @@ namespace RealEntity.C_12_Inv
             public string resdesc{ get; set; }
             public double rcvamt { get; set; }
             public double tminamt { get; set; }
+            public double trninamt { get; set; }
+            public double trnoutamt { get; set; }
+            
             public double tmoutamt { get; set; }
             public double lsamt { get; set; }
             public double netrcvamt { get; set; }
@@ -122,7 +125,8 @@ namespace RealEntity.C_12_Inv
             public string rsircode { get; set; }
             public string sircode { get; set; }
             public string sirdesc { get; set; }
-           
+            public double trninqty { get; set; }
+            public double trnoutqty { get; set; }
             public double opqty { get; set; }
             public double rcvqty { get; set; }
             public double tminqty { get; set; }

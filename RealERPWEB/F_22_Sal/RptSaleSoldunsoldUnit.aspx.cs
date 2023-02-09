@@ -45,17 +45,20 @@ namespace RealERPWEB.F_22_Sal
                 //this.txtDate.Text =(this.Request.QueryString["Date1"].Length>0)?this.Request.QueryString["Date1"]: System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.lbltodate.Visible = false;
+                this.divtodate.Visible = false;
                 this.txttodate.Visible = false;
                 this.GetSalesTeam();
                 this.gvVisibility();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "soldunsold") ? "SOLD & UNSOLD INFORMATION"
-                    : (this.Request.QueryString["Type"] == "uwiseCosting") ? "Unit Wise Costing"
-                    : (this.Request.QueryString["Type"] == "RptDayWSale") ? "Day Wise Sales"
-                    : (this.Request.QueryString["Type"] == "paking") ? "Parking Status" : "SOLD & UNSOLD INFORMATION";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "soldunsold") ? "SOLD & UNSOLD INFORMATION"
+                //    : (this.Request.QueryString["Type"] == "uwiseCosting") ? "Unit Wise Costing"
+                //    : (this.Request.QueryString["Type"] == "RptDayWSale") ? "Day Wise Sales"
+                //    : (this.Request.QueryString["Type"] == "paking") ? "Parking Status" : "SOLD & UNSOLD INFORMATION";
 
                 this.lbtnOk_Click(null, null);
             }
@@ -113,8 +116,9 @@ namespace RealERPWEB.F_22_Sal
                     this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
                     this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.lbltodate.Visible = true;
+                    this.divtodate.Visible = true;
                     this.txttodate.Visible = true;
-                    this.Label15.Text = "From: ";
+                    //this.Label15.Text = "From: ";
                     //this.Label15.Visible = false;
                     //this.txtDate.Visible = false;
                     //this.lblGroup.Visible = false;
