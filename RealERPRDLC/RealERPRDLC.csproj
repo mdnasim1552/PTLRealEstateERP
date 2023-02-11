@@ -52,8 +52,6 @@
       <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
 
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
