@@ -91,14 +91,15 @@ namespace RealERPWEB.F_17_Acc
         {
             this.GetCustomerName();
         }
+       
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
                 case "3370":
+                case "3101":
                     string qtype = this.Request.QueryString["Type"].ToString().Trim();
                     if(qtype== "Allotment")
                     {
@@ -173,36 +174,33 @@ namespace RealERPWEB.F_17_Acc
                           "connections  as Utility Charges  are not included in the price of " + "<strong>"  + type + "</strong>" + " space. These payments will be made by the " + 
                           "company directly to the authorities concerned, on the allottees account." + "<br><br>" +
                           "5. Limited changes in the " + type + " and other facilities may be made by the " + "<b>" + companyname + "</b>" + " for greater and overall interest of the project.  " + "<br><br>" +
-                          " 6. No modification from customer's end will be allowed on elevation or which seen from outside of the complex, sanitary line etc.";
-            string body02 =
-
-                             "7. If the allottee intends to have any modification of the civil or electrical work of his " + type +
-                             " compared to the standard set by " + "<strong>" + companyname + "</strong>" + ", any such modification request shall first be assessed  by the " + "<strong>" + companyname + "</strong>" + " management." +
-                             "Implementation of any such modification work, whether in part or full, is strictly subject to prior approval of " + "<strong>" + companyname + "</strong>" + " management. " +
-                             "In the event, additional cost is involved in implementing any such modification request, the concerned allottee must bear such cost. " +
-                             "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + " s " +
-                             "standard materials specification sheet." + "<br><br>" +
-                             "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
-                             "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
-                             "the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per  " + "<strong>" + companyname + "</strong>" + " standard. " +
-                             "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement" + "<br><br>" +
-                             "10. The possession of each " + "<strong>" + type + "</strong>" + " shall duly be handed over to the allottee on completion and on full payment of installments and other charges and dues." +
-                             "Until then the possession will be held by the " + "<strong>" + companyname + "</strong>" + " . If the construction and finishing work of each building is completed on " +
-                             "before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +
-                             "and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective " + "<strong>" + type + "</strong>" + "(s)" + "<br><br>" +
-                             "11. Upon registration, the " + "<strong>" + type + "</strong>" + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land on  " +
-                             "which the building is constructed. After having possession of the " + "<strong>" + type + "</strong>" + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " prior to undertake " +
-                             "structural or layout change within the " + "<strong>" + type + "</strong>" + " complex. Failure to do so will be at the sole risk of allottee." + "<br><br>" +
-                             "12. The completion period may be affected and delayed by the unavoidable circumstances beyond the control of the company, like Force Majeure, Natural Calamities," +
-                             "Political Disturbances, Act of God, Strike, Non Availability of Materials, Change in the Policy of the Government etc." + "<br><br>" +
-                             "13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility to provide finishing materials beyond " + "<strong>" + companyname + "</strong>" + " standard." + "<br><br>" +
-                             "14. After handing over the " + "<strong>" + type + "</strong>" + " to the allottee by " + "<strong>" + companyname + "</strong>" + ", an association of Apartment space " +
-                             "Committee (CMC) will manage the common facility of the" + type + " and all the common interest of the " +
-                             "<strong>" + type + "</strong>" + " owners." +
-                              "Committee (CMC) will manage the common facility of the" + type + " and all the common interest of the " +
-                               "will be the member of the committee by contributing in the reserve fund. The Collective Management " +
-                                "Committee (CMC) will manage the common facility of the " + type + " and all the common interest of the"+
-                                 "<strong>" + type + "</strong>" + " owners.";
+                          " 6. No modification from customer's end will be allowed on elevation or which seen from outside of the complex, sanitary line etc."+ "<br><br>" +
+                          "7. If the allottee intends to have any modification of the civil or electrical work of his " + type +
+                          " compared to the standard set by " + "<strong>" + companyname + "</strong>" + ", any such modification request shall first be assessed  by the " + "<strong>" + companyname + "</strong>" + " management." +
+                          "Implementation of any such modification work, whether in part or full, is strictly subject to prior approval of " + "<strong>" + companyname + "</strong>" + " management. " +
+                          "In the event, additional cost is involved in implementing any such modification request, the concerned allottee must bear such cost. " +
+                          "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + " s " +
+                          "standard materials specification sheet." + "<br><br>" +
+                          "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
+                          "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
+                          "the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per  " + "<strong>" + companyname + "</strong>" + " standard. " +
+                          "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement" + "<br><br>" +
+                          "10. The possession of each " + "<strong>" + type + "</strong>" + " shall duly be handed over to the allottee on completion and on full payment of installments and other charges and dues." +
+                          "Until then the possession will be held by the " + "<strong>" + companyname + "</strong>" + " . If the construction and finishing work of each building is completed on " +
+                          "before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +
+                          "and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective " + "<strong>" + type + "</strong>" + "(s)" + "<br><br>" +
+                          "11. Upon registration, the " + "<strong>" + type + "</strong>" + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land on  " +
+                          "which the building is constructed. After having possession of the " + "<strong>" + type + "</strong>" + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " prior to undertake " +
+                          "structural or layout change within the " + "<strong>" + type + "</strong>" + " complex. Failure to do so will be at the sole risk of allottee." + "<br><br>" +
+                          "12. The completion period may be affected and delayed by the unavoidable circumstances beyond the control of the company, like Force Majeure, Natural Calamities," +
+                          "Political Disturbances, Act of God, Strike, Non Availability of Materials, Change in the Policy of the Government etc." + "<br><br>" +
+                          "13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility to provide finishing materials beyond " + "<strong>" + companyname + "</strong>" + " standard." + "<br><br>" +
+                          "14. After handing over the " + "<strong>" + type + "</strong>" + " to the allottee by " + "<strong>" + companyname + "</strong>" + ", an association of Apartment space " +
+                          "owners namely Collective Management Committee (CMC) will be formed. All the " + type + " owners" +
+                          "will be the member of the committee by contributing in the reserve fund. The Collective Management" +
+                          "Committee (CMC) will manage the common facility of the Apartment and all the common interest of the" +
+                          "<strong>" + type + "</strong>" + " owners.";
+           
 
 
                 string generalTitle = "GENERAL AGREEMENT";
@@ -273,7 +271,7 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "LETTER OF ALLOTMENT"));                
                 Rpt1.SetParameters(new ReportParameter("dateofbirth", dateofbirth));                
-                Rpt1.SetParameters(new ReportParameter("body02", body02));                
+               // Rpt1.SetParameters(new ReportParameter("body02", body02));                
                 Rpt1.SetParameters(new ReportParameter("custid", custid));                
                 Rpt1.SetParameters(new ReportParameter("heading", heading));                
                 Rpt1.SetParameters(new ReportParameter("method", method));                
@@ -392,11 +390,26 @@ namespace RealERPWEB.F_17_Acc
                 string comcod = hst["comcod"].ToString();
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
+                string type = this.Request.QueryString["Type"].ToString();
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
-
                 Session["tblcudtomerdetails"] = ds2.Tables[0];
+
+                if (type == "CustomerSettlement")
+                {
+                    DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                    if (ds1.Tables[0].Rows.Count == 0)
+                    {
+                        this.gvcustsettlement.DataSource = null;
+                        this.gvcustsettlement.DataBind();
+                        return;
+                    }
+
+                    Session["storedata"] = ds1.Tables[0];
+                    this.gvcustsettlement.DataSource = ds1.Tables[0];
+                    this.gvcustsettlement.DataBind();
+                }                
 
             }
             catch(Exception exp)

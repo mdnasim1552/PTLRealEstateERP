@@ -37,18 +37,33 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Depreciation Journal";
                 this.Master.Page.Title = "Depreciation Journal";
                 this.lbldate.Text = this.Request.QueryString["Date2"].ToString();
+                CommonButton();
                 CreateTable();
                 this.GetDepreciation();
                 this.Master.Page.Title = "Purchase Accounts";
             }
         }
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+
 
         private void CreateTable()
         {
