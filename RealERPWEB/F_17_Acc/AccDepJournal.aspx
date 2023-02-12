@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccDepJournal.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccDepJournal" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccDepJournal.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccDepJournal" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -25,6 +25,15 @@
             $.keynavigation(gridview);
         };
     </script>
+    <style>
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .mt22 {
+            margin-top: 22px;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -45,32 +54,34 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <asp:Panel ID="Panel1" runat="server">
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px">
-                                            <asp:Label ID="lblcurVounum" runat="server" CssClass=" lblName lblTxt" Text="Current Voucher No." Width="120"></asp:Label>
-                                            <asp:TextBox ID="txtcurrentvou" runat="server" AutoCompleteType="Disabled" AutoPostBack="true" CssClass="smltxtBox"  Width="65"></asp:TextBox>
-                                            <asp:TextBox ID="txtCurrntlast6" runat="server" AutoPostBack="True" ReadOnly="True" ToolTip="You Can Change Voucher Number."  Width="65" CssClass="smltxtBox"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-4 pading5px">
-                                            <asp:Label ID="lbltxtDate" runat="server" CssClass=" smLbl_to" Text="Voucher Date"></asp:Label>
-                                            <asp:TextBox ID="lbldate" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="lbldate_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd.MM.yyyy" TargetControlID="lbldate"></cc1:CalendarExtender>
-                                            <asp:Label ID="lblmsg" runat="server" CssClass="btn-danger btn primaryBtn disabled" Visible="false"></asp:Label>
-                                        </div>
-                                    </div>
-                                </asp:Panel>
-                            </div>
-                        </fieldset>
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-1.5  mt22">
+                            <asp:Label ID="lblcurVounum" runat="server" CssClass=" lblName lblTxt" Text="Current Voucher No." Width="120"></asp:Label>
+                        </div>
+                        <div class="col-md-.5 mt20  ">
+                            <asp:TextBox ID="txtcurrentvou" runat="server" AutoCompleteType="Disabled" AutoPostBack="true" CssClass="form-control form-control-sm" Width="65"></asp:TextBox>
+                        </div>
+                        <div class="col-md-1 mt20  ">
+                            <asp:TextBox ID="txtCurrntlast6" runat="server" AutoPostBack="True" ReadOnly="True" ToolTip="You Can Change Voucher Number." Width="65" CssClass="form-control form-control-sm"></asp:TextBox>
+                        </div>
+                        <div class="col-md-2  ">
+                            <asp:Label ID="lbltxtDate" runat="server" CssClass=" lblName lblTxt" Text="Voucher Date"></asp:Label>
+                            <asp:TextBox ID="lbldate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <cc1:CalendarExtender ID="lbldate_CalendarExtender" runat="server"
+                                Enabled="True" Format="dd.MM.yyyy" TargetControlID="lbldate"></cc1:CalendarExtender>
+                            <asp:Label ID="lblmsg" runat="server" CssClass="btn-danger btn primaryBtn disabled" Visible="false"></asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
+                    <div class="row" style="min-height:500px;">
                         <div class="table table-responsive">
                             <asp:Panel ID="pnlBill" runat="server">
-                                <asp:GridView ID="dgv2" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" Width="672px" ShowFooter="True">
+                                <asp:GridView ID="dgv2" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea" Width="672px" ShowFooter="True">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL.No.">
                                             <ItemTemplate>
@@ -114,9 +125,10 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="11px" />
 
-                                             <FooterTemplate>
-                                                <asp:LinkButton ID="btnTotal" runat="server" Font-Bold="True"
-                                                    OnClick="lbtnTotal_Click" CssClass="btn btn-primary primarygrdBtn pull-right">Total :</asp:LinkButton>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotal" runat="server" CssClass=" lblName lblTxt" Font-Bold="True" Font-Size="12px" Text="Total"></asp:Label>
+                                                <asp:LinkButton ID="btnTotal" runat="server" Font-Bold="True" Visible="false"
+                                                    OnClick="lbtnTotal_Click" CssClass="btn btn-sm btn-primary primarygrdBtn pull-right">Total :</asp:LinkButton>
                                             </FooterTemplate>
 
                                         </asp:TemplateField>
@@ -126,30 +138,30 @@
 
                                         <asp:TemplateField HeaderText="Dr.Amount" ItemStyle-Font-Size="11px">
                                             <FooterTemplate>
-                                                <asp:TextBox ID="txtTgvDrAmt" runat="server" BackColor="Transparent" ReadOnly="true"
-                                                    BorderColor="Transparent" Font-Size="12px" Style="text-align:right;"
+                                                <asp:TextBox ID="txtTgvDrAmt" runat="server"  ReadOnly="true"
+                                                     Font-Size="12px" Style="text-align: right;"
                                                     Width="80px"></asp:TextBox>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvDrAmt" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" ReadOnly="True" ForeColor="Black"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "Dr")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px" Style="text-align:right;"></asp:TextBox>
+                                                    Width="80px" Style="text-align: right;"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle Font-Size="11px" HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Cr.Amount" ItemStyle-Font-Size="11px">
                                             <FooterTemplate>
-                                                <asp:TextBox ID="txtTgvCrAmt" runat="server" BackColor="Transparent"
-                                                    BorderColor="Transparent" ReadOnly="true"  Style="text-align:right;"
+                                                <asp:TextBox ID="txtTgvCrAmt" runat="server" 
+                                                     ReadOnly="true" Style="text-align: right;"
                                                     Width="80px"></asp:TextBox>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvCrAmt" runat="server" BackColor="Transparent"
                                                     BorderColor="Transparent" BorderStyle="None" Height="22px" ForeColor="Black"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "Cr")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px" Style="text-align:right;"></asp:TextBox>
+                                                    Width="80px" Style="text-align: right;"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle Font-Size="11px" HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
@@ -160,35 +172,49 @@
 
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <PagerStyle CssClass="gvPaginationNew" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
 
-                                <div class="form-horizontal" style="margin-top:10px;">
+                                <div class="form-horizontal" style="margin-top: 10px;">
                                     <div class="form-group">
                                         <div class="col-md-12 pading5px">
-                                            <asp:Label ID="lblRefNum" runat="server" CssClass=" lblName lblTxt" Width="130"  Text="Ref./Cheq No/Slip No."></asp:Label>
-                                            <asp:TextBox ID="txtRefNum" runat="server" AutoCompleteType="Disabled"  CssClass="inputtextbox" Width="200"></asp:TextBox>
+                                            <asp:Label ID="lblRefNum" runat="server" CssClass=" lblName lblTxt" Width="130" Text="Ref./Cheq No/Slip No."></asp:Label>
+                                            <asp:TextBox ID="txtRefNum" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" Width="200"></asp:TextBox>
 
-                                             <asp:Label ID="lblSrInfo" runat="server" CssClass=" lblName lblTxt" Text="Other ref.(if any)"></asp:Label>
-                                            <asp:TextBox ID="txtSrinfo" runat="server" AutoCompleteType="Disabled"  CssClass="inputtextbox" Width="200"></asp:TextBox>
-                                            <asp:LinkButton ID="lnkFinalUpdate" runat="server" CssClass=" btn btn-danger primaryBtn" OnClick="lnkFinalUpdate_Click" Width="100px">Final Update</asp:LinkButton>
+                                            <asp:Label ID="lblSrInfo" runat="server" CssClass=" lblName lblTxt" Text="Other ref.(if any)"></asp:Label>
+                                            <asp:TextBox ID="txtSrinfo" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" Width="200"></asp:TextBox>
+                                            <asp:LinkButton ID="lnkFinalUpdate" runat="server" CssClass=" btn btn-danger btn-sm primaryBtn" Visible="false" OnClick="lnkFinalUpdate_Click" Width="100px">Final Update</asp:LinkButton>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-12 pading5px">
-                                            <asp:Label ID="lblNaration0" runat="server" CssClass=" lblName lblTxt"  Text="Narration" Width="130"></asp:Label>
-                                            <asp:TextBox ID="txtNarration" runat="server" AutoCompleteType="Disabled" TextMode="MultiLine" Rows="2" Width="505px" CssClass=" form-control"></asp:TextBox>
+                                            <asp:Label ID="lblNaration0" runat="server" CssClass=" lblName lblTxt" Text="Narration" Width="130"></asp:Label>
+                                            <asp:TextBox ID="txtNarration" runat="server" AutoCompleteType="Disabled" TextMode="MultiLine" Rows="2" Width="505px" CssClass=" form-control form-control-sm"></asp:TextBox>
                                         </div>
                                     </div>
-                            </div>
+                                </div>
 
                             </asp:Panel>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container moduleItemWrpper">
+                <div class="contentPart">
+                    <div class="row">
+                        <fieldset class="scheduler-border fieldset_A">
+                            <div class="form-horizontal">
+                                <asp:Panel ID="Panel1" runat="server">
+                                </asp:Panel>
+                            </div>
+                        </fieldset>
+                        
                     </div>
                 </div>
             </div>
@@ -233,7 +259,7 @@
                     </tr>
                 </table>--%>
 
-        <%--<tr>
+    <%--<tr>
             <td class="style199">&nbsp;<asp:Label ID="lblRefNum" runat="server" CssClass="label2"
                 Text="Ref./Cheq No/Slip No." Width="120px"></asp:Label>
             </td>
@@ -253,7 +279,7 @@
             <td class="style193">&nbsp;</td>
         </tr>--%>
 
-        <%--<tr>
+    <%--<tr>
             <td class="style199" style="text-align: right; vertical-align: top">
                 <asp:Label ID="lblNaration0" runat="server" CssClass="label2" Text="Narration"
                     Width="120px"></asp:Label>
@@ -267,8 +293,6 @@
             <td class="style192">&nbsp;</td>
             <td class="style193"></td>
         </tr>--%>
-    
-
 </asp:Content>
 
 

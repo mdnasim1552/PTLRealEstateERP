@@ -13,7 +13,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            
         });
     </script>
     <style>
@@ -70,9 +70,9 @@
             <div class="card card-fluid">
                 <div class="card-body" style="min-height:500px;">
                     <div class="row">
-                        <asp:Label ID="txtDays" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                        <asp:Label ID="txtDays" runat="server" CssClass="btn btn-danger btn-sm primaryBtn" Visible="false"></asp:Label>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                          <asp:GridView ID="grDep" runat="server" AllowPaging="True" CssClass=" table-striped table-bordered grvContentarea"
                         AutoGenerateColumns="False" OnPageIndexChanging="grDep_PageIndexChanging"
                         ShowFooter="True" Style="text-align: left" Width="810px" OnRowCreated="grDep_RowCreated" PageSize="20">

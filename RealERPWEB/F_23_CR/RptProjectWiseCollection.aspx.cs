@@ -197,7 +197,7 @@ namespace RealERPWEB.F_23_CR
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
 
@@ -212,10 +212,11 @@ namespace RealERPWEB.F_23_CR
             
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("date1", "As On Date : " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status All"));
+            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " +printdate));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
 
@@ -326,6 +327,7 @@ namespace RealERPWEB.F_23_CR
                     this.gvprjcolstall.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvprjcolstall.DataSource = dt1;
                     this.gvprjcolstall.DataBind();
+                    this.FooterCalculation();
                     break;
             }
            
@@ -336,45 +338,63 @@ namespace RealERPWEB.F_23_CR
 
         private void FooterCalculation()
         {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
             DataTable dt = (DataTable)Session["tblPrjstatus"];
             DataTable dt1 = (DataTable)Session["tblPrjstatusall"];
-            if (dt.Rows.Count == 0 || dt1.Rows.Count == 0)
-                return;
+          
+
+            switch (Type)
+            {
+                case "CollectionStatus":
+                    if (dt.Rows.Count == 0)
+                        return;
 
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFTval")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(totalsval)", "")) ?
-                        0.00 : dt.Compute("Sum(totalsval)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFreceivedamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ?
-                0.00 : dt.Compute("Sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFTval")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(totalsval)", "")) ?
+                                0.00 : dt.Compute("Sum(totalsval)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFreceivedamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ?
+                        0.00 : dt.Compute("Sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFlgvmodamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(modfiamt)", "")) ?
-              0.00 : dt.Compute("Sum(modfiamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFlgvmodamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(modfiamt)", "")) ?
+                      0.00 : dt.Compute("Sum(modfiamt)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFIncreseamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(increseamt)", "")) ?
-              0.00 : dt.Compute("Sum(increseamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFutilityamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(utilityamt)", "")) ?
-               0.00 : dt.Compute("Sum(utilityamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFdelayamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(delayamt)", "")) ?
-               0.00 : dt.Compute("Sum(delayamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFassociationamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(associaamt)", "")) ?
-               0.00 : dt.Compute("Sum(associaamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFIncreseamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(increseamt)", "")) ?
+                      0.00 : dt.Compute("Sum(increseamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFutilityamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(utilityamt)", "")) ?
+                       0.00 : dt.Compute("Sum(utilityamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFdelayamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(delayamt)", "")) ?
+                       0.00 : dt.Compute("Sum(delayamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFassociationamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(associaamt)", "")) ?
+                       0.00 : dt.Compute("Sum(associaamt)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFtotalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(totalrecamt)", "")) ?
-               0.00 : dt.Compute("Sum(totalrecamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFtotalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(totalrecamt)", "")) ?
+                       0.00 : dt.Compute("Sum(totalrecamt)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balance)", "")) ?
-                0.00 : dt.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balance)", "")) ?
+                        0.00 : dt.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFutility")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(utlityam)", "")) ?
-                0.00 : dt.Compute("Sum(utlityam)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFutility")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(utlityam)", "")) ?
+                        0.00 : dt.Compute("Sum(utlityam)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFparkam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cparkam)", "")) ?
-                0.00 : dt.Compute("Sum(cparkam)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjstatus.FooterRow.FindControl("lgvFparkam")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cparkam)", "")) ?
+                        0.00 : dt.Compute("Sum(cparkam)", ""))).ToString("#,##0;(#,##0); ");
 
-            Session["Report1"] = gvprjstatus;
-            ((HyperLink)this.gvprjstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    Session["Report1"] = gvprjstatus;
+                    ((HyperLink)this.gvprjstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
+                case "CollectionStatusAll":
+                    if (dt1.Rows.Count == 0)
+                        return;
 
+                    ((Label)this.gvprjcolstall.FooterRow.FindControl("lgvFTsalval")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(uamt)", "")) ?
+                                0.00 : dt1.Compute("Sum(uamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvprjcolstall.FooterRow.FindControl("lgvFtotrec")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(paidamt)", "")) ?
+                        0.00 : dt1.Compute("Sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvprjcolstall.FooterRow.FindControl("lgvtotbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(balance)", "")) ?
+                      0.00 : dt1.Compute("Sum(balance)", ""))).ToString("#,##0;(#,##0); ");
+                    break;
+            }
 
 
         }
