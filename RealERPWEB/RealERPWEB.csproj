@@ -55,6 +55,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Antlr3.Runtime.Fakes">
+      <HintPath>FakesAssemblies\Antlr3.Runtime.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
@@ -65,7 +68,7 @@
       <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -227,13 +230,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Real Bin\data vitual\microsoft.reportviewer.datavisualization.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -4131,6 +4137,7 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <Fakes Include="Fakes\CrystalDecisions.CrystalReports.Design.fakes" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -13361,6 +13368,10 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll" />
+    <Analyzer Include="..\..\..\bin\Microsoft.ReportViewer.Design.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

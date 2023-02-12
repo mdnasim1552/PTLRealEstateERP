@@ -66,7 +66,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card card-fluid">
                 <div class="card-body" style="min-height:500px;">
                     <div class="row">
@@ -153,8 +152,6 @@
                                 <HeaderStyle Font-Bold="True" HorizontalAlign="center" />
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
-
-
                             <asp:TemplateField HeaderText="Balance as on ">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvTotal" runat="server"
@@ -172,7 +169,7 @@
                             <asp:TemplateField HeaderText="Rate Of Dep. %">
                                 <FooterTemplate>
                                     <asp:HyperLink ID="hlnkgvFdep" runat="server" Font-Bold="True"
-                                        Font-Size="12px" CssClass="btn btn-sm  btn-primary " Style="text-align: right" Target="_blank" Text="Voucher"
+                                        Font-Size="12px" CssClass="btn btn-sm  btn-success  " Style="text-align: right" Target="_blank" Text="Voucher"
                                         Width="60px"></asp:HyperLink>
                                 </FooterTemplate>
                                 <ItemTemplate>
