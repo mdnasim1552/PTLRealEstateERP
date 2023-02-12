@@ -456,7 +456,7 @@
                                         ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl#">
+                                            <asp:TemplateField HeaderText="Sl #">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                                         Style="text-align: right"
@@ -466,7 +466,15 @@
                                                 <ItemStyle HorizontalAlign="Left" Font-Names="Century Gothic" />
                                             </asp:TemplateField>
 
-
+                                             <asp:TemplateField HeaderText="Project Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgpname" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                        Width="170px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Left" Font-Names="Century Gothic" />
+                                                <HeaderStyle HorizontalAlign="Left" Font-Names="Century Gothic" />
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Name Of Allotte">
                                                  <FooterTemplate>
@@ -510,13 +518,13 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvTVal" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uamt")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="160px"></asp:Label>
+                                                        Width="120px"></asp:Label>
                                                 </ItemTemplate>
 
 
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFTsalval" runat="server" Font-Bold="True" Font-Size="12px"
-                                                         Style="text-align: right" Width="160px"></asp:Label>
+                                                         Style="text-align: right" Width="120px"></asp:Label>
                                                 </FooterTemplate>
 
                                                 <HeaderStyle HorizontalAlign="Center" Font-Names="Century Gothic" />
@@ -528,12 +536,12 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvtotalamt" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamt")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="160px"></asp:Label>
+                                                        Width="120px"></asp:Label>
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFtotrec" runat="server" Font-Bold="True" Font-Size="12px"
-                                                         Style="text-align: right" Width="160px"></asp:Label>
+                                                         Style="text-align: right" Width="120px"></asp:Label>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" Font-Names="Century Gothic" />
                                                 <FooterStyle HorizontalAlign="Right" Font-Names="Century Gothic" />
@@ -547,12 +555,12 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvbalamt" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balance")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="160px"></asp:Label>
+                                                        Width="120px"></asp:Label>
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvtotbalamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        Style="text-align: right" Width="160px"></asp:Label>
+                                                        Style="text-align: right" Width="120px"></asp:Label>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" Font-Names="Century Gothic" />
                                                 <FooterStyle HorizontalAlign="Right" Font-Names="Century Gothic" />
