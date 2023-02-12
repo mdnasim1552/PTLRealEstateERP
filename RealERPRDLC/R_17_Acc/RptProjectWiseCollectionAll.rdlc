@@ -79,22 +79,22 @@
                   <Width>1.375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.42708in</Width>
+                  <Width>1.33333in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.16667in</Width>
+                  <Width>1.10417in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.61458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.125in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.05209in</Width>
+                  <Width>1.10417in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -918,7 +918,7 @@
             <Top>0.05485in</Top>
             <Left>0.01667in</Left>
             <Height>0.92708in</Height>
-            <Width>7.91666in</Width>
+            <Width>7.9375in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -933,10 +933,10 @@
           </Border>
         </Style>
       </Body>
-      <Width>7.93333in</Width>
+      <Width>7.95417in</Width>
       <Page>
         <PageHeader>
-          <Height>0.86569in</Height>
+          <Height>0.85944in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -950,7 +950,7 @@
                       <Value>=Parameters!comnam.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>13pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -984,7 +984,7 @@
                       <Value>=Parameters!txtTitle.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -995,7 +995,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0.20043in</Top>
+              <Top>0.21293in</Top>
               <Left>1.50299in</Left>
               <Height>0.22569in</Height>
               <Width>4.56723in</Width>
@@ -1047,7 +1047,7 @@
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.41431in</Top>
               <Left>1.49598in</Left>
-              <Height>0.22569in</Height>
+              <Height>0.25in</Height>
               <Width>4.56722in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -1071,6 +1071,7 @@
                       <Value>=Parameters!date1.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1081,10 +1082,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0.61848in</Top>
-              <Left>1.51681in</Left>
-              <Height>0.22569in</Height>
-              <Width>4.54639in</Width>
+              <Top>0.61083in</Top>
+              <Left>1.49598in</Left>
+              <Height>0.19444in</Height>
+              <Width>4.56722in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1107,6 +1108,7 @@
                       <Value>=Parameters!printdate.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1117,10 +1119,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0.64in</Top>
+              <Top>0.59in</Top>
               <Left>6.12362in</Left>
               <Height>0.22569in</Height>
-              <Width>1.79638in</Width>
+              <Width>1.8068in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
