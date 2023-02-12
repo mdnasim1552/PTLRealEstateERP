@@ -1400,6 +1400,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303212", "F_23_CR", "RptThanksLetter?", "Type=Dues", " Dues Letter", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303213", "F_23_CR", "RptThanksLetter?", "Type=Remind", " Reminder Letter", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303214", "F_23_CR", "RptThanksLetter?", "Type=LRemind", " Last Reminder Letter", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303215", "F_23_CR", "RptAllLetter", "", "All letter", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302220", "F_23_CR", "EntryCustomerInfo?", "Type=CustInfo", "Customer Details Information", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303230", "F_23_CR", "RptSalesReportBR", "", "Account Receivable & Unsold Flates Statement", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303235", "F_23_CR", "RptSalesReportGen?", "Type=All", "Account Receivable, Receipt, Balance Status", "Credit Realization", "False", "False", "False", "False" });
@@ -7889,6 +7890,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000003", "11. Dues Letter", "F_22_Sal/RptThanksLetter?Type=Dues", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000004", "12. Reminder Letter", "F_22_Sal/RptThanksLetter?Type=Remind", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000005", "13. Last Reminder Letter", "F_22_Sal/RptThanksLetter?Type=LRemind", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000005", "14. All Letter", "F_23_CR/RptAllLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "31. Monthly Collection(Receipt Type Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollMerge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "32. Monthly Collection Schedule(Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollSchMerge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });

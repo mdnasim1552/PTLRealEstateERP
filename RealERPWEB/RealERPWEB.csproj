@@ -236,8 +236,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Real Bin\data vitual\microsoft.reportviewer.datavisualization.dll</HintPath>
     </Reference>
-   
-   
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
@@ -2443,6 +2441,7 @@
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptAllLetter.aspx" />
     <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
@@ -4690,6 +4689,13 @@
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.designer.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
       <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
@@ -13341,7 +13347,6 @@
       <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
- 
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
