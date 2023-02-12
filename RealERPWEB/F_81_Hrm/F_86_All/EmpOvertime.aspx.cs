@@ -2654,7 +2654,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             actcode = dt1.Rows[j]["actcode"].ToString();
                             dt1.Rows[j]["actdesc"] = "";
                         }
-
                         else
                         {
                             actcode = dt1.Rows[j]["actcode"].ToString();
@@ -2670,6 +2669,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         {
                             secid = dt1.Rows[j]["empid"].ToString();
                             dt1.Rows[j]["ttlencashamt"] = "0";
+                        }
+                        else
+                        {
+                            secid = dt1.Rows[j]["empid"].ToString();
                         }
 
                      
@@ -4426,7 +4429,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
             DataView dv = new DataView();
-            DataTable dt = (DataTable)Session["tblencashment"];
+            //DataTable dt = (DataTable)Session["tblencashment"];
+            DataTable dt = this.HiddenSameData((DataTable)Session["tblencashment"]);
 
 
             switch (index)

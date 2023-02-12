@@ -258,6 +258,37 @@
                     </div>
                     <div class="col-12 col-lg-12 col-xl-9">
                         <section class="card card-fluid mb-0" style="min-height: 650px; flex-grow: 1; overflow: auto;">
+
+                                        <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
+                                        <table class="table-striped table-hover table-bordered text-center">
+                                            <tr>
+                                                <td>Type</td>
+                                                <td>Achieved</td>
+                                                <td>Enjoy</td>
+                                            </tr>
+                                            <tr>
+                                                <td>EARNED LEAVE</td>
+                                                <td>
+                                                    <asp:Label ID="lblelv" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblelvenjoy" runat="server">0</asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>CASUAL LEAVE</td>
+                                                <td>
+                                                    <asp:Label ID="lblclv" runat="server">0</asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblclenj" runat="server">0</asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SICK LEAVE</td>
+                                                <td>
+                                                    <asp:Label ID="lblslv" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblslenj" runat="server"></asp:Label></td>
+                                            </tr>
+                                        </table>
+
                             <!-- .card-body -->
                             <header class="card-header">Leave Status</header>
 

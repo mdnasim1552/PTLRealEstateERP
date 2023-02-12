@@ -3521,7 +3521,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("txtHeader2", deptname + " Salary (Month of " + todate1 + ")"));
             Rpt1.SetParameters(new ReportParameter("rptTitle", ""));
-            Rpt1.SetParameters(new ReportParameter("txtheader", "GRAND TOTAL (INCENTIVE + NO. INCENTIVE)"));
+            Rpt1.SetParameters(new ReportParameter("txtheader", "GRAND TOTAL"));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("txtYear", Convert.ToDateTime((this.txttodate.Text)).ToString("yyyy")));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
