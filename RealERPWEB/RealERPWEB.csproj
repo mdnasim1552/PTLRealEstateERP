@@ -228,13 +228,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
+    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Real Bin\data vitual\microsoft.reportviewer.datavisualization.dll</HintPath>
+    </Reference>
+   
+   
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
@@ -13338,6 +13341,7 @@
       <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+ 
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
@@ -13351,10 +13355,6 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll" />
-    <Analyzer Include="..\..\..\bin\Microsoft.ReportViewer.Design.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
