@@ -120,6 +120,19 @@ namespace RealERPWEB.F_34_Mgt
 
                 return;
             }
+            DateTime frmdate = Convert.ToDateTime(this.txtfromdate.Text);
+            DateTime todate = Convert.ToDateTime(this.txttodate.Text);
+
+            DataSet ds1 = SecAccData.GetTransInfo(comcod, "SP_UTILITY_DATA_SYNC", "GET_PERIODIC_ALL_TRANSECTION", frmdate.ToString("dd-MMM-yyyy"), todate.ToString("dd-MMM-yyyy"), "", "", "", "", "", "");
+            if (ds1 != null)
+            {
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "In the Date range You have some Voucher";
+
+                    return;
+                }
+            }
             DataSet ds = new DataSet("ds1");
             ds.Merge(dt);
             ds.Tables[0].TableName = "tblvoucher";
@@ -199,7 +212,7 @@ namespace RealERPWEB.F_34_Mgt
 
         public void CommonButton()
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
+        //    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
