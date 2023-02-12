@@ -2440,6 +2440,7 @@
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptAllLetter.aspx" />
     <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
@@ -4689,6 +4690,13 @@
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.designer.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
       <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
