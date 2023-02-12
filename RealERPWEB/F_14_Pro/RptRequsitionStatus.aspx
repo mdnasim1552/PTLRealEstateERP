@@ -331,6 +331,15 @@
 
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Site Sup. Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvsitesupdate" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sitesupdate")) %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+
+                                        <HeaderStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
                                 </Columns>
 
                                 <FooterStyle CssClass="grvFooter" />
