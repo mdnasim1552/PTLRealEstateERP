@@ -55,6 +55,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Antlr3.Runtime.Fakes">
+      <HintPath>FakesAssemblies\Antlr3.Runtime.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
@@ -65,7 +68,7 @@
       <HintPath>..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -4135,6 +4138,7 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <Fakes Include="Fakes\CrystalDecisions.CrystalReports.Design.fakes" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
