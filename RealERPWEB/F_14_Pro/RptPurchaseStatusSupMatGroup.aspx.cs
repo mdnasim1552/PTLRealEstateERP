@@ -121,11 +121,20 @@ namespace RealERPWEB.F_14_Pro
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string supplier = this.ddlSupplier.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSupplier.SelectedValue.ToString() + "%";
             string resListMulti = "";
-            string resourcelist = this.chkResourcelist.SelectedValue.ToString();
+          //  string resourcelist = this.chkResourcelist.SelectedValue.ToString();
             foreach (ListItem item in chkResourcelist.Items)
             {
+               
+
+
                 if (item.Selected)
                 {
+                    if (item.Value == "000000000000")
+                    {
+
+                        resListMulti = "";
+                        break;
+                    }
                     resListMulti += item.Value;
                 }
             }
@@ -174,7 +183,18 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = (DataTable)Session["tblpursum"];
             this.gvpurvspay.DataSource = dt;
             this.gvpurvspay.DataBind();
+            this.FooterCalculation();
 
+
+        }
+        private void FooterCalculation()
+        {
+
+            DataTable dt = (DataTable)Session["tblpursum"];
+            if (dt.Rows.Count == 0)
+                return;
+            ((Label)this.gvpurvspay.FooterRow.FindControl("lblFgvamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 :
+                dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
         }
         protected void Page_PreInit(object sender, EventArgs e)
