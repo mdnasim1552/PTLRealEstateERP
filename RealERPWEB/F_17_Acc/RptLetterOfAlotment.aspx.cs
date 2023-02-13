@@ -239,8 +239,9 @@ namespace RealERPWEB.F_17_Acc
                 double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["tamt"]);
                 double pramt = Convert.ToDouble(ds3.Tables[0].Rows[0]["pamt"]);
                 double ucharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["utility"]);
+                string othercharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["others"]).ToString("#,##0.00;(#,##0.00); ");
 
-               
+
                 string utility = ucharge.ToString("#,##0.00;(#,##0.00); ");
                 string pamt = pramt.ToString("#,##0.00;(#,##0.00); ");
                 string rate = urate.ToString("#,##0.00;(#,##0.00); ");
@@ -251,8 +252,6 @@ namespace RealERPWEB.F_17_Acc
                 string enrolldate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["enrolldate"]).ToString("dd-MMM-yyyy");                 
                 string unitcost = uamt.ToString("#,##0;(#,##0); ");             
                
-                string othercharge = "0.00";
-                string discount = "0.00";
               
                 string initialpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
                 string dnpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
@@ -299,7 +298,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("parkingcost", pamt));                       
                 Rpt1.SetParameters(new ReportParameter("utilityCharge", utility));                       
                 Rpt1.SetParameters(new ReportParameter("othercharge", othercharge));                       
-                Rpt1.SetParameters(new ReportParameter("discount", discount));                       
+               // Rpt1.SetParameters(new ReportParameter("discount", discount));                       
                 Rpt1.SetParameters(new ReportParameter("initialpayment", initialpayment));                       
                 Rpt1.SetParameters(new ReportParameter("dnpayment", dnpayment));                       
                 Rpt1.SetParameters(new ReportParameter("upDatePaym", upDatePaym));                       
