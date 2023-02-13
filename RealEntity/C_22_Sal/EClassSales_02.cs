@@ -932,7 +932,10 @@ namespace RealEntity.C_22_Sal
 
             public DateTime paiddate { get; set; }
            
-
+            public double dodisday { get; set; }
+            public double intrate { get; set; }
+            public double intamtpday { get; set; }
+            public double delodis { get; set; }
             public double pamount { get; set; }
             public double balamt { get; set; }
             public double advday { get; set; }

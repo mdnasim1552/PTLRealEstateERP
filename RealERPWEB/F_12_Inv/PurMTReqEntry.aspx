@@ -235,8 +235,24 @@
                                             VerticalAlign="Middle" Font-Size="12px" />
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
-
+                                     <asp:TemplateField HeaderText="Received Qty">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtreceivedqty" runat="server" BackColor="Transparent" 
+                                                Style="text-align: right; font-size: 11px;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "receivedqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" ></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Actual Stock">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtactualstock" runat="server" BackColor="Transparent" 
+                                                Style="text-align: right; font-size: 11px;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actualstock")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" ></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtqty" runat="server" BackColor="Transparent" BorderStyle="Solid"
@@ -251,6 +267,7 @@
                                         </FooterTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate" runat="server" BackColor="Transparent" BorderStyle="Solid"
@@ -260,6 +277,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                     
                                     <asp:TemplateField HeaderText="Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFAmount" runat="server" Style="text-align: right"
