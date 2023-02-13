@@ -536,12 +536,22 @@ namespace RealERPWEB.F_12_Inv
                 // this.ddlResSpcf.Items.Clear();
                 return;
             }
-            ViewState["tblMat"] = ds1.Tables[0];
+           
 
             ViewState["tblSpcf"] = ds1.Tables[2];
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+            view.Table = ds1.Tables[0];
+            view.RowFilter = " stkqty > 0";
+            dt1 = view.ToTable();
+            ViewState["tblMat"] = dt1;
+
+           
+
+
             this.ddlResList.DataTextField = "rsirdesc";
             this.ddlResList.DataValueField = "rsircode";
-            this.ddlResList.DataSource = ds1.Tables[1];
+            this.ddlResList.DataSource = dt1;
             this.ddlResList.DataBind();
 
 

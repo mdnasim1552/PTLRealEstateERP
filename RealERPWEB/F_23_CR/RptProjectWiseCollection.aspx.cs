@@ -279,31 +279,61 @@ namespace RealERPWEB.F_23_CR
                 return;
             }
 
-            Session["tblPrjstatusall"] = ds2.Tables[0];
+            Session["tblPrjstatusall"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
 
         }
 
         private DataTable HiddenSameData(DataTable dt1)
         {
-            if (dt1.Rows.Count == 0)
-                return dt1;
-            string pactcode = dt1.Rows[0]["pactcode"].ToString();
-            for (int j = 1; j < dt1.Rows.Count; j++)
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+
+            switch (Type)
             {
-                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
-                {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
-                    dt1.Rows[j]["pactdesc"] = "";
-                }
 
-                else
-                {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                case "CollectionStatus":
+                    if (dt1.Rows.Count == 0)
+                        return dt1;
+                    string pactcode = dt1.Rows[0]["pactcode"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            dt1.Rows[j]["pactdesc"] = "";
+                        }
 
-                }
+                        else
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+                        }
+
+                    }
+                    break;
+                case "CollectionStatusAll":
+                    if (dt1.Rows.Count == 0)
+                        return dt1;
+                    string actcode = dt1.Rows[0]["pactcode"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == actcode)
+                        {
+                            actcode = dt1.Rows[j]["pactcode"].ToString();
+                            dt1.Rows[j]["actdesc"] = "";
+                        }
+
+                        else
+                        {
+                            actcode = dt1.Rows[j]["pactcode"].ToString();
+
+                        }
+
+                    }
+                    break;
 
             }
+            
 
             return dt1;
         }

@@ -184,7 +184,7 @@ namespace RealERPWEB.F_17_Acc
                           "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
                           "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
                           "the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per  " + "<strong>" + companyname + "</strong>" + " standard. " +
-                          "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement" + "<br><br>" +
+                          "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement" + "<br><br><br><br><br><br>" +
                           "10. The possession of each " + "<strong>" + type + "</strong>" + " shall duly be handed over to the allottee on completion and on full payment of installments and other charges and dues." +
                           "Until then the possession will be held by the " + "<strong>" + companyname + "</strong>" + " . If the construction and finishing work of each building is completed on " +
                           "before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +

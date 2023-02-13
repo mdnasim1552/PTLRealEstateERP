@@ -938,7 +938,12 @@ namespace RealERPWEB.F_12_Inv
 
             }
             ////////privious
-            ///
+
+            if (this.ddlPrevList.Items.Count == 0)
+                this.GetGetPassNo();
+
+            string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
+
 
             string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
             bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
@@ -948,11 +953,6 @@ namespace RealERPWEB.F_12_Inv
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
-
-            if (this.ddlPrevList.Items.Count == 0)
-                this.GetGetPassNo();
-
-            string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
 
             bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
                         PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
