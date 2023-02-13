@@ -259,8 +259,18 @@
                     <div class="col-12 col-lg-12 col-xl-9">
                         <section class="card card-fluid mb-0" style="min-height: 650px; flex-grow: 1; overflow: auto;">
 
-                                        <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
-                                        <table class="table-striped table-hover table-bordered text-center">
+
+                           
+                         
+
+                
+                            
+
+                            <div class="card-body card card-fluid mb-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                             <p class="card-title">Current Leave Status</p>
+            <table class="table-striped table-hover table-bordered text-center">
                                             <tr>
                                                 <td>Type</td>
                                                 <td>Achieved</td>
@@ -288,13 +298,13 @@
                                                     <asp:Label ID="lblslenj" runat="server"></asp:Label></td>
                                             </tr>
                                         </table>
+                  
+                                </div>
+                                </div>
 
-                            <!-- .card-body -->
-                            <header class="card-header">Leave Status</header>
-
-                            <div class="card-body card card-fluid mb-0">
-                                <div class="row mt">
+                                <div class="row mt-1">
                                     <div class="col-md-12">
+                                        <header class="card-header">Leave Status</header>
                                         <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                             CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />

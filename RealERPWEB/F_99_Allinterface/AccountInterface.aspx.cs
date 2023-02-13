@@ -2410,7 +2410,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string issuedat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issuedat1")).ToString();
 
                 //hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
-                hlink2.NavigateUrl = "~/F_17_Acc/AccIndentUpdate?Type=Entry&genno=" + issueno + "&date=" + issuedat;
+                hlink2.NavigateUrl = "~/F_17_Acc/AccIndentUpdate?Type=Entry&genno=" + issueno + "&Date1=" + issuedat;
 
             }
         }
@@ -2501,7 +2501,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string issuedat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issuedat1")).ToString();
 
                 //hlink2.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Approve&genno=" + issueno + "&prjcode=&sircode=";
-                hlink2.NavigateUrl = "~/F_17_Acc/AccIssueUpdate?Type=Entry&genno=" + issueno + "&date=" + issuedat;
+                hlink2.NavigateUrl = "~/F_17_Acc/AccIssueUpdate?Type=Entry&genno=" + issueno + "&Date1=" + issuedat;
 
             }
 

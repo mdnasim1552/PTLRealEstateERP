@@ -1081,19 +1081,23 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         break;
                 }
                 DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "SHOWLVSTATUS", Date, "", "", "", "", Userid, "", "", "");
+                if (ds != null)
+                {
 
-                DataTable dtstatus = ds.Tables[3];
+                    DataTable dtstatus = ds.Tables[3];
 
-                this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
+                    this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
 
-                string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
-                string clst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["clst"].ToString();
-                string slst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["slst"].ToString();
+                    string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
+                    string clst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["clst"].ToString();
+                    string slst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["slst"].ToString();
+                }
+
 
 
                 DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", calltype, empid, aplydat, "", "", "", "", "", "", "");
