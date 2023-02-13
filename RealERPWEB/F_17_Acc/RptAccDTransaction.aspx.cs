@@ -1250,9 +1250,10 @@ namespace RealERPWEB.F_17_Acc
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccCashBankBook1>();
             LocalReport Rpt1 = new LocalReport();
             string Tittle = "";
-             
-                   
-                  string netamt = ((Label)this.gvcashbook.FooterRow.FindControl("lgvnetTotal")).Text;
+
+            
+            //string netamt = ((Label)this.gvcashbook.FooterRow.FindControl("lgvnetTotal")).Text;
+            
 
             switch (comcod)
             {
@@ -1267,7 +1268,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1Intech", lst, null, null);
                     Rpt1.EnableExternalImages = true;
-                    Rpt1.SetParameters(new ReportParameter("netamt", netamt));
+                   
                     Rpt1.SetParameters(new ReportParameter("rptTitle", "CASH & BANK TRANSACTION"));
                     break;
 

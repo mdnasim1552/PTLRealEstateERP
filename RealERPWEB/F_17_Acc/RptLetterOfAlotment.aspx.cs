@@ -160,7 +160,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string body = "1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" + 
                           " which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " + 
-                          "<strong>" + companyname + "</strong>"+" be made to by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " +
+                          "be made to "+ "<strong>" + companyname + "</strong>" + " by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " +
                           "in foreign exchange by international TT or  DD. Any type of Cash payment is totally restricted. Payments of installment and" +
                           " other charges are to be made on due dates. The company may issue reminders to the Allottee "+
                           "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time. " + "<br><br>" +
@@ -196,9 +196,9 @@ namespace RealERPWEB.F_17_Acc
                           "Political Disturbances, Act of God, Strike, Non Availability of Materials, Change in the Policy of the Government etc." + "<br><br>" +
                           "13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility to provide finishing materials beyond " + "<strong>" + companyname + "</strong>" + " standard." + "<br><br>" +
                           "14. After handing over the " + "<strong>" + type + "</strong>" + " to the allottee by " + "<strong>" + companyname + "</strong>" + ", an association of Apartment space " +
-                          "owners namely Collective Management Committee (CMC) will be formed. All the " + type + " owners" +
-                          "will be the member of the committee by contributing in the reserve fund. The Collective Management" +
-                          "Committee (CMC) will manage the common facility of the Apartment and all the common interest of the" +
+                          "owners namely Collective Management Committee (CMC) will be formed. All the " + type + " owners " +
+                          "will be the member of the committee by contributing in the reserve fund. The Collective Management " +
+                          "Committee (CMC) will manage the common facility of the Apartment and all the common interest of the " +
                           "<strong>" + type + "</strong>" + " owners.";
            
 
