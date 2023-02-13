@@ -336,7 +336,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkselect_Click(object sender, EventArgs e)
         {
-
+            string comcod = this.GetCompCode();
             this.SaveValue();
             string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
@@ -358,11 +358,19 @@ namespace RealERPWEB.F_12_Inv
                 drforgrid["rate"] = projectrow1[0]["rate"];
                 drforgrid["amt"] = projectrow1[0]["amt"];
                 drforgrid["balqty"] = projectrow1[0]["balqty"];
+                drforgrid["receivedqty"] = projectrow1[0]["mtrecev"];
+                drforgrid["actualstock"] = projectrow1[0]["acstock"];
 
                 dt.Rows.Add(drforgrid);
             }
             ViewState["tblmattrns"] = dt;
             this.Data_Bind();
+            if (comcod == "3367")
+            {
+                this.grvacc.Columns[6].HeaderText = "Master Quantity";                
+                this.grvacc.Columns[8].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[9].HeaderText = "Required Quantity";
+            }
 
         }
 

@@ -40,7 +40,7 @@ namespace RealERPWEB.F_34_Mgt
                 //this.Master.Page.Title = "Voucher 360 <sup>0</sup>";
                 CommonButton();
                 this.txtfromdate.Text = Fromdate();
-                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddDays(7).ToString("dd-MMM-yyyy");
 
                 this.lbtnOk_Click(null, null);
 
@@ -149,6 +149,7 @@ namespace RealERPWEB.F_34_Mgt
             if (result==true)
             {
                 this.txtfromdate.Text = this.Fromdate();
+                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddDays(7).ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Sync Successfully";
 
             }
@@ -252,306 +253,21 @@ namespace RealERPWEB.F_34_Mgt
 
             this.gvAccVoucher.DataSource = dt;
             this.gvAccVoucher.DataBind();
-            //this.FooterCalCulation();
-            //this.VoucherUsrSumm();
-            //this.VoucherCount();
-
+           
 
 
 
         }
 
-        private void VoucherUsrSumm()
-        {
-          //  DataTable dt2 = (DataTable)Session["tblusrvoucount"];
-
-
-          //  if (dt2.Rows.Count == 0)
-          //      return;
-
-          //  this.gvvoucountsum.DataSource = dt2;
-          //  this.gvvoucountsum.DataBind();
-
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFpdc")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(pdcvou)", "")) ?
-          // 0 : dt2.Compute("sum(pdcvou)", ""))).ToString("#,##0;(#,##0); ");
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFCash")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(cashvou)", "")) ?
-          //0 : dt2.Compute("sum(cashvou)", ""))).ToString("#,##0;(#,##0); ");
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFBank")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(bankvou)", "")) ?
-          //0 : dt2.Compute("sum(bankvou)", ""))).ToString("#,##0;(#,##0); ");
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFContra")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(contravou)", "")) ?
-          //0 : dt2.Compute("sum(contravou)", ""))).ToString("#,##0;(#,##0); ");
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFJour")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(jourvou)", "")) ?
-          //0 : dt2.Compute("sum(jourvou)", ""))).ToString("#,##0;(#,##0); ");
-          //  ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFTotalvou")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tonum)", "")) ?
-          //0 : dt2.Compute("sum(tonum)", ""))).ToString("#,##0;(#,##0); ");
-
-
-        }
-
-        private void VoucherCount()
-        {
-
-            DataTable dt1 = (DataTable)Session["AllVoucher"];
-            if (dt1.Rows.Count == 0)
-                return;
-
-            //this.pnlvouCount.Visible = true;
-            //this.lbltoCashVoucher.Text = Convert.ToDouble(dt1.Rows[0]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            //this.lbltoBankVoucher.Text = Convert.ToDouble(dt1.Rows[1]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            //this.lbltoContraVoucher.Text = Convert.ToDouble(dt1.Rows[2]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            //this.lbltoJournalVoucher.Text = Convert.ToDouble(dt1.Rows[3]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            //this.lbltoPdcVoucher.Text = Convert.ToDouble(dt1.Rows[4]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            //this.lbltotalvoucher.Text = Convert.ToDouble(dt1.Rows[5]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-        }
-        private void FooterCalCulation()
-        {
-            //DataTable dt = (DataTable)Session["tblunposted"];
-            //if (dt.Rows.Count == 0)
-            //    return;
-
-            //((Label)this.gvAccVoucher.FooterRow.FindControl("lblgvFvouamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ?
-            //0 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0);");
-            //Session["Report1"] = gvAccVoucher;
-            //((HyperLink)this.gvAccVoucher.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-        }
+      
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
 
-         //   Hashtable hst = (Hashtable)Session["tblLogin"];
-         //   string comcod = hst["comcod"].ToString();
-         //   string comnam = hst["comnam"].ToString();
-         //   string comadd = hst["comadd1"].ToString();
-         //   string compname = hst["compname"].ToString();
-         //   string username = hst["username"].ToString();
-         //   string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-         //   string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-         //   string userinfo = ASTUtility.Concat(compname, username, printdate);
-         //   string vouType = this.ddlvoucher.SelectedItem.Text.ToString();
-         ////   Session_update();
-
-         //   DataTable dt = (DataTable)Session["tblunposted"];
-         //   DataTable dt2 = (DataTable)Session["tblusrvoucount"];
-
-         //   if (dt.Rows.Count == 0)
-         //       return;
-
-
-         //   // GET DATA FROM EMP STATUS
-           
-         //   int index;
-         //   for (int i = 0; i < this.gvAccVoucher.Rows.Count; i++)
-         //   {
-         //       string isPrint  = (((CheckBox)gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked) ? "True" : "False";
-         //       if (isPrint == "True")
-         //       {
-         //           ((CheckBox)gvAccVoucher.HeaderRow.FindControl("checkTopPrintAll")).Checked = true;
-         //       }
-         //       index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
-         //       dt.Rows[index]["isprint"] = isPrint;
-         //   }
-
-         //   string isCheckPrint = ((CheckBox)gvAccVoucher.HeaderRow.FindControl("checkTopPrintAll")).Checked ? "1" : "";
-         //   if(isCheckPrint == "1")
-         //   {
-         //       DataView dv = dt.DefaultView;
-         //       dv.RowFilter = "isprint = 'True'";
-         //       dt = dv.ToTable();
-         //   }
-             
-           
-             
-
-             
-
-
-         //   string txtUser = ((TextBox)gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim();
-         //   if (txtUser.Length > 0)
-         //   {
-         //       DataView dv0 = dt.DefaultView;
-         //       dv0.RowFilter = "usrname LIKE '%" + txtUser + "%'";
-         //       dt = dv0.ToTable();
-
-         //       DataView dv1 = dt2.DefaultView;
-         //       dv1.RowFilter = "usrname LIKE '%" + txtUser + "%'";
-         //       dt2 = dv1.ToTable();
-         //   }
-
-
-
-
-
-
-            ////store dt table all user
-            //string[] array1 = new string[dt.Rows.Count];
-            ////store dt2 table all user
-            //string[] array2 = new string[dt2.Rows.Count];
-
-            //for (int i = 0; i < dt.Rows.Count; ++i)
-            //{
-            //    array1[i] = dt.Rows[i]["usrid"].ToString();
-
-            //}
-
-            //for (int i = 0; i < dt2.Rows.Count; ++i)
-            //{
-            //    array2[i] = dt2.Rows[i]["usrid"].ToString();
-            //}
-
-            ////store matching userid from arary1 and array2
-            //string[] DifferArray = array1.Intersect(array2).ToArray();
-
-            //DataTable dtarr = new DataTable();
-            //dtarr.Columns.Add("usrid");
-
-            ////convert to data table from DifferArray 
-            //foreach (string str in DifferArray)
-            //{
-            //    DataRow dr = dtarr.NewRow();
-
-            //    dr["usrid"] = str;
-            //    dtarr.Rows.Add(dr);
-            //}
-
-            ////fetch matching user data  from dt2
-            //var query = (from dtl1 in dt2.AsEnumerable()
-            //             join dtl2 in dtarr.AsEnumerable() on dtl1.Field<string>("usrid") equals dtl2.Field<string>("usrid")
-            //             select new
-            //             {
-            //                 comcod = dtl1.Field<string>("comcod"),
-
-            //                 usrid = dtl1.Field<string>("usrid"),
-
-            //                 usrname = dtl1.Field<string>("usrname"),
-            //                 cashvou = dtl1.Field<decimal>("cashvou"),
-            //                 bankvou = dtl1.Field<decimal>("bankvou"),
-            //                 contravou = dtl1.Field<decimal>("contravou"),
-            //                 jourvou = dtl1.Field<decimal>("jourvou"),
-            //                 pdcvou = dtl1.Field<decimal>("pdcvou"),
-            //                 tonum = dtl1.Field<decimal>("tonum"),
-            //                 isprint = dtl1.Field<string>("isprint")
-
-
-
-            //             }).ToList();
-            //DataTable dtE = ASITUtility03.ListToDataTable(query);
-
-           // var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
-           // var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
-           //// var list1 = dtE.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
-
-
-           // LocalReport Rpt1 = new LocalReport();
-           // switch (comcod)
-           // {
-           //     case "3101":
-           //     case "3368":
-           //         Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptVoucherTopSheetFinaly", list, list1, null);
-           //         break;
-           //     default:
-           //         Rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptVoucherTopSheet", list, list1, null);
-           //         break;
-           // }
-           // Rpt1.EnableExternalImages = true;
-           // Rpt1.SetParameters(new ReportParameter("compName", comnam));
-           // Rpt1.SetParameters(new ReportParameter("rptTitle", "All Voucher Top Sheet"));
-           // Rpt1.SetParameters(new ReportParameter("txtDate", "From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
-           // Rpt1.SetParameters(new ReportParameter("vouType", "Type: " + vouType));
-           // Rpt1.SetParameters(new ReportParameter("vouPDC", this.lbltoPdcVoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("vouCash", this.lbltoCashVoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("vouBank", this.lbltoBankVoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("vouContra", this.lbltoContraVoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("vouJournal", this.lbltoJournalVoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("vouTotal", this.lbltotalvoucher.Text));
-           // Rpt1.SetParameters(new ReportParameter("userStatusPrint", isCheckPrint));
-           // Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-           // Rpt1.SetParameters(new ReportParameter("txtUserInfo", userinfo));
-
-           // Session["Report1"] = Rpt1;
-           // ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-           //             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-           // string events = hst["events"].ToString();
-           // if (Convert.ToBoolean(events) == true)
-           // {
-           //     string eventtype = "Print " + ((Label)this.Master.FindControl("lblTitle")).Text;
-           //     string eventdesc = "Print Datat  " + ((Label)this.Master.FindControl("lblTitle")).Text;
-           //     string eventdesc2 = "Data Show Date Range : " + "From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") +
-           //         " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy") + "Voucher Type :" + vouType;
-
-           //     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
-           // }
 
         }
         protected void gvAccVoucher_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-
-            //    HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkVoucherEdit");
-            //    HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkVoucherPrint");
-            //    HyperLink hlnkChequePrint = (HyperLink)e.Row.FindControl("hlnkChequePrint");
-
-            //    Label lblvounum = (Label)e.Row.FindControl("lblvounum");
-            //    Label lblgvvouamt = (Label)e.Row.FindControl("lblgvvouamt");
-
-
-
-            //    string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
-            //    string voutype = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "voutype")).ToString().Trim();
-
-            //    string vounum1 = vounum.Substring(0, 2);
-
-            //    string paytype = this.ChboxPayee.Checked ? "0" : "1";
-
-            //    string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
-            //    string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
-
-            //    if (voutype == "U")
-            //    {
-            //        lblvounum.Attributes["style"] = "font-weight:bold; color:magenta;";
-            //        lblgvvouamt.Attributes["style"] = "font-weight:bold; color:magenta;";
-
-
-            //    }
-
-
-            //    if (this.checkpb.Checked == true)
-            //    {
-            //        hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-            //        hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-            //        if (vounum1 == "BD" || vounum1 == "CT")
-            //        {
-            //            hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&pbl=" + cquepbl + "&woutchqdat=" + woutchqdat;
-            //        }
-            //        else
-            //        {
-            //            hlnkChequePrint.Visible = false;
-            //        }
-            //    }
-
-
-
-            //    else
-            //    {
-            //        hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-            //        hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-            //        if (vounum1 == "BD" || vounum1 == "CT")
-            //        {
-            //            hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&pbl=" + cquepbl + "&woutchqdat=" + woutchqdat;
-            //        }
-            //        else
-            //        {
-            //            hlnkChequePrint.Visible = false;
-            //        }
-            //    }
-
-
-            //}
+           
         }
 
       
@@ -619,5 +335,244 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
+        protected void lblvounum_Click(object sender, EventArgs e)
+        {
+            
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = "3368";
+         
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string vounum = ((LinkButton)this.gvAccVoucher.Rows[index].FindControl("lblvounum")).Text.ToString();
+
+            string type1 = vounum.Substring(0, 2);
+                string voutype =(type1=="BD")?"PV": (type1 == "CD")?"PV":"";
+                string ProceName = (voutype == "PV") ? "SP_ENTRY_ACCOUNTS_PAYMENT" : "SP_REPORT_ACCOUNTS_VOUCHER";
+                string ProceNameNar = (voutype == "PV") ? "SP_ENTRY_ACCOUNTS_PAYMENT" : "SP_ENTRY_ACCOUNTS_VOUCHER";
+                DataSet _NewDataSet = SecAccData.GetTransInfo(comcod, ProceName, "EDITVOUCHER", vounum, "", "", "", "", "", "", "", "");
+              
+                    DataTable dt = this.HiddenSameData(_NewDataSet.Tables[0]);
+                    //this.dgv1.DataSource = dt;
+                    Session["tblvoucher"] = dt;
+
+            dgv1.DataSource = dt;
+            dgv1.DataBind();
+
+            //if (dt.Rows.Count == 0)
+            //            return;
+
+            //        this.Data_Bind();
+            //        //this.dgv1.DataBind();
+
+            //        Session["UserLog"] = _EditDataSet.Tables[1];
+            //        //-------------** Edit **---------------------------//
+            //        DataTable dtedit = _EditDataSet.Tables[1];
+
+            //        if (vounum.Substring(0, 2).ToString() != "JV")
+            //        {
+            //            this.txtScrchConCode.Text = "";
+            //            this.txtScrchConCode.Visible = true;
+            //            this.ibtnFindConCode.Visible = true;
+            //            this.LoadAcccombo();
+            //            this.ddlConAccHead.SelectedValue = dtedit.Rows[0]["cactcode"].ToString();
+            //        }
+            //        this.txtEntryDate.Text = Convert.ToDateTime(dtedit.Rows[0]["voudat"]).ToString("dd-MMM-yyyy");
+            //        this.lblisunum.Text = dtedit.Rows[0]["isunum"].ToString();
+            //        this.txtRefNum.Text = dtedit.Rows[0]["refnum"].ToString();
+            //        this.ddlpayeelist.SelectedValue = dtedit.Rows[0]["payeetype"].ToString().Trim(); //payee Type
+            //        this.txtSrinfo.Text = dtedit.Rows[0]["srinfo"].ToString();
+            //        this.txtPayto.Text = dtedit.Rows[0]["payto"].ToString();
+            //        this.txtBankNam.Text = dtedit.Rows[0]["banknam"].ToString();
+            //        this.txtchequedate.Text = (Convert.ToDateTime(dtedit.Rows[0]["chequedat"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(dtedit.Rows[0]["chequedat"]).ToString("dd-MMM-yyyy");
+
+            //        this.txtNarration.Text = dtedit.Rows[0]["venar"].ToString();
+            //        //   this.txtEntryDate.Enabled = false;
+            //        //-------------------------------------------------//
+            //        this.pnlNarration.Visible = true;
+            //        this.lblcurVounum.Text = "Edit Voucher No.";
+            //        string cvno1 = this.ddlPrivousVou.SelectedValue.ToString().Substring(0, 8);
+            //        this.txtcurrentvou.Text = cvno1.Substring(0, 2) + cvno1.Substring(6, 2) + "-";
+            //        this.txtCurrntlast6.Text = this.ddlPrivousVou.SelectedValue.ToString().Substring(8);
+            //        this.txtCurrntlast6.Enabled = false;
+            //        this.CalculatrGridTotal();
+
+
+            //    }
+            //    else
+            //    {
+
+            //        this.txtEntryDate.Enabled = true;
+            //        this.txtCurrntlast6.Enabled = true;
+
+
+            //        // Previous Nerration
+            //        // double vcode1 = Convert.ToDouble(Request.QueryString["tcode"]);
+            //        string ConAccHead = this.ddlConAccHead.SelectedValue.ToString();
+            //        //string VNo1 = (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Journal") ? "J" : (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Contra") ? "C" :
+            //        //    (ConAccHead.Substring(0, 4) == "1901" ? "C" : "B")));
+            //        //string VNo2 = (VNo1 == "J" ? "V" : (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Payment") ? "D" : (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Contra") ? "T" : "C")));
+            //        string VNo3 = this.ddlvoucher.SelectedValue.ToString().Trim();
+            //        string date = this.txtEntryDate.Text;
+
+            //        DataSet ds4 = accData.GetTransInfo(comcod, ProceNameNar, "LASTNARRATION", VNo3, date, "", "", "", "", "", "", "");
+            //        if (ds4.Tables[0].Rows.Count > 0)
+            //            this.txtNarration.Text = this.getLastNarration(ds4);
+            //        else
+            //            this.txtNarration.Text = "";
+            //        //---------------------
+
+            //        this.GetVouCherNumber();
+
+            //        if (VNo3 == "BD" || VNo3 == "CT")
+            //        {
+            //            this.ChequeNo();
+
+
+            //        }
+
+            //        this.txtchequedate.Text = (VNo3 == "BD" || VNo3 == "CT" || VNo3 == "BC") ? this.txtEntryDate.Text : "";
+
+            //    }
+               
+            
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ShowModal();", true);
+
+        }
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+            {
+                return dt1;
+            }
+            string actcode = dt1.Rows[0]["actcode"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["actcode"].ToString() == actcode)
+                {
+                    actcode = dt1.Rows[j]["actcode"].ToString();
+                    dt1.Rows[j]["actdesc"] = "";
+
+                }
+
+                else
+                {
+                    actcode = dt1.Rows[j]["actcode"].ToString();
+
+                }
+
+            }
+            return dt1;
+
+        }
+
+        protected void LbtnImport_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            if(Convert.ToInt32(this.TxtAccMiss.Text)==0 && Convert.ToInt32(this.TxtResMiss.Text) == 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Nothing for Import";
+
+                return;
+
+            }
+            else
+            {
+                List<AccountsBook> accbooksec = new List<AccountsBook>();
+                List<AccountsBook> accbookcur = new List<AccountsBook>();
+
+                List<RescourceBook> resbooksec = new List<RescourceBook>();
+                List<RescourceBook> resbookcur = new List<RescourceBook>();
+
+                DataSet ds1 = AccData.GetTransInfo(comcod, "SP_UTILITY_DATA_SYNC", "GET_ALL_CODEBOOK", "", "", "", "", "", "");
+                if (ds1 != null)
+                {
+                    accbookcur = ds1.Tables[0].DataTableToList<AccountsBook>();
+                    resbookcur = ds1.Tables[1].DataTableToList<RescourceBook>();
+
+                }
+
+                string secomcod = "3368";
+                DataSet ds2 = SecAccData.GetTransInfo(secomcod, "SP_UTILITY_DATA_SYNC", "GET_ALL_CODEBOOK", "", "", "", "", "", "");
+                if (ds2 != null)
+                {
+                    accbooksec = ds2.Tables[0].DataTableToList<AccountsBook>();
+                    resbooksec = ds2.Tables[1].DataTableToList<RescourceBook>();
+
+                }
+
+
+                //List<AccountsBook> accimport = accbooksec.Concat(accbookcur).ToList();
+                List<AccountsBook>  newresult = accbooksec.Where(k => !accbookcur.Contains(k, new EntityComparer())).ToList();
+                List<RescourceBook> newresult1 = resbooksec.Where(k => !resbookcur.Contains(k, new EntityComparerRescode())).ToList();
+
+
+                DataSet ds = new DataSet("ds1");
+                ds.Tables.Add(ASITUtility03.ListToDataTable(newresult));
+                ds.Tables.Add(ASITUtility03.ListToDataTable(newresult1));
+                ds.Tables[0].TableName = "tblacc";
+                ds.Tables[1].TableName = "tblres";
+                var xx = ds.GetXml();
+             
+                bool result = AccData.UpdateXmlTransInfo(comcod, "SP_UTILITY_DATA_SYNC", "UPDATE_CODEBOOK", ds,null, null);
+                if (result == true)
+                {
+                    this.txtfromdate.Text = this.Fromdate();
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Codebook Imported Successfully";
+
+                }
+                //  list3 = list1.Except(list2);
+            }
+        }
     }
+
+
+
+    public class RescourceBook
+    {
+        public string sircode { get; set; }
+        public string sirdesc { get; set; }
+        public double sirval { get; set; }
+        public string sirtdes { get; set; }
+
+
+    }
+
+    public class AccountsBook
+    {
+        public string actcode { get; set; }
+        public string actdesc { get; set; }
+
+    }
+    class EntityComparer : IEqualityComparer<AccountsBook>
+    {
+        public bool Equals(AccountsBook x, AccountsBook y)
+        {
+            return x.actcode == y.actcode;
+        }
+        //public bool Equals(RescourceBook x, RescourceBook y)
+        //{
+        //    return x.sircode == y.sircode;
+        //}
+
+        public int GetHashCode(AccountsBook obj)
+        {
+            return 0;
+        }
+    }
+    class EntityComparerRescode : IEqualityComparer<RescourceBook>
+    {      
+        public bool Equals(RescourceBook x, RescourceBook y)
+        {
+            return x.sircode == y.sircode;
+        }
+
+        public int GetHashCode(RescourceBook obj)
+        {
+            return 0;
+        }
+    }
+
 }
