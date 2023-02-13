@@ -35,6 +35,14 @@ namespace RealERPWEB
                         getLetter();
 
                     }
+                    else
+                    {
+                        this.panl1.Visible = false;
+                        this.dnone.Visible = false;
+                        this.pnl2.Visible = false;
+                        getCustLetter();
+
+                    }
                 }
                 else
                 {
@@ -142,6 +150,86 @@ namespace RealERPWEB
         }
 
 
+        private void getCustLetter()
+        {
+            string comcod = this.GetCompCode();
+            string custid = this.Request.QueryString["custid"].ToString().Trim();
+            string pactcode = this.Request.QueryString["pactcode"].ToString().Trim();
+
+        
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERINFODETAILS", pactcode, custid, "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+               return;
+
+            string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
+
+            string lbody = string.Empty;
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+
+            switch (letterType)
+            {
+                //congratulation letter
+                case "10003":
+                    if (comcod == "3367" || comcod == "3101")
+                    {
+                        lbody =
+                            
+                            "<p style='text-align: left'>" +
+                          
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
+                             "<p style='text-align: center;'><strong >Congratulation</strong> </p>" +
+                            "Name      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; </p><p>" +
+                            "Designation  </p><p>" +
+                            "Department   </p><p>" +
+                            "<br>" +
+                            "<br>" +
+
+
+                            "<strong>Subject &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Promotion in Service</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "<h1 style='text-align:center'>CONGRATULATIONS!!!<h1>" +
+                            //"<img style='margin-bottom:-11px;text-align: center;' src = '" + congimg + "' Height = '80' Width = '300' CssClass = 'rounded-circle img-responsive' />" +
+                            "<p>It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  in "+
+                           "</strong> with effect from<strong> 1st January 2022.</strong></p>" +
+                            "<p>We are delighted towards your commitment and integrity shown towards your responsibilities in" +
+                            "the past. We believe that you will continue to deliver your best performance and add on to the " +
+                            "growth of the company.</p>" +
+
+                            "<p>Promotion to higher level is recognitions to your performance which includes expectation of" +
+                            "greater skills and higher responsibilities for you. </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "<h3 style='margin-bottom:-11px;text-align: center;'>We wish you all the very best.</h3>&nbsp;" +
+                            "<p>Thanking you</p>&nbsp;" +
+                             "<br> &nbsp; " +
+                            "<br>&nbsp; " +
+
+                            "</p><p><strong></strong></p><p>" +
+
+                            "<strong>------------------------------------------</strong> </p><p>" +
+                            "<p style='margin-bottom:-11px;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
+                            "<p style='margin-bottom:-11px;'><strong> Chief Operating Officer-CPDL</strong> </p><p>" +
+                            "</p><p style='margin-bottom:-11px;'>CC: </p>" +
+                            "</p><p style='margin-bottom:-11px;'>President-CPDL </p>" +
+                            "</p><p style='margin-bottom:-11px;'>Personal File </p>"
+                            ;
+
+
+                    }
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><h3 style='text-align: center;'>" +
+                            "<span style='text-decoration: underline;'><strong>Private &amp; Confidential</strong></span>" +
+                            "</h3><p>&nbsp;<strong>Ref: SPL/HR/Prom/489/16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></p><p><strong>16 November, 2016</strong></p><p><strong>&nbsp;</strong><strong></p><p>&nbsp;<strong>Subject: Promotion</strong></p><p>&nbsp;Dear Mr. <strong></strong>,</p><p>&nbsp;We are pleased to inform you that, the company have decided to promote you to the position of <strong><u>Junior Territory Sales Manager</u></strong> recognition of your performance, effective December 1, 2016.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 360px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 360px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 360px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 360px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 360px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>We acknowledge your excellent performance and congratulate you on your well-deserved promotion. We hope you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;</p><p>Yours Sincerely,</p>";//<p>&nbsp;<strong>Moshiur Hossain</strong></p><p><strong>Managing Director.</strong></p><p><strong><u>Copy to:</u></strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HRIS</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal File</p>";
+
+                    }
+                    break;
+
+            }
+            this.txtml.Text = lbody;
+
+        }
         private void getLetter()
         {
             string comcod = this.GetCompCode();
