@@ -162,7 +162,8 @@ namespace RealERPWEB
                return;
 
             string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
-
+            string custname = ds.Tables[0].Rows[0]["custname"].ToString() ?? "";
+            string pactdesc = ds.Tables[0].Rows[0]["pactdesc"].ToString() ?? "";
             string lbody = string.Empty;
             string letterType = this.Request.QueryString["Type"].ToString().Trim();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -176,46 +177,29 @@ namespace RealERPWEB
                     if (comcod == "3367" || comcod == "3101")
                     {
                         lbody =
-                            
-                            "<p style='text-align: left'>" +
-                          
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
-                             "<p style='text-align: center;'><strong >Congratulation</strong> </p>" +
-                            "Name      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; </p><p>" +
-                            "Designation  </p><p>" +
-                            "Department   </p><p>" +
-                            "<br>" +
-                            "<br>" +
+                           "<p style='text-align: left;margin-top:50px;'> " +
+                          "<span>" + date + "</strong>" + "<span/>" +
+                          "<p style='text-align: center;'><strong ><u>Congratulation Letter</u></strong> </p>" +
+                           "<p style='margin-bottom:-11px;'>To</p>" +
+                           "<p style='margin-bottom:-11px'>"+custname+"</p>" +
+                            "<p style='margin-bottom:-11px'>----------------</p>" +
+                            "<p style='margin-bottom:-11px'>Chatteshwari Road,</p>" +
+                            "<p style='margin-bottom:-11px'>Chittagong.</p>" + 
 
-
-                            "<strong>Subject &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Promotion in Service</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                        "<h1 style='text-align:center'>CONGRATULATIONS!!!<h1>" +
-                            //"<img style='margin-bottom:-11px;text-align: center;' src = '" + congimg + "' Height = '80' Width = '300' CssClass = 'rounded-circle img-responsive' />" +
-                            "<p>It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  in "+
-                           "</strong> with effect from<strong> 1st January 2022.</strong></p>" +
-                            "<p>We are delighted towards your commitment and integrity shown towards your responsibilities in" +
-                            "the past. We believe that you will continue to deliver your best performance and add on to the " +
-                            "growth of the company.</p>" +
-
-                            "<p>Promotion to higher level is recognitions to your performance which includes expectation of" +
-                            "greater skills and higher responsibilities for you. </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                             "<h3 style='margin-bottom:-11px;text-align: center;'>We wish you all the very best.</h3>&nbsp;" +
-                            "<p>Thanking you</p>&nbsp;" +
-                             "<br> &nbsp; " +
-                            "<br>&nbsp; " +
-
-                            "</p><p><strong></strong></p><p>" +
-
-                            "<strong>------------------------------------------</strong> </p><p>" +
-                            "<p style='margin-bottom:-11px;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
-                            "<p style='margin-bottom:-11px;'><strong> Chief Operating Officer-CPDL</strong> </p><p>" +
-                            "</p><p style='margin-bottom:-11px;'>CC: </p>" +
-                            "</p><p style='margin-bottom:-11px;'>President-CPDL </p>" +
-                            "</p><p style='margin-bottom:-11px;'>Personal File </p>"
-                            ;
-
-
+                            "Dear Sir," +
+                            "<strong>Congratulations!</strong>" +
+                            "Thank you for your confidence placed in our company by making a booking in "+"<strong>" + pactdesc+ "</strong>"+" at" +
+                            "----------------, Chittagong. Hope it becomes a very special place where all your dreams grow." + "<br><br>" +
+                            "It is our objective to give you full value for your money and provide you a home to your satisfaction" +
+                            "in that our Sales and Marketing Department is committed to give you prompt and efficient sevice" + "<br><br>" +
+                            "Please feel free to contact with me for ant queries about monthly installment, accounts statements," +
+                            "loan purpose or any other service regarding financial matter</p>" + "<br>" +
+                            "<strong>Please remember that your on time payment will help us to complete the project on time</strong>" + "<br><br>" +
+                            "I would like to thank you for patronizing Epic Properties Limited " + "<br><br>" +
+                            "Yours sincerly," + "<br><br>" +
+                            "<p>---------------------</p>" +
+                            "<p style='margin-bottom:-11px;'><u>Cell No:</u></p>" +
+                            "<p style='margin-bottom:-11px;'><u>E-mail-</u></p>";
                     }
                     else
                     {
