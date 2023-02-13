@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-
     </style>
     <script>
         function openReportModal() {
@@ -47,8 +46,7 @@
                     <asp:TextBox ID="txtFdate" runat="server" CssClass="form-control"></asp:TextBox>
 
                     <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server"
-                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFdate"
-                        PopupButtonID="Image2"></cc1:CalendarExtender>
+                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
                 </div>
                 <div class="col-md-2 mt-4">
                     <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
@@ -172,7 +170,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Department Name">
+                            <asp:TemplateField HeaderText="Department Name">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlnkgvdept" runat="server" BorderColor="#99CCFF"
                                         BorderStyle="none" Font-Size="11px" Font-Underline="false" ForeColor="Black"
@@ -290,28 +288,28 @@
             <div id="donutchart5" class="col-sm-4 col-md-4 col-lg-4" style="height: 250px"></div>
         </div>
     </div>
-    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">     <asp:LinkButton CssClass="btn btn-success btn-sm" runat="server" ID="btnSendMail" OnClick="btnSendMail_Click" >Send Mail</asp:LinkButton></h6>
-                        <asp:Button runat="server" OnClientClick="reloadPage();" Text="x" />
-                           
-                   
-                    </div>
-                    <div class="modal-body">
-
-                   <div runat="server" id="AttReport">
-
-                   </div>
-                    </div>
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header order-bottom">
+                    <h6 class="modal-title font-weight-bold" id="">
+                        <asp:LinkButton CssClass="btn btn-success btn-sm" runat="server" ID="btnSendMail" OnClick="btnSendMail_Click">Send Mail</asp:LinkButton></h6>
+                    <asp:Button runat="server" OnClientClick="reloadPage();" Text="x" />
 
 
-  
-        
                 </div>
+                <div class="modal-body">
+
+                    <div runat="server" id="AttReport">
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
+    </div>
 
 
 

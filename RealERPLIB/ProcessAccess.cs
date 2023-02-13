@@ -1563,7 +1563,7 @@ namespace RealERPLIB
                         catch (Exception ex)
                         {
                             throw ex;
-                        }
+                        } 
                         finally
                         {
                             connection.Close();

@@ -569,7 +569,7 @@ Thanks :)*/
                                 <li><span>
                                     <img class="menuImg" src="Image/PF.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_97_MIS/RptMgtInterface.aspx")%>">Summary</a></li>
                                 <li><span>
-                                    <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance.aspx")%>">Attendance</a></li>
+                                    <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance?Type=Dept")%>">Attendance</a></li>
 
                                 <li><span>
                                     <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/RptWeekPresence.aspx")%>">Attendance(W)</a></li>
@@ -1188,7 +1188,7 @@ Thanks :)*/
                                   <div class="row">
                               <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class=" comm1 color07">
-                                     <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance.aspx")%>"> <span class='btex1'> Daily Attendance </span></a>
+                                     <a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance?Type=Dept")%>"> <span class='btex1'> Daily Attendance </span></a>
                                    <%-- <asp:LinkButton ID="LinkButton32" PostBackUrl="F_81_Hrm/F_83_Att/RptWeekPresence.aspx" runat="server" >
                                         <span class='btex1'> Daily Attendance </span>
                                     </asp:LinkButton>--%>
@@ -1412,7 +1412,7 @@ Thanks :)*/
                                 <li><span>
                                     <img class="menuImg" src="Image/PF.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_97_MIS/RptMgtInterface.aspx")%>" target="_blank">Summary</a></li>
                                 <li><span>
-                                    <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance.aspx")%>" target="_blank">Attendance</a></li>
+                                    <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_99_MgtAct/RptgroupAttendance?Type=Dept")%>" target="_blank">Attendance</a></li>
 
                                 <%--<li><span>
                                     <img class="menuImg" src="Image/B1.png" /></span><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/RptWeekPresence.aspx")%>">Attendance(W)</a></li>--%>

@@ -13,6 +13,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
 
@@ -60,7 +61,7 @@
                                         <asp:LinkButton ID="imgbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-3 pading5px">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt" TabIndex="12">
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="12">
                                         </asp:DropDownList>
 
                                     </div>
@@ -147,13 +148,14 @@
                     <asp:GridView ID="gv01" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowDataBound="gv01_RowDataBound">
 
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl.#">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo7" runat="server" Font-Bold="True"
                                         Style="text-align: right"
-                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Description">
@@ -177,22 +179,26 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="As Per WIP">
+                           
+                            <asp:TemplateField HeaderText="As Per Projection">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="hlnkgvacam" runat="server" Style="text-align: right" Target="_blank"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "accramt")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="80px"></asp:HyperLink>
+                                    <asp:Label ID="lgvActAC" runat="server" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "in_actamt")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="80px"></asp:Label>
                                 </ItemTemplate>
 
                                 <FooterStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Investment Basis">
+
+
+
+                             <asp:TemplateField HeaderText="As Per WIP">
                                 <ItemTemplate>
-                                    <asp:Label ID="lgvActAC" runat="server" Style="text-align: right"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "in_actamt")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="80px"></asp:Label>
+                                    <asp:HyperLink ID="hlnkgvacam" runat="server" Style="text-align: right" Target="_blank"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "accramt")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="80px"></asp:HyperLink>
                                 </ItemTemplate>
 
                                 <FooterStyle HorizontalAlign="Right" />
