@@ -373,7 +373,7 @@ namespace RealERPWEB.F_38_AI
                 //double pnannotor = pedingannotor== 0? (totalassign - validtotal) : (pedingannotor -validtotal);
 
 
-                if ((roletype == "95001" && pedingannotor <= assignqty))
+                if ((roletype == "95001" && pedingannotor < assignqty))
                 {
 
 

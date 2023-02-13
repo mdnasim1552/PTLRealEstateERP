@@ -787,7 +787,10 @@
                         //$(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
-                        $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                       // $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(19)").hide();
+                       $(".tbMenuWrp table tr td:nth-child(20)").hide();
+                       $(".tbMenuWrp table tr td:nth-child(21)").hide();
                         //Added 
                         // $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         break;
