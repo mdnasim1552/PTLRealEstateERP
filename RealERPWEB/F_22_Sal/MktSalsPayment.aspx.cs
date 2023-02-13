@@ -847,6 +847,7 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
+
                 else
                 {
                     DataRow[] drst = dtst.Select("gcod='51005'");
