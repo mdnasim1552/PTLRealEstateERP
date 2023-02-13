@@ -154,7 +154,7 @@
                 </div>
             </div>
 
-            <div class="card mt-2" style="min-height: 480px;">
+            <div class="card mt-1" style="min-height: 480px;">
                 <div class="card-body">
                     <div class="row">
                         <div class="table table-responsive">
@@ -174,6 +174,12 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Material Group">
+
+                                           <FooterTemplate>
+                                            <asp:Label ID="lblFTotal" runat="server" Font-Bold="True" Text="Total"
+                                                Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        </FooterTemplate>
+
                                         <ItemTemplate>
                                             <asp:Label ID="lgmgrpcode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mgrpdesc")) %>'
@@ -186,7 +192,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lgssirdesc" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
-                                                Width="180px"></asp:Label>
+                                                Width="300px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -199,7 +205,7 @@
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="fgvamt" runat="server" Font-Bold="True"
+                                            <asp:Label ID="lblFgvamt" runat="server" Font-Bold="True"
                                                 Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
