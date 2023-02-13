@@ -47,9 +47,9 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card card-fluid">
-                <div class="card-body">
+                <div class="card-body mb-1">
                     <div class="row">                        
-                        <div class="col-sm-2 col-md-2  col-lg-2">
+                        <div class="col-sm-1 col-md-1  col-lg-1">
                             <div class="form-group">
                                 <asp:Label ID="lblFdate" runat="server">From Date</asp:Label>
                                 <asp:TextBox ID="txtfromdate" runat="server" autocomplete="off" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -57,7 +57,7 @@
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-sm-1.5  col-md-1.5  col-lg-1.5 ">
+                        <div class="col-sm-1  col-md-1  col-lg-1">
                             <div class="form-group">
                                 <asp:Label ID="lblTdate" runat="server">To Date</asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -68,14 +68,14 @@
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
-                        <div class="col-sm-2  col-md-2  col-lg-2 ">
+                        <div class="col-sm-1.5  col-md-1.5  col-lg-1.5 ">
                             <div class="form-group">
                                 <asp:Label ID="search" runat="server">Search</asp:Label>
                                 <asp:TextBox ID="txtVal" runat="server" CssClass="form-control form-control-sm" TextMode="Search"></asp:TextBox>                                
                             </div>
                         </div>
-                        <div class="col-sm-1 col-md-1 col-lg-1">
-                            <asp:LinkButton ID="SrchBtn" runat="server" OnClick="SrchBtn_Click"><i class="fas fa-search mt30"></i></asp:LinkButton>
+                        <div class="col-sm-1 col-md-1 col-lg-1 mt20">
+                            <asp:LinkButton ID="SrchBtn" runat="server" CssClass="btn btn-primary btn-sm srearchBtn" OnClick="SrchBtn_Click"><i class="fas fa-search"></i></asp:LinkButton>
                         </div>
                         <div class="col-sm-.5 col-md-.5 col-lg-.5">
                             <div class="form-group">
@@ -108,13 +108,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data">
-                <div class="card-body mb-0 pb-0" style="min-height:400px">
-                    <div class="row mb-0 pb-0">
+                <div class="card-body mt-0 mb-0 pb-0" style="min-height:500px">
+                    <div class="row mb-0 pb-0" style="overflow-x:scroll;">
                         <div class="col-md-8">
                             <div class="row">
                                 <asp:GridView ID="gvLeadStatus" runat="server" AutoGenerateColumns="False"
                                     PageSize="10" AllowPaging="true" OnPageIndexChanging="gvLeadStatus_PageIndexChanging"
-                                    ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea"
+                                    ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea"  
                                     HeaderStyle-Font-Size="14px" Width="800px">
                                     <RowStyle />
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -165,7 +165,7 @@
                                         <asp:TemplateField HeaderText="Query">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvquerydate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "query")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "query")) =="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "query")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -173,7 +173,7 @@
                                         <asp:TemplateField HeaderText="Lead">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvleaddate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lead")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lead")) =="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "lead")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -181,7 +181,7 @@
                                         <asp:TemplateField HeaderText="Qualified Lead">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqualifiedleaddate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "qualifiedlead")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "qualifiedlead"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "qualifiedlead")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -189,7 +189,7 @@
                                         <asp:TemplateField HeaderText="Negotiation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvnegotiationdate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "negotiation")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "negotiation"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "negotiation")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -197,7 +197,7 @@
                                         <asp:TemplateField HeaderText="Final Negotiation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvfinalnegotiationdate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "finalnegotiation")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "finalnegotiation"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "finalnegotiation")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -205,7 +205,7 @@
                                         <asp:TemplateField HeaderText="Win">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvwindate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "win")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "win"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "win")) %>'
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -218,8 +218,24 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Hold Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvholddate" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "holddate"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "holddate")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Lost Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvlostdate" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lostdate"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "lostdate")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
