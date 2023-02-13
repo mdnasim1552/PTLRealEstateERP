@@ -50,22 +50,22 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -140,13 +140,13 @@
       <HintPath>..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -159,7 +159,7 @@
       <HintPath>..\..\bin\EnvDTE80.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
@@ -170,10 +170,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\bin\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
@@ -193,9 +193,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -228,14 +227,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\project(old)oooooooooooooo\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    
+	  <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+	  
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Real Bin\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
@@ -306,17 +311,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.VisualStudio.TextManager.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RealERPWEB.XmlSerializers">
       <HintPath>..\..\bin\RealERPWEB.XmlSerializers.dll</HintPath>
@@ -401,6 +400,9 @@
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Entity.Design" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\..\bin\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
@@ -412,12 +414,9 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\Project Reference\bin\bin\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
-      <HintPath>..\..\bin\WebGrease.dll</HintPath>
+      <HintPath>..\..\..\bin\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -2442,6 +2441,7 @@
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptAllLetter.aspx" />
     <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
@@ -2969,6 +2969,7 @@
     <Content Include="F_34_Mgt\AccProjectCode.aspx" />
     <Content Include="F_34_Mgt\AccUserCash.aspx" />
     <Content Include="F_34_Mgt\AccUserModule.aspx" />
+    <Content Include="F_34_Mgt\DataSyncSystem.aspx" />
     <Content Include="F_34_Mgt\CACodeLink.aspx" />
     <Content Include="F_34_Mgt\AlternativeSupvervisor.aspx" />
     <Content Include="F_34_Mgt\CodeDataTrans.aspx" />
@@ -4137,6 +4138,7 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <Fakes Include="Fakes\CrystalDecisions.CrystalReports.Design.fakes" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -4690,6 +4692,13 @@
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptAllLetter.aspx.designer.cs">
+      <DependentUpon>RptAllLetter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
       <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5046,6 +5055,13 @@
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\DataSyncSystem.aspx.cs">
+      <DependentUpon>DataSyncSystem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\DataSyncSystem.aspx.designer.cs">
+      <DependentUpon>DataSyncSystem.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\AlternativeSupvervisor.aspx.cs">
       <DependentUpon>AlternativeSupvervisor.aspx</DependentUpon>
@@ -13315,6 +13331,7 @@
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderANGAN.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />

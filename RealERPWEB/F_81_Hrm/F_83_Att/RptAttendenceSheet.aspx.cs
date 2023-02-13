@@ -716,9 +716,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                             int tcount;
                             tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                            for (i = 2; i < tcount; i++)
+                            for (i = 4; i < tcount; i++)
                                 this.gvMonthlyAtt.Columns[i].Visible = false;
-                            int j = 2;
+                            int j = 4;
                             for (i = 0; i < tcount; i++)
                             {
                                 //if (datefrm > dateto)
