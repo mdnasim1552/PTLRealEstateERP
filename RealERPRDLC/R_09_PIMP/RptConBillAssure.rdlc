@@ -1839,7 +1839,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>A.M / Sr. AM / D.M / Man.</Value>
+                    <Value>Billing Section</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -2070,41 +2070,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox18">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>(Billing Section)</Value>
-                    <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.72361in</Top>
-            <Left>0.09375in</Left>
-            <Height>0.25in</Height>
-            <Width>1.60888in</Width>
-            <ZIndex>19</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="naration">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -2126,7 +2091,7 @@
             <Left>0.96542in</Left>
             <Height>0.33333in</Height>
             <Width>10.40844in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
