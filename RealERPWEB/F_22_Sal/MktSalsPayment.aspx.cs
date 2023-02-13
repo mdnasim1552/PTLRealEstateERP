@@ -718,6 +718,29 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+        private string Getsalesteamleng()
+        {
+            string comcod = this.GetCompCode();
+            string salesteam = "";
+            switch (comcod)
+            { 
+                case "3305": //Rupayan Housing
+                case "2305":
+                case "3306":
+                case "3310":
+                case "3311":
+
+
+                salesteam = "salesteam";
+                    break;
+                default:
+                    break;
+
+            }
+            return salesteam;
+        }
+
         private void CustInf()
         {
 
@@ -732,7 +755,8 @@ namespace RealERPWEB.F_22_Sal
                 string UsirCode = this.lblCode.Text;
                 string empid = hst["empid"].ToString();
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
+                string salesteamlen = Getsalesteamleng();
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, salesteamlen, "", "", "", "", "", "");
                 Session["UserLog"] = ds1.Tables[6];
                 this.gvPersonalInfo.DataSource = ds1.Tables[0];
                 Session["tpripay"] = ds1.Tables[4];
@@ -759,14 +783,28 @@ namespace RealERPWEB.F_22_Sal
 
 
 
+             if ( salesteamlen.Length>0)  //Rupayan Collection Team
+                
+                {                   
+                    this.ddlCollectionTeam.DataTextField = "gdesc";
+                    this.ddlCollectionTeam.DataValueField = "gcod";
+                    this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
+                    this.ddlCollectionTeam.DataBind();
+
+                }
+             
+                else 
+                {
+                    dv = dtscr.DefaultView;
+                    dv.RowFilter = ("secid like '9403%'");
+                    this.ddlCollectionTeam.DataTextField = "gdesc";
+                    this.ddlCollectionTeam.DataValueField = "gcod";
+                    this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
+                    this.ddlCollectionTeam.DataBind();
 
 
-                dv = dtscr.DefaultView;
-                dv.RowFilter = ("secid like '9403%'");
-                this.ddlCollectionTeam.DataTextField = "gdesc";
-                this.ddlCollectionTeam.DataValueField = "gcod";
-                this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
-                this.ddlCollectionTeam.DataBind();
+                }
+               
 
 
 
@@ -842,10 +880,16 @@ namespace RealERPWEB.F_22_Sal
                 //this.ddlSalesTeam.SelectedValue = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
                 //this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
 
-                if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3353" || comcod == "3355")
-                {
+                //if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3353" || comcod == "3355")
+                //{
 
-                }
+                //}
+
+
+               if ( comcod == "3353" || comcod == "3355")
+               {
+
+               }
 
 
                 else
