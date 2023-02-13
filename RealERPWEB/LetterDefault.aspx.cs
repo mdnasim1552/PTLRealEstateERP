@@ -164,6 +164,7 @@ namespace RealERPWEB
             string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
             string custname = ds.Tables[0].Rows[0]["custname"].ToString() ?? "";
             string pactdesc = ds.Tables[0].Rows[0]["pactdesc"].ToString() ?? "";
+            string paddress = ds.Tables[0].Rows[0]["paddress"].ToString() ?? "";
             string lbody = string.Empty;
             string letterType = this.Request.QueryString["Type"].ToString().Trim();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -179,25 +180,25 @@ namespace RealERPWEB
                         lbody =
                            "<p style='text-align: left;margin-top:50px;'> " +
                           "<span>" + date + "</strong>" + "<span/>" +
-                          "<p style='text-align: center;'><strong ><u>Congratulation Letter</u></strong> </p>" +
+                          "<h1 style='text-align: center;'><strong ><u>Congratulation Letter</u></strong> </h1>" +
                            "<p style='margin-bottom:-11px;'>To</p>" +
                            "<p style='margin-bottom:-11px'>"+custname+"</p>" +
-                            "<p style='margin-bottom:-11px'>----------------</p>" +
+                            "<p style='margin-bottom:-11px'>---------------------</p>" +
                             "<p style='margin-bottom:-11px'>Chatteshwari Road,</p>" +
-                            "<p style='margin-bottom:-11px'>Chittagong.</p>" + 
+                            "<p style='margin-bottom:-11px'>Chittagong.</p>" + "<br>"+
 
-                            "Dear Sir," +
-                            "<strong>Congratulations!</strong>" +
-                            "Thank you for your confidence placed in our company by making a booking in "+"<strong>" + pactdesc+ "</strong>"+" at" +
-                            "----------------, Chittagong. Hope it becomes a very special place where all your dreams grow." + "<br><br>" +
+                            "<p>Dear Sir,</p>" +
+                            "<p><strong>Congratulations!</strong></p>" +
+                            "<p style='font-size:12px;'>Thank you for your confidence placed in our company by making a booking in " + "<strong>" + pactdesc+ "</strong>"+ " at &nbsp;&nbsp;&nbsp; " +
+                            paddress+", Chittagong. Hope it becomes a very special place where all your dreams grow." + "<br><br>" +
                             "It is our objective to give you full value for your money and provide you a home to your satisfaction" +
                             "in that our Sales and Marketing Department is committed to give you prompt and efficient sevice" + "<br><br>" +
                             "Please feel free to contact with me for ant queries about monthly installment, accounts statements," +
                             "loan purpose or any other service regarding financial matter</p>" + "<br>" +
-                            "<strong>Please remember that your on time payment will help us to complete the project on time</strong>" + "<br><br>" +
-                            "I would like to thank you for patronizing Epic Properties Limited " + "<br><br>" +
+                            "<strong>Please remember that your on time payment will help us to complete the project on time.</strong>" + "<br><br>" +
+                            "I would like to thank you for patronizing Epic Properties Limited. </p>" + "<br><br><br>" +
                             "Yours sincerly," + "<br><br>" +
-                            "<p>---------------------</p>" +
+                            "<p>--------------------------</p>" +
                             "<p style='margin-bottom:-11px;'><u>Cell No:</u></p>" +
                             "<p style='margin-bottom:-11px;'><u>E-mail-</u></p>";
                     }
