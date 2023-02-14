@@ -235,7 +235,7 @@ namespace RealERPWEB.F_32_Mis
                 {
                     return;
                 }
-                if (grp == "AA" && (gval == "03" || gval == "09"||gval == "15"))
+                if (grp == "AA" && (ASTUtility.Right(gval,3) == "AAA"))
                 {
 
                     string actcode = this.ddlProjectName.SelectedValue.ToString();

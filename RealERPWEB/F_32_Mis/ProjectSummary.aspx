@@ -12,11 +12,14 @@
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('.chzn-select').chosen({ search_contains: true });
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+           
         });
         function pageLoaded() {
 
+
+            $('.chzn-select').chosen({ search_contains: true });
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
