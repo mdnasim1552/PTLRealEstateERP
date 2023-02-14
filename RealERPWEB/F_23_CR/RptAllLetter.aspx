@@ -166,8 +166,41 @@
                                             <HeaderStyle HorizontalAlign="Center" Font-Bold="True" Font-Size="16px" />
                                         </asp:TemplateField>
 
-                                
+                         
+                                         <asp:TemplateField HeaderText="Operation">
+                                            <ItemTemplate>
+                                                 <div class="dropdown">
+                                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                        Action
+                                                        
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                       
 
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink  runat="server"  ID="lnkOfferLetter" Target="_blank"  CssClass="dropdown-item" ToolTip="Congratulation Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=CustLetter &Entry=Congratulation Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
+                                                                 Congartulation Letter</asp:HyperLink>
+                                                        </li>
+
+
+
+                                                    </ul>
+                                                </div>
+                                              
+                                               
+
+                                               <%-- <asp:HyperLink runat="server" ID="lnkAppoint" Target="_blank" ToolTip="Appointment Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10002 &Page=NewRec &Entry=appoinment Letter &advno="+Eval("advno") %>'
+                                                                 CssClass="text-primary"> <i class="fa fa-envelope"></i></asp:HyperLink>
+
+                                                 <asp:HyperLink  runat="server" ID="lnkConfirmation" Target="_blank"
+                                                                           NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
+                                                                           CssClass="btn btn-success btn-sm">Confirmation Letter</asp:HyperLink>--%>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
 
 

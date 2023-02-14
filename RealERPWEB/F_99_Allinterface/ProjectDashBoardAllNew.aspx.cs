@@ -151,6 +151,7 @@ namespace RealERPWEB.F_99_Allinterface
             public double bgdcost { get; set; }
             public double bgdmar { get; set; }
             public double salam { get; set; }
+            public double unsoldam { get; set; }
             public double collam { get; set; }
             public double cbgdcost { get; set; }
             public double cprogress { get; set; }
@@ -162,6 +163,10 @@ namespace RealERPWEB.F_99_Allinterface
             public double rinflow { get; set; }
             public double routflow { get; set; }
             public double fblock { get; set; }
+            public double prevenue { get; set; }
+            public double pcost { get; set; }
+            public double noiam { get; set; }
+            public double cashflow { get; set; }
 
         }
 

@@ -754,7 +754,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["presentaddr"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["permenentaddr"].ToString()));
             Rpt1.SetParameters(new ReportParameter("propertyname", projectName));
             Rpt1.SetParameters(new ReportParameter("floor", dt2.Rows[0]["floorr"].ToString()));
             Rpt1.SetParameters(new ReportParameter("unit", dt2.Rows[0]["parkingLevel"].ToString()));
