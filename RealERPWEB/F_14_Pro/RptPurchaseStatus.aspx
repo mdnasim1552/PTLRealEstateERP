@@ -227,9 +227,9 @@
                                 </asp:Panel>
 
 
-                                <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="false" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" >
-                                    <PagerSettings Position="Top" />
+                                    <PagerSettings Position="Bottom" />
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">

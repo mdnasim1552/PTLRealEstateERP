@@ -28,6 +28,11 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         };
+
+
+
+
+        
     </script>
 
 
@@ -60,6 +65,7 @@
 
 
                                         <asp:Label ID="lblmsg1" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+
                                         <asp:Panel ID="pnlxcel" runat="server" style="display:none;" >
                                                     <asp:Label ID="lblExel" runat="server" CssClass="lblTxt lblName txtAlgRight" Text="Excel :"></asp:Label>
                                                     <div class="uploadFile">

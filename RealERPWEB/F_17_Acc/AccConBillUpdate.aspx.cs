@@ -911,8 +911,10 @@ namespace RealERPWEB.F_17_Acc
                 this.Data_Bind();
                 this.DropCheck1.Enabled = false;
 
+
                 //this.ibtnvounu.Visible = true;
                 this.Panel1.Visible = true;
+                this.lblpaytoname.Text = this.ddlConList.SelectedItem.Text == "" ? "" : this.ddlConList.SelectedItem.Text;
                 string pactcode = "26" + ASTUtility.Right(tblt01.Rows[0]["actcode"].ToString(), 10);
                 this.SupplierOverallAdvanced(pactcode);
                 this.GetAdvanced();

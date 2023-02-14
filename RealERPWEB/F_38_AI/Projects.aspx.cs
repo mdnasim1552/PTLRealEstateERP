@@ -599,7 +599,7 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedValue = roletype;
-                this.ddlAnnotationid.SelectedValue= anotationid;
+                this.ddlAnnotationid.SelectedItem.Text= anotationid;
                 this.ddlassigntype.SelectedValue = assigntype;
                 this.txtquantity.Text = Convert.ToString(assginqty).ToString();
                 this.txtworkhour.Text = workhour;
@@ -640,9 +640,10 @@ namespace RealERPWEB.F_38_AI
                 string annodid = this.ddlAnnotationid.SelectedValue.Trim().ToString();
                 string roletype = this.ddlUserRoleType.SelectedItem.Value;
                 string textrate = Convert.ToDouble("0" + this.textrate.Text).ToString();
+                string titlename = this.txttasktitle.Text;
 
 
-                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate);
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate, titlename);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);

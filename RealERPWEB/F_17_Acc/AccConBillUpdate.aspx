@@ -328,6 +328,11 @@
                                     <asp:TextBox ID="txtAdvanced" runat="server" CssClass="inputTxt inpPixedWidth text-right" AutoCompleteType="Disabled" TabIndex="4"></asp:TextBox>
                                     <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
                                     <asp:CheckBox ID="chkpost" runat="server" TabIndex="10" Text="post" CssClass="btn btn-primary checkBox" Visible="false" />
+
+                                    <asp:Label ID="Label1" runat="server" CssClass="smLbl_to" Text="PayTo"></asp:Label>
+                                    <asp:TextBox ID="lblpaytoname" runat="server" CssClass="inputTxt inpPixedWidth" AutoCompleteType="Disabled" Width="180px"></asp:TextBox>
+
+
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
