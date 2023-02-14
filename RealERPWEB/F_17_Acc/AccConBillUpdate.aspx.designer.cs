@@ -267,6 +267,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.CheckBox chkpost;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// lblpaytoname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblpaytoname;
+
+        /// <summary>
         /// lblNaration control.
         /// </summary>
         /// <remarks>

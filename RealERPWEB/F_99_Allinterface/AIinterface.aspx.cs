@@ -1545,9 +1545,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string doneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
                 string balqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvqcbalqty")).Text.ToString();
                 string prodoneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvproqcdoneqty")).Text.ToString();
-                double prodone = Convert.ToDouble(doneqty);
-                double prodonebal = Convert.ToDouble(balqty);
-                double prodoneassign= Convert.ToDouble(prodoneqty);
+                double prodone = Convert.ToDouble("0"+doneqty);
+                double prodonebal = Convert.ToDouble("0"+balqty);
+                double prodoneassign= Convert.ToDouble("0"+ prodoneqty);
                 string prodoneannot = "";
                 double proassgin = 0;
                 if (prodone < prodonebal)
@@ -1952,9 +1952,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string qcdone = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
                 string qcdonebal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqaBalqty")).Text.ToString();
                 string qcpendbal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcqcdoneqty")).Text.ToString();
-                double qcassdone = Convert.ToDouble(qcdone);
-                double qcdonebalqty = Convert.ToDouble(qcdonebal);
-                double qcpend = Convert.ToDouble(qcpendbal);
+                double qcassdone = Convert.ToDouble("0"+qcdone);
+                double qcdonebalqty = Convert.ToDouble("0"+qcdonebal);
+                double qcpend = Convert.ToDouble("0"+qcpendbal);
                 string doneqc1 = "";
                 double actualassign = 0;
                 if (qcassdone < qcdonebalqty)
