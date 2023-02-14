@@ -328,7 +328,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <%--<asp:TemplateField HeaderText="Pay Date">
+                                <asp:TemplateField HeaderText="Pay Date">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger btn-sm" TabIndex="22">Update</asp:LinkButton>
                                     </FooterTemplate>
@@ -343,7 +343,7 @@
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="right" VerticalAlign="Middle" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ref ID">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbTotal" runat="server" Font-Bold="True" Font-Size="12px"
