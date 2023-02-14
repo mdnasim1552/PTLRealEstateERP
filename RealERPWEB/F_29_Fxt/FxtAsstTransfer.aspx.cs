@@ -244,12 +244,12 @@ namespace RealERPWEB.F_29_Fxt
             if (lbtnOk.Text.Trim() == "Ok")
             {
                 lbtnOk.Text = "New";
+                this.divresource.Visible = true;
                 this.pnlgrd.Visible = true;
-                //this.lblddlProjectFrom.Visible = true;
-                this.lblddlProjectTo.Visible = true;
-                this.ddlprjlistfrom.Visible = true;
-                this.ddlprjlistto.Visible = false;
+                this.ddlprjlistfrom.Enabled = true;
+                this.ddlprjlistto.Enabled = false;
                 this.ddlPrevISSList.Visible = false;
+                this.divPrevTrans.Visible = false;
                 this.txtPreTrnsSearch.Visible = false;
                 this.lblPreList.Visible = false;
                 this.lbtnPrevVOUList.Visible = false;
@@ -275,8 +275,6 @@ namespace RealERPWEB.F_29_Fxt
                     this.Get_Trnsno();
 
                 }
-                this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text.Trim();
-                this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text.Trim();
                 this.Load_Project_Res_Combo();
 
 
@@ -287,18 +285,18 @@ namespace RealERPWEB.F_29_Fxt
                 Session["sessionforgrid"] = null;
                 this.tableintosession();
 
-                this.lblddlProjectFrom.Visible = false;
-                this.lblddlProjectTo.Visible = false;
-                this.ddlprjlistfrom.Visible = true;
-                this.ddlprjlistto.Visible = true;
+                this.ddlprjlistfrom.Enabled = true;
+                this.ddlprjlistto.Enabled = true;
                 this.ddlPrevISSList.Visible = true;
                 this.lbtnPrevVOUList.Visible = true;
-                this.txtPreTrnsSearch.Visible = true;
+                this.divPrevTrans.Visible = true;
+                this.txtPreTrnsSearch.Visible = false;
                 this.lblPreList.Visible = true;
                 this.grvacc.DataSource = null;
                 this.txtCurTransDate.Enabled = true;
                 this.grvacc.DataBind();
                 this.Get_Trnsno();
+                this.divresource.Visible = false;
                 this.pnlgrd.Visible = false;
                 lbtnOk.Text = "Ok";
                 this.ddlPrevISSList.Items.Clear();
