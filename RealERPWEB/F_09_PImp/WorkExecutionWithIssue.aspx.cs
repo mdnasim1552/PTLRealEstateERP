@@ -130,27 +130,43 @@ namespace RealERPWEB.F_09_PImp
 
         private void GetItem()
         {
-            string itemcode = this.ddlCategory.SelectedValue.Substring(0, 4).ToString() + "%";
-            DataTable dt = ((DataTable)Session["item"]).Copy();
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = ("itemcode like '" + itemcode + "' ");
-            dt = dv.ToTable();
-            this.ddlItem.DataTextField = "workitem";
-            this.ddlItem.DataValueField = "itemcode";
-            this.ddlItem.DataSource = dt;
-            this.ddlItem.DataBind();
+            if (ddlCategory.SelectedValue.ToString() == "")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Category was not found for this Project" + "');", true);
+                return;
+            }
+            else
+            {
+                string itemcode = this.ddlCategory.SelectedValue.Substring(0, 4).ToString() + "%";
+                DataTable dt = ((DataTable)Session["item"]).Copy();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("itemcode like '" + itemcode + "' ");
+                dt = dv.ToTable();
+                this.ddlItem.DataTextField = "workitem";
+                this.ddlItem.DataValueField = "itemcode";
+                this.ddlItem.DataSource = dt;
+                this.ddlItem.DataBind();
+            }
         }
         public void GetDivision()
         {
-            string Worklists = this.ddlItem.SelectedValue.ToString();
-            DataTable dt = ((DataTable)Session["itemlist"]).Copy();
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = ("itemcode= " + Worklists);
-            dt = dv.ToTable(true, "flrcod", "flrdes", "flrdes1");
-            this.ddlDivision.DataTextField = "flrdes1";
-            this.ddlDivision.DataValueField = "flrdes1";
-            this.ddlDivision.DataSource = dt;
-            this.ddlDivision.DataBind();
+            if (ddlItem.SelectedValue == "")
+            {
+               
+            }
+            else
+            {
+                string Worklists = this.ddlItem.SelectedValue.ToString();
+                DataTable dt = ((DataTable)Session["itemlist"]).Copy();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("itemcode= " + Worklists);
+                dt = dv.ToTable(true, "flrcod", "flrdes", "flrdes1");
+                this.ddlDivision.DataTextField = "flrdes1";
+                this.ddlDivision.DataValueField = "flrdes1";
+                this.ddlDivision.DataSource = dt;
+                this.ddlDivision.DataBind();
+            }
+            
         }
         private void GetWENIssueNo()
         {

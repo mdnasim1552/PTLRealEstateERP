@@ -37,7 +37,7 @@ namespace RealERPWEB.F_04_Bgd
 
                 this.ImgbtnFindItem_Click(null, null);
 
-                this.lbtnUpdateAna.Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
                 this.gvAnalysis.Columns[1].Visible = (Convert.ToBoolean(dr1[0]["entry"]));
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -52,6 +52,8 @@ namespace RealERPWEB.F_04_Bgd
                 this.lbtngvP6.Visible = (ASTUtility.Left(comcod, 1) == "3" || ASTUtility.Left(comcod, 1) == "1") ? true : false;
                 this.lbtngvP7.Visible = (ASTUtility.Left(comcod, 1) == "3" || ASTUtility.Left(comcod, 1) == "1") ? true : false;
                 this.lbtngvP8.Visible = (ASTUtility.Left(comcod, 1) == "3" || ASTUtility.Left(comcod, 1) == "1") ? true : false;
+
+
             }
         }
 
@@ -61,10 +63,22 @@ namespace RealERPWEB.F_04_Bgd
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrintAnaLysis_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Text = "Put same value for all floors";
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnInputSame_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdateAna_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
         }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
 
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
+        }
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -770,7 +784,7 @@ namespace RealERPWEB.F_04_Bgd
         {
             this.lbtnCopyData.Visible = this.ChkCopy.Checked;
             this.ddlItemToCopy.Visible = this.ChkCopy.Checked;
-            this.txtItemSearchToCopy.Visible = this.ChkCopy.Checked;
+            this.lblToCopy.Visible = this.ChkCopy.Checked;
             this.ImgbtnFindItemToCopy.Visible = this.ChkCopy.Checked;
         }
         protected void ImgbtnFindItemToCopy_Click(object sender, EventArgs e)

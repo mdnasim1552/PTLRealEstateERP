@@ -36,15 +36,15 @@ namespace RealERPLIB
         public double GetRateFromGoalSeek(double difference, double targetDifference)
         {
             double ratioterm = 0;
+            //ratioterm = 1 - Math.Pow(Ratio, NoofInstallment);
             if (NoofInstallment >= BaseofInstallment)
             {
                 ratioterm = 1 - Math.Pow(Ratio, BaseofInstallment);
             }
             else
             {
-                ratioterm = Math.Pow(Ratio, BaseofInstallment - NoofInstallment) - Math.Pow(Ratio, BaseofInstallment);
+                ratioterm =Math.Pow(Ratio, (BaseofInstallment) - NoofInstallment) - Math.Pow(Ratio, BaseofInstallment);
             }
-
             double a = (ratioterm * (SftQty - ((PercentOfBooking + PercntOfDownPayment) * SftQty)) / ((1 - Ratio) * NoofInstallment * SftQty)) +
                 (((PercentOfBooking + PercntOfDownPayment) * SftQty * Math.Pow(Ratio, BaseofInstallment)) / SftQty);
 
@@ -53,7 +53,7 @@ namespace RealERPLIB
                 - Puo / SftQty;
 
             double FVsft = a * Rate + b;
-            double PVsft = FVsft / Math.Pow(1 + RatioValue / 4, BaseofInstallment / 3);
+            double PVsft = FVsft / Math.Pow(1 + RatioValue / 4, BaseofInstallment / 3); //FVsft / Math.Pow(1 + RatioValue / 4, BaseofInstallment / 3);
 
             double GSPVsft = PVsft - (difference + targetDifference);
             double GSFVsft = GSPVsft * Math.Pow(1 + RatioValue / 4, BaseofInstallment / 3);

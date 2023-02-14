@@ -451,6 +451,7 @@ namespace RealERPWEB.F_22_Sal
 
             switch (Type)
             {
+                case "LandO":
                 case "MonsalVsAchieveLO":
                 case "MonsalVsAchieve":
                 case "DownpayClearnce":
@@ -517,7 +518,7 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
 
-            if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
+            if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO" || this.Request.QueryString["Type"] == "LandO")
 
             {
 
