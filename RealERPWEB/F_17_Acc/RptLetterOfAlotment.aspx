@@ -79,7 +79,7 @@
             </div>
 
             <div class="card mt-3 mb-1">
-                <div class="card-header well p-1">
+                <div class="card-body p-1">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
