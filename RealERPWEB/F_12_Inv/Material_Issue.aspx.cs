@@ -300,7 +300,7 @@ namespace RealERPWEB.F_12_Inv
             string posteddat = DateTime.Today.ToString("dd-MMM-yyyy");
 
             string isuno = this.Request.QueryString["genno"].ToString();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "APPROVEINDENTISSUE", isuno, usrid, sessionid, trmid, posteddat);
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "APPROVEINDENTISSUE", isuno, usrid, sessionid, trmid, posteddat);
             if (result == true)
             {
                 Response.Redirect(prevPage);
@@ -310,7 +310,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkbtnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../F_07_Inv/Material_Issue.aspx?Type=Entry&genno=");
+            Response.Redirect("../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=");
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../F_07_Inv/Material_Issue.aspx?Type=Entry&genno=" + "', target='_self');</script>";
         }
         protected DateTime GetBackDate()
