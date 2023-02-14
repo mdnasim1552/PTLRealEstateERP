@@ -326,6 +326,13 @@
 
                                         },
 
+                                        {
+                                            "name": "P.Margin",
+                                            "y": data1[1].pmargin,
+                                            "color": '#009999'
+
+                                        },
+
                                          {
                                             "name": "Cash Flow",
                                             "y": data1[1].cashflow,

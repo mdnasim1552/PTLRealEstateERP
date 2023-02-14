@@ -165,7 +165,9 @@ namespace RealERPWEB.F_99_Allinterface
             public double fblock { get; set; }
             public double prevenue { get; set; }
             public double pcost { get; set; }
+            public double pmargin { get; set; }
             public double noiam { get; set; }
+           
             public double cashflow { get; set; }
 
         }
