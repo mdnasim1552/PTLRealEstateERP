@@ -599,7 +599,7 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedValue = roletype;
-                this.ddlAnnotationid.SelectedValue= anotationid;
+                this.ddlAnnotationid.SelectedItem.Text= anotationid;
                 this.ddlassigntype.SelectedValue = assigntype;
                 this.txtquantity.Text = Convert.ToString(assginqty).ToString();
                 this.txtworkhour.Text = workhour;

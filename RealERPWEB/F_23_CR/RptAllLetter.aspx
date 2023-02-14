@@ -182,6 +182,18 @@
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=CustLetter &Entry=Congratulation Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
                                                                  Congartulation Letter</asp:HyperLink>
                                                         </li>
+                                                        
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink  runat="server"  ID="HyperLink1" Target="_blank"  CssClass="dropdown-item" ToolTip="Registration Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10004 &Page=CustLetter &Entry=Registration Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
+                                                                 Registration Letter</asp:HyperLink>
+                                                        </li>
+                                                        
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink  runat="server"  ID="HyperLink2" Target="_blank"  CssClass="dropdown-item" ToolTip="Reminder Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10005 &Page=CustLetter &Entry=Reminder Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
+                                                                 Reminder Letter</asp:HyperLink>
+                                                        </li>
 
 
 

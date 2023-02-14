@@ -52,10 +52,10 @@ namespace RealERPWEB.F_12_Inv
                 else
                 {
 
-                }               
+                }
 
-               //((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
-
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
+                this.Gatepassload();
                 // ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["title"].ToString();
                 this.txtCurAprovDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurAprovDate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -84,6 +84,17 @@ namespace RealERPWEB.F_12_Inv
             this.txtGatemPassNo.Text = this.Request.QueryString["gpref"].ToString();
             this.txtGatemPassNo.ReadOnly = true;
 
+        }
+        private void Gatepassload()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3348")
+            {
+                this.txtGatemPassNo.Text = Request.QueryString["mrfno"];
+                this.txtGatemPassNo.Enabled = false;
+                this.txtGatemPassNo.ReadOnly = true;
+
+            }
         }
 
         private void getProjectInfo()
