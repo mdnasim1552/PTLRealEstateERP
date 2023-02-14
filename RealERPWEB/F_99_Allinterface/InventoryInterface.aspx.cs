@@ -377,6 +377,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string mtrfno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
                 string frmprjcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "tfpactcode")).ToString();
+                string mrfno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtrref")).ToString();
 
                 string comcod = this.GetCompCode();
                 switch (comcod)
@@ -391,7 +392,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 //PurMTReqEntry?Type=Entry&prjcode=&genno=
-                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno + "&frmpactcode=" + frmprjcode;
+                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno + "&frmpactcode=" + frmprjcode + "&mrfno="+ mrfno;
                 hlnkreqedit.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=ReqEdit&prjcode=&genno=" + mtrfno;
 
             }

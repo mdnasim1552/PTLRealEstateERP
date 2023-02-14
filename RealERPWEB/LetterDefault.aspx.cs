@@ -35,6 +35,14 @@ namespace RealERPWEB
                         getLetter();
 
                     }
+                    else
+                    {
+                        this.panl1.Visible = false;
+                        this.dnone.Visible = false;
+                        this.pnl2.Visible = false;
+                        getCustLetter();
+
+                    }
                 }
                 else
                 {
@@ -142,6 +150,71 @@ namespace RealERPWEB
         }
 
 
+        private void getCustLetter()
+        {
+            string comcod = this.GetCompCode();
+            string custid = this.Request.QueryString["custid"].ToString().Trim();
+            string pactcode = this.Request.QueryString["pactcode"].ToString().Trim();
+
+        
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERINFODETAILS", pactcode, custid, "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+               return;
+
+            string date = Convert.ToDateTime(System.DateTime.Today).ToString("dd-MMM-yyyy");
+            string custname = ds.Tables[0].Rows[0]["custname"].ToString() ?? "";
+            string pactdesc = ds.Tables[0].Rows[0]["pactdesc"].ToString() ?? "";
+            string paddress = ds.Tables[0].Rows[0]["paddress"].ToString() ?? "";
+            string lbody = string.Empty;
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+
+            switch (letterType)
+            {
+                //congratulation letter
+                case "10003":
+                    if (comcod == "3367" || comcod == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align: left;margin-top:50px;'> " +
+                          "<span>" + date + "</strong>" + "<span/>" +
+                          "<h1 style='text-align: center;'><strong ><u>Congratulation Letter</u></strong> </h1>" +
+                           "<p style='margin-bottom:-11px;'>To</p>" +
+                           "<p style='margin-bottom:-11px'>"+custname+"</p>" +
+                            "<p style='margin-bottom:-11px'>---------------------</p>" +
+                            "<p style='margin-bottom:-11px'>Chatteshwari Road,</p>" +
+                            "<p style='margin-bottom:-11px'>Chittagong.</p>" + "<br>"+
+
+                            "<p>Dear Sir,</p>" +
+                            "<p><strong>Congratulations!</strong></p>" +
+                            "<p style='font-size:12px;'>Thank you for your confidence placed in our company by making a booking in " + "<strong>" + pactdesc+ "</strong>"+ " at &nbsp;&nbsp;&nbsp; " +
+                            paddress+", Chittagong. Hope it becomes a very special place where all your dreams grow." + "<br><br>" +
+                            "It is our objective to give you full value for your money and provide you a home to your satisfaction" +
+                            "in that our Sales and Marketing Department is committed to give you prompt and efficient sevice" + "<br><br>" +
+                            "Please feel free to contact with me for ant queries about monthly installment, accounts statements," +
+                            "loan purpose or any other service regarding financial matter</p>" + "<br>" +
+                            "<strong>Please remember that your on time payment will help us to complete the project on time.</strong>" + "<br><br>" +
+                            "I would like to thank you for patronizing Epic Properties Limited. </p>" + "<br><br><br>" +
+                            "Yours sincerly," + "<br><br>" +
+                            "<p>--------------------------</p>" +
+                            "<p style='margin-bottom:-11px;'><u>Cell No:</u></p>" +
+                            "<p style='margin-bottom:-11px;'><u>E-mail-</u></p>";
+                    }
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><h3 style='text-align: center;'>" +
+                            "<span style='text-decoration: underline;'><strong>Private &amp; Confidential</strong></span>" +
+                            "</h3><p>&nbsp;<strong>Ref: SPL/HR/Prom/489/16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></p><p><strong>16 November, 2016</strong></p><p><strong>&nbsp;</strong><strong></p><p>&nbsp;<strong>Subject: Promotion</strong></p><p>&nbsp;Dear Mr. <strong></strong>,</p><p>&nbsp;We are pleased to inform you that, the company have decided to promote you to the position of <strong><u>Junior Territory Sales Manager</u></strong> recognition of your performance, effective December 1, 2016.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 360px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 360px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 360px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 360px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 360px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>We acknowledge your excellent performance and congratulate you on your well-deserved promotion. We hope you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;</p><p>Yours Sincerely,</p>";//<p>&nbsp;<strong>Moshiur Hossain</strong></p><p><strong>Managing Director.</strong></p><p><strong><u>Copy to:</u></strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HRIS</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal File</p>";
+
+                    }
+                    break;
+
+            }
+            this.txtml.Text = lbody;
+
+        }
         private void getLetter()
         {
             string comcod = this.GetCompCode();

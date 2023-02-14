@@ -1791,7 +1791,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!presentaddr.Value</Value>
+                                  <Value>=Fields!permenentaddr.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1859,7 +1859,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!permenentaddr.Value</Value>
+                                  <Value>=Fields!presentaddr.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5683,7 +5683,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>2</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
