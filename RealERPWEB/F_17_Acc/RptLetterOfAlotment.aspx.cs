@@ -240,7 +240,7 @@ namespace RealERPWEB.F_17_Acc
                 string aprtsize = size + " " + unit;
                 string Location = ds3.Tables[0].Rows[0]["location"].ToString();
                 string enrolldate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["enrolldate"]).ToString("dd-MMM-yyyy");                 
-                string unitcost = uamt.ToString("#,##0;(#,##0); ");             
+                string unitcost = uamt.ToString("#,##0.00;(#,##0.00); ");             
                
               
                 string initialpayment = Convert.ToDouble("0" + ds3.Tables[0].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
