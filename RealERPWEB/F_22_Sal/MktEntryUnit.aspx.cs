@@ -53,7 +53,7 @@ namespace RealERPWEB.F_22_Sal
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+         
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
@@ -746,8 +746,9 @@ namespace RealERPWEB.F_22_Sal
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+          
 
-            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+            Response.Redirect(this.Request.UrlReferrer.ToString());
 
         }
     }
