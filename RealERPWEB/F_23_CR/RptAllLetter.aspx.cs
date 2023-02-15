@@ -73,14 +73,23 @@ namespace RealERPWEB.F_23_CR
             
 
             DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERINFO", pactcode, "", "", "", "", "", "", "", "");
-          
             ViewState["tblcustomer"] = ds2.Tables[0];
-            this.gvcustList.DataSource = ds2.Tables[0];
-            this.gvcustList.DataBind();
+            this.Data_Bind();
 
 
         }
+        private void Data_Bind()
+        {
+            DataTable dt = (DataTable)ViewState["tblcustomer"];
+            this.gvcustList.DataSource = dt;
+            this.gvcustList.DataBind();
 
-      
+        }
+
+        protected void gvcustList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvcustList.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
     }
 }

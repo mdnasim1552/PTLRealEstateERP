@@ -57,9 +57,6 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms.10.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\Microsoft.ReportViewer.WinForms.10.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
@@ -1314,6 +1311,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAcmeAI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL- Copy.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />

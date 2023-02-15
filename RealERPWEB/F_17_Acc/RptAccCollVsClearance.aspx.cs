@@ -82,7 +82,9 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             string salesteam = "";
             switch (comcod)
+
             {
+                case "3101":
                 case "3305": //Rupayan Housing
                 case "2305":
                 case "3306":
