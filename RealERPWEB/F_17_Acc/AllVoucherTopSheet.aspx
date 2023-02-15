@@ -226,6 +226,7 @@
                                         <asp:HyperLink ID="HyperLink2" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_99_Allinterface/AccountInterface.aspx?Type=Report&comcod=">Interface</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink4" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_17_Acc/AccBankRecon.aspx?Type=Acc">Bank Reconcilation</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink5" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_17_Acc/CashBankposition.aspx?Type=casbankpos&actcode=">Cash & Bank(Group Wise)</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_34_Mgt/DataSyncSystem">All Voucher Update</asp:HyperLink>
 
                                     </div>
                                 </div>

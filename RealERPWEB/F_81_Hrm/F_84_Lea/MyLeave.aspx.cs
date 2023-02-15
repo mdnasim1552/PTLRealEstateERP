@@ -1091,15 +1091,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     if (ds != null)
                     {
                         DataTable dtstatus = ds.Tables[3];
-                        this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00);");
-                        this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblbalclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["ballcleave"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblbalelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["balleleave"]).ToString("#,##0.00;(#,##0.00); ");
-                        this.lblbalslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["ballsleave"]).ToString("#,##0.00;(#,##0.00); ");
+                        this.lblelv.Text = dtstatus.Rows[0]["upachivelv"].ToString();
+                        this.lblclv.Text = dtstatus.Rows[0]["upachivclv"].ToString();
+                        this.lblslv.Text = dtstatus.Rows[0]["upachivslv"].ToString();
+                        this.lblelvenjoy.Text =  dtstatus.Rows[0]["enjenleave"].ToString();
+                        this.lblclenj.Text =dtstatus.Rows[0]["enjcleave"].ToString();
+                        this.lblslenj.Text =  dtstatus.Rows[0]["enjsleave"].ToString();
+                        this.lblbalclv.Text = dtstatus.Rows[0]["ballcleave"].ToString();
+                        this.lblbalelv.Text = dtstatus.Rows[0]["balleleave"].ToString();
+                        this.lblbalslv.Text =  dtstatus.Rows[0]["ballsleave"].ToString();
                     }
                 }
   
