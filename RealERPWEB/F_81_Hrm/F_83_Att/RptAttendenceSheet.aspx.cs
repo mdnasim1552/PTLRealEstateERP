@@ -193,7 +193,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlAttnLog.Visible = false;                 
-                    this.PnlSection.Visible = false;
+                    this.PnlSection.Visible = true;
                     break;
                 case 6:
                     this.pnldailyatt.Visible = false;
@@ -509,6 +509,30 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //string sectionName = ((DropCheck1.SelectedValue.ToString() == "000000000000") ? "" : DropCheck1.SelectedValue.ToString()) + "%";
+
+            //if (comcod == "3365")
+            //{
+            //    string section = "";
+            //    if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+            //    {
+
+            //        string gp = this.DropCheck1.SelectedValue.Trim();
+            //        if (gp.Length > 0)
+            //        {
+            //            if (gp.Substring(0, 3).Trim() == "000" || gp.Trim() == "")
+            //                section = "";
+            //            else
+            //                foreach (ListItem s1 in DropCheck1.Items)
+            //                {
+            //                    if (s1.Selected)
+            //                    {
+            //                        section = section + this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + s1.Value.Substring(0, 3);
+            //                    }
+            //                }
+            //        }
+            //    }
+            //}
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPLATESTATUS", frmdate, todate, empid, "", "", "", "", "", "");
             if (ds5 == null)
                 return;
@@ -692,9 +716,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                             int tcount;
                             tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                            for (i = 2; i < tcount; i++)
+                            for (i = 4; i < tcount; i++)
                                 this.gvMonthlyAtt.Columns[i].Visible = false;
-                            int j = 2;
+                            int j = 4;
                             for (i = 0; i < tcount; i++)
                             {
                                 //if (datefrm > dateto)
