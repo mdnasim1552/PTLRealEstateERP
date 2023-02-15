@@ -202,22 +202,21 @@
                         <asp:View ID="View1Floor" runat="server">
                             <div class="row">
 
-                                
-                                <div class="col-md-2">
-                                    <asp:Label ID="lblFPhaseTitle" runat="server" CssClass="btn btn-success primaryBtn"
-                                        Text="Catagory Selection"></asp:Label>
+
+                               <div class="col-md-2 col-sm-2 col-lg-2">
+                                    <h3 class="card-title mr-auto" runat="server" id="lblFPhaseTitle">Catagory Selection</h3>
+                                    <%-- <asp:Label ID="lblFPhaseTitle" runat="server" CssClass="btn btn-success primaryBtn"
+                                        Text="Catagory Selection"></asp:Label>--%>
                                 </div>
-                                    <div class="col-md-3 col-sm-3 col-lg-3">
-                                        <asp:Label ID="lblcreationdate" runat="server" CssClass="lblTxt lblName" Visible="False" Text="Creation Date:"></asp:Label>
-                                        <asp:TextBox ID="txtDate" runat="server" CssClass="inputDateBox" Visible="False"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                                        <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary primaryBtn" Visible="False" OnClick="lbtnUpdatePCDate_Click" TabIndex="4">Update</asp:LinkButton>
+                                <div class="col-md-3 col-sm-3 col-lg-3">
+                                    <asp:Label ID="lblcreationdate" runat="server" CssClass="lblTxt lblName" Visible="False" Text="Creation Date:"></asp:Label>
+                                    <asp:TextBox ID="txtDate" runat="server" CssClass="inputDateBox" Visible="False"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
+                                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                    <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary primaryBtn" Visible="False" OnClick="lbtnUpdatePCDate_Click" TabIndex="4">Update</asp:LinkButton>
 
-                                    </div>
-                               
+                                </div>
 
-                                
                                 <div class="col-md-6" style="margin-top: 20px;">
                                     <asp:CheckBox ID="chkFlrShowSelected" runat="server" AutoPostBack="True"
                                         CssClass="chkBoxControl primaryBtn"
@@ -259,9 +258,9 @@
                             <div class="row">
 
                                 <div class="col-md-2 pading5px ">
-                                    <asp:Label ID="lblTitle1" runat="server" CssClass="btn btn-success primaryBtn"
-                                        Text="Item Selection (All Catagory)"></asp:Label>
-                                    <asp:HyperLink ID="lnkbtnAnalysis" runat="server" CssClass="btn  btn-primary primaryBtn" Style="margin: 0 5px;" NavigateUrl="~/F_04_Bgd/BgdStdAna.aspx" Target="_blank"><span class="flaticon-edit26"></span> Analysis </asp:HyperLink>
+                                    <h3 class="card-title mr-auto">Item Selection (All Catagory)</h3>
+                                    <asp:HyperLink ID="lnkbtnAnalysis" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdStdAna.aspx" CssClass="btn btn-xs btn-success" ToolTip="Add New Work" BackColor="transparent"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-lg-1">
                                     <div class="form-group">
@@ -553,8 +552,11 @@
 
                         </asp:View>
                         <asp:View ID="View3Item" runat="server">
-
-                            <asp:Label ID="lblTitle1a" runat="server" CssClass=" btn btn-success primaryBtn"> Item Selection (Individual Catagory)</asp:Label>
+                             <div class="col-md-2">
+                                     <h3 class="card-title mr-auto">Item Selection (Individual Catagory)</h3>
+                                   
+                                </div>
+                            
                             <div class="clearfix"></div>
                             <div class="form-group">
 
@@ -1019,7 +1021,7 @@
 
                                 <div class="col-md-2 col-sm-2 col-lg-2">
                                     <div class="form-group">
-                                        <asp:Label ID="lblFloor" runat="server" CssClass="control-label" Text="Cat"></asp:Label>
+                                        <asp:Label ID="lblFloor" runat="server" CssClass="control-label" Text="Catagory"></asp:Label>
                                         <asp:DropDownList ID="ddlFloorListRpt" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select">
                                         </asp:DropDownList>
 
@@ -1320,8 +1322,8 @@
                         <asp:View ID="SpReport" runat="server">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <asp:Label ID="lblTitle5" runat="server" CssClass="btn btn-success primaryBtn"
-                                        Text="Special Reports"></asp:Label>
+                                     <h3 class="card-title mr-auto">Special Reports</h3>
+                                   
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-lg-2">
                                     <div class="form-group">
