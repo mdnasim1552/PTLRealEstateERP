@@ -231,6 +231,11 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkupdate" runat="server" Font-Bold="True"
+                                                CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
+
+                                        </FooterTemplate>
                                         <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="right"
                                             VerticalAlign="Middle" Font-Size="12px" />
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
@@ -260,11 +265,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
                                         </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lnkupdate" runat="server" Font-Bold="True"
-                                                CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
-
-                                        </FooterTemplate>
+                                        
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     

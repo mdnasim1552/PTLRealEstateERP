@@ -373,7 +373,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 this.grvacc.Columns[6].HeaderText = "Master Quantity";                
                 this.grvacc.Columns[8].HeaderText = "Store Stock Qty";
-                this.grvacc.Columns[9].HeaderText = "Required Quantity";
+                this.grvacc.Columns[11].HeaderText = "Required Quantity";
             }
 
         }
@@ -940,12 +940,12 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
                 case "3370":
-                    this.grvacc.Columns[9].Visible = false;
-                    this.grvacc.Columns[10].Visible = false;
+                    this.grvacc.Columns[11].Visible = false;
+                    this.grvacc.Columns[12].Visible = false;
                     break;
                 default:
-                    this.grvacc.Columns[9].Visible = true;
-                    this.grvacc.Columns[10].Visible = true;
+                    this.grvacc.Columns[11].Visible = true;
+                    this.grvacc.Columns[12].Visible = true;
                     break;
             }
 
