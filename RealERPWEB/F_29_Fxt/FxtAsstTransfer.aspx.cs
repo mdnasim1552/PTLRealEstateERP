@@ -41,8 +41,21 @@ namespace RealERPWEB.F_29_Fxt
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Text = "Approve";
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }
 
 
@@ -173,7 +186,7 @@ namespace RealERPWEB.F_29_Fxt
             dt.Rows.Add(drforgrid);
             Session["sessionforgrid"] = dt;
             this.grvacc_DataBind();
-
+            CommonButton();
         }
 
         private void Session_update()

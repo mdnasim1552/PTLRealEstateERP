@@ -80,6 +80,10 @@
             text-align: center;
             text-transform: capitalize;
         }
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
         /*.cald {
              z-index: 1;
         }*/
@@ -109,8 +113,8 @@
 
 
 
-            <div class="card card-fluid">
-                <div class="card-body">
+            <div class="card card-fluid mb-1">
+                <div class="card-body mb-0">
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
                             <div class="form-group">
@@ -147,21 +151,21 @@
 
 
 
-            <div class="card card-fluid">
-                <div class="card-body">
+            <div class="card card-fluid mt-0">
+                <div class="card-body" >
                     <div class="row">
                         <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False"
-                            ShowFooter="True" Width="831px" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            ShowFooter="True" Width="831px" CssClass=" table-striped table-bordered grvContentarea"
                             OnRowCancelingEdit="gvSpayment_RowCancelingEdit" OnRowDataBound="gvSpayment_RowDataBound"
                             OnRowEditing="gvSpayment_RowEditing" OnRowUpdating="gvSpayment_RowUpdating">
                             <RowStyle />
                             <Columns>
                                 <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='fa fa-trash pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class=' fa fa-trash'&gt;&lt;/span&gt;" EditText="&lt;span class='fa fa-edit'&gt;&lt;/span&gt;" UpdateText="&lt;span class='fa fa-check'&gt;&lt;/span&gt;" />
 
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
-                                            Style="text-align: right"
+                                            Style="text-align: center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -439,17 +443,17 @@
 
 
                             </Columns>
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooterNew" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
 
 
                     </div>
                     <div class="row mt-2">
-                        <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger primaryBtn pull-right">Back</asp:LinkButton>
+                        <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm primaryBtn pull-right">Back</asp:LinkButton>
                     </div>
                 </div>
 
@@ -475,7 +479,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                        <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
                             ShowFooter="True" Width="831px" Visible="false">
                             <RowStyle />
 
@@ -527,14 +531,14 @@
                                 </asp:TemplateField>
                             </Columns>
 
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooterNew" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
-                        <div class="form-group mt-2">
-                            <asp:Label ID="lperInfo0" runat="server" CssClass="btn btn-success primaryBtn" Text="Revenue Information"></asp:Label>
+                        <div class="form-group mt-4 ml-2 mb-2">
+                            <asp:Label ID="lperInfo0" runat="server" CssClass="btn btn-success btn-sm primaryBtn" Text="Revenue Information"></asp:Label>
                             <asp:Label ID="lblAcAmt" runat="server" Visible="False"></asp:Label>
                             <div class="clearfix"></div>
 
@@ -542,14 +546,14 @@
                         <div class="row">
                             <div class=" col-md-7">
 
-                                <asp:GridView ID="gvCost" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvCost" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                    Style="text-align: right"
+                                                    Style="text-align: center"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"
                                                     ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
@@ -563,7 +567,7 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnTotalCost" runat="server" Font-Bold="True"
-                                                    Font-Size="12px" ForeColor="#000" OnClick="lbtnTotalCost_Click">Total</asp:LinkButton>
+                                                    Font-Size="13px" ForeColor="White"  OnClick="lbtnTotalCost_Click">Total</asp:LinkButton>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -601,7 +605,7 @@
                                         <asp:TemplateField HeaderText="Rate">
 
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
+                                                <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
                                             </FooterTemplate>
 
                                             <ItemTemplate>
@@ -612,6 +616,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle  HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
 
@@ -661,11 +666,11 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
 
                                 </asp:GridView>
                                 <fieldset class="scheduler-border fieldset_B">
@@ -674,7 +679,7 @@
                                         <div class="form-group">
                                             <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
-                                            <asp:Label ID="ldT" runat="server" CssClass="lblTxt lblName" Width="50" Text="DISCOUNT"></asp:Label>
+                                            <asp:Label ID="ldT" runat="server" CssClass="lblTxt lblName"  Text="DISCOUNT"></asp:Label>
 
                                             <asp:Label ID="Label9" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
@@ -729,7 +734,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label ID="Label13" runat="server" CssClass="smLbl_to" Style="width: 100px;">Booking Date</asp:Label>
-                                                    <asp:TextBox ID="txtBookDate" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                    <asp:TextBox ID="txtBookDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtBookDate"></cc1:CalendarExtender>
                                                 </div>
@@ -737,7 +742,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label ID="Label2" runat="server" CssClass="smLbl_to">Agreement Date</asp:Label>
-                                                    <asp:TextBox ID="txtAggrementdate" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                    <asp:TextBox ID="txtAggrementdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txtAggrementdate_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtAggrementdate"></cc1:CalendarExtender>
 
@@ -756,7 +761,7 @@
                                                 <div class="form-group">
 
                                                     <asp:Label ID="Label3" runat="server" CssClass="smLbl_to">Handover Date</asp:Label>
-                                                    <asp:TextBox ID="txthandoverdate" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                    <asp:TextBox ID="txthandoverdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txthandoverdate_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txthandoverdate"></cc1:CalendarExtender>
 
@@ -764,7 +769,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn btn-sm btn-danger primaryBtn ml-2" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
 
 
                                     </asp:Panel>
@@ -782,14 +787,14 @@
 
                             <div class="col-md-7">
                                 <div class=" table-responsive">
-                                    <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
                                         ShowFooter="True" OnRowDeleting="gvPayment_RowDeleting" OnRowDataBound="gvPayment_RowDataBound">
                                         <RowStyle />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
+                                                        Style="text-align: center"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -804,7 +809,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" />
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="&lt;span class=' fa fa-trash'&gt;&lt;/span&gt;" HeaderStyle-Width="25px" ItemStyle-HorizontalAlign="Center"/>
                                             <asp:TemplateField HeaderText="Description of Item">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="lgcResDesc2" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -812,9 +817,9 @@
                                                         Width="330px" ForeColor="Black"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
                                                 </FooterTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="center" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Date ">
@@ -828,7 +833,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lTotalPayment" runat="server" Font-Bold="True"
-                                                        Font-Size="12px" ForeColor="#000" OnClick="lTotalPayment_Click">Total Payment</asp:LinkButton>
+                                                        Font-Size="12px" ForeColor="White"  OnClick="lTotalPayment_Click">Total Payment</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -914,11 +919,11 @@
                                             </asp:TemplateField>
 
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooterNew" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
                                     </asp:GridView>
                                     <br />
                                     <br />
@@ -939,22 +944,23 @@
 
                                     <div class="form-group">
 
-                                        <div class="col-md-12 pading5px">
+                                            <div class="col-md-6 pading5px" >                                                
+                                                <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">First Ins. Date</asp:Label>
+                                                <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
+                                            </div>
+                                            <div class="col-md-6 mt-1 pading5px">   
+                                                <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Total Installement</asp:Label>
+                                            <asp:TextBox ID="txtTInstall" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            </div>
 
-                                            <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">First Ins. Date</asp:Label>
-                                            <asp:TextBox ID="txtdate" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
-                                            <asp:Label ID="Label5" runat="server" Font-Size="11px" CssClass="lblTxt lblName">Total Installement</asp:Label>
-                                            <asp:TextBox ID="txtTInstall" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
-
-
-                                        </div>
-                                        <div class="col-md-12 pading5px">
+                                            
+                                        <div class="col-md-12 pading5px mt-2  ">
+                                            
                                             <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Duration</asp:Label>
                                             <asp:DropDownList ID="ddlMonth" runat="server" AppendDataBoundItems="True"
-                                                CssClass="ddlPage" Width="120px">
+                                                CssClass="form-control form-control form-control-sm" Width="120px">
                                                 <asp:ListItem Value="1">1 Month</asp:ListItem>
                                                 <asp:ListItem Value="2">2 Month</asp:ListItem>
                                                 <asp:ListItem Value="3 ">3 Month</asp:ListItem>
@@ -967,10 +973,10 @@
                                                 <asp:ListItem Value="10">10  Month</asp:ListItem>
                                                 <asp:ListItem Value="11">11  Month</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:LinkButton ID="lbtnGenerate" runat="server" OnClick="lbtnGenerate_Click" CssClass="btn btn-primary primaryBtn">Generate</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnGenerate" runat="server" OnClick="lbtnGenerate_Click" CssClass="btn btn-primary btn-sm primaryBtn mt-2">Generate</asp:LinkButton>
 
                                             <%-- <asp:LinkButton ID="lbnGenerate2" runat="server" OnClick="lbnGenerate2_Click" CssClass="btn btn-primary primaryBtn">Generate</asp:LinkButton>--%>
-                                            <div class="clearfix"></div>
+                                          
                                         </div>
                                     </div>
 
@@ -985,13 +991,13 @@
                                                 <asp:LinkButton ID="ibtnFindInstallment" runat="server" OnClick="ibtnFindInstallment_Click" TabIndex="9"><span class="fa fa-search asitGlyp"> </span></asp:LinkButton>
 
                                                 </asp:Label>
-                                                <asp:TextBox ID="txtsrchInstallment" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                <asp:TextBox ID="txtsrchInstallment" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-3">
                                             <div class="form-group">
-                                                <asp:DropDownList ID="ddlInstallment" runat="server" CssClass=" chzn-select form-control inputTxt" TabIndex="12">
+                                                <asp:DropDownList ID="ddlInstallment" runat="server" CssClass=" chzn-select form-control form-control-sm" TabIndex="12">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -1011,13 +1017,13 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <asp:Label ID="lblfrmslab" runat="server" CssClass="lblTxt lblName">From</asp:Label>
-                                                <asp:TextBox ID="txtfrmslab" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                <asp:TextBox ID="txtfrmslab" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <asp:Label ID="lbltoslab" runat="server" CssClass="lblTxt lblName">To</asp:Label>
-                                                <asp:TextBox ID="txttoslab" runat="server" CssClass="form-control inpPixedWidth"></asp:TextBox>
+                                                <asp:TextBox ID="txttoslab" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -1025,7 +1031,7 @@
                                         <div class="col-md-6 ">
                                             <div class="form-group">
                                                 <asp:Label ID="lblinsamt" runat="server" CssClass="lblTxt lblName">Installment </asp:Label>
-                                                <asp:TextBox ID="txtperslabamt" runat="server" CssClass="form-control inpPixedWidth" Style="text-align: right;"></asp:TextBox>
+                                                <asp:TextBox ID="txtperslabamt" runat="server" CssClass="form-control form-control-sm" Style="text-align: right;"></asp:TextBox>
 
                                             </div>
                                         </div>
@@ -1130,7 +1136,7 @@
                     <asp:View ID="VLoanInfo" runat="server">
 
                         <div class="row">
-                            <asp:LinkButton ID="lbtnBackCost" CssClass="btn btn-danger primaryBtn" runat="server" OnClick="lbtnBack_Click">Back</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnBackCost" CssClass="btn btn-danger btn-sm " runat="server" OnClick="lbtnBack_Click">Back</asp:LinkButton>
                             <asp:GridView ID="gvLoanInformation" CssClass=" table-striped table-hover table-bordered grvContentarea" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" Width="831px">
                                 <RowStyle />
