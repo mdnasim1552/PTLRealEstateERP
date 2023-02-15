@@ -74,6 +74,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     this.disableRef();
                 }
+                this.ManualGetPassLoad();
 
 
             }
@@ -94,6 +95,25 @@ namespace RealERPWEB.F_12_Inv
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+        }
+
+        private void ManualGetPassLoad()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3348")
+            {
+                string magpa = Request.QueryString["gpref"];
+                if (magpa == "")
+                {
+                    this.txtrefno.Text = magpa;
+                }
+                else
+                {
+                    this.txtrefno.Text = magpa;
+                    this.txtrefno.ReadOnly = true;
+                }
+                
+            }
         }
 
 

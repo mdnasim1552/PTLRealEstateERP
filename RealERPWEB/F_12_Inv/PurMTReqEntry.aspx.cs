@@ -285,16 +285,20 @@ namespace RealERPWEB.F_12_Inv
 
         protected void Load_Project_Res_Combo()
         {
-
+            string comcod = this.GetCompCode();
             Session.Remove("projectreslist");
             Session.Remove("tblspcf");
-            string comcod = this.GetCompCode();
+          
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
-           
+            string lenght = "0"; 
+            if (comcod == "3348")
+            {
+                lenght = "1";
+            }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
             Session["tblspcf"] = ds1.Tables[1];
 
