@@ -269,10 +269,6 @@
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
 
-
-
-
-
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewMasterBgd" runat="server">
                             <fieldset>

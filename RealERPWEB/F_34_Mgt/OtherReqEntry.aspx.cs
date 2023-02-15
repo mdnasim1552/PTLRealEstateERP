@@ -68,7 +68,7 @@ namespace RealERPWEB.F_34_Mgt
                     this.lbtnOk_Click(null, null);
                     if (Request.QueryString["Type"].ToString() == "OreqPrint")
                     {
-                        this.lbtnUpdateResReq.Visible = false;
+                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
                         this.RequisitionPrint();
                     }
                     //   this.lbtnCheckedCompShow();
@@ -80,7 +80,7 @@ namespace RealERPWEB.F_34_Mgt
                 this.RbtnPrint.SelectedIndex = 0;
 
                 this.lbtnOreqChecked.Visible = (Request.QueryString["Type"].ToString() == "OreqChecked");
-                this.lbtnUpdateResReq.Visible = !(Request.QueryString["Type"].ToString() == "OreqChecked");
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = !(Request.QueryString["Type"].ToString() == "OreqChecked");
 
             }
         }
@@ -256,10 +256,20 @@ namespace RealERPWEB.F_34_Mgt
             //{
             //    ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
             //}
-
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+           
+            // Create an event handler for the master page's contentCallEvent event
+
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+     
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdateResReq_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
         }
 
@@ -3305,6 +3315,12 @@ namespace RealERPWEB.F_34_Mgt
             string totalpath = uhostname + currentptah;
             string autvshanport = "author:" + auth+"host add:"+ portAdd + " End"+" ";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + autvshanport + "');", true);
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
 
         }
     }
