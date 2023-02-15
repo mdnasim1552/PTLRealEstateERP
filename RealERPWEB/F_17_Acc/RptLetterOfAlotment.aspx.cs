@@ -44,27 +44,17 @@ namespace RealERPWEB.F_17_Acc
         {
             string comcod = this.GetCompCode();
             string txtSProject = "%%";
+            Session.Remove("tblproject");
 
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
-
-            DataTable dt = ds1.Tables[0];
-            if (this.Request.QueryString["Type"].ToString().Trim() == "DueCollAll")
-            {
-                DataView dv1 = dt.DefaultView;
-                dv1.RowFilter = "pactcode not like '000000000000%'";
-                dt = dv1.ToTable();
-
-            }
-
-
-
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", ""); 
             this.ddlprjname.DataTextField = "pactdesc";
             this.ddlprjname.DataValueField = "pactcode";
-            this.ddlprjname.DataSource = dt;
+            this.ddlprjname.DataSource = ds1.Tables[0];
             this.ddlprjname.DataBind();
+            Session["tblproject"] = ds1.Tables[0];
             this.ddlprjname_SelectedIndexChanged(null, null);
-
+            ds1.Dispose();
+            
 
 
         }
@@ -331,9 +321,7 @@ namespace RealERPWEB.F_17_Acc
             if (custname != "")
             {
 
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
-                if (ds2 == null)
-                    return;
+               
                 DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 DataTable dt = (DataTable)ds3.Tables[0];
                 DataView dv = dt.DefaultView;
@@ -381,19 +369,49 @@ namespace RealERPWEB.F_17_Acc
           
 
         }
-            protected void btnok_Click(object sender, EventArgs e)
+
+        private void GetSettleMentno()
+        {
+
+            string comcod = this.GetCompCode();
+            string CurDate1 = this.txtdate.Text;
+           
+          
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETSETTLEMENTREFNO", CurDate1, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                if (ds1.Tables[0].Rows.Count > 0)
+                {
+                    this.txtrefno.Text = ds1.Tables[0].Rows[0]["maxbillno"].ToString().Substring(0, 6);
+                   this.txtrefdesc.Text = ds1.Tables[0].Rows[0]["maxbillno1"].ToString().Substring(6, 5);
+                   
+                }
+
+          
+
+
+        }
+
+
+        protected void btnok_Click(object sender, EventArgs e)
         {
             try
             {
+               //string Type=this.rq
+                
+                
+                
+                DateTime nowDate = DateTime.Now;
+                this.divdate.Visible = true;
+                this.txtdate.Text = nowDate.ToString("dd-MMM-yyyy");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
                 string type = this.Request.QueryString["Type"].ToString();
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERDETAILS", prjname, custname, "", "", "", "", "", "", "");
-                if (ds2 == null)
-                    return;
-                Session["tblcudtomerdetails"] = ds2.Tables[0];
+              
+
+                
 
                 if (type == "CustomerSettlement")
                 {
@@ -405,9 +423,28 @@ namespace RealERPWEB.F_17_Acc
                         return;
                     }
 
-                    Session["storedata"] = ds1.Tables[0];
+                    Session["storedata"] = ds1;
                     this.gvcustsettlement.DataSource = ds1.Tables[0];
                     this.gvcustsettlement.DataBind();
+
+
+                    if (ds1.Tables[2].Rows.Count == 0)
+                    {
+
+                        this.txtdate.Enabled = true;
+                        this.GetSettleMentno();  
+                        return;
+                    
+                    }
+
+
+                    this.txtdate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["settlemtndat"]).ToString("dd-MMM-yyyy");
+                    this.txtrefdesc.Text = ds1.Tables[2].Rows[0]["refdesc"].ToString();
+                    this.txtrefno.Text = ds1.Tables[2].Rows[0]["refno"].ToString();
+                    this.txtdate.Enabled = false;
+
+
+
                 }                
 
             }

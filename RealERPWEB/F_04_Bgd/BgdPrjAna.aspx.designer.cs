@@ -291,7 +291,7 @@ namespace RealERPWEB.F_04_Bgd
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFPhaseTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFPhaseTitle;
 
         /// <summary>
         /// lblcreationdate control.
@@ -366,42 +366,6 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.View View2Item;
 
         /// <summary>
-        /// lblTitle1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle1;
-
-        /// <summary>
-        /// lnkbtnAnalysis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkbtnAnalysis;
-
-        /// <summary>
-        /// lblFloor1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFloor1;
-
-        /// <summary>
-        /// ddlpagesizeen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesizeen;
-
-        /// <summary>
         /// Label8 control.
         /// </summary>
         /// <remarks>
@@ -465,6 +429,33 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.LinkButton lbtnSelectItem;
 
         /// <summary>
+        /// lblFloor1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFloor1;
+
+        /// <summary>
+        /// ddlpagesizeen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlpagesizeen;
+
+        /// <summary>
+        /// lnkbtnAnalysis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkbtnAnalysis;
+
+        /// <summary>
         /// gvAnalysis control.
         /// </summary>
         /// <remarks>
@@ -481,15 +472,6 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View3Item;
-
-        /// <summary>
-        /// lblTitle1a control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle1a;
 
         /// <summary>
         /// lblItem7 control.
@@ -967,15 +949,6 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View SpReport;
-
-        /// <summary>
-        /// lblTitle5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle5;
 
         /// <summary>
         /// Label14 control.

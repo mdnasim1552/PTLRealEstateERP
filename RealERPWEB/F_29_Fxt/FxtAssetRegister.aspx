@@ -107,6 +107,7 @@
                                         Width="50px"></asp:Label>
 
                                 </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="code" Visible="false">
