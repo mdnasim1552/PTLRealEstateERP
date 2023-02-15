@@ -125,9 +125,10 @@
                             <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnOk1_Click">Ok</asp:LinkButton>
                             <asp:CheckBox ID="chkShorting" runat="server" AutoPostBack="true" OnCheckedChanged="chkShorting_CheckedChanged" Text="Alphabet" />
                         </div>
-                        <div class="col-md-1" style="margin-top: 20px;">
-                            <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget"
+                        <div class="col-md-2" style="margin-top: 20px;">
+                              <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget"
                                 Visible="False" CssClass="btn btn-sm btn-primary chkBoxControl primaryBtn" />
+                          
                         </div>
                         <div class="col-md-1" style="margin-top: 20px;">
                             <asp:CheckBox ID="ChkCopyTender" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyTender_CheckedChanged" Text="Copy Tender"
@@ -173,7 +174,7 @@
                             <asp:LinkButton ID="lbtnCopyProject" runat="server" CssClass="btn btn-sm btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnCopyProject_Click">Copy</asp:LinkButton>
                         </div>
 
-                        <div class="col-md-1" style="margin-top: 20px;">
+                        <div class="col-md-2" style="margin-top: 20px;">
                             <asp:CheckBox ID="chkwithoutqty" runat="server" Text="Without Qty" CssClass="btn btn-sm btn-primary primaryBtn chkBoxControl" />
                         </div>
                     </div>
@@ -213,7 +214,7 @@
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="inputDateBox" Visible="False"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                                    <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary primaryBtn" Visible="False" OnClick="lbtnUpdatePCDate_Click" TabIndex="4">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnUpdatePCDate_Click" >Update</asp:LinkButton>
 
                                 </div>
 
@@ -257,30 +258,10 @@
 
                             <div class="row">
 
-                                <div class="col-md-2 pading5px ">
-                                    <h3 class="card-title mr-auto">Item Selection (All Catagory)</h3>
-                                    <asp:HyperLink ID="lnkbtnAnalysis" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdStdAna.aspx" CssClass="btn btn-xs btn-success" ToolTip="Add New Work" BackColor="transparent"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+                               
+                                
 
-                                </div>
-                                <div class="col-md-1 col-sm-1 col-lg-1">
-                                    <div class="form-group">
-                                        <asp:Label ID="lblFloor1" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
-                                            <asp:ListItem Value="10">10</asp:ListItem>
-                                            <asp:ListItem Value="30">30</asp:ListItem>
-                                            <asp:ListItem Value="50">50</asp:ListItem>
-                                            <asp:ListItem Value="100">100</asp:ListItem>
-                                            <asp:ListItem Value="200">200</asp:ListItem>
-                                            <asp:ListItem Value="300">300</asp:ListItem>
-                                            <asp:ListItem Value="500">500</asp:ListItem>
-                                            <asp:ListItem Value="800">800</asp:ListItem>
-                                            <asp:ListItem Value="1000">1000</asp:ListItem>
-                                            <asp:ListItem Value="1200">1200</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-1 col-sm-1 col-lg-1">
+                                <div class="col-md-3 col-sm-3 col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="Label8" runat="server" CssClass="control-label" Text="Group"></asp:Label>
                                         <asp:DropDownList ID="ddlgroupwrk" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="dddlgroupwrk_SelectedIndexChanged">
@@ -301,8 +282,28 @@
                                     <asp:LinkButton ID="lbtnSelectItem" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnSelectItem_Click" TabIndex="4">Select Item</asp:LinkButton>
 
                                 </div>
+                                <div class="col-md-1 col-sm-1 col-lg-1">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblFloor1" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
+                                        <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="500">500</asp:ListItem>
+                                            <asp:ListItem Value="800">800</asp:ListItem>
+                                            <asp:ListItem Value="1000">1000</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                 <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 25px;">
+                                    <%--<h3 class="card-title mr-auto">Item Selection (All Catagory)</h3>--%>
+                                    <asp:HyperLink ID="lnkbtnAnalysis" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdStdAna.aspx" CssClass="btn btn-xs btn-success" ToolTip="Analysis" BackColor="transparent"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
 
-
+                                </div>
 
                             </div>
 

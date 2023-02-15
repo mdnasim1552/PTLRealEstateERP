@@ -294,6 +294,7 @@ namespace RealERPWEB.F_22_Sal
             string salesteam = "";
             switch (comcod)
             {
+                case "3101": //Rupayan Housing
                 case "3305": //Rupayan Housing
                 case "2305":
                 case "3306":
