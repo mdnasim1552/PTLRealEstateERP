@@ -51,7 +51,7 @@
             </div>
             <div class="card card-fluid mb-1">
                 <div class="card-body">
-                    <div class="row ">
+                    <div class="row mb-0">
                         <div class="col-md-1 col-sm-1 col-lg-1">
                             <asp:Label ID="Label7" runat="server" CssClass="lblName lblTxt" Text="Date"></asp:Label>
                             <asp:TextBox ID="txtCurTransDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -100,7 +100,7 @@
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
-                    <div class="row mb-2" id="divresource" runat="server"  Visible="False">
+                    <div class="row mb-2 mt-0" id="divresource" runat="server"  Visible="False">
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <asp:Label ID="lblResList" runat="server" CssClass=" lblName lblTxt" Text="Resource List"></asp:Label>
                             <asp:DropDownList ID="ddlreslist" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
@@ -170,7 +170,7 @@
                                                 Width="80px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lnkupdate" runat="server"  OnClick="lnkupdate_Click"  CssClass="btn btn-danger btn-sm primaryBtn">Update</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkupdate" runat="server"  OnClick="lnkupdate_Click"  CssClass="btn btn-danger btn-sm primaryBtn" Visible="false">Update</asp:LinkButton>
                                         </FooterTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" Width="100px"/>
                                         <ItemStyle Width="80px" HorizontalAlign="right" />
@@ -189,70 +189,6 @@
                 </div>
             </div>
 
-
-            <div class="container moduleItemWrpper">
-                <div class="contentPartSmall row">
-                    <fieldset class="scheduler-border fieldset_A">
-                        <legend>
-                            <asp:Label ID="Label1" runat="server" Text="Fixed Assets Transfer Information" Style="color: white; font-size: 14px; font-weight: bold;"></asp:Label></legend>
-                        <div class="form-horizontal">
-              
-                         <asp:Panel ID="pn1" runat="server">
-                                <div class="form-group">
-                                    <div class="col-md-8   pading5px  asitCol8">
-
-                                        
-
-                                        
-
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-5  pading5px">
-
-                                       
-                                     
-                                        </div>
-                                     <div class="col-md-3  pading5px">
-                                      
-                                               
-
-                                             </div>
-                                        
-                                        </div>
-
-                     
-<%--                                    </div>
-                                </div>--%>
-
-                                <div class="form-group">
-                                    <div class="col-md-10  pading5px  asitCol10">
-
-                                        
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10  pading5px  asitCol10">
-
-                                        
-
-                                    </div>
-                                </div>
-                       
-                                </asp:Panel>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="table table-responsive">
-                    
-                </div>
-
-
-            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
