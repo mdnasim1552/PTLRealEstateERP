@@ -117,7 +117,7 @@
                            
                             <asp:TextBox ID="txtrefno" runat="server" autocomplete="off"  Enabled="false" CssClass="form-control form-control-sm"></asp:TextBox>                    
                         </div>
-                        <div class="col-sm-1.5 col-md-1.5  col-lg-1.5">                           
+                        <div class="col-sm-2 col-md-2  col-lg-2">                           
                             <asp:Label ID="lblrefdesc" runat="server">Ref Desc</asp:Label>
                             <asp:TextBox ID="txtrefdesc" runat="server" autocomplete="off" Enabled="false" CssClass="form-control form-control-sm"></asp:TextBox>                    
                         </div>
