@@ -129,9 +129,9 @@
 
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
-                                <asp:GridView ID="gvcustList" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    AutoGenerateColumns="False" AllowPaging="True" 
-                                    ShowFooter="True" PageSize="3000">
+                                <asp:GridView ID="gvcustList" runat="server" CssClass="table-striped  table-bordered grvContentarea"
+                                    AutoGenerateColumns="False" AllowPaging="false" 
+                                    ShowFooter="True" PageSize="15">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.">
@@ -182,6 +182,18 @@
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003 &Page=CustLetter &Entry=Congratulation Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
                                                                  Congartulation Letter</asp:HyperLink>
                                                         </li>
+                                                        
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink  runat="server"  ID="HyperLink1" Target="_blank"  CssClass="dropdown-item" ToolTip="Registration Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10004 &Page=CustLetter &Entry=Registration Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
+                                                                 Registration Letter</asp:HyperLink>
+                                                        </li>
+                                                        
+                                                           <li class="mt-2">
+                                                            <asp:HyperLink  runat="server"  ID="HyperLink2" Target="_blank"  CssClass="dropdown-item" ToolTip="Reminder Letter"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10005 &Page=CustLetter &Entry=Reminder Letter &custid="+Eval("usircode")+" &pactcode="+Eval("pactcode") %>'>
+                                                                 Reminder Letter</asp:HyperLink>
+                                                        </li>
 
 
 
@@ -206,11 +218,12 @@
 
                                      
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
-                                    <EditRowStyle />
-                                    <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                   <FooterStyle CssClass="grvFooterNew" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                      <RowStyle CssClass="grvRowsNew" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
                         </div>
