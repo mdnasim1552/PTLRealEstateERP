@@ -319,7 +319,7 @@
                     }
                 });
 
-
+              
 
 
                 //End of Sales Chart
@@ -533,7 +533,7 @@
                         color: 'black'
                     }]
                 });
-
+                
 
                 //Start of Construction Chart
                 var chartcons = Highcharts.chart('conschart', {
@@ -863,7 +863,7 @@
 
                 });
 
-
+            
 
                 ///Khalil 
 
@@ -929,6 +929,8 @@
 
                 });
 
+             
+
                 //End Lead Info Emloyee wise
 
 
@@ -993,8 +995,10 @@
 
                 });
 
+        
                 //End Department wise employee
 
+              
 
                 /// Last Seven days 
                 //sales
@@ -1087,6 +1091,8 @@
                     ]
                 });
 
+              
+
                 ///End Last seven days 
 
                 ///End Khalil
@@ -1127,6 +1133,8 @@
 
                     w = $(".graph-main").width();
                 });
+
+                
                 resizeObserver.observe(elem);
             }
             catch (e)

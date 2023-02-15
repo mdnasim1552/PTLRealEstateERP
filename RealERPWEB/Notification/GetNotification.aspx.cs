@@ -38,10 +38,10 @@ namespace RealERPWEB.Notification
             string userid = hst["usrid"].ToString();
             string comcod = GetCompCode();
 
-           
-            string Id = this.Request.QueryString["Id"].ToString();
-            string RefId = this.Request.QueryString["RefId"].ToString();
-            string ntype = this.Request.QueryString["ntype"].ToString();
+
+            string Id = this.Request.QueryString["Id"] ?? "";
+            string RefId = this.Request.QueryString["RefId"] ?? "";
+            string ntype = this.Request.QueryString["ntype"] ?? "";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GETNOTIFICAITON", Id, userid, RefId, ntype, "", "", "", "", "");
             if (ds1 == null)
                 return;
