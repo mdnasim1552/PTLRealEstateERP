@@ -94,6 +94,7 @@ namespace RealERPWEB.F_32_Mis
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.lblfrmDate.Text = "From :";
                     this.lbltoDate.Visible = true;
+                    this.topnl.Visible = true;
                     this.txttodate.Visible = true;
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
@@ -108,6 +109,7 @@ namespace RealERPWEB.F_32_Mis
                     this.MultiView1.ActiveViewIndex = 4;
                     this.lbltoDate.Visible = false;
                     this.txttodate.Visible = false;
+                    this.topnl.Visible = false;
                     this.lblPage.Visible = false;
                     this.ddlpagesize.Visible = false;
                     break;
@@ -118,6 +120,7 @@ namespace RealERPWEB.F_32_Mis
                     this.txttodate.Text = Date1;
                     this.lblfrmDate.Text = "From :";
                     this.lbltoDate.Visible = true;
+                    this.topnl.Visible = true;
                     this.txttodate.Visible = true;
                     this.lblPage.Visible = false;
                     this.ddlpagesize.Visible = false;
@@ -131,6 +134,7 @@ namespace RealERPWEB.F_32_Mis
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.lblfrmDate.Text = "From :";
                     this.lbltoDate.Visible = true;
+                    this.topnl.Visible = true;
                     this.txttodate.Visible = true;
                     this.lblPage.Visible = false;
                     this.ddlpagesize.Visible = false;

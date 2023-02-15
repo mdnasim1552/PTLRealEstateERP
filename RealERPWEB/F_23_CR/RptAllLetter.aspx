@@ -130,7 +130,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <asp:GridView ID="gvcustList" runat="server" CssClass="table-striped  table-bordered grvContentarea"
-                                    AutoGenerateColumns="False" AllowPaging="false" 
+                                    AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="gvcustList_PageIndexChanging"
                                     ShowFooter="True" PageSize="15">
                                     <RowStyle />
                                     <Columns>

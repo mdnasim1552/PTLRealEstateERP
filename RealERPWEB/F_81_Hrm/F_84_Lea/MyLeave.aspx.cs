@@ -240,7 +240,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
                 // this part for BTI Resign Employee show
-                if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string deptcode = hst["deptcode"].ToString().Substring(0,9);
+
+                if ((comcod == "3365" || comcod == "3101") && (qtype == "MGT" ||deptcode=="940500101" ))
                 {
                     this.SpResign.Visible = true;
                     this.sspnlv.Visible = true;
@@ -1058,6 +1061,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             try
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
                 this.txtLeavLreasons.Text = "";
                 this.txtLeavRemarks.Text = "";
                 Session.Remove("tblleavest");
@@ -1065,6 +1069,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empid = this.GetEmpID();
                 string aplydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
                 string calltype = "";
+                string Date = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
+                string Userid = hst["usrid"].ToString();
+
+
                 switch (comcod)
                 {
                     /* case "3101":*/  // For BTI as Per concern Nahid Vai  create by Md Ibrahim Khalil
@@ -1076,6 +1084,27 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         calltype = "LEAVESTATUS02";
                         break;
                 }
+                if (comcod == "3365")
+                {
+                    this.pnlCurrLvSt.Visible = true;
+                    DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "SHOWLVSTATUS", Date, "", "", "", "", Userid, "", "", empid);
+                    if (ds != null)
+                    {
+                        DataTable dtstatus = ds.Tables[3];
+                        this.lblelv.Text = dtstatus.Rows[0]["upachivelv"].ToString();
+                        this.lblclv.Text = dtstatus.Rows[0]["upachivclv"].ToString();
+                        this.lblslv.Text = dtstatus.Rows[0]["upachivslv"].ToString();
+                        this.lblelvenjoy.Text =  dtstatus.Rows[0]["enjenleave"].ToString();
+                        this.lblclenj.Text =dtstatus.Rows[0]["enjcleave"].ToString();
+                        this.lblslenj.Text =  dtstatus.Rows[0]["enjsleave"].ToString();
+                        this.lblbalclv.Text = dtstatus.Rows[0]["ballcleave"].ToString();
+                        this.lblbalelv.Text = dtstatus.Rows[0]["balleleave"].ToString();
+                        this.lblbalslv.Text =  dtstatus.Rows[0]["ballsleave"].ToString();
+                    }
+                }
+  
+
+
 
                 DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", calltype, empid, aplydat, "", "", "", "", "", "", "");
                 if (ds1 == null)
