@@ -23,13 +23,14 @@
             var gvPurMatRVar = $('#<%=this.gvPurMatRVar.ClientID%>');
 
             gvPurStatus.gridviewScroll({
-                width: 1660,
+                width: 1620,
                 height: 420,
-                barsize: 8,
+                
                 startHorizontal: 3,
                 wheelstep: 10,
                 arrowsize: 30,
                 railsize: 16,
+                barsize: 18,
                 varrowtopimg: "../Image/arrowvt.png",
                 varrowbottomimg: "../Image/arrowvb.png",
                 harrowleftimg: "../Image/arrowhl.png",
@@ -63,6 +64,9 @@
         }
         .grvContentarea {
             margin-right: 0px;
+        }
+        #ContentPlaceHolder1_gvPurStatusVerticalBar{
+            height:50px;
         }
     </style>
 
@@ -158,8 +162,7 @@
                                             <asp:ListItem>600</asp:ListItem>
                                             <asp:ListItem>900</asp:ListItem>
                                             <asp:ListItem>1200</asp:ListItem>
-                                            <asp:ListItem>1500</asp:ListItem>
-                                            <asp:ListItem>3000</asp:ListItem>
+                                          
                                         </asp:DropDownList>
                                          <asp:Label ID="lblrpttype" runat="server" CssClass=" smLbl_to" Visible="false">Report Type</asp:Label>
                                          <asp:DropDownList ID="ddlrpttype" runat="server" CssClass="ddlPage" Visible="False" Width="80px">
@@ -229,7 +232,7 @@
 
                                 <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" >
-                                    <PagerSettings Position="Bottom" />
+                                    <PagerSettings Position="Bottom"  />
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
