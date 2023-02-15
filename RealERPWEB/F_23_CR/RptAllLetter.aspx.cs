@@ -69,7 +69,8 @@ namespace RealERPWEB.F_23_CR
             ViewState.Remove("tblcustomer");
 
             string comcod = this.GetComeCode();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            
 
             DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERINFO", pactcode, "", "", "", "", "", "", "", "");
           
@@ -79,5 +80,7 @@ namespace RealERPWEB.F_23_CR
 
 
         }
+
+      
     }
 }

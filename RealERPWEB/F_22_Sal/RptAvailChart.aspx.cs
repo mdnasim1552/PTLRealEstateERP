@@ -97,9 +97,15 @@ namespace RealERPWEB.F_22_Sal
             DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHART", pactcode, "", "", "", "", "", "", "", "");
             //DataTable dt = (DataTable)Session["tblAvChartPrint"];
             DataTable dt = (DataTable)ds3.Tables[0];
+            DataTable dt1 = (DataTable)ds3.Tables[1];
 
-          
-            string address =ds3.Tables[1].Rows[0]["prjaddress"].ToString();
+            string address = "";
+            if (dt1.Rows.Count > 0)
+            {
+                address = ds3.Tables[1].Rows[0]["prjaddress"].ToString();
+            }
+
+            
 
 
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -118,6 +124,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comname", comnam));
             Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
             Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+            Rpt1.SetParameters(new ReportParameter("txtAddress", "Address : " + address));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +

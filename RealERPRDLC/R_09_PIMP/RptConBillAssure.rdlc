@@ -1839,7 +1839,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>A.M / Sr. AM / D.M / Man.</Value>
+                    <Value>Billing Section</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1891,7 +1891,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>3.45001in</Top>
-            <Left>2.84146in</Left>
+            <Left>3.74146in</Left>
             <Height>0.25in</Height>
             <Width>1.14013in</Width>
             <ZIndex>14</ZIndex>
@@ -1931,7 +1931,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>3.45001in</Top>
-            <Left>4.75792in</Left>
+            <Left>5.45792in</Left>
             <Height>0.25in</Height>
             <Width>0.98021in</Width>
             <ZIndex>15</ZIndex>
@@ -1971,7 +1971,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>3.45001in</Top>
-            <Left>6.74459in</Left>
+            <Left>7.15709in</Left>
             <Height>0.25in</Height>
             <Width>0.97604in</Width>
             <ZIndex>16</ZIndex>
@@ -1997,7 +1997,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>QC</Value>
+                    <Value>CEO</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -2011,7 +2011,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>3.45001in</Top>
-            <Left>8.54134in</Left>
+            <Left>8.64134in</Left>
             <Height>0.25in</Height>
             <Width>1.10462in</Width>
             <ZIndex>17</ZIndex>
@@ -2070,41 +2070,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox18">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>(Billing Section)</Value>
-                    <Style>
-                      <FontFamily>Calibri</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>3.72361in</Top>
-            <Left>0.09375in</Left>
-            <Height>0.25in</Height>
-            <Width>1.60888in</Width>
-            <ZIndex>19</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="naration">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -2126,11 +2091,51 @@
             <Left>0.96542in</Left>
             <Height>0.33333in</Height>
             <Width>10.40844in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
               </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Q.C </Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox12</rd:DefaultName>
+            <Top>3.45001in</Top>
+            <Left>2.15395in</Left>
+            <Height>0.25in</Height>
+            <Width>1.14013in</Width>
+            <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </TopBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>

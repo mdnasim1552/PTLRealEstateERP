@@ -1971,6 +1971,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3703000", "3703021", "F_23_CR", "RptCollectionStatusLO?", "Type=Report", "Collection Status (L/O)", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3703000", "3703022", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieveLO", "Month Wise Sales (Reconcilation L/O)", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3703000", "3703023", "F_22_Sal", "RptClientDateFile?", "Type=LandO", "Client Data File(L/O)", "Landowner Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3703000", "3703024", "F_22_Sal", "RptSalesVsAchievement?", "Type=LandO", "Down Payment Status (Prev.Sales L/O)", "Landowner Management", "False", "False", "False", "False" });
             #endregion
 
 
@@ -10600,7 +10601,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "01. Collection Status (L/O)", "F_23_CR/RptCollectionStatusLO?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "02. Month Wise Sales (Reconcilation L/O)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieveLO", "", true, "" });        
-            mnuTbl1.Rows.Add(new Object[] { "0404000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000000", "03. Down Payment Status (Prev.Sales L/O)", "F_22_Sal/RptSalesVsAchievement?Type=LandO", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0406000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0407000000", "", "", "", true, "" });

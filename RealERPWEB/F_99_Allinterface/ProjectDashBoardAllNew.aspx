@@ -251,6 +251,13 @@
                                             "color": '#808080'
 
                                         },
+
+                                        {
+                                            "name": "Unsold",
+                                            "y": data1[1].unsoldam,
+                                            "color": '#808080'
+
+                                        },
                                         {
                                             "name": "Collection",
                                             "y": data1[1].collam,
@@ -301,23 +308,55 @@
 
                                         },
                                         {
-                                            "name": "R. InFlow",
-                                            "y": data1[1].rinflow,
+                                            "name": "NOI",
+                                            "y": data1[1].noiam,
                                             "color": '#009999'
 
                                         },
                                         {
-                                            "name": "R. Outflow",
-                                            "y": data1[1].routflow,
+                                            "name": "P.Revenue",
+                                            "y": data1[1].prevenue,
                                             "color": '#009999'
 
                                         },
                                         {
-                                            "name": "Block/Gen.",
-                                            "y": data1[1].fblock,
-                                            "color": '#5CB85C'
+                                            "name": "P.Cost",
+                                            "y": data1[1].pcost,
+                                            "color": '#009999'
+
+                                        },
+
+                                        {
+                                            "name": "P.Margin",
+                                            "y": data1[1].pmargin,
+                                            "color": '#009999'
+
+                                        },
+
+                                         {
+                                            "name": "Cash Flow",
+                                            "y": data1[1].cashflow,
+                                            "color": '#009999'
 
                                         }
+                                        //{
+                                        //    "name": "R. InFlow",
+                                        //    "y": data1[1].rinflow,
+                                        //    "color": '#009999'
+
+                                        //},
+                                        //{
+                                        //    "name": "R. Outflow",
+                                        //    "y": data1[1].routflow,
+                                        //    "color": '#009999'
+
+                                        //},
+                                        //{
+                                        //    "name": "Block/Gen.",
+                                        //    "y": data1[1].fblock,
+                                        //    "color": '#5CB85C'
+
+                                        //}
 
                                     ]
                                 }

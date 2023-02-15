@@ -44,14 +44,11 @@ namespace RealERPWEB.F_22_Sal
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
-
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                //((Label)this.Master.FindControl("lblTitle")).Text = "BOOKING APPLICATION";
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));                
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtbookdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
                 this.GetProjectName();
-                this.GetMaxCustNumber();
+              
             }
 
 
@@ -141,8 +138,8 @@ namespace RealERPWEB.F_22_Sal
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ex.Message+"');", true);
+               
             }
         }
 
@@ -151,21 +148,16 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
-                string comcod = this.GetCompCode();
-                DataTable dt1 = (DataTable)Session["tblcustinfo"];
-                if (dt1 == null)
-                    return;
-                string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
+                string comcod = this.GetCompCode();              
+                string applicationDate =this.txtdate.Text.Trim();
+                DataSet ds1 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");               
+                this.lblCustmerNumber.Text = ds1.Tables[0].Rows[0]["customerno"].ToString();
+                ds1.Dispose();
 
-                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
-                DataTable dt = ds.Tables[0];
-                this.lblCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
-                //this.txtCustmerNumber.Enabled = false;
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -186,8 +178,7 @@ namespace RealERPWEB.F_22_Sal
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -206,8 +197,7 @@ namespace RealERPWEB.F_22_Sal
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,21 +225,21 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlProjectName.Enabled = false;
                     this.ddlCustName.Enabled = false;
                     this.MultiView1.ActiveViewIndex = 0;
-
-                    this.GetMaxCustNumber();
                     this.ShowData();
+
+                   // this.GetMaxCustNumber();
                     this.GetSalesName();
                     return;
                 }
                 this.lbtnOk.Text = "Ok";
                 this.ddlProjectName.Enabled = true;
                 this.ddlCustName.Enabled = true;
+                this.txtdate.Enabled = true ;
                 this.MultiView1.ActiveViewIndex = -1;
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
 
@@ -285,14 +275,12 @@ namespace RealERPWEB.F_22_Sal
             Session["tblrmrk"] = ds2.Tables[10];
 
 
-            Session["tblcustinfo"] = ds2.Tables[2];
+            
             DataTable dt = ds2.Tables[2];
 
             this.EmpImg.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["custimg"].ToString();
             this.ImageNominee.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["nomineeimg"].ToString();
-            this.ImageCorrespondent.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["correspondentimg"].ToString();
-
-            //  appdate, bookamt, bankname, bbranch, paydate, intavail, paymode
+            this.ImageCorrespondent.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["correspondentimg"].ToString();          
             this.txtdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
             this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
             this.txtCheqNo.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["chequeno"].ToString();
@@ -302,11 +290,7 @@ namespace RealERPWEB.F_22_Sal
             this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
             this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
             this.txtInstallmentDate.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["insdaypermonth"].ToString();
-            this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");
-
-
-            //this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
-            //this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
+            this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");           
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : "Yes";
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : "Installment";
@@ -314,6 +298,13 @@ namespace RealERPWEB.F_22_Sal
             if (dt.Rows.Count > 0 && dt.Rows[0]["customerno"].ToString().Length > 0)
             {
                 this.lblCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+                this.txtdate.Enabled = false;
+            }
+            else 
+            {
+                this.GetMaxCustNumber();
+            
+            
             }
 
             ds2.Dispose();
@@ -754,7 +745,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["presentaddr"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["permenentaddr"].ToString()));
             Rpt1.SetParameters(new ReportParameter("propertyname", projectName));
             Rpt1.SetParameters(new ReportParameter("floor", dt2.Rows[0]["floorr"].ToString()));
             Rpt1.SetParameters(new ReportParameter("unit", dt2.Rows[0]["parkingLevel"].ToString()));
@@ -908,6 +899,7 @@ namespace RealERPWEB.F_22_Sal
         {
 
             this.SaveValue();
+          //  DataTable dtcust = (DataTable)Session["tblcustinfo"];
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblprjinfo"];
             DataTable dtp = (DataTable)Session["tblperinfo"];
@@ -915,9 +907,6 @@ namespace RealERPWEB.F_22_Sal
             DataTable dtntd = (DataTable)Session["tblnominatedinfo"];
             DataTable dtpdt = (DataTable)Session["tblpricedetail"];
             DataTable dtrmrk = (DataTable)Session["tblrmrkdetail"];
-
-
-
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
             string appdate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -932,29 +921,20 @@ namespace RealERPWEB.F_22_Sal
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
+
+
+            if (this.txtdate.Enabled==true)
+            {
+                this.GetMaxCustNumber();
+                //DataRow dr1 = dtcust.NewRow();
+                //dr1["customerno"] = this.lblCustmerNumber.Text.Trim();
+                //dtcust.Rows.Add(dtcust);
+              //  Session["tblcustinfo"] = dtcust;
+
+
+            }
             string customerMaxNo = this.lblCustmerNumber.Text.Trim();
-
             string InstallmentDate = this.txtInstallmentDate.Text.Trim().ToString();
-
-
-
-
-
-            //DataSet ds1 = new DataSet("ds1");
-            //ds1.Merge(dt);
-            //ds1.Tables[0].TableName = "tbl1";
-
-            //DataSet ds2 = new DataSet("ds1");
-            //ds2.Merge(dtp);
-            //ds2.Tables[0].TableName = "tbl1";
-
-
-            //DataSet ds3 = new DataSet("ds1");
-            //ds3.Merge(dtn);
-            //ds3.Tables[0].TableName = "tbl1";
-
-
-
 
             DataSet ds1 = new DataSet("ds1");
             ds1.Merge(dt);
@@ -970,56 +950,16 @@ namespace RealERPWEB.F_22_Sal
             ds1.Tables[0].TableName = "tbl3";
             ds1.Tables[0].TableName = "tbl4";
             ds1.Tables[0].TableName = "tbl5";
-            ds1.Tables[0].TableName = "tbl6";
-
-
-
-
-
-            //DataSet ds2 = new DataSet("ds1");
-            //ds2.Merge(dtp);
-            //ds2.Tables[0].TableName = "tbl1";
-
-
-            //DataSet ds3 = new DataSet("ds1");
-            //ds3.Merge(dtn);
-            //ds3.Tables[0].TableName = "tbl1";
-
-
-
-            //Uploading Image
-            //string savelocation = Server.MapPath ("~") + "\\Image1";
-            //string[] filePaths = Directory.GetFiles (savelocation);
-            //foreach (string filePath in filePaths)
-            //    File.Delete (filePath);
-
-            //byte[] photo = new byte[0];
-
-
-            //// Image
-            //if (Session["i"] != null)
-            //{
-            //    image_file = (Stream)Session["i"];
-            //    size = Convert.ToInt32 (Session["s"]);
-            //    BinaryReader br = new BinaryReader (image_file);
-            //    photo = br.ReadBytes (size);
-            //}
-
-
-
-
-
+            ds1.Tables[0].TableName = "tbl6";           
 
             bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam, InstallmentDate);
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + SalData.ErrorObject["Msg"].ToString() + "');", true);
             }
+            this.txtdate.Enabled = false;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
         }
 
 
@@ -1065,10 +1005,8 @@ namespace RealERPWEB.F_22_Sal
 
                 if (result == true)
                 {
-                    //this.lblMesg.Text = " Successfully Updated ";
-                    //this.LoadImg();
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                   
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
                 }
             }
@@ -1121,10 +1059,7 @@ namespace RealERPWEB.F_22_Sal
 
                 if (result == true)
                 {
-                    //this.lblMesg.Text = " Successfully Updated ";
-                    //this.LoadImg();
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
                 }
             }
@@ -1177,10 +1112,7 @@ namespace RealERPWEB.F_22_Sal
 
                 if (result == true)
                 {
-                    //this.lblMesg.Text = " Successfully Updated ";
-                    //this.LoadImg();
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
                 }
             }
             catch (Exception ex)
@@ -1208,38 +1140,12 @@ namespace RealERPWEB.F_22_Sal
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ex.Message+"');", true);
 
             }
         }
 
-        //protected void txtgvValAmount_TextChanged(object sender, EventArgs e)
-        //{
-        //    DataTable dt1 = (DataTable)Session["tblprjinfo"];
-        //    DataTable dt2 = (DataTable)Session["tblpricedetail"];
-        //    double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
-        //    double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
-
-        //    double upirce = usize * rate;
-        //    DataRow[] drp = dt2.Select("Code='02'");
-        //    drp[0]["amount"] = upirce;
-        //    double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
-        //    double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
-        //    double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
-
-        //    double toamt = upirce + carParkingPrice + utility + others;
-
-        //    DataRow[] drt = dt2.Select("Code='06'");
-        //    drt[0]["amount"] = toamt;
-        //    //dt2.Rows[0]["amount"] = toamt;
-
-        //    Session["tblprjinfo"] = dt1;
-        //    Session["tblpricedetail"] = dt2;
-
-        //    this.Data_BindPriceDetail();
-        //}
-
+  
 
         protected void llbtnCalculation_Click(object sender, EventArgs e)
         {

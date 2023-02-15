@@ -141,7 +141,7 @@ namespace RealERPWEB.F_22_Sal
                     this.Visibility();
                     break;
 
-
+                case "LandO":
                 case "DownpayClearnce":
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
@@ -197,7 +197,7 @@ namespace RealERPWEB.F_22_Sal
                     this.GetSaleReconcilation();
                     break;
 
-
+                case "LandO":
                 case "DownpayClearnce":
                     this.ShowDownPayment();
                     break;
@@ -219,6 +219,9 @@ namespace RealERPWEB.F_22_Sal
             string todate = this.txttodate.Text.Trim();
             string lotype = "";   //this.GetLOType();
             string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            if (Type == "LandO")
+                lotype = Type;
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESDOWNPAYMENTCLEARANCE", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
             if (ds1 == null)
             {
@@ -357,7 +360,7 @@ namespace RealERPWEB.F_22_Sal
                     // this.FooterCalculation(dt);
                     break;
 
-
+                case "LandO":
                 case "DownpayClearnce":
                     this.gvDownpayment.DataSource = dt;
                     this.gvDownpayment.DataBind();
@@ -448,6 +451,7 @@ namespace RealERPWEB.F_22_Sal
 
             switch (Type)
             {
+                case "LandO":
                 case "MonsalVsAchieveLO":
                 case "MonsalVsAchieve":
                 case "DownpayClearnce":
@@ -514,7 +518,7 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
 
-            if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
+            if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO" || this.Request.QueryString["Type"] == "LandO")
 
             {
 

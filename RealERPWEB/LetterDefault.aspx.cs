@@ -35,6 +35,14 @@ namespace RealERPWEB
                         getLetter();
 
                     }
+                    else
+                    {
+                        this.panl1.Visible = false;
+                        this.dnone.Visible = false;
+                        this.pnl2.Visible = false;
+                        getCustLetter();
+
+                    }
                 }
                 else
                 {
@@ -142,6 +150,153 @@ namespace RealERPWEB
         }
 
 
+        private void getCustLetter()
+        {
+            string comcod = this.GetCompCode();
+            string custid = this.Request.QueryString["custid"].ToString().Trim();
+            string pactcode = this.Request.QueryString["pactcode"].ToString().Trim();
+
+        
+            DataSet ds = HRData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERINFODETAILS", pactcode, custid, "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+               return;
+
+            string date = Convert.ToDateTime(System.DateTime.Today).ToString("d MMMM, yyyy");
+            string custname = ds.Tables[0].Rows[0]["custname"].ToString() ?? "";
+            string custadd = ds.Tables[0].Rows[0]["custadd"].ToString() ?? "";
+            string pactdesc = ds.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+            string paddress = ds.Tables[0].Rows[0]["paddress"].ToString();
+            string lbody = string.Empty;
+            string letterType = this.Request.QueryString["Type"].ToString().Trim();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+
+            switch (letterType)
+            {
+                //congratulation letter
+                case "10003":
+                    if (comcod == "3367" || comcod == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align: left;margin-top:50px;'> " +
+                          "<span>"+ "<strong>" + date + "</strong>" + "<span/>" +
+                          "<h1 style='text-align: center;'><strong ><u>Congratulation Letter</u></strong> </h1>" +
+                           "<p style='margin-bottom:-11px;'>To</p>" +
+                           "<p style='margin-bottom:-11px'>"+custname+"</p>" +
+                            "<p style='margin-bottom:-11px'>"+custadd+"</p>" + "<br>"+
+                            //"<p style='margin-bottom:-11px'>Chatteshwari Road,</p>" +
+                            //"<p style='margin-bottom:-11px'>Chittagong.</p>" + "<br>"+
+
+                            "<p>Dear Sir/Madam,</p>" + 
+                            "<p><strong>Congratulations!</strong></p>" +
+                            "<p>Thank you for your confidence placed in our company by making a booking in " + "<strong>" + pactdesc+ "</strong>"+ " at &nbsp;&nbsp;&nbsp; " +
+                           "<strong>" + paddress + "</strong>" + " Hope it becomes a very special place where all your dreams grow." + "<br><br>" +
+                            "It is our objective to give you full value for your money and provide you a home to your satisfaction" +
+                            "in that our Sales and Marketing Department is committed to give you prompt and efficient services." + "<br><br>" +
+                            "Please feel free to contact with me for ant queries about monthly installment, accounts statements," +
+                            "loan purpose or any other service regarding financial matter.</p>" +
+                            "<p><strong>Please remember that your on time payment will help us to complete the project on time. Your " +
+                            "Next payment schedule is Tk..................... on ......................</strong></p>"+
+                            "<p>I would like to thank you for patronizing Epic Properties Limited. </p>" + "<br>" +
+                            "<p>Yours sincerly,</p>" + "<br>" +
+
+                            "<p style='margin-bottom:-11px;'>..............................</p>" +
+                            "<p style='margin-bottom:-11px;'>Tanjina Amin</p>" +
+                            "<p style='margin-bottom:-11px;'>Office,CSD</p>" +
+                            "<p style='margin-bottom:-11px;'>Cell # 01819836676</p>" +
+                            "<p style='margin-bottom:-11px;'>Email: csd.epicpl@gmail.com</p>" + "<br>" +
+
+                            "<p style='margin-bottom:-11px;'>Copy: 1. Office File</p>" +
+                            "<p style='margin-bottom:-11px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Email & WhatsApp</p>";
+                    }
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><h3 style='text-align: center;'>" +
+                            "<span style='text-decoration: underline;'><strong>Private &amp; Confidential</strong></span>" +
+                            "</h3><p>&nbsp;<strong>Ref: SPL/HR/Prom/489/16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></p><p><strong>16 November, 2016</strong></p><p><strong>&nbsp;</strong><strong></p><p>&nbsp;<strong>Subject: Promotion</strong></p><p>&nbsp;Dear Mr. <strong></strong>,</p><p>&nbsp;We are pleased to inform you that, the company have decided to promote you to the position of <strong><u>Junior Territory Sales Manager</u></strong> recognition of your performance, effective December 1, 2016.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 360px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 360px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 360px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 360px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 360px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>We acknowledge your excellent performance and congratulate you on your well-deserved promotion. We hope you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;</p><p>Yours Sincerely,</p>";//<p>&nbsp;<strong>Moshiur Hossain</strong></p><p><strong>Managing Director.</strong></p><p><strong><u>Copy to:</u></strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HRIS</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal File</p>";
+
+                    }
+                    break;
+                //Registration letter
+                case "10004":
+                    if (comcod == "3367" || comcod == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align: left;margin-top:50px;'> " +
+                          "<p>Date: " + date + "</strong>" + "<p/>" +
+                           "<p style='margin-bottom:-11px;'>To</p>" +
+                           "<p style='margin-bottom:-11px'>" + custname + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + custadd + "</p>" +
+
+                           "<p>Subject:<strong> Registration of your apt. "+pactdesc+" at "+paddress+"</strong></p>" +
+                            "<p>Dear Sir,</p>" +
+                            "<p>Assalamu Alaikum,</p>" +
+                            "<p>You will be glad to know that the registration procedure of the project " + "<strong>" + pactdesc + "</strong>" + " is going to " +
+                            "be started." + "<br><br>" +
+                            "Therefore, you are requested to provide your information for starting the registration"+
+                            " procedure within &nbsp;------------------- If you have any kind of queries, you will contact Phone " +
+                            "0312864801 or our Legal Ofiicer Advocate Fhim Ibne Rahman cell # 01844-558546.</p>" + "<br>"+
+
+                            "<p style='margin-bottom:-11px;'>--------------------------</p>" +
+                            "<p style='margin-bottom:-11px;'>Tanjina Amin</p>" +
+                            "<p style='margin-bottom:-11px;'>Office,CSD</p>"+
+                            "<p style='margin-bottom:-11px;'>Cell # 01819836676</p>"+
+                            "<p style='margin-bottom:-11px;'>Email: csd.epicpl@gmail.com</p>"+ "<br><br>" +
+
+                            "<p style='margin-bottom:-11px;'>Copy: 1. Office File</p>" +
+                            "<p style='margin-bottom:-11px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Legal Dept.</p>";
+                    }
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><h3 style='text-align: center;'>" +
+                            "<span style='text-decoration: underline;'><strong>Private &amp; Confidential</strong></span>" +
+                            "</h3><p>&nbsp;<strong>Ref: SPL/HR/Prom/489/16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></p><p><strong>16 November, 2016</strong></p><p><strong>&nbsp;</strong><strong></p><p>&nbsp;<strong>Subject: Promotion</strong></p><p>&nbsp;Dear Mr. <strong></strong>,</p><p>&nbsp;We are pleased to inform you that, the company have decided to promote you to the position of <strong><u>Junior Territory Sales Manager</u></strong> recognition of your performance, effective December 1, 2016.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 360px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 360px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 360px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 360px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 360px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>We acknowledge your excellent performance and congratulate you on your well-deserved promotion. We hope you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;</p><p>Yours Sincerely,</p>";//<p>&nbsp;<strong>Moshiur Hossain</strong></p><p><strong>Managing Director.</strong></p><p><strong><u>Copy to:</u></strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HRIS</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal File</p>";
+
+                    }
+                    break;
+                case "10005":
+                    if (comcod == "3367" || comcod == "3101")
+                    {
+                        lbody =
+                           "<p style='text-align: left;margin-top:50px;'> " +
+                          "<p>Date: " + date + "</strong>" + "<p/>" +
+                           "<p style='margin-bottom:-11px;'>To</p>" +
+                           "<p style='margin-bottom:-11px'>" + custname + "</p>" +
+                            "<p style='margin-bottom:-11px'>" + custadd + "</p>" +
+                            "<p><strong>Referrence: a)</strong></p>" +
+                           "<p>Subject:<strong> Reminder to complete registration" + pactdesc + " of apt. at  " + paddress + "</strong></p>" +
+                            "<p>Dear Sir,</p>" +
+                            "<p>Assalamu Alaikum,</p>" +
+                            "<p>Reference to the above subject matter you didn't take any initiative regarding registration your " +
+                            "above mentioned apartment. Please note that you may be faced legal complicacies for not " +
+                            "complying the mentioned date of Registration. If you have any kind of queries, you will contact " +
+                            "Phone 0312864801 or our Legal Officer Advocate Fhim Ibne Rahman cell # 01844-558546" + "<br><br>" +
+                            "So, you are requested to provide your information for starting registration procedure within  ------------------------" +
+                           
+
+                            "<p style='margin-bottom:-11px;'>--------------------------</p>" +
+                            "<p style='margin-bottom:-11px;'>Tanjina Amin</p>" +
+                            "<p style='margin-bottom:-11px;'>Office,CSD</p>" +
+                            "<p style='margin-bottom:-11px;'>Cell # 01819836676</p>" +
+                            "<p style='margin-bottom:-11px;'>Email: csd.epicpl@gmail.com</p>" + "<br><br>" +
+
+                            "<p style='margin-bottom:-11px;'>Copy: 1. Office File</p>" +
+                            "<p style='margin-bottom:-11px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Legal Dept.</p>";
+                    }
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><h3 style='text-align: center;'>" +
+                            "<span style='text-decoration: underline;'><strong>Private &amp; Confidential</strong></span>" +
+                            "</h3><p>&nbsp;<strong>Ref: SPL/HR/Prom/489/16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></p><p><strong>16 November, 2016</strong></p><p><strong>&nbsp;</strong><strong></p><p>&nbsp;<strong>Subject: Promotion</strong></p><p>&nbsp;Dear Mr. <strong></strong>,</p><p>&nbsp;We are pleased to inform you that, the company have decided to promote you to the position of <strong><u>Junior Territory Sales Manager</u></strong> recognition of your performance, effective December 1, 2016.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 360px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 360px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 360px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 360px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 360px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>We acknowledge your excellent performance and congratulate you on your well-deserved promotion. We hope you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;</p><p>Yours Sincerely,</p>";//<p>&nbsp;<strong>Moshiur Hossain</strong></p><p><strong>Managing Director.</strong></p><p><strong><u>Copy to:</u></strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HRIS</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal File</p>";
+
+                    }
+                    break;
+
+            }
+            this.txtml.Text = lbody;
+
+        }
         private void getLetter()
         {
             string comcod = this.GetCompCode();

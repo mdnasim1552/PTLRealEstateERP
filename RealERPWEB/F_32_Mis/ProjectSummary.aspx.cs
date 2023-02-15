@@ -221,9 +221,13 @@ namespace RealERPWEB.F_32_Mis
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
+
+                Label lblgvgrpdesc = (Label)e.Row.FindControl("lblgvgrpdesc");
+                Label lgvActAC = (Label)e.Row.FindControl("lgvActAC");
                 HyperLink hlnkgvBgdam = (HyperLink)e.Row.FindControl("hlnkgvBgdam");
                 HyperLink hlnkgvacam = (HyperLink)e.Row.FindControl("hlnkgvacam");
-
+                
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
                 string gval = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gval")).ToString().Trim();
 
@@ -231,10 +235,13 @@ namespace RealERPWEB.F_32_Mis
                 {
                     return;
                 }
-                if (grp == "AA" && gval == "8")
+                if (grp == "AA" && (ASTUtility.Right(gval,3) == "AAA"))
                 {
 
                     string actcode = this.ddlProjectName.SelectedValue.ToString();
+                    lblgvgrpdesc.Attributes["style"] = "color:blue;";
+                    lgvActAC.Attributes["style"] = "color:blue;";
+                    
                     hlnkgvBgdam.NavigateUrl = "~/F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdAcWk&prjcode=" + actcode;
                     hlnkgvBgdam.Attributes["style"] = "color:blue;";
 
