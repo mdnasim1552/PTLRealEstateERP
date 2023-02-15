@@ -199,6 +199,8 @@ namespace RealERPWEB.F_22_Sal
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
             string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
             string totalpath = hostname + currentptah;
+            
+            
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
 
