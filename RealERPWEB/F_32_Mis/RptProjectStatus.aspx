@@ -185,7 +185,7 @@
                                            </asp:HyperLink>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvlocation" runat="server" Style="text-align: left; font-size: 9px; line-height: 12px;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjloc")) %>'
+                                        <asp:Label ID="lblgvlocation" runat="server" Style="text-align: left;  line-height: 12px;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjloc")) %>'
                                             Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />

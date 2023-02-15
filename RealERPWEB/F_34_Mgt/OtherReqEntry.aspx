@@ -252,7 +252,7 @@
 
                         <div class="row">
                             <div class="table-responsive">
-                                <asp:GridView ID="gvOtherReq" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="gvOtherReq" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
                                     Width="542px" ShowFooter="True" OnRowDeleting="gvOtherReq_RowDeleting" OnRowCancelingEdit="gvOtherReq_RowCancelingEdit" OnRowEditing="gvOtherReq_RowEditing" OnRowUpdating="gvOtherReq_RowUpdating" Style="margin: 10px">
                                     <RowStyle />
                                     <Columns>
@@ -389,7 +389,7 @@
                                         <asp:TemplateField HeaderText="Bgd. Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFBgdamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Width="80px"></asp:Label>
+                                                    Width="80px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvBgdAmt" runat="server" Style="text-align: right"
@@ -404,7 +404,7 @@
                                         <asp:TemplateField HeaderText="Paid Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFPaidAmtxx" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Width="100px"></asp:Label>
+                                                     Width="100px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPaidAmtxx" runat="server"
@@ -420,7 +420,7 @@
                                         <asp:TemplateField HeaderText="Budget Allocation" Visible="false">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFPaidamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Width="80px"></asp:Label>
+                                                     Width="80px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPaAmt" runat="server"
@@ -440,7 +440,7 @@
                                                     Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:Label ID="lgvFBalamt" runat="server" ForeColor="#000"
+                                                <asp:Label ID="lgvFBalamt" runat="server" 
                                                     Width="100px" Font-Bold="True" Font-Size="12px"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
@@ -479,7 +479,7 @@
                                         <asp:TemplateField HeaderText="Proposed Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFProposedamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Width="100px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvProposedamt" runat="server" BackColor="Transparent" Font-Size="11px"
@@ -495,7 +495,7 @@
                                         <asp:TemplateField HeaderText="Approved Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFAppamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Width="100px"></asp:Label>
+                                                     Width="100px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvApamt" runat="server" BackColor="White" Font-Size="11px"
@@ -511,11 +511,12 @@
 
 
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
-                                    <EditRowStyle />
-                                    <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                      <FooterStyle CssClass="grvFooterNew" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="" />
+                        <RowStyle CssClass="grvRowsNew" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                                 </asp:GridView>
                             </div>
                         </div>
