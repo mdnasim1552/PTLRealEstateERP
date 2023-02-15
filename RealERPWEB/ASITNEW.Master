@@ -1263,40 +1263,44 @@
                 var userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
+                //console.log(data.length);
                 console.log('notification', data)
 
-                var row = "";
-                var img = "";
-                var count = 0;
-                var all = "";
-                var imgstrng = "";
-                var imgextract = "";
-                $("#repNotificmsg").html("");
-                $.each(data, function (k, v) {
-                    if (v.ntype == "") {
+                if (data.length > 0)
+                {
+                    var row = "";
+                    var img = "";
+                    var count = 0;
+                    var all = "";
+                    var imgstrng = "";
+                    var imgextract = "";
+                    $("#repNotificmsg").html("");
+                    $.each(data, function (k, v) {
+                        if (v.ntype == "") {
 
-                        console.log(v.sendphoto);
+                            console.log(v.sendphoto);
 
-                        imgstrng = v.sendphoto;
+                            imgstrng = v.sendphoto;
 
 
-                        imgextract = imgstrng.substring(2);
-                        //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
-                        row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
-                            '<div class="user-avatar">' +
-                            '<img src="../../' + imgextract + '" alt="">' +
-                            '</div>' +
-                            '<div class="dropdown-item-body">' +
-                            '<p class="subject">' + v.eventitle + '</p>' +
-                            '<p class="product-name text-truncate">' + v.meassage + '</p>' +
-                            '</div>' +
+                            imgextract = imgstrng.substring(2);
+                            //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                            row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                                '<div class="user-avatar">' +
+                                '<img src="../../' + imgextract + '" alt="">' +
+                                '</div>' +
+                                '<div class="dropdown-item-body">' +
+                                '<p class="subject">' + v.eventitle + '</p>' +
+                                '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                                '</div>' +
 
-                            '</a>';
-                        count++;
-                    }
-                });
-                $("#repNotificmsg").append(row);
-                $("#lblallpop").text(count);
+                                '</a>';
+                            count++;
+                        }
+                    });
+                    $("#repNotificmsg").append(row);
+                    $("#lblallpop").text(count);
+                }
 
             }
             catch (e) {
