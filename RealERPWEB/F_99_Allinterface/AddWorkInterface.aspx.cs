@@ -59,6 +59,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlinitial.Visible = true;
                     this.pnlcheck.Visible = false;
                     this.pnl1stApp.Visible = false;
+                    this.Pnlcsdapproval.Visible = false;
                     this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlapproval.Visible = false;
@@ -70,6 +71,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlinitial.Visible = false;
                     this.pnlcheck.Visible = true;
                     this.pnl1stApp.Visible = false;
+                    this.Pnlcsdapproval.Visible = false;
                     this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlapproval.Visible = false;
@@ -83,47 +85,63 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlinitial.Visible = false;
                     this.pnlcheck.Visible = false;
                     this.pnl1stApp.Visible = true;
+                    this.Pnlcsdapproval.Visible = false;
                     this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                    
-                    // 2d approval
+                    //csd aproval
                 case "3":
                     this.pnlinitial.Visible = false;
                     this.pnlcheck.Visible = false;
                     this.pnl1stApp.Visible = false;
-                    this.pnl2ndApp.Visible = true;
+                    this.Pnlcsdapproval.Visible = true;
+                    this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                
-                    //audit / 3rd approval
+
+                // 2d approval
                 case "4":
                     this.pnlinitial.Visible = false;
                     this.pnlcheck.Visible = false;
                     this.pnl1stApp.Visible = false;
+                    this.Pnlcsdapproval.Visible = false;
+                    this.pnl2ndApp.Visible = true;
+                    this.pnlaudit.Visible = false;
+                    this.pnlapproval.Visible = false;
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    //this.RadioButtonList1.Items[4].Attributes["style"] = "background: #430000; display:block; ";
+                    break;
+                
+                    //audit / 3rd approval
+                case "5":
+                    this.pnlinitial.Visible = false;
+                    this.pnlcheck.Visible = false;
+                    this.pnl1stApp.Visible = false;
+                    this.Pnlcsdapproval.Visible = false;
                     this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = true;
                     this.pnlapproval.Visible = false;
-                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
 
                 // final approval
-                case "5":
+                case "6":
                     this.pnlinitial.Visible = false;
                     this.pnlcheck.Visible = false;
                     this.pnl1stApp.Visible = false;
+                    this.Pnlcsdapproval.Visible = false;
                     this.pnl2ndApp.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlapproval.Visible = true;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
@@ -172,9 +190,10 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Initial</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapprov"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];
 
@@ -225,9 +244,11 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>3rd Approval</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapprov"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
+
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>3rd Approval</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];
 
