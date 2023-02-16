@@ -181,6 +181,7 @@ namespace RealERPWEB.F_14_Pro
         {
 
             DataTable dt = (DataTable)Session["tblpursum"];
+
             this.gvpurvspay.DataSource = dt;
             this.gvpurvspay.DataBind();
             this.FooterCalculation();
@@ -232,6 +233,12 @@ namespace RealERPWEB.F_14_Pro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void gvpurvspay_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvpurvspay.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
     }
 }

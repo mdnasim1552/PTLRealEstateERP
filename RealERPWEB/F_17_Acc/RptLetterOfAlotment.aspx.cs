@@ -22,6 +22,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Sales Reports";
                 this.GetProjectName();
                 this.GetCustomerName();
+                this.selectview();
             }
         }
 
@@ -29,15 +30,28 @@ namespace RealERPWEB.F_17_Acc
         protected void Page_PreInit(object sender, EventArgs e)
         {
 
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "Allotment":
+                    ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+                
+                    ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+                    
+                    ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
-            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lFinalUpdate_Click);
-            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
-
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+                   
+                    break;
+                case "CustomerSettlement":
+                    ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+                    ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lFinalUpdate_Click);
+                    ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+                    break;
+            }
+           
         }
 
 
@@ -83,7 +97,19 @@ namespace RealERPWEB.F_17_Acc
             this.ddlcustomerName.DataBind();
 
         }
-
+        public void selectview()
+        {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "Allotment":
+                    this.MultiView1.ActiveViewIndex = 0;
+                    break;
+                case "CustomerSettlement":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    break;
+            }
+        }
 
         protected void ddlprjname_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -156,13 +182,13 @@ namespace RealERPWEB.F_17_Acc
                 " allottee.";
 
 
-            string body = "1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" +
+            string body = "<p style='text-align:justify;'>1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" +
                       " which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " +
                       "be made to " + "<strong>" + companyname + "</strong>" + " by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " +
                       "in foreign exchange by international TT or  DD. Any type of Cash payment is totally restricted. Payments of installment and" +
                       " other charges are to be made on due dates. The company may issue reminders to the Allottee " +
-                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time. " + "<br><br>" +
-                      " 2. Delay in payments beyond the due date will make the allottee liable to pay a delay charge of 3% per 30 (Thirty) days on " +
+                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time." + "<br><br>" +
+                      "2. Delay in payments beyond the due date will make the allottee liable to pay a delay charge of 3% per 30 (Thirty) days on " +
                       "the amount of payment delayed.If the payment is delayed beyond 60(sixty) days or if the allottee wishes to surrender " +
                       "his allotment, the Company shall cancel the allotment without serving any notice to the Allottee. In such an " +
                       "event the amount paid by the allottee will be refunded after deducting 10% service charge from total " +
@@ -197,7 +223,7 @@ namespace RealERPWEB.F_17_Acc
                       "owners namely Collective Management Committee (CMC) will be formed. All the " + type + " owners " +
                       "will be the member of the committee by contributing in the reserve fund. The Collective Management " +
                       "Committee (CMC) will manage the common facility of the Apartment and all the common interest of the " +
-                      "<strong>" + type + "</strong>" + " owners.";
+                      "<strong>" + type + "</strong>" + " owners.</p>";
 
 
 
@@ -357,6 +383,7 @@ namespace RealERPWEB.F_17_Acc
                 string unit = ds3.Tables[1].Rows[0]["munit"].ToString();
                 string aprtsize = usize + " " + unit;
                 string location = ds3.Tables[1].Rows[0]["location"].ToString();
+                string refdesc = ds3.Tables[2].Rows[0]["refdesc"].ToString();
 
 
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
@@ -365,6 +392,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("unitname", unitname));
                 Rpt1.SetParameters(new ReportParameter("location", location));
                 Rpt1.SetParameters(new ReportParameter("usize", usize));
+                Rpt1.SetParameters(new ReportParameter("refdesc","Ref: "+ refdesc));
                 Rpt1.SetParameters(new ReportParameter("unit", unit));
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));
                 Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));

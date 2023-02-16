@@ -146,6 +146,7 @@
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
+                        
                         <div class="col-md-1 col-sm-1 col-lg-1 ml-2" style="margin-top: 21px;">
                             <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_OnClick" CssClass="btn btn-sm btn-primary primaryBtn"
                                 TabIndex="6">Ok</asp:LinkButton>
@@ -160,7 +161,7 @@
                         <div class="table table-responsive">
                             <asp:GridView ID="gvpurvspay" runat="server" AutoGenerateColumns="False"
                                 CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" AllowPaging="True" PageSize="30">
+                                ShowFooter="True" AllowPaging="True" PageSize="20"  OnPageIndexChanging="gvpurvspay_PageIndexChanging">
                                 <PagerSettings Position="Bottom" />
                                 <RowStyle />
                                 <Columns>

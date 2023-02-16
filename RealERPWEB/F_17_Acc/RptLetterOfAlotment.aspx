@@ -104,7 +104,12 @@
 
             <div class="card card-fluid mt-0" style="min-height: 550px;">
                 <div class="card-body">
-                    <div class="row" id="divdate" runat="server" visible="false" >
+                       <asp:MultiView ID="MultiView1" runat="server">
+                            <asp:View ID="View1" runat="server">
+                    
+                                </asp:View>
+                           <asp:View ID="View2" runat="server">
+                               <div class="row" id="divdate" runat="server" visible="false" >
                         <div class="col-sm-1 col-md-1  col-lg-1">                           
                             <asp:Label ID="lblFdate" runat="server">Date</asp:Label>
                             <asp:TextBox ID="txtdate" runat="server" autocomplete="off" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -160,6 +165,8 @@
                             <RowStyle CssClass="grvRowsNew" />
                         </asp:GridView>
                     </div>
+                               </asp:View>
+                                 </asp:MultiView>
                 </div>
             </div>
         </ContentTemplate>
