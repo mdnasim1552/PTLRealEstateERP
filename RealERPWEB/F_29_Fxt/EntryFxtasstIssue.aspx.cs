@@ -38,6 +38,7 @@ namespace RealERPWEB.F_29_Fxt
                 // this.lblrsirdesc.Text = this.Request.QueryString["rsirdesc"].ToString();
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Fixed Asset Issue";
                 this.GetDeparment();
+                CommonButton();
 
             }
 
@@ -46,8 +47,21 @@ namespace RealERPWEB.F_29_Fxt
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lUpdate_Click1);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(TblTotal_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }
 
         private string GetComeCode()
@@ -105,7 +119,7 @@ namespace RealERPWEB.F_29_Fxt
             {
                 this.lbtnOk.Text = "Ok";
                 this.txtIssueNo.Text = "";
-                this.pnlgrd.Visible = false;
+                this.divreslist.Visible = false;
                 this.ddldeptName.Enabled = true;
                 this.gvEmpIssue.DataSource = null;
                 this.gvEmpIssue.DataBind();
@@ -114,7 +128,7 @@ namespace RealERPWEB.F_29_Fxt
                 return;
             }
 
-            this.pnlgrd.Visible = true;
+            this.divreslist.Visible = true;
             this.lbtnOk.Text = "New";
             this.ddldeptName.Enabled = false;
             this.GetNewIssueno();

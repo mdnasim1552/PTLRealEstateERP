@@ -258,12 +258,65 @@
                     </div>
                     <div class="col-12 col-lg-12 col-xl-9">
                         <section class="card card-fluid mb-0" style="min-height: 650px; flex-grow: 1; overflow: auto;">
-                            <!-- .card-body -->
-                            <header class="card-header">Leave Status</header>
+
+
+                           
+                         
+
+                
+                            
 
                             <div class="card-body card card-fluid mb-0">
-                                <div class="row mt">
-                                    <div class="col-md-12">
+                                <asp:Panel runat="server" ID="pnlCurrLvSt" Visible="false">
+                                   <div class="row">
+                                    <div class="col-md-12 card">
+                                       <div class="card-header p-0">
+                             <p class="card-title m-0"><strong>Current Leave Status</strong></p>
+
+                                       </div>
+                                        <div class="card-body">
+            <table class="table-striped table-hover table-bordered text-center w-100 mb-3">
+                                            <tr>
+                                                <td class="font-weight-bold">Type</td>
+                                                <td class="font-weight-bold">Achieved</td>
+                                                <td class="font-weight-bold">Enjoy</td>
+                                                 <td class="font-weight-bold">Balance</td>
+                                            </tr>
+                                            <tr>
+                                                <td>EARNED LEAVE</td>
+                                                <td><asp:Label ID="lblelv" runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblelvenjoy" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="lblbalelv" runat="server">0</asp:Label></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>CASUAL LEAVE</td>
+                                                <td><asp:Label ID="lblclv" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="lblclenj" runat="server">0</asp:Label></td>
+                                                <td><asp:Label ID="lblbalclv" runat="server">0</asp:Label></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>SICK LEAVE</td>
+                                                <td> <asp:Label ID="lblslv" runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblslenj" runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblbalslv" runat="server">0</asp:Label></td>
+
+                                            </tr>
+                                        </table>
+                  </div>
+                                </div>
+                                </div>
+                                </asp:Panel>
+ 
+
+                                <div class="row mt-2">
+                                    <div class="col-md-12 card">
+                                                   <div class="card-header p-0">
+                             <p class="card-title m-0"><strong>Leave Status</strong></p>
+
+                                       </div>
+                                        <div class="card-body">
                                         <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                             CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
@@ -380,17 +433,19 @@
 
                                         </asp:GridView>
                                     </div>
+                                    </div>
 
                                 </div>
-                                <div class="row mt">
-                                    <div class="col-md-12">
-                                        <header class="card-header">Applied Leave</header>
-                                    </div>
-                                </div>
+              
 
                                 <div class="row" style="height: 280px; flex-grow: 1; overflow: auto;">
+                                    <div class="col-md-12 card">
 
+                                                                                        <div class="card-header p-0">
+                             <p class="card-title m-0"><strong>Applied Leave </strong></p>
 
+                                       </div>
+                                                    <div class="card-body">
                                     <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False"
                                         CssClass="table-striped table-hover table-bordered"
                                         ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound">
@@ -524,6 +579,10 @@
                                     </asp:GridView>
 
                                 </div>
+                                </div>
+
+                                </div>
+
 
                             </div>
                         </section>

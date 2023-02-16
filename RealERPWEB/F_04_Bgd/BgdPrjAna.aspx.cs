@@ -126,7 +126,7 @@ namespace RealERPWEB.F_04_Bgd
                 this.rbtnList1.Items[0].Text = "Phase Selection";
                 this.rbtnList1.Items[1].Text = "Item Selection(All Phase)";
                 this.rbtnList1.Items[2].Text = "Item Selction(Ind.Phase)";
-                this.lblFPhaseTitle.Text = "Phase Selecttion";
+                this.lblFPhaseTitle.InnerText = "Phase Selecttion";
                 this.chkFlrShowSelected.Text = "Show selected Phase only";
                 this.lblFloor.Text = "Phase";
             }

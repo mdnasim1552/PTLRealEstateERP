@@ -210,7 +210,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0403000", "0403126", "F_04_Bgd", "RptPrjFloorWise", "", "Category Wise Material Details", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403127", "F_04_Bgd", "RptFrameAndFinishingCost", "", "Frame and Finishing Cost", "Budget", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "0403000", "0403128", "F_04_Bgd", "AddBudget?", "Type=Mgt", "Addtional Budget Approval", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0403000", "0403128", "F_04_Bgd", "AddBudget?", "Type=Mgt", "Addtional Budget Approval", "Budget", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0403000", "0403140", "F_17_Acc", "AccFinalReports?", "RepType=BEDateWise", "Budget Vs Expenses(Actual Date Wise)", "Budget", "False", "False", "False", "False" }); ;
+
+
+
             tblObj.Rows.Add(new Object[] { "0401000", "0401150", "F_04_Bgd", "BgdEstStdAna", "", "Estimated Analysis", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0401000", "0401160", "F_04_Bgd", "CatagoryLink", "", "Category(Work Item)", "Budget", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0402000", "0402060", "F_04_Bgd", "BgdPrjAna02?", "InputType=BgdMain", "Construction Budget 02", "Budget", "False", "False", "False", "False" }); ;
@@ -987,7 +991,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703062", "F_17_Acc", "AccFinalReports?", "RepType=IPRJ", "Income Statement (Individual Project)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703063", "F_17_Acc", "AccLedger?", "Type=Ledger&RType=MLedger", "Ledger-2", "Accounts", "False", "False", "False", "False" }); ;//
             tblObj.Rows.Add(new Object[] { "1703000", "1703070", "F_17_Acc", "RptChequestatus?", "Type=SupChequeSt", "Party Wise Cheque Status", "Accounts", "False", "False", "False", "False" }); ;
-
+            
             //Bill Register Permission
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703601", "F_17_Acc", "AccOnlinePaymentRa?", "Type=ChequeReady", "Checked (Bill Register)", "Accounts", "False", "False", "False", "False" }); ;
@@ -4394,6 +4398,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Budgeted Income Statement - (Budget Vs Actual)", "F_04_Bgd/RptBgdPrjoject?Type=BgdWkVsActual&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000005", "17. Additional Budget", "F_04_Bgd/RptBgdPrjoject?Type=AddBudget&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000006", "19. Budget Vs Expenses(Actual)", "F_17_Acc/AccFinalReports?RepType=BE&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000007", "20. Budget Vs Expenses(Actual Date Wise)", "F_17_Acc/AccFinalReports?RepType=BEDateWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "Other Label", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0403000001", "13. General Requisition Status", "F_04_Bgd/RptOtherReqStatus", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000002", "06. Budgeted Total Cost", "F_04_Bgd/RptBgdPrjoject?Type=BudgetedCost&comcod=&prjcode=", "", true, "" });

@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\Microsoft.ReportViewer.WinForms.fakes" />
+    <Fakes Include="Fakes\Microsoft.ReportViewer.Design.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+AgeingDays.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
@@ -898,6 +899,7 @@
     <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAngan.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthlySalesBudget.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSoldUnsoldUnitStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsCollTypeWise.rdlc" />
@@ -1307,6 +1309,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAcmeAI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL- Copy.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />

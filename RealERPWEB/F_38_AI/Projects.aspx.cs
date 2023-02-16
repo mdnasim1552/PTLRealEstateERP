@@ -185,6 +185,7 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
+                Session.Remove("tblt01");
                 this.assigntask.Visible = false;
                 this.taskoverview.Visible = false;
                 this.penddingtask.Visible = false;
@@ -508,6 +509,7 @@ namespace RealERPWEB.F_38_AI
                 this.task.Visible = false;
 
                 this.GetBatchInfo();
+                this.GetProjectwiseBatch();
             }
             catch (Exception ex)
             {
@@ -749,46 +751,46 @@ namespace RealERPWEB.F_38_AI
 
         protected void btntaskQC_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            //    int index = row.RowIndex;
-            //    string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
-            //    this.lbltaskbatchid.Text = id;
-            //    string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
-            //    string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
-            //    string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
-            //    string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
-            //    string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
-            //    string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
-            //    string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
-            //    string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
-            //    string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
+                this.lbltaskbatchid.Text = id;
+                string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
+                string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
+                string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
+                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
+                string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
+                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
+                string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
+                string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
+                string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
 
-            //    this.txttasktitle.Text = titlename;
-            //    this.txttasktitle.ReadOnly = true;
-            //    this.ddlassignmember.SelectedValue = empid;
-            //    this.ddlUserRoleType.SelectedValue = roletype;
-            //    this.ddlAnnotationid.SelectedItem.Value = anotationid;
-            //    this.txtquantity.Text = assginqty;
-            //    this.txtworkhour.Text = workhour;
-            //    this.textrate.Text = workperrate;
+                this.txttasktitle.Text = titlename;
+                this.txttasktitle.ReadOnly = true;
+                this.ddlassignmember.SelectedValue = empid;
+                this.ddlUserRoleType.SelectedValue = roletype;
+                this.ddlAnnotationid.SelectedItem.Value = anotationid;
+                this.txtquantity.Text = assginqty;
+                this.txtworkhour.Text = workhour;
+                this.textrate.Text = workperrate;
 
-            //    this.assigntask.Visible = false;
-            //    this.taskoverview.Visible = false;
-            //    this.task.Visible = true;
-            //    this.btnaddrow.Visible = true;
-            //    this.btntaskSave.Visible = true;
-            //    this.btntaskUpdate.Visible = false;
+                this.assigntask.Visible = false;
+                this.taskoverview.Visible = false;
+                this.task.Visible = true;
+                this.btnaddrow.Visible = true;
+                this.btntaskSave.Visible = true;
+                this.btntaskUpdate.Visible = false;
 
 
-            //}
-            //catch (Exception exp)
+            }
+            catch (Exception exp)
 
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-            //}
+            }
         }
 
         protected void tbnAssignuser_Click(object sender, EventArgs e)

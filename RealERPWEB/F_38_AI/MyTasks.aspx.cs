@@ -456,7 +456,7 @@ namespace RealERPWEB.F_38_AI
                 string id = ((Label)this.gvActivities.Rows[index].FindControl("lblid")).Text.Trim();
                 string title = ((Label)this.gvActivities.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
                 string date = ((Label)this.gvActivities.Rows[index].FindControl("tblcreatedate")).Text.Trim();
-                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblvelocityqty")).Text.Trim();
+                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblacvvelocityqty")).Text.Trim();
                 string doneqty = ((Label)this.gvActivities.Rows[index].FindControl("lbldoneqty")).Text.Trim();
                 this.lblactiviesid.Text = id;
                 this.tbljobname.Text = title;
