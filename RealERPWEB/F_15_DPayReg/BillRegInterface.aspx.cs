@@ -254,7 +254,7 @@ namespace RealERPWEB.F_15_DPayReg
         private void Data_Bind(string gv, DataTable dt)
         {
 
-
+            string comcod = this.GetCompCode();
             switch (gv)
             {
                 case "gvBillInfo":
@@ -289,6 +289,15 @@ namespace RealERPWEB.F_15_DPayReg
                     break;
                 case "grvApproved":
                     this.grvApproved.DataSource = dt;
+                    if(comcod== "3366")
+                    {
+                        this.grvApproved.Columns[8].Visible = false;
+                    }
+                    else
+                    {
+                        this.grvApproved.Columns[8].Visible = true;
+                    }
+                    
                     this.grvApproved.DataBind();
                     if (dt.Rows.Count == 0)
                         return;
@@ -298,6 +307,7 @@ namespace RealERPWEB.F_15_DPayReg
                     break;
                 case "grvIssued":
                     this.grvIssued.DataSource = dt;
+                   
                     this.grvIssued.DataBind();
                     if (dt.Rows.Count == 0)
                         return;
