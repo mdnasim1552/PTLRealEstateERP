@@ -832,9 +832,7 @@ namespace RealERPWEB.F_17_Acc
                     this.GetLandStatus();
                     this.PanelNote.Visible = true;
                     break;
-                case "BEDateWise":
-                    this.GetBudgetVsExpensesDateWise();
-                    break;
+                
             }
 
             if (ConstantInfo.LogStatus == true)
@@ -1819,11 +1817,10 @@ namespace RealERPWEB.F_17_Acc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
+
             Session.Remove("BvsE");
             string frmdat = this.txtDatefrom.Text.Substring(0, 11);
             string todat = this.txtDateto.Text.Substring(0, 11);
-
-            // string date2 = this.txtDateto.Text.Substring(0, 11);
             string TopHead = "dfdsf";//(this.ChkTopHead.Checked == true ? "TOPHEAD" : "NOTOPHEAD");
             string actcode = this.ddlHAccProject.SelectedValue.ToString();
             string mRptGroup = Convert.ToString(this.ddlRptGroupbve.SelectedIndex);
@@ -1839,7 +1836,31 @@ namespace RealERPWEB.F_17_Acc
             {
                 return;
             }
-            //Session["BvsE"] = ds2.Tables[0];
+
+            Session["BvsE"] = ds2.Tables[0];
+            this.gvBEDateWise.DataSource = ds2.Tables[0];
+            this.gvBEDateWise.DataBind();
+            //if (mRptGroup != "12" || mRptGroup != "9" || mRptGroup != "7" || mRptGroup != "4")
+            //{
+            //    this.dgvBE.Columns[3].Visible = false;
+            //    this.dgvBE.Columns[4].Visible = false;
+            //    this.dgvBE.Columns[5].Visible = false;
+            //    this.dgvBE.Columns[7].Visible = false;
+            //    this.dgvBE.Columns[8].Visible = false;
+            //    this.dgvBE.Columns[10].Visible = false;
+            //    this.dgvBE.Columns[11].Visible = false;
+            //}
+
+            if (mRptGroup == "2")
+            {
+                this.gvBEDateWise.Columns[3].Visible = false;
+                this.gvBEDateWise.Columns[4].Visible = false;
+                this.gvBEDateWise.Columns[5].Visible = false;
+                this.gvBEDateWise.Columns[7].Visible = false;
+                this.gvBEDateWise.Columns[8].Visible = false;
+                this.gvBEDateWise.Columns[10].Visible = false;
+                this.gvBEDateWise.Columns[11].Visible = false;
+
             this.dgvBE.DataSource = ds2.Tables[0];
             this.dgvBE.DataBind();
             if (mRptGroup == "2")
@@ -1851,6 +1872,7 @@ namespace RealERPWEB.F_17_Acc
                 this.dgvBE.Columns[8].Visible = false;
                 this.dgvBE.Columns[10].Visible = false;
                 this.dgvBE.Columns[11].Visible = false;
+
             }
 
             else
@@ -1872,6 +1894,23 @@ namespace RealERPWEB.F_17_Acc
                     0.00 : ds2.Tables[0].Compute("Sum(tavamt)", ""))).ToString("#,##0;(#,##0); - ");
             Session["Report1"] = gvBEDateWise;
             ((HyperLink)this.gvBEDateWise.HeaderRow.FindControl("hlbtntbCdataExelbe")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                this.dgvBE.Columns[3].Visible = true;
+                this.dgvBE.Columns[4].Visible = true;
+                this.dgvBE.Columns[5].Visible = true;
+                this.dgvBE.Columns[7].Visible = true;
+                this.dgvBE.Columns[8].Visible = true;
+                this.dgvBE.Columns[10].Visible = true;
+                this.dgvBE.Columns[11].Visible = true;
+            }
+            ((Label)this.dgvBE.FooterRow.FindControl("lblftoamt")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(closam)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(closam)", ""))).ToString("#,##0;(#,##0); - ");
+            ((Label)this.dgvBE.FooterRow.FindControl("lblfbgdam")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(bgdam)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(bgdam)", ""))).ToString("#,##0;(#,##0); - ");
+            ((Label)this.dgvBE.FooterRow.FindControl("lblftAvAmt")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(tavamt)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(tavamt)", ""))).ToString("#,##0;(#,##0); - ");
+            Session["Report1"] = dgvBE;
+            ((HyperLink)this.dgvBE.HeaderRow.FindControl("hlbtntbCdataExelbe")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 
