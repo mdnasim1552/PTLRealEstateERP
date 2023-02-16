@@ -446,7 +446,7 @@ namespace RealERPWEB.F_17_Acc
                     }
 
 
-                    this.txtdate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["settlemtndat"]).ToString("dd-MMM-yyyy");
+                    this.txtdate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["settlemntdat"]).ToString("dd-MMM-yyyy");
                     this.txtrefdesc.Text = ds1.Tables[2].Rows[0]["refdesc"].ToString();
                     this.txtrefno.Text = ds1.Tables[2].Rows[0]["refno"].ToString();
                     this.txtdate.Enabled = false;

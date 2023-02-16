@@ -167,6 +167,13 @@
                         var data = JSON.parse(response.d);
                         var data1 = data.TBLTAB101;
                         var data2 = data.TBLTAB102;
+
+                        data1[1].pmargin
+                        var marcolor = data1[1].pmargin > 0 ? "#009999" : "#FF0000";
+                        var cashflowcolor = data1[1].cashflow > 0 ? "#009999" : "#FF0000";
+                       
+
+
                         console.log(data2);
                         $("#<%=this.lblvalstartdate.ClientID%>").html(data2[0]);
                         $("#<%=this.lblvalconsarea.ClientID%>").html(data2[1]);
@@ -326,17 +333,19 @@
 
                                         },
 
+                                       
+
                                         {
                                             "name": "P.Margin",
                                             "y": data1[1].pmargin,
-                                            "color": '#009999'
+                                            "color": marcolor
 
                                         },
 
                                          {
                                             "name": "Cash Flow",
                                             "y": data1[1].cashflow,
-                                            "color": '#009999'
+                                             "color": cashflowcolor
 
                                         }
                                         //{
