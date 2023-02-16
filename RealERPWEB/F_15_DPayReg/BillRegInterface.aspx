@@ -1401,7 +1401,7 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Approved By">
+                                                    <asp:TemplateField HeaderText="Approved By" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbgvusrdesig" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrdesig")) %>'
