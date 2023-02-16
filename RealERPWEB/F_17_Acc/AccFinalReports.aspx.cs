@@ -780,6 +780,10 @@ namespace RealERPWEB.F_17_Acc
                     this.GetBudgetVsExpenses();
                     break;
 
+                case "BEDateWise":
+                    this.GetBudgetVsExpensesDateWise();
+                    break;
+
                 case "SPC":
                     this.GetSpcDesc();
                     break;
@@ -1724,6 +1728,61 @@ namespace RealERPWEB.F_17_Acc
             //}
 
             if (mRptGroup == "2" )
+            {
+                this.dgvBE.Columns[3].Visible = false;
+                this.dgvBE.Columns[4].Visible = false;
+                this.dgvBE.Columns[5].Visible = false;
+                this.dgvBE.Columns[7].Visible = false;
+                this.dgvBE.Columns[8].Visible = false;
+                this.dgvBE.Columns[10].Visible = false;
+                this.dgvBE.Columns[11].Visible = false;
+            }
+
+            else
+            {
+                this.dgvBE.Columns[3].Visible = true;
+                this.dgvBE.Columns[4].Visible = true;
+                this.dgvBE.Columns[5].Visible = true;
+                this.dgvBE.Columns[7].Visible = true;
+                this.dgvBE.Columns[8].Visible = true;
+                this.dgvBE.Columns[10].Visible = true;
+                this.dgvBE.Columns[11].Visible = true;
+            }
+            ((Label)this.dgvBE.FooterRow.FindControl("lblftoamt")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(closam)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(closam)", ""))).ToString("#,##0;(#,##0); - ");
+            ((Label)this.dgvBE.FooterRow.FindControl("lblfbgdam")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(bgdam)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(bgdam)", ""))).ToString("#,##0;(#,##0); - ");
+            ((Label)this.dgvBE.FooterRow.FindControl("lblftAvAmt")).Text = Convert.ToDouble((Convert.IsDBNull(ds2.Tables[0].Compute("Sum(tavamt)", "")) ?
+                    0.00 : ds2.Tables[0].Compute("Sum(tavamt)", ""))).ToString("#,##0;(#,##0); - ");
+            Session["Report1"] = dgvBE;
+            ((HyperLink)this.dgvBE.HeaderRow.FindControl("hlbtntbCdataExelbe")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+        }
+
+        protected void GetBudgetVsExpensesDateWise()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            //Session.Remove("BvsE");
+            string date1 = this.txtDatefrom.Text.Substring(0, 11);
+            string date2 = this.txtDateto.Text.Substring(0, 11);
+            string TopHead = "dfdsf";//(this.ChkTopHead.Checked == true ? "TOPHEAD" : "NOTOPHEAD");
+            string actcode = this.ddlHAccProject.SelectedValue.ToString();
+            string mRptGroup = Convert.ToString(this.ddlRptGroupbve.SelectedIndex);
+            mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
+
+            //string Calltype = this.GetComCallTypeBVsExpense();
+            DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_BUDGETVSEX_PROJECT", "RPTBUDGETVSEXPENSESACTUALDATEWISE",
+                         date1, date2, TopHead, actcode, mRptGroup, "", "", "", "");
+            if (ds2 == null)
+                return;
+            if (ds2.Tables[0].Rows.Count == 0)
+            {
+                return;
+            }
+            //Session["BvsE"] = ds2.Tables[0];
+            this.dgvBE.DataSource = ds2.Tables[0];
+            this.dgvBE.DataBind();
+            if (mRptGroup == "2")
             {
                 this.dgvBE.Columns[3].Visible = false;
                 this.dgvBE.Columns[4].Visible = false;
