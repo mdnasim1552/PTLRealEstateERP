@@ -812,11 +812,7 @@ namespace RealERPWEB.F_17_Acc
                 case "BE":
                     this.GetBudgetVsExpenses();
                     break;
-
-                case "BEDateWise":
-                    this.GetBudgetVsExpensesDateWise();
-                    break;
-
+        
                 case "SPC":
                     this.GetSpcDesc();
                     break;

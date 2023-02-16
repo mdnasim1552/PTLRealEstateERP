@@ -612,7 +612,7 @@ namespace RealERPWEB.F_22_Sal
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "TRANSSTSUMMARY", fromdate, todate, pactcode, "", "", "", "", "", "");
-            DataTable dt =(DataTable) ds1.Tables[0];
+            DataTable dt = (DataTable)ds1.Tables[0];
 
             string rpthead = "Transaction Summary";
             if (dt == null)
@@ -620,7 +620,7 @@ namespace RealERPWEB.F_22_Sal
             //Getting Report Column Value
             DataTable dt1 = ds1.Tables[1];
             string coldesc = "";
-            
+
             var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptTransactionSummary>();
 
             LocalReport Rpt1 = new LocalReport();
@@ -691,7 +691,7 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("cl30", coldesc));
                 if (i + 1 == 31)
                     Rpt1.SetParameters(new ReportParameter("cl31", coldesc));
-                if (i+1 == 32)
+                if (i + 1 == 32)
                     Rpt1.SetParameters(new ReportParameter("cl32", coldesc));
                 if (i + 1 == 33)
                     Rpt1.SetParameters(new ReportParameter("cl33", coldesc));
@@ -702,13 +702,14 @@ namespace RealERPWEB.F_22_Sal
 
             Rpt1.SetParameters(new ReportParameter("comname", comnam));
             Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
-            Rpt1.SetParameters(new ReportParameter("txtdate", "Date:  " + fromdate + " To " + todate ));
+            Rpt1.SetParameters(new ReportParameter("txtdate", "Date:  " + fromdate + " To " + todate));
             //Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
 
 
             /*
@@ -1777,8 +1778,8 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvTransSum.FooterRow.FindControl("lgvFamt33")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt33)", "")) ?
                             0 : dt1.Compute("sum(amt33)", ""))).ToString("#,##0;(#,##0); ");
 
-                    ((Label)this.gvTransSum.FooterRow.FindControl("lgvFamt34")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt34)", "")) ?
-                            0 : dt1.Compute("sum(amt34)", ""))).ToString("#,##0;(#,##0); ");
+                    //((Label)this.gvTransSum.FooterRow.FindControl("lgvFamt34")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt34)", "")) ?
+                    //        0 : dt1.Compute("sum(amt34)", ""))).ToString("#,##0;(#,##0); ");
 
                     ((Label)this.gvTransSum.FooterRow.FindControl("lgvFnetamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(netamt)", "")) ?
                                0 : dt1.Compute("sum(netamt)", ""))).ToString("#,##0;(#,##0); ");
