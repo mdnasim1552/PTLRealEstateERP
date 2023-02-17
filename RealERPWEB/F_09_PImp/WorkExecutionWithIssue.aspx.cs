@@ -14,6 +14,7 @@ namespace RealERPWEB.F_09_PImp
     public partial class WorkExecutionWithIssue : System.Web.UI.Page
     {
         ProcessAccess purData = new ProcessAccess();
+        private bool isBudget = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -74,10 +75,10 @@ namespace RealERPWEB.F_09_PImp
             {
                 //OK Click
                 ddlProject.Enabled = false;
-               
+
                 GetCategory();
                 GetItem();
-                GetDivision();               
+                GetDivision();
                 GetWENIssueNo();
                 GridOne_DataBind();
                 pnl1.Visible = true;
@@ -152,7 +153,7 @@ namespace RealERPWEB.F_09_PImp
         {
             if (ddlItem.SelectedValue == "")
             {
-               
+
             }
             else
             {
@@ -166,7 +167,7 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlDivision.DataSource = dt;
                 this.ddlDivision.DataBind();
             }
-            
+
         }
         private void GetWENIssueNo()
         {
@@ -214,15 +215,20 @@ namespace RealERPWEB.F_09_PImp
 
                 if (balqty < txtwrkqty)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    isBudget = false;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
                     return;
                 }
-                dt.Rows[TblRowIndex]["wrkqty"] = txtwrkqty;
+                else
+                {
+                    isBudget = true;
+                }
+                
+               dt.Rows[TblRowIndex]["wrkqty"] = txtwrkqty;
 
             }
             Session["sessionforgrid"] = dt;
-
+           
         }
         protected void btnSelectOne_Click(object sender, EventArgs e)
         {
@@ -337,7 +343,14 @@ namespace RealERPWEB.F_09_PImp
 
 
         }
-
+        private void GetSpecification()
+        {
+            string comcod = this.GetComCode();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+            string date = Convert.ToDateTime(txtEntryDate.Text).ToString("dd-MMM-yyyy");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETSPECIFICATION", pactcode, date, "", "", "", "", "", "", "");
+            ViewState["specification"] = ds1.Tables[0];
+        }
         private void CreateTable()
         {
             DataTable tblt01 = new DataTable();
@@ -346,14 +359,18 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("isirdesc", Type.GetType("System.String"));
             tblt01.Columns.Add("rsircode", Type.GetType("System.String"));
             tblt01.Columns.Add("rsirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
             tblt01.Columns.Add("flrcod", Type.GetType("System.String"));
             tblt01.Columns.Add("flrdesc", Type.GetType("System.String"));
-            tblt01.Columns.Add("rstdqty", Type.GetType("System.String"));
-            tblt01.Columns.Add("Ratio", Type.GetType("System.Double"));
-            tblt01.Columns.Add("isuqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("wrkunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("rstdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("stdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("spcfcod", Type.GetType("System.String"));
-            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
-            tblt01.Columns.Add("balqty", Type.GetType("System.Double"));
+
             tblt01.Columns.Add("useoflocation", Type.GetType("System.String"));
             tblt01.Columns.Add("remarks", Type.GetType("System.String"));
             ViewState["materialexefinal"] = tblt01;
@@ -366,17 +383,16 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("isirdesc", Type.GetType("System.String"));
             tblt01.Columns.Add("rsircode", Type.GetType("System.String"));
             tblt01.Columns.Add("rsirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
             tblt01.Columns.Add("flrcod", Type.GetType("System.String"));
             tblt01.Columns.Add("flrdesc", Type.GetType("System.String"));
-            tblt01.Columns.Add("rstdqty", Type.GetType("System.String"));
-            tblt01.Columns.Add("Ratio", Type.GetType("System.Double"));
-            tblt01.Columns.Add("isuqty", Type.GetType("System.Double"));
-            tblt01.Columns.Add("isurat", Type.GetType("System.Double"));
-            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
-            tblt01.Columns.Add("balqty", Type.GetType("System.Double"));
-            tblt01.Columns.Add("subcontractor", Type.GetType("System.String"));
-            tblt01.Columns.Add("billno", Type.GetType("System.String"));
-            tblt01.Columns.Add("rano", Type.GetType("System.String"));
+            tblt01.Columns.Add("wrkunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("rstdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("stdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
             ViewState["labourexefinal"] = tblt01;
         }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
@@ -388,123 +404,16 @@ namespace RealERPWEB.F_09_PImp
             }
             else
             {
-                GetWorkWithIssue();
-                GetMaterials();
+                string comcod = GetComCode();
                 CreateTable();
                 CreateTableLabour();
-                GetPerMatIssu();
-                Get_Issue_Info();
+                GetSpecification();
                 LoopForSession();
 
                 DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
-                DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
-                DataView dv = dt.DefaultView;
-                DataTable dtlabour = ((DataTable)ViewState["WorkExeWithLabour"]).Copy();
-                DataView dvlabour = dtlabour.DefaultView;
-
-                DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
-                DataTable dtLabourList = (DataTable)ViewState["itemlistLabourBalance"];
-
 
                 DataTable dt1 = (DataTable)ViewState["materialexefinal"];
-
                 DataTable dtlabour1 = (DataTable)ViewState["labourexefinal"];
-
-                string strColName = "Ratio";
-                string strColName1 = "isuqty";
-                string strColName2 = "spcfcod";
-                string strColName3 = "rsirunit";
-                string strColName4 = "balqty";
-                string strColName5 = "useoflocation";
-                string strColName6 = "remarks";
-                string strColName7 = "WrkQty";
-                string strColName8 = "StdQty";
-                string strColName9 = "WrkUnit";
-                DataColumn colNew = new DataColumn(strColName, typeof(double));
-                DataColumn colNew1 = new DataColumn(strColName1, typeof(double));
-                DataColumn colNew2 = new DataColumn(strColName2, typeof(string));
-                DataColumn colNew3 = new DataColumn(strColName3, typeof(string));
-                DataColumn colNew4 = new DataColumn(strColName4, typeof(double));
-                DataColumn colNew5 = new DataColumn(strColName5, typeof(string));
-                DataColumn colNew6 = new DataColumn(strColName6, typeof(string));
-                DataColumn colNew7 = new DataColumn(strColName7, typeof(double));
-                DataColumn colNew8 = new DataColumn(strColName8, typeof(double));
-                DataColumn colNew9 = new DataColumn(strColName9, typeof(string));
-                colNew.DefaultValue = 0.00;
-                colNew1.DefaultValue = 0.00;
-                colNew2.DefaultValue = "000000000000";
-
-                if (!dt.Columns.Contains(strColName))
-                    dt.Columns.Add(colNew);
-                if (!dt.Columns.Contains(strColName1))
-                    dt.Columns.Add(colNew1);
-                if (!dt.Columns.Contains(strColName2))
-                    dt.Columns.Add(colNew2);
-                if (!dt.Columns.Contains(strColName3))
-                    dt.Columns.Add(colNew3);
-                if (!dt.Columns.Contains(strColName4))
-                    dt.Columns.Add(colNew4);
-                if (!dt.Columns.Contains(strColName5))
-                    dt.Columns.Add(colNew5);
-                if (!dt.Columns.Contains(strColName6))
-                    dt.Columns.Add(colNew6);
-                if (!dt.Columns.Contains(strColName7))
-                    dt.Columns.Add(colNew7);
-                if (!dt.Columns.Contains(strColName8))
-                    dt.Columns.Add(colNew8);
-                if (!dt.Columns.Contains(strColName9))
-                    dt.Columns.Add(colNew9);
-
-
-                string LstrColName = "Ratio";
-                string LstrColName1 = "isuqty";
-                string LstrColName2 = "lwrkqty";
-                string LstrColName3 = "rsirunit";
-                string LstrColName4 = "balqty";
-                string LstrColName5 = "isurat";
-                string LstrColName6 = "isuamt";
-                string LstrColName7 = "WrkQty";
-                string LstrColName8 = "StdQty";
-                string LstrColName9 = "WrkUnit";
-
-
-                DataColumn LcolNew = new DataColumn(LstrColName, typeof(double));
-                DataColumn LcolNew1 = new DataColumn(LstrColName1, typeof(double));
-                DataColumn LcolNew2 = new DataColumn(LstrColName2, typeof(string));
-                DataColumn LcolNew3 = new DataColumn(LstrColName3, typeof(string));
-                DataColumn LcolNew4 = new DataColumn(LstrColName4, typeof(double));
-                DataColumn LcolNew5 = new DataColumn(LstrColName5, typeof(double));
-                DataColumn LcolNew6 = new DataColumn(LstrColName6, typeof(double));
-                DataColumn LcolNew7 = new DataColumn(LstrColName7, typeof(double));
-                DataColumn LcolNew8 = new DataColumn(LstrColName8, typeof(double));
-                DataColumn LcolNew9 = new DataColumn(LstrColName9, typeof(string));
-
-                LcolNew.DefaultValue = 0.00;
-                LcolNew1.DefaultValue = 0.00;
-                LcolNew2.DefaultValue = "000000000000";
-
-                if (!dtlabour.Columns.Contains(LstrColName))
-                    dtlabour.Columns.Add(LcolNew);
-                if (!dtlabour.Columns.Contains(LstrColName1))
-                    dtlabour.Columns.Add(LcolNew1);
-                if (!dtlabour.Columns.Contains(LstrColName2))
-                    dtlabour.Columns.Add(LcolNew2);
-                if (!dtlabour.Columns.Contains(LstrColName3))
-                    dtlabour.Columns.Add(LcolNew3);
-                if (!dtlabour.Columns.Contains(LstrColName4))
-                    dtlabour.Columns.Add(LcolNew4);
-                if (!dtlabour.Columns.Contains(LstrColName5))
-                    dtlabour.Columns.Add(LcolNew5);
-                if (!dtlabour.Columns.Contains(LstrColName6))
-                    dtlabour.Columns.Add(LcolNew6);
-                if (!dtlabour.Columns.Contains(LstrColName7))
-                    dtlabour.Columns.Add(LcolNew7);
-                if (!dtlabour.Columns.Contains(LstrColName8))
-                    dtlabour.Columns.Add(LcolNew8);
-                if (!dtlabour.Columns.Contains(LstrColName9))
-                    dtlabour.Columns.Add(LcolNew9);
-
-
                 string flag = "1";
                 if (tempforgrid.Rows.Count == 0)
                 {
@@ -515,13 +424,13 @@ namespace RealERPWEB.F_09_PImp
                 {
                     for (int i = 0; i < tempforgrid.Rows.Count; i++)
                     {
-
+                        string pactcode = ddlProject.SelectedValue.ToString();
                         string isircode = tempforgrid.Rows[i]["itemcode"].ToString();
                         string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
                         double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["wrkqty"].ToString());
                         double stdqty = Convert.ToDouble(tempforgrid.Rows[i]["stdqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["stdqty"].ToString());
                         string wrkunit = tempforgrid.Rows[i]["wrkunit"].ToString();
-
+                        string EntryDate = this.txtEntryDate.Text;
                         if (wrkqty <= 0)
                         {
                             dt1.Rows.Clear();
@@ -529,60 +438,12 @@ namespace RealERPWEB.F_09_PImp
                         }
                         else
                         {
-                            dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
-                            dt = dv.ToTable();
-                            foreach (DataRow dr in dt.Rows)
-                            {
-                                string rsircode = dr["rsircode"].ToString();
-                                string specification = dr["spcfcod"].ToString();
 
-                                if (((dtMatList).Select("rsircode='" + rsircode + "'")).Length > 0)
-                                {
-                                    dr["WrkUnit"] = wrkunit;
-                                    dr["StdQty"] = stdqty;
-                                    dr["WrkQty"] = wrkqty;
-                                    dr["Ratio"] = stdqty == 0 ? 0.00 : wrkqty / stdqty;
-                                    dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
-                                    dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
-                                    dr["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
-                                    dr["useoflocation"] = "";
-                                    dr["remarks"] = "";
-                                }
-                            }
+                            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEINFOFROMWORKDETAILS", isircode, flrcode, wrkqty.ToString(), pactcode, EntryDate, "", "", "", "");
 
-                            if (dt.Select("rsirunit<>''").Length > 0)
-                            {
-                                dt1.Merge(dt.Select("rsirunit<>''").CopyToDataTable());
-                            }
+                            dt1.Merge(ds1.Tables[0]);
 
-
-                            dvlabour.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
-
-                            dtlabour = dvlabour.ToTable();
-
-                            foreach (DataRow dr in dtlabour.Rows)
-                            {
-                                string rsircode = dr["rsircode"].ToString();
-
-                                if (((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'")).Length > 0)
-                                {
-                                    dr["WrkUnit"] = wrkunit;
-                                    dr["StdQty"] = stdqty;
-                                    dr["WrkQty"] = wrkqty;
-                                    dr["Ratio"] = stdqty == 0 ? 0.00 : wrkqty / stdqty;
-                                    dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
-                                    dr["rsirunit"] = ((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'"))[0]["rsirunit"];
-                                    dr["balqty"] = (((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtLabourList).Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'"))[0]["balqty"]).ToString();
-                                    dr["isurat"] = Convert.ToDouble(dtLabourList.Select("rsircode='" + rsircode + "' and flrcod='" + flrcode + "'")[0]["isurat"]);
-                                    dr["isuamt"] = Convert.ToDouble(dr["isurat"]) * Convert.ToDouble(dr["isuqty"]);
-                                    dr["lwrkqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
-                                }
-                            }
-                            if (dtlabour.Select("rsirunit<>''").Length > 0)
-                            {
-                                dtlabour1.Merge(dtlabour.Select("rsirunit<>''").CopyToDataTable());
-                            }
-
+                            dtlabour1.Merge(ds1.Tables[1]);
                         }
                     }
                     if (flag != "0")
@@ -719,10 +580,10 @@ namespace RealERPWEB.F_09_PImp
             int row = gridrow.RowIndex;
             string specification = dropDownList.SelectedValue.ToString();
 
-            DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
+            DataTable dtMatList = (DataTable)ViewState["specification"];
             DataTable dt = (DataTable)ViewState["materialexefinal"];
             string rsircode = dt.Rows[row]["rsircode"].ToString();
-            dt.Rows[row]["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+            dt.Rows[row]["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["balqty"]).ToString();
             dt.Rows[row]["spcfcod"] = specification;
             ViewState["materialexefinal"] = dt;
             GridTwo_DataBind();
@@ -733,6 +594,7 @@ namespace RealERPWEB.F_09_PImp
         {
             DataTable dt = (DataTable)ViewState["materialexefinal"];
             int TblRowIndex;
+            isBudget = true;
             for (int i = 0; i < this.DataGridTwo.Rows.Count; i++)
             {
                 double txtwrkqty = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaQty")).Text.Trim());
@@ -742,16 +604,18 @@ namespace RealERPWEB.F_09_PImp
                 double balqty = Convert.ToDouble(dt.Rows[TblRowIndex]["balqty"]);
                 if (balqty < txtwrkqty)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    isBudget = false;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
                     return;
+                }
+                else
+                {
+                    isBudget = true;
                 }
                 dt.Rows[TblRowIndex]["isuqty"] = txtwrkqty;
                 dt.Rows[TblRowIndex]["useoflocation"] = txtuol;
                 dt.Rows[TblRowIndex]["remarks"] = txtremarks;
             }
-            //DataView dv = new DataView(dt);
-            //dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
             ViewState["materialexefinal"] = dt;
         }
 
@@ -759,28 +623,26 @@ namespace RealERPWEB.F_09_PImp
         {
             DataTable dt = (DataTable)ViewState["labourexefinal"];
             int TblRowIndex;
+            isBudget = true;
             for (int i = 0; i < this.DataGridThree.Rows.Count; i++)
             {
                 double txtwrkqty = Convert.ToDouble("0" + ((TextBox)this.DataGridThree.Rows[i].FindControl("txtAnaQty")).Text.Trim());
-                double txtwrkrate = Convert.ToDouble("0" + ((TextBox)this.DataGridThree.Rows[i].FindControl("txtAnaRate")).Text.Trim());
-                
 
-                ((TextBox)this.DataGridThree.Rows[i].FindControl("txtAnaAmount")).Text = (txtwrkqty * txtwrkrate).ToString();
                 TblRowIndex = (DataGridThree.PageIndex) * DataGridThree.PageSize + i;
                 double balqty = Convert.ToDouble(dt.Rows[TblRowIndex]["balqty"]);
                 if (balqty < txtwrkqty)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    isBudget = false;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
                     return;
                 }
+                else
+                {
+                    isBudget = true;
+                }
                 dt.Rows[TblRowIndex]["isuqty"] = txtwrkqty;
-                dt.Rows[TblRowIndex]["isurat"] = txtwrkrate;
-                dt.Rows[TblRowIndex]["isuamt"] = txtwrkqty * txtwrkrate;
-               
             }
             ViewState["labourexefinal"] = dt;
-            FooterCalculaton();
         }
 
         protected void GetPerMatIssu()
@@ -834,13 +696,13 @@ namespace RealERPWEB.F_09_PImp
                 string Flrcod = dr["flrcod"].ToString();
                 string grp = "001";
                 string Rsircode = dr["rsircode"].ToString();
-                double LWorkqty = Convert.ToDouble(dr["lwrkqty"].ToString().Trim());
+                double LWorkqty = Convert.ToDouble(dr["wrkqty"].ToString().Trim());
                 double Isuqty = Convert.ToDouble(dr["isuqty"].ToString().Trim());
-                double Isuamt = Convert.ToDouble(dr["isuamt"].ToString().Trim());      
+                double Isuamt = Convert.ToDouble(dr["isuamt"].ToString().Trim());
                 double balqty = Convert.ToDouble(dr["balqty"].ToString().Trim());
-                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLISSUEF", mISUNO, Flrcod, grp, Rsircode, date, 
+                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLISSUEF", mISUNO, Flrcod, grp, Rsircode, date,
                     LWorkqty.ToString(), Isuqty.ToString(), Isuamt.ToString(), pactcode);
-                arrResult.Add(result);               
+                arrResult.Add(result);
             }
             if (arrResult.Contains(false))
             {
@@ -863,221 +725,234 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-
-
-
+            List<bool> IsWithinBudget = new List<bool>() { false, false, false };
             LoopForSession();
-
-            DataTable tbl2 = (DataTable)Session["sessionforgrid"];
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string usrid = hst["usrid"].ToString();
-            string sessionid = hst["session"].ToString();
-            string trmid = hst["compname"].ToString();
-            string mISUNO = this.txtWINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
-                  + this.txtWINoPartOne.Text.Trim().Substring(3, 2) + this.txtWINoPartTwo.Text.Trim();
-            string mISUDAT = txtEntryDate.Text;
-            string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
-            string mISUUSRID = "";
-            string mAPPRUSRID = "";
-            string mAPPRDAT = txtEntryDate.Text;  // DateTime.Today.ToString("dd-MMM-yyyy");
-            string mISUBYDES = "";
-            string mAPPBYDES = "";
-            string mISUREF = "";
-            string mISURNAR = this.txtNarration.Text.Trim();
-            string mBILLNO = txtWRefNo.Text;
-
-            GetPerMatIssu();
-            string mMISUNO = this.txtMINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
-                  + this.txtMINoPartOne.Text.Trim().Substring(3, 2) + this.txtMINoPartTwo.Text.Trim();
-            //string mLISUNO = this.txtCurNo1.Text.Trim().Substring(0, 3) + this.txtEntryDate.Text.Trim().Substring(7, 4) + this.txtCurNo1.Text.Trim().Substring(3, 2) + this.txtCurNo2.Text.Trim();
-
-            //------Material issue
-
-            DataTable dtuser = (DataTable)ViewState["UserLog"];
-            string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-            string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-            string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-            string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string PostedByid = (this.Request.QueryString["type"] == "Entry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
-            string Posttrmid = (this.Request.QueryString["type"] == "Entry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-            string PostSession = (this.Request.QueryString["type"] == "Entry") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-            string Posteddat = (this.Request.QueryString["type"] == "Entry") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-            string EditByid = (this.Request.QueryString["type"] == "Entry") ? "" : userid;
-            string Editdat = (this.Request.QueryString["type"] == "Entry") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            IsWithinBudget.Add(isBudget);
             GridTwoLoopForSession();
-            DataTable tbl02 = (DataTable)ViewState["materialexefinal"];
-            // Duplicate 
-            string mRef = this.txtSMCR.Text;
-            string mSmcr = this.txtDMIRF.Text;
-
-            string dmirfno = this.txtDMIRF.Text;
-            if (this.Request.QueryString["type"] == "Entry")
+            IsWithinBudget.Add(isBudget);
+            GridThreeLoopForSession();
+            IsWithinBudget.Add(isBudget);
+            if (!IsWithinBudget.Contains(false))
             {
 
+                DataTable tbl2 = (DataTable)Session["sessionforgrid"];
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string usrid = hst["usrid"].ToString();
+                string sessionid = hst["session"].ToString();
+                string trmid = hst["compname"].ToString();
+                string mISUNO = this.txtWINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
+                      + this.txtWINoPartOne.Text.Trim().Substring(3, 2) + this.txtWINoPartTwo.Text.Trim();
+                string mISUDAT = txtEntryDate.Text;
+                string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
+                string mISUUSRID = "";
+                string mAPPRUSRID = "";
+                string mAPPRDAT = txtEntryDate.Text;  // DateTime.Today.ToString("dd-MMM-yyyy");
+                string mISUBYDES = "";
+                string mAPPBYDES = "";
+                string mISUREF = "";
+                string mISURNAR = this.txtNarration.Text.Trim();
+                string mBILLNO = txtWRefNo.Text;
+
+                GetPerMatIssu();
+                string mMISUNO = this.txtMINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
+                      + this.txtMINoPartOne.Text.Trim().Substring(3, 2) + this.txtMINoPartTwo.Text.Trim();
+                //string mLISUNO = this.txtCurNo1.Text.Trim().Substring(0, 3) + this.txtEntryDate.Text.Trim().Substring(7, 4) + this.txtCurNo1.Text.Trim().Substring(3, 2) + this.txtCurNo2.Text.Trim();
+
+                //------Material issue
+
+                DataTable dtuser = (DataTable)ViewState["UserLog"];
+                string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
+                string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
+                string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
+                string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string PostedByid = (this.Request.QueryString["type"] == "Entry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
+                string Posttrmid = (this.Request.QueryString["type"] == "Entry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+                string PostSession = (this.Request.QueryString["type"] == "Entry") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
+                string Posteddat = (this.Request.QueryString["type"] == "Entry") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                string EditByid = (this.Request.QueryString["type"] == "Entry") ? "" : userid;
+                string Editdat = (this.Request.QueryString["type"] == "Entry") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                
+                DataTable tbl02 = (DataTable)ViewState["materialexefinal"];
+                // Duplicate 
+                string mRef = this.txtSMCR.Text;
+                string mSmcr = this.txtDMIRF.Text;
+
+                string dmirfno = this.txtDMIRF.Text;
+                if (this.Request.QueryString["type"] == "Entry")
+                {
+
+                    switch (comcod)
+                    {
+                        case "3301":
+                        case "1301":
+                            //case "3101":
+                            break;
+
+                        default:
+
+                            dr1 = tbl02.Select("balqty<isuqty");
+
+                            if (dr1.Length > 0)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Balance" + "');", true);
+                                return;
+                            }
+                            break;
+                    }
+                }
                 switch (comcod)
                 {
-                    case "3301":
-                    case "1301":
-                        //case "3101":
+                    case "3315": // assure 
+                    case "3316": // assure
+                    case "3317": // assure
+                    case "3367": // epic 
+                                 //case "3101": // epic 
+
                         break;
 
                     default:
 
-                        dr1 = tbl02.Select("balqty<isuqty");
-
-                        if (dr1.Length > 0)
+                        if (mRef.Length == 0)
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Balance" + "');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "SMCR No Should Not Be Empty" + "');", true);
                             return;
+
+                        }
+                        else if (dmirfno.Length == 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "DMIRF No Should Not Be Empty" + "');", true);
+
+                            return;
+                        }
+
+                        DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
+                        if (ds2.Tables[0].Rows.Count == 0)
+                        {
+                        }
+
+                        else
+                        {
+                            DataView dv1 = ds2.Tables[0].DefaultView;
+                            dv1.RowFilter = ("isuno <>'" + mMISUNO + "'");
+                            DataTable dt = dv1.ToTable();
+                            if (dt.Rows.Count == 0)
+                            { }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate SMCR.No" + "');", true);
+                                return;
+                            }
                         }
                         break;
                 }
-            }
-            switch (comcod)
-            {
-                case "3315": // assure 
-                case "3316": // assure
-                case "3317": // assure
-                case "3367": // epic 
-                             //case "3101": // epic 
+                GetIssueNo();
+                string mWENISUNO = this.txtWINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
+                     + this.txtWINoPartOne.Text.Trim().Substring(3, 2) + this.txtWINoPartTwo.Text.Trim();
+                //--------------------------------------Update LISUNO---------------------------
+                bool result = UpdateLabourData(mWENISUNO);
 
-                    break;
+                //--------------------------------------Update Pur Material Issue-------------------------
 
-                default:
-
-                    if (mRef.Length == 0)
+                if (result)
+                {
+                    if (tbl02.Rows.Count > 0)
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "SMCR No Should Not Be Empty" + "');", true);
-                        return;
+                        result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEB",
+                                mMISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, mWENISUNO, "");
 
-                    }
-                    else if (dmirfno.Length == 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "DMIRF No Should Not Be Empty" + "');", true);
-
-                        return;
-                    }
-
-                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                    {
-                    }
-
-                    else
-                    {
-                        DataView dv1 = ds2.Tables[0].DefaultView;
-                        dv1.RowFilter = ("isuno <>'" + mMISUNO + "'");
-                        DataTable dt = dv1.ToTable();
-                        if (dt.Rows.Count == 0)
-                        { }
-                        else
+                        if (!result)
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate SMCR.No" + "');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                             return;
                         }
-                    }
-                    break;
-            }
-            GetIssueNo();
-            string mWENISUNO = this.txtWINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
-                 + this.txtWINoPartOne.Text.Trim().Substring(3, 2) + this.txtWINoPartTwo.Text.Trim();
-            //--------------------------------------Update LISUNO---------------------------
-            bool result = UpdateLabourData(mWENISUNO);
+                        for (int i = 0; i < tbl02.Rows.Count; i++)
+                        {
+                            string Rsircode = tbl02.Rows[i]["rsircode"].ToString();
+                            string Spcfcod = tbl02.Rows[i]["spcfcod"].ToString();
+                            double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
+                            string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
+                            string txtremarks = tbl02.Rows[i]["remarks"].ToString();
+                            string flrcod = tbl02.Rows[i]["flrcod"].ToString();
+                            if (Isuqty > 0)
+                            {
 
-            //--------------------------------------Update Pur Material Issue-------------------------
+                                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEA", mMISUNO,
+                                    Rsircode, Spcfcod, Isuqty.ToString(), txtlocation, txtremarks, flrcod, "", "", "", "", "", "", "");
+                                if (!result)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                                    return;
+                                }
+                            }
+                        }
 
-            if (result)
-            {
-                if (tbl02.Rows.Count > 0)
-                {
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEB",
-                            mMISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, mWENISUNO, "");
+                        string CurDate1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        DataSet dsx = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mMISUNO, "", "", "", "", "", "", "", "");
+                        if (dsx == null)
+                            return;
+                        this.XmlDataInsert(mMISUNO, dsx);
 
-                    if (!result)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                        return;
-                    }
-                    for (int i = 0; i < tbl02.Rows.Count; i++)
-                    {
-                        string Rsircode = tbl02.Rows[i]["rsircode"].ToString();
-                        string Spcfcod = tbl02.Rows[i]["spcfcod"].ToString();
-                        double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
-                        string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
-                        string txtremarks = tbl02.Rows[i]["remarks"].ToString();
-                        string flrcod = tbl02.Rows[i]["flrcod"].ToString();
-                        if (Isuqty > 0)
+
+
+                        //---------------------------------------End of Pur Material Issue--------------------------
+
+
+                        result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEB",
+                                         mISUNO, mISUDAT, mPACTCODE, "", mISUUSRID, mAPPRUSRID, mAPPRDAT, mISUBYDES, mAPPBYDES, mISUREF, mISURNAR, mBILLNO, usrid, sessionid, trmid, "", "", "", "", "");
+                        if (!result)
                         {
 
-                            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEA", mMISUNO,
-                                Rsircode, Spcfcod, Isuqty.ToString(), txtlocation, txtremarks, flrcod, "", "", "", "", "", "", "");
-                            if (!result)
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                            return;
+                        }
+
+
+
+                        for (int i = 0; i < tbl2.Rows.Count; i++)
+                        {
+                            string fisircode = tbl2.Rows[i]["itemcode"].ToString();
+                            double wrkqty = Convert.ToDouble(tbl2.Rows[i]["wrkqty"].ToString());
+                            string floorcode = tbl2.Rows[i]["flrcod"].ToString();
+                            if (wrkqty > 0)
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                                return;
+                                result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEA", mISUNO, floorcode, fisircode, wrkqty.ToString(),
+                                            "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                                if (!result)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                                    return;
+                                }
                             }
+                        }
+
+
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
+                        InitPage();
+                        if (ConstantInfo.LogStatus == true)
+                        {
+                            string eventtype = "Materials Issue Information";
+                            string eventdesc = "Update New QTY";
+                            string eventdesc2 = "Bill No : " + this.txtWRefNo.Text.Trim() + " - " + mISUNO;
+                            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                         }
                     }
 
-                    string CurDate1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    DataSet dsx = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mMISUNO, "", "", "", "", "", "", "", "");
-                    if (dsx == null)
-                        return;
-                    this.XmlDataInsert(mMISUNO, dsx);
-
-
-
-                    //---------------------------------------End of Pur Material Issue--------------------------
-
-
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEB",
-                                     mISUNO, mISUDAT, mPACTCODE, "", mISUUSRID, mAPPRUSRID, mAPPRDAT, mISUBYDES, mAPPBYDES, mISUREF, mISURNAR, mBILLNO, usrid, sessionid, trmid, "", "", "", "", "");
-                    if (!result)
-                    {
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                        return;
-                    }
-
-
-
-                    for (int i = 0; i < tbl2.Rows.Count; i++)
-                    {
-                        string fisircode = tbl2.Rows[i]["itemcode"].ToString();
-                        double wrkqty = Convert.ToDouble(tbl2.Rows[i]["wrkqty"].ToString());
-                        string floorcode = tbl2.Rows[i]["flrcod"].ToString();
-                        if (wrkqty > 0)
-                        {
-                            result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEA", mISUNO, floorcode, fisircode, wrkqty.ToString(),
-                                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            if (!result)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                                return;
-                            }
-                        }
-                    }
-
-
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
-                    InitPage();
-                    if (ConstantInfo.LogStatus == true)
-                    {
-                        string eventtype = "Materials Issue Information";
-                        string eventdesc = "Update New QTY";
-                        string eventdesc2 = "Bill No : " + this.txtWRefNo.Text.Trim() + " - " + mISUNO;
-                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                    }
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within Budget" + "');", true);
 
             }
+
+
         }
         private bool XmlDataInsert(string Reqno, DataSet ds)
         {
@@ -1193,28 +1068,12 @@ namespace RealERPWEB.F_09_PImp
             row["WrkUnit"] = WrkUnit;
             dt.Rows.Add(row);
 
-            //DataView dv = new DataView(dt);
-            //dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
+
             ViewState["materialexefinal"] = dt;
             GridTwo_DataBind();
             GridTwoLoopForSession();
         }
 
-        protected void lnkTotal_Click(object sender, EventArgs e)
-        {
-            GridThreeLoopForSession();
-            //GridThree_DataBind();
-            FooterCalculaton();
-        }
-        private void FooterCalculaton()
-        {
-            DataTable dt = (DataTable)ViewState["labourexefinal"];
-            if (dt.Rows.Count == 0)
-                return;
-
-            ((Label)this.DataGridThree.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-
-        }
 
     }
 }
