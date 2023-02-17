@@ -485,6 +485,7 @@ namespace RealERPWEB.F_09_PImp
                 DataTable dt1 = (DataTable)ViewState["labourexefinal"];
                 DataView dv = new DataView(dt1);
                 dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
+                ViewState["labourexefinal"]= dv.ToTable();
                 DataGridThree.DataSource = HiddenTableTwo(dv.ToTable());
                 DataGridThree.DataBind();
                 //FooterCalculaton();
@@ -693,15 +694,16 @@ namespace RealERPWEB.F_09_PImp
             List<bool> arrResult = new List<bool>();
             foreach (DataRow dr in tbl2.Rows)
             {
+                string ISircode = dr["isircode"].ToString();
                 string Flrcod = dr["flrcod"].ToString();
                 string grp = "001";
                 string Rsircode = dr["rsircode"].ToString();
                 double LWorkqty = Convert.ToDouble(dr["wrkqty"].ToString().Trim());
                 double Isuqty = Convert.ToDouble(dr["isuqty"].ToString().Trim());
-                double Isuamt = Convert.ToDouble(dr["isuamt"].ToString().Trim());
+                double Isuamt = Convert.ToDouble("0.00");
                 double balqty = Convert.ToDouble(dr["balqty"].ToString().Trim());
                 bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLISSUEF", mISUNO, Flrcod, grp, Rsircode, date,
-                    LWorkqty.ToString(), Isuqty.ToString(), Isuamt.ToString(), pactcode);
+                    LWorkqty.ToString(), Isuqty.ToString(), Isuamt.ToString(), pactcode, ISircode);
                 arrResult.Add(result);
             }
             if (arrResult.Contains(false))
@@ -725,7 +727,7 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-            List<bool> IsWithinBudget = new List<bool>() { false, false, false };
+            List<bool> IsWithinBudget = new List<bool>();
             LoopForSession();
             IsWithinBudget.Add(isBudget);
             GridTwoLoopForSession();
@@ -760,7 +762,7 @@ namespace RealERPWEB.F_09_PImp
                 //string mLISUNO = this.txtCurNo1.Text.Trim().Substring(0, 3) + this.txtEntryDate.Text.Trim().Substring(7, 4) + this.txtCurNo1.Text.Trim().Substring(3, 2) + this.txtCurNo2.Text.Trim();
 
                 //------Material issue
-
+                Get_Issue_Info();
                 DataTable dtuser = (DataTable)ViewState["UserLog"];
                 string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
                 string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
