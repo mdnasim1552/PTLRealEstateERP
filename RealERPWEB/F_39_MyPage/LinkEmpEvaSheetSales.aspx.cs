@@ -16,7 +16,7 @@ using RealERPLIB;
 //using KPIRDLC;
 using RealEntity;
 using RealEntity.C_47_Kpi;
-using Microsoft.Reporting.WebForms;
+using Microsoft.Reporting.WinForms;
 using System.Reflection;
 using System.IO;
 using FastMember;
