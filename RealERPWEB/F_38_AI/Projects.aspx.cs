@@ -437,6 +437,7 @@ namespace RealERPWEB.F_38_AI
                         this.txtquantity.Focus();
                         this.txtquantity.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
 
                     }
                     else if ((roletype == "95002" && doneannotor <= assignqty) || (roletype == "95002" && doneannotor <= validtotal))
@@ -445,6 +446,7 @@ namespace RealERPWEB.F_38_AI
                         this.txtquantity.Focus();
                         this.txtquantity.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
                     }
                     else if ((roletype == "95003" && doneqc <= assignqty) || (roletype == "95003" && doneqc <= validtotal))
                     {
@@ -452,53 +454,11 @@ namespace RealERPWEB.F_38_AI
                         this.txtquantity.Focus();
                         this.txtquantity.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
-                    }
-                    else
-                    {
-
-                        DataTable tblt01 = (DataTable)ViewState["tblt01"];
-                        //DataTable tbl1 = (DataTable)ViewState["tblReq"];
-                        string empid = this.ddlassignmember.SelectedValue.ToString();
-                        string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                        //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
-                        //if (dr2.Length == 0)
-                        //{
-
-                        DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
-                        if (dr3.Length == 0)
-                        {
-                            DataRow dr1 = tblt01.NewRow();
-                            DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                            dr1["batchid"] = this.hiddnbatchID.Value.ToString();
-                            dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
-                            dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
-                            dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
-                            dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
-                            dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
-                            dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
-                            dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
-                            dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
-                            dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                            dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                            dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
-                            tblt01.Rows.Add(dr1);
-                            this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
-                        }
-                        else
-                        {
-                            string msg = "Alredy Exists Annotr ID";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
-                        }
-
-
-                        ViewState["tblt01"] = tblt01;
-                        this.VirtualGrid_DataBind();
+                        return;
                     }
                 }
                 else
                 {
-
                     double fqa1 = 0;
                     if (totalassign < annotorassign)
                     {
@@ -514,53 +474,50 @@ namespace RealERPWEB.F_38_AI
                         this.txtquantity.Focus();
                         this.txtquantity.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
                     }
-                    else
-                    {
-                        DataTable tblt01 = (DataTable)ViewState["tblt01"];
-                        //DataTable tbl1 = (DataTable)ViewState["tblReq"];
-                        string empid = this.ddlassignmember.SelectedValue.ToString();
-                        string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                        //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
-                        //if (dr2.Length == 0)
-                        //{
+                }
+                DataTable tblt01 = (DataTable)ViewState["tblt01"];
+                //DataTable tbl1 = (DataTable)ViewState["tblReq"];
+                string empid = this.ddlassignmember.SelectedValue.ToString();
+                string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
+                //if (dr2.Length == 0)
+                //{
 
-                        DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
-                        if (dr3.Length == 0)
-                        {
-                            DataRow dr1 = tblt01.NewRow();
-                            DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                            dr1["batchid"] = this.hiddnbatchID.Value.ToString();
-                            dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
-                            dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
-                            dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
-                            dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
-                            dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
-                            dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
-                            dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
-                            dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
-                            dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                            dr1["isoutsrc"] = this.checkfreelancer.Checked;
-                            dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
-                            tblt01.Rows.Add(dr1);
-                            this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
-                        }
-                        else
-                        {
-                            string msg = "Alredy Exists Annotr ID";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
+                if (dr3.Length == 0)
+                {
+                    DataRow dr1 = tblt01.NewRow();
+                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                    dr1["batchid"] = this.hiddnbatchID.Value.ToString();
+                    dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
+                    dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
+                    dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
+                    dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
+                    dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
+                    dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
+                    dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
+                    dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
+                    dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
+                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                    dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
+                    tblt01.Rows.Add(dr1);
+                    this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
+                }
+                else
+                {
+                    string msg = "Alredy Exists Annotr ID";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                        }
-
-
-                        ViewState["tblt01"] = tblt01;
-                        this.VirtualGrid_DataBind();
-                    }
                 }
 
 
+                ViewState["tblt01"] = tblt01;
+                this.VirtualGrid_DataBind();
 
             }
+
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
@@ -984,12 +941,14 @@ namespace RealERPWEB.F_38_AI
             bool check = this.checkinoutsourcing.Checked;
             if (!check)
             {
+                this.checkfreelancer.Enabled = true;
                 this.perrate.Visible = false;
                 this.textrate.Text = "";
 
             }
             else
             {
+                this.checkfreelancer.Enabled = false;
                 this.perrate.Visible = true;
                 string rate = "80";
                 this.textrate.Text = rate;
@@ -1001,6 +960,7 @@ namespace RealERPWEB.F_38_AI
             bool ischeck = this.checkfreelancer.Checked;
             if (!ischeck)
             {
+                this.checkinoutsourcing.Enabled = true;
                 this.GetEmployeeName(ischeck);
                 this.GetProjectInformation(ischeck);
                 this.GetAnnotationList(ischeck);
@@ -1010,7 +970,7 @@ namespace RealERPWEB.F_38_AI
             }
             else
             {
-
+                this.checkinoutsourcing.Enabled = false;
                 this.GetEmployeeName(ischeck);
                 this.GetProjectInformation(ischeck);
                 this.GetAnnotationList(ischeck);

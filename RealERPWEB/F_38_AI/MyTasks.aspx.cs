@@ -64,6 +64,8 @@ namespace RealERPWEB.F_38_AI
             if (emp.Length > 0 && qtype == "MGT")
             {
                 this.ddemplist.SelectedValue = emp;
+                
+                
 
             }
             else
