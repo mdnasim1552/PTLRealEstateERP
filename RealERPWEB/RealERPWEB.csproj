@@ -309,7 +309,7 @@
       <HintPath>..\..\bin\Microsoft.VisualStudio.TextManager.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\project(old)oooooooooooooo\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
