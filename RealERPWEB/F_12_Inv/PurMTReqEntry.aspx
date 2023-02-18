@@ -231,12 +231,33 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkupdate" runat="server" Font-Bold="True"
+                                                CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
+
+                                        </FooterTemplate>
                                         <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="right"
                                             VerticalAlign="Middle" Font-Size="12px" />
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
-
+                                     <asp:TemplateField HeaderText="Received Qty">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtreceivedqty" runat="server" BackColor="Transparent" 
+                                                Style="text-align: right; font-size: 11px;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "receivedqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" ></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Actual Stock">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtactualstock" runat="server" BackColor="Transparent" 
+                                                Style="text-align: right; font-size: 11px;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actualstock")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" ></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtqty" runat="server" BackColor="Transparent" BorderStyle="Solid"
@@ -244,13 +265,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
                                         </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lnkupdate" runat="server" Font-Bold="True"
-                                                CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
-
-                                        </FooterTemplate>
+                                        
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate" runat="server" BackColor="Transparent" BorderStyle="Solid"
@@ -260,6 +278,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                     
                                     <asp:TemplateField HeaderText="Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFAmount" runat="server" Style="text-align: right"

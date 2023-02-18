@@ -79,7 +79,7 @@
             </div>
 
             <div class="card mt-3 mb-1">
-                <div class="card-header well p-1">
+                <div class="card-body p-1">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -104,7 +104,30 @@
 
             <div class="card card-fluid mt-0" style="min-height: 550px;">
                 <div class="card-body">
-                    <div class="row ">
+                       <asp:MultiView ID="MultiView1" runat="server">
+                            <asp:View ID="View1" runat="server">
+                    
+                                </asp:View>
+                           <asp:View ID="View2" runat="server">
+                               <div class="row" id="divdate" runat="server" visible="false" >
+                        <div class="col-sm-1 col-md-1  col-lg-1">                           
+                            <asp:Label ID="lblFdate" runat="server">Date</asp:Label>
+                            <asp:TextBox ID="txtdate" runat="server" autocomplete="off" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <cc1:CalendarExtender ID="csefdate" runat="server"
+                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>                            
+                        </div>
+                        <div class="col-sm-1 col-md-1  col-lg-1"> 
+                         
+                            <asp:Label ID="lblrefno" runat="server">Ref No</asp:Label>
+                           
+                            <asp:TextBox ID="txtrefno" runat="server" autocomplete="off"  Enabled="false" CssClass="form-control form-control-sm"></asp:TextBox>                    
+                        </div>
+                        <div class="col-sm-2 col-md-2  col-lg-2">                           
+                            <asp:Label ID="lblrefdesc" runat="server">Ref Desc</asp:Label>
+                            <asp:TextBox ID="txtrefdesc" runat="server" autocomplete="off" Enabled="false" CssClass="form-control form-control-sm"></asp:TextBox>                    
+                        </div>
+                    </div>
+                    <div class="row mt-2">
                         <asp:GridView ID="gvcustsettlement" runat="server" AllowPaging="false" CssClass="table-condensed table-bordered grvContentarea" AutoGenerateColumns="False"
                             ShowFooter="True" BorderStyle="None" Width="600px">
                             
@@ -142,6 +165,8 @@
                             <RowStyle CssClass="grvRowsNew" />
                         </asp:GridView>
                     </div>
+                               </asp:View>
+                                 </asp:MultiView>
                 </div>
             </div>
         </ContentTemplate>

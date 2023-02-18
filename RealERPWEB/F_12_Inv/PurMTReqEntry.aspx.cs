@@ -285,16 +285,20 @@ namespace RealERPWEB.F_12_Inv
 
         protected void Load_Project_Res_Combo()
         {
-
+            string comcod = this.GetCompCode();
             Session.Remove("projectreslist");
             Session.Remove("tblspcf");
-            string comcod = this.GetCompCode();
+          
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
-           
+            string lenght = "0"; 
+            if (comcod == "3348")
+            {
+                lenght = "1";
+            }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
             Session["tblspcf"] = ds1.Tables[1];
 
@@ -336,7 +340,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkselect_Click(object sender, EventArgs e)
         {
-
+            string comcod = this.GetCompCode();
             this.SaveValue();
             string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
@@ -358,11 +362,19 @@ namespace RealERPWEB.F_12_Inv
                 drforgrid["rate"] = projectrow1[0]["rate"];
                 drforgrid["amt"] = projectrow1[0]["amt"];
                 drforgrid["balqty"] = projectrow1[0]["balqty"];
+                drforgrid["receivedqty"] = projectrow1[0]["mtrecev"];
+                drforgrid["actualstock"] = projectrow1[0]["acstock"];
 
                 dt.Rows.Add(drforgrid);
             }
             ViewState["tblmattrns"] = dt;
             this.Data_Bind();
+            if (comcod == "3367")
+            {
+                this.grvacc.Columns[6].HeaderText = "Master Quantity";                
+                this.grvacc.Columns[8].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[11].HeaderText = "Required Quantity";
+            }
 
         }
 
@@ -928,12 +940,12 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
                 case "3370":
-                    this.grvacc.Columns[9].Visible = false;
-                    this.grvacc.Columns[10].Visible = false;
+                    this.grvacc.Columns[11].Visible = false;
+                    this.grvacc.Columns[12].Visible = false;
                     break;
                 default:
-                    this.grvacc.Columns[9].Visible = true;
-                    this.grvacc.Columns[10].Visible = true;
+                    this.grvacc.Columns[11].Visible = true;
+                    this.grvacc.Columns[12].Visible = true;
                     break;
             }
 

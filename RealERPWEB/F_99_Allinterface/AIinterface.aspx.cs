@@ -33,7 +33,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DateTime startDate = DateTime.Now;
                 DateTime enddate = DateTime.Now.AddDays(1);
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                if( startDate < enddate)
+                if (startDate < enddate)
                 {
                     this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
 
@@ -53,7 +53,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ////this.getAllData();
                 this.GetAIInterface();
-             
+
                 //this.GetBatchAssingList();
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
@@ -99,9 +99,9 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSERCHPRJNAME", "", "", "", "", "", "");
             if (ds == null)
                 return;
-            this.ddlprjsearch.DataTextField ="infdesc";
-            this.ddlprjsearch.DataValueField ="infcod";
-            this.ddlprjsearch.DataSource =ds.Tables[0];
+            this.ddlprjsearch.DataTextField = "infdesc";
+            this.ddlprjsearch.DataValueField = "infcod";
+            this.ddlprjsearch.DataSource = ds.Tables[0];
             this.ddlprjsearch.DataBind();
 
 
@@ -127,7 +127,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAIInterface()
         {
             string comcod = this.GetCompCode();
-            string pactcode = this.ddlprjsearch.SelectedValue.ToString()=="000000000000" ? "16%": this.ddlprjsearch.SelectedValue.ToString()+"%";
+            string pactcode = this.ddlprjsearch.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlprjsearch.SelectedValue.ToString() + "%";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", pactcode, "", "", "", "", "");
             if (ds == null)
                 return;
@@ -167,16 +167,16 @@ namespace RealERPWEB.F_99_Allinterface
         protected void prjSearch_Click(object sender, EventArgs e)
         {
             this.GetAIInterface();
-           
+
         }
         private void data_Bind()
         {
             DataTable tbl1 = (DataTable)Session["tblprojectlist"];
-          
 
-            this.gvInterface.DataSource = tbl1;                                                                                                                                                                                                                                                                                                                                                                                                               
+
+            this.gvInterface.DataSource = tbl1;
             this.gvInterface.DataBind();
-           
+
 
         }
 
@@ -221,11 +221,11 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAssignTask()
         {
             string comcod = this.GetCompCode();
-            string title = this.ddlsearchtitle.SelectedValue.ToString() =="000000000000" ? "16%" : this.ddlsearchtitle.SelectedValue.ToString() + "%";
+            string title = this.ddlsearchtitle.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlsearchtitle.SelectedValue.ToString() + "%";
             DataSet ds01 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETALLASSIGNBATCH", title, "", "", "", "", "");
             if (ds01 == null)
                 return;
-            
+
             this.gvAssingJob.DataSource = ds01;
             this.gvAssingJob.DataBind();
         }
@@ -241,7 +241,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;                   
+                    this.pnelQC.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -258,7 +258,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = true;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;                   
+                    this.pnelQC.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -273,7 +273,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = true;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;                   
+                    this.pnelQC.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -288,7 +288,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = true;
-                    this.pnelQC.Visible = false;                   
+                    this.pnelQC.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -303,7 +303,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = true;                   
+                    this.pnelQC.Visible = true;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -319,7 +319,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //    this.pnlAssign.Visible = false;
                 //    this.pnlProduction.Visible = false;
                 //    this.pnelQC.Visible = false;
-                    
+
                 //    this.penlInvoice.Visible = false;
                 //    this.pnelCollection.Visible = false;
                 //    this.pnelQA.Visible = false;
@@ -351,7 +351,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
-                  
+
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -365,13 +365,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
-                    this.pnelQC.Visible = false;                  
+                    this.pnelQC.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = true;
                     this.Pneldelivery.Visible = false;
-                    
+
                     this.TasktState.Items[7].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "8":
@@ -380,7 +380,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
-                  
+
                     this.penlInvoice.Visible = true;
                     this.pnelCollection.Visible = false;
                     this.pnelQA.Visible = false;
@@ -395,7 +395,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
-                  
+
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = true;
                     this.pnelQA.Visible = false;
@@ -417,7 +417,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
 
-            string batchid =this.ddlsearchBatchlist.SelectedValue.ToString()=="000000000000"? "16%" : this.ddlsearchBatchlist.SelectedValue.ToString()+"%";
+            string batchid = this.ddlsearchBatchlist.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlsearchBatchlist.SelectedValue.ToString() + "%";
             DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", batchid, "", "", "", "", "", "");
             if (dt == null)
                 return;
@@ -428,10 +428,10 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        private void  Getproducttion()
+        private void Getproducttion()
         {
             string comcod = this.GetCompCode();
-            string prjid = this.ddlsearchtasktitle.SelectedValue.ToString() =="000000000000" ? "16%" : this.ddlsearchtasktitle.SelectedValue.ToString() + "%";
+            string prjid = this.ddlsearchtasktitle.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlsearchtasktitle.SelectedValue.ToString() + "%";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
             if (ds == null)
                 return;
@@ -444,7 +444,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.gv_Production.DataBind();
         }
 
-       private void GetQcList()
+        private void GetQcList()
         {
             string comcod = this.GetCompCode();
             string prjidname = this.ddltastileqa1.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddltastileqa1.SelectedValue.ToString() + "%";
@@ -493,11 +493,11 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds == null)
                     return;
                 Session["tblproductioninfo"] = ds.Tables[0];
-               
+
                 DataTable dt1 = new DataTable();
                 DataView view3 = new DataView();
                 view3.Table = ds.Tables[0];
-                view3.RowFilter = "roletype='95002' and doneqty >'0' ";
+                view3.RowFilter = "roletype='95002' and  qcdoneqty<>assignqty ";
                 dt1 = view3.ToTable();
                 this.gv_AcceptReject.DataSource = dt1;
                 this.gv_AcceptReject.DataBind();
@@ -766,7 +766,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        
+
         private void gridFooterCalculation(DataTable tbl21)
         {
             if (tbl21.Rows.Count == 0)
@@ -816,7 +816,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 }
 
-                if(totalqty < validtotal)
+                if (totalqty < validtotal)
                 {
                     string msg = "Please Check Project Qty";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
@@ -875,19 +875,19 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnaddPrj_Click(object sender, EventArgs e)
         {
-            
+
             this.pnlSidebar.Visible = true;
             this.pnlProjectadd.Visible = true;
             this.pnlBatchadd.Visible = false;
-          
+
             this.GetEmployeeName();
 
             this.GetCountry();
             this.GetProjectDetails();
             this.GetCustomerList();
-          
-           // this.GetLastid();
-       
+
+            // this.GetLastid();
+
             this.LoadGrid();
             this.IsClearAddProject();
 
@@ -941,14 +941,14 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             Session["tblprojectdetails"] = dt3.Tables[0];
         }
-        private string GetLastid(string gvalue="")
+        private string GetLastid(string gvalue = "")
         {
             string sircode = "";
 
-            string comcod = this.GetCompCode();           
+            string comcod = this.GetCompCode();
 
 
-            string calltype =(gvalue== "80101") ? "GETLASTPRJCODEID":"GETLASTPRJCODESOWID";// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            string calltype = (gvalue == "80101") ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID";// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
@@ -967,7 +967,7 @@ namespace RealERPWEB.F_99_Allinterface
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
 
             return sircode;
-            
+
         }
 
         private void isFiledClear()
@@ -991,7 +991,7 @@ namespace RealERPWEB.F_99_Allinterface
         }
         private void LoadGrid(string custid = "", string value = "", string empid = "", string doneqty = "")
         {
-           
+
             string comcod = this.GetCompCode();
             string sircode = this.lblproj.Text ?? "";
 
@@ -1247,7 +1247,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     string gval = dt.Rows[i]["gval"].ToString();
                     string gcod = dt.Rows[i]["gcod"].ToString();
-                    if (gcod== "03001")
+                    if (gcod == "03001")
                     {
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
@@ -1339,7 +1339,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //}
                 //    string ordertype = "";
-                string sircode = "";                
+                string sircode = "";
                 //sircode = prjcode.Length > 0 ? prjcode :"";
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -1347,7 +1347,7 @@ namespace RealERPWEB.F_99_Allinterface
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                    if(Gcode== "03018")// order type
+                    if (Gcode == "03018")// order type
                     {
                         sircode = this.GetLastid(Gvalue);
 
@@ -1356,14 +1356,14 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
 
-                    for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
 
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-               
-                   
+
+
                     if (Gcode == "03008" || Gcode == "03009")
                     {
                         Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -1393,7 +1393,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.IsClearAddProject();
                 this.pnlProjectadd.Visible = false;
                 this.pnlSidebar.Visible = false;
-                
+
             }
             catch (Exception exp)
             {
@@ -1537,11 +1537,46 @@ namespace RealERPWEB.F_99_Allinterface
                 int index = row.RowIndex;
                 string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
                 string jobid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
+                string fromuser = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpassignuser")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvqcbalqty")).Text.ToString();
                 string assigntype = ((Label)this.gv_Production.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
+                string doneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
+                string balqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvqcbalqty")).Text.ToString();
+                string prodoneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvproqcdoneqty")).Text.ToString();
+                double prodone = Convert.ToDouble("0"+doneqty);
+                double prodonebal = Convert.ToDouble("0"+balqty);
+                double prodoneassign= Convert.ToDouble("0"+ prodoneqty);
+                string prodoneannot = "";
+                double proassgin = 0;
+                if (prodone < prodonebal)
+                {
+                    if (prodone > prodoneassign)
+                    {
+                        proassgin = prodone - prodoneassign;
+                    }
+                    else
+                    {
+                        proassgin = prodone - prodoneassign;
+                    }
+
+                    prodoneannot = Convert.ToString(proassgin);
+                }
+                else
+                {
+                    if (prodone > prodoneassign)
+                    {
+                        proassgin = prodone - prodoneassign;
+                    }
+                    else
+                    {
+                        proassgin = prodone - prodoneassign;
+                    }
+
+                    prodoneannot = Convert.ToString(proassgin);
+                }
 
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
                 if (ds1 == null)
@@ -1556,7 +1591,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
                 this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
                 this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
-                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = prodoneannot;
                 this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
                 this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
 
@@ -1566,11 +1601,12 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
 
-                this.txtquantity.Text = assignqty;
+                this.txtquantity.Text = prodoneannot;
                 this.HiddinTaskid.Value = taskid;
                 this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
                 this.lblassignjobid.Text = jobid;
+                this.lblfromuser.Text = fromuser;
                 this.ddlassigntype.SelectedValue = assigntype;
 
 
@@ -1578,7 +1614,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = false;
                 this.pnlAssginUser.Visible = true;
-                ddlUserRoleType_SelectedIndexChanged(null,null);
+                ddlUserRoleType_SelectedIndexChanged(null, null);
             }
             catch (Exception exp)
             {
@@ -1684,7 +1720,7 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
                 string prj = this.lblproprjid.Text.ToString();
-                string batch = this.lblabatchid.Text.ToString();       
+                string batch = this.lblabatchid.Text.ToString();
 
 
 
@@ -1695,7 +1731,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                if (roletype == "95001" && pedingannotor <= assignqty && pedingannotor !=0)
+                if (roletype == "95001" && pedingannotor < assignqty)
                 {
 
 
@@ -1707,7 +1743,7 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty  )
+                else if (roletype == "95002" && doneannotor < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
@@ -1752,9 +1788,14 @@ namespace RealERPWEB.F_99_Allinterface
                         dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                         dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                        dr1["workrate"] = this.textrate.Text.Trim()==""?"0": this.textrate.Text.Trim();
+                        dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
-                        if(roletype == "95002")
+                        if (roletype == "95001")
+                        {
+                            this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
+
+                        }
+                        if (roletype == "95002")
                         {
                             this.lblDoneAnnot.Text = (Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
                         }
@@ -1852,6 +1893,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string postedbyid = userid;
                 string editdat = "01-Jan-1900";
                 string jobid = this.lblassignjobid.Text;
+                string fromuser = this.lblfromuser.Text;
 
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
@@ -1859,7 +1901,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
                 //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
 
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, "", "", "");
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, fromuser, "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1867,6 +1909,8 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);
                 this.IsClear();
+                this.pnlSidebar.Visible = false;
+                this.GetAIInterface();
             }
             catch (Exception exp)
             {
@@ -1907,11 +1951,45 @@ namespace RealERPWEB.F_99_Allinterface
                 string batchid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcbatchid")).Text.ToString();
                 string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblQCtaskid")).Text.ToString();
                 string jobid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcjobid")).Text.ToString();
+                string qcfromuser = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvaqcssignuser")).Text.ToString();
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
-                //string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
-                string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqaBalqty")).Text.ToString();
+                string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+                string qcdone = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+                string qcdonebal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqaBalqty")).Text.ToString();
+                string qcpendbal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcqcdoneqty")).Text.ToString();
+                double qcassdone = Convert.ToDouble("0"+qcdone);
+                double qcdonebalqty = Convert.ToDouble("0"+qcdonebal);
+                double qcpend = Convert.ToDouble("0"+qcpendbal);
+                string doneqc1 = "";
+                double actualassign = 0;
+                if (qcassdone < qcdonebalqty)
+                {
+                    
+                    if (qcassdone > qcpend)
+                    {
+                        actualassign = qcassdone - qcpend;
+                    }
+                    else
+                    {
+                        actualassign =  qcpend- qcassdone;
+                    }
+                   
+                    doneqc1 = Convert.ToString(actualassign);
+                }
+                else
+                {
+                    if (qcassdone > qcpend)
+                    {
+                        actualassign = qcassdone - qcpend;
+                    }
+                    else
+                    {
+                        actualassign = qcpend - qcassdone;
+                    }
 
+                    doneqc1 = Convert.ToString(actualassign);
+                }
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
                 if (ds1 == null)
                     return;
@@ -1927,17 +2005,18 @@ namespace RealERPWEB.F_99_Allinterface
                 this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
                 this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
                 this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
-                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc1;
                 this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
 
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
-                this.txtquantity.Text = assignqty;
+                this.txtquantity.Text = doneqc1;
                 this.HiddinTaskid.Value = taskid;
                 this.lblproprjid.Text = prjid;
                 this.lblabatchid.Text = batchid;
                 this.lblassignjobid.Text = jobid;
+                this.lblfromuser.Text = qcfromuser;
 
 
                 this.pnlSidebar.Visible = true;
@@ -2073,7 +2152,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString().Trim();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid +"&Pactcode="+ pactcode;
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid + "&Pactcode=" + pactcode;
 
             }
 
@@ -2316,11 +2395,11 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string startDate = this.txtfrmdate.Text;
             string enddate = this.txttodate.Text;
-            
-           
-            
-            
-            if (Convert.ToInt32(startDate )< Convert.ToInt32(enddate))
+
+
+
+
+            if (Convert.ToInt32(startDate) < Convert.ToInt32(enddate))
             {
                 this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
 
@@ -2340,7 +2419,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 this.perrate.Visible = false;
                 this.textrate.Text = "";
-                
+
             }
             else
             {
@@ -2431,7 +2510,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
-            this.prjSearch_Click(null,null);
+            this.prjSearch_Click(null, null);
         }
 
         protected void ddlBatchPage_SelectedIndexChanged(object sender, EventArgs e)

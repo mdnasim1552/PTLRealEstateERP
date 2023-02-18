@@ -74,6 +74,33 @@ namespace RealERPWEB.F_17_Acc
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+
+
+
+        private string Getsalesteamleng()
+        {
+            string comcod = this.GetCompCode();
+            string salesteam = "";
+            switch (comcod)
+
+            {
+                case "3101":
+                case "3305": //Rupayan Housing
+                case "2305":
+                case "3306":
+                case "3310":
+                case "3311":
+
+
+                    salesteam = "salesteam";
+                    break;
+                default:
+                    break;
+
+            }
+            return salesteam;
+        }
+
         private void CustInf()
         {
 
@@ -86,7 +113,8 @@ namespace RealERPWEB.F_17_Acc
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string empid = hst["empid"].ToString();
-                DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT04", "GETSALESTEAM", "", "", "", "", "", "", "", "", "");
+                string salesteamlen = Getsalesteamleng();
+                DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT04", "GETSALESTEAM", salesteamlen, "", "", "", "", "", "", "", "");
 
 
 

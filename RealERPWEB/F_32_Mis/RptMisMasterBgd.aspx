@@ -3814,18 +3814,18 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Budgeted Margin">
+                                    <asp:TemplateField HeaderText="Projection Amount">
 
                                         <ItemTemplate>
                                             <asp:Label ID="lgvbgdmarip" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdmar")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                                Width="40px"></asp:Label>
+                                                Width="60px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Margin">
+                                    <asp:TemplateField HeaderText="Projection %">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvacmarip" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actmar")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="40px"></asp:Label>

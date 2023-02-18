@@ -619,7 +619,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none" >
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lblfvpsft" runat="server">FV per SFT</label>
@@ -633,7 +633,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lblpvpersft" runat="server">PV per SFT</label>
@@ -1253,7 +1253,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -1268,7 +1268,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row d-none">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1403,7 +1403,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
                                                         <label id="Label4" runat="server">Difference in FV</label>
@@ -1417,7 +1417,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
                                                         <label id="Label8" runat="server">Difference in PV</label>
@@ -1441,7 +1441,7 @@
                                             <div class="row" style="margin-top: 10px;">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <asp:LinkButton ID="lbtnGoalSeekRate" runat="server" CssClass=" form-control form-control-sm  btn  btn-info d-none" OnClick="lbtnGoalSeekRate_Click">Goal Seek</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnGoalSeekRate" runat="server" CssClass=" form-control form-control-sm  btn  btn-info" OnClick="lbtnGoalSeekRate_Click">Goal Seek</asp:LinkButton>
                                                     </div>
                                                 </div>
 

@@ -33,22 +33,31 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Label1 control.
+        /// Label7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// pn1 control.
+        /// txtCurTransDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pn1;
+        protected global::System.Web.UI.WebControls.TextBox txtCurTransDate;
+
+        /// <summary>
+        /// txtCurTransDate_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtCurTransDate_CalendarExtender;
 
         /// <summary>
         /// Label12 control.
@@ -76,33 +85,6 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCurTransNo2;
-
-        /// <summary>
-        /// Label7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
-
-        /// <summary>
-        /// txtCurTransDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCurTransDate;
-
-        /// <summary>
-        /// txtCurTransDate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtCurTransDate_CalendarExtender;
 
         /// <summary>
         /// lblProjectFromList0 control.
@@ -141,24 +123,6 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList ddlprjlistfrom;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
-        /// lblddlProjectFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblddlProjectFrom;
-
-        /// <summary>
         /// Label13 control.
         /// </summary>
         /// <remarks>
@@ -195,13 +159,13 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList ddlprjlistto;
 
         /// <summary>
-        /// lblddlProjectTo control.
+        /// divPrevTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblddlProjectTo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPrevTrans;
 
         /// <summary>
         /// lblPreList control.
@@ -240,22 +204,22 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevISSList;
 
         /// <summary>
-        /// lblmsg1 control.
+        /// lbtnOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// pnlgrd control.
+        /// divresource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlgrd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divresource;
 
         /// <summary>
         /// lblResList control.
@@ -283,6 +247,15 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkselect;
+
+        /// <summary>
+        /// pnlgrd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlgrd;
 
         /// <summary>
         /// grvacc control.

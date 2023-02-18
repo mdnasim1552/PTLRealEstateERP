@@ -160,6 +160,7 @@ namespace RealEntity.C_17_Acc
     {
         public string comcod { get; set; }
         public string pactcode { get; set; }
+        public string actdesc { get; set; }
         public string usircode { get; set; }
         public string custname { get; set; }
         public string udesc { get; set; }

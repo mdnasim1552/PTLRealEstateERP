@@ -503,7 +503,8 @@
                         break;
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();// 1st approval
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();// 2nd approval
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();// csd approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();// 2nd approval
                         break;
                 }
             }
@@ -583,6 +584,7 @@
                                                     <asp:ListItem Value="3"></asp:ListItem>
                                                     <asp:ListItem Value="4"></asp:ListItem>
                                                     <asp:ListItem Value="5"></asp:ListItem>
+                                                    <asp:ListItem Value="6"></asp:ListItem>
                                                 </asp:RadioButtonList>
                                             </div>
                                         </div>
@@ -908,6 +910,9 @@
                             <RowStyle CssClass="grvRows" />
                         </asp:GridView>
                     </asp:Panel>
+                    <asp:Panel runat="server" ID="Pnlcsdapproval" Visible="false">
+                        <h2>Hello</h2>
+                    </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnl2ndApp" Visible="false">
                         <asp:GridView ID="gv2ndApp" runat="server" AutoGenerateColumns="False"
@@ -1129,7 +1134,7 @@
 
                     <asp:Panel runat="server" ID="pnlapproval" Visible="false">
                         <asp:GridView ID="gvCltmodapp" runat="server" AutoGenerateColumns="False"
-                            ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCltmodapp_RowDataBound">
+                            ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCltmodapp_RowDataBound" Width="1297px">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL">

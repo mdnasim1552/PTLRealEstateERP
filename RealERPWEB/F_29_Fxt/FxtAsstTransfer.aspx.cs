@@ -41,8 +41,21 @@ namespace RealERPWEB.F_29_Fxt
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Text = "Approve";
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }
 
 
@@ -173,7 +186,7 @@ namespace RealERPWEB.F_29_Fxt
             dt.Rows.Add(drforgrid);
             Session["sessionforgrid"] = dt;
             this.grvacc_DataBind();
-
+            CommonButton();
         }
 
         private void Session_update()
@@ -244,12 +257,12 @@ namespace RealERPWEB.F_29_Fxt
             if (lbtnOk.Text.Trim() == "Ok")
             {
                 lbtnOk.Text = "New";
+                this.divresource.Visible = true;
                 this.pnlgrd.Visible = true;
-                //this.lblddlProjectFrom.Visible = true;
-                this.lblddlProjectTo.Visible = true;
-                this.ddlprjlistfrom.Visible = true;
-                this.ddlprjlistto.Visible = false;
+                this.ddlprjlistfrom.Enabled = true;
+                this.ddlprjlistto.Enabled = false;
                 this.ddlPrevISSList.Visible = false;
+                this.divPrevTrans.Visible = false;
                 this.txtPreTrnsSearch.Visible = false;
                 this.lblPreList.Visible = false;
                 this.lbtnPrevVOUList.Visible = false;
@@ -275,8 +288,6 @@ namespace RealERPWEB.F_29_Fxt
                     this.Get_Trnsno();
 
                 }
-                this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text.Trim();
-                this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text.Trim();
                 this.Load_Project_Res_Combo();
 
 
@@ -287,18 +298,18 @@ namespace RealERPWEB.F_29_Fxt
                 Session["sessionforgrid"] = null;
                 this.tableintosession();
 
-                this.lblddlProjectFrom.Visible = false;
-                this.lblddlProjectTo.Visible = false;
-                this.ddlprjlistfrom.Visible = true;
-                this.ddlprjlistto.Visible = true;
+                this.ddlprjlistfrom.Enabled = true;
+                this.ddlprjlistto.Enabled = true;
                 this.ddlPrevISSList.Visible = true;
                 this.lbtnPrevVOUList.Visible = true;
-                this.txtPreTrnsSearch.Visible = true;
+                this.divPrevTrans.Visible = true;
+                this.txtPreTrnsSearch.Visible = false;
                 this.lblPreList.Visible = true;
                 this.grvacc.DataSource = null;
                 this.txtCurTransDate.Enabled = true;
                 this.grvacc.DataBind();
                 this.Get_Trnsno();
+                this.divresource.Visible = false;
                 this.pnlgrd.Visible = false;
                 lbtnOk.Text = "Ok";
                 this.ddlPrevISSList.Items.Clear();

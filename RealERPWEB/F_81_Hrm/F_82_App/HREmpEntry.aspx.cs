@@ -550,6 +550,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             string comcod = this.GetCompCode();
             this.rbtGross.Visible = false;
+            //this.rbtGross.Visible = true;
             switch (comcod)
             {
                 //case "4101": //foster
@@ -637,6 +638,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     break;
                 case "3370": //CPDL
                     this.rbtGross.SelectedIndex = 7;
+                    break;
+                case "3101":
+                case "3374": //Angan
+                    this.rbtGross.SelectedIndex = 8;
                     break;
                 default:
                     //  this.rbtGross.Visible = true;
@@ -2099,8 +2104,47 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
             }
 
-            // txtgvSalSub
-            // Basic Salary
+
+
+            // basic salary Angan
+            else if (this.rbtGross.SelectedIndex == 8)
+            {
+
+                for (int i = 0; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    code = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.Trim();
+
+                    percent = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvgperadd")).Text.Trim());
+
+                    if (code == "04001" || code == "04003"||code == "04004" )
+                    {
+                        dtsaladd.Rows[i]["gval"] = Math.Round((gross * 0.01 * percent), 0);
+                        dtsaladd.Rows[i]["percnt"] = percent;
+                        continue;
+                    }
+
+
+
+                    dtsaladd.Rows[i]["gval"] = percent > 0 ? Math.Round((percent * Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]) * 0.01), 0)
+                            : Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvSaladd")).Text.Trim());
+                    dtsaladd.Rows[i]["percnt"] = percent;
+                }
+
+
+
+                for (int i = 0; i < this.gvSalSub.Rows.Count; i++)
+                {
+                    
+                    percent = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvgpersub")).Text.Trim());
+                    dtsalsub.Rows[i]["gval"] = percent > 0 ? Math.Round((percent * 0.01 * Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"])), 0)
+                            : Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvSalSub")).Text.Trim());
+                    //  dtsalsub.Rows[i]["gval"] = Math.Round((gross * 0.01 * percent), 0);
+                    dtsalsub.Rows[i]["percnt"] = percent;
+                }
+
+            }
+
+
             else
             {
                 basic = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());

@@ -126,7 +126,7 @@ namespace RealERPWEB.F_04_Bgd
                 this.rbtnList1.Items[0].Text = "Phase Selection";
                 this.rbtnList1.Items[1].Text = "Item Selection(All Phase)";
                 this.rbtnList1.Items[2].Text = "Item Selction(Ind.Phase)";
-                this.lblFPhaseTitle.Text = "Phase Selecttion";
+                this.lblFPhaseTitle.InnerText = "Phase Selecttion";
                 this.chkFlrShowSelected.Text = "Show selected Phase only";
                 this.lblFloor.Text = "Phase";
             }
@@ -752,14 +752,14 @@ namespace RealERPWEB.F_04_Bgd
             switch (rbtnList1.SelectedIndex)
             {
                 case 0:
-                    this.crDate.Visible = true;
+                    //this.crDate.Visible = true;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
                     this.chkFlrShowSelected_CheckedChanged(null, null);
                     break;
                 case 1:
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
@@ -772,7 +772,7 @@ namespace RealERPWEB.F_04_Bgd
 
                     break;
                 case 2:
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
@@ -783,14 +783,14 @@ namespace RealERPWEB.F_04_Bgd
 
                     break;
                 case 3:
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
 
                     break;
                 case 4:
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
@@ -798,7 +798,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.ShowReportOptions();
                     break;
                 case 5:
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
@@ -813,7 +813,7 @@ namespace RealERPWEB.F_04_Bgd
 
                 case 6:
                     this.details.Visible = true;
-                    this.crDate.Visible = false;
+                    //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();

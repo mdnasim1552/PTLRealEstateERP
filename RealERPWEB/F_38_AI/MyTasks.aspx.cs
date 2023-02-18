@@ -45,28 +45,27 @@ namespace RealERPWEB.F_38_AI
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string Uempid = hst["empid"].ToString();
-            string comcod = this.GetCompCode();
-            string company = "94%";
-            string projectName = "%";
+            string comcod = this.GetCompCode();            
             string qtype = Request.QueryString["Type"].ToString();
-
             string emp = Request.QueryString["EmpID"].ToString() == "" ? "" : Request.QueryString["EmpID"].ToString();
-            string txtSEmployee = "%%";
-            DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
-            if (ds3 == null)
+          
+            DataSet ds4 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETFREELANCERIMP", "", "", "", "", "", "", "", "", "");
+            if (ds4 == null)
                 return;
 
-            Session["tblempname"] = ds3.Tables[0];
-            DataTable dt2 = ds3.Tables[0];
+            Session["tblempname"] = ds4.Tables[0];
+            DataTable dt2 = ds4.Tables[0];
 
             DataView dv2 = dt2.DefaultView;
-            this.ddemplist.DataTextField = "empname";
-            this.ddemplist.DataValueField = "empid";
+            this.ddemplist.DataTextField = "sirdesc";
+            this.ddemplist.DataValueField = "sircode";
             this.ddemplist.DataSource = dv2.ToTable();
             this.ddemplist.DataBind();
             if (emp.Length > 0 && qtype == "MGT")
             {
                 this.ddemplist.SelectedValue = emp;
+                
+                
 
             }
             else
@@ -456,7 +455,7 @@ namespace RealERPWEB.F_38_AI
                 string id = ((Label)this.gvActivities.Rows[index].FindControl("lblid")).Text.Trim();
                 string title = ((Label)this.gvActivities.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
                 string date = ((Label)this.gvActivities.Rows[index].FindControl("tblcreatedate")).Text.Trim();
-                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblvelocityqty")).Text.Trim();
+                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblacvvelocityqty")).Text.Trim();
                 string doneqty = ((Label)this.gvActivities.Rows[index].FindControl("lbldoneqty")).Text.Trim();
                 this.lblactiviesid.Text = id;
                 this.tbljobname.Text = title;

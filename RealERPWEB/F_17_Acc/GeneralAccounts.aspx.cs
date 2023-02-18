@@ -456,7 +456,7 @@ namespace RealERPWEB.F_17_Acc
         {
             try
             {
-
+                ViewState.Remove("tblsupaconbill");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string pactcode = this.ddlacccode.SelectedValue.ToString();
@@ -467,6 +467,8 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlBillList.DataTextField = "textfield";
                 this.ddlBillList.DataValueField = "valfield";
                 this.ddlBillList.DataBind();
+                ViewState["tblsupaconbill"] = ds1.Tables[0];
+                ds1.Dispose();
                 //this.GetPriviousVoucher();
             }
             catch (Exception ex)
@@ -682,7 +684,8 @@ namespace RealERPWEB.F_17_Acc
 
 
                 }
-                this.GetSpecification();
+                this.ddlresuorcecode_SelectedIndexChanged(null, null);
+              //  this.GetSpecification();
 
                 this.txtserchReCode.Text = "";
                 string seaRes = this.ddlresuorcecode.SelectedValue.ToString().Trim();
@@ -796,6 +799,9 @@ namespace RealERPWEB.F_17_Acc
                 if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98") || (ASTUtility.Left(lst2[0].rescode, 2) == "93")))
                     this.txtPayto.Text = lst2[0].resdesc;
 
+                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")))
+                this.GetBillNo();
+
 
             }
             else
@@ -808,8 +814,8 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            this.GetBillNo();
-            //Supplier Balance Information
+          //  this.GetBillNo();
+           
             this.GetSpecification();
             this.GetBalanceInfo();
         }
@@ -1212,10 +1218,17 @@ namespace RealERPWEB.F_17_Acc
             try
             {
                 //----------------Add Data Into Grid--------------------------//
+                
+                DataTable dtbill =(DataTable)ViewState["tblsupaconbill"];
                 this.pnlNarration.Visible = true;
                 string AccCode = this.ddlacccode.SelectedValue.ToString();
                 string ResCode = this.ddlresuorcecode.SelectedValue.ToString();
                 string Billno = this.ddlBillList.Items.Count > 0 ? this.ddlBillList.SelectedValue.ToString() : "";
+
+                if (Billno.Length > 0)
+                    this.txtDrAmt.Text = Convert.ToDouble(((DataTable)ViewState["tblsupaconbill"]).Select("valfield='" + Billno + "'")[0]["amt"]).ToString("#,##0; -#,##0; ");
+              
+
                 ResCode = (ResCode.Length < 12 ? "000000000000" : ResCode);
 
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="FxtAssetRegister.aspx.cs" Inherits="RealERPWEB.F_29_Fxt.FxtAssetRegister" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="FxtAssetRegister.aspx.cs" Inherits="RealERPWEB.F_29_Fxt.FxtAssetRegister" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -7,7 +7,7 @@
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
 
 
         });
@@ -25,6 +25,12 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
     </script>
+    <style>
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -45,52 +51,43 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
 
-                                <div class="form-group" >
-                                    <div class="col-md-4 pading5px" >
-                                        <asp:Label ID="lblDept" runat="server" CssClass="lblTxt lblName">Asset Type</asp:Label>
-                                       <asp:DropDownList ID="ddlProjectName" runat="server" Width="270" CssClass="chzn-select ddlPage" TabIndex="6" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblDeptDesc" runat="server" CssClass="dataLblview" Visible="False" Width="250px"></asp:Label>
-
-                                    </div>
-                                   <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" TabIndex="4" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                                    </div>
-                                        <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Resource "></asp:Label>
-                                        <asp:TextBox ID="txtSrchMat" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" TabIndex="2" OnClick="ibtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-                                    </div>
-
-                                   
-
-                                </div>
-
-                            </div>
-                        </fieldset>
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-2.5 col-sm-2.5 col-lg-2.5">
+                            <asp:Label ID="lblDept" runat="server" CssClass="lblTxt lblName">Asset Type</asp:Label>
+                            <asp:DropDownList ID="ddlProjectName" runat="server" Width="270" CssClass="chzn-select form-control form-control-sm" TabIndex="6" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                            </asp:DropDownList>
+                            <asp:Label ID="lblDeptDesc" runat="server" CssClass="dataLblview" Visible="False" Width="250px"></asp:Label>
+                        </div>    
+                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" TabIndex="4" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                        </div>  
+                        <div class="col-md-2 col-sm-2 col-lg-2">                            
+                            <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Resource "></asp:Label>                            
+                            <asp:TextBox ID="txtSrchMat" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>                                  
+                        </div>  
+                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
+                            <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary btn-sm srearchBtn" runat="server" TabIndex="2" OnClick="ibtnFindProject_Click"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
+                        </div>
                     </div>
-
-                    <asp:GridView ID="gvFixAsset" runat="server" AutoGenerateColumns="False"
-                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvFixAsset_RowDataBound" Width="461px">
+                </div>
+            </div>
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <asp:GridView ID="gvFixAsset" runat="server" AutoGenerateColumns="False"
+                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvFixAsset_RowDataBound" Width="461px">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
-                                        Style="text-align: right"
-                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                        Style="text-align: center"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Width="30px" />
                             </asp:TemplateField>
 
 
@@ -110,6 +107,7 @@
                                         Width="50px"></asp:Label>
 
                                 </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="code" Visible="false">
@@ -175,13 +173,13 @@
                             </asp:TemplateField>
 
                         </Columns>
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
-                        <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <PagerStyle CssClass="gvPaginationNew" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
-
+                    </div>
                 </div>
             </div>
         </ContentTemplate>

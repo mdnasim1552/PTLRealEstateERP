@@ -945,7 +945,7 @@ namespace RealERPWEB.F_22_Sal
 
                 DateTime coffbookingdate, benddate, finalinsdate;
                 double brate, usize, bfv, bpv, pamt, utility, others, intratio, noofemi, bfvpsft, bpowbpart, bpvpsft, coffurate,
-                    cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi, disoexcesspsft, disoexamt, buamt, coffuamt, cofftunitamt; 
+                    cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi, disoexcesspsft, disoexamt, buamt, coffuamt, cofftunitamt;
 
 
                 //uzize =
@@ -960,14 +960,17 @@ namespace RealERPWEB.F_22_Sal
 
                 bfvpsft = ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00);
                 bpowbpart = (12 + intratio) / 12;
-                bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
+
+                bpvpsft = Math.Round(bfvpsft / (Math.Pow(1+intratio/4, noofemi/3)), 0);
+
+                //bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
 
                 this.lblhiddenbpamt.Value = pamt.ToString("#,##0;(#,##0);");
                 this.lblhiddenbutility.Value = utility.ToString("#,##0;(#,##0);");
                 this.lblhiddenothers.Value = others.ToString("#,##0;(#,##0);");
                 this.lblhiddenbnoemi.Value = noofemi.ToString();
                 coffurate = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]);
-                coffuamt=Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]);
+                coffuamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]);
                 cofftunitamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]);
                 cofffv = lstcoff.Sum(l => l.fv);
                 coffpv = lstcoff.Sum(l => l.pv);
@@ -1035,7 +1038,9 @@ namespace RealERPWEB.F_22_Sal
 
                 cofffvpsft = ((usize > 0) ? (cofffv == 0 ? 0.00 : (cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
                 coffpowbpart = (12 + intratio) / 12;
-                coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
+                //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
+                coffpvpsft = cofffvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3)));
+
 
                 this.txtcoffnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
                 this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
@@ -1052,25 +1057,25 @@ namespace RealERPWEB.F_22_Sal
 
 
                 // Summary
-                brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
-             
-                coffuamt=
-                buamt = usize * brate;
-                disoexcesspsft = brate - coffurate;
-                disoexamt = disoexcesspsft * usize;
+                //brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
 
-                this.lblvalsumratepersft.InnerText = brate.ToString("#,##0;(#,##0);");
-                this.lblvalsumspacevalue.InnerText = buamt.ToString("#,##0;(#,##0);");
-                this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
-                this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
-                this.lblvalsumacratepersft.InnerText = coffurate.ToString("#,##0;(#,##0);");
-                this.lblvalsumacspacevalue.InnerText = coffuamt.ToString("#,##0;(#,##0);");
-                this.lblvalsumacparking.InnerText = coffpamt.ToString("#,##0;(#,##0);");
-                this.lblvalsumacutility.InnerText = coffutility.ToString("#,##0;(#,##0);");
-                this.lblvalsumacothers.InnerText = coffothers.ToString("#,##0;(#,##0);");
-                this.lblvalsumactotalvalue.InnerText = cofftunitamt.ToString("#,##0;(#,##0);");
+                ////coffuamt=
+                //buamt = usize * brate;
+                //disoexcesspsft = brate - coffurate;
+                //disoexamt = disoexcesspsft * usize;
+
+                //this.lblvalsumratepersft.InnerText = brate.ToString("#,##0;(#,##0);");
+                //this.lblvalsumspacevalue.InnerText = buamt.ToString("#,##0;(#,##0);");
+                //this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
+                //this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
+                //this.lblvalsumacratepersft.InnerText = coffurate.ToString("#,##0;(#,##0);");
+                //this.lblvalsumacspacevalue.InnerText = coffuamt.ToString("#,##0;(#,##0);");
+                //this.lblvalsumacparking.InnerText = coffpamt.ToString("#,##0;(#,##0);");
+                //this.lblvalsumacutility.InnerText = coffutility.ToString("#,##0;(#,##0);");
+                //this.lblvalsumacothers.InnerText = coffothers.ToString("#,##0;(#,##0);");
+                //this.lblvalsumactotalvalue.InnerText = cofftunitamt.ToString("#,##0;(#,##0);");
                 //this.lblvalsumacratepersft.InnerText = cofftunitamt.ToString("#,##0;(#,##0);");
-
+                SummaryValue();
 
             }
 
@@ -1088,6 +1093,38 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void SummaryValue()
+        {
+            double brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
+            double usize = Convert.ToDouble("0" + this.lblvalarea.InnerText.ToString());
+            //coffuamt=
+            double buamt = Convert.ToDouble(lblvalunitprice.InnerText); // usize * brate;
+            double coffurate = Convert.ToDouble(txtcoffrate.Text);
+
+            double coffuamt = Convert.ToDouble(lblcoffunitprice.InnerText);
+            double coffpamt = Convert.ToDouble(txtcofffparking.Text);
+            double coffutility = Convert.ToDouble(txtcoffutility.Text);
+            double coffothers = Convert.ToDouble(txtcoffothers.Text);
+            double cofftunitamt = Convert.ToDouble(lblcoffunitprice.InnerText);
+
+            double disoexcesspsft = brate - coffurate;
+            double disoexamt = disoexcesspsft * usize;
+
+            this.lblvalsumratepersft.InnerText = brate.ToString("#,##0;(#,##0);");
+            this.lblvalsumspacevalue.InnerText = buamt.ToString("#,##0;(#,##0);");
+            this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
+            this.lblvaltodisorexcessamt.InnerText = disoexamt.ToString("#,##0;(#,##0);");
+            this.lblvalsumacratepersft.InnerText = coffurate.ToString("#,##0;(#,##0);");
+            this.lblvalsumacspacevalue.InnerText = coffuamt.ToString("#,##0;(#,##0);");
+            this.lblvalsumacparking.InnerText = coffpamt.ToString("#,##0;(#,##0);");
+            this.lblvalsumacutility.InnerText = coffutility.ToString("#,##0;(#,##0);");
+            this.lblvalsumacothers.InnerText = coffothers.ToString("#,##0;(#,##0);");
+            this.lblvalsumactotalvalue.InnerText = (coffuamt + coffpamt + coffutility + coffothers).ToString("#,##0;(#,##0);");
+        }
+
+
+
+
 
         private void CalculationValue()
         {
@@ -1098,7 +1135,7 @@ namespace RealERPWEB.F_22_Sal
                 DateTime coffbookingdate, finalinsdate, benddate;
                 int noofemi, badins = 0;
 
-                double brate, intratio, usize, buamt, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam, disoexcesspsft, disoexamt; 
+                double brate, intratio, usize, buamt, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam, disoexcesspsft, disoexamt;
 
 
                 usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
@@ -1131,7 +1168,9 @@ namespace RealERPWEB.F_22_Sal
                 badins = finalinsam > 0 ? ++badins : badins;
 
 
-                coffemi = Math.Round((coffnoofemi > 0 ? (cofftunitamt - coffbookingam - coffdpaymentam - finalinsam) / (coffnoofemi - badins) : 0.00), 0);
+                //coffemi = Math.Round((coffnoofemi > 0 ? (cofftunitamt - coffbookingam - coffdpaymentam - finalinsam) / (coffnoofemi - badins) : 0.00), 1);
+                coffemi = (coffnoofemi > 0 ? (cofftunitamt - coffbookingam - coffdpaymentam - finalinsam) / (coffnoofemi - badins) : 0.00);
+
 
                 this.lblcoffunitprice.InnerText = coffuamt.ToString("#,##0;(#,##0);");
                 this.txtcofffparking.Text = coffpamt.ToString("#,##0;(#,##0);");
@@ -1145,7 +1184,7 @@ namespace RealERPWEB.F_22_Sal
                 this.lblvalcoffdownpayam.InnerText = coffdpaymentam.ToString("#,##0;(#,##0);");
 
                 this.txtcoffnooffemi.Text = coffnoofemi.ToString("#,##0;(#,##0);");
-                this.lblvalcoffemi.InnerText = coffemi.ToString("#,##0;(#,##0);");
+                this.lblvalcoffemi.InnerText = coffemi.ToString("#,##0.00;(#,##0.00);");
                 this.txtcofffininsper.Text = finalinsper.ToString("#,##0;(#,##0);");
                 this.lblvalcofffininsam.InnerText = finalinsam.ToString("#,##0;(#,##0);");
                 //this.txtcofffininsdate=
@@ -1161,6 +1200,7 @@ namespace RealERPWEB.F_22_Sal
                 benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
                 benddate = finalinsdate > benddate ? finalinsdate : benddate;
                 noofemi = ASTUtility.Datediff(benddate, coffbookingdate);
+                int conoofemi = Convert.ToInt16(txtcoffnooffemi.Text);
 
 
 
@@ -1168,7 +1208,8 @@ namespace RealERPWEB.F_22_Sal
                 coffpv = lstcoff.Sum(l => l.pv);
                 cofffvpsft = ((usize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
                 coffpowbpart = (12 + intratio) / 12;
-                coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
+                coffpvpsft = cofffvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3)));
+                //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
                 this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
                 this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
 
@@ -1176,11 +1217,11 @@ namespace RealERPWEB.F_22_Sal
                 double basePVsft = Convert.ToDouble(lblvalpvpersft.InnerText == "" ? "0.00" : lblvalpvpersft.InnerText);
 
 
-                lblDiffFV.InnerText = (cofffvpsft - baseFVsft).ToString("#,##0.00;-#,##0.00; ");
-                lblDiffPV.InnerText = (coffpvpsft - basePVsft).ToString("#,##0.00;-#,##0.00; ");
+                lblDiffFV.InnerText = Math.Round(cofffvpsft - baseFVsft).ToString("#,##0;-#,##0; ");
+                lblDiffPV.InnerText = Math.Round(coffpvpsft - basePVsft).ToString("#,##0;-#,##0; ");
 
-              
 
+                SummaryValue();
 
 
 
@@ -1400,6 +1441,7 @@ namespace RealERPWEB.F_22_Sal
                         grp = grp,
                         pv = coffdpaymentam,
                         fv = Math.Round(coffdpaymentam * Math.Pow(coffpowbpart, mondiff), 0)
+                        //fv= coffdpaymentam * Math.Pow(coffpowbpart, mondiff)
                     };
                     lstcoff.Add(obj);
 
@@ -1564,15 +1606,15 @@ namespace RealERPWEB.F_22_Sal
         }
 
         private void UnitSummary()
-        { 
-        
-        
+        {
+
+
         }
         protected void lbtnCalCulation_Click(object sender, EventArgs e)
         {
 
             this.CalculationValue();
-            GoalSeekImplement();
+            //GoalSeekImplement();
 
 
         }
@@ -1611,7 +1653,7 @@ namespace RealERPWEB.F_22_Sal
 
             this.SaveValue();
             this.Data_Bind();
-            this.GoalSeekImplement();
+            //this.GoalSeekImplement();
         }
 
         protected void lbtnDeldsch_Click(object sender, EventArgs e)
@@ -1871,7 +1913,7 @@ namespace RealERPWEB.F_22_Sal
 
             int bcasenofemi, noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
-            double brate, uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffurate, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, 
+            double brate, uzize, bfv, bpv, pamt, utility, others, bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffurate, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv,
                 coffpv, upsftwiopuaoth, disoexcesspsft, disoexamt;
 
 
@@ -1951,9 +1993,9 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-         
+
             brate = Convert.ToDouble("0" + this.lblvalrate.InnerText.ToString());
-           coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text.ToString());
+            coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text.ToString());
             disoexcesspsft = brate - coffurate;
             disoexamt = disoexcesspsft * usize;
             this.lblvaldisorexcesspsft.InnerText = disoexcesspsft.ToString("#,##0;(#,##0);");
@@ -2219,14 +2261,14 @@ namespace RealERPWEB.F_22_Sal
 
         protected void lnkGoalSeekExecute_Click(object sender, EventArgs e)
         {
+            GoalSeekImplement();
+            //while (ASTUtility.StrPosOrNagative(lblDiffPV.InnerText.Trim()) != 0)
+            //{
+            //    GoalSeekImplement();
+            //}
 
-            while (ASTUtility.StrPosOrNagative(lblDiffPV.InnerText.Trim()) != 0)
-            {
-                GoalSeekImplement();
-            }
 
 
-          
 
         }
 
@@ -2245,8 +2287,9 @@ namespace RealERPWEB.F_22_Sal
             double Difference = ASTUtility.StrPosOrNagative(lblDiffPV.InnerText.Trim());
             double TargetDifference = ASTUtility.StrPosOrNagative(txtTargetDifference.Text.Trim());
             GoalSeekImplementation gs = new GoalSeekImplementation(SftQty, Puo, PercentOfBooking, NoofInstallment, BaseofInstallment, RatioValue, Rate, PercntOfDownPayment);
-            txtcoffrate.Text = gs.GetRateFromGoalSeek(Difference, TargetDifference).ToString("#,##0.00;-#,##0.00; ");
+            txtcoffrate.Text = gs.GetRateFromGoalSeek(Difference, TargetDifference).ToString();
             CalculationValue();
+
         }
 
         protected void lnkgvbaseFcoffTotal_Click(object sender, EventArgs e)

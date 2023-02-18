@@ -1603,7 +1603,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!urate.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!urate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -1973,7 +1973,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!urate.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!urate.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2888,7 +2888,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.81751in</Height>
+          <Height>0.94251in</Height>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Textbox Name="Textbox98">
@@ -2942,9 +2942,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>0.30209in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.72417in</Height>
               <Width>1.26027in</Width>
               <Style>
                 <Border>
@@ -2993,9 +2993,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>1.57695in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.70333in</Height>
               <Width>1.27221in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -3047,9 +3047,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>2.88458in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.67208in</Height>
               <Width>1.33194in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -3101,9 +3101,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>4.23389in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.67208in</Height>
               <Width>1.23262in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -3140,9 +3140,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>5.49499in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.66167in</Height>
               <Width>1.30834in</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -3179,9 +3179,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox98</rd:DefaultName>
-              <Top>0.38333in</Top>
+              <Top>0.17083in</Top>
               <Left>6.83875in</Left>
-              <Height>0.4325in</Height>
+              <Height>0.66167in</Height>
               <Width>0.89861in</Width>
               <ZIndex>5</ZIndex>
               <Style>

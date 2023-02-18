@@ -10,6 +10,11 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 76f36b2b9762f7da938d483f9c0cdc431daea95d
         });
         function pageLoaded() {
 
@@ -60,7 +65,7 @@
                             <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Project Name:"></asp:Label>
                             <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="chzn-select form-control form-control-sm" TabIndex="2" AutoPostBack="true">
                             </asp:DropDownList>
-                            <asp:Label ID="lblProjectdesc" CssClass="chzn-select form-control form-control-sm" Visible="False" runat="server"></asp:Label>
+                            <asp:Label ID="lblProjectdesc" CssClass="form-control form-control-sm"  runat="server" Visible="false"></asp:Label>
 
                         </div>
 
@@ -69,7 +74,7 @@
 
                             <asp:DropDownList ID="ddlCustomer" runat="server" CssClass="chzn-select form-control form-control-sm " TabIndex="5" AutoPostBack="true">
                             </asp:DropDownList>
-                            <asp:Label ID="lblCustomer" CssClass="chzn-select form-control form-control-sm" Visible="False" runat="server"></asp:Label>
+                            <asp:Label ID="lblCustomer" CssClass="form-control form-control-sm" Visible="False" runat="server"></asp:Label>
                         </div>
                         <div class="col-md-1" style="margin-top: 22px;">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click" TabIndex="6">Ok</asp:LinkButton>
@@ -206,13 +211,13 @@
                                             AutoPostBack="True" TabIndex="15"></asp:TextBox>
 
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <asp:Label ID="Label24" runat="server" CssClass="form-label" Text="Remarks" Font-Bold="true"></asp:Label>
                                         <asp:TextBox ID="txtremarks" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm" TabIndex="16"></asp:TextBox>
 
                                     </div>
-                                    <div class="col-md-1" style="margin-top: 20px;">
-                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" CssClass="btn btn-xm btn-primary" TabIndex="21">Add To Table</asp:LinkButton>
+                                    <div class="col-md-2" style="margin-top: 20px;">
+                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" CssClass="btn btn-xs btn-primary" TabIndex="21">Add To Table</asp:LinkButton>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -328,7 +333,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <%--<asp:TemplateField HeaderText="Pay Date">
+                                <asp:TemplateField HeaderText="Pay Date">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdate" runat="server" OnClick="lbtnUpdate_Click" CssClass="btn btn-danger btn-sm" TabIndex="22">Update</asp:LinkButton>
                                     </FooterTemplate>
@@ -343,7 +348,7 @@
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="right" VerticalAlign="Middle" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ref ID">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbTotal" runat="server" Font-Bold="True" Font-Size="12px"

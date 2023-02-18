@@ -300,7 +300,7 @@ namespace RealERPWEB.F_12_Inv
             string posteddat = DateTime.Today.ToString("dd-MMM-yyyy");
 
             string isuno = this.Request.QueryString["genno"].ToString();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "APPROVEINDENTISSUE", isuno, usrid, sessionid, trmid, posteddat);
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "APPROVEINDENTISSUE", isuno, usrid, sessionid, trmid, posteddat);
             if (result == true)
             {
                 Response.Redirect(prevPage);
@@ -310,7 +310,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkbtnNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../F_07_Inv/Material_Issue.aspx?Type=Entry&genno=");
+            Response.Redirect("../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=");
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../F_07_Inv/Material_Issue.aspx?Type=Entry&genno=" + "', target='_self');</script>";
         }
         protected DateTime GetBackDate()
@@ -536,12 +536,22 @@ namespace RealERPWEB.F_12_Inv
                 // this.ddlResSpcf.Items.Clear();
                 return;
             }
-            ViewState["tblMat"] = ds1.Tables[0];
+           
 
             ViewState["tblSpcf"] = ds1.Tables[2];
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+            view.Table = ds1.Tables[0];
+            view.RowFilter = " stkqty > 0";
+            dt1 = view.ToTable();
+            ViewState["tblMat"] = dt1;
+
+           
+
+
             this.ddlResList.DataTextField = "rsirdesc";
             this.ddlResList.DataValueField = "rsircode";
-            this.ddlResList.DataSource = ds1.Tables[1];
+            this.ddlResList.DataSource = dt1;
             this.ddlResList.DataBind();
 
 
@@ -588,13 +598,15 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
             this.ddlDeptCode.SelectedValue = this.Request.QueryString["Type"].ToString() == "Link" ? this.Request.QueryString["sircode"].ToString() : "AAAAAAAAAAAA";
-            if (this.Request.QueryString["prjcode"].Length > 0)
-            {
-                string deptcode = this.Request.QueryString["prjcode"].ToString();
+           
+            
+            //if (this.Request.QueryString["prjcode"].Length > 0)
+            //{
+            //    string deptcode = this.Request.QueryString["prjcode"].ToString();
 
-                this.ddlDeptCode.SelectedValue = deptcode;
+            //    this.ddlDeptCode.SelectedValue = deptcode;
 
-            }
+            //}
         }
         private void GetEmployeeList()
         {

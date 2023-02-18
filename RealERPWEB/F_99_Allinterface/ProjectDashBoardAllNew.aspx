@@ -167,6 +167,13 @@
                         var data = JSON.parse(response.d);
                         var data1 = data.TBLTAB101;
                         var data2 = data.TBLTAB102;
+
+                        data1[1].pmargin
+                        var marcolor = data1[1].pmargin > 0 ? "#009999" : "#FF0000";
+                        var cashflowcolor = data1[1].cashflow > 0 ? "#009999" : "#FF0000";
+                       
+
+
                         console.log(data2);
                         $("#<%=this.lblvalstartdate.ClientID%>").html(data2[0]);
                         $("#<%=this.lblvalconsarea.ClientID%>").html(data2[1]);
@@ -251,6 +258,13 @@
                                             "color": '#808080'
 
                                         },
+
+                                        {
+                                            "name": "Unsold",
+                                            "y": data1[1].unsoldam,
+                                            "color": '#808080'
+
+                                        },
                                         {
                                             "name": "Collection",
                                             "y": data1[1].collam,
@@ -301,23 +315,57 @@
 
                                         },
                                         {
-                                            "name": "R. InFlow",
-                                            "y": data1[1].rinflow,
+                                            "name": "NOI",
+                                            "y": data1[1].noiam,
                                             "color": '#009999'
 
                                         },
                                         {
-                                            "name": "R. Outflow",
-                                            "y": data1[1].routflow,
+                                            "name": "P.Revenue",
+                                            "y": data1[1].prevenue,
                                             "color": '#009999'
 
                                         },
                                         {
-                                            "name": "Block/Gen.",
-                                            "y": data1[1].fblock,
-                                            "color": '#5CB85C'
+                                            "name": "P.Cost",
+                                            "y": data1[1].pcost,
+                                            "color": '#009999'
+
+                                        },
+
+                                       
+
+                                        {
+                                            "name": "P.Margin",
+                                            "y": data1[1].pmargin,
+                                            "color": marcolor
+
+                                        },
+
+                                         {
+                                            "name": "Cash Flow",
+                                            "y": data1[1].cashflow,
+                                             "color": cashflowcolor
 
                                         }
+                                        //{
+                                        //    "name": "R. InFlow",
+                                        //    "y": data1[1].rinflow,
+                                        //    "color": '#009999'
+
+                                        //},
+                                        //{
+                                        //    "name": "R. Outflow",
+                                        //    "y": data1[1].routflow,
+                                        //    "color": '#009999'
+
+                                        //},
+                                        //{
+                                        //    "name": "Block/Gen.",
+                                        //    "y": data1[1].fblock,
+                                        //    "color": '#5CB85C'
+
+                                        //}
 
                                     ]
                                 }

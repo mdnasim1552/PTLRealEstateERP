@@ -1247,7 +1247,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101":
                     PrintReq = "PrintReque06";
                     break;
-
+                case "3101":
                 //case "3101":
                 case "1205":
                 case "3351":
@@ -1270,7 +1270,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3364":
                     PrintReq = "PrintReqJBS";
                     break;
-                case "3101":
+               
                 case "3367":
                     PrintReq = "PrintReqEpic";
                     break;
@@ -4156,6 +4156,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costdesc = _ReportDataSet.Tables[4].Rows[0]["rsirdesc"].ToString();
 
                 string cperson2 = "";
+                string suppliercontact = "";
 
                 string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                  
@@ -4246,6 +4247,18 @@ namespace RealERPWEB.F_99_Allinterface
 
                     //
                     case "3367": // epic
+                        terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "4. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "5. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        terms6 = "6. " + termscondition[5].termssubj.ToString() + ":" + termscondition[5].termsdesc.ToString();
+                        terms7 = "7. " + termscondition[6].termssubj.ToString() + ":" + termscondition[6].termsdesc.ToString();
+                        terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
+                        terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
+                        terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
+                        suppliercontact = "11. " + termscondition[10].termssubj.ToString() + ":" + termscondition[10].termsdesc.ToString();
+                        break;
                     case "3335": // Edison Properties
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4257,6 +4270,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
+                       
                         break;
 
 
@@ -4489,6 +4503,7 @@ namespace RealERPWEB.F_99_Allinterface
                         
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
+                       
                         break;
                                           
                     case "3370": // cpdl                        
@@ -4652,8 +4667,10 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3360":  // entrust
                     case "3361":  // entrust
                     case "3366": // lanco
+
+                        break;
                     case "3367": // epic
-   
+                        Rpt1.SetParameters(new ReportParameter("suppliercontact", suppliercontact));
                         break;
 
                     default:

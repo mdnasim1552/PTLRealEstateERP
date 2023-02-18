@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Configuration;
 using System.Collections;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
 using RealERPLIB;
-using RealERPRPT;
-using Microsoft.Reporting.WinForms;
-using RealERPRDLC;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptMktMoneyReceipt : System.Web.UI.Page
@@ -198,13 +187,24 @@ namespace RealERPWEB.F_22_Sal
             string mrno = this.ddlMRNO.SelectedValue.ToString();
             string mrdate = Convert.ToDateTime(this.lblrecdate.Text).ToString("dd-MMM-yyyy");
 
-            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
-            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
+           // string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            //string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
             //string totalpath = hostname + currentptah;
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-            Response.Redirect("~/F_17_Acc/" + currentptah);
+            // Response.Redirect("~/F_17_Acc/" + currentptah);
 
 
+
+            string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
+            string totalpath = hostname + currentptah;
+            
+            
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+
+           
 
 
             #region MRPrint

@@ -838,11 +838,13 @@ namespace RealERPWEB.F_34_Mgt
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
                     string frmname = dt1.Rows[i]["frmname"].ToString().Trim();
+                    string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
                     string qrytype = dt1.Rows[i]["qrytype"].ToString().Trim();
                     string chkper = dt1.Rows[i]["chkper"].ToString().Trim();
                     string entry = dt1.Rows[i]["entry"].ToString().Trim();
                     string printable = dt1.Rows[i]["printable"].ToString().Trim();
                     string delete = dt1.Rows[i]["delete"].ToString().Trim();
+           
                     //string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
                     string confrmqry = frmname + qrytype;
                     DataRow[] dr1 = dt2.Select("(frmname+qrytype)='" + confrmqry + "'");
@@ -852,6 +854,7 @@ namespace RealERPWEB.F_34_Mgt
                         dr1[0]["entry"] = entry;
                         dr1[0]["printable"] = printable;
                         dr1[0]["delete"] = delete;
+                        dr1[0]["dscrption"] = dscrption;
                         //dr1[0]["dscrption"] = dscrption;
 
 

@@ -67,7 +67,73 @@ namespace RealERPWEB.F_22_Sal
         }
         private void RtpAvailChartPrint()
         {
-           
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            switch (comcod)
+            {
+
+                case "3374":
+                case "3101":
+                    this.RtpAvailChartPrintAngan();
+                    break;
+
+                default:
+                    this.RtpAvailChartPrintGen();
+                    break;
+            }
+
+
+            
+
+        }
+        private void RtpAvailChartPrintAngan()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString())+"%";
+
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHART", pactcode, "", "", "", "", "", "", "", "");
+            //DataTable dt = (DataTable)Session["tblAvChartPrint"];
+            DataTable dt = (DataTable)ds3.Tables[0];
+            DataTable dt1 = (DataTable)ds3.Tables[1];
+
+            string address = "";
+            if (dt1.Rows.Count > 0)
+            {
+                address = ds3.Tables[1].Rows[0]["prjaddress"].ToString();
+            }
+
+            
+
+
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string rpthead = "Booking Chart Report";
+
+            if (dt == null)
+                return;
+            var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RtpAvailChartPrint>();
+
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RtpAvailChartPrintAngan", list, null, null);
+
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
+            Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+            Rpt1.SetParameters(new ReportParameter("txtAddress", "Address : " + address));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void RtpAvailChartPrintGen()
+        {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -75,7 +141,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHART", pactcode, "", "", "", "", "", "", "", "");
             //DataTable dt = (DataTable)Session["tblAvChartPrint"];
-             DataTable dt= (DataTable)ds3.Tables[0];
+            DataTable dt = (DataTable)ds3.Tables[0];
 
 
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;

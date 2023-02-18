@@ -62,6 +62,11 @@ namespace RealERPLIB
             _dataAccess = new DataAccess(DbName);
             _errObj = new Hashtable();
         }
+        public ProcessAccess(string DbName, string type)
+        {
+            _dataAccess = new DataAccess(DbName,type);
+            _errObj = new Hashtable();
+        }
         public Hashtable ErrorObject
         {
             get
@@ -1558,7 +1563,7 @@ namespace RealERPLIB
                         catch (Exception ex)
                         {
                             throw ex;
-                        }
+                        } 
                         finally
                         {
                             connection.Close();

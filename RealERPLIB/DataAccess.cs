@@ -27,7 +27,23 @@ namespace RealERPLIB
             m_Conn.ConnectionString = m_Conn.ConnectionString.Replace("ASITINTERIORDB", mDBName + "DB");
         
         }
-        
+
+        public DataAccess(string mDBName, string type)
+        {
+            if (type == "Secondary")
+            {
+                m_Conn = new SqlConnection(this.DBConnstrSecondary());
+
+            }
+            else
+            {
+                m_Conn = new SqlConnection(this.DBConnstr());
+
+            }
+            m_Conn.ConnectionString = m_Conn.ConnectionString.Replace("ASITINTERIORDB", mDBName + "DB");
+            
+        }
+
         private string DBConnstr()
         {
             //System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("/RCRMWEB");
@@ -47,6 +63,28 @@ namespace RealERPLIB
                 Config1 = System.Configuration.ConfigurationManager.OpenExeConfiguration(ii);
             }
             ii = Config1.AppSettings.Settings["DBConnstr"].Value.ToString().Trim();
+            return ii;
+        }
+
+        private string DBConnstrSecondary()
+        {
+            //System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("/RCRMWEB");
+            //System.Configuration.KeyValueConfigurationElement ii = rootWebConfig1.AppSettings.Settings["DBConnstr"];         
+            string ii;
+            System.Configuration.Configuration Config1;
+            if (System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath != null)
+            {
+                ii = System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath.ToString();
+                Config1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(ii);
+            }
+            else
+            {
+                //ii = System.Windows.Forms.Application.StartupPath.ToString();
+                ii = System.Windows.Forms.Application.ProductName + ".EXE";
+                ii = System.IO.Path.Combine(Environment.CurrentDirectory, ii);
+                Config1 = System.Configuration.ConfigurationManager.OpenExeConfiguration(ii);
+            }
+            ii = Config1.AppSettings.Settings["DBConnstrS"].Value.ToString().Trim();
             return ii;
         }
         public DataSet GetDataSetTicket(SqlCommand Cmd)

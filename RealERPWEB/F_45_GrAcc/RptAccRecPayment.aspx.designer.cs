@@ -33,22 +33,13 @@ namespace RealERPWEB.F_45_GrAcc
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Panel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-
-        /// <summary>
         /// lblDatefrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDatefrom;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDatefrom;
 
         /// <summary>
         /// txtDateFrom control.
@@ -75,7 +66,7 @@ namespace RealERPWEB.F_45_GrAcc
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateTo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDateTo;
 
         /// <summary>
         /// txtDateto control.
@@ -102,7 +93,7 @@ namespace RealERPWEB.F_45_GrAcc
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGroup;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblGroup;
 
         /// <summary>
         /// chkListGroup control.
@@ -123,22 +114,13 @@ namespace RealERPWEB.F_45_GrAcc
         protected global::System.Web.UI.WebControls.LinkButton lbtnShow;
 
         /// <summary>
-        /// UpdateProgress1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-
-        /// <summary>
         /// lblDateOpening control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateOpening;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDateOpening;
 
         /// <summary>
         /// txtDateOpening control.
@@ -159,22 +141,13 @@ namespace RealERPWEB.F_45_GrAcc
         protected global::AjaxControlToolkit.CalendarExtender txtDateOpening_CalendarExtender;
 
         /// <summary>
-        /// Panel3 control.
+        /// lblcompanyname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcompanyname;
 
         /// <summary>
         /// ddlComCode control.
@@ -184,15 +157,6 @@ namespace RealERPWEB.F_45_GrAcc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox ddlComCode;
-
-        /// <summary>
-        /// chkConsolidate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkConsolidate;
 
         /// <summary>
         /// lbltakaInLac control.

@@ -183,8 +183,9 @@ namespace RealERPWEB.F_22_Sal
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComocd();
+            string salesteam = this.Getsalesteamleng();
             //string txtSProject = "%" + this.txtSrcPro.Text + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SALESTEAM", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SALESTEAM", salesteam, "", "", "", "", "", "", "", "");
             this.ddlSalesTeam.DataTextField = "steam";
             this.ddlSalesTeam.DataValueField = "gcod";
             this.ddlSalesTeam.DataSource = ds1.Tables[0];
@@ -286,6 +287,30 @@ namespace RealERPWEB.F_22_Sal
             this.gvparking.DataBind();
             this.FooterCalculation();
         }
+
+        private string Getsalesteamleng()
+        {
+            string comcod = this.GetComocd();
+            string salesteam = "";
+            switch (comcod)
+            {
+                case "3101": //Rupayan Housing
+                case "3305": //Rupayan Housing
+                case "2305":
+                case "3306":
+                case "3310":
+                case "3311":
+
+
+                    salesteam = "salesteam";
+                    break;
+                default:
+                    break;
+
+            }
+            return salesteam;
+        }
+
         private void salesStatus()
         {
             Session.Remove("tblData");
@@ -296,8 +321,9 @@ namespace RealERPWEB.F_22_Sal
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string mRptGroup = Convert.ToString(this.ddlRptGroup.SelectedIndex);
             string steam = this.ddlSalesTeam.SelectedValue.Trim().ToString() + "%";
+            string steamlen = this.Getsalesteamleng();
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTDAYWISHSAL", PactCode, frdate, todate, mRptGroup, steam, "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTDAYWISHSAL", PactCode, frdate, todate, mRptGroup, steam, steamlen, "", "", "");
             if (ds1 == null)
             {
                 this.gvDayWSale.DataSource = null;

@@ -433,11 +433,6 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Department">
-
-                                      
-
-
-
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdept" runat="server" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
                                                     Width="120px"></asp:Label>
