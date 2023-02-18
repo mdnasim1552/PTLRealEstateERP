@@ -653,6 +653,21 @@
 
                                     <div class=" card bg-light">
                                         <div class="col-md-12" visible="false" id="task" runat="server">
+                                             <div class="row p-1 d-flex w-100 " style="padding: 10px 8px 4px 0px;" >
+                                                  <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                                    <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
+                                                    <asp:Label ID="Label1" runat="server">&nbsp;  InHouseFreelancer</asp:Label>
+                                                </div>
+                                                  <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                                    <asp:CheckBox runat="server" ID="checkfreelancer" OnCheckedChanged="checkfreelancer_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
+                                                    <asp:Label ID="Label3" runat="server">&nbsp;  Freelancer</asp:Label>
+
+                                                </div>
+                                                 
+                                                    <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger mt-3"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
+
+                                                
+                                             </div>
 
                                             <div class="form-group row">
                                                 <asp:Label runat="server" ID="lblDoneAnnot" Visible="false"></asp:Label>
@@ -669,7 +684,6 @@
                                                         <asp:Label runat="server" ID="lblcountQC"></asp:Label>)</span>
                                                     <span class="text-danger">&nbsp; &nbsp; PendingQA(
                                                         <asp:Label runat="server" ID="lblcountQA"></asp:Label>)</span>
-                                                    <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
 
                                                 </div>
 
@@ -721,10 +735,7 @@
                                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                                     <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
-                                                    <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
-                                                    <asp:Label ID="Label1" runat="server">&nbsp;  Freelancing</asp:Label>
-                                                </div>
+                                               
                                                 <div class=" col-lg-3 col-md-3 col-sm-12" id="perrate" runat="server" visible="false">
                                                     <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
                                                     <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>

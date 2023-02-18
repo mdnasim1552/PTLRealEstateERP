@@ -1,48 +1,66 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptAccRecPayment.aspx.cs" Inherits="RealERPWEB.F_45_GrAcc.RptAccRecPayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptAccRecPayment.aspx.cs" Inherits="RealERPWEB.F_45_GrAcc.RptAccRecPayment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
-         .multiselect-container {
-            height: 250px !important;
+        .multiselect-container {
+            height: 300px !important;
             overflow-y: scroll !important;
         }
     </style>
     <script language="javascript" type="text/javascript">
 
         $(document).ready(function () {
+
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
         function pageLoaded() {
 
             try {
-           
-            $(function () {
-                    $('[id*=ddlComCode]').multiselect({
-                        includeSelectAllOption: true
+
+                //$(function () {
+                //    $('[id*=ddlComCode]').multiselect({
+                //        includeSelectAllOption: true
+                //    });
+
+                //});
+
+
+
+                $('.select2').each(function () {
+                    var select = $(this);
+                    select.select2({
+                        placeholder: 'Select an option',
+                        width: '100%',
+                        allowClear: !select.prop('required'),
+                        language: {
+                            noResults: function () {
+                                return "{{ __('No results found') }}";
+                            }
+                        }
+                    });
                 });
 
-            });
+                //$('.mdb-select').materialSelect();
 
-            //$('.mdb-select').materialSelect();
-            
-            var gv1 = $('#<%=this.grvBankDet.ClientID %>');
-            var gvGrpRP = $('#<%=this.gvGrpRP.ClientID %>');
-            var gvGrpBB = $('#<%=this.gvGrpBB.ClientID %>');
-            var gvGrpTB = $('#<%=this.gvGprTB.ClientID %>');
-            var grvCashFlow = $('#<%=this.grvCashFlow.ClientID %>');
-            var gvGrpIVsC = $('#<%=this.gvGrpIVsC.ClientID %>');
+                var gv1 = $('#<%=this.grvBankDet.ClientID %>');
+                var gvGrpRP = $('#<%=this.gvGrpRP.ClientID %>');
+                var gvGrpBB = $('#<%=this.gvGrpBB.ClientID %>');
+                var gvGrpTB = $('#<%=this.gvGprTB.ClientID %>');
+                var grvCashFlow = $('#<%=this.grvCashFlow.ClientID %>');
+                var gvGrpIVsC = $('#<%=this.gvGrpIVsC.ClientID %>');
 
 
-            gv1.Scrollable();
-            gvGrpRP.Scrollable();
-            gvGrpBB.Scrollable();
-            gvGrpTB.Scrollable();
-            grvCashFlow.Scrollable();
-            gvGrpIVsC.Scrollable();
+                gv1.Scrollable();
+                gvGrpRP.Scrollable();
+                gvGrpBB.Scrollable();
+                gvGrpTB.Scrollable();
+                grvCashFlow.Scrollable();
+                gvGrpIVsC.Scrollable();
             } catch (e) {
                 alert(e.message);
             }
@@ -70,118 +88,86 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <asp:Panel ID="Panel1" runat="server">
-                                    <div class="form-group">
-                                        <div class="col-md-4 pading5px asitCol4">
-                                            <asp:Label ID="lblDatefrom" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
-                                            <asp:TextBox ID="txtDateFrom" runat="server" CssClass="inputtextbox "></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtDateFrom" Enabled="true"></cc1:CalendarExtender>
-
-
-                                            <asp:Label ID="lblDateTo" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
-                                            <asp:TextBox ID="txtDateto" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtDateto_CalendarExtender" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtDateto" Enabled="true"></cc1:CalendarExtender>
-
-                                        </div>
-                                        <div class="col-md-5 pading5px asitCol5">
-                                            <asp:Label ID="lblGroup" runat="server" CssClass=" smLbl_to" Text="Group:"></asp:Label>
-                                            <asp:DropDownList ID="chkListGroup" runat="server" CssClass="smDropDown inputTxt" Width="80"
-                                                              TabIndex="6">
-                                                <asp:ListItem Value="1">Level-1</asp:ListItem>
-                                                <asp:ListItem Value="2">Level-2</asp:ListItem>
-                                                <asp:ListItem Value="3">Level-3</asp:ListItem>
-                                                <asp:ListItem Selected="True" Value="4">Level-4</asp:ListItem>
-                                            </asp:DropDownList>
-                                            <asp:LinkButton ID="lbtnShow" runat="server" OnClick="lbtnShow_Click" CssClass="btn btn-primary primaryBtn">Show</asp:LinkButton>
-
-
-                                            <%--<asp:CheckBoxList ID="chkListGroup" runat="server" AppendDataBoundItems="True"
-                                                BackColor="#12355b" ForeColor="White" BorderColor="#FFCC00" CssClass="chkBoxControl btn btn-primary primaryBtn rbtnList1"
-                                                RepeatDirection="Horizontal">
-
-                                                <asp:ListItem Selected="True">Main</asp:ListItem>
-                                                <asp:ListItem>Sub-1</asp:ListItem>
-                                                <asp:ListItem>Sub-2</asp:ListItem>
-                                                <asp:ListItem Selected="True">Details</asp:ListItem>
-                                            </asp:CheckBoxList>--%>
-                                        </div>
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:UpdateProgress ID="UpdateProgress1" runat="server">
-                                                <ProgressTemplate>
-                                                    <asp:Label ID="Label3" runat="server" CssClass="lblProgressBar" Text="Please wait . . . . . . ."
-                                                        Width="218px"></asp:Label>
-                                                </ProgressTemplate>
-                                            </asp:UpdateProgress>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-5 pading5px asitCol5">
-                                            <asp:Label ID="lblDateOpening" runat="server" Visible="false" CssClass="lblTxt lblName" Text="Opening"></asp:Label>
-                                            <asp:TextBox ID="txtDateOpening" runat="server" CssClass="inputtextbox" Visible="false"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtDateOpening_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateOpening"></cc1:CalendarExtender>
-                                        </div>
-                                    </div>
-
-
-
-                                </asp:Panel>
-                                <asp:Panel ID="Panel3" runat="server">
-                                    <div class="form-group">
-                                        <div class="col-md-4 pading5px">
-                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Company Name"></asp:Label>
-                                            <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control" Width="280px"  SelectionMode="Multiple"></asp:ListBox>
-                                            
-                                           <%-- <asp:CheckBox ID="chkall" runat="server" AutoPostBack="True"
-                                                CssClass="chkBoxControl btn btn-primary primaryBtn margin5px"
-                                                OnCheckedChanged="chkall_CheckedChanged" Text="Check All" />--%>
-
-                                            
-                                        </div>
-                                       
-                                        <div class="col-md-3">
-                                            <asp:CheckBox ID="chkConsolidate" runat="server" AutoPostBack="True" Visible="False"
-                                                          CssClass="chkBoxControl btn btn-primary primaryBtn margin5px"
-                                                          OnCheckedChanged="chkConsolidate_CheckedChanged" Text="With Consolidate" />
-                                        </div>
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltakaInLac" runat="server" CssClass="smLbl_to" Visible="False"></asp:Label>
-                                        </div>
-
-
-                                    </div>
-                                    <%--<div class="form-group">
-                                        <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName"></asp:Label>
-
-                                        <asp:CheckBoxList ID="cblCompany" runat="server" CellPadding="2" CellSpacing="0"
-                                            CssClass=" rbtnList1 chkBoxControl" Font-Bold="True" Font-Size="14px"
-                                            ForeColor="#000" Height="12px" RepeatColumns="6" Width="1000px"
-                                            RepeatDirection="Horizontal">
-                                            <asp:ListItem>aa</asp:ListItem>
-                                            <asp:ListItem>bb</asp:ListItem>
-                                            <asp:ListItem>cc</asp:ListItem>
-                                            <asp:ListItem>dd</asp:ListItem>
-                                            <asp:ListItem>ee</asp:ListItem>
-                                            <asp:ListItem>ff</asp:ListItem>
-                                            <asp:ListItem>gg</asp:ListItem>
-                                            <asp:ListItem>hh</asp:ListItem>
-                                            <asp:ListItem>mm</asp:ListItem>
-                                        </asp:CheckBoxList>
-                                    </div>--%>
-
-                                </asp:Panel>
-
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label id="lblDatefrom" runat="server">From</label>
+                                <asp:TextBox ID="txtDateFrom" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDateFrom" Enabled="true"></cc1:CalendarExtender>
                             </div>
-                        </fieldset>
+
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label id="lblDateTo" runat="server">TO</label>
+                                <asp:TextBox ID="txtDateto" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtDateto_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDateto" Enabled="true"></cc1:CalendarExtender>
+                            </div>
+
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label id="lblGroup" runat="server">Group</label>
+                                <asp:DropDownList ID="chkListGroup" runat="server" CssClass="form-control form-control-sm" 
+                                    TabIndex="6">
+                                    <asp:ListItem Value="1">Level-1</asp:ListItem>
+                                    <asp:ListItem Value="2">Level-2</asp:ListItem>
+                                    <asp:ListItem Value="3">Level-3</asp:ListItem>
+                                    <asp:ListItem Selected="True" Value="4">Level-4</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnShow" runat="server" OnClick="lbtnShow_Click" CssClass="btn btn-primary btn-sm margin-top30px">Show</asp:LinkButton>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-1">
+                            <label id="lblDateOpening" runat="server" visible="false">Opening</label>
+
+
+
+                            <asp:TextBox ID="txtDateOpening" runat="server" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txtDateOpening_CalendarExtender" runat="server"
+                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateOpening"></cc1:CalendarExtender>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label id="lblcompanyname" runat="server">Company Name</label>
+                            <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control form-control-sm select2"  SelectionMode="Multiple"></asp:ListBox>
+
+                             <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
+                        </div>
+
                     </div>
+
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            
+                                            <asp:Label ID="lbltakaInLac" runat="server" CssClass="smLbl_to" Visible="False"></asp:Label>
+                                  
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+
+            <div class="card card-fluid">
+                <div class="card-body">
                     <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewRecAndPayment" runat="server">
@@ -220,7 +206,7 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="Black"
                                                 HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField  FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Total Amt"
                                             ItemStyle-HorizontalAlign="Right">
                                             <ItemTemplate>
@@ -472,9 +458,9 @@
 
                                 </asp:Panel>
 
-                                  <asp:Panel ID="Bankstatus2" runat="server" >
-                        
-                                 <%--   <div class="form-group">
+                                <asp:Panel ID="Bankstatus2" runat="server">
+
+                                    <%--   <div class="form-group">
                                         <asp:Label ID="lblbank" runat="server" Text="Bank Status"></asp:Label>
                                     </div>--%>
                                     <asp:GridView ID="gvbankstaus2" runat="server" AutoGenerateColumns="False"
@@ -495,18 +481,14 @@
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Description ">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvactdesc" runat="server"
-                                                      
-                                                       
-                                                        
-                                                         Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>"+
+                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "actdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")).Trim(): "") 
                                                                          
                                                                     %>'
-                                                        
-                                                         Width="350px"></asp:Label>
+                                                        Width="350px"></asp:Label>
 
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
@@ -547,12 +529,12 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
+
+
+
+
+
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
@@ -759,7 +741,7 @@
                             <asp:View ID="ViewTrialbalance" runat="server">
                                 <div class="row table-responsive">
                                     <asp:GridView ID="gvGprTB" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvGprTB_OnRowDataBound"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                        ShowFooter="True" CssClass=" table-striped  table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl">
@@ -1283,8 +1265,8 @@
                                                     <asp:Label ID="lblfamt01BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
-                                                    <asp:LinkButton 
-                                                     ID="lblgvamt01BS" runat="server"
+                                                    <asp:LinkButton
+                                                        ID="lblgvamt01BS" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt01")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="80px"> </asp:LinkButton>
                                                 </ItemTemplate>
@@ -2333,8 +2315,11 @@
 
                         </asp:MultiView>
                     </div>
+
                 </div>
             </div>
+
+
 
 
 
