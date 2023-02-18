@@ -73,7 +73,7 @@
                         <div class="col-md-10" runat="server" id="mgtenplist" visible="false">
                             <asp:Label ID="Label3" CssClass="col-lg-1 col-form-label" runat="server">Employee List</asp:Label>
                             <div class="col-lg-3 col-md-3 col-sm-6">
-                                <asp:DropDownList ID="ddemplist" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddemplist_SelectedIndexChanged" AutoPostBack="true">
+                                <asp:DropDownList ID="ddemplist" runat="server"  CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddemplist_SelectedIndexChanged" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
                         </div>
