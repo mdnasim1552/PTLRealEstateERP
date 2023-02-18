@@ -182,12 +182,14 @@ namespace RealERPWEB.F_17_Acc
                 " allottee.";
 
 
-            string body = "<p style='text-align:justify;'>1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" +
+            //string body = "<div style='text-align: justify; text-justify: inter-character;'>1. All payment should be made to CPDL by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should be made to CPDL by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments in foreign exchange by international TT or DD. Any type of Cash payment is totally restricted. Payments of installment and other charges are to be made on due dates. The company may issue reminders to the Allottee but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time"+"</div>";
+
+            string body = "<div style='text-align: justify; text-justify: inter-character;'>1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" +
                       " which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " +
                       "be made to " + "<strong>" + companyname + "</strong>" + " by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " +
                       "in foreign exchange by international TT or  DD. Any type of Cash payment is totally restricted. Payments of installment and" +
                       " other charges are to be made on due dates. The company may issue reminders to the Allottee " +
-                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time." + "<br><br>" +
+                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time." + "</div>" + "<br><br>" +
                       "2. Delay in payments beyond the due date will make the allottee liable to pay a delay charge of 3% per 30 (Thirty) days on " +
                       "the amount of payment delayed.If the payment is delayed beyond 60(sixty) days or if the allottee wishes to surrender " +
                       "his allotment, the Company shall cancel the allotment without serving any notice to the Allottee. In such an " +
