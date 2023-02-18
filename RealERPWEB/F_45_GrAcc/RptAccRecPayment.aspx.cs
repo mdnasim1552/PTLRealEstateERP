@@ -118,7 +118,7 @@ namespace RealERPWEB.F_45_GrAcc
                     this.Panelschedule.Visible = false;
                     this.lblDatefrom.Visible = false;
                     this.txtDateFrom.Visible = false;
-                    this.lblDateTo.Text = "As on Date: ";
+                    this.lblDateTo.InnerText = "As on Date: ";
                     this.lbltakaInLac.Text = "Select Max 4 Company";
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
@@ -153,7 +153,7 @@ namespace RealERPWEB.F_45_GrAcc
         protected void CallCompanyList()
         {
             string comcod = this.GetCompCode();
-            string consolidate = this.chkConsolidate.Checked ? "Consolidate" : "";
+            string consolidate = "";
             DataSet ds1 = this.GrpData.GetTransInfo(comcod, "SP_REPORTO_GROUP_ACC_TB_RP", "COMPLIST", consolidate, "", "", "", "", "", "", "", "");
             DataView dv = ds1.Tables[0].DefaultView;
             dv.RowFilter = "comcod not like '0000%'";
@@ -1619,7 +1619,7 @@ namespace RealERPWEB.F_45_GrAcc
                     break;
             }
 
-            
+
         }
         private void RptAccRecPay01Rdlc()
         {
@@ -1664,7 +1664,7 @@ namespace RealERPWEB.F_45_GrAcc
                     {
                         comp1 = header;
                     }
-                    else if(i == 1)
+                    else if (i == 1)
                     {
                         comp2 = header;
 
