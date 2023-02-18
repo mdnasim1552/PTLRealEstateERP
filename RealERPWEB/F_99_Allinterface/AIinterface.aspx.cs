@@ -1537,6 +1537,7 @@ namespace RealERPWEB.F_99_Allinterface
                 int index = row.RowIndex;
                 string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
                 string jobid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
+                string fromuser = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpassignuser")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -1605,6 +1606,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
                 this.lblassignjobid.Text = jobid;
+                this.lblfromuser.Text = fromuser;
                 this.ddlassigntype.SelectedValue = assigntype;
 
 
@@ -1891,6 +1893,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string postedbyid = userid;
                 string editdat = "01-Jan-1900";
                 string jobid = this.lblassignjobid.Text;
+                string fromuser = this.lblfromuser.Text;
 
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
@@ -1898,7 +1901,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
                 //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
 
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, "", "", "");
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, fromuser, "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1948,6 +1951,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string batchid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcbatchid")).Text.ToString();
                 string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblQCtaskid")).Text.ToString();
                 string jobid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcjobid")).Text.ToString();
+                string qcfromuser = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvaqcssignuser")).Text.ToString();
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
@@ -2012,6 +2016,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.lblproprjid.Text = prjid;
                 this.lblabatchid.Text = batchid;
                 this.lblassignjobid.Text = jobid;
+                this.lblfromuser.Text = qcfromuser;
 
 
                 this.pnlSidebar.Visible = true;

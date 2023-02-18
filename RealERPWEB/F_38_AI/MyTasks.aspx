@@ -91,7 +91,7 @@
                                 <div class="col-md-4">
                                     <h5>Recently assigned</h5>
 
-                                    <div class="card" style="height: 200px;">
+                                    <div class="card" style="height: 300px; background-color: #F6F6F6">
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvAssingJob" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
                                                 ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
@@ -203,7 +203,7 @@
                                     <div class="card" style="height: 100px;">
                                     </div>--%>
                                     <h5>Completed Job</h5>
-                                    <div class="card" style="height: 300px; background-color: #F6F6F6;">
+                                    <div class="card" style="height: 400px; background-color: #F6F6F6;">
                                         <div class="table-responsive">
                                             <asp:GridView ID="gv_Completejob" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
                                                 ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
@@ -275,8 +275,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="card" style="height: 100px;">
-                                    </div>
+                                    
 
                                 </div>
                                 <div class="col-md-4">
