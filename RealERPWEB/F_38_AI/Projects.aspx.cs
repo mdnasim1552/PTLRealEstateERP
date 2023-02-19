@@ -478,6 +478,14 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                         return;
                     }
+                    else if (roletype == "95003" && doneqc < assignqty)
+                    {
+                        string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
+                        this.txtquantity.Focus();
+                        this.txtquantity.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
+                    }
                 }
                 DataTable tblt01 = (DataTable)ViewState["tblt01"];
                 //DataTable tbl1 = (DataTable)ViewState["tblReq"];
