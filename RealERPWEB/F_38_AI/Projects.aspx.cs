@@ -186,6 +186,8 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
                 this.GridVirtual.DataSource = null;
                 this.GridVirtual.DataBind();
 
@@ -476,6 +478,14 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                         return;
                     }
+                    else if (roletype == "95003" && doneqc < assignqty)
+                    {
+                        string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
+                        this.txtquantity.Focus();
+                        this.txtquantity.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
+                    }
                 }
                 DataTable tblt01 = (DataTable)ViewState["tblt01"];
                 //DataTable tbl1 = (DataTable)ViewState["tblReq"];
@@ -534,6 +544,8 @@ namespace RealERPWEB.F_38_AI
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
+                bool infreelancer =this.checkinoutsourcing.Checked;
+                bool freelancer =this.checkfreelancer.Checked;
                 string userid = hst["usrid"].ToString();
                 string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
@@ -555,12 +567,25 @@ namespace RealERPWEB.F_38_AI
                 string postedbyid = "";
                 string editdat = "01-Jan-1900";
                 string editbyid = "";
+                string emptype ="";
+                if (freelancer)
+                {
+                    emptype = "Freelancer";
+                }
+                else if (infreelancer)
+                {
+                    emptype = "InHouse";
+                }
+                else
+                {
+                    emptype = "Normal";
+                }
 
 
 
                 bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype,
                     createtask, userid, remarks, estimationtime,
-                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, "", "");
+                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, emptype, "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ToString() + "');", true);
@@ -773,6 +798,8 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
                 this.HiddinTaskid.Value = "0";
                 this.txttasktitle.Text = "";
                 this.ddlassignmember.SelectedValue = "";
