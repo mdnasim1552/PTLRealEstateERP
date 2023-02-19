@@ -59,7 +59,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid">
+            <div class="card card-fluid mb-1">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-lg-3">
@@ -101,8 +101,8 @@
                         </div>
                         <div class="col-md-1 col-sm-1 col-lg-1">
                             <div class="form-group">
-                                <asp:Label ID="lblPage" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm custom-select"
+                                <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                     Font-Bold="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                                     Width="70px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
@@ -139,8 +139,8 @@
             </asp:Panel>
             <div class="card card-fluid">
                 <div class="card-body" style="min-height: 400px;">
-                    <div class=" row table-responsive" style="overflow-x: scroll ;">
-                        <asp:GridView ID="gvUnit" runat="server" AllowPaging="True" CssClass="table-striped  table-bordered grvContentarea"
+                    <div class="row" style="overflow-x:auto;" >
+                        <asp:GridView ID="gvUnit" runat="server" AllowPaging="True" CssClass="table-striped table-responsive table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging="gvUnit_PageIndexChanging"
                             OnRowDataBound="gvUnit_RowDataBound" OnRowDeleting="gvUnit_RowDeleting"
                             ShowFooter="True">
@@ -149,12 +149,12 @@
                                 <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
-                                            Style="text-align: right"
+                                            Style="text-align: Center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="26px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
+                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' ItemStyle-HorizontalAlign="Center"/>
 
                                 <asp:TemplateField HeaderText="Code">
                                     <%--<FooterTemplate>
@@ -448,6 +448,7 @@
                                             Width="50px" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Remarks">

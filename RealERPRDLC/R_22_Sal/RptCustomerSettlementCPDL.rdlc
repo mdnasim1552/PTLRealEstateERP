@@ -728,7 +728,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>DGM Accounts And Finance</Value>
+                    <Value>Head of Accounts &amp; Finance</Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -868,6 +868,7 @@
                     <Style>
                       <FontFamily>calibri</FontFamily>
                       <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
