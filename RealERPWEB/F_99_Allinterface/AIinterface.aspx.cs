@@ -50,16 +50,16 @@ namespace RealERPWEB.F_99_Allinterface
                 //Hashtable hst = (Hashtable)Session["tblLogin"];
                 //string comcod = this.GetCompCode();
 
-
+                bool ischeck = false;
                 ////this.getAllData();
                 this.GetAIInterface();
 
                 //this.GetBatchAssingList();
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
-                this.GetEmployeeName();
-                this.GetAnnotationList();
-                this.GetProjectInformation();
+                this.GetEmployeeName(ischeck);
+                this.GetAnnotationList(ischeck);
+                this.GetProjectInformation(ischeck);
                 this.CreateTableAssign();
                 this.prjSearch_Click(null, null);
 
@@ -875,12 +875,12 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnaddPrj_Click(object sender, EventArgs e)
         {
-
+            bool ischeck = false;
             this.pnlSidebar.Visible = true;
             this.pnlProjectadd.Visible = true;
             this.pnlBatchadd.Visible = false;
 
-            this.GetEmployeeName();
+            this.GetEmployeeName(ischeck);
 
             this.GetCountry();
             this.GetProjectDetails();
@@ -892,25 +892,31 @@ namespace RealERPWEB.F_99_Allinterface
             this.IsClearAddProject();
 
         }
-        private void GetEmployeeName()
+        private void GetEmployeeName(bool ischeck)
         {
             Session.Remove("tblempname");
             string comcod = this.GetCompCode();
-            string company = "94%";
-            string projectName = "%";
-
-            string txtSEmployee = "%%";
-            DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
-            if (ds3 == null)
+            DataSet ds4 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETFREELANCERIMP", "", "", "", "", "", "", "", "", "");
+            if (ds4 == null)
                 return;
-
-            Session["tblempname"] = ds3.Tables[0];
-            DataTable dt2 = ds3.Tables[0];
-
+            DataTable dt2 = ds4.Tables[0];
+            Session["tblfreeempname"] = ds4.Tables[0];
             DataView dv2 = dt2.DefaultView;
-            this.ddlassignmember.DataTextField = "empname";
-            this.ddlassignmember.DataValueField = "empid";
-            this.ddlassignmember.DataSource = dv2.ToTable();
+            DataTable dt1 = new DataTable();
+            if (ischeck)
+            {
+                dv2.RowFilter = "sircode like '9351%'";
+                dt1 = dv2.ToTable();
+            }
+            else
+            {
+                dv2.RowFilter = "sircode not like '9351%' ";
+                dt1 = dv2.ToTable();
+            }
+
+            this.ddlassignmember.DataTextField = "sirdesc";
+            this.ddlassignmember.DataValueField = "sircode";
+            this.ddlassignmember.DataSource = dt1;
             this.ddlassignmember.DataBind();
 
         }
@@ -1533,6 +1539,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 string comcod = this.GetCompCode();
 
+
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
@@ -1598,6 +1605,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 this.txttasktitle.Text = title;
+                this.checkfreelancer.Enabled = false;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
 
@@ -1622,12 +1630,22 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void GetAnnotationList()
+        private void GetAnnotationList( bool ischeck)
         {
             string comcod = this.GetCompCode();
             string prjlist = this.lblproprjid.Text.Trim() + "%";
-            string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
-                            this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
+            string usrrole = "";
+            if (!ischeck)
+            {
+                usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
+                           this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
+            }
+            else
+            {
+                usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03403" : "03403";
+
+            }
+
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
             if (ds == null)
                 return;
@@ -1642,9 +1660,17 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void ddlUserRoleType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetAnnotationList();
+            bool ischeck = this.checkfreelancer.Checked;
+            if (ischeck)
+            {
+                this.GetAnnotationList(ischeck);
+            }
+            else
+            {
+                this.GetAnnotationList(ischeck);
+            }
         }
-        private void GetProjectInformation()
+        private void GetProjectInformation(bool ischeck)
         {
             string comcod = this.GetCompCode();
             DataSet dt2 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETINFORMATIONCODE", "", "", "", "", "", "");
@@ -1655,10 +1681,21 @@ namespace RealERPWEB.F_99_Allinterface
             ViewState["tblgetprojectinfo"] = dt;
             //order type
             DataView dv3 = dt.DefaultView;
-            dv3.RowFilter = "gcod like'95%' and gcod not like'%00'";
+            DataTable dt01 = new DataTable();
+            if (ischeck)
+            {
+                dv3.RowFilter = "gcod like'95003%'";
+                dt01 = dv3.ToTable();
+            }
+            else
+            {
+                dv3.RowFilter = "gcod like'95%' and gcod not like'%00'";
+                dt01 = dv3.ToTable();
+            }
+            
             this.ddlUserRoleType.DataTextField = "gdesc";
             this.ddlUserRoleType.DataValueField = "gcod";
-            this.ddlUserRoleType.DataSource = dv3.ToTable();
+            this.ddlUserRoleType.DataSource = dt01;
             this.ddlUserRoleType.DataBind();
 
             //task type
@@ -1866,6 +1903,8 @@ namespace RealERPWEB.F_99_Allinterface
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
+                bool infreelancer = this.checkinoutsourcing.Checked;
+                bool freelancer = this.checkfreelancer.Checked;
                 string userid = hst["usrid"].ToString();
                 string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
@@ -1894,14 +1933,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string editdat = "01-Jan-1900";
                 string jobid = this.lblassignjobid.Text;
                 string fromuser = this.lblfromuser.Text;
-
-                string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
-                string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
+                string emptype = "";
+                if (freelancer)
+                {
+                    emptype = "Freelancer";
+                }
+                else if (infreelancer)
+                {
+                    emptype = "InHouse";
+                }
+                else
+                {
+                    emptype = "Normal";
+                }
 
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
                 //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
 
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, fromuser, "", "");
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, jobid, fromuser, emptype, "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
@@ -2364,6 +2413,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
+                bool ischeck = false;
                 this.pnlSidebar.Visible = true;
                 this.pnlProjectadd.Visible = true;
                 this.pnlBatchadd.Visible = false;
@@ -2376,7 +2426,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string value = "1";
                 string empid = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliclientid")).Text.ToString();
                 string doneqty = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdelidoneqty")).Text.ToString();
-                this.GetEmployeeName();
+                this.GetEmployeeName(ischeck);
                 this.GetCustomerList();
                 this.GetCountry();
                 this.GetProjectDetails();
@@ -2412,22 +2462,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-        protected void checkinoutsourcing_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = this.checkinoutsourcing.Checked;
-            if (!check)
-            {
-                this.perrate.Visible = false;
-                this.textrate.Text = "";
-
-            }
-            else
-            {
-                this.perrate.Visible = true;
-                string rate = "80";
-                this.textrate.Text = rate;
-            }
-        }
+       
 
         protected void btnsowConvert_Click(object sender, EventArgs e)
         {
@@ -2590,6 +2625,53 @@ namespace RealERPWEB.F_99_Allinterface
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
                 hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
+        }
+
+
+
+        protected void checkinoutsourcing_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = this.checkinoutsourcing.Checked;
+            if (!check)
+            {
+                this.checkfreelancer.Enabled = true;
+                this.perrate.Visible = false;
+                this.textrate.Text = "";
+
+            }
+            else
+            {
+                this.checkfreelancer.Enabled = false;
+                this.perrate.Visible = true;
+                string rate = "80";
+                this.textrate.Text = rate;
+            }
+        }
+
+        protected void checkfreelancer_CheckedChanged(object sender, EventArgs e)
+        {
+            bool ischeck = this.checkfreelancer.Checked;
+            if (!ischeck)
+            {
+                this.checkinoutsourcing.Enabled = true;
+                this.GetEmployeeName(ischeck);
+                this.GetAnnotationList(ischeck);
+                this.GetProjectInformation(ischeck);
+                this.perrate.Visible = false;
+                this.textrate.Text = "";
+
+            }
+            else
+            {
+                
+                this.checkinoutsourcing.Enabled = false;
+                this.GetEmployeeName(ischeck);
+                this.GetAnnotationList(ischeck);
+                this.GetProjectInformation(ischeck);
+                this.perrate.Visible = true;
+                string rate = "80";
+                this.textrate.Text = rate;
             }
         }
     }

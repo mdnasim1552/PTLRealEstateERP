@@ -1345,9 +1345,14 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                             Width="150px"></asp:Label>
                                                     </asp:HyperLink>
+                                                       <asp:Label ID="lblproductassignemptype" runat="server"
+                                                        CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Freelancer") ? "badge badge-pill badge-success"://done
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="InHouse") ? "badge badge-pill badge-danger"://hold
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Normal") ? "badge badge-pill badge-primary":"adge badge-pill badge-danger" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype")) %>'></asp:Label>
 
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="TaskTitle">
@@ -1424,7 +1429,7 @@
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="AnnotDone" Visible="false">
+                                            <asp:TemplateField HeaderText="AnnotDone" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvproqcdoneqty" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qcdoneqty")).ToString("#,##0;(#,##0); ") %>'
@@ -1572,7 +1577,7 @@
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                              <asp:TemplateField HeaderText="From EmpName">
+                                            <asp:TemplateField HeaderText="From EmpName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvqcfromuser" runat="server" Height="16px" Font-Bold="true"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fromuser")) %>'
@@ -1595,6 +1600,11 @@
                                                     <asp:Label ID="lblgvqcempname" runat="server" Height="16px" Font-Bold="true"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                         Width="150px"></asp:Label>
+                                                    <asp:Label ID="lblqcqaassignemptype" runat="server"
+                                                        CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Freelancer") ? "badge badge-pill badge-success"://done
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="InHouse") ? "badge badge-pill badge-danger"://hold
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Normal") ? "badge badge-pill badge-primary":"adge badge-pill badge-danger" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1820,11 +1830,11 @@
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="From EmpName">
+                                            <asp:TemplateField HeaderText="From EmpName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvqafromuser" runat="server" Height="16px" Font-Bold="true"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fromuser")) %>'
-                                                        Width="180px"></asp:Label>
+                                                        Width="160px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" ForeColor="red" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1840,9 +1850,16 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="To EmpName">
                                                 <ItemTemplate>
+
                                                     <asp:Label ID="lblgvqaempname" runat="server" Height="16px" Font-Bold="true"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                        Width="180px"></asp:Label>
+                                                        Width="160px"></asp:Label>
+                                                    <asp:Label ID="lblassignemptype" runat="server"
+                                                        CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Freelancer") ? "badge badge-pill badge-success"://done
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="InHouse") ? "badge badge-pill badge-danger"://hold
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype"))=="Normal") ? "badge badge-pill badge-primary":"adge badge-pill badge-danger" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype")) %>'></asp:Label>
+
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2868,6 +2885,23 @@
 
                             </div>
                             <div class="modal-body well">
+                                <div class="row p-1 d-flex w-100 " style="padding: 10px 8px 4px 0px;">
+
+                                    <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                        <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
+
+                                        <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
+                                    </div>
+                                    <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                        <asp:CheckBox runat="server" ID="checkfreelancer" OnCheckedChanged="checkfreelancer_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
+                                        <asp:Label ID="Label46" runat="server">&nbsp;  Freelancer</asp:Label>
+
+                                    </div>
+
+
+
+                                </div>
+
                                 <div class="form-group row">
 
                                     <div class="d-flex w-100" style="padding: 10px 8px 4px 0px;">
@@ -2932,17 +2966,13 @@
                                         <asp:Label ID="Label28" runat="server">Work Hour</asp:Label>
                                         <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                    <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
-                                        <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
 
-                                        <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
-                                    </div>
                                     <div class=" col-lg-3 col-md-3 col-sm-12" id="perrate" runat="server" visible="false">
                                         <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
                                         <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
 
-                                    <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
+                                    <div class=" col-lg-1 col-md-1 col-sm-12 ">
                                         <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
                                     </div>
