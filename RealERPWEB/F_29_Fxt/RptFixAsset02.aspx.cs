@@ -24,6 +24,12 @@ namespace RealERPWEB.F_29_Fxt
         {
             if (!IsPostBack)
             {
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetDeparment();
                 this.GetAsset();
                 this.GetUser();
@@ -31,6 +37,7 @@ namespace RealERPWEB.F_29_Fxt
                 DropDownList1_SelectedIndexChanged(null, null);
                 this.txtTodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtDateFrom.Text = "01" + (this.txtTodate.Text).Substring(2);
+
             }
         }
 
@@ -247,12 +254,16 @@ namespace RealERPWEB.F_29_Fxt
                     this.gvFixAsset.Visible = false;
                     this.gvassetwise.Visible = false;
 
+                    this.divDept.Visible = true;
                     this.lblDept.Visible = true;
                     this.ddldeptName.Visible = true;
+                    this.divUser.Visible = false;
                     this.lblusr.Visible = false;
                     this.ddluser.Visible = false;
+                    this.divAsset.Visible = false;
                     this.lblasst.Visible = false;
                     this.ddlasset.Visible = false;
+                    this.divAssetDetails.Visible = false;
                     this.lblasstdet.Visible = false;
                     this.ddlAssetDetails.Visible = false;
                     break;
@@ -261,12 +272,16 @@ namespace RealERPWEB.F_29_Fxt
                     this.gvFixAsset.Visible = false;
                     this.gvassetwise.Visible = false;
 
+                    this.divDept.Visible = false;
                     this.lblDept.Visible = false;
                     this.ddldeptName.Visible = false;
+                    this.divUser.Visible = false;
                     this.lblusr.Visible = false;
                     this.ddluser.Visible = false;
+                    this.divAsset.Visible = true;
                     this.lblasst.Visible = true;
                     this.ddlasset.Visible = true;
+                    this.divAssetDetails.Visible = true;
                     this.lblasstdet.Visible = true;
                     this.ddlAssetDetails.Visible = true;
 
@@ -277,13 +292,16 @@ namespace RealERPWEB.F_29_Fxt
                     this.gvuser.Visible = false;
                     this.gvFixAsset.Visible = false;
                     this.gvassetwise.Visible = false;
-
+                    this.divDept.Visible = false;
                     this.lblDept.Visible = false;
                     this.ddldeptName.Visible = false;
+                    this.divUser.Visible = true;
                     this.lblusr.Visible = true;
                     this.ddluser.Visible = true;
+                    this.divAsset.Visible = false;
                     this.lblasst.Visible = false;
                     this.ddlasset.Visible = false;
+                    this.divAssetDetails.Visible = false;
                     this.lblasstdet.Visible = false;
                     this.ddlAssetDetails.Visible = false;
                     break;

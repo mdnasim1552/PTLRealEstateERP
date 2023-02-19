@@ -1665,7 +1665,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <%--<asp:TemplateField HeaderText="amt34">
+                                            <asp:TemplateField HeaderText="amt34">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvamt34" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt34")).ToString("#,##0;(#,##0); ") %>'
@@ -1679,7 +1679,7 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>--%>
+                                            </asp:TemplateField>
 
 
 
