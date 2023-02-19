@@ -1291,7 +1291,7 @@ namespace RealERPWEB.F_34_Mgt
             DataTable dtsign = ds1.Tables[2];
             DataTable dt1 = ds1.Tables[1];
             
-            string reqno = "Requisition No : " + dt1.Rows[0]["reqno1"].ToString();
+            string reqno = "Requisition No : " + dt1.Rows[0]["reqno"].ToString();
            
 
             string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 

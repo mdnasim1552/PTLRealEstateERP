@@ -598,13 +598,15 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
             this.ddlDeptCode.SelectedValue = this.Request.QueryString["Type"].ToString() == "Link" ? this.Request.QueryString["sircode"].ToString() : "AAAAAAAAAAAA";
-            if (this.Request.QueryString["prjcode"].Length > 0)
-            {
-                string deptcode = this.Request.QueryString["prjcode"].ToString();
+           
+            
+            //if (this.Request.QueryString["prjcode"].Length > 0)
+            //{
+            //    string deptcode = this.Request.QueryString["prjcode"].ToString();
 
-                this.ddlDeptCode.SelectedValue = deptcode;
+            //    this.ddlDeptCode.SelectedValue = deptcode;
 
-            }
+            //}
         }
         private void GetEmployeeList()
         {

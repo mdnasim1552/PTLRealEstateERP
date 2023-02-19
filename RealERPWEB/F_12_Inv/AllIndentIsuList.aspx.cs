@@ -78,7 +78,7 @@ namespace RealERPWEB.F_12_Inv
 
             ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("href", "../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=prjcode=&sircode=");
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("href", "../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=&prjcode=&sircode=");
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Attributes.Add("target", "_blank");
 
 
@@ -106,7 +106,7 @@ namespace RealERPWEB.F_12_Inv
             string qType = this.Request.QueryString["Type"].ToString();
             if (qType == "Entry")
             {
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../F_12_Inv/Material_Issue.aspx?Type=Entry&genno=" + "', target='_blank');</script>";
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('..F_12_Inv/Material_Issue?Type=Entry&genno='"+ "'&prjcode='" + "'&sircode='" + "'', target='_blank');</script>";
             }
 
         }
