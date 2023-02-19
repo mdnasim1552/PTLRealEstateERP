@@ -1,10 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptFixAsset02.aspx.cs" Inherits="RealERPWEB.F_29_Fxt.RptFixAsset02" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptFixAsset02.aspx.cs" Inherits="RealERPWEB.F_29_Fxt.RptFixAsset02" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
+     <style>
+        .mt20 {
+            margin-top: 20px;
+        }
+        .mt22 {
+            margin-top: 21px;
+        }
+         .chzn-container-single .chzn-single {
+                height: 28px !important;
+                line-height: 28px !important;
+            }
+     </style>
     
     <script type="text/javascript">
 
@@ -13,12 +24,12 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
             <%-- var gv = $('#<%=this.dgvAccRec.ClientID %>');
-            gv.Scrollable();--%>
-
+            gv.Scrollable();--%>          
 
             var gvassetwise = $('#<%=this.gvassetwise.ClientID %>');
 
@@ -34,8 +45,10 @@
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 4
             });
-
+            
+            $('.chzn-select').chosen({ search_contains: true });
         }
+        $('.chzn-select').chosen({ search_contains: true });
 
     </script>
 
@@ -58,71 +71,73 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-3 mb-1">
+                <div class="card-body p-1">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                       <div class="col-md-3 pading5px">
-                                        <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="Date :"></asp:Label>
-                                        <asp:TextBox ID="txtDateFrom" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
-                                            Format="dd-MMM-yyyy" TargetControlID="txtDateFrom" Enabled="true">
-                                        </cc1:CalendarExtender>
-                                          
-                                            <asp:Label ID="Label10" runat="server" CssClass=" smLbl_to" Text="To:"></asp:Label>
-                                            <asp:TextBox ID="txtTodate" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtTodate_CalendarExtender" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtTodate"></cc1:CalendarExtender>
-
-
-                                         </div>
-
-                                    <div class="col-md-3 pading5px">
-                                       
-                                        <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Report Type :</asp:Label>
-                                        <asp:DropDownList ID="DropDownList1" runat="server" Width="180" CssClass="form-control inputTxt" AutoPostBack="true"  OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"  TabIndex="6">
-                                            <asp:ListItem Value="location" Selected="True" Text="LOCATION WISE"></asp:ListItem>
-                                            <asp:ListItem Value="asset" Text="EQUIPMENT WISE"></asp:ListItem>
-                                            <asp:ListItem Value="user" Text="USER WISE"></asp:ListItem>                                            
-                                        </asp:DropDownList>
-                                    </div>
-
-
-
-
-                                    
-                                    <div class="col-md-3 pading5px">
-                                          <asp:Label ID="lblDept" runat="server" Visible="false" CssClass="lblTxt lblName">Department :</asp:Label>
-                                        <asp:DropDownList ID="ddldeptName" Visible="false" runat="server" Width="184" CssClass="form-control inputTxt" TabIndex="6"></asp:DropDownList>
-
-                                           <asp:Label ID="lblusr" runat="server" Visible="false" CssClass="lblTxt lblName">User :</asp:Label>
-                                        <asp:DropDownList ID="ddluser" runat="server" Visible="false" Width="184" CssClass="form-control inputTxt" TabIndex="6"></asp:DropDownList>
-
-                                        <asp:Label ID="lblasst" runat="server" Visible="false" CssClass="lblTxt lblName">Asset :</asp:Label>
-                                        <asp:DropDownList ID="ddlasset" OnSelectedIndexChanged="ddlasset_SelectedIndexChanged" AutoPostBack="true" runat="server" Visible="false" Width="184" CssClass="form-control inputTxt" TabIndex="6"></asp:DropDownList>
-                                    </div>
-
-                                     <div class="col-md-3 pading5px">
-                                        <asp:Label ID="lblasstdet" runat="server" Visible="false"  CssClass=" smLbl_to">Asset Details :</asp:Label>
-                                        <asp:DropDownList ID="ddlAssetDetails" runat="server" Visible="false"   Width="180" CssClass="inputTxt ddlPage pull-left" TabIndex="6"></asp:DropDownList>
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" TabIndex="4">ok</asp:LinkButton>
-
-                                    </div>
-
-
-
-                                  
-                                </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                 <asp:Label ID="lblDate" runat="server" CssClass="smLbl_to" Text="From"></asp:Label>
+                                <asp:TextBox ID="txtDateFrom" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDateFrom" Enabled="true">
+                                </cc1:CalendarExtender>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="Label10" runat="server" CssClass=" smLbl_to" Text="To"></asp:Label>
+                                <asp:TextBox ID="txtTodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtTodate_CalendarExtender" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtTodate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to">Report Type </asp:Label>
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true"  OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"  TabIndex="6">
+                                    <asp:ListItem Value="location" Selected="True" Text="LOCATION WISE"></asp:ListItem>
+                                    <asp:ListItem Value="asset" Text="EQUIPMENT WISE"></asp:ListItem>
+                                    <asp:ListItem Value="user" Text="USER WISE"></asp:ListItem>                                            
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2" id="divDept" Visible="false" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lblDept" runat="server" Visible="false" CssClass="lblTxt lblName">Department </asp:Label>
+                                <asp:DropDownList ID="ddldeptName" Visible="false" runat="server" CssClass="form-control from-control-sm  chzn-select" TabIndex="6"></asp:DropDownList>                            
+                            </div>
+                        </div>                        
+                        <div class="col-sm-2 col-md-2 col-lg-2" Visible="false" id="divUser" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lblusr" runat="server" Visible="false" CssClass="lblTxt lblName">User </asp:Label>
+                                <asp:DropDownList ID="ddluser" runat="server" Visible="false" CssClass="form-control from-control-sm chzn-select" TabIndex="6"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2" id="divAsset" Visible="false" runat="server">
+                            <div class="form-group">
+                                 <asp:Label ID="lblasst" runat="server" Visible="false" CssClass="lblTxt lblName">Asset </asp:Label>
+                                 <asp:DropDownList ID="ddlasset" OnSelectedIndexChanged="ddlasset_SelectedIndexChanged" AutoPostBack="true" runat="server" Visible="false" CssClass="form-control from-control-sm chzn-select" TabIndex="6"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2" id="divAssetDetails" Visible="false" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="lblasstdet" runat="server" Visible="false"  CssClass=" lblTxt lblName">Asset Details </asp:Label>
+                                <asp:DropDownList ID="ddlAssetDetails" runat="server" Visible="false"   CssClass="form-control from-control-sm chzn-select" TabIndex="6"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-md-1 col-lg-1">
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt22" OnClick="lbtnOk_Click" TabIndex="4">ok</asp:LinkButton>
+                        </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="table table-responsive">
-                       <asp:GridView ID="gvFixAsset" runat="server" AutoGenerateColumns="False"
-                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea"  Width="461px">
+            <div class="card mb-1">
+                <div class="card-body p-1" style="min-height:450px;">
+                    <div class="row">
+                        <div class="table-responsive">
+                             <asp:GridView ID="gvFixAsset" runat="server" AutoGenerateColumns="False"
+                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-bordered grvContentarea"  Width="461px">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.">
@@ -197,8 +212,8 @@
                               <asp:TemplateField HeaderText="Rate">
 
                                     <FooterTemplate>
-                                        <asp:Label ID="lgFrate7" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"> Total :</asp:Label>
+                                        <asp:Label ID="lgFrate7" runat="server" Font-Bold="True" Font-Size="13px"
+                                             Style="text-align: right"> Total :</asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblrate"  runat="server"
@@ -212,7 +227,7 @@
                               <asp:TemplateField HeaderText="Purchase Value">
                                   <FooterTemplate>
                                         <asp:Label ID="lgFPurValue" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
 
                                 <ItemTemplate>
@@ -229,7 +244,7 @@
                              <asp:TemplateField HeaderText="Depreciation"> 
                                  <FooterTemplate>
                                         <asp:Label ID="lgFDepciation" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbldepre"  runat="server"
@@ -259,7 +274,7 @@
                           <asp:TemplateField HeaderText="Book Value">
                               <FooterTemplate>
                                         <asp:Label ID="lgFBookVal" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                             Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblbookval"  runat="server"
@@ -290,19 +305,18 @@
                              
                         </Columns>
 
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
-                    </div>
-
-                  
+                    </div>                  
 
                     <div>
-                        <asp:GridView ID="gvassetwise" runat="server" AutoGenerateColumns="False"
-                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea"  Width="461px">
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvassetwise" runat="server" AutoGenerateColumns="False"
+                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped  table-bordered grvContentarea"  Width="461px">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.">
@@ -389,7 +403,7 @@
                               <asp:TemplateField HeaderText="Rate">
                                   <FooterTemplate>
                                         <asp:Label ID="lgFrate8" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"> Total :</asp:Label>
+                                            Style="text-align: right"> Total :</asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblrate" runat="server"
@@ -403,7 +417,7 @@
                               <asp:TemplateField HeaderText="Purchase Value">
                                    <FooterTemplate>
                                         <asp:Label ID="lgFPurValue1" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblval"  runat="server"
@@ -419,7 +433,7 @@
                              <asp:TemplateField HeaderText="Depreciation">
                                  <FooterTemplate>
                                         <asp:Label ID="lgFDepciation1" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbldepre"  runat="server"
@@ -434,7 +448,7 @@
                               <asp:TemplateField HeaderText="Sale Value"> 
                                  <FooterTemplate>
                                         <asp:Label ID="lgsalval" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbldepre"  runat="server"
@@ -449,7 +463,7 @@
                          <asp:TemplateField HeaderText="Book Value">
                              <FooterTemplate>
                                         <asp:Label ID="lgFBookVal1" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                           Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblbokval"  runat="server"
@@ -479,19 +493,18 @@
                             </asp:TemplateField>
                         </Columns>
 
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
-                    </div>
+                        </div>
+                    </div>                     
 
-                     
-
-                    <div class ="table table-responsive"> 
+                    <div class ="table-responsive"> 
                         <asp:GridView ID="gvuser" runat="server" AutoGenerateColumns="False"
-                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea"  Width="461px">
+                        ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-bordered grvContentarea"  Width="461px">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.">
@@ -589,7 +602,7 @@
                               <asp:TemplateField HeaderText="Purchase Value">
                                     <FooterTemplate>
                                         <asp:Label ID="lgFPurValue2" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblpurval" runat="server"
@@ -606,7 +619,7 @@
                               <asp:TemplateField HeaderText="Depreciation">
                                    <FooterTemplate>
                                         <asp:Label ID="lgFDepreciation2" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbldepre"  runat="server"
@@ -622,7 +635,7 @@
                               <asp:TemplateField HeaderText="Sale Value"> 
                                  <FooterTemplate>
                                         <asp:Label ID="lgsalval" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbldepre"  runat="server"
@@ -637,7 +650,7 @@
                                  <asp:TemplateField HeaderText="Book value">
                                        <FooterTemplate>
                                         <asp:Label ID="lgFBookVal2" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblbookval"  runat="server"
@@ -651,19 +664,16 @@
 
                         </Columns>
 
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
                     </div>
-                     
-
+                    </div>
                 </div>
             </div>
-
-
 
         </ContentTemplate>
     </asp:UpdatePanel>

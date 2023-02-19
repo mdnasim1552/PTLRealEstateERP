@@ -105,6 +105,15 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
+        /// divDept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDept;
+
+        /// <summary>
         /// lblDept control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddldeptName;
+
+        /// <summary>
+        /// divUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUser;
 
         /// <summary>
         /// lblusr control.
@@ -141,6 +159,15 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList ddluser;
 
         /// <summary>
+        /// divAsset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAsset;
+
+        /// <summary>
         /// lblasst control.
         /// </summary>
         /// <remarks>
@@ -157,6 +184,15 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlasset;
+
+        /// <summary>
+        /// divAssetDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAssetDetails;
 
         /// <summary>
         /// lblasstdet control.

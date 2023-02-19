@@ -15,7 +15,7 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 //using KPIRDLC;
 using RealEntity;
-using Microsoft.Reporting.WebForms;
+using Microsoft.Reporting.WinForms;
 using System.Reflection;
 using System.IO;
 using FastMember;
