@@ -1538,13 +1538,16 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
                 string comcod = this.GetCompCode();
-
-
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
                 string jobid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
                 string fromuser = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpassignuser")).Text.ToString();
+                string emptype = ((Label)this.gv_Production.Rows[index].FindControl("lblproductassignemptype")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -1605,7 +1608,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 this.txttasktitle.Text = title;
-                this.checkfreelancer.Enabled = false;
+                //this.checkfreelancer.Enabled = false;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
 
@@ -1778,7 +1781,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
-
+                    return;
                 }
                 else if (roletype == "95002" && doneannotor < assignqty)
                 {
@@ -1786,15 +1789,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                    return;
                 }
                 else if (roletype == "95003" && doneqc < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
-
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
-
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                    return;
                 }
 
                 else
@@ -1805,6 +1808,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                     string empid = this.ddlassignmember.SelectedValue.ToString();
                     string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                    bool ischeck = this.checkinoutsourcing.Checked==true?true: this.checkfreelancer.Checked==true?true:false;                  
+                 
                     //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
                     //if (dr2.Length == 0)
                     //{
@@ -1824,7 +1829,7 @@ namespace RealERPWEB.F_99_Allinterface
                         dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
                         dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                         dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                        dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                        dr1["isoutsrc"] = ischeck;
                         dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
                         if (roletype == "95001")
@@ -1959,6 +1964,8 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);
                 this.IsClear();
                 this.pnlSidebar.Visible = false;
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
                 this.GetAIInterface();
             }
             catch (Exception exp)
@@ -1994,6 +2001,10 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
                 string comcod = this.GetCompCode();
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -2086,6 +2097,10 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
                 string comcod = this.GetCompCode();
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;

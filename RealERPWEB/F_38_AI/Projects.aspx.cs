@@ -491,6 +491,7 @@ namespace RealERPWEB.F_38_AI
                 //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                 string empid = this.ddlassignmember.SelectedValue.ToString();
                 string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                bool ischeck = this.checkinoutsourcing.Checked == true ? true : this.checkfreelancer.Checked == true ? true : false;
                 //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
                 //if (dr2.Length == 0)
                 //{
@@ -510,7 +511,7 @@ namespace RealERPWEB.F_38_AI
                     dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
                     dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                     dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                    dr1["isoutsrc"] = ischeck;
                     dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                     tblt01.Rows.Add(dr1);
                     this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
@@ -538,6 +539,8 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetComdCode();
                 DataTable tbl1 = (DataTable)ViewState["tblt01"];
@@ -602,6 +605,9 @@ namespace RealERPWEB.F_38_AI
 
                 this.GetBatchInfo();
                 this.GetProjectwiseBatch();
+               
+
+
             }
             catch (Exception ex)
             {
@@ -680,6 +686,7 @@ namespace RealERPWEB.F_38_AI
                 this.HiddinTaskid.Value = id;
                 this.lbltaskbatchid.Text = id;
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
+                string emptype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblemptype")).Text.ToString();
                 string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
                 string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
@@ -688,10 +695,33 @@ namespace RealERPWEB.F_38_AI
                 double assginqty = Convert.ToDouble("0" + ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString());
                 string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
                 string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
+                if (emptype== "Freelancer")
+                {
+                    this.checkfreelancer.Checked = true;
+                    this.checkinoutsourcing.Checked = false;
+                    bool ischeck = this.checkfreelancer.Checked;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
+                else if(emptype == "InHouse")
+                {
+                    
+                    this.checkinoutsourcing.Checked = true;
+                    this.checkfreelancer.Checked = false;
+                    bool ischeck = false;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
+                else
+                {
+                    this.checkinoutsourcing.Checked = false;
+                    this.checkfreelancer.Checked = false;
+                    bool ischeck = false;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
 
-                this.txttasktitle.Text = titlename;
-
-                this.ddlassignmember.SelectedValue = empid;
+                this.txttasktitle.Text = titlename;                
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedItem.Text = anotationid;
                 this.ddlassigntype.SelectedValue = assigntype;
