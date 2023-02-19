@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9e570c11-2fed-4067-8aee-ef9b3b582aca</rd:DataSourceID>
+      <rd:DataSourceID>6be663e0-64e5-466f-8fae-43d7f1d7c4cf</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -25,6 +25,10 @@
           <DataField>afterdiscount</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="billnature">
+          <DataField>billnature</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="billno">
           <DataField>billno</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -35,6 +39,10 @@
         </Field>
         <Field Name="cram">
           <DataField>cram</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="deducamt">
+          <DataField>deducamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="discountamt">
@@ -64,6 +72,14 @@
         <Field Name="payamt">
           <DataField>payamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="penalty">
+          <DataField>penalty</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="rano">
+          <DataField>rano</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="resdesc">
           <DataField>resdesc</DataField>
@@ -114,10 +130,10 @@
                   <Width>1.4375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73958in</Width>
+                  <Width>0.86458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8378in</Width>
+                  <Width>0.57516in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.67708in</Width>
@@ -126,13 +142,13 @@
                   <Width>0.8229in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.76042in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.77083in</Width>
-                </TablixColumn>
-                <TablixColumn>
                   <Width>0.80208in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.73958in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.83333in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.82292in</Width>
@@ -142,6 +158,9 @@
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.8125in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.9375in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -264,14 +283,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox21">
+                        <Textbox Name="Textbox27">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Voucher No</Value>
+                                  <Value>Nature Of Works</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -284,7 +303,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -302,14 +321,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="Textbox30">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Vou.Date</Value>
+                                  <Value>Bill No</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -322,7 +341,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>Textbox30</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -416,82 +435,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox10">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Vat Amount</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox7">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Tax Amount</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox19">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -514,6 +457,82 @@ Amount</Value>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox32">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Deducted</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox32</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox34">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Penalty</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox34</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -628,6 +647,44 @@ Amount</Value>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox16</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox36">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Remarks</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox36</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -759,14 +816,14 @@ Amount</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="vounum1">
+                        <Textbox Name="billnature">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!vounum1.Value</Value>
+                                  <Value>=Fields!billnature.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -775,11 +832,11 @@ Amount</Value>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>vounum1</rd:DefaultName>
+                          <rd:DefaultName>billnature</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -796,14 +853,14 @@ Amount</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="voudat">
+                        <Textbox Name="rano">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!voudat.Value</Value>
+                                  <Value>=Fields!rano.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -816,7 +873,7 @@ Amount</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>voudat</rd:DefaultName>
+                          <rd:DefaultName>rano</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -877,7 +934,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!cram.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!dram.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -891,80 +948,6 @@ Amount</Value>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>cram</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox11">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!vatamt.Value,"#,##0;(#,##0); ")</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox11</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox9">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!vatamt.Value,"#,##0;(#,##0); ")</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox9</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1002,6 +985,80 @@ Amount</Value>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="deducamt">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!deducamt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>deducamt</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="penalty">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!penalty.Value,"#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>penalty</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1127,12 +1184,50 @@ Amount</Value>
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox37">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1166,7 +1261,7 @@ Amount</Value>
             <Top>0.03472in</Top>
             <Left>0.01042in</Left>
             <Height>0.5521in</Height>
-            <Width>10.97096in</Width>
+            <Width>11.81248in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1209,7 +1304,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9148in</Top>
-            <Left>0.625in</Left>
+            <Left>1in</Left>
             <Height>0.35305in</Height>
             <Width>1.96875in</Width>
             <ZIndex>1</ZIndex>
@@ -1263,7 +1358,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9241in</Top>
-            <Left>4.48159in</Left>
+            <Left>4.85659in</Left>
             <Height>0.34375in</Height>
             <Width>2.16667in</Width>
             <ZIndex>2</ZIndex>
@@ -1317,7 +1412,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9148in</Top>
-            <Left>8.3941in</Left>
+            <Left>8.7691in</Left>
             <Height>0.35305in</Height>
             <Width>2.0625in</Width>
             <ZIndex>3</ZIndex>
@@ -1339,7 +1434,7 @@ Amount</Value>
         <Height>2.26785in</Height>
         <Style />
       </Body>
-      <Width>10.98958in</Width>
+      <Width>11.82291in</Width>
       <Page>
         <PageHeader>
           <Height>1.06076in</Height>
@@ -1368,7 +1463,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Top>0.02604in</Top>
-              <Left>1.32444in</Left>
+              <Left>1.42444in</Left>
               <Height>0.21111in</Height>
               <Width>8.8879in</Width>
               <Style>
@@ -1402,7 +1497,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.25104in</Top>
-              <Left>1.32444in</Left>
+              <Left>1.42444in</Left>
               <Height>0.16807in</Height>
               <Width>8.85666in</Width>
               <ZIndex>1</ZIndex>
@@ -1438,7 +1533,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.43439in</Top>
-              <Left>1.33486in</Left>
+              <Left>1.43486in</Left>
               <Height>0.20416in</Height>
               <Width>8.84624in</Width>
               <ZIndex>2</ZIndex>
@@ -1498,7 +1593,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox69</rd:DefaultName>
               <Top>0.65244in</Top>
-              <Left>1.3271in</Left>
+              <Left>1.4271in</Left>
               <Height>0.17708in</Height>
               <Width>8.86442in</Width>
               <ZIndex>4</ZIndex>
@@ -1581,7 +1676,7 @@ Amount</Value>
               <Top>0.01389in</Top>
               <Left>5.71333in</Left>
               <Height>0.21181in</Height>
-              <Width>5.27625in</Width>
+              <Width>6.10958in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1602,7 +1697,7 @@ Amount</Value>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.4in</LeftMargin>
+        <LeftMargin>0.2in</LeftMargin>
         <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>
