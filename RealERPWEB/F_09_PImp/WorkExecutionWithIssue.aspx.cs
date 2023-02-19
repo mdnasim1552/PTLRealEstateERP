@@ -877,7 +877,7 @@ namespace RealERPWEB.F_09_PImp
                         {
                             string Rsircode = tbl02.Rows[i]["rsircode"].ToString();
                             string Spcfcod = tbl02.Rows[i]["spcfcod"].ToString();
-                            double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
+                            double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());                            
                             string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
                             string txtremarks = tbl02.Rows[i]["remarks"].ToString();
                             string flrcod = tbl02.Rows[i]["flrcod"].ToString();
