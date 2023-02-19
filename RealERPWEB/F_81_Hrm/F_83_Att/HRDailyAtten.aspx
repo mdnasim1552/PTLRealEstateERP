@@ -138,7 +138,7 @@
                                 <asp:TemplateField HeaderText="Emp. ID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvEmpId" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                            Width="65px"></asp:Label>
+                                            Width="100px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -146,7 +146,7 @@
                                 <asp:TemplateField HeaderText="Card #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvEmpIDCard" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                            Width="40px"></asp:Label>
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

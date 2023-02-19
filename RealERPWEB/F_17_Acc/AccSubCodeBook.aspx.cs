@@ -503,39 +503,51 @@ namespace RealERPWEB.F_17_Acc
 
         private void PrintResCodeAll()
         {
-            if (this.lnkok.Visible)
-                this.lnkok_Click(null, null);
 
-            string CodeDesc = this.ddlOthersBook.SelectedItem.ToString().Trim().Substring(3)
-                        + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+            try
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["storedata"];
-
-            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                string sirdesc = dt.Rows[i]["sirdesc"].ToString();
-              //  dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
-                      
+
+                if (this.lnkok.Visible)
+                    this.lnkok_Click(null, null);
+
+                string CodeDesc = this.ddlOthersBook.SelectedItem.ToString().Trim().Substring(3)
+                            + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string comnam = hst["comnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                DataTable dt = (DataTable)Session["storedata"];
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string sirdesc = dt.Rows[i]["sirdesc"].ToString();
+                    //  dt.Rows[i]["sirdesc"] = Convert_Text_to_Image(dt.Rows[i]["sirdesc"].ToString(), "Bookman Old Style", 20); // Passing appropriate value to Convert_Text_to_Image method 
+
+
+                }
+
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
+                LocalReport Rpt1 = new LocalReport();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptOthersAccCode", list, null, null);
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("codeDesc", CodeDesc));
+                Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
 
             }
-
-            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
-            LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptOthersAccCode", list, null, null);
-            Rpt1.SetParameters(new ReportParameter("compName", comnam));
-            Rpt1.SetParameters(new ReportParameter("codeDesc", CodeDesc));
-            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
-
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
         }
 
 
