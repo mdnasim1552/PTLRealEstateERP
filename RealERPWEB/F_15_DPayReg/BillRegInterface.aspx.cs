@@ -309,11 +309,11 @@ namespace RealERPWEB.F_15_DPayReg
                     this.grvIssued.DataSource = dt;
                     if (comcod == "3366")
                     {
-                        this.grvIssued.Columns[10].Visible = false;
+                        this.grvIssued.Columns[9].Visible = false;
                     }
                     else
                     {
-                        this.grvIssued.Columns[10].Visible = true;
+                        this.grvIssued.Columns[9].Visible = true;
                     }
                     this.grvIssued.DataBind();
                     if (dt.Rows.Count == 0)
