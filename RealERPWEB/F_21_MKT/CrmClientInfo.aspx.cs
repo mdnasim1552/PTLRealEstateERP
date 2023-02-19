@@ -4938,8 +4938,7 @@ namespace RealERPWEB.F_21_MKT
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + JData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
-
-                Session["tblsummData"] = ds1.Tables[0];
+                                Session["tblsummData"] = ds1.Tables[0];
                 if (rtype == "databank")
                 {
                     //Prospect Retreive Button
