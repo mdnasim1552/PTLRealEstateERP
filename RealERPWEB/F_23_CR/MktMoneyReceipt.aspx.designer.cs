@@ -150,6 +150,15 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.View View1;
 
         /// <summary>
+        /// lbtnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnBack;
+
+        /// <summary>
         /// lblCode control.
         /// </summary>
         /// <remarks>
@@ -175,15 +184,6 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkAllSchedul;
-
-        /// <summary>
-        /// lbtnBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnBack;
 
         /// <summary>
         /// Panel2 control.

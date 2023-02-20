@@ -11,10 +11,10 @@
         .mt22 {
             margin-top: 21px;
         }
-         .chzn-container-single .chzn-single {
-                height: 28px !important;
-                line-height: 28px !important;
-            }
+         .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
      </style>
     
     <script type="text/javascript">
@@ -48,7 +48,7 @@
             
             $('.chzn-select').chosen({ search_contains: true });
         }
-        $('.chzn-select').chosen({ search_contains: true });
+       
 
     </script>
 
@@ -154,7 +154,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lbldesc" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dept")) %>'
-                                        Width="200px"></asp:Label>
+                                        Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -163,7 +163,7 @@
                                 <ItemTemplate>
                                     <asp:Label  runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assetnam")) %>'
-                                        Width="150px"></asp:Label>
+                                        Width="140px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -172,7 +172,7 @@
                                 <ItemTemplate>
                                     <asp:Label  runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assetid")) %>'
-                                        Width="120px"></asp:Label>
+                                        Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
