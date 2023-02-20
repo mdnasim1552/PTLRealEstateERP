@@ -351,7 +351,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlPrjName.SelectedValue.ToString();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string usircode =  "%" ;
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", pactcode, frmdate, todate, usircode, "", "", "", "");
@@ -366,7 +366,7 @@ namespace RealERPWEB.F_22_Sal
             }
 
            
-            //DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
             ViewState["prjcoll"] = ds1.Tables[0];
 
 
@@ -522,7 +522,7 @@ namespace RealERPWEB.F_22_Sal
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
@@ -571,6 +571,7 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement (" + ptodate + " To "+pfrmdate+")"));
             }
             else

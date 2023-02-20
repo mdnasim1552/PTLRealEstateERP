@@ -571,7 +571,16 @@
                                          <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                    
+                                     <asp:TemplateField HeaderText="Project Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvPrjNam" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc"))%>'
+                                                Width="220px"></asp:Label>
+                                        </ItemTemplate>
+
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Client Name">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvcliName" runat="server"
