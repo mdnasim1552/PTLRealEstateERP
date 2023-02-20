@@ -572,7 +572,7 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement (" + ptodate + " To "+pfrmdate+")"));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement (" + pfrmdate + " To "+ ptodate + ")"));
             }
             else
             {
