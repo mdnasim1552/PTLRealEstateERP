@@ -220,9 +220,13 @@ namespace RealERPWEB.F_22_Sal
             string lotype = "";   //this.GetLOType();
             string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
             string Type = this.Request.QueryString["Type"].ToString().Trim();
+            string calltype = "";
             if (Type == "LandO")
-                lotype = Type;
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESDOWNPAYMENTCLEARANCE", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
+                calltype = "GETSALESDOWNPAYMENTCLEARANCELO";
+            else
+                calltype = "GETSALESDOWNPAYMENTCLEARANCE";
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", calltype, prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
             if (ds1 == null)
             {
                 this.gvDownpayment.DataSource = null;
@@ -534,7 +538,15 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("aptno", aptno));
                 //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
-                Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (External Sales)"));
+                if(this.Request.QueryString["Type"] == "LandO")
+                {
+                    Rpt1.SetParameters(new ReportParameter("RptTitle1", "Down Payment Status (Prev.Sales LO)"));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (External Sales)"));
+                }
+                   
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("grp", grp));

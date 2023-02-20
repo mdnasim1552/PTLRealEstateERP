@@ -391,6 +391,29 @@ namespace RealEntity.C_22_Sal
 
             }
         }
+        [Serializable]
+        public class CollectionSt
+        {
+            public string comcod { get; set; }
+
+
+           
+            public string custname { get; set; }
+            public string udesc { get; set; }
+          
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+
+            public double opnam { get; set; }
+            public double curinsam { get; set; }
+            public double curbkam { get; set; }
+            public double totalam { get; set; }
+
+            public CollectionSt()
+            {
+
+            }
+        }
 
     }
 }
