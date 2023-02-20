@@ -126,6 +126,12 @@
                                 <asp:DropDownList ID="ddlProject" CssClass="form-control select2" runat="server"></asp:DropDownList>
                             </div>
                         </div>
+                         <div class="col-md-1" style="margin-top: 22px;">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+
+                            </div>
+                        </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label3" class="form-label">Category</asp:Label>
@@ -135,13 +141,13 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label5" class="form-label">Item List</asp:Label>
-                                <asp:DropDownList ID="ddlItem" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlItem" CssClass="form-control select2" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlItem_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <asp:Label runat="server" ID="Label6" class="form-label">Division</asp:Label>
-                                <asp:DropDownList ID="ddlFloor" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                                <asp:Label runat="server" ID="Label6" class="form-label">Floor</asp:Label>
+                                <asp:DropDownList ID="ddlFloor" CssClass="form-control select2" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -160,12 +166,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1" style="margin-top: 22px;">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                            </div>
-                        </div>
+                       
                     </div>
                     <div class="row">
                         <asp:GridView ID="DataGridOne" runat="server" AutoGenerateColumns="False" AllowPaging="True"
@@ -222,6 +223,15 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblactualqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="120px" Style="text-align: right"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle Font-Size="10pt" HorizontalAlign="Left" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Balance Qty">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblbalqty" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="120px" Style="text-align: right"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Left" />
