@@ -356,6 +356,7 @@
                                                     <asp:TemplateField HeaderText="Job ID" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvjobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblemptype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="TaskTitle">
