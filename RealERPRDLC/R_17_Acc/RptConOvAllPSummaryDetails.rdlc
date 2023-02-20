@@ -595,7 +595,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>payment Amount	</Value>
+                                  <Value>Payment</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1463,7 +1463,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Top>0.02604in</Top>
-              <Left>1.42444in</Left>
+              <Left>1.29944in</Left>
               <Height>0.21111in</Height>
               <Width>8.8879in</Width>
               <Style>
@@ -1497,7 +1497,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.25104in</Top>
-              <Left>1.42444in</Left>
+              <Left>1.29944in</Left>
               <Height>0.16807in</Height>
               <Width>8.85666in</Width>
               <ZIndex>1</ZIndex>
@@ -1533,7 +1533,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.43439in</Top>
-              <Left>1.43486in</Left>
+              <Left>1.30986in</Left>
               <Height>0.20416in</Height>
               <Width>8.84624in</Width>
               <ZIndex>2</ZIndex>
@@ -1593,7 +1593,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox69</rd:DefaultName>
               <Top>0.65244in</Top>
-              <Left>1.4271in</Left>
+              <Left>1.3021in</Left>
               <Height>0.17708in</Height>
               <Width>8.86442in</Width>
               <ZIndex>4</ZIndex>
@@ -1697,7 +1697,7 @@ Amount</Value>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.1in</LeftMargin>
+        <LeftMargin>0.4in</LeftMargin>
         <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>
