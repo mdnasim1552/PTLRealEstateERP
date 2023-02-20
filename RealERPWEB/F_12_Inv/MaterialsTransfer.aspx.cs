@@ -110,7 +110,7 @@ namespace RealERPWEB.F_12_Inv
                 else
                 {
                     this.txtrefno.Text = magpa;
-                    this.txtrefno.ReadOnly = true;
+                    
                 }
                 
             }
