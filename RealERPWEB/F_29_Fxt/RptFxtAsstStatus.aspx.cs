@@ -412,7 +412,7 @@ namespace RealERPWEB.F_29_Fxt
 
             //int dateDife = TimeSpan(Convert.ToDateTime(this.txtTodate.Text), Convert.ToDateTime(this.txtFromdate.Text)); ASTUtility.Datediffday(Convert.ToDateTime(this.txtTodate.Text), Convert.ToDateTime(this.txtFromdate.Text));
 
-
+            this.txtDays.Visible = true;
             this.txtDays.Text = "Days: " + Convert.ToDouble(ds1.Tables[1].Rows[0]["cday"]).ToString("#,##0;(#,##0);");
             Session["tblDepcost"] = (DataTable)ds1.Tables[0];
             this.grDep_DataBind();

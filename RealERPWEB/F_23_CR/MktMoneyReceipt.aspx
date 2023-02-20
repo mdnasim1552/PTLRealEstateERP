@@ -8,6 +8,7 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
@@ -35,6 +36,12 @@
             border-radius: 3px !important;
             height: 29px !important;
         }
+        .mt20 {
+            margin-top: 20px;
+        }
+        .mt22 {
+            margin-top: 21px;
+        }
     </style>
 
     <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -58,9 +65,7 @@
     </div>
     <div class="card mt-2">
         <div class="card-header">
-            <div class="row mt-4">
-
-
+            <div class="row">
 
                 <div class=" col-md-3">
 
@@ -69,7 +74,7 @@
                     <asp:LinkButton ID="ibtnFindProject" Visible="false" runat="server" CssClass="btn btn btn-primary" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
-                    <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select  form-control form-control-sm" TabIndex="3" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select  form-control form-control-sm chzn-select" TabIndex="3" AutoPostBack="true">
                     </asp:DropDownList>
 
                     <asp:Label ID="lblProjectdesc" CssClass="form-control form-control-sm" Visible="False" runat="server" Text="Project Name:"></asp:Label>
@@ -89,7 +94,7 @@
                 <div class="col-md-1 ml-2" style="margin-top: 22px;">
                     <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
                 </div>
-                <div class="col-md-2 pull-right" style="margin-top: 22px;">
+                <div class="col-md-3 pull-right" style="margin-top: 22px;">
                     <asp:RadioButtonList ID="rbtnList1" runat="server" AutoPostBack="True" BackColor="#CDDBC8" CssClass="form-control form-control-sm" RepeatColumns="6" RepeatDirection="Horizontal">
                         <asp:ListItem>Money Receipt</asp:ListItem>
                         <asp:ListItem>Payment Status</asp:ListItem>
@@ -102,15 +107,15 @@
 
 
             </div>
-            <div class="row mt-3">
+            <div class="row mt-4">
                 <div class="col-md-10">
-                    <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                    <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea"
                         Width="900">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl.">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                    <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: center"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -125,7 +130,7 @@
                             <asp:TemplateField HeaderText="Description of Item">
                                 <ItemTemplate>
                                     <asp:Label ID="lgcResDesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
-                                        Width="300px"></asp:Label>
+                                        Width="180px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -150,7 +155,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="txtgvCustName" runat="server" BackColor="Transparent" BorderStyle="None"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
-                                        Width="120px"></asp:Label>
+                                        Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
@@ -193,32 +198,38 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
                         </Columns>
-                        <FooterStyle CssClass="grvFooter" />
+                        <FooterStyle CssClass="grvFooterNew" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                     </asp:GridView>
                 </div>
 
-                <asp:Label  ID="lmsg" runat="server" CssClass="btn btn-danger d-none"></asp:Label>
+                <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger d-none"></asp:Label>
 
 
             </div>
 
+
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
 
-                    <div class="row">
+                    <div class="row mt-2">
 
-                        <div class="col-md-12" style="margin-top: -25px;text-align:right;">
-                            <asp:Label ID="lblCode" runat="server" Visible="False"></asp:Label>
-                            <asp:Label ID="lblPhone" runat="server" Visible="False"></asp:Label>
-                            <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass=" " Text="Multiple Cheque No" />
-                            <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" CssClass=" btn btn-sm btn-danger pull-right">Back</asp:LinkButton>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" CssClass=" btn btn-sm btn-danger pull-right">Back</asp:LinkButton>
+                                <asp:Label ID="lblCode" runat="server" Visible="False"></asp:Label>
+                                <asp:Label ID="lblPhone" runat="server" Visible="False"></asp:Label>
+                                <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass=" " Text="Multiple Cheque No" />
+
+                            </div>
+
                         </div>
 
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <asp:Panel ID="Panel2" runat="server">
@@ -251,7 +262,7 @@
                                     <div class="col-md-2">
                                         <asp:Label ID="Label5" runat="server" CssClass="form-label" Text="Pay type"></asp:Label>
                                         <asp:DropDownList ID="ddlpaytype" runat="server" Font-Bold="True"
-                                            AutoPostBack="True" CssClass="form-control form-control-sm"
+                                            AutoPostBack="True" CssClass="form-control form-control-sm czn-select"
                                             OnSelectedIndexChanged="ddlpaytype_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
@@ -316,7 +327,7 @@
 
 
                                     </div>
-                                    <div class="col-md-1" style="margin-top:22px;">
+                                    <div class="col-md-1" style="margin-top: 22px;">
                                         <asp:LinkButton ID="lbtRefreshMrr" runat="server" CssClass="btn btn-sm btn-danger" OnClick="lbtRefreshMrr_Click">Refresh</asp:LinkButton>
 
                                     </div>
@@ -384,7 +395,7 @@
                                         <asp:LinkButton ID="ibtnCollfrm" runat="server" Visible="false" CssClass="btn btn-sm btn-primary" OnClick="ibtnCollfrm_Click" TabIndex="15"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
-                                        <asp:DropDownList ID="ddlCollType" runat="server" CssClass="form-control form-control-sm chzn-single">
+                                        <asp:DropDownList ID="ddlCollType" runat="server" CssClass="form-control form-control-sm chzn-select">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-2">
@@ -411,71 +422,52 @@
 
 
 
-                                    <div class="col-md-4 pull-right" style="margin-top:22px;">
+                                    <div class="col-md-4 pull-right" style="margin-top: 22px;">
 
 
 
-                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" Style="padding: 2px 6px; margin-left: 35px" CssClass="btn btn-sm btn-success">Add To Table</asp:LinkButton>
+                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" CssClass="btn btn-sm btn-success">Add To Table</asp:LinkButton>
 
                                     </div>
                                 </div>
 
                                 <div class="row mt-2">
-                                    <div class="col-md-12">
-                                        <asp:Panel ID="panelexcel" runat="server">
-                                        <div class="row mt-2">
-                                            
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <asp:Panel ID="panelexcel" runat="server">
                                                 <asp:Panel ID="pnlxcel" runat="server">
-                         
-                                                    <div class="col-sm-3 col-md-3 col-lg-3 ml-3">
                                                     <asp:Label ID="lblExel" runat="server" CssClass="form-label" Text="Exele :"></asp:Label>
                                                     <div class="uploadFile">
                                                         <asp:FileUpload ID="fileuploadExcel" runat="server" onchange="submitform();" />
                                                     </div>
-                                                    </div>
                                                 </asp:Panel>
-                                            
-                                              <div class="col-sm-1 col-md-1 col-lg-1 mt-2" style="margin-right:-50px;">
-                                                <asp:LinkButton ID="btnexcuplosd" OnClientClick="javascript: return FunConfirmSave();" runat="server" OnClick="btnexcuplosd_OnClick" CssClass=" btn btn-danger primarygrdBtn" Text="Upload Exel"></asp:LinkButton>
-                                               </div>
-
-                                           
+                                            </asp:Panel>
                                         </div>
-
-
-
-                                    </asp:Panel>
                                     </div>
-
-
-                                    
-
-
-
+                                    <div class="col-md-2 ">
+                                        <div class="form-group">
+                                            <asp:LinkButton ID="btnexcuplosd" OnClientClick="javascript: return FunConfirmSave();" runat="server" OnClick="btnexcuplosd_OnClick" CssClass=" btn  btn-sm btn-danger mt20" Text="Upload Exel"></asp:LinkButton>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-
-
-
                             </asp:Panel>
                         </div>
                     </div>
 
 
-                    <div class="col-md-11">
-                        <asp:GridView ID="grvacc" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                    <div class="col-md-11 mb-4">
+                        <asp:GridView ID="grvacc" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-bordered grvContentarea"
                             OnRowDeleting="grvacc_RowDeleting" ShowFooter="True">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl.">
                                     <ItemTemplate>
-                                        <asp:Label ID="serialnoid" runat="server" Style="text-align: right"
+                                        <asp:Label ID="serialnoid" runat="server" Style="text-align: center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
-                                <asp:CommandField ShowDeleteButton="True" />
+                                <asp:CommandField ShowDeleteButton="True"  DeleteText="&lt;span class=' fa fa-trash'&gt;&lt;/span&gt;" HeaderStyle-Width="20px" HeaderStyle-HorizontalAlign="Center"/>
                                 <asp:TemplateField HeaderText="Pay type">
                                     <ItemTemplate>
                                         <asp:Label ID="lbgrcod" runat="server" BorderColor="#99CCFF"
@@ -534,7 +526,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ref ID">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbTotal" runat="server" OnClick="lbTotal_Click" CssClass="btn btn-primary primarygrdBtn"> Total </asp:LinkButton>
+                                        <asp:LinkButton ID="lbTotal" runat="server" OnClick="lbTotal_Click" CssClass="btn btn-danger btn-sm " Visible="false" > Total </asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvrefid" runat="server" BorderColor="#99CCFF"
@@ -543,7 +535,7 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refid")) %>'
                                             Width="80px"></asp:TextBox>
                                     </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" VerticalAlign="Middle" />
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="center" VerticalAlign="Middle" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Paid Amt." Visible="True">
@@ -629,19 +621,19 @@
                                 </asp:TemplateField>
                             </Columns>
 
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooterNew" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
 
                         </asp:GridView>
 
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1 mt-1" runat="server" Visible="false"  >
 
                         <div class="form-group">
-                            <asp:LinkButton ID="lbtnUpdate" CssClass="btn btn-success primaryBtn pull-right" runat="server" OnClick="lbtnUpdate_Click" Style="margin-top: 50px;"
+                            <asp:LinkButton ID="lbtnUpdate" CssClass="btn btn-success btn-sm mt-2" runat="server" OnClick="lbtnUpdate_Click" 
                                 Visible="False">Update</asp:LinkButton>
                             <div class=" clearfix"></div>
                         </div>
@@ -654,21 +646,21 @@
 
 
                     <div class="form-group">
-                        <asp:Label ID="lPays" runat="server" CssClass="btn btn-success primaryBtn" Width="200px"
+                        <asp:Label ID="lPays" runat="server" CssClass="btn btn-success btn-sm" 
                             Text="Payment Shedule"></asp:Label>
-                        <asp:CheckBox ID="chkConsolidate" runat="server" TabIndex="10" Text="Consolidate" Visible="true" AutoPostBack="true" OnCheckedChanged="chkConsolidate_CheckedChanged" CssClass="btn btn-primary checkBox" />
+                        <asp:CheckBox ID="chkConsolidate" runat="server" TabIndex="10" Text="Consolidate" Visible="true" AutoPostBack="true" OnCheckedChanged="chkConsolidate_CheckedChanged" CssClass="btn btn-primary btn-sm checkBox" />
 
 
                         <div class="clearfix"></div>
                     </div>
                     <div>
 
-                        <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                        <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                        <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px" Style="text-align: center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -699,7 +691,7 @@
                                         <asp:Label ID="lgcResDesc2" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
                                             Width="250px"></asp:Label>
                                     </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" Font-Size="12px" ForeColor="#000" />
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" Font-Size="13px" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText=" Schedule Date ">
@@ -717,7 +709,7 @@
                                             Width="100px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lfAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lfAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="100px"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -758,7 +750,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Payment Amount">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvfpayamt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lgvfpayamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="100px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -788,7 +780,7 @@
                                             Width="100px" BorderStyle="None"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFbalanceAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                        <asp:Label ID="lgvFbalanceAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="100px"></asp:Label>
                                     </FooterTemplate>
 
@@ -799,17 +791,17 @@
                             </Columns>
 
 
-                            <FooterStyle CssClass="grvFooter" />
+                            <FooterStyle CssClass="grvFooterNew" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
 
                     <div class="form-group">
 
-                        <asp:Label ID="lblchqdishonour" runat="server" CssClass="btn btn-success primaryBtn" Width="350px"
+                        <asp:Label ID="lblchqdishonour" runat="server" CssClass="btn btn-success btn-sm"
                             Text="List of Dishonour Cheque :" Visible="False"></asp:Label>
                         <div class="clearfix"></div>
                     </div>
