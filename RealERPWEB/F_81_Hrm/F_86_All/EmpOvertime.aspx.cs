@@ -1254,7 +1254,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.Columns[14].HeaderText = "Trainning";
   
                     }
-                    if (comcod == "3370" || comcod == "3101")//For Finlay
+                    if (comcod == "3370")//For Finlay
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
@@ -1269,6 +1269,22 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[17].Visible = false;
                         this.gvEmpOtherded.Columns[18].Visible = false;
                         this.gvEmpOtherded.Columns[9].HeaderText = "Meal";
+                    }
+                    if (comcod == "3374" || comcod == "3101")//For Angan
+                    {
+                        this.gvEmpOtherded.Columns[6].Visible = false;
+                        this.gvEmpOtherded.Columns[7].Visible = false;
+                        this.gvEmpOtherded.Columns[8].Visible = false;
+                        this.gvEmpOtherded.Columns[9].Visible = true;
+                        this.gvEmpOtherded.Columns[10].Visible = false;
+                        this.gvEmpOtherded.Columns[11].Visible = false;
+                        this.gvEmpOtherded.Columns[12].Visible = true;//otherded
+                        this.gvEmpOtherded.Columns[13].Visible = false;
+                        this.gvEmpOtherded.Columns[14].Visible = false;
+                        this.gvEmpOtherded.Columns[15].Visible = false;
+                        this.gvEmpOtherded.Columns[17].Visible = false;
+                        this.gvEmpOtherded.Columns[18].Visible = false;
+
                     }
 
 
@@ -1320,7 +1336,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             
                             break;
 
-                        case "3101":
+                      
                         case "3366":
                             this.gvothearn.HeaderRow.Cells[7].Text = "Sales Commission";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Lunch Subsidy";
@@ -1352,6 +1368,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.Columns[15].Visible = false;
                             this.gvothearn.Columns[16].Visible = false;
                             
+                            break;
+                        case "3101":         
+                        case "3374"://For Angan                                   
+                            this.gvothearn.HeaderRow.Cells[13].Text = "Lunch Subsidy";
+                         
+                            this.gvothearn.Columns[6].Visible = false;
+                            this.gvothearn.Columns[7].Visible = false;
+                            this.gvothearn.Columns[8].Visible = false;
+
+
+                            this.gvothearn.Columns[9].Visible = false;
+                            this.gvothearn.Columns[10].Visible = false;
+                            this.gvothearn.Columns[12].Visible = false;
+                            this.gvothearn.Columns[13].Visible = true;
+                            this.gvothearn.Columns[14].Visible = false;
+                            this.gvothearn.Columns[15].Visible = false;
+                            this.gvothearn.Columns[16].Visible = false;
+
                             break;
 
                         default:
