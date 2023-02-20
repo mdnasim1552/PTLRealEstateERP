@@ -574,7 +574,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     string idcardno = dt.Rows[i]["din"].ToString();
                     //string idcardno = ASTUtility.Right(("000000" + idcardno1.Trim()), 6);
                     string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
+                    string machineid= dt.Rows[i]["machineid"].ToString();
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, machineid, "", "", "", "", "", "", "", "", "", "", "");
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
                 this.ShowData();

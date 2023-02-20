@@ -7,7 +7,8 @@
 
     <script>
         
-        function openEmpModal() {
+        function openEmpModal()
+        {
             $('#LongTermModal').modal('toggle');
         }
 
@@ -16,18 +17,22 @@
         }
 
 
-        function openNoticeModal() {
+        function openNoticeModal()
+        {
             $('#NoticeModal').modal('toggle');
         }
 
-        $(document).keyup(function (e) {
+        $(document).keyup(function (e)
+        {
             if (e.keyCode == 44) return false;
         });
 
-        $(document).ready(function () {
-            ExcuteEmpStatus(); p
+        $(document).ready(function ()
+        {
+            ExcuteEmpStatus(); 
         });
         function ExcuteEmpStatus() {
+           
 
             var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
             var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
