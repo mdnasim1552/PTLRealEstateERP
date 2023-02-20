@@ -65,10 +65,10 @@ namespace RealERPWEB.F_09_PImp
             string comcod = GetComCode();
             string pactcode = ddlProject.SelectedValue.ToString();
             List<bool> resultArr = new List<bool>();
-            foreach(DataRow dr in dt01.Rows)
+            foreach (DataRow dr in dt01.Rows)
             {
                 string isircode = dr["isircode"].ToString();
-                string flrcod= dr["flrcod"].ToString();
+                string flrcod = dr["flrcod"].ToString();
                 bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEBDGWRK", pactcode, isircode, flrcod);
                 resultArr.Add(result);
             }
@@ -81,6 +81,30 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Update Successfully" + "');", true);
                 GetBudgetInfo();
             }
+        }
+
+        private DataTable HiddenSameValue(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string flrcod = dt1.Rows[0]["flrcod"].ToString();            
+            string isircodegrp = dt1.Rows[0]["misircode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["flrcod"].ToString() == flrcod && dt1.Rows[j]["misircode"].ToString() == isircodegrp)
+                {
+                    flrcod = dt1.Rows[j]["flrcod"].ToString();                   
+                    isircodegrp = dt1.Rows[j]["misircode"].ToString();
+                    dt1.Rows[j]["misirdesc"] = "";
+                    dt1.Rows[j]["flrdesc"] = "";
+                }
+                else
+                {
+                    flrcod = dt1.Rows[j]["flrcod"].ToString();                   
+                    isircodegrp = dt1.Rows[j]["misircode"].ToString();
+                }
+            }
+            return dt1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -113,6 +137,7 @@ namespace RealERPWEB.F_09_PImp
             this.ddlProject.DataValueField = "actcode";
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
+            
         }
 
         private void GetCategory()
@@ -172,7 +197,7 @@ namespace RealERPWEB.F_09_PImp
             try
             {
                 this.DataGridOne.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                this.DataGridOne.DataSource = (DataTable)Session["tblbgd"];
+                this.DataGridOne.DataSource = HiddenSameValue((DataTable)Session["tblbgd"]);
                 this.DataGridOne.DataBind();
             }
             catch (Exception ex)
@@ -207,6 +232,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 if (lbtnOk.Text == "Ok")
                 {
+                    ShowFloorcode();
                     GetBudgetInfo();
                     lbtnOk.Text = "New";
                     ddlProject.Enabled = false;
@@ -224,6 +250,7 @@ namespace RealERPWEB.F_09_PImp
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetItem();
+            GetBudgetInfo();
         }
 
 
@@ -240,6 +267,14 @@ namespace RealERPWEB.F_09_PImp
             this.Data_Bind();
         }
 
+        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetBudgetInfo();
+        }
 
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetBudgetInfo();
+        }
     }
 }
