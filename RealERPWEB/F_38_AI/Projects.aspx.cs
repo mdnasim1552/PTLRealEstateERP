@@ -186,6 +186,8 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
                 this.GridVirtual.DataSource = null;
                 this.GridVirtual.DataBind();
 
@@ -476,11 +478,20 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                         return;
                     }
+                    else if (roletype == "95003" && doneqc < assignqty)
+                    {
+                        string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
+                        this.txtquantity.Focus();
+                        this.txtquantity.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                        return;
+                    }
                 }
                 DataTable tblt01 = (DataTable)ViewState["tblt01"];
                 //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                 string empid = this.ddlassignmember.SelectedValue.ToString();
                 string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                bool ischeck = this.checkinoutsourcing.Checked == true ? true : this.checkfreelancer.Checked == true ? true : false;
                 //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
                 //if (dr2.Length == 0)
                 //{
@@ -500,7 +511,7 @@ namespace RealERPWEB.F_38_AI
                     dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
                     dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                     dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                    dr1["isoutsrc"] = ischeck;
                     dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                     tblt01.Rows.Add(dr1);
                     this.lblcountannotid.Text = (Convert.ToDouble("0" + this.lblcountannotid.Text.ToString()) - Convert.ToDouble("0" + this.txtquantity.Text.Trim())).ToString();
@@ -528,12 +539,16 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+                this.GridVirtual.DataSource = null;
+                this.GridVirtual.DataBind();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetComdCode();
                 DataTable tbl1 = (DataTable)ViewState["tblt01"];
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
+                bool infreelancer =this.checkinoutsourcing.Checked;
+                bool freelancer =this.checkfreelancer.Checked;
                 string userid = hst["usrid"].ToString();
                 string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
@@ -555,12 +570,25 @@ namespace RealERPWEB.F_38_AI
                 string postedbyid = "";
                 string editdat = "01-Jan-1900";
                 string editbyid = "";
+                string emptype ="";
+                if (freelancer)
+                {
+                    emptype = "Freelancer";
+                }
+                else if (infreelancer)
+                {
+                    emptype = "InHouse";
+                }
+                else
+                {
+                    emptype = "Normal";
+                }
 
 
 
                 bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype,
                     createtask, userid, remarks, estimationtime,
-                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, "", "");
+                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, emptype, "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ToString() + "');", true);
@@ -577,6 +605,9 @@ namespace RealERPWEB.F_38_AI
 
                 this.GetBatchInfo();
                 this.GetProjectwiseBatch();
+               
+
+
             }
             catch (Exception ex)
             {
@@ -655,6 +686,7 @@ namespace RealERPWEB.F_38_AI
                 this.HiddinTaskid.Value = id;
                 this.lbltaskbatchid.Text = id;
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
+                string emptype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblemptype")).Text.ToString();
                 string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
                 string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
@@ -663,10 +695,33 @@ namespace RealERPWEB.F_38_AI
                 double assginqty = Convert.ToDouble("0" + ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString());
                 string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
                 string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
+                if (emptype== "Freelancer")
+                {
+                    this.checkfreelancer.Checked = true;
+                    this.checkinoutsourcing.Checked = false;
+                    bool ischeck = this.checkfreelancer.Checked;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
+                else if(emptype == "InHouse")
+                {
+                    
+                    this.checkinoutsourcing.Checked = true;
+                    this.checkfreelancer.Checked = false;
+                    bool ischeck = false;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
+                else
+                {
+                    this.checkinoutsourcing.Checked = false;
+                    this.checkfreelancer.Checked = false;
+                    bool ischeck = false;
+                    this.GetEmployeeName(ischeck);
+                    this.ddlassignmember.SelectedValue = empid;
+                }
 
-                this.txttasktitle.Text = titlename;
-
-                this.ddlassignmember.SelectedValue = empid;
+                this.txttasktitle.Text = titlename;                
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedItem.Text = anotationid;
                 this.ddlassigntype.SelectedValue = assigntype;
@@ -773,6 +828,8 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+                this.checkinoutsourcing.Checked = false;
+                this.checkfreelancer.Checked = false;
                 this.HiddinTaskid.Value = "0";
                 this.txttasktitle.Text = "";
                 this.ddlassignmember.SelectedValue = "";

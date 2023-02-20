@@ -318,12 +318,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-
-
-
-
-
-
                 //string title = (Request.QueryString["InputType"].ToString() == "PurApproval") ? "Purchase Approval" : "Purchase Programm";
                 //string narration = "Narration : " + this.txtAprovNarr.Text.ToString().Trim();
                 //string cadate = "Date: " + this.txtCurAprovDate.Text.Trim();
@@ -4031,9 +4025,9 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3353": //Manama
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
-                        sign3 = " ";
-                        sign4 = " ";
-                        sign5 = " ";
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString(); 
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
                         break;
 
                     case "3355": //greenwood
@@ -4154,9 +4148,10 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
                 string costdesc = _ReportDataSet.Tables[4].Rows[0]["rsirdesc"].ToString();
+                string pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString()+" - "+ _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
 
                 string cperson2 = "";
-                string suppliercontact = "";
+                string contactperson = "";
 
                 string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                  
@@ -4164,7 +4159,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
                     terms9 = "", terms10 = "", terms11 = "", terms12 = "";
-                string pperson1 = "", pperson2 = "", pcperson = "";
+                string pperson1 = "", pperson2 = "";
 
 
                 switch (comcod)
@@ -4256,8 +4251,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms7 = "7. " + termscondition[6].termssubj.ToString() + ":" + termscondition[6].termsdesc.ToString();
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
-                        terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
-                        suppliercontact = "11. " + termscondition[10].termssubj.ToString() + ":" + termscondition[10].termsdesc.ToString();
+                        contactperson = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
+                        
                         break;
                     case "3335": // Edison Properties
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4618,6 +4613,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
                         
+                        
                     case "3370": // cpdl
                     case "3374": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
@@ -4670,7 +4666,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
                     case "3367": // epic
-                        Rpt1.SetParameters(new ReportParameter("suppliercontact", suppliercontact));
+                        Rpt1.SetParameters(new ReportParameter("suppliercontact", cperson));
                         break;
 
                     default:

@@ -20,15 +20,15 @@
                 gvspaysummary.Scrollable();
 
                 var gvspaymentdetails = $('#<%=this.gvspaymentdetails.ClientID %>');
-                var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
-                var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
+               // var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
+               // var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
 
 
                 //gv1.Scrollable();
 
                 //gvspaymentdetails.Scrollable();
-                gvconsummary.Scrollable();
-                gvcondetails.Scrollable();
+               // gvconsummary.Scrollable();
+               // gvcondetails.Scrollable();
 
 
                 var gridViewScroll = new GridViewScroll({
@@ -814,7 +814,7 @@
 
                 <asp:View ID="viewconsummary" runat="server">
 
-                    <div class="table-responsibe"  style="overflow-x: scroll;" >
+                    <div class="table-responsive"  style="overflow-x: scroll;" >
                         <asp:GridView ID="gvconsummary" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" AllowPaging="false" CssClass="table-striped  table-bordered grvContentarea" OnRowDataBound="gvconsummary_RowDataBound">
                             <RowStyle />
@@ -1014,9 +1014,9 @@
                 </asp:View>
 
                 <asp:View ID="Viewcondetails" runat="server">
-                    <div class="row">
-
-                        <asp:GridView ID="gvcondetails" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" ClientIDMode="Static"
+                   
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvcondetails" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" ClientIDMode="Static"
                             AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvcondetails_RowDataBound">
                             <PagerSettings Visible="False" />
                             <FooterStyle CssClass="grvHeader" />
@@ -1074,6 +1074,7 @@
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
+                               
 
                                 <asp:TemplateField HeaderText="Group" Visible="false">
                                     <ItemTemplate>
@@ -1123,20 +1124,35 @@
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-
-
-                                <asp:TemplateField HeaderText="Bill No" Visible="false">
+                                 <asp:TemplateField HeaderText="Nature Of <br> Works">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvconbill" runat="server" CssClass="GridLebel"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
-                                            Width="80px"></asp:Label>
+                                        <asp:Label ID="lblgvnatwrk" runat="server" CssClass="GridLebel"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billnature")) %>'
+                                            Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFgvconbill" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                        <asp:Label ID="lblgvnatwrk" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="120px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                    <HeaderStyle VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                 
+
+                                <asp:TemplateField HeaderText="Bill No">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvconbill" runat="server" CssClass="GridLebel"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rano")) %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFgvconbillno" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="60px"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="center" />
+                                    <ItemStyle HorizontalAlign="center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1145,14 +1161,14 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvconbillref" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billref")) %>'
-                                            Width="75px"></asp:Label>
+                                            Width="60px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFgvconbillref" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: Left" Width="75px"></asp:Label>
+                                            Style="text-align: Left" Width="60px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1161,7 +1177,7 @@
                                 <asp:TemplateField HeaderText="Bill Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvconamt" runat="server" CssClass="GridLebel"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cram")).ToString("#,##0;(#,##0); ") %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0;(#,##0); ") %>'
                                             Width="90px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
@@ -1204,7 +1220,7 @@
                                         <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>--%>
-                                <asp:TemplateField HeaderText="Vat Amount">
+                                <asp:TemplateField HeaderText="Vat Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvconvatamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vatamt")).ToString("#,##0;(#,##0); ") %>'
@@ -1238,11 +1254,41 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvsmamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sdamt")).ToString("#,##0;(#,##0); ") %>'
-                                            Width="80px"></asp:Label>
+                                            Width="75px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFsmamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                            Style="text-align: right" Width="75px"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                  <asp:TemplateField HeaderText="Deducted">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvdeduct" runat="server" CssClass="GridLebel"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "deducamt")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvdeduct" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="60px"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Penalty">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvpen" runat="server" CssClass="GridLebel"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "penalty")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvpen" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="70px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -1310,7 +1356,9 @@
                             <PagerStyle CssClass="gvPagination" />
 
                         </asp:GridView>
-                    </div>
+                        </div>
+                        
+                  
 
 
 

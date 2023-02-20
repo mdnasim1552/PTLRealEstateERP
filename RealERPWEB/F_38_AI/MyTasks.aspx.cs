@@ -250,6 +250,8 @@ namespace RealERPWEB.F_38_AI
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     GetRecentAssigned();
                     GetTodayDoingJob();
+                    this.GetTodayActivities();
+                    this.data_Bind();
                 }
             }
             catch (Exception exp)
