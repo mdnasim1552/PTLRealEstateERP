@@ -124,10 +124,10 @@
                   <Width>0.22694in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.42708in</Width>
+                  <Width>1.10402in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.4375in</Width>
+                  <Width>1.29425in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86458in</Width>
@@ -136,19 +136,19 @@
                   <Width>0.57516in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>0.61458in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.65623in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.69376in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.70833in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>0.67708in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.8229in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.80208in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.73958in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.83333in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.82292in</Width>
@@ -1261,7 +1261,7 @@ Amount</Value>
             <Top>0.03472in</Top>
             <Left>0.01042in</Left>
             <Height>0.5521in</Height>
-            <Width>11.81248in</Width>
+            <Width>10.82118in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1434,7 +1434,7 @@ Amount</Value>
         <Height>2.26785in</Height>
         <Style />
       </Body>
-      <Width>11.82291in</Width>
+      <Width>10.8316in</Width>
       <Page>
         <PageHeader>
           <Height>1.06076in</Height>
@@ -1676,7 +1676,7 @@ Amount</Value>
               <Top>0.01389in</Top>
               <Left>5.71333in</Left>
               <Height>0.21181in</Height>
-              <Width>6.10958in</Width>
+              <Width>5.11827in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1697,7 +1697,7 @@ Amount</Value>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.2in</LeftMargin>
+        <LeftMargin>0.1in</LeftMargin>
         <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>
