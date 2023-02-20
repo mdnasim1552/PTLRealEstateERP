@@ -4151,7 +4151,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString()+" - "+ _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
 
                 string cperson2 = "";
-                string suppliercontact = "";
+                string contactperson = "";
 
                 string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                  
@@ -4252,7 +4252,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
-                        suppliercontact = "11. " + termscondition[10].termssubj.ToString() + ":" + termscondition[10].termsdesc.ToString();
+                        contactperson = "11. " + termscondition[10].termssubj.ToString() + ":" + termscondition[10].termsdesc.ToString();
                         break;
                     case "3335": // Edison Properties
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4666,7 +4666,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
                     case "3367": // epic
-                        Rpt1.SetParameters(new ReportParameter("suppliercontact", suppliercontact));
+                        Rpt1.SetParameters(new ReportParameter("suppliercontact", cperson));
                         break;
 
                     default:
