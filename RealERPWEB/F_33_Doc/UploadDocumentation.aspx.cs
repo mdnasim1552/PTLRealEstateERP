@@ -33,12 +33,28 @@ namespace RealERPWEB.F_33_Doc
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
-
+                ProcessAccess HRData = new ProcessAccess("ASITHRMIMG");
                 this.getType();
                 this.getDept();
                 this.GetYearMonth();
                 this.getAllData();
                 this.datatype.SelectedIndex = 0;
+                //if (GetCompCode()=="3101") {
+                //    //String[] filenames = System.IO.Directory.GetFiles("Upload\\HRM\\EmpImg");
+             
+                //    String[] filenames = System.IO.Directory.GetFiles("D:\\Web\\Web\\Upload\\HRM\\EmpImg");
+
+                //    foreach (var empimg in filenames)
+                //    {
+                //        string empid= empimg.Substring(29, 12).ToString();
+                //        string imageName=empimg.Remove(0, 29).ToString();
+
+                //        string filepath = "~/Upload/HRM/EmpImg/";
+                //        string fullPath = filepath + imageName;
+                //        bool result = HRData.UpdateTransInfo("3365", "dbo.SP_ENTRY_EMPLOYEEIMG", "TEMP_INSERT", empid, "", "", fullPath, "", "", "");
+
+                //    }
+                //}
 
             }
         }
