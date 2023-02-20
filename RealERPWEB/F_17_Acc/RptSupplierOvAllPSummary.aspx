@@ -1124,18 +1124,18 @@
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Nature Of Works">
+                                 <asp:TemplateField HeaderText="Nature Of <br> Works">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvnatwrk" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billnature")) %>'
-                                            Width="180px"></asp:Label>
+                                            Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvnatwrk" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="180px"></asp:Label>
+                                            Style="text-align: right" Width="120px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1145,14 +1145,14 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvconbill" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rano")) %>'
-                                            Width="80px"></asp:Label>
+                                            Width="60px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFgvconbill" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                        <asp:Label ID="lgvFgvconbillno" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="60px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="center" />
+                                    <ItemStyle HorizontalAlign="center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1161,14 +1161,14 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvconbillref" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billref")) %>'
-                                            Width="75px"></asp:Label>
+                                            Width="60px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFgvconbillref" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: Left" Width="75px"></asp:Label>
+                                            Style="text-align: Left" Width="60px"></asp:Label>
                                     </FooterTemplate>
-                                    <FooterStyle HorizontalAlign="Left" />
-                                    <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1220,7 +1220,7 @@
                                         <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>--%>
-                                <asp:TemplateField HeaderText="Vat Amount">
+                                <asp:TemplateField HeaderText="Vat Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="gvconvatamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vatamt")).ToString("#,##0;(#,##0); ") %>'
@@ -1254,11 +1254,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvsmamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sdamt")).ToString("#,##0;(#,##0); ") %>'
-                                            Width="80px"></asp:Label>
+                                            Width="75px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFsmamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                            Style="text-align: right" Width="75px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -1269,11 +1269,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvdeduct" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "deducamt")).ToString("#,##0;(#,##0); ") %>'
-                                            Width="80px"></asp:Label>
+                                            Width="60px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvdeduct" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                            Style="text-align: right" Width="60px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -1284,11 +1284,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvpen" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "penalty")).ToString("#,##0;(#,##0); ") %>'
-                                            Width="80px"></asp:Label>
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvpen" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
+                                            Style="text-align: right" Width="70px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
