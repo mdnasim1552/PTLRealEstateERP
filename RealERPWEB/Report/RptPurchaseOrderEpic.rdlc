@@ -1094,7 +1094,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Parameters!cperson.Value</Value>
+                                                    <Value>=Parameters!contactperson.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -5310,6 +5310,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="contactperson">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -5570,6 +5576,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>25</RowIndex>
           <ParameterName>suppliercontact</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>25</RowIndex>
+          <ParameterName>contactperson</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
