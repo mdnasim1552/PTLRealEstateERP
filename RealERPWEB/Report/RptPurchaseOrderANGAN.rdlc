@@ -1533,7 +1533,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MRF No.</Value>
+                                  <Value>MPR No.</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -3791,7 +3791,7 @@
             <Top>0.20708in</Top>
             <Left>0.0331in</Left>
             <Height>5.43124in</Height>
-            <Width>7.98834in</Width>
+            <Width>7.98833in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3805,7 +3805,7 @@
       <Width>8.03001in</Width>
       <Page>
         <PageHeader>
-          <Height>0.51597in</Height>
+          <Height>0.66944in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3830,9 +3830,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.15685in</Left>
+              <Top>0.00764in</Top>
+              <Left>1.26102in</Left>
               <Height>0.27917in</Height>
-              <Width>5.91459in</Width>
+              <Width>6.15417in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3847,10 +3848,10 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.00209in</Top>
+              <Top>0.0625in</Top>
               <Left>0.06935in</Left>
-              <Height>0.50625in</Height>
-              <Width>0.88333in</Width>
+              <Height>0.56875in</Height>
+              <Width>1.14306in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -3878,10 +3879,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.28473in</Top>
-              <Left>1.15685in</Left>
-              <Height>0.18125in</Height>
-              <Width>5.91459in</Width>
+              <Top>0.28681in</Top>
+              <Left>1.26102in</Left>
+              <Height>0.26458in</Height>
+              <Width>6.19584in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

@@ -283,6 +283,7 @@ namespace RealERPWEB.F_12_Inv
             Load_Project_Res_Combo();
         }
 
+
         protected void Load_Project_Res_Combo()
         {
             string comcod = this.GetCompCode();
