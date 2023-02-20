@@ -539,9 +539,14 @@ namespace RealERPWEB.F_22_Sal
                 //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
                 if(this.Request.QueryString["Type"] == "LandO")
+                {
                     Rpt1.SetParameters(new ReportParameter("RptTitle1", "Down Payment Status (Prev.Sales LO)"));
+                }
                 else
-                   Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (External Sales)"));
+                {
+                    Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (External Sales)"));
+                }
+                   
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("grp", grp));
