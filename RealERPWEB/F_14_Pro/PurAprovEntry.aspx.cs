@@ -71,7 +71,8 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3330": //Bridge
                 case "3333": //Alliance  
-                case "3339": //Tropical       
+                case "3339": //Tropical
+                //case "3348": //Credance
                     Calltype = "GETAPROVSUPLIST";
                     break;
 
@@ -845,7 +846,7 @@ namespace RealERPWEB.F_14_Pro
                     //dr1["ssircode"] = tbl2.Rows[i]["ssircode"].ToString().Trim() == ""
                     //    ? this.ddlSupList.SelectedValue.ToString()
                     //    : tbl2.Rows[i]["ssircode"].ToString();
-                    dr1["ssircode"] = this.ddlSupList.SelectedValue.ToString();
+                    dr1["ssircode"] = this.ddlSupList.SelectedValue.ToString(); 
 
                     dr1["reqno1"] = tbl2.Rows[i]["reqno1"].ToString();
                     dr1["mrfno"] = tbl2.Rows[i]["mrfno"].ToString();
@@ -855,8 +856,8 @@ namespace RealERPWEB.F_14_Pro
                     dr1["rsirdesc1"] = tbl2.Rows[i]["rsirdesc1"].ToString();
                     dr1["spcfdesc"] = tbl2.Rows[i]["spcfdesc"].ToString();
                     dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"].ToString();
-                    //dr1["ssirdesc1"] = tbl2.Rows[i]["ssircode"].ToString().Trim() == "" ? this.ddlSupList.SelectedItem.Text.Trim() : tbl2.Rows[i]["ssirdesc"].ToString();
-                    dr1["ssirdesc1"] = this.ddlSupList.SelectedItem.Text.Trim();
+                    dr1["ssirdesc1"] = tbl2.Rows[i]["ssircode"].ToString().Trim() == "" ? this.ddlSupList.SelectedItem.Text.Trim() : tbl2.Rows[i]["ssirdesc"].ToString();
+                    //dr1["ssirdesc1"] = tbl2.Rows[i]["ssircode"].ToString();
                     dr1["areqty"] = Convert.ToDouble(tbl2.Rows[i]["areqty"]).ToString();
                     dr1["comqty"] = Convert.ToDouble(tbl2.Rows[i]["comqty"]).ToString();
                     dr1["balqty"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]).ToString();
