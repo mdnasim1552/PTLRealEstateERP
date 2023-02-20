@@ -140,6 +140,36 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                                          <asp:TemplateField HeaderText="Bank Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvcurBanksal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curbankpay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFTCurBankSal" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Cash Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvcurCashsal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curcashpay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFTCurCashSal" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
 
 
 
@@ -198,6 +228,36 @@
                                             <FooterStyle HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                      <asp:TemplateField HeaderText="Bank Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvpreBanksal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "prebankpay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFTpreBankSal" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Cash Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvpreCashsal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "precashpay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFTpreCashSal" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
 

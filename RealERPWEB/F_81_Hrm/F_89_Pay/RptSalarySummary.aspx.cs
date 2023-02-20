@@ -266,7 +266,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTCurSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cursal)", "")) ? 0.00 : dt.Compute("sum(cursal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTPreSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(presal)", "")) ? 0.00 : dt.Compute("sum(presal)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTpreBankSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(prebankpay)", "")) ? 0.00 : dt.Compute("sum(prebankpay)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvpreCashsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(precashpay)", "")) ? 0.00 : dt.Compute("sum(precashpay)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvcurBanksal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curbankpay)", "")) ? 0.00 : dt.Compute("sum(curbankpay)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvcurCashsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curcashpay)", "")) ? 0.00 : dt.Compute("sum(curcashpay)", ""))).ToString("#,##0;(#,##0); ");
 
                     break;
 
