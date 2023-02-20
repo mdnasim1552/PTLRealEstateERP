@@ -394,7 +394,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("unitname", unitname));
                 Rpt1.SetParameters(new ReportParameter("location", location));
                 Rpt1.SetParameters(new ReportParameter("usize", usize));
-                Rpt1.SetParameters(new ReportParameter("refdesc","Ref: "+ refdesc));
+                Rpt1.SetParameters(new ReportParameter("refdesc", "Ref: " + refdesc));
                 Rpt1.SetParameters(new ReportParameter("unit", unit));
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));
                 Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));
