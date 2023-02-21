@@ -513,7 +513,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-                    
+
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -523,7 +523,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
-                       // $(".tbMenuWrp table tr td:nth-child(10)").hide(); // 9 - for billApproval Emdad22.12.2022
+                        // $(".tbMenuWrp table tr td:nth-child(10)").hide(); // 9 - for billApproval Emdad22.12.2022
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
@@ -807,6 +807,9 @@
                                             <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill Requisition(Work Wise)</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink6" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurMktSurvey02?Type=CS" CssClass="dropdown-item" Style="padding: 0 15px">Comparative Statement - Purchase 02</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=&pactcode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Comparative Statement</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink9" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/WorkExecutionWithIssue?Type=Entry" CssClass="dropdown-item" Style="padding: 0 15px">Execution 360</asp:HyperLink>
+
+
                                         </div>
                                     </div>
 
@@ -1073,12 +1076,12 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                              <asp:TemplateField HeaderText="MB No">
+                                            <asp:TemplateField HeaderText="MB No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvmbno1" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mbno1")) %>'
                                                         Width="70px"></asp:Label>
-                                                  
+
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -1218,37 +1221,37 @@
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkbtnPrintBU" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
 
-                                                      
 
-                                               
+
+
                                                 </ItemTemplate>
                                                 <ItemStyle Width="20px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
 
-                                            
+
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                   
 
-                                                        <asp:HyperLink ID="hlnkconBillDetaitls" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
+
+                                                    <asp:HyperLink ID="hlnkconBillDetaitls" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
                                                         Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'>  
                                                          <i class=" fa fa-info-circle" aria-hidden="false"></i>
                                                     </asp:HyperLink>
 
 
-                                               
+
                                                 </ItemTemplate>
                                                 <ItemStyle Width="20px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
 
-                                            
 
 
-                                         
+
+
 
 
 
@@ -1991,8 +1994,8 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Project Name">
                                                     <HeaderTemplate>
-                                                            <asp:TextBox ID="txtSearchprogvthrec" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvthrec')"></asp:TextBox><br />
-                                                        </HeaderTemplate>
+                                                        <asp:TextBox ID="txtSearchprogvthrec" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvthrec')"></asp:TextBox><br />
+                                                    </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="txtAPPgvactdescthrec" runat="server" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
