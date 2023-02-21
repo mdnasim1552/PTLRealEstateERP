@@ -2608,14 +2608,14 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "4503000", "4503998", "F_34_Mgt", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503999", "F_34_Mgt", "UserLoginfrmasit", "", "Company Page Permission ", "Admin", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "4503000", "4503081", "F_45_GrAcc", "GrpPostDatedChequs", "", "Post Dated Cheque Issue Status", "GROUP MIS", "False", "False", "False", "False" }); ;
-
+            tblObj.Rows.Add(new Object[] { "4503000", "4503081", "F_45_GrAcc", "GrpPostDatedChequs", "", "Post Dated Cheque Issue Status", "GROUP MIS", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "4503000", "4503090", "F_45_GrAcc", "RptAccRecPayment?", "Type=PrjTrialBal", "Project Trial Balance", "GROUP MIS", "False", "False", "False", "False" }); 
             //46 Group Management Interface
 
             tblObj.Rows.Add(new Object[] { "4603000", "4603001", "F_46_GrMgtInter", "RptGrpMisDailyActiviteisJq", "", "M. Interface (Overall)", "Management Interface", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "4603000", "4603002", "F_46_GrMgtInter", "RptGrpDailyReportJq?", "Type=Report", "M. Interface (Operation Monitoring)", "Management Interface", "False", "False", "False", "False" }); ;
-
-
+            tblObj.Rows.Add(new Object[] { "4603000", "4603002", "F_46_GrMgtInter", "RptGrpDailyReportJq?", "Type=Report", "M. Interface (Operation Monitoring)", "Management Interface", "False", "False", "False", "False" }); 
+        
+            
 
 
             //46  Group MIS Hide Account
@@ -13375,10 +13375,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000011", "11. Issue Vs. Collection", "F_45_GrAcc/RptAccRecPayment?Type=IssueVsCollect", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0212000000", "12. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum&comcod=", "", true, "" });         
 
+          
 
             mnuTbl1.Rows.Add(new Object[] { "0301000012", "01. Working Budget Vs. Achievement", "F_45_GrAcc/RptGrpAccDailyTransaction?Type=GrpWBudVsAchv", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000013", "02. Post Dated Cheque Issue Status", "F_45_GrAcc/GrpPostDatedChequs", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0318000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0318000000", "01. Project Trial Balance", "F_45_GrAcc/RptAccRecPayment?Type=PrjTrialBal", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0319000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0320000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0321000000", "", "", "", true, "" });
