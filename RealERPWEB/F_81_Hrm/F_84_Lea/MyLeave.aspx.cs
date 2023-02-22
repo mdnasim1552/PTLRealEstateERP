@@ -1263,9 +1263,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     return;
                 }
+
                 DataRow[] dr2 = dt1.Select("leavday='" + leavday + "'");
                 if (dr2.Length > 0)
                 {
+                    dt1.Rows[0]["isHalfday"]= isHalfday.ToString();
+                    this.gvInterstLev.DataSource = dt1;
+                    this.gvInterstLev.DataBind();
                     return;
                 }
                 DataRow dr1 = dt1.NewRow();
