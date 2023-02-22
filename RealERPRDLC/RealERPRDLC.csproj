@@ -167,6 +167,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConsecpayDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptDuesReportAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
@@ -374,6 +375,7 @@
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeTBLCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeAIBLCPDL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConSecupayDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCP.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCPALL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />

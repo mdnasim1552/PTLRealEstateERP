@@ -2146,7 +2146,10 @@
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
-                <TablixMember />
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                </TablixMember>
                 <TablixMember>
                   <Group Name="pactcode">
                     <GroupExpressions>
@@ -2179,7 +2182,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.01389in</Top>
             <Height>1.40625in</Height>
-            <Width>10.9375in</Width>
+            <Width>10.93751in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

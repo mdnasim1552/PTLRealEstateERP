@@ -41,19 +41,19 @@ namespace RealERPWEB.F_17_Acc
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Overall Position Summary";
 
                 var dtoday = System.DateTime.Today;
-               
+
                 this.txtfrmdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
 
-               // String Type = this.Request.QueryString["Type"].ToString();
+                // String Type = this.Request.QueryString["Type"].ToString();
 
-                
-                    this.SupplierList();
-                    this.LoadAllSupplier();
+
+                this.SupplierList();
+                this.LoadAllSupplier();
 
                 this.TextChange();
-               
-               
+
+
 
             }
 
@@ -61,20 +61,20 @@ namespace RealERPWEB.F_17_Acc
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-           
+
         }
 
         private void TextChange()
         {
             string type = this.Request.QueryString["Type"].ToString();
 
-            if(type== "ConPayment")
+            if (type == "ConPayment" || type == "SubConSecPayment")
             {
                 this.lblsupname.InnerText = "Contractor Name";
                 this.lblgrp.InnerText = "Contractor Group";
 
 
-                
+
 
             }
 
@@ -113,7 +113,7 @@ namespace RealERPWEB.F_17_Acc
         {
             string comcod = this.GetComeCode();
             string SrchSupplier = "%%";
-            string type = this.Request.QueryString["Type"] == "ConPayment" ? "Contractor" : "";
+            string type = this.Request.QueryString["Type"] == "ConPayment" ? "Contractor" : this.Request.QueryString["Type"] == "SubConSecPayment" ? "Contractor" :"";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPPLIER", SrchSupplier, type, "", "", "", "", "", "", "");
             this.ddlSuplist.DataTextField = "resdesc";
             this.ddlSuplist.DataValueField = "rescode";
@@ -129,7 +129,7 @@ namespace RealERPWEB.F_17_Acc
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
             string type = this.Request.QueryString["Type"].ToString();
 
-            if(type== "SupPayment")
+            if (type == "SupPayment")
             {
                 switch (stindex)
                 {
@@ -147,7 +147,15 @@ namespace RealERPWEB.F_17_Acc
                 }
 
             }
+            else if (type == "SubConSecPayment")
+            {
 
+                this.MultiView1.ActiveViewIndex = 4;
+                this.SubContractoSecurityPaymentrDetails();
+
+
+
+            }
             else
             {
                 switch (stindex)
@@ -168,7 +176,7 @@ namespace RealERPWEB.F_17_Acc
             }
 
 
-           
+
 
 
 
@@ -189,7 +197,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
                 string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
-                string withpay = this.chkWithPay.Checked ? "Length" : "";             
+                string withpay = this.chkWithPay.Checked ? "Length" : "";
                 DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUBCONPAYMENTSSUMMARY", frmdate, todate, Rescode, Rescodegrp, withpay, "", "", "", "");
 
                 if (ds1 == null)
@@ -245,8 +253,42 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        private void SubContractoSecurityPaymentrDetails()
+        {
+            try
+            {
+                Session.Remove("tblspaysum");
+                string comcod = this.GetComeCode();
 
-    
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlSuplist.SelectedValue.ToString() + "%";
+              
+                string Rescodegrp ="%";
+                
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUBCONSECURITYPAYMENTSDETAILS", frmdate, todate, Rescode, Rescodegrp, "", "", "", "", "");
+
+
+
+                if (ds1 == null)
+                {
+                    this.gvconsecpaydetails.DataSource = null;
+                    this.gvconsecpaydetails.DataBind();
+                    return;
+                }
+                Session["tblspaysum"] = HiddenSameData(ds1.Tables[0]);
+
+                this.Data_Bind();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         private void PaymentSupSummary()
         {
@@ -347,10 +389,10 @@ namespace RealERPWEB.F_17_Acc
 
         private void Data_Bind()
         {
-            
+
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
             string type = this.Request.QueryString["Type"].ToString();
-            if(type== "SupPayment")
+            if (type == "SupPayment")
             {
                 switch (stindex)
                 {
@@ -368,7 +410,11 @@ namespace RealERPWEB.F_17_Acc
                 }
 
             }
-
+            else if(type == "SubConSecPayment")
+            {
+                this.gvconsecpaydetails.DataSource = (DataTable)Session["tblspaysum"];
+                this.gvconsecpaydetails.DataBind();
+            }
             else
             {
                 switch (stindex)
@@ -387,7 +433,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
             }
-           
+
 
         }
 
@@ -399,18 +445,21 @@ namespace RealERPWEB.F_17_Acc
 
             if (type == "SupPayment")
             {
-             this.PrintSupPaymentSummary();
+                this.PrintSupPaymentSummary();
 
             }
-
+            if(type == "SubConSecPayment")
+            {
+                this.PrintConSecurityPaymentdetails();
+            }
             else
             {
-              this.  PrintConPaymentSummary();
+                this.PrintConPaymentSummary();
             }
 
 
-           
-               
+
+
 
         }
 
@@ -462,6 +511,38 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
+        }
+        private void PrintConSecurityPaymentdetails()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tblspaysum"];
+           
+            LocalReport Rpt1 = new LocalReport();
+          
+
+                var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptConsecpayDetails>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptConSecupayDetails", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Sub-Contractor Overall Details"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+           
         }
 
         private void PrintSupPaymentSummary()
@@ -533,7 +614,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                
+
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
                 //string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
 
@@ -547,10 +628,10 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                if (grp == "B" )
+                if (grp == "B")
                 {
 
-                    
+
                     lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lblgvDrAmountalsasubsd.Attributes["style"] = "font-weight:bold; color:Navy;";
@@ -561,16 +642,16 @@ namespace RealERPWEB.F_17_Acc
                     lblgvCrAmnetpayable1.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lbldiscount.Attributes["style"] = "font-weight:bold; color:Navy;";
 
-                   
-                   
+
+
                     lblgvOpnamalsasub.Style.Add("text-align", "right");
 
                 }
-                if ( grp == "C" )
+                if (grp == "C")
                 {
 
-                   
-          
+
+
                     lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvDrAmountalsasubsd.Attributes["style"] = "font-weight:bold; color:Orange;";
@@ -591,7 +672,7 @@ namespace RealERPWEB.F_17_Acc
                 if (grp == "D")
                 {
 
-                  
+
 
                     lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Green;";
                     lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Green;";
@@ -628,18 +709,18 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvPayable = (Label)e.Row.FindControl("lblgvPayable");
                 Label lbldiscount = (Label)e.Row.FindControl("lbldiscount");
                 Label lblgvRmk = (Label)e.Row.FindControl("lblgvRmk");
-               
+
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
-       
+
                 if (grp == "")
                 {
                     return;
                 }
 
-                if (grp == "B" )
+                if (grp == "B")
                 {
 
-                   
+
                     lblprjName.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lblgvCrAmt.Attributes["style"] = "font-weight:bold;  color:Navy;";
                     lblgvSdAmt.Attributes["style"] = "font-weight:bold;  color:Navy;";
@@ -690,7 +771,7 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvConsumNetAmt = (Label)e.Row.FindControl("lblgvConsumNetAmt");
                 Label lblgvbillConsumpayAmt = (Label)e.Row.FindControl("lblgvbillConsumpayAmt");
                 Label lblgvConsumPayable = (Label)e.Row.FindControl("lblgvConsumPayable");
-                
+
 
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
 
@@ -727,7 +808,7 @@ namespace RealERPWEB.F_17_Acc
                     lblgvbillConsumpayAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
                     lblgvConsumPayable.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
                     lblConsumprjName.Style.Add("text-align", "right");
-                
+
 
 
                 }
@@ -748,10 +829,10 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvcondeNet = (Label)e.Row.FindControl("lblgvcondeNet");
                 Label lblgvconpayment = (Label)e.Row.FindControl("lblgvconpayment");
                 Label lblgvconpayable = (Label)e.Row.FindControl("lblgvconpayable");
-               
+
 
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
-               
+
                 if (grp == "")
                 {
                     return;

@@ -703,6 +703,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptConOvAllPSummary": Rpt1a = SetRptConOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummaryDetails": Rpt1a = SetRptSupplierOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptConOvAllPSummaryDetails": Rpt1a = SetRptConOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptConSecupayDetails": Rpt1a = SetRptConSecupayDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1711,6 +1712,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptConOvAllPSummaryDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConOverAllPSummaryDetails>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptConSecupayDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConsecpayDetails>)RptDataSet));
             return Rpt1a;
         }
 

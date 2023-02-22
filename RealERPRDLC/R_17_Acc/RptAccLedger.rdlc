@@ -765,7 +765,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!dram.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!dram.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -804,7 +804,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!cram.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!cram.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -843,7 +843,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!balamt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!balamt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -870,6 +870,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1006,15 +1007,15 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
               <Top>0.77375in</Top>
-              <Left>6.03511in</Left>
+              <Left>4.32678in</Left>
               <Height>0.22709in</Height>
-              <Width>1.9885in</Width>
+              <Width>3.69683in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1164,7 +1165,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               <Top>0.77375in</Top>
               <Left>0.02237in</Left>
               <Height>0.22709in</Height>
-              <Width>6.01274in</Width>
+              <Width>4.26274in</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border>
