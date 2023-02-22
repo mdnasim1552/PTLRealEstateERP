@@ -55,11 +55,11 @@ namespace RealERPWEB.F_29_Fxt
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
                 case "RecIssueARefund":
-                    this.lblEmployee.Text = "Material: ";
+                    this.lblEmployee.Text = "Material ";
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "RecIssueARefSum":
-                    this.lblEmployee.Text = "Material: ";
+                    this.lblEmployee.Text = "Material ";
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
 
