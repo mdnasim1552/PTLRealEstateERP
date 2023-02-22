@@ -249,7 +249,7 @@
                                         <asp:LinkButton ID="lbtnusize" runat="server" CommandArgument="lbtnusize"
                                             OnClick="lbtnusize_Click" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="60px"></asp:LinkButton>
+                                            Width="80px"></asp:LinkButton>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
@@ -647,7 +647,7 @@
                                         <asp:TemplateField HeaderText="Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="16px"
-                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                                     Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -901,7 +901,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lfAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                                        Style="text-align: right" Width="90px"></asp:Label>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

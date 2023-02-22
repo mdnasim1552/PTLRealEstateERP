@@ -1477,6 +1477,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
+                        if (comcod == "3365")
+                        {
+                            //Response.Redirect(Request.UrlReferrer.ToString());
+                            Response.Redirect("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind");
+                        }
 
                     }
                 }

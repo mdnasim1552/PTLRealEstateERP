@@ -229,7 +229,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2296,7 +2296,6 @@
     <Content Include="F_04_Bgd\RptOtherReqStatus.aspx" />
     <Content Include="F_04_Bgd\RptPrjFloorWise.aspx" />
     <Content Include="F_04_Bgd\RptWorkSchedule.aspx" />
-    <Content Include="F_04_Bgd\RptWorkWiResVariance.aspx" />
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
@@ -4277,13 +4276,6 @@
     </Compile>
     <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
       <DependentUpon>RptProductCost.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.cs">
-      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.designer.cs">
-      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
