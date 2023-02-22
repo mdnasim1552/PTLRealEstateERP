@@ -523,7 +523,7 @@ namespace RealERPWEB.F_17_Acc
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string date = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DataTable dt = (DataTable)Session["tblspaysum"];
            
             LocalReport Rpt1 = new LocalReport();
@@ -534,9 +534,10 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Sub-Contractor Overall Details"));
-                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Sub-Contractor Security Payment Details"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, date)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("date","PrintDate: "+ date));
                 Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
                 Session["Report1"] = Rpt1;
