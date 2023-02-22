@@ -1263,8 +1263,8 @@
                 var userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
-                //console.log(data.length);
-                console.log('notification', data)
+               // console.log(data.length);
+               console.log('notification', data)
 
                 if (data.length > 0)
                 {

@@ -69,6 +69,15 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnList1;
 
         /// <summary>
+        /// ChkBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkBalance;
+
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -105,24 +114,6 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-
-        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -150,15 +141,6 @@ namespace RealERPWEB.F_29_Fxt
         protected global::AjaxControlToolkit.CalendarExtender csefdate;
 
         /// <summary>
-        /// ChkBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkBalance;
-
-        /// <summary>
         /// lblRptGroup control.
         /// </summary>
         /// <remarks>
@@ -175,6 +157,15 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRptGroup;
+
+        /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// grvacc control.
