@@ -105,10 +105,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.58875in</Width>
+                  <Width>0.37084in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.21541in</Width>
+                  <Width>1.28875in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.11541in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -142,6 +145,43 @@
                 <TablixRow>
                   <Height>0.4375in</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>SL.</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox13">
@@ -840,6 +880,43 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=RowNumber(nothing)</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIF(Fields!pactcode.Value="18AAAAAAAAAA","Bold",
+IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="pactdesc">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1262,21 +1339,24 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details" />
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.6875in</Height>
-            <Width>11.05416in</Width>
+            <Width>11.025in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1287,7 +1367,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
         <Height>0.70417in</Height>
         <Style />
       </Body>
-      <Width>11.06458in</Width>
+      <Width>11.07916in</Width>
       <Page>
         <PageHeader>
           <Height>0.92167in</Height>
@@ -1522,7 +1602,6 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>footer</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.22084in</Height>
               <Width>7.68562in</Width>
               <Style>
@@ -1555,7 +1634,6 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
-              <Top>0in</Top>
               <Left>7.67937in</Left>
               <Height>0.21667in</Height>
               <Width>3.34563in</Width>
