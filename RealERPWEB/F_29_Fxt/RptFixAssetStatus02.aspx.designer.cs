@@ -24,13 +24,13 @@ namespace RealERPWEB.F_29_Fxt
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// Panel1 control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// lblEmployee control.
@@ -58,6 +58,15 @@ namespace RealERPWEB.F_29_Fxt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindEmp;
+
+        /// <summary>
+        /// lblreslist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblreslist;
 
         /// <summary>
         /// ddlEmporResList control.

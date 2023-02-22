@@ -8,7 +8,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-          
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
@@ -57,6 +57,13 @@
 
         .grvContentarea {
         }
+        .mt20{
+            margin-top:29px;
+        }
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 32px !important;
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -79,22 +86,22 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid mb-1 mt-4">
+            <div class="card card-fluid mb-1 mt-2">
                 <div class="card-body">
                     <div class="row ">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label id="Label1" runat="server">Select Code Book</label>
+                                <label id="Label1" runat="server"  CssClass=" lblName lblTxt" >Select Code Book</label>
                                 <asp:LinkButton ID="lnkbtnFindProject" runat="server" > <i class="fa fa-search" aria-hidden="true"></i>
                                 </asp:LinkButton>
-                                <asp:DropDownList ID="ddlSalPayment" runat="server" CssClass="form-control inputTxt chzn-select " style=" width:270px;">
+                                <asp:DropDownList ID="ddlSalPayment" runat="server" CssClass="form-control form-control-sm chzn-select " >
                                 </asp:DropDownList>
                                 <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control "></asp:Label>
                             </div>
                         </div>                       
                         <div class="col-md-2">
-                            <label class="control-label" for="ddlOthersBookSegment" id="Label3" runat="server">Details Code</label>
-                               <asp:DropDownList ID="ddlOthersBookSegment" runat="server" CssClass="form-control chzn-select" TabIndex="12">
+                            <label  for="ddlOthersBookSegment"  CssClass=" lblName lblTxt" id="Label3" runat="server">Details Code</label>
+                               <asp:DropDownList ID="ddlOthersBookSegment" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="12">
                                    <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
                                    <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
                                </asp:DropDownList>
@@ -103,9 +110,30 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkok" runat="server" CssClass=" btn btn-primary btn-sm  margin-top30px" OnClick="lnkok_Click" >Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lnkok" runat="server" CssClass=" btn btn-primary btn-sm mt20" OnClick="lnkok_Click" >Ok</asp:LinkButton>
                             </div>
-
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                 <label  CssClass=" lblName lblTxt" id="lblpaging" runat="server">Page Size</label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm " Width="70px"
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>600</asp:ListItem>
+                                    <asp:ListItem >900</asp:ListItem>
+                                    <asp:ListItem>1200</asp:ListItem>
+                                    <asp:ListItem>1500</asp:ListItem>
+                                    <asp:ListItem>3000</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            </div>
                         </div>
                     </div>
 
@@ -129,12 +157,12 @@
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="+">
+                            <asp:TemplateField HeaderText="+" HeaderStyle-Font-Bold="true">
                                  <ItemTemplate>
                                      <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent"
                                             Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "additem"))=="True"?true:false %>' OnClick="lbtnAdd_Click" ><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
                                  </ItemTemplate>
-                                 <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+                                 <HeaderStyle Font-Bold="True" Font-Size="20px" Width="20px" HorizontalAlign="Center" />
                                  <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
                             <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" SelectText=""

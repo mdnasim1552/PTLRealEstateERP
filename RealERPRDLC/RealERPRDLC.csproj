@@ -167,6 +167,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConsecpayDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptDuesReportAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
@@ -300,6 +301,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptMRbook.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptProposalFromAcmeConst.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptSubprjConBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptTest.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcmeConst.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderCPDL.rdlc" />
@@ -373,6 +375,7 @@
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeTBLCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeAIBLCPDL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptConSecupayDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCP.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCPALL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
@@ -900,6 +903,7 @@
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptDayWiseSalesFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAngan.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthlySalesBudget.rdlc" />
