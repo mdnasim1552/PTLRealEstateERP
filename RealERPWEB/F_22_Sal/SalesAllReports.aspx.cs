@@ -111,7 +111,18 @@ namespace RealERPWEB.F_22_Sal
 
 
                     break;
-
+                case "CollectionStatement":
+                    this.lblDate.Visible = true;
+                    this.txtFDate.Visible = true;
+                    this.clfdate.Visible = true;
+                    this.lbltoDate.Visible = true;
+                    this.txttoDate.Visible = true;
+                    this.clstodat.Visible = true;
+                    this.imgbtnFindCustomer.Visible = false;
+                    this.ddlCustName.Visible = false;
+                    this.clcust.Visible = false;
+                    this.grpid.Visible = false;
+                    break;
 
 
                 default:
@@ -224,6 +235,9 @@ namespace RealERPWEB.F_22_Sal
                 case "SoldUnSoldUnit":
                     this.GetSoldUnsoldUnit();
                     break;
+                case "CollectionStatement":
+                    this.GetCollectionStatement();
+                    break;
 
                 default:
                     break;
@@ -332,26 +346,57 @@ namespace RealERPWEB.F_22_Sal
             this.Data_Bind();
 
         }
+        private void GetCollectionStatement()
+        {
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtFDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string usircode =  "%" ;
 
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", pactcode, frmdate, todate, usircode, "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvCollectionStatement.DataSource = null;
+                this.gvCollectionStatement.DataBind();
+
+                return;
+
+            }
+
+           
+            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+            ViewState["prjcoll"] = ds1.Tables[0];
+
+
+            this.Data_Bind();
+
+        }
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+          
+              
+                    string pactcode = dt1.Rows[0]["pactcode"].ToString();
 
-            for (int j = 1; j < dt1.Rows.Count; j++)
-            {
-                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
-                {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
-                    dt1.Rows[j]["pactdesc"] = "";
-                }
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            dt1.Rows[j]["pactdesc"] = "";
+                        }
 
-                else
-                {
-                    pactcode = dt1.Rows[j]["pactcode"].ToString();
-                }
-            }
+                        else
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                        }
+                    }
+                   
+            
+           
             return dt1;
 
         }
@@ -393,6 +438,15 @@ namespace RealERPWEB.F_22_Sal
                     this.dvsoldunsold.DataBind();
                     //this.FooterCal();                   
                     break;
+
+                case "CollectionStatement":
+                    this.MultiView1.ActiveViewIndex = 4;
+                    this.gvCollectionStatement.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvCollectionStatement.DataSource = dt;
+                    this.gvCollectionStatement.DataBind();
+                   
+                    //this.FooterCal();                   
+                    break;
                 default:
                     break;
             }
@@ -427,10 +481,9 @@ namespace RealERPWEB.F_22_Sal
                 case "PaymentStatus":
                     ((Label)this.gvpaystatus.FooterRow.FindControl("lgvFPaidamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ?
                0.00 : dt.Compute("Sum(paidamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-
-
-
                     break;
+               
+                    
                 default:
                     break;
             }
@@ -469,7 +522,7 @@ namespace RealERPWEB.F_22_Sal
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
@@ -505,6 +558,21 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Sold And Unsold Unit Status " + ptodate));
+            }
+            else if (this.ddlReport.SelectedValue == "CollectionStatement")
+            {
+                string ptodate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+                string pfrmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+                DataTable dt = (DataTable)ViewState["prjcoll"];
+
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.CollectionSt>();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCollectionSt", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement (" + pfrmdate + " To "+ ptodate + ")"));
             }
             else
             {

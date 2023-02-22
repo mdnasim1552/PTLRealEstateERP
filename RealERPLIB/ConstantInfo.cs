@@ -1799,6 +1799,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502096", "F_34_Mgt", "OtherReqEntry?", "Type=mgtOreqEntry", "Create Requisition(Management)", "Management", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "3502000", "3502098", "F_09_PImp", "WorkExeLock?", "Type=Entry", "Work Execution Lock", "Management", "False", "False", "False", "False" });
+
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502100", "F_17_Acc", "TransectionPrint?", "Type=AccVoucher&Mod=Management", "Voucher Cancellation", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502110", "F_17_Acc", "GeneralAccounts?", "Mod=Management", "Voucher Edit", "Management", "False", "False", "False", "False" }); ;
@@ -10020,6 +10022,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000003", "11. MB Entry(Edit)", "F_09_PImp/BillingMBEntry?Type=Edit", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000004", "11. Work Execution Lock", "F_09_PImp/WorkExeLock?Type=Entry", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "Procurement", "", "", false, "mb" });

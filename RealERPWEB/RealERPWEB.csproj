@@ -229,15 +229,15 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -245,7 +245,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2382,7 +2382,7 @@
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
     <Content Include="F_09_PImp\WorkExecutionFinal.aspx" />
     <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
-    <Content Include="F_09_PImp\WorkWithSubCon.aspx" />
+    <Content Include="F_09_PImp\WorkExeLock.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
@@ -4344,12 +4344,12 @@
     <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.designer.cs">
       <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_09_PImp\WorkWithSubCon.aspx.cs">
-      <DependentUpon>WorkWithSubCon.aspx</DependentUpon>
+    <Compile Include="F_09_PImp\WorkExeLock.aspx.cs">
+      <DependentUpon>WorkExeLock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_09_PImp\WorkWithSubCon.aspx.designer.cs">
-      <DependentUpon>WorkWithSubCon.aspx</DependentUpon>
+    <Compile Include="F_09_PImp\WorkExeLock.aspx.designer.cs">
+      <DependentUpon>WorkExeLock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
