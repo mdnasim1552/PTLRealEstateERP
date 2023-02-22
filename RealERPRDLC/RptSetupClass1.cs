@@ -165,6 +165,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptConBillCPDL": Rpt1a = SetRptConBillCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptMRbook": Rpt1a = SetRptMRbook(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptLabIssueCPDL": Rpt1a = SetRptLabIssueCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptSubprjConBill": Rpt1a = SetRptSubprjConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -702,6 +703,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptConOvAllPSummary": Rpt1a = SetRptConOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummaryDetails": Rpt1a = SetRptSupplierOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptConOvAllPSummaryDetails": Rpt1a = SetRptConOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptConSecupayDetails": Rpt1a = SetRptConSecupayDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1713,6 +1715,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConOverAllPSummaryDetails>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptConSecupayDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptConsecpayDetails>)RptDataSet));
+            return Rpt1a;
+        }
 
 
         private static LocalReport SetRptProjectDesign(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -2525,6 +2532,10 @@ namespace RealERPRDLC
         private static LocalReport SetRptLabIssueCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
+            return Rpt1a;
+        }private static LocalReport SetRptSubprjConBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.EClassConBill>)RptDataSet));
             return Rpt1a;
         }
 
