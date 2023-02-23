@@ -253,6 +253,16 @@ namespace RealERPWEB.F_22_Sal
                     ((HyperLink)this.gvCollvsHonoured.HeaderRow.FindControl("hlbbanknameExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
+                case "gvsalvscolltypeWise":
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("lgvaptaccollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aptaccollamt)", "")) ?
+                            0 : dt.Compute("sum(aptaccollamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("lgvshopaccollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopaccollamt)", "")) ?
+                          0 : dt.Compute("sum(shopaccollamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("lgvcollaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collaptsfall)", "")) ?
+                            0 : dt.Compute("sum(collaptsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("lgvshopcollsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collshopsfall)", "")) ?
+                          0 : dt.Compute("sum(collshopsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    break;
 
 
 
@@ -393,6 +403,8 @@ namespace RealERPWEB.F_22_Sal
                 Session["tblsalsum"] = ds1.Tables[0];
                 this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
                 this.gvsalvscolltypeWise.DataBind();
+                //this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+
             }
             catch (Exception ex)
             {

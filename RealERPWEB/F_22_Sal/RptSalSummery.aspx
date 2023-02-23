@@ -1890,6 +1890,10 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptaccollamt")).ToString("#,##0;-#,##0; ") %>'
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                            <asp:Label ID="lgvaptaccollamt" runat="server" Font-Size="11px" ForeColor="Black"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1903,6 +1907,10 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "shopaccollamt")).ToString("#,##0;-#,##0; ") %>'
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                            <asp:Label ID="lgvshopaccollamt" runat="server" Font-Size="11px" ForeColor="Black"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1915,6 +1923,10 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "collaptsfall")).ToString("#,##0;-#,##0; ") %>'
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
+                                     <FooterTemplate>
+                                            <asp:Label ID="lgvcollaptsfall" runat="server" Font-Size="11px" ForeColor="Black"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1927,6 +1939,10 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "collshopsfall")).ToString("#,##0;-#,##0; ") %>'
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvcollshopsfall" runat="server" Font-Size="11px" ForeColor="Black"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
@@ -1953,6 +1969,7 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "peronshopcoll")).ToString("#,##0.00;-#,##0.00; ") %>'
                                             Width="50px"></asp:Label>
                                     </ItemTemplate>
+                                      
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
