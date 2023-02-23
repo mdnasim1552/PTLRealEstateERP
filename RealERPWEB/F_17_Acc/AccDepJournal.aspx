@@ -79,16 +79,17 @@
             <div class="card card-fluid mb-1">
                 <div class="card-body">
                     <div class="row" style="min-height:500px;">
-                        <div class="table table-responsive">
+                        <div class=" table-responsive">
                             <asp:Panel ID="pnlBill" runat="server">
                                 <asp:GridView ID="dgv2" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea" Width="672px" ShowFooter="True">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="SL.No.">
+                                        <asp:TemplateField HeaderText="SL.">
                                             <ItemTemplate>
                                                 <asp:Label ID="serialnoid" runat="server" CssClass="GridLebel"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                            <ItemStyle HorizontalAlign="Center"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="A/c Code" Visible="False">
                                             <ItemTemplate>
