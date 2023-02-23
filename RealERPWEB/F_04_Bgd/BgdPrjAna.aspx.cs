@@ -489,7 +489,8 @@ namespace RealERPWEB.F_04_Bgd
 
             DataView dv = dt.Copy().DefaultView;
 
-            dv.RowFilter = ("rptcod   not like '%00000000' and  rptcod   not like '4111AAAAAAAA%' and rptcod not like  '01AAAAAAAAAA%'  and  rptcod not like  '04AAAAAAAAAA%'   and  rptcod not like  '21AAAAAAAAAA%'");
+            //dv.RowFilter = ("rptcod   not like '%00000000' and  rptcod   not like '4111AAAAAAAA%' and rptcod not like  '01AAAAAAAAAA%'  and  rptcod not like  '04AAAAAAAAAA%'   and  rptcod not like  '21AAAAAAAAAA%'");
+            dv.RowFilter = ("rptcod   not like '%00000000' or  rptcod   not like '4111AAAAAAAA%' or rptcod not like  '01AAAAAAAAAA%'  or  rptcod not like  '04AAAAAAAAAA%'   or  rptcod not like  '21AAAAAAAAAA%'");
 
             DataTable dt2 = dv.ToTable();
 
@@ -1916,6 +1917,8 @@ namespace RealERPWEB.F_04_Bgd
         }
         private void Show_All_Reports()
         {
+            
+            
             Session.Remove("tblResource");
 
 
