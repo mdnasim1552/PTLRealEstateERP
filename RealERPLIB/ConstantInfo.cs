@@ -370,6 +370,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903150", "F_09_PImp", "RptResBgdBal", "", "Budget Balance (Resource)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903160", "F_09_PImp", "RptSubConBill?", "Type=SubBill", "Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903161", "F_09_PImp", "RptSubConBill?", "Type=SubConBill", "Periodic Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903162", "F_09_PImp", "RptLabourSearchRaWise?", "Type=LabBILL", "Labour Search R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902200", "F_09_PImp", "ConBillTracking", "", "Sub-Contractor Bill Tracking", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
@@ -5159,6 +5160,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "14. Sub-Contractor Bill Tracking -01", "F_09_PImp/SubContracBillTracking?Type=billtrack", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000008", "15. Labour Search R/A Wise", "F_09_PImp/RptLabourSearchRaWise?Type=LabBILL", "", true, "" });
+
 
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
