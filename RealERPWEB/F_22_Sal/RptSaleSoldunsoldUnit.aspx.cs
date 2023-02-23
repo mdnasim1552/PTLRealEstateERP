@@ -86,6 +86,7 @@ namespace RealERPWEB.F_22_Sal
         private void gvVisibility()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = GetComocd();
             switch (type)
             {
                 case "soldunsold":
@@ -110,19 +111,38 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlSalesTeam.Visible = false;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
+                case "LandO":
                 case "RptDayWSale":
-                    this.SoldType.Visible = false;
-                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
-                    this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.lbltodate.Visible = true;
-                    this.divtodate.Visible = true;
-                    this.txttodate.Visible = true;
-                    //this.Label15.Text = "From: ";
-                    //this.Label15.Visible = false;
-                    //this.txtDate.Visible = false;
-                    //this.lblGroup.Visible = false;
-                    //this.ddlRptGroup.Visible = false;
+
+                    if (comcod == "3368")//Finlay
+                    {
+                        this.SoldType.Visible = false;
+                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        this.lbltodate.Visible = true;
+                        this.divtodate.Visible = true;
+                        this.txttodate.Visible = true;
+
+                        this.divgroup.Visible = false;
+
+                    }
+                    else
+                    {
+                        this.SoldType.Visible = false;
+                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        this.lbltodate.Visible = true;
+                        this.divtodate.Visible = true;
+                        this.txttodate.Visible = true;
+                        //this.Label15.Text = "From: ";
+                        //this.Label15.Visible = false;
+                        //this.txtDate.Visible = false;
+                        //this.lblGroup.Visible = false;
+                        //this.ddlRptGroup.Visible = false;
+                    }
+
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
 
@@ -215,6 +235,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlpagesize.Visible = true;
                     this.parkingStatus();
                     break;
+                case "LandO":
                 case "RptDayWSale":
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
@@ -300,8 +321,7 @@ namespace RealERPWEB.F_22_Sal
                 case "3306":
                 case "3310":
                 case "3311":
-
-
+                
                     salesteam = "salesteam";
                     break;
                 default:
@@ -325,9 +345,18 @@ namespace RealERPWEB.F_22_Sal
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
 
             string calltype = "";
-            if (comcod=="3368" || comcod == "3101")//Finlay
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            if (comcod=="3368")//Finlay
             {
-                calltype = "RPTDAYWISHSALFINLAY";
+                if(type=="LandO")
+                {
+                    calltype = "RPTDAYWISHSALFINLAYLO";
+                }
+                else
+                {
+                    calltype = "RPTDAYWISHSALFINLAY";
+                }
+                
             }
             else
             {
@@ -343,7 +372,7 @@ namespace RealERPWEB.F_22_Sal
 
 
             this.gvDayWSale.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
+            //this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
             Session["tblData"] = HiddenSameData(ds1.Tables[0]);
             this.gvDayWSale.DataSource = (DataTable)Session["tblData"];
             this.gvDayWSale.DataBind();
@@ -467,7 +496,7 @@ namespace RealERPWEB.F_22_Sal
 
                     break;
 
-
+                case "LandO":
                 case "RptDayWSale":
                     DataView dv = dt.Copy().DefaultView;
                     if (team == "%")
@@ -531,6 +560,7 @@ namespace RealERPWEB.F_22_Sal
                 case "parking":
                     this.rptparking();
                     break;
+                case "LandO":
                 case "RptDayWSale":
                     this.rptDayWSale();
                     break;
@@ -728,7 +758,16 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("Date", "For the month of " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy") + " to " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales"));
+
+            if (this.Request.QueryString["Type"] == "LandO")
+            {
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales (L/O)"));
+            }
+            else
+            {
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales"));
+            }
+            
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("printdate", printdateonly));
             Rpt1.SetParameters(new ReportParameter("Level", "Level: " + this.ddlRptGroup.SelectedItem.Text.Trim()));
