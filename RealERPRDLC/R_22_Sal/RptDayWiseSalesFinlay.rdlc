@@ -726,7 +726,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Discount</Value>
+                                                <Value>Discount/Gain</Value>
                                                 <Style>
                                                   <FontStyle>Normal</FontStyle>
                                                   <FontFamily>cambria</FontFamily>
