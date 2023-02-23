@@ -75,6 +75,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string comcod = comcodi;
                 string projectcode = "18" + ASTUtility.Right(projcode, 10);
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+               
+                
                 string fdate = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(fdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 string lblvalstartdate, lblvalconsarea, lblvalstoried, lblvallandarea, lblvalhandoverdate, lblvalsalablearea, lblvallocation, lblprojname;

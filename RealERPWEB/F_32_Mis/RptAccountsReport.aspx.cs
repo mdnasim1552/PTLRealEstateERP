@@ -119,6 +119,7 @@ namespace RealERPWEB.F_32_Mis
 
         private void ShowCashFlow()
         {
+            try { 
             Session.Remove("tblpayst");
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
@@ -136,6 +137,11 @@ namespace RealERPWEB.F_32_Mis
             Session["tblpayst"] = this.HiddenSameData(ds1.Tables[0]);
             Session["tblbank"] = ds1.Tables[1];
             this.Data_Bind();
+            }
+            catch(Exception exp)
+            {
+
+            }
 
 
         }
@@ -340,9 +346,17 @@ namespace RealERPWEB.F_32_Mis
                     ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
                     ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
                     ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
+                    ((Label)e.Item.FindControl("lblrphamt" + ASTUtility.Right(("00" + j.ToString()), 2))).Text = dt.Rows[i]["bankdesc"].ToString();
                     j++;
 
-                    if (j == 18)
+                    if (j == 25)
                         break;
                 }
 
@@ -367,6 +381,14 @@ namespace RealERPWEB.F_32_Mis
                 Label lblrpamt11 = (Label)e.Item.FindControl("lblrpamt11");
                 Label lblrpamt12 = (Label)e.Item.FindControl("lblrpamt12");
                 Label lblrpamt13 = (Label)e.Item.FindControl("lblrpamt13");
+                Label lblrpamt14 = (Label)e.Item.FindControl("lblrpamt14");
+                Label lblrpamt15 = (Label)e.Item.FindControl("lblrpamt15");
+                Label lblrpamt16 = (Label)e.Item.FindControl("lblrpamt16");
+                Label lblrpamt17 = (Label)e.Item.FindControl("lblrpamt17");
+                Label lblrpamt18 = (Label)e.Item.FindControl("lblrpamt18");
+                Label lblrpamt19 = (Label)e.Item.FindControl("lblrpamt19");
+                Label lblrpamt20 = (Label)e.Item.FindControl("lblrpamt20");
+                Label lblrpamt21 = (Label)e.Item.FindControl("lblrpamt21");
 
 
 
@@ -396,6 +418,14 @@ namespace RealERPWEB.F_32_Mis
                     lblrpamt11.Style.Add("font-weight", "bold");
                     lblrpamt12.Style.Add("font-weight", "bold");
                     lblrpamt13.Style.Add("font-weight", "bold");
+                    lblrpamt14.Style.Add("font-weight", "bold");
+                    lblrpamt15.Style.Add("font-weight", "bold");
+                    lblrpamt16.Style.Add("font-weight", "bold");
+                    lblrpamt17.Style.Add("font-weight", "bold");
+                    lblrpamt18.Style.Add("font-weight", "bold");
+                    lblrpamt19.Style.Add("font-weight", "bold");
+                    lblrpamt20.Style.Add("font-weight", "bold");
+                    lblrpamt21.Style.Add("font-weight", "bold");
 
 
 
@@ -488,7 +518,7 @@ namespace RealERPWEB.F_32_Mis
 
                 rpt.SetParameters(new ReportParameter("txtbank" + j.ToString(), dt1.Rows[i]["bankdesc"].ToString()));
                 j++;
-                if (j == 11)
+                if (j ==23)
                     break;
 
             }
