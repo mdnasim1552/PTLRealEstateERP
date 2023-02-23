@@ -176,7 +176,7 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
-                //this.gvPaySch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.gvPaySch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.gvPaySch.DataSource = tbl1;
                 this.gvPaySch.DataBind();
 
@@ -253,7 +253,7 @@ namespace RealERPWEB.F_22_Sal
                     //this.LblBookName1.Visible = false;
                     this.lbalterofddl.Visible = true;
                     this.lbalterofddl0.Visible = true;
-                    this.lbalterofddl.Text = "Pament Code Book: " + this.ddlSalPayment.SelectedItem.ToString().Trim();
+                    this.lbalterofddl.Text = this.ddlSalPayment.SelectedItem.ToString().Trim();
                     // + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
                     this.lbalterofddl0.Text = this.ddlOthersBookSegment.SelectedItem.ToString().Trim();
 
@@ -312,6 +312,7 @@ namespace RealERPWEB.F_22_Sal
             this.gvPaySch.PageIndex = e.NewPageIndex;
             this.gvPaySch_DataBind();
         }
+      
 
         protected void lbtnAdd_Click(object sender, EventArgs e)
         {
@@ -384,5 +385,7 @@ namespace RealERPWEB.F_22_Sal
             ShowInformation();
             gvPaySch_DataBind();
         }
+
+        
     }
 }       

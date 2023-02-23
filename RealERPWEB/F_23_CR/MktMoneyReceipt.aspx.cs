@@ -53,7 +53,7 @@ namespace RealERPWEB.F_23_CR
                 this.InforInitialize();
                 this.comHideLabel();
                 this.GetProjectName();
-                this.GetInsType();
+                this.GetInsType();                
                 string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
                 if (qPrjCode.Length > 0)
                 {
@@ -201,11 +201,24 @@ namespace RealERPWEB.F_23_CR
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbTotal_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
 
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+        }
         private string GetComCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1632,6 +1645,7 @@ namespace RealERPWEB.F_23_CR
         {
             try
             {
+                CommonButton();
                 string chequeno = this.txtchqno.Text.Trim();
                 string instype = this.ddlType.SelectedValue.ToString().Trim();
                 string mrno = this.lblReceiveNo.Text.Trim();
@@ -1643,6 +1657,7 @@ namespace RealERPWEB.F_23_CR
                     case "3337":
                     case "3101":
                     case "3353":
+                        
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {

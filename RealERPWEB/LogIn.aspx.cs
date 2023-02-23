@@ -40,7 +40,7 @@ namespace RealERPWEB
             {
                 this.Initilize();
                 this.getComName();
-                this.GetHitCounter();
+                this.GetHitCounter();          
 
 
                 this.getListModulename();

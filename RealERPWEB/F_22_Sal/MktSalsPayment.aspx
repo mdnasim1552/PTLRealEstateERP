@@ -80,6 +80,7 @@
             text-align: center;
             text-transform: capitalize;
         }
+
         .chzn-single {
             border-radius: 3px !important;
             height: 29px !important;
@@ -87,6 +88,12 @@
         /*.cald {
              z-index: 1;
         }*/
+        .mt20 {
+            margin-top: 20px;
+        }
+        .mt22 {
+            margin-top: 21px;
+        }
     </style>
 
 
@@ -152,7 +159,7 @@
 
 
             <div class="card card-fluid mt-0">
-                <div class="card-body" >
+                <div class="card-body">
                     <div class="row">
                         <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Width="831px" CssClass=" table-striped table-bordered grvContentarea"
@@ -242,7 +249,7 @@
                                         <asp:LinkButton ID="lbtnusize" runat="server" CommandArgument="lbtnusize"
                                             OnClick="lbtnusize_Click" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="60px"></asp:LinkButton>
+                                            Width="80px"></asp:LinkButton>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
@@ -567,7 +574,7 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnTotalCost" runat="server" Font-Bold="True"
-                                                    Font-Size="13px" ForeColor="White"  OnClick="lbtnTotalCost_Click">Total</asp:LinkButton>
+                                                    Font-Size="13px" ForeColor="White" OnClick="lbtnTotalCost_Click">Total</asp:LinkButton>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -616,7 +623,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <FooterStyle  HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
 
@@ -640,7 +647,7 @@
                                         <asp:TemplateField HeaderText="Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="16px"
-                                                    ForeColor="#000" Style="text-align: right"></asp:Label>
+                                                     Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -679,7 +686,7 @@
                                         <div class="form-group">
                                             <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
-                                            <asp:Label ID="ldT" runat="server" CssClass="lblTxt lblName"  Text="DISCOUNT"></asp:Label>
+                                            <asp:Label ID="ldT" runat="server" CssClass="lblTxt lblName" Text="DISCOUNT"></asp:Label>
 
                                             <asp:Label ID="Label9" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
@@ -700,7 +707,7 @@
                                     <asp:Panel ID="Panel2" runat="server">
 
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
 
                                                 <div class="form-group">
 
@@ -710,30 +717,29 @@
                                                     <asp:LinkButton ID="ibtnFindSalesteam" Visible="false" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindSalesteam_Click" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
-                                                    <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="chzn-select ddlPage margin5px" TabIndex="12" Style="width: 280px; float: left">
+                                                    <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12" Style="float: left">
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                            
+                                            <div class="col-md-6 ">
 
                                                 <div class="form-group">
                                                     <asp:Label ID="lblCollection" runat="server" CssClass=" smLbl_to">Collection Team</asp:Label>
                                                     <asp:LinkButton ID="ibtnFindCollectionteam" CssClass="btn btn-primary srearchBtn" Visible="false" runat="server" OnClick="ibtnFindCollectionteam_Click" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                                    <asp:DropDownList ID="ddlCollectionTeam" runat="server" CssClass="chzn-select ddlPage margin5px" TabIndex="12" Style="width: 280px;" OnSelectedIndexChanged="ddlCollectionTeam_SelectedIndexChanged">
+                                                    <asp:DropDownList ID="ddlCollectionTeam" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12" OnSelectedIndexChanged="ddlCollectionTeam_SelectedIndexChanged">
                                                     </asp:DropDownList>
 
                                                 </div>
 
                                             </div>
-
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <asp:Label ID="Label13" runat="server" CssClass="smLbl_to" Style="width: 100px;">Booking Date</asp:Label>
+                                                    <asp:Label ID="Label13" runat="server" CssClass="smLbl_to" >Booking Date</asp:Label>
                                                     <asp:TextBox ID="txtBookDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtBookDate"></cc1:CalendarExtender>
@@ -768,8 +774,11 @@
 
                                                 </div>
                                             </div>
+                                            <div class="col-md-2">
+                                                 <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn btn-sm btn-danger primaryBtn mt20" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
+                                            </div>
                                         </div>
-                                        <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn btn-sm btn-danger primaryBtn ml-2" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
+                                       
 
 
                                     </asp:Panel>
@@ -809,7 +818,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" DeleteText="&lt;span class=' fa fa-trash'&gt;&lt;/span&gt;" HeaderStyle-Width="25px" ItemStyle-HorizontalAlign="Center"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="&lt;span class=' fa fa-trash'&gt;&lt;/span&gt;" HeaderStyle-Width="25px" ItemStyle-HorizontalAlign="Center" />
                                             <asp:TemplateField HeaderText="Description of Item">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="lgcResDesc2" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -833,7 +842,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lTotalPayment" runat="server" Font-Bold="True"
-                                                        Font-Size="12px" ForeColor="White"  OnClick="lTotalPayment_Click">Total Payment</asp:LinkButton>
+                                                        Font-Size="12px" ForeColor="White" OnClick="lTotalPayment_Click">Total Payment</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -892,7 +901,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lfAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                                        Style="text-align: right" Width="90px"></asp:Label>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -943,40 +952,45 @@
                                 <asp:Panel ID="Panel3" runat="server">
 
                                     <div class="form-group">
+                                        <div class="row">
 
-                                            <div class="col-md-6 pading5px" >                                                
+                                            <div class="col-md-3 pading5px">
                                                 <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">First Ins. Date</asp:Label>
                                                 <asp:TextBox ID="txtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
                                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                             </div>
-                                            <div class="col-md-6 mt-1 pading5px">   
+                                            <div class="col-md-4  pading5px">
                                                 <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Total Installement</asp:Label>
-                                            <asp:TextBox ID="txtTInstall" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <asp:TextBox ID="txtTInstall" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
+                                            <div class="col-md-2  pading5px">
+                                                <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Duration</asp:Label>
+                                                <asp:DropDownList ID="ddlMonth" runat="server" AppendDataBoundItems="True"
+                                                    CssClass="form-control form-control form-control-sm" Width="120px">
+                                                    <asp:ListItem Value="1">1 Month</asp:ListItem>
+                                                    <asp:ListItem Value="2">2 Month</asp:ListItem>
+                                                    <asp:ListItem Value="3 ">3 Month</asp:ListItem>
+                                                    <asp:ListItem Value="4">4 Month</asp:ListItem>
+                                                    <asp:ListItem Value="5 ">5 Month</asp:ListItem>
+                                                    <asp:ListItem Value="6">6 Month</asp:ListItem>
+                                                    <asp:ListItem Value="7">7  Month</asp:ListItem>
+                                                    <asp:ListItem Value="8">8  Month</asp:ListItem>
+                                                    <asp:ListItem Value="9">9  Month</asp:ListItem>
+                                                    <asp:ListItem Value="10">10  Month</asp:ListItem>
+                                                    <asp:ListItem Value="11">11  Month</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                            <div class="col-md-2  pading5px">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 pading5px mt-2  ">
 
                                             
-                                        <div class="col-md-12 pading5px mt-2  ">
-                                            
-                                            <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Duration</asp:Label>
-                                            <asp:DropDownList ID="ddlMonth" runat="server" AppendDataBoundItems="True"
-                                                CssClass="form-control form-control form-control-sm" Width="120px">
-                                                <asp:ListItem Value="1">1 Month</asp:ListItem>
-                                                <asp:ListItem Value="2">2 Month</asp:ListItem>
-                                                <asp:ListItem Value="3 ">3 Month</asp:ListItem>
-                                                <asp:ListItem Value="4">4 Month</asp:ListItem>
-                                                <asp:ListItem Value="5 ">5 Month</asp:ListItem>
-                                                <asp:ListItem Value="6">6 Month</asp:ListItem>
-                                                <asp:ListItem Value="7">7  Month</asp:ListItem>
-                                                <asp:ListItem Value="8">8  Month</asp:ListItem>
-                                                <asp:ListItem Value="9">9  Month</asp:ListItem>
-                                                <asp:ListItem Value="10">10  Month</asp:ListItem>
-                                                <asp:ListItem Value="11">11  Month</asp:ListItem>
-                                            </asp:DropDownList>
                                             <asp:LinkButton ID="lbtnGenerate" runat="server" OnClick="lbtnGenerate_Click" CssClass="btn btn-primary btn-sm primaryBtn mt-2">Generate</asp:LinkButton>
 
                                             <%-- <asp:LinkButton ID="lbnGenerate2" runat="server" OnClick="lbnGenerate2_Click" CssClass="btn btn-primary primaryBtn">Generate</asp:LinkButton>--%>
-                                          
                                         </div>
                                     </div>
 
@@ -985,7 +999,7 @@
 
                                 <asp:Panel ID="PanelAddIns" runat="server" Visible="False">
                                     <div class="row">
-                                        <div class="col-md-6 ">
+                                        <div class="col-md-3 ">
                                             <div class="form-group">
                                                 <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">Installement
                                                 <asp:LinkButton ID="ibtnFindInstallment" runat="server" OnClick="ibtnFindInstallment_Click" TabIndex="9"><span class="fa fa-search asitGlyp"> </span></asp:LinkButton>
@@ -995,53 +1009,48 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-3">
+                                        <div class="col-md-3 mt20">
                                             <div class="form-group">
                                                 <asp:DropDownList ID="ddlInstallment" runat="server" CssClass=" chzn-select form-control form-control-sm" TabIndex="12">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
-                                        </div>
                                         <div class="col-md-2">
-                                            <asp:LinkButton ID="lbtnAddInstallment" runat="server" CssClass="btn btn-primary btn-sm primaryBtn" OnClick="lbtnAddInstallment_Click">Add</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnAddInstallment" runat="server" CssClass="btn btn-primary btn-sm primaryBtn mt20" OnClick="lbtnAddInstallment_Click">Add</asp:LinkButton>
                                         </div>
-                                        <div class="clearfix"></div>
+                                    </div>
+                                 
 
-                                    
                                 </asp:Panel>
 
 
                                 <asp:Panel ID="pnlSlab" runat="server" Visible="False">
                                     <div class="row">
 
-                                        <div class="col-md-6 ">
+                                        <div class="col-md-3 ">
                                             <div class="form-group">
                                                 <asp:Label ID="lblfrmslab" runat="server" CssClass="lblTxt lblName">From</asp:Label>
                                                 <asp:TextBox ID="txtfrmslab" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 ">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <asp:Label ID="lbltoslab" runat="server" CssClass="lblTxt lblName">To</asp:Label>
                                                 <asp:TextBox ID="txttoslab" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 ">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <asp:Label ID="lblinsamt" runat="server" CssClass="lblTxt lblName">Installment </asp:Label>
                                                 <asp:TextBox ID="txtperslabamt" runat="server" CssClass="form-control form-control-sm" Style="text-align: right;"></asp:TextBox>
-
                                             </div>
                                         </div>
-                                        <asp:LinkButton ID="lbtnSlab" runat="server" CssClass=" mt-4 btn btn-primary btn-sm primaryBtn margin5px" OnClick="lbtnSlab_Click">Put Data</asp:LinkButton>
-
-
-                                        <div class="clearfix"></div>
-
-                                    </div>
-
+                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                 <asp:LinkButton ID="lbtnSlab" runat="server" CssClass=" btn btn-primary btn-sm primaryBtn margin5px mt20" OnClick="lbtnSlab_Click">Put Data</asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </div>                              
 
                                 </asp:Panel>
 

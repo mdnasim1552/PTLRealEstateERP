@@ -117,6 +117,22 @@
                                                     <asp:Label ID="lblrphamt16" runat="server" Width="70px"> </asp:Label></th>
                                                 <th style="width: 70px;">
                                                     <asp:Label ID="lblrphamt17" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt18" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt19" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt20" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt21" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt22" runat="server" Width="70px"> </asp:Label></th>
+                                                <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt23" runat="server" Width="70px"> </asp:Label></th>
+                                                 <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt24" runat="server" Width="70px"> </asp:Label></th>
+                                                 <th style="width: 70px;">
+                                                    <asp:Label ID="lblrphamt25" runat="server" Width="70px"> </asp:Label></th>
 
                                                 <th style="width: 70px;">Total</th>
 
@@ -199,6 +215,31 @@
                                                 <asp:Label ID="lblrpamt17" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt17")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
                                             </td>
                                             <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt18" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt18")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt19" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt19")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt20" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt20")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt21" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt21")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt22" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt22")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt23" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt23")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt24" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt24")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblrpamt25" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt25")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
+                                            </td>
+
+                                            <td style="text-align: right">
                                                 <asp:Label ID="lblrptoamt" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "toamt")).ToString("#,##0;(#,##0); ") %>' Width="70px" Font-Bold="true"></asp:Label>
                                             </td>
 
@@ -261,6 +302,37 @@
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblrpFamt13" runat="server" Width="80px"></asp:Label>
                                             </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="Label1" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt14" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt15" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt16" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt17" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt18" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt19" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt20" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt21" runat="server" Width="80px"></asp:Label>
+                                            </th>
+                                            <th style="text-align: right">
+                                                <asp:Label ID="lblrpFamt22" runat="server" Width="80px"></asp:Label>
+                                            </th>
+
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblrpFtoamt" runat="server" Width="80px"></asp:Label>
                                             </th>

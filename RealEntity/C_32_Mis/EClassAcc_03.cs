@@ -702,6 +702,12 @@ namespace RealEntity.C_32_Mis
             public double amt18 { get; set; }
             public double amt19 { get; set; }
             public double amt20 { get; set; }
+            public double amt21 { get; set; }
+            public double amt22 { get; set; }
+            public double amt23 { get; set; }
+            public double amt24 { get; set; }
+            public double amt25 { get; set; }
+          
             public double toamt { get; set; }
 
         }
