@@ -69,6 +69,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlSalesTeam;
 
         /// <summary>
+        /// divgroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divgroup;
+
+        /// <summary>
         /// lblGroup control.
         /// </summary>
         /// <remarks>

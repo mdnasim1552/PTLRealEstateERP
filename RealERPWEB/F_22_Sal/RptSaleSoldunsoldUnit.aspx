@@ -22,6 +22,10 @@
             var gvSpayment = $('#<%=this.gvSpayment.ClientID %>');
             gvSpayment.Scrollable();
 
+            var gvDayWSale = $('#<%=this.gvDayWSale.ClientID %>');
+            gvDayWSale.Scrollable();
+            
+
             //alert("I m In");
             //gvSpayment.gridviewScroll({
             //     width: 1160,
@@ -86,7 +90,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="divgroup" runat="server" visible="true">
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName" id="lblGroup" runat="server">Group</label>
                                 <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control form-control-sm chzn-select">
