@@ -201,6 +201,7 @@ namespace RealERPWEB.F_09_PImp
             // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
 
             Session["billstatus"] = HiddenSameData(ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.SubConBill.EClassConBill>());
+            Session["billstatus1"] = ds1.Tables[0];
             this.Data_Bind();
 
 
@@ -385,37 +386,65 @@ namespace RealERPWEB.F_09_PImp
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
 
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string date = this.txtDateto.Text;
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //string session = hst["session"].ToString();
-            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            //DataTable dt = (DataTable)Session["billstatus"];
+            string type = this.ddlReport.SelectedValue.ToString();
 
-            //var rptlist = dt.DataTableToList<RealEntity.C_09_PIMP.EClassOrder.SubConBillStatus>();
+            switch (type)
+            {
+                case "ConSummary":
+                    
+                    break;
+                case "ConBill":
+                    this.printConbill();
+                    break;
 
-            //LocalReport Rpt1a = new LocalReport();
+                case "ConPayment":
+                  
+                    break;
 
-            //Rpt1a = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptSubConBillStu", rptlist, null, null);
-            //Rpt1a.EnableExternalImages = true;
-            //Rpt1a.SetParameters(new ReportParameter("comnam", comnam));
-            //Rpt1a.SetParameters(new ReportParameter("comadd", comadd));
-            //Rpt1a.SetParameters(new ReportParameter("date", "Date :" + date));
-            //Rpt1a.SetParameters(new ReportParameter("printFooter", printFooter));
-            //Rpt1a.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
-            //Session["Report1"] = Rpt1a;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-            //           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                default:
+                    break;
+
+
+            }
+
         }
-        protected void gvbillstatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
+
+        private void printConbill()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string date = this.txttoDate.Text;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string session = hst["session"].ToString();
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            DataTable dt =(DataTable)Session["billstatus1"];
+
+            var rptlist = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.EClassConBill>();
+
+            LocalReport Rpt1a = new LocalReport();
+
+            Rpt1a = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptSubprjConBill", rptlist, null, null);
+            Rpt1a.EnableExternalImages = true;
+            Rpt1a.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1a.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1a.SetParameters(new ReportParameter("date", "Date :" + date));
+            Rpt1a.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1a.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Session["Report1"] = Rpt1a;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                       ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+            protected void gvbillstatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvbillstatus.PageIndex = e.NewPageIndex;
             this.Data_Bind();

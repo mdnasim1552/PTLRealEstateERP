@@ -323,7 +323,17 @@ namespace RealERPWEB.F_22_Sal
             string steam = this.ddlSalesTeam.SelectedValue.Trim().ToString() + "%";
             string steamlen = this.Getsalesteamleng();
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTDAYWISHSAL", PactCode, frdate, todate, mRptGroup, steam, steamlen, "", "", "");
+
+            string calltype = "";
+            if (comcod=="3368" || comcod == "3101")//Finlay
+            {
+                calltype = "RPTDAYWISHSALFINLAY";
+            }
+            else
+            {
+                calltype = "RPTDAYWISHSAL";
+            }
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, PactCode, frdate, todate, mRptGroup, steam, steamlen, "", "", "");
             if (ds1 == null)
             {
                 this.gvDayWSale.DataSource = null;
@@ -679,6 +689,58 @@ namespace RealERPWEB.F_22_Sal
         private void rptDayWSale()
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            switch (comcod)
+            {
+
+                case "3368":
+                case "3101":
+                    this.RtpDayWSaleFinlay();
+                    break;
+
+                default:
+                    this.RtpDayWSaleGen();
+                    break;
+            }
+
+
+            
+        }
+        private void RtpDayWSaleFinlay()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComocd();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdateonly = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataTable dt = (DataTable)Session["tblData"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.DaywiseSale>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptDayWiseSalesFinlay", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("Date", "For the month of " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy") + " to " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdateonly));
+            Rpt1.SetParameters(new ReportParameter("Level", "Level: " + this.ddlRptGroup.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void RtpDayWSaleGen()
+        {
             //Iqbal  Nayan
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComocd();
@@ -727,6 +789,7 @@ namespace RealERPWEB.F_22_Sal
             //Session["Report1"] = rptsale;
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)

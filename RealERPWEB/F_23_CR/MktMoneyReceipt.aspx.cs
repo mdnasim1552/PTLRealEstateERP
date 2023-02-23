@@ -1645,6 +1645,7 @@ namespace RealERPWEB.F_23_CR
         {
             try
             {
+                CommonButton();
                 string chequeno = this.txtchqno.Text.Trim();
                 string instype = this.ddlType.SelectedValue.ToString().Trim();
                 string mrno = this.lblReceiveNo.Text.Trim();
@@ -1656,7 +1657,7 @@ namespace RealERPWEB.F_23_CR
                     case "3337":
                     case "3101":
                     case "3353":
-                        CommonButton();
+                        
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {

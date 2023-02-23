@@ -862,6 +862,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703200", "F_17_Acc", "AccFinalReports?", "RepType=SPC", "Project Report-Specifition", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703201", "F_17_Acc", "RptSupplierOvAllPSummary?", "Type=ConPayment", "Sub-Contractor Overall Position Summary", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703202", "F_17_Acc", "RptSupplierOvAllPSummary?", "Type=SubConSecPayment", "Sub-Contractor Security Payment", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703210", "F_32_Mis", "RptPrjCostPerSFT?", "Type=RemainingCost", "Additional Budget for Inflation", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703220", "F_17_Acc", "RptAccPaySlip", "", "Pay Slip", "Accounts", "False", "False", "False", "False" }); ;
@@ -1978,6 +1979,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3703000", "3703022", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieveLO", "Month Wise Sales (Reconcilation L/O)", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3703000", "3703023", "F_22_Sal", "RptClientDateFile?", "Type=LandO", "Client Data File(L/O)", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3703000", "3703024", "F_22_Sal", "RptSalesVsAchievement?", "Type=LandO", "Down Payment Status (Prev.Sales L/O)", "Landowner Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3703000", "3703025", "F_22_Sal", "RptSaleSoldunsoldUnit?", "Type=LandO", "Day Wise Sales (L/O)", "Landowner Management", "False", "False", "False", "False" });
             #endregion
 
 
@@ -6496,6 +6498,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "06.Overall Position(Supplier & Contractor)", "F_17_Acc/RptAccSpLedger?Type=ASupConPayment&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "06.Supplier Overall Position Summary", "F_17_Acc/RptSupplierOvAllPSummary?Type=SupPayment", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000008", "06.Sub-Contractor Overall Position Summary", "F_17_Acc/RptSupplierOvAllPSummary?Type=ConPayment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000008", "06.Sub-Contractor Security Payment", "F_17_Acc/RptSupplierOvAllPSummary?Type=SubConSecPayment", "", true, "" });
 
 
 
@@ -10552,7 +10555,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000000", "03. Client Ledger (L/O)", "F_23_CR/RptCustPayStatus?Type=LOClLedger", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0304000000", "04. Monthly Probable Collection(L/O)", "F_23_CR/RptMonthlyProbCollection?Type=LoMonProColl", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "05. Client Data File(L/O)", "F_22_Sal/RptClientDateFile?Type=LandO", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0306000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000000", "06. Day Wise Sales (L/O)", "F_22_Sal/RptSaleSoldunsoldUnit?Type=LandO&comcod=&prjcode=&Date1=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0307000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
