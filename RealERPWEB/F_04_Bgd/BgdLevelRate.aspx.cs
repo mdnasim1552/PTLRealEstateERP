@@ -57,8 +57,52 @@ namespace RealERPWEB.F_04_Bgd
 
 
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrintReport_Click);
+
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Text = "Put same value for all floors";
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnInputSame_Click);
+
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
 
+
+            string type = this.Request.QueryString["Type"].ToString();
+            switch (type)
+            {
+                case "Rate":
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdate_Click);
+
+                    break;
+                case "Level":
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdatelevel_Click);
+                    break;
+
+                case "ItemLock":
+
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdateItemlk_Click);
+                    break;
+
+                case "ItemLock02":
+
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdateitemlk02_Click);
+                    break;
+            }
+
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
+        }
 
         private void SectionView()
         {
@@ -72,7 +116,7 @@ namespace RealERPWEB.F_04_Bgd
                     break;
                 case "Level":
                     this.MultiView1.ActiveViewIndex = 1;
-
+                    
                     break;
 
                 case "ItemLock":
@@ -92,14 +136,14 @@ namespace RealERPWEB.F_04_Bgd
 
         }
 
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            // Create an event handler for the master page's contentCallEvent event
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrintReport_Click);
+        //protected void Page_PreInit(object sender, EventArgs e)
+        //{
+        //    // Create an event handler for the master page's contentCallEvent event
+        //    ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrintReport_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        //    //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
-        }
+        //}
         private void GetProjectName()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -140,6 +184,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.chkUllock.Visible = true;
                 }
                 this.ddlpagesize.Visible = true;
+                this.SectionView();
                 this.ShowView();
 
 
@@ -184,6 +229,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.ShowRate();
                     break;
                 case "Level":
+                    this.lbldet.Visible = true;
                     this.Level();
                     break;
 
@@ -281,10 +327,91 @@ namespace RealERPWEB.F_04_Bgd
                 this.gvConLevel.DataBind();
                 return;
             }
-            Session["tblSupRate"] = HiddenSameData(ds2.Tables[0]);
+            Session["tblSupRate"] = (ds2.Tables[0]);
+            Session["tblSupRate1"] = (ds2.Tables[0]);
+            this.SelectResCodeLeb2();
             this.LoadGrid("gvConLevel");
         }
+        private void SelectResCodeLeb2()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string projectname = this.ddlProjectName.SelectedValue.ToString();
 
+            DataTable dt = ((DataTable)Session["tblSupRate"]).Copy();
+            if (dt.Rows.Count == 0)
+                return;
+
+
+            DataView view = new DataView(dt);
+            DataTable distinctValues = view.ToTable(true, "flrcod", "flrdes");
+            distinctValues.Rows.Add( "00000", "-----All Floor-----");
+
+
+            //EnumerableRowCollection<DataRow> item = (from r in dt.AsEnumerable() select r);
+            //dt = item.AsDataView().ToTable();
+
+            //dt.Rows.Add(comcod, "000000000000", "000000000000", "-----All Catagory-----", "000000000000", "00000", "0", "","0", "True", "False", "","-----All Floor-----","");
+
+            this.ddlFloor.DataTextField = "flrdes";
+            this.ddlFloor.DataValueField = "flrcod";
+            this.ddlFloor.DataSource = distinctValues;
+            this.ddlFloor.DataBind();
+            this.ddlFloor.SelectedValue = "00000";
+
+
+            //EnumerableRowCollection<DataRow> item1 = (from r in dt.AsEnumerable() select r);
+            //DataTable dt1 = item1.AsDataView().ToTable();
+
+            //dt1.Rows.Add(comcod, "000000000000", "000000000000", "-----All Catagory-----", "000000000000", "00000", "0", "", "0", "True", "False", "", "-----All Floor-----", "");
+
+            DataView view1 = new DataView(dt);
+            DataTable distinctValues1 = view1.ToTable(true, "catacode", "catadesc");
+            distinctValues1.Rows.Add("000000000000", "-----All Catagory-----");
+
+            this.ddlCat.DataTextField = "catadesc";
+            this.ddlCat.DataValueField = "catacode";
+            this.ddlCat.DataSource = distinctValues1;
+            this.ddlCat.DataBind();
+            this.ddlCat.SelectedValue = "000000000000";
+
+        }
+        protected void lbtnSearch_Click(object sender, EventArgs e)
+        {
+            DataTable dt = ((DataTable)Session["tblSupRate1"]).Copy();
+            if (this.ddlFloor.SelectedValue.ToString().Length == 0)
+                return;
+
+            string fcode = this.ddlFloor.SelectedValue.ToString();
+            string cacode = this.ddlCat.SelectedValue.ToString();
+            if (fcode == "00000" && cacode == "000000000000")
+
+            {
+                Session["tblSupRate"] = dt;
+
+            }
+            else if (fcode != "00000" & cacode != "000000000000")
+
+            {
+                EnumerableRowCollection<DataRow> item = (from r in dt.AsEnumerable()
+                                                         where (r.Field<string>("flrcod") == fcode & r.Field<string>("catacode") == cacode)
+                                                         select r);
+                Session["tblSupRate"] = item.AsDataView().ToTable();
+            }
+            else if (fcode != "00000" || cacode != "000000000000")
+
+            {
+                EnumerableRowCollection<DataRow> item = (from r in dt.AsEnumerable()
+                                                         where (r.Field<string>("flrcod") == fcode || r.Field<string>("catacode") == cacode)
+                                                         select r);
+                Session["tblSupRate"] = item.AsDataView().ToTable();
+            }
+            
+           
+            
+
+            this.LoadGrid("gvConLevel");
+        }
         private void ItemLock()
         {
             Session.Remove("tblSupRate");
@@ -340,6 +467,7 @@ namespace RealERPWEB.F_04_Bgd
 
         }
 
+        
 
         private void LoadGrid(string gvname)
         {
@@ -354,7 +482,7 @@ namespace RealERPWEB.F_04_Bgd
                     break;
                 case "gvConLevel":
                     this.gvConLevel.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvConLevel.DataSource = dt;
+                    this.gvConLevel.DataSource = HiddenSameData(dt);
                     this.gvConLevel.DataBind();
                     this.CheeckLevel();
                     break;
@@ -913,5 +1041,12 @@ namespace RealERPWEB.F_04_Bgd
             }
 
         }
+
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
