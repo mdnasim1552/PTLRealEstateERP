@@ -246,6 +246,7 @@
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseRequisition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseTrack.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+CashFlowBankWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+EClassMasterBgd.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_33_Doc.ActiveSimUser.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />

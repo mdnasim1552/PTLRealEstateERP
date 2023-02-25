@@ -1161,6 +1161,7 @@ namespace RealERPWEB.F_32_Mis
                             ((Label)this.gvColvsExp.Rows[i].FindControl("lgvnp")).Text = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvColvsExp.Rows[i].FindControl("lgvnp")).Text.Trim())).ToString("#,##0;-#,##0; ");
 
 
+                        
 
                         }
 
@@ -1235,7 +1236,11 @@ namespace RealERPWEB.F_32_Mis
                         ((Label)this.gvColvsExp.FooterRow.FindControl("lgvFlfrmamt")).Text = Convert.ToDouble((Convert.IsDBNull(dts.Compute("sum(lfrmamt)", "")) ? 0.00 : dts.Compute("sum(lfrmamt)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvColvsExp.FooterRow.FindControl("lgvFbgdsaamt")).Text = Convert.ToDouble((Convert.IsDBNull(dts.Compute("sum(bgdsaamt)", "")) ? 0.00 : dts.Compute("sum(bgdsaamt)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvColvsExp.FooterRow.FindControl("lgvFnp")).Text = Convert.ToDouble((Convert.IsDBNull(dts.Compute("sum(np)", "")) ? 0.00 : dts.Compute("sum(np)", ""))).ToString("#,##0;(#,##0); ");
+                        ((Label)this.gvColvsExp.FooterRow.FindControl("lgvFcashflow")).Text = Convert.ToDouble((Convert.IsDBNull(dts.Compute("sum(cashflow)", "")) ? 0.00 : dts.Compute("sum(cashflow)", ""))).ToString("#,##0;(#,##0); ");
 
+
+
+                        
                     }
 
 
@@ -1325,6 +1330,8 @@ namespace RealERPWEB.F_32_Mis
 
 
 
+
+
                         }
                     }// lgvtosales.Style.Add("width", "50px");
 
@@ -1335,9 +1342,16 @@ namespace RealERPWEB.F_32_Mis
                     {
 
 
-                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFToSalValip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(tosalval)", "")) ? 0.00 : dts1.Compute("sum(tosalval)", ""))).ToString("#,##0;(#,##0); ");
+                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFToSalValip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(acsaunsold)", "")) ? 0.00 : dts1.Compute("sum(acsaunsold)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvInPlan.FooterRow.FindControl("lgvFSaleAmtip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(salamt)", "")) ? 0.00 : dts1.Compute("sum(salamt)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvInPlan.FooterRow.FindControl("lgvFCollAmtip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(collamt)", "")) ? 0.00 : dts1.Compute("sum(collamt)", ""))).ToString("#,##0;(#,##0); ");
+
+                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFnoiam")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(noiamt)", "")) ? 0.00 : dts1.Compute("sum(noiamt)", ""))).ToString("#,##0;(#,##0); ");
+
+                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFtoreceived")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(toreceived)", "")) ? 0.00 : dts1.Compute("sum(toreceived)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
                         //((Label)this.gvInPlan.FooterRow.FindControl("lgvFintamt")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(intamt)", "")) ? 0.00 : dts1.Compute("sum(intamt)", ""))).ToString("#,##0;(#,##0); ");
 
                         //  ((Label)this.gvInPlan.FooterRow.FindControl("lgvFperonsale")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(perontosal)", "")) ? 0.00 : dts1.Compute("sum(perontosal)", ""))).ToString("#,##0.00;(#,##0.00); ") + "%";
@@ -1368,13 +1382,10 @@ namespace RealERPWEB.F_32_Mis
                     }
                     else
                     {
-                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFToSalValip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(tosalval)", "")) ? 0.00 : dts1.Compute("sum(tosalval)", ""))).ToString("#,##0;(#,##0); ");
+                        ((Label)this.gvInPlan.FooterRow.FindControl("lgvFToSalValip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(acsaunsold)", "")) ? 0.00 : dts1.Compute("sum(acsaunsold)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvInPlan.FooterRow.FindControl("lgvFSaleAmtip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(salamt)", "")) ? 0.00 : dts1.Compute("sum(salamt)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvInPlan.FooterRow.FindControl("lgvFCollAmtip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(collamt)", "")) ? 0.00 : dts1.Compute("sum(collamt)", ""))).ToString("#,##0;(#,##0); ");
-                        //((Label)this.gvInPlan.FooterRow.FindControl("lgvFintamt")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(intamt)", "")) ? 0.00 : dts1.Compute("sum(intamt)", ""))).ToString("#,##0;(#,##0); ");
-
-                        // ((Label)this.gvInPlan.FooterRow.FindControl("lgvFperonsale")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(perontosal)", "")) ? 0.00 : dts1.Compute("sum(perontosal)", ""))).ToString("#,##0.00;(#,##0.00); ") + "%";
-                        // ((Label)this.gvInPlan.FooterRow.FindControl("lgvFperontocol")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(perontocol)", "")) ? 0.00 : dts1.Compute("sum(perontocol)", ""))).ToString("#,##0.00;(#,##0.00); ") + "%";
+                       
 
                         ((Label)this.gvInPlan.FooterRow.FindControl("lgvFconAmtip")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(cbgdamt)", "")) ? 0.00 : dts1.Compute("sum(cbgdamt)", ""))).ToString("#,##0;(#,##0); ");
                         // ((Label)this.gvInPlan.FooterRow.FindControl("lgvFBgdAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dts1.Compute("sum(bgdamt)", "")) ? 0.00 : dts1.Compute("sum(bgdamt)", ""))).ToString("#,##0;(#,##0); ");

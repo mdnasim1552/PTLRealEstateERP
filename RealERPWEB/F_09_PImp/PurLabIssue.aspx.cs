@@ -597,8 +597,7 @@ namespace RealERPWEB.F_09_PImp
                 this.lblBillno.Text = "";
 
 
-                this.ddlPrevISSList.Visible = true;
-                this.txtSrcPreBill.Visible = true;
+                this.ddlPrevISSList.Visible = true;               
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
@@ -627,7 +626,7 @@ namespace RealERPWEB.F_09_PImp
             this.ddlcontractorlist.Enabled = false;
             //this.lblSubContractor.Visible = true;          
             this.ddlPrevISSList.Visible = false;
-            this.txtSrcPreBill.Visible = false;
+           
             this.ibtnPreBillList.Visible = false;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
