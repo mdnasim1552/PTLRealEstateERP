@@ -464,6 +464,8 @@
                 case 3101:   // Credence   
                 case 3315:   // Credence 
                 case 3347:   // Credence   
+                case 3374:   // Credence   
+
 
                     break;
 

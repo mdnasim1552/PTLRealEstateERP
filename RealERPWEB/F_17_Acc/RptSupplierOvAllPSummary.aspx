@@ -20,15 +20,15 @@
                 gvspaysummary.Scrollable();
 
                 var gvspaymentdetails = $('#<%=this.gvspaymentdetails.ClientID %>');
-               // var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
-               // var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
+                var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
+                var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
 
 
                 //gv1.Scrollable();
 
-                //gvspaymentdetails.Scrollable();
-               // gvconsummary.Scrollable();
-               // gvcondetails.Scrollable();
+                gvspaymentdetails.Scrollable();
+                gvconsummary.Scrollable();
+                gvcondetails.Scrollable();
 
 
                 var gridViewScroll = new GridViewScroll({
@@ -1538,7 +1538,7 @@
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Net Bill Amount">
+                                <asp:TemplateField HeaderText="Net Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvnetbillamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netamt")).ToString("#,##0;(#,##0); ") %>'
