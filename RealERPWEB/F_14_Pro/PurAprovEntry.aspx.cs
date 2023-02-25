@@ -843,10 +843,10 @@ namespace RealERPWEB.F_14_Pro
                     dr1["spcfcod"] = tbl2.Rows[i]["spcfcod"].ToString();
                     dr1["rspcfcod"] = tbl2.Rows[i]["spcfcod"].ToString();
 
-                    //dr1["ssircode"] = tbl2.Rows[i]["ssircode"].ToString().Trim() == ""
-                    //    ? this.ddlSupList.SelectedValue.ToString()
-                    //    : tbl2.Rows[i]["ssircode"].ToString();
-                    dr1["ssircode"] = this.ddlSupList.SelectedValue.ToString(); 
+                    dr1["ssircode"] = tbl2.Rows[i]["ssircode"].ToString().Trim() == ""
+                      ? this.ddlSupList.SelectedValue.ToString()
+                      : tbl2.Rows[i]["ssircode"].ToString();
+                    //dr1["ssircode"] = this.ddlSupList.SelectedValue.ToString(); 
 
                     dr1["reqno1"] = tbl2.Rows[i]["reqno1"].ToString();
                     dr1["mrfno"] = tbl2.Rows[i]["mrfno"].ToString();
