@@ -2364,6 +2364,7 @@
     <Content Include="F_09_PImp\RptConTractorBillAll.aspx" />
     <Content Include="F_09_PImp\RptExeResRequirement.aspx" />
     <Content Include="F_09_PImp\RptImpExeStatus.aspx" />
+    <Content Include="F_09_PImp\RptLabourSearchRaWise.aspx" />
     <Content Include="F_09_PImp\RptMonthlySubConBill.aspx" />
     <Content Include="F_09_PImp\RptPrjGrpWrkBillReport.aspx" />
     <Content Include="F_09_PImp\RptPrjWiseSubContractorbill.aspx" />
@@ -4313,6 +4314,13 @@
     </Compile>
     <Compile Include="F_09_PImp\PurLabRequisition02.aspx.designer.cs">
       <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.cs">
+      <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.designer.cs">
+      <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
