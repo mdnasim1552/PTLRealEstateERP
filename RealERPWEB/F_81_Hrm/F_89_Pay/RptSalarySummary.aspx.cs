@@ -173,6 +173,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = ds3.Tables[0];
             Session["tblSalSum"] = dt;
             this.Data_Bind();
+            if (comcod=="3370")
+            {
+                this.gvSalSum.Columns[4].Visible = true;
+                this.gvSalSum.Columns[5].Visible = true;
+                                                   
+                this.gvSalSum.Columns[9].Visible = true;
+                this.gvSalSum.Columns[10].Visible= true;
+
+            }
 
         }
 
