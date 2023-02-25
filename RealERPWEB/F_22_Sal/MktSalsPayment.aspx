@@ -197,7 +197,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Customer Name">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="hypcustomer" runat="server" Width="150px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'></asp:HyperLink>
+                                        <asp:HyperLink ID="hypcustomer" runat="server" Width="145px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'></asp:HyperLink>
 
                                         <%-- <asp:Label ID="lblgvRemarks" runat="server" BackColor="Transparent"
                                             BorderStyle="None"
@@ -360,7 +360,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgcclientnamegdatatbn" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custnamebn")) %>'
-                                            Width="150px"></asp:Label>
+                                            Width="135px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -413,7 +413,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgfilecode22" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -559,7 +559,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="10px"
                                                     Style="text-align: center"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"
                                                     ForeColor="Black"></asp:Label>
@@ -568,7 +568,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvGcod" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvGcod" runat="server" Height="10px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                     Width="49px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
@@ -600,7 +600,7 @@
                                         <asp:TemplateField HeaderText="Unit Size">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvUSize" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Height="10px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px" Font-Size="11px"></asp:TextBox>
                                             </ItemTemplate>
@@ -612,7 +612,7 @@
                                         <asp:TemplateField HeaderText="Rate">
 
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
+                                                <asp:LinkButton ID="lFinalUpdateCost" runat="server" CssClass="btn btn-sm btn-danger" OnClick="lFinalUpdateCost_Click"> Update  </asp:LinkButton>
                                             </FooterTemplate>
 
                                             <ItemTemplate>
@@ -636,7 +636,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvdiscount" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px" Height="10px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "disamt")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="60px"></asp:TextBox>
                                             </ItemTemplate>
@@ -653,7 +653,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvuamt" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="14px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="14px" Height="10px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uamt")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="100px"></asp:TextBox>
                                             </ItemTemplate>
@@ -665,7 +665,7 @@
 
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Height="18px" Style="text-align: left"
+                                                    BorderStyle="None" Height="10px" Style="text-align: left"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks"))%>'
                                                     Width="100px" Font-Size="11px"></asp:TextBox>
                                             </ItemTemplate>
@@ -826,7 +826,7 @@
                                                         Width="330px" ForeColor="Black"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-sm btn-danger" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="center" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -964,10 +964,10 @@
                                                 <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Total Installement</asp:Label>
                                                 <asp:TextBox ID="txtTInstall" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                             </div>
-                                            <div class="col-md-2  pading5px">
+                                            <div class="col-md-4  pading5px">
                                                 <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Duration</asp:Label>
                                                 <asp:DropDownList ID="ddlMonth" runat="server" AppendDataBoundItems="True"
-                                                    CssClass="form-control form-control form-control-sm" Width="120px">
+                                                    CssClass="form-control form-control form-control-sm">
                                                     <asp:ListItem Value="1">1 Month</asp:ListItem>
                                                     <asp:ListItem Value="2">2 Month</asp:ListItem>
                                                     <asp:ListItem Value="3 ">3 Month</asp:ListItem>
@@ -980,8 +980,6 @@
                                                     <asp:ListItem Value="10">10  Month</asp:ListItem>
                                                     <asp:ListItem Value="11">11  Month</asp:ListItem>
                                                 </asp:DropDownList>
-                                            </div>
-                                            <div class="col-md-2  pading5px">
                                             </div>
                                         </div>
 
@@ -999,25 +997,26 @@
 
                                 <asp:Panel ID="PanelAddIns" runat="server" Visible="False">
                                     <div class="row">
-                                        <div class="col-md-3 ">
+                                        <div class="col-md-5 ">
                                             <div class="form-group">
                                                 <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">Installement
-                                                <asp:LinkButton ID="ibtnFindInstallment" runat="server" OnClick="ibtnFindInstallment_Click" TabIndex="9"><span class="fa fa-search asitGlyp"> </span></asp:LinkButton>
-
                                                 </asp:Label>
-                                                <asp:TextBox ID="txtsrchInstallment" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mt20">
-                                            <div class="form-group">
+                                                 <asp:LinkButton ID="ibtnFindInstallment" runat="server" OnClick="ibtnFindInstallment_Click" TabIndex="9"><span class="fa fa-search asitGlyp"> </span></asp:LinkButton>
                                                 <asp:DropDownList ID="ddlInstallment" runat="server" CssClass=" chzn-select form-control form-control-sm" TabIndex="12">
                                                 </asp:DropDownList>
+                                                <asp:TextBox ID="txtsrchInstallment" runat="server" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
+
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <asp:LinkButton ID="lbtnAddInstallment" runat="server" CssClass="btn btn-primary btn-sm primaryBtn mt20" OnClick="lbtnAddInstallment_Click">Add</asp:LinkButton>
                                         </div>
+                                        <div class="col-md-3 mt20">
+                                            <div class="form-group">
+                                                
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                  
 
