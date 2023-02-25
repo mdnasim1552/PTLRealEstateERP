@@ -1538,7 +1538,7 @@
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Net Bill Amount">
+                                <asp:TemplateField HeaderText="Net Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvnetbillamt" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netamt")).ToString("#,##0;(#,##0); ") %>'
