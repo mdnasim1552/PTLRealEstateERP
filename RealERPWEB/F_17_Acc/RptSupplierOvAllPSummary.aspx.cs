@@ -493,7 +493,7 @@ namespace RealERPWEB.F_17_Acc
                 this.PrintSupPaymentSummary();
 
             }
-            if(type == "SubConSecPayment")
+            else if(type == "SubConSecPayment")
             {
                 this.PrintConSecurityPaymentdetails();
             }
