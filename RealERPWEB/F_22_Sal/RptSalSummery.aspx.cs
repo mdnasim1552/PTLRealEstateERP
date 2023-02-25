@@ -253,6 +253,41 @@ namespace RealERPWEB.F_22_Sal
                     ((HyperLink)this.gvCollvsHonoured.HeaderRow.FindControl("hlbbanknameExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
+                case "gvsalvscolltypeWise":
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aptqty)", "")) ?
+                            0 : dt.Compute("sum(aptqty)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptshop")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopqty)", "")) ?
+                          0 : dt.Compute("sum(shopqty)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvacaptqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(actaptqty)", "")) ?
+                            0 : dt.Compute("sum(actaptqty)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvacshopqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(actshopqty)", "")) ?
+                          0 : dt.Compute("sum(actshopqty)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salaptsfall)", "")) ?
+                        0 : dt.Compute("sum(salaptsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salshopsfall)", "")) ?
+                        0 : dt.Compute("sum(salshopsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontapt)", "")) ?
+                        0 : dt.Compute("sum(perontapt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontshop)", "")) ?
+                        0 : dt.Compute("sum(perontshop)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptmoncollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aptamt)", "")) ?
+                        0 : dt.Compute("sum(aptamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopmoncollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopamt)", "")) ?
+                        0 : dt.Compute("sum(shopamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptaccollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aptaccollamt)", "")) ?
+                        0 : dt.Compute("sum(aptaccollamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopaccollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopaccollamt)", "")) ?
+                        0 : dt.Compute("sum(shopaccollamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collaptsfall)", "")) ?
+                        0 : dt.Compute("sum(collaptsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collshopsfall)", "")) ?
+                        0 : dt.Compute("sum(collshopsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronaptcoll)", "")) ?
+                        0 : dt.Compute("sum(peronaptcoll)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronshopcoll)", "")) ?
+                        0 : dt.Compute("sum(peronshopcoll)", ""))).ToString("#,##0;(#,##0); ");
+
+                    break;
 
 
 
@@ -393,6 +428,8 @@ namespace RealERPWEB.F_22_Sal
                 Session["tblsalsum"] = ds1.Tables[0];
                 this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
                 this.gvsalvscolltypeWise.DataBind();
+                this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+
             }
             catch (Exception ex)
             {
