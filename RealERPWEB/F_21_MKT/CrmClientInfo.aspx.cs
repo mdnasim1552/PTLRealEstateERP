@@ -5295,6 +5295,8 @@ namespace RealERPWEB.F_21_MKT
                 this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
                 this.lblProfession.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["profession"].ToString() : ds1.Tables[0].Rows[0]["profession"].ToString();
                 this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["sourcetxt"].ToString() : ds1.Tables[0].Rows[0]["sourcetxt"].ToString();
+                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ?  (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText +"(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
+                                            : (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
 
                 ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);

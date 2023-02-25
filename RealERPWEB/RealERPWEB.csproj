@@ -227,7 +227,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
@@ -243,7 +243,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -2292,7 +2292,6 @@
     <Content Include="F_04_Bgd\RptOtherReqStatus.aspx" />
     <Content Include="F_04_Bgd\RptPrjFloorWise.aspx" />
     <Content Include="F_04_Bgd\RptWorkSchedule.aspx" />
-    <Content Include="F_04_Bgd\RptWorkWiResVariance.aspx" />
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
@@ -2359,6 +2358,7 @@
     <Content Include="F_09_PImp\RptConTractorBillAll.aspx" />
     <Content Include="F_09_PImp\RptExeResRequirement.aspx" />
     <Content Include="F_09_PImp\RptImpExeStatus.aspx" />
+    <Content Include="F_09_PImp\RptLabourSearchRaWise.aspx" />
     <Content Include="F_09_PImp\RptMonthlySubConBill.aspx" />
     <Content Include="F_09_PImp\RptPrjGrpWrkBillReport.aspx" />
     <Content Include="F_09_PImp\RptPrjWiseSubContractorbill.aspx" />
@@ -4274,13 +4274,6 @@
     <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
       <DependentUpon>RptProductCost.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.cs">
-      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.designer.cs">
-      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4315,6 +4308,13 @@
     </Compile>
     <Compile Include="F_09_PImp\PurLabRequisition02.aspx.designer.cs">
       <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.cs">
+      <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.designer.cs">
+      <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>

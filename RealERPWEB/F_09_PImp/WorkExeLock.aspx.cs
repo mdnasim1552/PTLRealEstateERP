@@ -60,16 +60,16 @@ namespace RealERPWEB.F_09_PImp
         {
             SessionList();
             DataTable dt = (DataTable)Session["tblbgd"];
-            DataTable dt01 = dt.Select("iscomplete=true").CopyToDataTable();
-
+            
             string comcod = GetComCode();
             string pactcode = ddlProject.SelectedValue.ToString();
             List<bool> resultArr = new List<bool>();
-            foreach (DataRow dr in dt01.Rows)
+            foreach (DataRow dr in dt.Rows)
             {
                 string isircode = dr["isircode"].ToString();
                 string flrcod = dr["flrcod"].ToString();
-                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEBDGWRK", pactcode, isircode, flrcod);
+                bool iscomplete = Convert.ToBoolean(dr["iscomplete"].ToString());
+                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEBDGWRK", pactcode, isircode, flrcod, iscomplete.ToString());
                 resultArr.Add(result);
             }
             if (resultArr.Contains(false))
