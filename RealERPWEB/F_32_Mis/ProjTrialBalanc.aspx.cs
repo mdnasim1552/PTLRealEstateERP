@@ -80,13 +80,15 @@ namespace RealERPWEB.F_32_Mis
                     this.MultiView1.ActiveViewIndex = 1;
                     this.lblPrjName.Visible = false;
                     this.txtSearchpIndp.Visible = false;
+                    this.divprjname.Visible = false;
                     this.ImgbtnFindProjind.Visible = false;
                     this.ddlProjectInd.Visible = false;
                     this.lblGrp.Visible = false;
+                    this.divdetais.Visible = false;
                     this.ddlRptGroup.Visible = false;
                     break;
                 case "PrjCost":
-
+                    this.divtodate.Visible = true;
                     this.lbltodate.Visible = true;
                     this.txttodate.Visible = true;
                     date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -97,10 +99,13 @@ namespace RealERPWEB.F_32_Mis
                     break;
 
                 case "PrjTrailBal3":
+                    this.divtodate.Visible = true;
                     this.lbltodate.Visible = true;
                     this.txttodate.Visible = true;
                     this.lblGrp.Visible = false;
+                    this.divdetais.Visible = false;
                     this.ddlRptGroup.Visible = false;
+                    this.divchkdetails.Visible = true;
                     this.chkdetails.Visible = true;
                     date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtDatefrom.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
@@ -111,10 +116,13 @@ namespace RealERPWEB.F_32_Mis
 
 
                 case "RecAPayment":
+                    this.divtodate.Visible = true;
                     this.lbltodate.Visible = true;
                     this.txttodate.Visible = true;
                     this.lblGrp.Visible = false;
+                    this.divdetais.Visible = false;
                     this.ddlRptGroup.Visible = false;
+                    this.divchkdetails.Visible = false;
                     this.chkdetails.Visible = false;
                     date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtDatefrom.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");

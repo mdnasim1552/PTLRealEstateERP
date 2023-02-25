@@ -908,6 +908,14 @@
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="MR. Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgvMrDate" runat="server"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "mrdate")).ToString("dd-MMM-yyyy") %>'
+                                                            Width="70px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Bank Name">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lgvBaName" runat="server"

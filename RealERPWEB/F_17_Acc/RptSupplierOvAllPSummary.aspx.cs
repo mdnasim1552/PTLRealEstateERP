@@ -278,6 +278,7 @@ namespace RealERPWEB.F_17_Acc
                     this.gvconsecpaydetails.DataBind();
                     return;
                 }
+               
                 Session["tblspaysum"] = HiddenSameData(ds1.Tables[0]);
 
                 this.Data_Bind();
@@ -365,23 +366,67 @@ namespace RealERPWEB.F_17_Acc
 
         private DataTable HiddenSameData(DataTable dt1)
         {
-            if (dt1.Rows.Count == 0)
-                return dt1;
-            string rescode = dt1.Rows[0]["rescode"].ToString();
 
-            for (int j = 1; j < dt1.Rows.Count; j++)
+            string type = this.Request.QueryString["Type"].ToString();
+
+            switch (type)
             {
-                if (dt1.Rows[j]["rescode"].ToString() == rescode)
-                {
-                    rescode = dt1.Rows[j]["rescode"].ToString();
-                    dt1.Rows[j]["resdesc"] = "";
-                }
+                case "SubConSecPayment":
+                    if (dt1.Rows.Count == 0)
+                        return dt1;
+                    string actcode = dt1.Rows[0]["actcode"].ToString();
+                    string rescode = dt1.Rows[0]["rescode"].ToString();
 
-                else
-                {
-                    rescode = dt1.Rows[j]["rescode"].ToString();
-                }
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["actcode"].ToString() == actcode)
+                        {
+                            actcode = dt1.Rows[j]["actcode"].ToString();
+                            dt1.Rows[j]["actdesc"] = "";
+
+                            if (dt1.Rows[j]["rescode"].ToString() == rescode)
+                            {
+                                rescode = dt1.Rows[j]["rescode"].ToString();
+                                dt1.Rows[j]["resdesc"] = "";
+                            }
+
+                            else
+                            {
+                                rescode = dt1.Rows[j]["rescode"].ToString();
+                            }
+                        }
+
+                        else
+                        {
+                            actcode = dt1.Rows[j]["actcode"].ToString();
+                           
+                            rescode = dt1.Rows[j]["rescode"].ToString();
+                           
+                        }
+                    }
+                    break;
+                default:
+                    if (dt1.Rows.Count == 0)
+                        return dt1;
+                    string rescod = dt1.Rows[0]["rescode"].ToString();
+
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["rescode"].ToString() == rescod)
+                        {
+                            rescod = dt1.Rows[j]["rescode"].ToString();
+                            dt1.Rows[j]["resdesc"] = "";
+                        }
+
+                        else
+                        {
+                            rescod = dt1.Rows[j]["rescode"].ToString();
+                        }
+                    }
+                    break;
             }
+
+          
             return dt1;
 
         }
@@ -448,7 +493,7 @@ namespace RealERPWEB.F_17_Acc
                 this.PrintSupPaymentSummary();
 
             }
-            if(type == "SubConSecPayment")
+            else if(type == "SubConSecPayment")
             {
                 this.PrintConSecurityPaymentdetails();
             }
