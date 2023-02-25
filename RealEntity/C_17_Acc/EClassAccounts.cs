@@ -1375,6 +1375,7 @@ namespace RealEntity.C_17_Acc
             public string actcode { get; set; }
           
             public string vounum { get; set; }
+            public string vounum1 { get; set; }
             public string voudat { get; set; }
             public string billno { get; set; }
             public string billno1 { get; set; }

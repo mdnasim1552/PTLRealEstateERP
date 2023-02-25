@@ -51,7 +51,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+=======
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+>>>>>>> ca0b732f25bc4dd737f58b446c0bb37eaf7b11fe
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -245,6 +249,7 @@
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseRequisition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseTrack.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+CashFlowBankWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_33_Doc.ActiveSimUser.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />
