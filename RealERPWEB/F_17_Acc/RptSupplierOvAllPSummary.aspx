@@ -20,15 +20,15 @@
                 gvspaysummary.Scrollable();
 
                 var gvspaymentdetails = $('#<%=this.gvspaymentdetails.ClientID %>');
-               // var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
-               // var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
+                var gvconsummary = $('#<%=this.gvconsummary.ClientID %>');
+                var gvcondetails = $('#<%=this.gvcondetails.ClientID %>');
 
 
                 //gv1.Scrollable();
 
-                //gvspaymentdetails.Scrollable();
-               // gvconsummary.Scrollable();
-               // gvcondetails.Scrollable();
+                gvspaymentdetails.Scrollable();
+                gvconsummary.Scrollable();
+                gvcondetails.Scrollable();
 
 
                 var gridViewScroll = new GridViewScroll({
