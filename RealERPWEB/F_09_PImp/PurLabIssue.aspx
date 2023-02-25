@@ -246,10 +246,10 @@
 
                         <div class="col-sm-12 col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="ibtnPreBillList" runat="server" CssClass="form-label" OnClick="ibtnPreBillList_Click">Prev. List</asp:LinkButton>
-                               
 
-                                <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
+
+                                 <asp:Label ID="lblPrevISSList" runat="server" >Prev. List:</asp:Label>
+                                <asp:LinkButton ID="ibtnPreBillList" runat="server" CssClass="form-label" OnClick="ibtnPreBillList_Click"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>   
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
