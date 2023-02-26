@@ -65,7 +65,7 @@ namespace RealERPWEB.F_22_Sal
                 //    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
                 //    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
 
-               
+                this.SalesPersonName();
             }
 
         }
@@ -86,6 +86,16 @@ namespace RealERPWEB.F_22_Sal
             string qcomcod = this.Request.QueryString["comcod"] ?? "";
             comcod = qcomcod.Length > 0 ? qcomcod : comcod;
             return comcod;
+
+        }
+        private void SalesPersonName()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESPERSON", "", "", "", "", "", "", "", "", "");
+            this.ddlSalesperson.DataTextField = "salpname";
+            this.ddlSalesperson.DataValueField = "salpercode";
+            this.ddlSalesperson.DataSource = ds1.Tables[0];
+            this.ddlSalesperson.DataBind();
 
         }
 
@@ -129,6 +139,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "SaleVsCollTypeWise":
                     this.MultiView1.ActiveViewIndex = 8;
+                    this.pnlsales.Visible = true;
                     break;
 
 
@@ -422,9 +433,10 @@ namespace RealERPWEB.F_22_Sal
                 string comcod = GetComeCode();
                 string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                string salesperson = this.ddlSalesperson.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSalesperson.SelectedValue.ToString() + "%";
                 string pactcode = "18%";
 
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , "", "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , salesperson, "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvsalvscolltypeWise.DataSource = null;
