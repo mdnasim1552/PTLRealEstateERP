@@ -88,7 +88,7 @@
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                              </div>
                         </div>                        
-                        <div class="col-md-2 col-sm-2 col-lg-2" id="divprjname" runat="server">
+                        <div class="col-md-3 col-sm-3 col-lg-3 mr-2" id="divprjname" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Text="Project"></asp:Label>
                                 <asp:TextBox ID="txtSearchpIndp" runat="server" CssClass=" form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
@@ -99,7 +99,7 @@
                         <div class="col-md-1 col-sm-1 col-lg-1" id="divdetais" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblGrp" runat="server" CssClass="lblTxt lblName" Text="Group"></asp:Label>
-                                <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="chzn-select form-control form-control-sm">
+                                <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="chzn-select form-control form-control-sm ">
                                     <asp:ListItem>Main</asp:ListItem>
                                     <asp:ListItem>Sub-1</asp:ListItem>
                                     <asp:ListItem>Sub-2</asp:ListItem>
@@ -108,7 +108,7 @@
                                 </asp:DropDownList>
                               </div>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-lg-2 mt20" id="divprjgroup" runat="server">
+                        <div class="col-md-2 col-sm-2 col-lg-2 mt20" id="divprjgroup" runat="server" visible="false">
                             <div class="form-group">
                                 <asp:DropDownList ID="ddlProGroup" runat="server" CssClass="chzn-select form-control form-control-sm "  TabIndex="3"></asp:DropDownList>                                
                               </div>
