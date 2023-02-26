@@ -654,15 +654,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.GridView grvacc;
 
         /// <summary>
-        /// lbtnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnUpdate;
-
-        /// <summary>
         /// lPays control.
         /// </summary>
         /// <remarks>

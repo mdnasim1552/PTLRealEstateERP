@@ -131,7 +131,8 @@ namespace RealERPWEB.F_22_Sal
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
 
-                case "EarlybenADelay02":
+                case "EarlybenADelay02":                 
+                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.ShowDelayRate();
                     this.MultiView1.ActiveViewIndex = 4;
                     break;

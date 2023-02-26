@@ -81,14 +81,39 @@ namespace RealERPWEB.F_32_Mis
             this.ddlprjgroup.DataBind();
 
         }
+
+
+        private string GetComCollReconorMr()
+        {
+            string reconormr = "";
+            string comcod = this.GetComecod();
+            switch (comcod)
+            {
+                case "3339":// Tropical                  
+                    break;
+
+                default:
+                    reconormr = "Reconcile";
+                    break;
+            
+            
+            
+            
+            }
+            return reconormr;
+
+
+
+        }
         private void ProjectDetails()
         {
 
             string comcod = this.GetComecod();
             string date = this.txtdate.Text;
             string prjgrp = this.ddlprjgroup.SelectedValue == "00000" ? "%%" : "%" + this.ddlprjgroup.SelectedValue + "%";
+            string reconormr = this.GetComCollReconorMr();
 
-            DataSet ds = _access.GetTransInfo(comcod, "[SP_ENTRY_SALSMGT02]", "PROJECTANALYSIS", date, prjgrp);
+            DataSet ds = _access.GetTransInfo(comcod, "[SP_ENTRY_SALSMGT02]", "PROJECTANALYSIS", date, prjgrp, reconormr);
 
             if (ds == null)
             {
