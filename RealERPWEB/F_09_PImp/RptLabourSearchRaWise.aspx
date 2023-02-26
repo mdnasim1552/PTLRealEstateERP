@@ -11,6 +11,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
@@ -52,9 +53,9 @@
             }
         }
     </script>
-    
 
- <%--   <style>
+
+    <style>
         .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
@@ -72,42 +73,7 @@
         .grvContentarea {
         }
 
-        .GridViewScrollHeader TH, .GridViewScrollHeader TD, .GridViewScroll1Header TH, .GridViewScroll1Header TD, .GridViewScroll2Header TH, .GridViewScroll2Header TD {
-            font-weight: normal;
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #F4F4F4;
-            color: #999999;
-            text-align: left;
-            vertical-align: bottom;
-        }
-
-
-        .GridViewScrollItem TD, .GridViewScroll1Item TD, .GridViewScroll2Item TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: transparent;
-            color: #444444;
-        }
-
-        .GridViewScrollItemFreeze TD, .GridViewScroll1ItemFreeze TD, .GridViewScroll2ItemFreeze TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #FAFAFA;
-            color: #444444;
-        }
-
-        .GridViewScrollFooterFreeze TD, .GridViewScroll1FooterFreeze TD, .GridViewScroll2FooterFreeze TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-top: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #F4F4F4;
-            color: #444444;
-        }
+   
 
         .grvHeader {
             height: 38px !important;
@@ -130,8 +96,10 @@
             border-radius: 3px !important;
             height: 29px !important;
         }
-    </style>--%>
+    </style>
+    
 
+ 
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -169,7 +137,7 @@
                          <div class="col-md-2">
                             <div class="from-group">
                                 <label class="control-label" id="Label1" runat="server">Labour List</label>
-                                <asp:DropDownList ID="ddlLabour" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlLabour" runat="server" CssClass="form-control form-control-sm  chzn-select" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
 
@@ -188,7 +156,7 @@
                         <div class="col-md-2">
                             <div class="from-group">
                                 <label class="control-label" id="lblfloor" runat="server">Floor</label>
-                                <asp:DropDownList ID="ddlFloor" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlFloor" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" Width="200px"> </asp:DropDownList>
                             </div>
                         </div>
                         
@@ -208,7 +176,7 @@
    
               
 
-                    <div class="  table-responsive" style="overflow-x: scroll;">
+                    <%--<div class="  table-responsive">--%>
                         <asp:GridView ID="gvsubbill" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
@@ -217,7 +185,7 @@
                                 <asp:TemplateField HeaderText="SL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
-                                            Style="text-align: right"
+                                            Style="text-align: center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="center" />
@@ -250,23 +218,52 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgrp" runat="server" CssClass="GridLebelL"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdes")) %>'
-                                            Width="100px"></asp:Label>
+                                            Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Description ">
+                                <asp:TemplateField HeaderText="Description of Labour">
+                                                    <HeaderTemplate>
+
+                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                                        Text="Description of Labour" Width="180px"></asp:Label>
+
+
+                                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                                        CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+                                                     
+                                                    </HeaderTemplate>
+                                                    
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbldescription" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
+                                                    Width="300px"></asp:Label>
+                                            </ItemTemplate>
+
+                                                 
+
+                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                    <ItemStyle HorizontalAlign="left" />
+                                                    <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                                </asp:TemplateField>
+
+
+
+                          
+
+                               <%-- <asp:TemplateField HeaderText="Description ">
                                     <ItemTemplate>
                                         <asp:Label ID="lbldescription" runat="server" CssClass="GridLebelL"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
-                                            Width="250px"></asp:Label>
+                                            Width="300px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
 
                                 
@@ -276,19 +273,24 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisurefno")) %>'
                                             Width="100px"></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="left" />
+
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblFgrp" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="100px">Total :</asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Center" />
                                     <HeaderStyle VerticalAlign="Middle" />
                                     <HeaderStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Qty">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvCrAmt" runat="server" CssClass="GridLebel"
+                                        <asp:Label ID="lblgvissueqty" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="90px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFCrAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                        <asp:Label ID="lgvFissueqty" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="90px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
@@ -344,7 +346,7 @@
 
 
                         </asp:GridView>
-                    </div>
+                  <%--  </div>--%>
             
 
  
