@@ -227,13 +227,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -243,7 +243,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -2402,6 +2402,7 @@
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseOrderSummary.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx" />
     <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
@@ -4413,6 +4414,13 @@
     </Compile>
     <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
       <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseOrderSummary.aspx.cs">
+      <DependentUpon>RptPurchaseOrderSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseOrderSummary.aspx.designer.cs">
+      <DependentUpon>RptPurchaseOrderSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>

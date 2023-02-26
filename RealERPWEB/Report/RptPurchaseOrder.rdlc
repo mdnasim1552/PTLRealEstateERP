@@ -2010,7 +2010,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!costdesc.Value</Value>
+                                  <Value>Carrying</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
