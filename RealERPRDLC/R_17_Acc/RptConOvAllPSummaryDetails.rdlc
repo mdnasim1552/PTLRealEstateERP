@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>6be663e0-64e5-466f-8fae-43d7f1d7c4cf</rd:DataSourceID>
+      <rd:DataSourceID>bbf39ba5-4d70-4bdd-bf8d-49577c79db5e</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -56,6 +56,10 @@
         <Field Name="grp">
           <DataField>grp</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mobamt">
+          <DataField>mobamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="netbillamt">
           <DataField>netbillamt</DataField>
@@ -127,7 +131,7 @@
                   <Width>1.10402in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.29425in</Width>
+                  <Width>1.22133in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86458in</Width>
@@ -136,7 +140,7 @@
                   <Width>0.57516in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.61458in</Width>
+                  <Width>0.57291in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.65623in</Width>
@@ -145,19 +149,22 @@
                   <Width>0.69376in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.70833in</Width>
+                  <Width>0.66667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.67708in</Width>
+                  <Width>0.65625in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.82292in</Width>
+                  <Width>0.63541in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.83333in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8125in</Width>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.9375in</Width>
@@ -457,6 +464,59 @@ Amount</Value>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Mobile</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Amount</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1001,6 +1061,43 @@ Amount</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!mobamt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIF(Trim(Fields!grp.Value)="D" or Trim(Fields!grp.Value)="B" or Trim(Fields!grp.Value)="C","Bold","Default")</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="deducamt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1241,6 +1338,7 @@ Amount</Value>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1261,7 +1359,7 @@ Amount</Value>
             <Top>0.03472in</Top>
             <Left>0.01042in</Left>
             <Height>0.5521in</Height>
-            <Width>10.82118in</Width>
+            <Width>11.16493in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1304,7 +1402,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9148in</Top>
-            <Left>1in</Left>
+            <Left>0.75in</Left>
             <Height>0.35305in</Height>
             <Width>1.96875in</Width>
             <ZIndex>1</ZIndex>
@@ -1358,7 +1456,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9241in</Top>
-            <Left>4.85659in</Left>
+            <Left>4.60659in</Left>
             <Height>0.34375in</Height>
             <Width>2.16667in</Width>
             <ZIndex>2</ZIndex>
@@ -1412,7 +1510,7 @@ Amount</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>1.9148in</Top>
-            <Left>8.7691in</Left>
+            <Left>8.5191in</Left>
             <Height>0.35305in</Height>
             <Width>2.0625in</Width>
             <ZIndex>3</ZIndex>
@@ -1434,7 +1532,7 @@ Amount</Value>
         <Height>2.26785in</Height>
         <Style />
       </Body>
-      <Width>10.8316in</Width>
+      <Width>11.17535in</Width>
       <Page>
         <PageHeader>
           <Height>1.06076in</Height>
@@ -1676,7 +1774,7 @@ Amount</Value>
               <Top>0.01389in</Top>
               <Left>5.71333in</Left>
               <Height>0.21181in</Height>
-              <Width>5.11827in</Width>
+              <Width>5.46202in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1697,7 +1795,7 @@ Amount</Value>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.4in</LeftMargin>
+        <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.1in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>

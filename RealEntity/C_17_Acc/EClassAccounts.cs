@@ -1313,6 +1313,7 @@ namespace RealEntity.C_17_Acc
             public double taxamt { get; set; }
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
+            public double mobamt { get; set; }
             public double afterdiscount { get; set; }
 
             public double dram { get; set; }
@@ -1351,6 +1352,7 @@ namespace RealEntity.C_17_Acc
             public double afterdiscount { get; set; }
             public double dram { get; set; }
             public double cram { get; set; }
+            public double mobamt { get; set; }
             
 
             public double netpayble { get; set; }
