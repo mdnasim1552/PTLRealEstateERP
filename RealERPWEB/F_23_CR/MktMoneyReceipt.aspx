@@ -540,7 +540,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Paid Amt." Visible="True">
                                     <FooterTemplate>
-                                        <asp:Label ID="txtFTotal" runat="server" ForeColor="#000"></asp:Label>
+                                        <asp:Label ID="txtFTotal" runat="server" ></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvpaidamount" runat="server" BorderColor="#99CCFF"
@@ -630,14 +630,7 @@
                         </asp:GridView>
 
                     </div>
-                    <div class="col-md-1 mt-1" runat="server" Visible="false"  >
-
-                        <div class="form-group">
-                            <asp:LinkButton ID="lbtnUpdate" CssClass="btn btn-success btn-sm mt-2" runat="server" OnClick="lbtnUpdate_Click" 
-                                Visible="False">Update</asp:LinkButton>
-                            <div class=" clearfix"></div>
-                        </div>
-                    </div>
+                   
 
 
 

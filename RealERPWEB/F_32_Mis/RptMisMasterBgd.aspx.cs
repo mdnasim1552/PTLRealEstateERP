@@ -2911,6 +2911,7 @@ namespace RealERPWEB.F_32_Mis
                 HyperLink HLgvacBgdAmt = (HyperLink)e.Row.FindControl("HLgvacBgdAmtip");
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HLgvExpip");//
                 HyperLink HLgvacCCAmt = (HyperLink)e.Row.FindControl("HLgvacCCAmtip");
+                Label lgvcashflow = (Label)e.Row.FindControl("lgvcashflow");
 
 
 
@@ -2974,6 +2975,8 @@ namespace RealERPWEB.F_32_Mis
                 {
                     lgvperonPro.Style.Add("color", "red");
                     hlink1.Style.Add("color", "red");
+                    lgvcashflow.Style.Add("color", "red");
+                    
                 }
                 if (invreqamt != 0.00 && ASTUtility.Right(code, 4) != "AAAA")
                 {
