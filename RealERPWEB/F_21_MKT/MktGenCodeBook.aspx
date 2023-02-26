@@ -108,11 +108,6 @@
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
                                 </asp:DropDownList>
-
-
-
-
-
                             </div>
                         </div>
 
