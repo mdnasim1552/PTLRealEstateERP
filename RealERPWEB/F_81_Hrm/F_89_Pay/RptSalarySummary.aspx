@@ -140,7 +140,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                                          <asp:TemplateField HeaderText="Bank Amount">
+                                                          <asp:TemplateField HeaderText="Bank Amount" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvcurBanksal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curbankpay")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
@@ -155,7 +155,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Cash Amount">
+                                            <asp:TemplateField HeaderText="Cash Amount" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvcurCashsal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curcashpay")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
@@ -230,7 +230,7 @@
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Bank Amount">
+                                      <asp:TemplateField HeaderText="Bank Amount" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpreBanksal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "prebankpay")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
@@ -245,7 +245,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Cash Amount">
+                                            <asp:TemplateField HeaderText="Cash Amount" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpreCashsal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "precashpay")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>

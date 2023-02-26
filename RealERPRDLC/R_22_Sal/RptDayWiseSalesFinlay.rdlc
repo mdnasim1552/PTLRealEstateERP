@@ -929,12 +929,17 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>=IIF(Fields!pactcode.Value="18AAAAAAAAAA","Bold",
-IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
+IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold",
+IIF(Fields!usircode.Value="51AAAAAAAAAA","Bold","Default"
+)))</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>=IIF(Fields!pactcode.Value="18AAAAAAAAAA","Right",
+IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Right",
+IIF(Fields!usircode.Value="51AAAAAAAAAA","Right","Default"
+)))</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -950,6 +955,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1370,7 +1376,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
       <Width>11.07916in</Width>
       <Page>
         <PageHeader>
-          <Height>0.92167in</Height>
+          <Height>1.04042in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1429,9 +1435,9 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>RptTitle</rd:DefaultName>
-              <Top>0.38194in</Top>
+              <Top>0.50694in</Top>
               <Left>1.31458in</Left>
-              <Height>0.25in</Height>
+              <Height>0.16125in</Height>
               <Width>8.08389in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -1465,9 +1471,9 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Date</rd:DefaultName>
-              <Top>0.59875in</Top>
+              <Top>0.70986in</Top>
               <Left>1.31458in</Left>
-              <Height>0.25in</Height>
+              <Height>0.22778in</Height>
               <Width>8.08389in</Width>
               <ZIndex>2</ZIndex>
               <Style>

@@ -230,7 +230,7 @@
 
                         </asp:Panel>
 
-                        <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                        <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="False" AutoGenerateColumns="False"
                             ShowFooter="True" OnRowDeleting="gvMRRInfo_RowDeleting" CssClass="table-striped table-hover table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
 
                             <PagerSettings Visible="False" />
@@ -284,12 +284,12 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Materials">
-                                    <FooterTemplate>
-                                        <asp:DropDownList ID="ddlPageNo" runat="server" __designer:wfdid="w67" AutoPostBack="True"
+                                    <FooterTemplate  >
+                                        <%--<asp:DropDownList ID="ddlPageNo" runat="server" __designer:wfdid="w67" AutoPostBack="True" Visible="false"
                                             Font-Bold="True" Font-Size="14px" OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
                                             Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
                                             Width="150px">
-                                        </asp:DropDownList>
+                                        </asp:DropDownList>--%>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvResDesc" runat="server"

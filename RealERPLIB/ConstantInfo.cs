@@ -370,6 +370,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903150", "F_09_PImp", "RptResBgdBal", "", "Budget Balance (Resource)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903160", "F_09_PImp", "RptSubConBill?", "Type=SubBill", "Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903161", "F_09_PImp", "RptSubConBill?", "Type=SubConBill", "Periodic Sub-Contractor Bill", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903162", "F_09_PImp", "RptLabourSearchRaWise?", "Type=LabBILL", "Labour Search R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902200", "F_09_PImp", "ConBillTracking", "", "Sub-Contractor Bill Tracking", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
@@ -2610,14 +2611,14 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "4503000", "4503998", "F_34_Mgt", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "4503000", "4503999", "F_34_Mgt", "UserLoginfrmasit", "", "Company Page Permission ", "Admin", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "4503000", "4503081", "F_45_GrAcc", "GrpPostDatedChequs", "", "Post Dated Cheque Issue Status", "GROUP MIS", "False", "False", "False", "False" }); ;
-
+            tblObj.Rows.Add(new Object[] { "4503000", "4503081", "F_45_GrAcc", "GrpPostDatedChequs", "", "Post Dated Cheque Issue Status", "GROUP MIS", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "4503000", "4503090", "F_45_GrAcc", "RptAccRecPayment?", "Type=PrjTrialBal", "Project Trial Balance", "GROUP MIS", "False", "False", "False", "False" }); 
             //46 Group Management Interface
 
             tblObj.Rows.Add(new Object[] { "4603000", "4603001", "F_46_GrMgtInter", "RptGrpMisDailyActiviteisJq", "", "M. Interface (Overall)", "Management Interface", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "4603000", "4603002", "F_46_GrMgtInter", "RptGrpDailyReportJq?", "Type=Report", "M. Interface (Operation Monitoring)", "Management Interface", "False", "False", "False", "False" }); ;
-
-
+            tblObj.Rows.Add(new Object[] { "4603000", "4603002", "F_46_GrMgtInter", "RptGrpDailyReportJq?", "Type=Report", "M. Interface (Operation Monitoring)", "Management Interface", "False", "False", "False", "False" }); 
+        
+            
 
 
             //46  Group MIS Hide Account
@@ -5159,6 +5160,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "14. Sub-Contractor Bill Tracking -01", "F_09_PImp/SubContracBillTracking?Type=billtrack", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000008", "15. Labour Search R/A Wise", "F_09_PImp/RptLabourSearchRaWise?Type=LabBILL", "", true, "" });
+
 
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
@@ -13378,10 +13381,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000011", "11. Issue Vs. Collection", "F_45_GrAcc/RptAccRecPayment?Type=IssueVsCollect", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0212000000", "12. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum&comcod=", "", true, "" });         
 
+          
 
             mnuTbl1.Rows.Add(new Object[] { "0301000012", "01. Working Budget Vs. Achievement", "F_45_GrAcc/RptGrpAccDailyTransaction?Type=GrpWBudVsAchv", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000013", "02. Post Dated Cheque Issue Status", "F_45_GrAcc/GrpPostDatedChequs", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0318000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0318000000", "01. Project Trial Balance", "F_45_GrAcc/RptAccRecPayment?Type=PrjTrialBal", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0319000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0320000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0321000000", "", "", "", true, "" });
