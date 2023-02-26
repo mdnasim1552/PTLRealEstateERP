@@ -3858,7 +3858,7 @@
                                     <asp:TemplateField HeaderText="Projected Profit">
 
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvbgdmarip" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdmar")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            <asp:Label ID="lgvbgdmarip" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdmar")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
@@ -3913,7 +3913,7 @@
                                                 Style="text-align: right" Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvcashflow" runat="server" ForeColor="Green" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashflow")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            <asp:Label ID="lgvcashflow" runat="server" ForeColor="Green" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashflow")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />

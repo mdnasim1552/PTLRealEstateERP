@@ -264,7 +264,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvResDesc" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
-                                                        Width="350px"></asp:Label>
+                                                        Width="310px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>

@@ -870,7 +870,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1007,20 +1006,21 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
               <Top>0.77375in</Top>
-              <Left>4.32678in</Left>
+              <Left>1.06636in</Left>
               <Height>0.22709in</Height>
-              <Width>3.69683in</Width>
+              <Width>5.70725in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1144,39 +1144,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Border>
               </Style>
             </Image>
-            <Textbox Name="prjname2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!txtAccHead.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>prjname1</rd:DefaultName>
-              <Top>0.77375in</Top>
-              <Left>0.02237in</Left>
-              <Height>0.22709in</Height>
-              <Width>4.26274in</Width>
-              <ZIndex>7</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
           </ReportItems>
           <Style>
             <Border>

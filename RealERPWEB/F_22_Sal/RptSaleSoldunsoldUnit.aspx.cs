@@ -346,7 +346,7 @@ namespace RealERPWEB.F_22_Sal
 
             string calltype = "";
             string type = this.Request.QueryString["Type"].ToString().Trim();
-            if (comcod=="3368")//Finlay
+            if (comcod=="3368" )//Finlay
             {
                 if(type=="LandO")
                 {
@@ -373,7 +373,15 @@ namespace RealERPWEB.F_22_Sal
 
             this.gvDayWSale.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             //this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
-            Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            if (comcod == "3368" )//Finlay
+            {
+                Session["tblData"] = ds1.Tables[0];
+            }
+            else
+            {
+                Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            }
+              
             this.gvDayWSale.DataSource = (DataTable)Session["tblData"];
             this.gvDayWSale.DataBind();
             this.FooterCalculation();
@@ -888,8 +896,16 @@ namespace RealERPWEB.F_22_Sal
                 Label bgdamt = (Label)e.Row.FindControl("lgvDTAmt");
                 // HyperLink salamt = (HyperLink)e.Row.FindControl("HplgvAmt");
 
-                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-
+                string code = "";
+                if (comcod == "3368")//Finlay
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
+                }
+                else
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                }
+                    
                 if (code == "")
                 {
                     return;

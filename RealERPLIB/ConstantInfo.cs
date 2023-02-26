@@ -190,6 +190,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0403000", "0403085", "F_04_Bgd", "RptBgdPrjoject?", "Type=BudgetBal", "Budget Balance (Resource Basis)", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403086", "F_04_Bgd", "RptBgdPrjoject?", "Type=MasterBgdGrWise", "Budgeted Income Statement-Summary", "Budget", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0403000", "0403088", "F_04_Bgd", "RptBgdPrjoject?", "Type=MasterBgdGrWiseDet", "Budgeted Cost-Details", "Budget", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0403000", "0403095", "F_04_Bgd", "RptBgdPrjoject?", "Type=MasterBgdCostDet", "Engineering Budget Report", "Budget", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0403000", "0403089", "F_04_Bgd", "RptBgdPrjoject?", "Type=BgdWkVsActual", "Budgeted Income Statement - (Budget Vs Actual)", "Budget", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0403000", "0403087", "F_04_Bgd", "RptBgdPrjoject?", "Type=BgdCostResBasis02", "Material Group Wise Cost", "Budget", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0403000", "0403090", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdMainRpt&AnaType=1", "Budget Engineering-Work Basis", "Budget", "False", "False", "False", "False" }); ;
@@ -617,6 +618,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403266", "F_14_Pro", "PoMrrBillStatus", "", "PO MRR & Bill Status", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403267", "F_14_Pro", "RptPurchaseSummaryVsPayment", "", "Purchase Summary Vs Payment", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403268", "F_14_Pro", "RptPurchaseStatusSupMatGroup", "", "Purchase Status (Supplier and Material Group Wise)", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403269", "F_14_Pro", "RptPurchaseOrderSummary", "", "Purchase Order Report(Project and Supplier Group Wise)", "Procurement", "False", "False", "False", "False" });
 
 
 
@@ -4397,6 +4399,8 @@ namespace RealERPLIB
             //mnuTbl1.Rows.Add(new Object[] {"0401000006", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000007", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "17. Budgeted Cost-Details", "F_04_Bgd/RptBgdPrjoject?Type=MasterBgdGrWiseDet&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "17. Engineering Budget Report", "F_04_Bgd/RptBgdPrjoject?Type=MasterBgdCostDet&comcod=&prjcode=", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "17. Budgeted Details(Category Wise)", "F_04_Bgd/RptBgdPrjoject?Type=MasterBgdFlrDet&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "22. Variance Report", "F_04_Bgd/RptWorkWiResVariance?Type=Entry", "", true, "" });
 
@@ -5926,6 +5930,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000023", "44. PO MRR & Bill Status", "F_14_Pro/PoMrrBillStatus", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000024", "44. Purchase Summary Vs Payment", "F_14_Pro/RptPurchaseSummaryVsPayment", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000025", "44. Purchase Status (Supplier and Material Group Wise)", "F_14_Pro/RptPurchaseStatusSupMatGroup", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000026", "44. Purchase Order Report(Project and Supplier Group Wise)", "F_14_Pro/RptPurchaseOrderSummary", "", true, "" });
             // mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Details Info (Order Advanced) ", "F_14_Pro/RptWorkOdrAdvSupplierWise", "", true, "" });
 
 
