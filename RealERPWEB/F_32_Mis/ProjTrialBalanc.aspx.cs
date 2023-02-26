@@ -99,6 +99,7 @@ namespace RealERPWEB.F_32_Mis
                     break;
 
                 case "PrjTrailBal3":
+                    this.divprjgroup.Visible = true;
                     this.divtodate.Visible = true;
                     this.lbltodate.Visible = true;
                     this.txttodate.Visible = true;
