@@ -114,40 +114,40 @@
                   <Width>0.66667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.5in</Width>
+                  <Width>0.44792in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.70833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63542in</Width>
+                  <Width>0.51042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.7in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.61458in</Width>
+                  <Width>0.51041in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.71875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.50833in</Width>
+                  <Width>0.46666in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65865in</Width>
+                  <Width>0.76282in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69792in</Width>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.71875in</Width>
+                  <Width>0.8125in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.6875in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.69792in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.72917in</Width>
@@ -245,10 +245,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.66667in</Width>
+                                <Width>0.67188in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.5in</Width>
+                                <Width>0.44271in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -411,7 +411,7 @@
                                 <Width>0.71354in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.63021in</Width>
+                                <Width>0.50521in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -573,7 +573,7 @@
                                 <Width>0.69896in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.61562in</Width>
+                                <Width>0.51145in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -736,7 +736,7 @@
                                 <Width>0.71771in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.50937in</Width>
+                                <Width>0.4677in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -896,10 +896,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.65745in</Width>
+                                <Width>0.76162in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.69912in</Width>
+                                <Width>0.76162in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1059,10 +1059,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.71354in</Width>
+                                <Width>0.80729in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.69271in</Width>
+                                <Width>0.76563in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1222,10 +1222,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.69271in</Width>
+                                <Width>0.6875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.73438in</Width>
+                                <Width>0.72917in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -2429,7 +2429,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!salaptsfall.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2466,7 +2466,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!salshopsfall.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2503,7 +2503,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!perontapt.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2540,7 +2540,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!perontshop.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2725,7 +2725,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!collaptsfall.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2762,7 +2762,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!collshopsfall.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2799,7 +2799,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!peronaptcoll.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2836,7 +2836,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!peronshopcoll.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3143,6 +3143,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0in</Top>
               <Left>6.18689in</Left>
               <Height>0.20417in</Height>
               <Width>6.07323in</Width>

@@ -26,6 +26,8 @@
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
             });
+
+            $('.chzn-select').chosen({ search_contains: true });
         }
     </script>
 
@@ -65,10 +67,20 @@
                                     Text="To:" CssClass="smLbl_to"></asp:Label>
 
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="inputtextbox"
-                                    Font-Bold="True"></asp:TextBox>
+                                    ></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy " TargetControlID="txttodate" TodaysDateFormat=""></cc1:CalendarExtender>
-                                <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
+                                  
+                               
+                            </div>
+
+                            <div class="col-md-3" runat="server" id="pnlsales" visible="false">
+                                 <asp:Label ID="lsalesteam" runat="server" CssClass="lblTxt lblName" Text="Sales Team"></asp:Label>
+                                                <asp:DropDownList ID="ddlSalesperson" runat="server" AutoPostBack="True" CssClass="chzn-select">
+                                                </asp:DropDownList>
+                              </div>
+                            <div class="col-md-1">
+                                 <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
                                     CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
                             </div>
                             <div class="col-md4 asitCol4 pading5px">

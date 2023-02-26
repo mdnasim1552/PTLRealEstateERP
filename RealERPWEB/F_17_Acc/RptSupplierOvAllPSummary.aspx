@@ -1307,7 +1307,7 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Mob">
+                                 <asp:TemplateField HeaderText="Mobile Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvmob" runat="server" CssClass="GridLebel"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mobamt")).ToString("#,##0;(#,##0); ") %>'
