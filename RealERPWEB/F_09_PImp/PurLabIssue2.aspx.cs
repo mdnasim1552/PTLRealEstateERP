@@ -1983,8 +1983,7 @@ namespace RealERPWEB.F_09_PImp
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string Labcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblitemcode")).Text.Trim();
             string Flrcode = ((Label)this.grvissue.Rows[gvrowindex].FindControl("lblgvflrCode")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "DELETELAB_REQUISITION_ITEM", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
-
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETELABISUE", mISUNO, Flrcode, Labcode, "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
 
