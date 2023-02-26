@@ -682,7 +682,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="" FooterText="Total">
                                     <HeaderTemplate>
-                                        <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description of Item" Width="200px"></asp:Label>
+                                        <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description of Item" Width="175px"></asp:Label>
 
                                         <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                         </asp:HyperLink>
@@ -721,7 +721,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvmrno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle Width="65px" />
+                                    <HeaderStyle Width="70px" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
@@ -729,7 +729,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvmrmno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle Width="75px" />
+                                    <HeaderStyle Width="85px" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 

@@ -186,6 +186,7 @@ namespace RealERPWEB.F_22_Sal
                 case "MonthlyTypeWise":
                     this.gvsbgdTypeWise.DataSource = tbl1;
                     this.gvsbgdTypeWise.DataBind();
+                    this.FooterCalculation(tbl1);
                     break;
 
                     
@@ -265,6 +266,18 @@ namespace RealERPWEB.F_22_Sal
                         : dt.Compute("Sum(tcollamt)", ""))).ToString("#,##0;(#,##0);  ");
                     ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFtoPurTotalyb")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tpuramt)", "")) ? 0.00
                           : dt.Compute("Sum(tpuramt)", ""))).ToString("#,##0;(#,##0);  ");
+                    break;
+                case "MonthlyTypeWise":
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFaptqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aptqty)", "")) ? 0.00
+                     : dt.Compute("Sum(aptqty)", ""))).ToString("#,##0;(#,##0);  ");
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFShopqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(shopqty)", "")) ? 0.00
+                      : dt.Compute("Sum(shopqty)", ""))).ToString("#,##0;(#,##0);  ");
+
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFAptCollTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aptamt)", "")) ? 0.00
+                      : dt.Compute("Sum(aptamt)", ""))).ToString("#,##0;(#,##0);  ");
+
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFShopCollTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(shopamt)", "")) ? 0.00
+                     : dt.Compute("Sum(shopamt)", ""))).ToString("#,##0;(#,##0);  ");
                     break;
 
             }
