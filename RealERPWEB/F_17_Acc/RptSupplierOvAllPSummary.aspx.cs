@@ -817,8 +817,7 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvConsumNetAmt = (Label)e.Row.FindControl("lblgvConsumNetAmt");
                 Label lblgvbillConsumpayAmt = (Label)e.Row.FindControl("lblgvbillConsumpayAmt");
                 Label lblgvConsumPayable = (Label)e.Row.FindControl("lblgvConsumPayable");
-
-
+                Label lblgvConsumMobAmt = (Label)e.Row.FindControl("lblgvConsumMobAmt");
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
 
                 if (grp == "")
@@ -838,6 +837,7 @@ namespace RealERPWEB.F_17_Acc
                     lblgvConsumNetAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
                     lblgvbillConsumpayAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
                     lblgvConsumPayable.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvConsumMobAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
 
                     lblConsumprjName.Style.Add("text-align", "right");
 
@@ -853,6 +853,7 @@ namespace RealERPWEB.F_17_Acc
                     lblgvConsumNetAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
                     lblgvbillConsumpayAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
                     lblgvConsumPayable.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvConsumMobAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
                     lblConsumprjName.Style.Add("text-align", "right");
 
 
@@ -875,7 +876,9 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvcondeNet = (Label)e.Row.FindControl("lblgvcondeNet");
                 Label lblgvconpayment = (Label)e.Row.FindControl("lblgvconpayment");
                 Label lblgvconpayable = (Label)e.Row.FindControl("lblgvconpayable");
+                Label lblgvmob = (Label)e.Row.FindControl("lblgvmob");
 
+                
 
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
 
@@ -896,6 +899,8 @@ namespace RealERPWEB.F_17_Acc
                     lblgvcondeNet.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lblgvconpayment.Attributes["style"] = "font-weight:bold; color:Navy;";
                     lblgvconpayable.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvmob.Attributes["style"] = "font-weight:bold; color:Navy;";
+
                     lblgvdprjname.Style.Add("text-align", "right");
 
                 }
@@ -912,6 +917,8 @@ namespace RealERPWEB.F_17_Acc
                     lblgvcondeNet.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvconpayment.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvconpayable.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvmob.Attributes["style"] = "font-weight:bold; color:Orange;";
+
 
                     //lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
                     //lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
@@ -941,6 +948,8 @@ namespace RealERPWEB.F_17_Acc
                     lblgvcondeNet.Attributes["style"] = "font-weight:bold; color:Green;";
                     lblgvconpayment.Attributes["style"] = "font-weight:bold; color:Green;";
                     lblgvconpayable.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvmob.Attributes["style"] = "font-weight:bold; color:Green;";
+
 
                     //lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Green;";
                     //lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Green;";

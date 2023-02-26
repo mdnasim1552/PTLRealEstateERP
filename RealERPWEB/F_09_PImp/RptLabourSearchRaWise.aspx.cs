@@ -139,16 +139,33 @@ namespace RealERPWEB.F_09_PImp
                 this.gvsubbill.DataBind();
                 return;
             }
-            //this.lblPage.Visible = true;
-            //this.ddlpagesize.Visible = true;
-           // this.gvsubbill.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvsubbill.DataSource = ds1.Tables[0];
             this.gvsubbill.DataBind();
-            Session["tblData"] = ds1.Tables[0];
-           // this.FooterCalculation();
+            ViewState["tblData"] = ds1.Tables[0];
+             this.FooterCalculation();
 
         }
-       
+
+
+        private void FooterCalculation()
+        {
+            
+            DataTable dt = (DataTable)ViewState["tblData"];
+            if (dt.Rows.Count == 0)
+                return;
+
+           
+            ((Label)this.gvsubbill.FooterRow.FindControl("lgvFissueqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(isuqty)", "")) ? 0.00 :
+                 dt.Compute("sum(isuqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            ((Label)this.gvsubbill.FooterRow.FindControl("lgvafbillamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(isuamt)", "")) ? 0.00 :
+                 dt.Compute("sum(isuamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            Session["Report1"] = gvsubbill;
+            ((HyperLink)this.gvsubbill.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
+
+        }
 
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
