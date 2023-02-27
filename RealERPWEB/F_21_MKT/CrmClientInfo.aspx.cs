@@ -772,7 +772,7 @@ namespace RealERPWEB.F_21_MKT
 
                 switch (gcod)
                 {
-                    //Source
+                    //Sub Source
                     case "0302001": 
                         switch (comcod)
                         {
@@ -780,7 +780,7 @@ namespace RealERPWEB.F_21_MKT
                             case "3367"://Epic
                             case "3354"://Edison
                             case "3101":
-                                dv1 = dt1.DefaultView;
+                                dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                                 dv1.RowFilter = ("gcod like '31%'");
                                 dt1 = dv1.ToTable();
                                 dt1.Rows.Add("0000000", "None", "0000000", "0");
@@ -813,7 +813,7 @@ namespace RealERPWEB.F_21_MKT
                                 break;
 
                             default:
-                                dv1 = dt1.DefaultView;
+                                dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                                 dv1.RowFilter = ("gcod like '31%'");
                                 dt1 = dv1.ToTable();
                                 dt1.Rows.Add("0000000", "None", "0000000", "0");
@@ -856,6 +856,23 @@ namespace RealERPWEB.F_21_MKT
                             default:
                                 break;
                         }
+                        break;
+
+                    //Main Source
+                    case "0302002":
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                        dv1.RowFilter = ("gcod like '29%'");
+                        dt1 = dv1.ToTable();
+                        dt1.Rows.Add("0000000", "None", "0000000", "0");
+                        dt1.DefaultView.Sort = "rowid";
+                        ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ddlgval = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dt1;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
 
                     //Team Leader
@@ -933,7 +950,7 @@ namespace RealERPWEB.F_21_MKT
 
                         break;
                     case "0302009": //Rating
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '38%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -946,7 +963,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302011": //Industry
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '39%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -959,7 +976,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302013": //Branch
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '40%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -972,7 +989,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302015": //Lands Create Department
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '41%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -985,7 +1002,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302017": //Lead Quality
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '42%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -998,7 +1015,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302019": //Lead Status
-                        dv1 = dt1.DefaultView;
+                        dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '95%'");
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -7121,6 +7138,57 @@ namespace RealERPWEB.F_21_MKT
             int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             string ddlValue = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlval")).SelectedValue;
             string Gcode = ((Label)this.gvSourceInfo.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
+
+            //DataTable dt1 = ((DataTable)ViewState["tblsubddl"]).Copy();
+            if (ddlValue == "2901001")
+            {
+                DataView dv5;
+                dv5 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                dv5.RowFilter = ("code like '2901001%'");
+                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("ddlval"));
+
+                ddlgval.DataTextField = "gdesc";
+                ddlgval.DataValueField = "gcod";
+                ddlgval.DataSource = dv5;
+                ddlgval.DataBind();
+            }
+            if (ddlValue == "2901002")
+            {
+                DataView dv5;
+                dv5 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                dv5.RowFilter = ("code like '2901002%'");
+                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("ddlval"));
+
+                ddlgval.DataTextField = "gdesc";
+                ddlgval.DataValueField = "gcod";
+                ddlgval.DataSource = dv5;
+                ddlgval.DataBind();
+            }
+            if (ddlValue == "2901003")
+            {
+                DataView dv5;
+                dv5 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                dv5.RowFilter = ("code like '2901003%'");
+                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("ddlval"));
+
+                ddlgval.DataTextField = "gdesc";
+                ddlgval.DataValueField = "gcod";
+                ddlgval.DataSource = dv5;
+                ddlgval.DataBind();
+            }
+            if (ddlValue == "2901004")
+            {
+                DataView dv5;
+                dv5 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                dv5.RowFilter = ("code like '2901004%'");
+                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("ddlval"));
+
+                ddlgval.DataTextField = "gdesc";
+                ddlgval.DataValueField = "gcod";
+                ddlgval.DataSource = dv5;
+                ddlgval.DataBind();
+            }
+           
             if (Gcode == "0302005")
             {
                 DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSUPERVISORLISTBYID", ddlValue, "", "", "", "", "", "", "", "");

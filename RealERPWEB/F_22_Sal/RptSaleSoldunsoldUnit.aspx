@@ -10,6 +10,12 @@
 
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+            $('[id*=lbProjectName]').multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+            });
+
         });
         function pageLoaded() {
             try {
@@ -24,8 +30,17 @@
 
             var gvDayWSale = $('#<%=this.gvDayWSale.ClientID %>');
             gvDayWSale.Scrollable();
-            
 
+            $(function () {
+                $('[id*=lbProjectName]').multiselect({
+                    includeSelectAllOption: true,
+
+                    enableCaseInsensitiveFiltering: true,
+                    //enableFiltering: true,
+                    //$('.chzn-select').chosen({ search_contains: true });
+                });
+            });
+          
             //alert("I m In");
             //gvSpayment.gridviewScroll({
             //     width: 1160,
@@ -79,7 +94,7 @@
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
-
+                                <asp:ListBox ID="lbProjectName" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple"></asp:ListBox>
                             </div>
                         </div>
                         <div class="col-md-2" id="salesteamdv" runat="server">
