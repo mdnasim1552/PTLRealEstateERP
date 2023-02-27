@@ -26,7 +26,7 @@
                 var gvprjanalysis = $('#<%=this.gvprjanalysis.ClientID %>');
 
                 gvprjanalysis.gridviewScroll({
-                    width: 1140,
+                    width: 2040,
                     height: 420,
                     arrowsize: 30,
                     railsize: 16,
@@ -306,6 +306,53 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="Projected Profit">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvprojectedprofit" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pronetprofit")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="75px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lblgvFprojectedprofit" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+
+                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+
+
+
+                            <asp:TemplateField HeaderText="Profit %">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvproprofitpercnt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "propercnt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="60px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lblgvFproprofitpercnt" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+
+                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+
+                             <asp:TemplateField HeaderText="Cash Flow">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvcashflow" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cashflow")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="75px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lblgvFcashflow" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+
+                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />

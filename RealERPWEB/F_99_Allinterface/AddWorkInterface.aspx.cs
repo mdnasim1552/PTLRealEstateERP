@@ -190,7 +190,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Initial</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapprov"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapp"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
             this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
@@ -244,7 +244,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapprov"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapp"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
 
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>3rd Approval</div></div></div>";
@@ -263,33 +263,40 @@ namespace RealERPWEB.F_99_Allinterface
             ////Checked
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid='' and fappid='' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
+            dv.RowFilter = ("chkbyid='' and fappid='' and csdapp='' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
             this.Data_Bind("gvcltmodchk", dv.ToTable());
             //Forward
 
             ////1st approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and fappid='' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
+            dv.RowFilter = ("chkbyid<>'' and fappid='' and csdapp='' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
+            this.Data_Bind("gv1stApp", dv.ToTable());
+
+
+            ////csd approval
+            dt = ((DataTable)ds2.Tables[0]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdapp='' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
             this.Data_Bind("gv1stApp", dv.ToTable());
 
             ////2nd approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdapp<>'' and sappid='' and auditid='' and approvbyid='' and reqchk='True'");
             this.Data_Bind("gv2ndApp", dv.ToTable());
 
 
             ////Audit / final approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and sappid<>'' and auditid='' and approvbyid='' and reqchk='True' ");
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdapp<>'' and sappid<>'' and auditid='' and approvbyid='' and reqchk='True' ");
             this.Data_Bind("gvCltmodaduit", dv.ToTable());
 
             ////Approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and sappid<>'' and auditid<>'' and approvbyid='' and reqchk='True'");
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdapp<>'' and sappid<>'' and auditid<>'' and approvbyid='' and reqchk='True'");
             this.Data_Bind("gvCltmodapp", dv.ToTable());
 
         }        
@@ -330,7 +337,13 @@ namespace RealERPWEB.F_99_Allinterface
                     if (dt.Rows.Count == 0)
                         return;
                     break;
-                
+                case "gvcsdApproval":
+                    this.gvcsdApproval.DataSource = dt;
+                    this.gvcsdApproval.DataBind();
+                    if (dt.Rows.Count == 0)
+                        return;
+                    break;
+
                 case "gv2ndApp":
                     this.gv2ndApp.DataSource = dt;
                     this.gv2ndApp.DataBind();
@@ -713,6 +726,16 @@ namespace RealERPWEB.F_99_Allinterface
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
             this.lbtnok_Click(null, null);
+        }
+
+        protected void lbtnDelcsdApp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvcsdApproval_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
         }
     }
 }

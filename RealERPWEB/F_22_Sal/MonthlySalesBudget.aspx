@@ -580,6 +580,42 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                    
+                                    <asp:TemplateField HeaderText="Apt Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFAptsalTotal" runat="server" ></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvAptsalamt" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salaptamt")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+                                      <asp:TemplateField HeaderText="Shop Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFshopsalTotal" runat="server" ></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvsalessalamt" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salshopamt")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+
 
                                     <asp:TemplateField HeaderText="Apt">
                                         <FooterTemplate>
@@ -597,6 +633,9 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
+
+
+
 
                                     <asp:TemplateField HeaderText="Shop">
                                         <FooterTemplate>

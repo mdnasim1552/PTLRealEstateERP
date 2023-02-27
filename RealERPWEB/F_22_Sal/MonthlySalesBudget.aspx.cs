@@ -278,6 +278,12 @@ namespace RealERPWEB.F_22_Sal
 
                     ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFShopCollTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(shopamt)", "")) ? 0.00
                      : dt.Compute("Sum(shopamt)", ""))).ToString("#,##0;(#,##0);  ");
+
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFAptsalTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salaptamt)", "")) ? 0.00
+                     : dt.Compute("Sum(salaptamt)", ""))).ToString("#,##0;(#,##0);  ");
+
+                    ((Label)this.gvsbgdTypeWise.FooterRow.FindControl("lgvFshopsalTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salshopamt)", "")) ? 0.00
+                     : dt.Compute("Sum(salshopamt)", ""))).ToString("#,##0;(#,##0);  ");
                     break;
 
             }
@@ -346,6 +352,9 @@ namespace RealERPWEB.F_22_Sal
                         tbl1.Rows[i]["shopqty"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvshopqty")).Text.Trim()).ToString();
                         tbl1.Rows[i]["aptamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvAptcollamt")).Text.Trim()).ToString();
                         tbl1.Rows[i]["shopamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvShopcollamt")).Text.Trim()).ToString();
+
+                        tbl1.Rows[i]["salaptamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvAptsalamt")).Text.Trim()).ToString();
+                        tbl1.Rows[i]["salshopamt"] = Convert.ToDouble("0" + ((TextBox)this.gvsbgdTypeWise.Rows[i].FindControl("txtgvsalessalamt")).Text.Trim()).ToString();
 
                     }
                     break;
@@ -711,8 +720,10 @@ namespace RealERPWEB.F_22_Sal
                     string shopqty = Convert.ToDouble(dt1.Rows[i]["shopqty"].ToString()).ToString();
                     string aptamt = Convert.ToDouble(dt1.Rows[i]["aptamt"].ToString()).ToString();
                     string shopamt = Convert.ToDouble(dt1.Rows[i]["shopamt"].ToString()).ToString();
+                    string salaptamt = Convert.ToDouble(dt1.Rows[i]["salaptamt"].ToString()).ToString();
+                    string salshopamt = Convert.ToDouble(dt1.Rows[i]["salshopamt"].ToString()).ToString();
 
-                    result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "INSERTORUPDATESALCOLTARTYPEINF", Yearmon, empid, aptqty, shopqty, aptamt, shopamt, "", "", "", "", "", "", "", "", "");
+                    result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "INSERTORUPDATESALCOLTARTYPEINF", Yearmon, empid, aptqty, shopqty, aptamt, shopamt, salaptamt, salshopamt, "", "", "", "", "", "", "");
 
 
                     if (result == false)
@@ -790,15 +801,23 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell3);
 
 
-
-
-
                 TableCell cell4 = new TableCell();
-                cell4.Text = "Collection";
+                cell4.Text = "Sales";
                 cell4.HorizontalAlign = HorizontalAlign.Center;
                 cell4.ColumnSpan = 2;
                 cell4.Font.Bold = true;
                 gvrow.Cells.Add(cell4);
+
+
+
+
+
+                TableCell cell5 = new TableCell();
+                cell5.Text = "Collection";
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
 
 
 
