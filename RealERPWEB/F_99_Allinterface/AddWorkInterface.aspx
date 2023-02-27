@@ -911,7 +911,106 @@
                         </asp:GridView>
                     </asp:Panel>
                     <asp:Panel runat="server" ID="Pnlcsdapproval" Visible="false">
-                        <h2>Hello</h2>
+                        <asp:GridView ID="gvcsdApproval" runat="server" AutoGenerateColumns="False"
+                            ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvcsdApproval_RowDataBound">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgv1stApSl" runat="server" Font-Bold="True"
+                                            Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Type">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApgdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
+                                            Width="150px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="ADW No">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApadno" runat="server" Visible="false"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "adno")) %>'
+                                            Width="80px"></asp:Label>
+                                        <asp:Label ID="lblgvcsdApadno1" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "adno1")) %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApaddate" runat="server"
+                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "addate")).ToString("dd-MMM-yyyy") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Project Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApactdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Unit Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdAppudesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
+                                            Width="150px"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="Customer Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApcusname" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cusname")) %>'
+                                            Width="200px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Amount">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="lnkgvcsdApamt" runat="server" BorderColor="#99CCFF" BorderStyle="none"
+                                            Font-Size="11px" Font-Underline="false" Style="background-color: Transparent; color: Black;"
+                                            Target="_blank"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:HyperLink>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="right" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="lnkchkcsd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                        <asp:HyperLink ID="hlnkprintcsdpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
+                                        <asp:LinkButton ID="lbtnDelcsdApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelcsdApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle Width="110px" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnl2ndApp" Visible="false">
