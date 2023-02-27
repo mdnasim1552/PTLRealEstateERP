@@ -1447,6 +1447,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "ADW Third Approval (Audit)", "Customer Care", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "ADW Final Approval", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "ADW First Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402009", "F_24_CC", "CustMaintenanceWork?", "Type=CsDApproval", "ADW CSD Approval", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "ADW Second Approval", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "ADW Modification Print", "Customer Care", "False", "False", "False", "False" });
 
