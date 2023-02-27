@@ -3514,9 +3514,9 @@
 
 
                             <div class="clearfix"></div>
-
-                            <asp:GridView ID="gvInPlan" runat="server" AutoGenerateColumns="False" AllowPaging="true" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea gvTopHeader"
-                                OnRowCreated="gvInPlan_RowCreated" OnRowDataBound="gvInPlan_RowDataBound" OnPageIndexChanging="gvInPlan_PageIndexChanging" PageSize="15">
+                  
+                            <asp:GridView ID="gvInPlan" runat="server" AutoGenerateColumns="False" AllowPaging="true" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea gvTopHeader "
+                                          OnRowCreated="gvInPlan_RowCreated" OnRowDataBound="gvInPlan_RowDataBound" OnPageIndexChanging="gvInPlan_PageIndexChanging" PageSize="15">
 
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -3543,7 +3543,8 @@
                                                     </td>
                                                     <td>
                                                         <td>
-                                                            <asp:HyperLink ID="hlbtnCdataExelinv" runat="server" CssClass="btn btn-warning primaryBtn">Export Excel</asp:HyperLink>
+                                                           
+                                                            <asp:HyperLink ID="hlbtnCdataExelinv" runat="server" CssClass="btn  btn-sm btn-success"><i class="fa fa-file-excel" aria-hidden="true"></i></asp:HyperLink>
                                                         </td>
                                                     </td>
                                                     <td></td>
