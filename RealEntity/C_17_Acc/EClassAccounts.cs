@@ -1315,6 +1315,7 @@ namespace RealEntity.C_17_Acc
             public double netbillamt { get; set; }
             public double mobamt { get; set; }
             public double afterdiscount { get; set; }
+            public double afterdeduc { get; set; }
 
             public double dram { get; set; }
             public double cram { get; set; }
@@ -1342,10 +1343,12 @@ namespace RealEntity.C_17_Acc
             public string vounum1 { get; set; }
             public string voudat { get; set; }
             public string billno { get; set; }
+            public string billno1 { get; set; }
             public string rano { get; set; }
             public string billref { get; set; }
             public string billnature { get; set; }
             public double vatamt { get; set; }
+            public double afterdeduc { get; set; }
             public double netbillamt { get; set; }
             public double payamt { get; set; }
             public double discountamt { get; set; }
