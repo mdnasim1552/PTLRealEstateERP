@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -41,8 +41,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -54,8 +55,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -179,6 +181,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummaryDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ListIsssuChq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+PostVoucherPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+PWRPDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
@@ -364,6 +367,7 @@
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccCashbook1Intech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeCityBankCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeSBL - Copy.rdlc" />
@@ -710,7 +714,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEntrust.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherTanvir.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherManamaOLD.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher6.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
