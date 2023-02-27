@@ -36,6 +36,7 @@ namespace RealERPWEB.F_99_Allinterface
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
 
+                this.GetAddWrkDataGen();
                 RadioButtonList1_SelectedIndexChanged(null, null);
                 RadioButtonList1.SelectedIndex = 0;
             }
@@ -50,7 +51,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.gvPrjInfo_RowDataBound(null, null);
-            this.GetAddWrkData();
+            //this.GetAddWrkData();
             //this.Data_Bind();
             string view = this.RadioButtonList1.SelectedValue.ToString();
             switch (view)
@@ -150,12 +151,12 @@ namespace RealERPWEB.F_99_Allinterface
         protected void txtdate_TextChanged(object sender, EventArgs e)
         {
             RadioButtonList1_SelectedIndexChanged(null, null);
-            GetAddWrkData();
+            GetAddWrkDataGen();// GetAddWrkData();
         }
 
         protected void lbtnok_Click(object sender, EventArgs e)
         {
-            this.GetAddWrkData();        
+            GetAddWrkDataGen();
         }
 
         private void GetAddWrkData()
@@ -190,7 +191,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Initial</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdapp"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["csdappid"]) + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>CSD Approval</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
             this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["approv"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
@@ -199,6 +200,8 @@ namespace RealERPWEB.F_99_Allinterface
 
             DataTable dt = new DataTable();
             DataView dv;
+
+
             //Intial
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
@@ -208,21 +211,72 @@ namespace RealERPWEB.F_99_Allinterface
             ////Checked
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid='' and auditid='' and approvbyid=''");
+            dv.RowFilter = ("chkbyid=''");
             this.Data_Bind("gvcltmodchk", dv.ToTable());
             //Forward
 
-            ////Audit
+            ////1st approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and auditid='' and approvbyid=''");
+            dv.RowFilter = ("chkbyid<>'' and fappid=''");
+            this.Data_Bind("gv1stApp", dv.ToTable());
+
+
+            ////csd approval
+            dt = ((DataTable)ds2.Tables[0]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdappid=''");
+            this.Data_Bind("gvcsdApproval", dv.ToTable());
+
+            ////2nd approval
+            dt = ((DataTable)ds2.Tables[0]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdappid<>'' and sappid=''");
+            this.Data_Bind("gv2ndApp", dv.ToTable());
+
+
+            ////Audit / final approval
+            dt = ((DataTable)ds2.Tables[0]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdappid<>'' and sappid<>'' and auditid=''");
             this.Data_Bind("gvCltmodaduit", dv.ToTable());
 
             ////Approval
             dt = ((DataTable)ds2.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("chkbyid<>'' and auditid<>'' and approvbyid=''");
+            dv.RowFilter = ("chkbyid<>'' and fappid<>'' and csdappid<>'' and sappid<>'' and auditid<>'' and approvbyid=''");
             this.Data_Bind("gvCltmodapp", dv.ToTable());
+
+
+
+
+
+
+
+            ////Intial
+            //dt = ((DataTable)ds2.Tables[0]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("approvbyid=''");
+            //this.Data_Bind("grvRptCliMod", dt);
+
+            //////Checked
+            //dt = ((DataTable)ds2.Tables[0]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("chkbyid='' and auditid='' and approvbyid=''");
+            //this.Data_Bind("gvcltmodchk", dv.ToTable());
+            ////Forward
+
+            //////Audit
+            //dt = ((DataTable)ds2.Tables[0]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("chkbyid<>'' and auditid='' and approvbyid=''");
+            //this.Data_Bind("gvCltmodaduit", dv.ToTable());
+
+            //////Approval
+            //dt = ((DataTable)ds2.Tables[0]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("chkbyid<>'' and auditid<>'' and approvbyid=''");
+            //this.Data_Bind("gvCltmodapp", dv.ToTable());
 
         }        
         private void GetAddWrkDataEpic()
@@ -735,6 +789,16 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void gvcsdApproval_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink lnkchkcsd = (HyperLink)e.Row.FindControl("lnkchkcsd");
+                HyperLink hlnkprintcsdpp = (HyperLink)e.Row.FindControl("hlnkprintcsdpp");
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
+                string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
+
+                lnkchkcsd.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=CsDApproval&genno=" + pactcode + "&Date1=" + date;
+                hlnkprintcsdpp.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&genno=" + pactcode + "&Date1=" + date;
+            }
 
         }
     }

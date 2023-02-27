@@ -553,7 +553,7 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnok" runat="server" Text="Reload" OnClick="lbtnok_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                <asp:LinkButton ID="lbtnok" runat="server" Text="Ok" OnClick="lbtnok_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
                             </div>
                         </div>
@@ -578,13 +578,13 @@
                                         <div class="form-group">
                                             <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Value="0" Selected="True"></asp:ListItem>
-                                                    <asp:ListItem Value="1"></asp:ListItem>
-                                                    <asp:ListItem Value="2"></asp:ListItem>
-                                                    <asp:ListItem Value="3"></asp:ListItem>
-                                                    <asp:ListItem Value="4"></asp:ListItem>
-                                                    <asp:ListItem Value="5"></asp:ListItem>
-                                                    <asp:ListItem Value="6"></asp:ListItem>
+                                                   <asp:ListItem Value="0" Selected="True"></asp:ListItem> <%-- status--%>
+                                                    <asp:ListItem Value="1"></asp:ListItem> <%-- Checked--%>
+                                                    <asp:ListItem Value="2"></asp:ListItem> <%-- First Approval--%>
+                                                    <asp:ListItem Value="3"></asp:ListItem><%-- CSD Approval--%>
+                                                    <asp:ListItem Value="4"></asp:ListItem><%-- 2nd Approval--%>
+                                                    <asp:ListItem Value="5"></asp:ListItem><%-- Audit--%>
+                                                    <asp:ListItem Value="6"></asp:ListItem><%-- Final Approval--%>
                                                 </asp:RadioButtonList>
                                             </div>
                                         </div>
@@ -995,7 +995,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="lnkchkcsd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                        <asp:HyperLink ID="lnkchkcsd" Target="_blank" runat="server" ToolTip="CSD Approved" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprintcsdpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDelcsdApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelcsdApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
@@ -1098,7 +1098,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                        <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="2nd Approval" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprint2ndApp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
                                         <asp:LinkButton ID="lbtnDel2ndApp" runat="server" ToolTip="Cancel 1st Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel2ndApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
