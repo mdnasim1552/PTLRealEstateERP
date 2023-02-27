@@ -372,9 +372,10 @@ namespace RealERPWEB.F_12_Inv
             this.Data_Bind();
             if (comcod == "3367")
             {
-                this.grvacc.Columns[6].HeaderText = "Master Quantity";                
-                this.grvacc.Columns[8].HeaderText = "Store Stock Qty";
-                this.grvacc.Columns[11].HeaderText = "Required Quantity";
+                this.grvacc.Columns[7].HeaderText = "Master Quantity";                
+                this.grvacc.Columns[8].HeaderText = "Received Qty";
+                this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[10].HeaderText = "Required Quantity";
             }
 
         }
