@@ -3471,5 +3471,10 @@ namespace RealERPWEB.F_32_Mis
 
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
     }
 }
