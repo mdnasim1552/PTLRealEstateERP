@@ -47,7 +47,7 @@ namespace RealERPWEB
                 listComName_SelectedIndexChanged(null, null);
 
                 Session.Remove("tbllog1");
-
+                //test
                 //this.notice();
                 if ((Hashtable)Session["tblLogin"] == null)
                     return;
