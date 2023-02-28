@@ -114,32 +114,23 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "LandO":
                 case "RptDayWSale":
-
+                    this.SoldType.Visible = false;
+                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                    this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.lbltodate.Visible = true;
+                    this.divtodate.Visible = true;
+                    this.txttodate.Visible = true;
                     if (comcod == "3368" || comcod == "3101")//Finlay
                     {
-                        this.SoldType.Visible = false;
-                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
-                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.lbltodate.Visible = true;
-                        this.divtodate.Visible = true;
-                        this.txttodate.Visible = true;
-
                         this.divgroup.Visible = false;
                         this.ddlProjectName.Visible = false;
+                       
                     }
                     else
                     {
-                        this.SoldType.Visible = false;
-                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
-                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.lbltodate.Visible = true;
-                        this.divtodate.Visible = true;
-                        this.txttodate.Visible = true;
-
                         this.lbProjectName.Visible = false;
-
+                        
                         //this.Label15.Text = "From: ";
                         //this.Label15.Visible = false;
                         //this.txtDate.Visible = false;
@@ -359,7 +350,7 @@ namespace RealERPWEB.F_22_Sal
 
             string resListMulti = "";
             string resourcelist = this.lbProjectName.SelectedValue.ToString();
-            if (comcod=="3368" )//Finlay
+            if (comcod=="3368" || comcod == "3101")//Finlay
             {
                 if (resourcelist == "")
                 {
@@ -932,7 +923,7 @@ namespace RealERPWEB.F_22_Sal
                 // HyperLink salamt = (HyperLink)e.Row.FindControl("HplgvAmt");
 
                 string code = "";
-                if (comcod == "3368" || comcod == "3101")//Finlay
+                if (comcod == "3368")//Finlay
                 {
                     code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 }
