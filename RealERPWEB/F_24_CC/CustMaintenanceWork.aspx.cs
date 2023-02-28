@@ -44,7 +44,7 @@ namespace RealERPWEB.F_24_CC
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"];
-                if (type == "Check" || type == "Audit" || type == "Approv" || type == "FirstApproval" || type == "SecondApproval")
+                if (type == "Check" || type == "Audit" || type == "Approv" || type == "CsDApproval" || type == "FirstApproval" || type == "SecondApproval")
                 {
                     PreviousAddNumber();
                     lbtnOk_Click(null, null);
@@ -1393,6 +1393,7 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3367": //EPIC
                             approval = "approval";
                             break;
                     }
