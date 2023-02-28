@@ -1717,6 +1717,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintCashSalaryFinlay();
                     break;
 
+                case "3374":
+                    this.PrintCashSalaryAngan();
+                    break;
+
                 default:
                     this.PrintCashSalarygen();
                     break;
@@ -1781,6 +1785,123 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Edison", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Salary Statement (Cash)"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Salary Statement (Cash)  for the Month of : " + date));
+            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpay, 2)));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+        //private void SaveValue()
+        //{
+        //    Session.Remove("tblcashpay");
+        //    DataTable dt =   new DataTable();
+        //    dt.Columns.Add("empid", typeof(string));
+        //    dt.Columns.Add("refdesc", typeof(string));
+        //    dt.Columns.Add("sectionname", typeof(string));
+        //    dt.Columns.Add("desig", typeof(string));
+        //    dt.Columns.Add("idcard", typeof(string));
+        //    dt.Columns.Add("desigid", typeof(string));
+        //    dt.Columns.Add("refno", typeof(string));
+        //    dt.Columns.Add("empname", typeof(string));
+        //    dt.Columns.Add("wd", typeof(double));
+        //    dt.Columns.Add("netpay", typeof(double));
+
+
+
+        //    for (int i = 0; i < this.gvcashpay.Rows.Count; i++)
+        //    {
+            
+        //        string empid = ((Label)this.gvcashpay.Rows[i].FindControl("lblempid")).Text.Trim();
+        //        string refno = ((Label)this.gvcashpay.Rows[i].FindControl("lblrefno")).Text.Trim();
+        //        string desigid = ((Label)this.gvcashpay.Rows[i].FindControl("lbldesigid")).Text.Trim();
+
+        //        string refdesc = ((Label)this.gvcashpay.Rows[i].FindControl("lgDeptNamecash")).Text.Trim();
+        //        string sectionname = ((Label)this.gvcashpay.Rows[i].FindControl("lgvSectioncash")).Text.Trim();
+        //        string idcard = ((Label)this.gvcashpay.Rows[i].FindControl("lgIdCardcash")).Text.Trim();
+        //        string desig = ((Label)this.gvcashpay.Rows[i].FindControl("lbldesig")).Text.Trim();
+        //        string empname = ((Label)this.gvcashpay.Rows[i].FindControl("lblempname")).Text.Trim();
+        //        double wd = Convert.ToDouble("0" + ((Label)this.gvcashpay.Rows[i].FindControl("lgvwdaycah")).Text.Trim());
+        //        double netpay = Convert.ToDouble("0" + ((Label)gvcashpay.Rows[i].FindControl("lgvnetamtcash")).Text.Trim());
+
+        //        string ischeck = ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked ? "True" : "False";
+
+       
+
+        //        if (ischeck=="True") {
+        //            DataRow dr;
+
+        //            dr = dt.NewRow();
+
+        //            dr["empid"] = empid;
+        //            dr["refdesc"] = refdesc;
+        //            dr["sectionname"] = sectionname;
+        //            dr["idcard"] = idcard;
+        //            dr["desig"] = desig;
+        //            dr["empname"] = empname;
+        //            dr["wd"] = wd;
+        //            dr["desigid"] = desigid;
+        //            dr["refno"] = refno;
+
+
+        //            dr["netpay"] = netpay;
+        //            dt.Rows.Add(dr);
+
+
+        //        }
+
+        //    }
+
+        //    Session["tblcashpay"] = dt;
+
+
+        //}
+        private void SaveValue()
+        {
+            Session.Remove("tblcashpay");
+            DataTable dt = (DataTable)Session["tblSalSum"];
+            int rowindex;
+
+            for (int i = 0; i < this.gvcashpay.Rows.Count; i++)
+            {
+                string ischeck = ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked ? "True" : "False";
+                rowindex = (this.gvcashpay.PageSize) * (this.gvcashpay.PageIndex) + i;
+                dt.Rows[rowindex]["ischeck"] = ischeck;
+            }
+
+            Session["tblcashpay"] = dt;
+        }
+
+
+        private void PrintCashSalaryAngan()
+        {
+            SaveValue();
+            DataTable dt = (DataTable)Session["tblcashpay"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("ischeck='True'");
+            dt = dv.ToTable();
+            string comname = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
+            date = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPayAngan", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Salary Statement (Cash)"));
