@@ -379,7 +379,7 @@ namespace RealERPWEB.F_21_MKT
 
                 GetData();
                 this.lbllandname.Text = "";
-                if (btnaddland.Text == "Add Lead")
+                if (btnaddland.Text == "Add Lead" || btnaddland.Text == "Add Client")
                 {
                     string comcod = this.GetComeCode();
                     //if (comcod == "3315" || comcod == "3316")
