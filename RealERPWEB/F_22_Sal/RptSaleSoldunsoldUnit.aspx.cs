@@ -399,7 +399,7 @@ namespace RealERPWEB.F_22_Sal
 
             this.gvDayWSale.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             //this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
-            if (comcod == "3368")//Finlay
+            if (comcod == "3368" || comcod == "3101")//Finlay
             {
                 Session["tblData"] = ds1.Tables[0];
             }
@@ -923,7 +923,7 @@ namespace RealERPWEB.F_22_Sal
                 // HyperLink salamt = (HyperLink)e.Row.FindControl("HplgvAmt");
 
                 string code = "";
-                if (comcod == "3368")//Finlay
+                if (comcod == "3368" || comcod == "3101")//Finlay
                 {
                     code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 }
