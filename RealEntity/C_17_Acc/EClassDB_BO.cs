@@ -681,6 +681,7 @@ namespace RealEntity.C_17_Acc
             public double Dr { get; set; }
             public double Cr { get; set; }
             public double trnqty { get; set; }
+            public double trnrat { get; set; }
             public double totalamt { get; set; }
             public string spcldesc { get; set; }
 
