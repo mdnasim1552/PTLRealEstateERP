@@ -153,6 +153,10 @@
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                   <FooterTemplate>
+                                                    <asp:Label ID="lblsumtotal" runat="server"  Font-Bold="true" Font-Size="14px">Total</asp:Label>
+                                                </FooterTemplate>
+                                                <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -180,6 +184,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "orderamt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                 <FooterTemplate>
+                                                    <asp:Label ID="tblsummsoramt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -208,6 +216,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                 <FooterTemplate>
+                                                    <asp:Label ID="tblsummamt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -235,6 +247,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                 <FooterTemplate>
+                                                    <asp:Label ID="tblsummbillamt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -299,6 +315,10 @@
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lbltotal" runat="server"  Font-Bold="true" Font-Size="14px">Total</asp:Label>
+                                                </FooterTemplate>
+                                                <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -344,6 +364,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "orramt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="tbldetailsoramt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -362,6 +386,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="tbldetailsrecamt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -381,6 +409,10 @@
                                                         Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
+                                                 <FooterTemplate>
+                                                    <asp:Label ID="tbldetailsbillamt" runat="server" ForeColor="Black" Font-Size="14px" ></asp:Label>
+                                                </FooterTemplate>
+                                                 <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle"  />
                                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
