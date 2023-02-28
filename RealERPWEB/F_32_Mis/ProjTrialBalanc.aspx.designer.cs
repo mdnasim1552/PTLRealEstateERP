@@ -24,6 +24,15 @@ namespace RealERPWEB.F_32_Mis
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// UpdateProgress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
         /// lblDatefrom control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace RealERPWEB.F_32_Mis
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender Calfr;
+
+        /// <summary>
+        /// divtodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtodate;
 
         /// <summary>
         /// lbltodate control.
@@ -78,13 +96,13 @@ namespace RealERPWEB.F_32_Mis
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
-        /// lbtnOk control.
+        /// divprjname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprjname;
 
         /// <summary>
         /// lblPrjName control.
@@ -123,6 +141,15 @@ namespace RealERPWEB.F_32_Mis
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectInd;
 
         /// <summary>
+        /// divdetais control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divdetais;
+
+        /// <summary>
         /// lblGrp control.
         /// </summary>
         /// <remarks>
@@ -141,6 +168,15 @@ namespace RealERPWEB.F_32_Mis
         protected global::System.Web.UI.WebControls.DropDownList ddlRptGroup;
 
         /// <summary>
+        /// divprjgroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprjgroup;
+
+        /// <summary>
         /// ddlProGroup control.
         /// </summary>
         /// <remarks>
@@ -150,6 +186,15 @@ namespace RealERPWEB.F_32_Mis
         protected global::System.Web.UI.WebControls.DropDownList ddlProGroup;
 
         /// <summary>
+        /// divchkdetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchkdetails;
+
+        /// <summary>
         /// chkdetails control.
         /// </summary>
         /// <remarks>
@@ -157,6 +202,15 @@ namespace RealERPWEB.F_32_Mis
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkdetails;
+
+        /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// MultiView1 control.

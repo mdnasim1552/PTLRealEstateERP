@@ -10,6 +10,12 @@
 
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+            $('[id*=lbProjectName]').multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+            });
+
         });
         function pageLoaded() {
             try {
@@ -22,6 +28,19 @@
             var gvSpayment = $('#<%=this.gvSpayment.ClientID %>');
             gvSpayment.Scrollable();
 
+            var gvDayWSale = $('#<%=this.gvDayWSale.ClientID %>');
+            gvDayWSale.Scrollable();
+
+            $(function () {
+                $('[id*=lbProjectName]').multiselect({
+                    includeSelectAllOption: true,
+
+                    enableCaseInsensitiveFiltering: true,
+                    //enableFiltering: true,
+                    //$('.chzn-select').chosen({ search_contains: true });
+                });
+            });
+          
             //alert("I m In");
             //gvSpayment.gridviewScroll({
             //     width: 1160,
@@ -44,6 +63,21 @@
         .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
+        }
+        .multiselect {
+            width: 300px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 300px !important;
+        }
+
+        .multiselect-container {
+            height: 350px !important;
+            width: 350px !important;
+            overflow-y: scroll !important;
         }
     </style>
 
@@ -70,14 +104,15 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">                        
-                        <div class="col-md-2">
+                        <div class="col-md-2" >
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
-
+                                <asp:ListBox ID="lbProjectName" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple"></asp:ListBox>
                             </div>
                         </div>
+                        
                         <div class="col-md-2" id="salesteamdv" runat="server">
                             <div class="form-group">
                                 <label class="control-label" for="lblSalesTeam" id="lblSalesTeam" runat="server">Sales Team:</label>
@@ -86,7 +121,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="divgroup" runat="server" visible="true">
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName" id="lblGroup" runat="server">Group</label>
                                 <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control form-control-sm chzn-select">

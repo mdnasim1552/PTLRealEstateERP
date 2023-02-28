@@ -1313,14 +1313,18 @@ namespace RealEntity.C_17_Acc
             public double taxamt { get; set; }
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
+            public double mobamt { get; set; }
+            public double discountamt { get; set; }
             public double afterdiscount { get; set; }
+            public double afterdeduc { get; set; }
 
             public double dram { get; set; }
             public double cram { get; set; }
 
             public double netpayable { get; set; }
+            public double penalty { get; set; }
 
-         
+
 
             public RptConOverAllPSummary()
             {
@@ -1341,16 +1345,19 @@ namespace RealEntity.C_17_Acc
             public string vounum1 { get; set; }
             public string voudat { get; set; }
             public string billno { get; set; }
+            public string billno1 { get; set; }
             public string rano { get; set; }
             public string billref { get; set; }
             public string billnature { get; set; }
             public double vatamt { get; set; }
+            public double afterdeduc { get; set; }
             public double netbillamt { get; set; }
             public double payamt { get; set; }
             public double discountamt { get; set; }
             public double afterdiscount { get; set; }
             public double dram { get; set; }
             public double cram { get; set; }
+            public double mobamt { get; set; }
             
 
             public double netpayble { get; set; }
@@ -1360,6 +1367,38 @@ namespace RealEntity.C_17_Acc
 
 
             public RptConOverAllPSummaryDetails()
+            {
+
+            }
+        }
+
+        [Serializable]
+        public class RptConsecpayDetails
+        {
+
+            public string resdesc { get; set; }
+            public string rescode { get; set; }
+            public string actdesc { get; set; }
+            public string actcode { get; set; }
+          
+            public string vounum { get; set; }
+            public string vounum1 { get; set; }
+            public string voudat { get; set; }
+            public string billno { get; set; }
+            public string billno1 { get; set; }
+            public string rano { get; set; }
+            public string billref { get; set; }
+            public string billtcode { get; set; }
+            public string billnature { get; set; }
+            public double vatamt { get; set; }
+            public double spayment { get; set; }
+            public double trnam { get; set; }
+        
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double netamt { get; set; }
+
+            public RptConsecpayDetails()
             {
 
             }

@@ -234,11 +234,27 @@ namespace RealERPWEB.F_09_PImp
         {
             OnSelectOneClick();
         }
+
+        private void GetExeComplete()
+        {
+            string comcod = GetComCode();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+           
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETWORKEXELOCK", pactcode, "", "", "", "", "", "", "", "");
+
+            Session["exelock"] = ds1.Tables[0];  
+        }
+
+
+
         private void OnSelectOneClick()
         {
+            GetExeComplete();
             LoopForSession();
             DataTable itemtable = (DataTable)Session["itemlist"];
             DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
+            DataTable lockexe = (DataTable)Session["exelock"];
+
             string itemcode = this.ddlItem.SelectedValue.ToString().Trim();
             string gp = this.ddlDivision.SelectedValue.Trim();
             var ItemList = (DataTable)Session["itemlist"];
@@ -251,7 +267,8 @@ namespace RealERPWEB.F_09_PImp
                     {
                         string flrcode = s1.Value.Substring(0, 3);
                         DataRow[] dr1 = tempforgrid.Select("flrcod='" + flrcode + "'  and itemcode='" + itemcode + "'");
-                        if (dr1.Length == 0)
+                        DataRow[] dr2 = lockexe.Select("flrcod='" + flrcode + "'  and isircode='" + itemcode + "'");
+                        if (dr1.Length == 0 && dr2.Length==0)
                         {
                             DataRow drforgrid = tempforgrid.NewRow();
                             drforgrid["flrcod"] = flrcode;
@@ -265,6 +282,11 @@ namespace RealERPWEB.F_09_PImp
                             tempforgrid.Rows.Add(drforgrid);
 
                         }
+                        if (dr2.Length != 0)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Work Execution Locked." + "');", true);                            
+                        }
+
                     }
                 }
             }

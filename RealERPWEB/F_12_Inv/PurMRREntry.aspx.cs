@@ -702,14 +702,14 @@ namespace RealERPWEB.F_12_Inv
 
             if (tbl1.Rows.Count == 0)
                 return;
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
-            double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvMRRInfo.PageSize);
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-            for (int i = 1; i <= TotalPage; i++)
-                ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-            if (TotalPage > 1)
-                ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvMRRInfo.PageIndex;
+            //((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
+            //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvMRRInfo.PageSize);
+            //((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
+            //for (int i = 1; i <= TotalPage; i++)
+            //    ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+            //if (TotalPage > 1)
+            //    ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
+            //((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvMRRInfo.PageIndex;
             this.lbtnResFooterTotal_Click(null, null);
         }
         private DataTable HiddenSameData(DataTable dt1)
@@ -1085,12 +1085,12 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-        protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Session_tblMRR_Update();
-            this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
-            this.gvMRRInfo_DataBind();
-        }
+        //protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    this.Session_tblMRR_Update();
+        //    this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
+        //    this.gvMRRInfo_DataBind();
+        //}
 
 
         private void CreateDataTable()
@@ -1440,7 +1440,7 @@ namespace RealERPWEB.F_12_Inv
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
 
-
+                //this.gvMRRInfo.PageIndex = ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
 
 
                 bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(tbl1.Rows[i]["orderdat"].ToString()), Convert.ToDateTime(mMRRDAT));

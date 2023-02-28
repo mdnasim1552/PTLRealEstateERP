@@ -28,7 +28,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-            this.lbtnUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
+         
             if (!IsPostBack)
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
@@ -1301,17 +1301,33 @@ namespace RealERPWEB.F_23_CR
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
                 // string usercode = ViewState["usricode"].ToString();
-                switch (comcod)
+
+
+
+
+                if (hst["compsms"].ToString() == "True")
                 {
-                    //case "3101": // Pintech                   
-                    case "3356": //Intech                    
-                    case "3366": //Intech                    
-                    case "3101": //Intech                    
-                        this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
-                        break;
-                    default:
-                        break;
+
+
+
+                    switch (comcod)
+                    {
+                        //case "3101": // Pintech                   
+                        case "3356": //Intech                    
+                        case "3366": //Intech                    
+                        case "3101": //Intech                    
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                        default:
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                    }
                 }
+
+
+
+
+
 
                 if (comcod == "3370")
                 {
@@ -1645,6 +1661,7 @@ namespace RealERPWEB.F_23_CR
         {
             try
             {
+                CommonButton();
                 string chequeno = this.txtchqno.Text.Trim();
                 string instype = this.ddlType.SelectedValue.ToString().Trim();
                 string mrno = this.lblReceiveNo.Text.Trim();
@@ -1656,7 +1673,7 @@ namespace RealERPWEB.F_23_CR
                     case "3337":
                     case "3101":
                     case "3353":
-                        CommonButton();
+                        
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {
@@ -1856,7 +1873,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-                this.lbtnUpdate.Visible = true;
+               
             }
 
         }

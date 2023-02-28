@@ -1639,7 +1639,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!casuallev.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!casuallev.Value,"#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1674,7 +1674,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!siclev.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!siclev.Value,"#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1709,7 +1709,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!spl.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!spl.Value,"#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1814,7 +1814,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!withpaylev.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!withpaylev.Value,"#,##0.0;(#,##0.0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1838,6 +1838,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

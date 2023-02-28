@@ -4443,11 +4443,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "2325": //Leisure
                         Reportpath = "~/Report/RptPurchaseOrderLeisure.rdlc";
                         break;
+                    case "3101":
                     case "3353": //Manama
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
                         break;
 
-                    case "3101": // ptl  
+                     // ptl  
                     case "3330": //bridge 
                         if (pactcode == "160100010025" || pactcode == "160100010027")
                         {

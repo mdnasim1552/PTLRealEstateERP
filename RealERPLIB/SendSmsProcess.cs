@@ -307,12 +307,16 @@ namespace RealERPLIB
                 DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
                 string user = ds3.Tables[0].Rows[0]["apiusrid"].ToString().Trim(); //"nahid@asit.com.bd";
                 string pass = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"asit321";
-                string routeid = ds3.Tables[0].Rows[0]["apirouid"].ToString().Trim();//3;
-                string typeid = ds3.Tables[0].Rows[0]["apitypeid"].ToString().Trim();//1;
+                string apikey = ds3.Tables[0].Rows[0]["apirouid"].ToString().Trim();//3;
+                string ClientId = ds3.Tables[0].Rows[0]["apitypeid"].ToString().Trim();//1;
                 string sender = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
 
                 string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
                 string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
+
+                
+               
+
 
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
                 string mobilewccode = mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
@@ -323,6 +327,11 @@ namespace RealERPLIB
                     case "3356"://for Intech
                         apiinfo = ApiUrl + user + "&password=" + pass + "&masking=" + sender + "&MsgType=TEXT" + "&receiver=" + mobile + "&message=" + text;
                         break;
+                    case "3354"://Edison
+                        apiinfo = ApiUrl + apikey + "&ClientId=" + ClientId + "&SenderId=" + sender + "&from=" + var_from + "&MobileNumbers=" + mobile + "&Message=" + text;
+                        break;
+
+                        
                     default:
                         apiinfo = ApiUrl + user + "&password=" + pass + "&from=" + var_from + "&to=" + mobile + "&message=" + text;
                         break;

@@ -44,7 +44,7 @@ namespace RealERPWEB.F_24_CC
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"];
-                if (type == "Check" || type == "Audit" || type == "Approv" || type == "FirstApproval" || type == "SecondApproval")
+                if (type == "Check" || type == "Audit" || type == "Approv" || type == "CsDApproval" || type == "FirstApproval" || type == "SecondApproval")
                 {
                     PreviousAddNumber();
                     lbtnOk_Click(null, null);
@@ -983,6 +983,10 @@ namespace RealERPWEB.F_24_CC
             tblt02.Columns.Add("fappdat", Type.GetType("System.String"));
             tblt02.Columns.Add("fapptrmid", Type.GetType("System.String"));
             tblt02.Columns.Add("fappseson", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappid", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappdat", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdapptrmid", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappseson", Type.GetType("System.String"));
             tblt02.Columns.Add("sappid", Type.GetType("System.String"));
             tblt02.Columns.Add("sappdat", Type.GetType("System.String"));
             tblt02.Columns.Add("sapptrmid", Type.GetType("System.String"));
@@ -1032,6 +1036,10 @@ namespace RealERPWEB.F_24_CC
                         dr1["fappdat"] = "";
                         dr1["fapptrmid"] = "";
                         dr1["fappseson"] = "";
+                        dr1["csdappid"] = "";
+                        dr1["csdappdat"] = "";
+                        dr1["csdapptrmid"] = "";
+                        dr1["csdappseson"] = "";
                         dr1["sappid"] = "";
                         dr1["sappdat"] = "";
                         dr1["sapptrmid"] = "";
@@ -1050,12 +1058,37 @@ namespace RealERPWEB.F_24_CC
                         dr2["fappdat"] = Date;
                         dr2["fapptrmid"] = trmnid;
                         dr2["fappseson"] = session;
+                        dr2["csdappid"] = "";
+                        dr2["csdappdat"] = "";
+                        dr2["csdapptrmid"] = "";
+                        dr2["csdappseson"] = "";
                         dr2["sappid"] = "";
                         dr2["sappdat"] = "";
                         dr2["sapptrmid"] = "";
                         dr2["sappseson"] = "";
                         dt2.Rows.Add(dr2);
                         ds1.Merge(dt2);
+                        ds1.Tables[0].TableName = "tbl1";
+                        rapproval = ds1.GetXml();
+                        break;
+                    case "CsDApproval":
+                        this.CreateDataTable02();
+                        DataTable dt3 = (DataTable)ViewState["tblrapproval"];
+                        DataRow dr3 = dt3.NewRow();
+                        dr3["fappid"] = usrid;
+                        dr3["fappdat"] = Date;
+                        dr3["fapptrmid"] = trmnid;
+                        dr3["fappseson"] = session;
+                        dr3["csdappid"] = usrid;
+                        dr3["csdappdat"] = Date;
+                        dr3["csdapptrmid"] = trmnid;
+                        dr3["csdappseson"] = session;
+                        dr3["sappid"] = "";
+                        dr3["sappdat"] = "";
+                        dr3["sapptrmid"] = "";
+                        dr3["sappseson"] = "";
+                        dt3.Rows.Add(dr3);
+                        ds1.Merge(dt3);
                         ds1.Tables[0].TableName = "tbl1";
                         rapproval = ds1.GetXml();
                         break;
@@ -1085,6 +1118,10 @@ namespace RealERPWEB.F_24_CC
                 dr2["fappdat"] = Date;
                 dr2["fapptrmid"] = trmnid;
                 dr2["fappseson"] = session;
+                dr2["csdappid"] = usrid;
+                dr2["csdappdat"] = Date;
+                dr2["csdapptrmid"] = trmnid;
+                dr2["csdappseson"] = session;
                 dr2["sappid"] = usrid;
                 dr2["sappdat"] = Date;
                 dr2["sapptrmid"] = trmnid;
@@ -1356,6 +1393,7 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3367": //EPIC
                             approval = "approval";
                             break;
                     }

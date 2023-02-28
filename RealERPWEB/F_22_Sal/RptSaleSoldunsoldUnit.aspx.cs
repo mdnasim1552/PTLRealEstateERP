@@ -65,6 +65,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.ddlProjectName.Items.Count == 0)
             {
                 this.GetProjectName();
+                this.lbtnOk_Click(null, null);
 
             }
 
@@ -86,6 +87,7 @@ namespace RealERPWEB.F_22_Sal
         private void gvVisibility()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = GetComocd();
             switch (type)
             {
                 case "soldunsold":
@@ -110,6 +112,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlSalesTeam.Visible = false;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
+                case "LandO":
                 case "RptDayWSale":
                     this.SoldType.Visible = false;
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -118,11 +121,23 @@ namespace RealERPWEB.F_22_Sal
                     this.lbltodate.Visible = true;
                     this.divtodate.Visible = true;
                     this.txttodate.Visible = true;
-                    //this.Label15.Text = "From: ";
-                    //this.Label15.Visible = false;
-                    //this.txtDate.Visible = false;
-                    //this.lblGroup.Visible = false;
-                    //this.ddlRptGroup.Visible = false;
+                    if (comcod == "3368" || comcod == "3101")//Finlay
+                    {
+                        this.divgroup.Visible = false;
+                        this.ddlProjectName.Visible = false;
+                       
+                    }
+                    else
+                    {
+                        this.lbProjectName.Visible = false;
+                        
+                        //this.Label15.Text = "From: ";
+                        //this.Label15.Visible = false;
+                        //this.txtDate.Visible = false;
+                        //this.lblGroup.Visible = false;
+                        //this.ddlRptGroup.Visible = false;
+                    }
+
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
 
@@ -178,6 +193,12 @@ namespace RealERPWEB.F_22_Sal
                 this.ddlProjectName.SelectedValue = qryprjcode;
                 ddlProjectName.Enabled = false;
             }
+            //for Listbox
+            this.lbProjectName.DataTextField = "pactdesc";
+            this.lbProjectName.DataValueField = "pactcode";
+            this.lbProjectName.DataSource = ds1.Tables[0];
+            this.lbProjectName.DataBind();
+
         }
         private void GetSalesTeam()
         {
@@ -215,6 +236,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlpagesize.Visible = true;
                     this.parkingStatus();
                     break;
+                case "LandO":
                 case "RptDayWSale":
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
@@ -300,8 +322,7 @@ namespace RealERPWEB.F_22_Sal
                 case "3306":
                 case "3310":
                 case "3311":
-
-
+                
                     salesteam = "salesteam";
                     break;
                 default:
@@ -323,7 +344,51 @@ namespace RealERPWEB.F_22_Sal
             string steam = this.ddlSalesTeam.SelectedValue.Trim().ToString() + "%";
             string steamlen = this.Getsalesteamleng();
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTDAYWISHSAL", PactCode, frdate, todate, mRptGroup, steam, steamlen, "", "", "");
+
+            string calltype = "";
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+
+            string resListMulti = "";
+            string resourcelist = this.lbProjectName.SelectedValue.ToString();
+            if (comcod=="3368" || comcod == "3101")//Finlay
+            {
+                if (resourcelist == "")
+                {
+                    //resListMulti = "";
+                    foreach (ListItem item in lbProjectName.Items)
+                    {
+                       resListMulti += item.Value;
+                        
+                    }
+                }
+                else
+                {
+                    foreach (ListItem item in lbProjectName.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            resListMulti += item.Value;
+                        }
+                    }
+                }
+                    
+
+
+                if (type=="LandO")
+                {
+                    calltype = "RPTDAYWISHSALFINLAYLO";
+                }
+                else
+                {
+                    calltype = "RPTDAYWISHSALFINLAY";
+                }
+                
+            }
+            else
+            {
+                calltype = "RPTDAYWISHSAL";
+            }
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, PactCode, frdate, todate, mRptGroup, steam, steamlen, resListMulti, "", "");
             if (ds1 == null)
             {
                 this.gvDayWSale.DataSource = null;
@@ -333,8 +398,16 @@ namespace RealERPWEB.F_22_Sal
 
 
             this.gvDayWSale.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
-            Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            //this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
+            if (comcod == "3368" || comcod == "3101")//Finlay
+            {
+                Session["tblData"] = ds1.Tables[0];
+            }
+            else
+            {
+                Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            }
+              
             this.gvDayWSale.DataSource = (DataTable)Session["tblData"];
             this.gvDayWSale.DataBind();
             this.FooterCalculation();
@@ -457,7 +530,7 @@ namespace RealERPWEB.F_22_Sal
 
                     break;
 
-
+                case "LandO":
                 case "RptDayWSale":
                     DataView dv = dt.Copy().DefaultView;
                     if (team == "%")
@@ -521,6 +594,7 @@ namespace RealERPWEB.F_22_Sal
                 case "parking":
                     this.rptparking();
                     break;
+                case "LandO":
                 case "RptDayWSale":
                     this.rptDayWSale();
                     break;
@@ -679,6 +753,67 @@ namespace RealERPWEB.F_22_Sal
         private void rptDayWSale()
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            switch (comcod)
+            {
+
+                case "3368":
+                case "3101":
+                    this.RtpDayWSaleFinlay();
+                    break;
+
+                default:
+                    this.RtpDayWSaleGen();
+                    break;
+            }
+
+
+            
+        }
+        private void RtpDayWSaleFinlay()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComocd();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdateonly = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataTable dt = (DataTable)Session["tblData"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.DaywiseSale>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptDayWiseSalesFinlay", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("Date", "For the month of " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy") + " to " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+
+            if (this.Request.QueryString["Type"] == "LandO")
+            {
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales (L/O)"));
+            }
+            else
+            {
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Day Wise Sales"));
+            }
+            
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdateonly));
+            Rpt1.SetParameters(new ReportParameter("Level", "Level: " + this.ddlRptGroup.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void RtpDayWSaleGen()
+        {
             //Iqbal  Nayan
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComocd();
@@ -727,6 +862,7 @@ namespace RealERPWEB.F_22_Sal
             //Session["Report1"] = rptsale;
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
             //                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
@@ -786,8 +922,16 @@ namespace RealERPWEB.F_22_Sal
                 Label bgdamt = (Label)e.Row.FindControl("lgvDTAmt");
                 // HyperLink salamt = (HyperLink)e.Row.FindControl("HplgvAmt");
 
-                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-
+                string code = "";
+                if (comcod == "3368" || comcod == "3101")//Finlay
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
+                }
+                else
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                }
+                    
                 if (code == "")
                 {
                     return;

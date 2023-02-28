@@ -112,7 +112,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Code">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" MaxLength="100"
+                                        <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" 
                                             Style="border-style: none; border-color: midnightblue; float: left;"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
                                             Width="220px"></asp:TextBox>

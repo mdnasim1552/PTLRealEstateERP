@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RealERPLIB">
+      <HintPath>..\..\..\..\Reference\bin\bin\RealERPLIB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -201,12 +204,6 @@
     <Folder Include="C_81_Hrm\C_88_Res\" />
     <Folder Include="C_81_Hrm\C_94_Task\" />
     <Folder Include="C_81_Hrm\C_99_MgtAct\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
