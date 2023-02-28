@@ -97,13 +97,14 @@ namespace RealERPWEB.F_14_Pro
         private void Data_Bound()
         {
 
+            DataTable dt1 = (DataTable)Session["purorder"];
 
             string check = this.radiolist.SelectedValue.Trim();
             if (check == "1")
             {
                 this.Ordersummary.Visible = true;
                 this.orderdetails.Visible = false;
-                this.gvOrderSummary.DataSource = (DataTable)Session["purorder"];
+                this.gvOrderSummary.DataSource = dt1;
                 this.gvOrderSummary.DataBind();
 
             }
@@ -111,8 +112,40 @@ namespace RealERPWEB.F_14_Pro
             {
                 this.orderdetails.Visible = true;
                 this.Ordersummary.Visible = false;
-                this.gvOrderDetails.DataSource = (DataTable)Session["purorder"];
+                this.gvOrderDetails.DataSource = dt1;
                 this.gvOrderDetails.DataBind();
+
+            }
+            this.GridFooterCalculation(dt1);
+        }
+
+        private void GridFooterCalculation(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return;
+            string check = this.radiolist.SelectedValue.Trim();
+            if (check == "1")
+            {
+                ((Label)this.gvOrderSummary.FooterRow.FindControl("tblsummsoramt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(orderamt)", "")) ? 0.00 :
+                 dt1.Compute("sum(orderamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                ((Label)this.gvOrderSummary.FooterRow.FindControl("tblsummamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(mrramt)", "")) ? 0.00 :
+                   dt1.Compute("sum(mrramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                ((Label)this.gvOrderSummary.FooterRow.FindControl("tblsummbillamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(billamt)", "")) ? 0.00 :
+                   dt1.Compute("sum(billamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            }
+            else
+            {
+                ((Label)this.gvOrderDetails.FooterRow.FindControl("tbldetailsoramt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(orramt)", "")) ? 0.00 :
+                  dt1.Compute("sum(orramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                ((Label)this.gvOrderDetails.FooterRow.FindControl("tbldetailsrecamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(mrramt)", "")) ? 0.00 :
+                   dt1.Compute("sum(mrramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                ((Label)this.gvOrderDetails.FooterRow.FindControl("tbldetailsbillamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(billamt)", "")) ? 0.00 :
+                   dt1.Compute("sum(billamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
             }
 
         }
