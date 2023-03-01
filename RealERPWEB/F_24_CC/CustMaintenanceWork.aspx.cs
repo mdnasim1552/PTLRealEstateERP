@@ -219,6 +219,11 @@ namespace RealERPWEB.F_24_CC
                     this.lblInsmnt.Visible = true;
                     this.ddlInstallment.Visible = true;
                 }
+                if(comcod=="3374" || comcod == "3101")
+                {
+                    this.PnlTermCon.Visible = true;
+                }
+
                 this.GetItemName();
                 this.GetInstallment();
                 this.ShowAdWork();
@@ -243,7 +248,7 @@ namespace RealERPWEB.F_24_CC
             this.ddlUnitName.Enabled = true;
             this.PnlNarration.Visible = false;
             this.lblSchCode.Text = "";
-
+            this.PnlTermCon.Visible = false;
         }
         private void ColumnVisible()
         {
@@ -371,6 +376,7 @@ namespace RealERPWEB.F_24_CC
             this.lblSchCode.Text = ds1.Tables[0].Rows[0]["shcod"].ToString();
             this.ddlType.SelectedValue = ds1.Tables[0].Rows[0]["gcod"].ToString().Substring(0, 2) + "0000000";
             this.ddlInstallment.SelectedValue = ds1.Tables[0].Rows[0]["delschcode"].ToString();
+            //this.txtTermCon.Text= ds1.Tables[3].Rows[0]["TERMCON"].ToString();
             this.Data_DataBind();
 
         }
@@ -1442,6 +1448,7 @@ namespace RealERPWEB.F_24_CC
 
             string addno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
             string narration = this.txtNarr.Text.Trim();
+            string termcon = this.txtTermCon.Text.Trim();
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -1527,6 +1534,19 @@ namespace RealERPWEB.F_24_CC
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             }
+
+            //if (comcod == "3374" || comcod == "3101")
+            //{
+                bool res = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORKTERMCON", addno, termcon);
+
+                if (!res)
+                {
+                    msg = "Updated Failed in Term & Condition ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+
+            //}
 
             if (ConstantInfo.LogStatus == true)
             {

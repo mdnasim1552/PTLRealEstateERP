@@ -431,6 +431,16 @@
                             </div>
                         </div>
                     </asp:Panel>
+
+                    <asp:Panel ID="PnlTermCon" runat="server" Visible="False">
+                        <div class="col-sm-6 col-md-6 col-lg-6 mt-3" id="Div1" runat="server">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" CssClass="control-label  lblmargin-top9px" Font-Bold="true" Text="Terms and Condition:"></asp:Label>
+                                <asp:TextBox ID="txtTermCon" runat="server" class="form-control" TextMode="MultiLine" Rows="4"></asp:TextBox>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
                 </div>
             </div>
         </ContentTemplate>
