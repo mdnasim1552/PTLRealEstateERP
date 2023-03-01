@@ -844,11 +844,31 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void checkedValue()
+        {
+            Session.Remove("tblcashpay");
+            DataTable dt = (DataTable)Session["tblover"];
+            int rowindex;
 
+            for (int i = 0; i < this.gvBankPayment.Rows.Count; i++)
+            {
+                string ischeck = ((CheckBox)this.gvBankPayment.Rows[i].FindControl("chksaltrns")).Checked ? "True" : "False";
+                rowindex = (this.gvBankPayment.PageSize) * (this.gvBankPayment.PageIndex) + i;
+                dt.Rows[rowindex]["saltrn"] = ischeck;
+            }
+
+            Session["tblbankpay"] = dt;
+        }
 
         private void PrintBankStatementAngan()
         {
-            DataTable dt = (DataTable)Session["tblover"];
+            this.checkedValue();
+            DataTable dt = (DataTable)Session["tblbankpay"];
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("saltrn='True'");
+            dt = dv.ToTable();
+            if (dt == null || dt.Rows.Count == 0)
+                return;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
             string comname = hst["comnam"].ToString();
@@ -865,7 +885,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             var lastDayOfMonth = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month2));
 
-            string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
+            //string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
+            string totalAmt =  Convert.ToDouble(dt.Compute("Sum(amt)", string.Empty)).ToString("#,##0;(#,##0); ");
+            //string totalAmt2 = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "0")) ? 0.00 : dt.Compute("sum(amt)", "0"))).ToString("#,##0;(#,##0); ");
+
             string ttlwrd = ASTUtility.Trans(Convert.ToDouble(totalAmt), 2);
             string bankAddress = dt.Rows[0]["bankaddr"].ToString();
             string curdate = DateTime.Now.ToString("MMMM dd,yyyy");
@@ -873,9 +896,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             string valueDate = lastDayOfMonth.ToString() + "/" + month2 + "/" + year;
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = ("saltrn='True'");
-            dt = dv.ToTable();
+
 
 
             ReportDocument rptstk = new ReportDocument();
@@ -890,7 +911,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
             //Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
-            Rpt1.SetParameters(new ReportParameter("rptBankName", "United Commercial Bank Limited"));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", "Bank Asia Limited"));
 
             Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
             Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
