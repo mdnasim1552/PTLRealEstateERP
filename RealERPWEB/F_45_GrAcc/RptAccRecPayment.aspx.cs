@@ -455,7 +455,7 @@ namespace RealERPWEB.F_45_GrAcc
             string grp1val = (grp1 == "1") ? "2" : (grp1 == "2") ? "4" : (grp1 == "3") ? "8" : "12";
             string pactcode = this.ddlProject.SelectedValue.ToString();
 
-            DataSet ds1 = this.GrpData.GetTransInfo(comp1, "SP_REPORTO_GROUP_ACC_TB_RP", "PROJECTTRIALBALANCE", "", date1, pactcode, "", "", "", "", "", "");
+            DataSet ds1 = this.GrpData.GetTransInfo(comp1, "SP_REPORTO_GROUP_ACC_PROJECTTB", "PROJECTTRIALBALANCE", "", date1, pactcode, "", "", "", "", "", "");
 
             if (ds1 == null)
             {

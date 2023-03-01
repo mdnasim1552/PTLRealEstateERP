@@ -1314,6 +1314,7 @@ namespace RealEntity.C_17_Acc
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
             public double mobamt { get; set; }
+            public double discountamt { get; set; }
             public double afterdiscount { get; set; }
             public double afterdeduc { get; set; }
 
@@ -1321,8 +1322,9 @@ namespace RealEntity.C_17_Acc
             public double cram { get; set; }
 
             public double netpayable { get; set; }
+            public double penalty { get; set; }
 
-         
+
 
             public RptConOverAllPSummary()
             {

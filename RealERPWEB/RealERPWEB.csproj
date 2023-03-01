@@ -64,8 +64,9 @@
     <Reference Include="BilSimser.GeoJson">
       <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Reference\bin\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -241,11 +242,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Admin\Desktop\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
