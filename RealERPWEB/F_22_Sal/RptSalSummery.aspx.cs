@@ -437,7 +437,7 @@ namespace RealERPWEB.F_22_Sal
                 string pactcode = "18%";
 
                 DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , salesperson, "", "", "", "", "");
-                if (ds1 == null)
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
                     this.gvsalvscolltypeWise.DataSource = null;
                     this.gvsalvscolltypeWise.DataBind();
