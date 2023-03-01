@@ -64,6 +64,21 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+        .multiselect {
+            width: 300px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 300px !important;
+        }
+
+        .multiselect-container {
+            height: 350px !important;
+            width: 350px !important;
+            overflow-y: scroll !important;
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
@@ -89,7 +104,7 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">                        
-                        <div class="col-md-2">
+                        <div class="col-md-2" >
                             <div class="form-group">
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select">
@@ -97,6 +112,7 @@
                                 <asp:ListBox ID="lbProjectName" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple"></asp:ListBox>
                             </div>
                         </div>
+                        
                         <div class="col-md-2" id="salesteamdv" runat="server">
                             <div class="form-group">
                                 <label class="control-label" for="lblSalesTeam" id="lblSalesTeam" runat="server">Sales Team:</label>

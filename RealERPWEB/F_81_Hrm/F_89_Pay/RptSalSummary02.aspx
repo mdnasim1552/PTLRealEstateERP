@@ -465,6 +465,12 @@
                                                 <asp:Label ID="lgDeptNamecash" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refdesc")) %>'
                                                     Width="150px"></asp:Label>
+                                                              <asp:Label ID="lbldesigid" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desigid")) %>'
+                                                    Width="150px"></asp:Label>
+                                                   <asp:Label ID="lblrefno" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'
+                                                    Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -512,9 +518,16 @@
                                                 <asp:Label ID="lgvndesigcash" runat="server"
                                                     Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
                                                     Width="160px"></asp:Label>
+
+
                                                 <asp:Label ID="lblempname" runat="server" Visible="false"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                     Width="160px"></asp:Label>
+
+                                                          <asp:Label ID="lblempid" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' ></asp:Label>
+                                                        <asp:Label ID="lbldesig" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>' ></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -598,8 +611,8 @@
                                                 </table>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:CheckBox ID="chkMerge" runat="server" CssClass="input-control" Text="" />
-
+                                                <asp:CheckBox ID="chkMerge" runat="server" CssClass="input-control" Text=""  />
+                                                     <%--Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "iscehcked"))=="True" %>'--%>
                                             </ItemTemplate>
                                             <ItemStyle Width="30" />
                                         </asp:TemplateField>

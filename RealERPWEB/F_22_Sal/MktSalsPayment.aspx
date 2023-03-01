@@ -158,9 +158,9 @@
 
 
 
-            <div class="card card-fluid mt-0">
-                <div class="card-body">
-                    <div class="row">
+            <div class="card card-fluid mt-0 mb-0">
+                <div class="card-body mb-0">
+                    <div class="row mb-0">
                         <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Width="831px" CssClass=" table-striped table-bordered grvContentarea"
                             OnRowCancelingEdit="gvSpayment_RowCancelingEdit" OnRowDataBound="gvSpayment_RowDataBound"
@@ -459,8 +459,8 @@
 
 
                     </div>
-                    <div class="row mt-2">
-                        <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm primaryBtn pull-right">Back</asp:LinkButton>
+                    <div class="row mt-2 mb-0">
+                        <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm  pull-right">Back</asp:LinkButton>
                     </div>
                 </div>
 
@@ -476,7 +476,7 @@
                         <fieldset class="scheduler-border fieldset_B" runat="server" visible="false">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <asp:Label ID="lperInfo" runat="server" CssClass="btn btn-success primaryBtn" Text="Personal Information"></asp:Label>
+                                    <asp:Label ID="lperInfo" runat="server" CssClass="btn btn-success btn-sm" Text="Personal Information"></asp:Label>
                                     <asp:Label ID="lblwork" runat="server" Visible="False" Width="63px"></asp:Label>
                                     <asp:Label ID="lblCode" runat="server" Visible="False" Width="63px"></asp:Label>
                                     <asp:Label ID="lblvoucher" runat="server" Visible="False" Width="63px"></asp:Label>
@@ -551,7 +551,7 @@
 
                         </div>
                         <div class="row">
-                            <div class=" col-md-7">
+                            <div class=" col-md-7 mb-0">
 
                                 <asp:GridView ID="gvCost" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
                                     ShowFooter="True">
@@ -559,7 +559,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="10px"
+                                                <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="18px"
                                                     Style="text-align: center"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"
                                                     ForeColor="Black"></asp:Label>
@@ -568,7 +568,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvGcod" runat="server" Height="10px"
+                                                <asp:Label ID="lblgvGcod" runat="server" Height="18px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
                                                     Width="49px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
@@ -593,14 +593,14 @@
                                                 <asp:TextBox ID="txtgUnitnum" runat="server" AutoCompleteType="Disabled"
                                                     BackColor="Transparent" BorderStyle="None"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "munit")) %>'
-                                                    Width="50px" Font-Size="11px"></asp:TextBox>
+                                                    Width="50px" Font-Size="11px"  Height="18px"></asp:TextBox>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit Size">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvUSize" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Height="10px" Style="text-align: right"
+                                                    BorderStyle="None" Height="18px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px" Font-Size="11px"></asp:TextBox>
                                             </ItemTemplate>
@@ -618,7 +618,7 @@
                                             <ItemTemplate>
                                                 <asp:TextBox ID="lgvRate" runat="server" ForeColor="Black" BorderStyle="none" BackColor="Transparent"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "urate")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "urate")).ToString("#,##0.00;-#,##0.00; ") %>' Height="18px"
                                                     Width="90px"></asp:TextBox>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -636,7 +636,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvdiscount" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="10px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "disamt")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="60px"></asp:TextBox>
                                             </ItemTemplate>
@@ -653,7 +653,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvuamt" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="14px" Height="10px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="14px" Height="18px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uamt")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="100px"></asp:TextBox>
                                             </ItemTemplate>
@@ -665,7 +665,7 @@
 
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Height="10px" Style="text-align: left"
+                                                    BorderStyle="None" Height="18px" Style="text-align: left"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks"))%>'
                                                     Width="100px" Font-Size="11px"></asp:TextBox>
                                             </ItemTemplate>
@@ -680,7 +680,7 @@
                                     <HeaderStyle CssClass="grvHeaderNew" />
 
                                 </asp:GridView>
-                                <fieldset class="scheduler-border fieldset_B">
+                                <fieldset class="scheduler-border fieldset_B mb-0">
 
                                     <div class="form-horizontal">
                                         <div class="form-group">
@@ -694,13 +694,10 @@
                                             <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName"></asp:Label>
                                             <asp:Label ID="ldiscountp" runat="server" CssClass="lblTxt lblName"></asp:Label>
                                             <asp:Label ID="ldiscountt" runat="server" CssClass="lblTxt lblName" Width="100px"></asp:Label>
-
-                                            <div class="clearfix"></div>
+                                             <asp:Label ID="lblInword" runat="server" CssClass="lblTxt lblName" Style="width: 600px; color: blue; text-align: left;"></asp:Label>
                                         </div>
                                     </div>
-                                </fieldset>
-
-                                <asp:Label ID="lblInword" runat="server" CssClass="lblTxt lblName" Style="width: 600px; color: blue; text-align: left;"></asp:Label>
+                                </fieldset>                               
                             </div>
                             <div class=" col-md-4">
                                 <div class="form-group">
