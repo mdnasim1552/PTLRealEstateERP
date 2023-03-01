@@ -45,14 +45,13 @@ namespace RealERPWEB
 
                 this.getListModulename();
                 listComName_SelectedIndexChanged(null, null);
-
-                Session.Remove("tbllog1");
-
+                Session.Remove("tbllog1");                
                 //this.notice();
                 if ((Hashtable)Session["tblLogin"] == null)
                     return;
                 this.txtuserid.Text = ((Hashtable)Session["tblLogin"])["username"].ToString();
                 this.txtuserpass.Text = ((Hashtable)Session["tblLogin"])["password"].ToString();
+               
             }
             Session.Remove("tblLogin");
         }
