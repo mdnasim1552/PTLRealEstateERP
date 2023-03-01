@@ -106,28 +106,20 @@ namespace RealERPWEB.F_21_MKT
 
 
                 case "3348":// Credence .
-                            //this.gvSummary.Columns[13].Visible = false;
-                            //this.gvSummary.Columns[14].Visible = false;
-                            //this.gvSummary.Columns[15].Visible = false;
-                            //this.gvSummary.Columns[16].Visible = false;
-                            //this.gvSummary.Columns[17].Visible = false;
-                            //this.gvSummary.Columns[18].Visible = false;
-                            //this.gvSummary.Columns[19].Visible = false;
-
-
-                    this.gvSummary.Columns[13].Visible = false;
-                    this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[9].Visible = true;
+                          
                     this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[10].Visible = true;
                     this.gvSummary.Columns[15].Visible = false;
                     this.gvSummary.Columns[16].Visible = false;
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
                     this.gvSummary.Columns[19].Visible = false;
-                    this.gvSummary.Columns[20].Visible = true;
-                    this.gvSummary.Columns[21].Visible = false;
-                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[21].Visible = true;
+                    this.gvSummary.Columns[22].Visible = false;
                     this.gvSummary.Columns[23].Visible = true;
+                    this.gvSummary.Columns[24].Visible = true;
 
                     //Checkbox Permanent Delete
                     this.divPermntDel.Visible = false;
@@ -137,15 +129,13 @@ namespace RealERPWEB.F_21_MKT
                 case "3315"://Assure Builders
                 case "3316"://Assure Development
                     this.gvSummary.Columns[6].HeaderText = "Date";
-                    this.gvSummary.Columns[7].HeaderText = "Customer's Name";
+                    this.gvSummary.Columns[8].HeaderText = "Customer's Name";
                     this.gvSummary.Columns[5].Visible = true; // for pid show
                     // this.gvSummary.Columns[8].Visible = false;                
-                    this.gvSummary.Columns[9].Visible = false;
-                    this.gvSummary.Columns[10].Visible = true;
-                    this.gvSummary.Columns[11].Visible = false;
+                    this.gvSummary.Columns[11].Visible = false;                   
                     this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[22].Visible = false;
+                    this.gvSummary.Columns[13].Visible = false;                    
+                    this.gvSummary.Columns[23].Visible = false;
 
                     this.lnkBtnPotentialPros.Visible = false;
                     this.lnkBtnComments.Visible = false;
@@ -157,63 +147,65 @@ namespace RealERPWEB.F_21_MKT
 
 
                 case "3354"://Edison
-                    this.gvSummary.Columns[13].Visible = false;
-                    this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[9].Visible = true;
                     this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[10].Visible = true;
                     this.gvSummary.Columns[15].Visible = false;
                     this.gvSummary.Columns[16].Visible = false;
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
                     this.gvSummary.Columns[19].Visible = false;
-                    this.gvSummary.Columns[20].Visible = true;
-                    this.gvSummary.Columns[22].Visible = false;
-                    this.gvSummary.Columns[26].Visible = true;
+                    this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[21].Visible = true;
+                    this.gvSummary.Columns[23].Visible = false;
                     this.gvSummary.Columns[27].Visible = true;
                     this.gvSummary.Columns[28].Visible = true;
+                    this.gvSummary.Columns[29].Visible = true;
                     break;
 
                 case "3101"://PTL SHOW all Column
-                    this.gvSummary.Columns[13].Visible = true;
-                    this.gvSummary.Columns[12].Visible = true;
                     this.gvSummary.Columns[9].Visible = true;
-                    this.gvSummary.Columns[14].Visible = true;
+                    this.gvSummary.Columns[13].Visible = true;
+                    this.gvSummary.Columns[14].Visible = true;                   
                     this.gvSummary.Columns[15].Visible = true;
                     this.gvSummary.Columns[16].Visible = true;
                     this.gvSummary.Columns[17].Visible = true;
                     this.gvSummary.Columns[18].Visible = true;
                     this.gvSummary.Columns[19].Visible = true;
                     this.gvSummary.Columns[20].Visible = true;
-                    this.gvSummary.Columns[22].Visible = true;
-                    this.gvSummary.Columns[26].Visible = true;
+                    this.gvSummary.Columns[21].Visible = true;
+                    this.gvSummary.Columns[23].Visible = true;
+                    this.gvSummary.Columns[27].Visible = true;
                     break;
 
                 case "3367"://Epic
+                    
                     this.gvSummary.Columns[13].Visible = false;
-                    this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[9].Visible = true;
                     this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[10].Visible = true;
                     this.gvSummary.Columns[15].Visible = false;
                     this.gvSummary.Columns[16].Visible = false;
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
-                    this.gvSummary.Columns[19].Visible = true;
+                    this.gvSummary.Columns[19].Visible = false;
                     this.gvSummary.Columns[20].Visible = true;
-                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[21].Visible = true;
+                    this.gvSummary.Columns[23].Visible = true;
                     break;
 
                 default:
+                   
                     this.gvSummary.Columns[13].Visible = false;
-                    this.gvSummary.Columns[12].Visible = false;
-                    this.gvSummary.Columns[9].Visible = true;
                     this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[10].Visible = true;
                     this.gvSummary.Columns[15].Visible = false;
                     this.gvSummary.Columns[16].Visible = false;
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
-                    this.gvSummary.Columns[19].Visible = true;
-                    this.gvSummary.Columns[20].Visible = false;
-                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[21].Visible = false;
+                    this.gvSummary.Columns[23].Visible = true;
                     break;
 
 
@@ -859,7 +851,7 @@ namespace RealERPWEB.F_21_MKT
                         break;
 
                     //Main Source
-                    case "0302002":
+                    case "0302006":
                         dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         dv1.RowFilter = ("gcod like '29%'");
                         dt1 = dv1.ToTable();
