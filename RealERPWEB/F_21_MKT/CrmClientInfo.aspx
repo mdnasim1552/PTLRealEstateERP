@@ -2894,6 +2894,15 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Reassign Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvrassigndate" runat="server" Font-Size="11px" Width="70px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rassigndat"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+
                                                 <%--7--%>
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
