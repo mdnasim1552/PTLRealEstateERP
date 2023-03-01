@@ -1507,10 +1507,10 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["fappdat"] = Date;
                                 ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
                                 ds1.Tables[0].Rows[0]["fappseson"] = session;
-                                ds1.Tables[0].Rows[0]["secappid"] = sappusrid;
-                                ds1.Tables[0].Rows[0]["secappdat"] = sappDate;
-                                ds1.Tables[0].Rows[0]["secapptrmid"] = sapptrmnid;
-                                ds1.Tables[0].Rows[0]["secappseson"] = sappsession;
+                                ds1.Tables[0].Rows[0]["secappid"] = "";
+                                ds1.Tables[0].Rows[0]["secappdat"] = "";
+                                ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["secappseson"] = "";
                                 approval = ds1.GetXml();
                             }
                             break;
