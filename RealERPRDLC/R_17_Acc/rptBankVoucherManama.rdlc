@@ -547,7 +547,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!chequeno.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -849,14 +849,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox9">
+                        <Textbox Name="chequeno1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!chequeno.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -867,7 +867,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <rd:DefaultName>chequeno1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1907,7 +1907,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value xml:space="preserve"> </Value>
+                      <Value>Voucher No: </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -1951,7 +1951,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value xml:space="preserve"> </Value>
+                      <Value>Voucher Date :  </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>

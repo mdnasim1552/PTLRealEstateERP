@@ -102,7 +102,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint1";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3305":
                 case "3310":
                     //case "3311":          
@@ -162,7 +162,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3353":
                     vouprint = "VocherPrintManama";
                     break;
@@ -755,7 +755,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintLei";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3353":
                     vouprint = "VoucherPrintManama";
                     break;
@@ -797,7 +797,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintAngan";
                     break;
 
-                case "3101": // Bricks & Bridges Ltd
+                //case "3101": // Bricks & Bridges Ltd
                 case "1211": // Bricks & Bridges Ltd
                     vouprint = "VocherPrintBricksBridges";
                     break;
