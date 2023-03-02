@@ -1745,7 +1745,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Shop ">
+                                 <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvaptshop" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1777,7 +1777,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Shop">
+                                    <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvacshopqty" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1809,7 +1809,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Shop">
+                                   <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopsfall" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1842,7 +1842,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Shop">
+                                    <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopperontsale" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1923,7 +1923,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Shop">
+                                     <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopmoncollamt" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1957,7 +1957,7 @@
                                 </asp:TemplateField>
 
                                 
-                                <asp:TemplateField HeaderText="Shop">
+                                <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopacuatcollamt" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1989,7 +1989,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                  <asp:TemplateField HeaderText="Shop">
+                                  <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopcollsfall" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -2023,7 +2023,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Shop">
+                                   <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopperontcoll" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
