@@ -40,8 +40,10 @@ namespace RealERPWEB.F_17_Acc
                 var dtoday = System.DateTime.Today;
                 this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = new System.DateTime(dtoday.Year, dtoday.Month, 1).ToString("dd-MMM-yyyy");
-                this.DepartName();
-                this.EmployeeName();
+                this.GetProjectName();
+                this.UNitName();
+                this.Typecode();
+
             }
 
         }
@@ -63,28 +65,26 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        protected void ibtnFindSupply_OnClick(object sender, EventArgs e)
-        {
-            this.DepartName();
-        }
+        
 
 
-        private void DepartName()
+        private void GetProjectName ()
+        
         {
             string comcod = this.GetComeCode();
             string SrchSupplier = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "GETDEPARTEMTNAME", SrchSupplier, "", "", "", "", "", "", "", "");
-            this.ddlPrjName.DataTextField = "deptname";
-            this.ddlPrjName.DataValueField = "deptcode";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETPROJECTNAMESTD", SrchSupplier, "", "", "", "", "", "", "", "");
+            this.ddlPrjName.DataTextField = "pactdesc";
+            this.ddlPrjName.DataValueField = "pactcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
             this.ddlPrjName.DataBind();
             ViewState["tbldept"] = ds1.Tables[0];
         }
-        private void EmployeeName()
+        private void UNitName()
         {
             string comcod = this.GetComeCode();
-            string SrchSupplier = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "GETEMPLOYEENAME", SrchSupplier, "", "", "", "", "", "", "", "");
+            string pactcode = this.ddlPrjName.SelectedValue.ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETEMPLOYEENAME", pactcode, "", "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
@@ -97,19 +97,44 @@ namespace RealERPWEB.F_17_Acc
             ViewState["tblemp"] = ds1.Tables[0];
         }
 
+        private void Typecode()
+        {
+            string comcod = this.GetComeCode();
+         
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETTYPECODE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            this.ddlType.DataTextField = "spcfdesc";
+            this.ddlType.DataValueField = "spcfcod";
+            this.ddlType.DataSource = ds1.Tables[0];
+            this.ddlType.DataBind();
+           
+        }
+
+        protected void ddlPrjName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.UNitName();
+
+    }
+
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
 
             try
             {
-                Session.Remove("tblsupinfo");
+                Session.Remove("tblassociation");
                 string comcod = this.GetComeCode();
                 string frmdate = txtfrmdate.Text.ToString();
                 string todate = txttodate.Text.ToString();
-                string deptcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddlPrjName.SelectedValue.ToString() + "%";
-                string empcode = this.ddlUnit.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlUnit.SelectedValue.ToString() + "%";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTADVANCEDLOAN", frmdate, todate, deptcode, empcode, "", "", "", "", "");
+                string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "25%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+                string unitcodde = this.ddlUnit.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlUnit.SelectedValue.ToString() + "%";
+                string typecode = this.ddlType.SelectedValue.ToString();
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "RPTASSOCIATIONFEE", frmdate, todate, pactcode, unitcodde, typecode, "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvassociation.DataSource = null;
@@ -117,8 +142,8 @@ namespace RealERPWEB.F_17_Acc
                     return;
                 }
                 // Session["tblsupinfo"] = ds1.Tables[0];
-                Session["tbladvloan"] = HiddenSameData(ds1.Tables[0]);
-                this.DataBindGrid();
+                ViewState["tblassociation"] = ds1.Tables[0];   // HiddenSameData(ds1.Tables[0]);
+                this.Data_Bind();
             }
             catch (Exception ex)
             {
@@ -128,60 +153,60 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
-        private DataTable HiddenSameData(DataTable dt1)
+        //private DataTable HiddenSameData(DataTable dt1)
+        //{
+        //    if (dt1.Rows.Count == 0)
+        //        return dt1;
+        //    string actcode = dt1.Rows[0]["actcode"].ToString();
+        //    string deptcode = dt1.Rows[0]["spcfcode"].ToString();
+
+        //    for (int j = 1; j < dt1.Rows.Count; j++)
+        //    {
+        //        if (dt1.Rows[j]["actcode"].ToString() == actcode)
+        //        {
+        //            actcode = dt1.Rows[j]["actcode"].ToString();
+        //            dt1.Rows[j]["actdesc"] = "";
+
+        //            if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
+        //            {
+        //                deptcode = dt1.Rows[j]["spcfcode"].ToString();
+        //                dt1.Rows[j]["deptname"] = "";
+        //            }
+        //            else
+        //            {
+
+        //                deptcode = dt1.Rows[j]["spcfcode"].ToString();
+        //            }
+
+        //        }
+        //        else
+        //        {
+
+        //            actcode = dt1.Rows[j]["actcode"].ToString();
+
+        //            if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
+        //            {
+        //                deptcode = dt1.Rows[j]["spcfcode"].ToString();
+        //                dt1.Rows[j]["deptname"] = "";
+        //            }
+        //            else
+        //            {
+
+        //                deptcode = dt1.Rows[j]["spcfcode"].ToString();
+        //            }
+
+        //        }
+        //    }
+        //    return dt1;
+
+        //}
+
+        private void Data_Bind()
         {
-            if (dt1.Rows.Count == 0)
-                return dt1;
-            string actcode = dt1.Rows[0]["actcode"].ToString();
-            string deptcode = dt1.Rows[0]["spcfcode"].ToString();
-
-            for (int j = 1; j < dt1.Rows.Count; j++)
-            {
-                if (dt1.Rows[j]["actcode"].ToString() == actcode)
-                {
-                    actcode = dt1.Rows[j]["actcode"].ToString();
-                    dt1.Rows[j]["actdesc"] = "";
-
-                    if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
-                    {
-                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
-                        dt1.Rows[j]["deptname"] = "";
-                    }
-                    else
-                    {
-
-                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
-                    }
-
-                }
-                else
-                {
-
-                    actcode = dt1.Rows[j]["actcode"].ToString();
-
-                    if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
-                    {
-                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
-                        dt1.Rows[j]["deptname"] = "";
-                    }
-                    else
-                    {
-
-                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
-                    }
-
-                }
-            }
-            return dt1;
-
-        }
-
-        private void DataBindGrid()
-        {
-            // this.MultiView1.ActiveViewIndex = 0;
+           
             try
             {
-                DataTable dt = (DataTable)Session["tbladvloan"];
+                DataTable dt = (DataTable)ViewState["tblassociation"];
                 this.gvassociation.DataSource = dt;
                 this.gvassociation.DataBind();
                 if (dt.Rows.Count == 0)
@@ -193,8 +218,7 @@ namespace RealERPWEB.F_17_Acc
             {
 
             }
-            //Session["Report1"] = gvsupstatus;
-            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            
 
         }
         private void lnkPrint_Click(object sender, EventArgs e)
@@ -314,6 +338,8 @@ namespace RealERPWEB.F_17_Acc
 
             }
         }
+
+       
     }
 
 

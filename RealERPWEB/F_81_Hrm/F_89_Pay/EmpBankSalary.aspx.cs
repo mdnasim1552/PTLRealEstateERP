@@ -194,6 +194,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlBankName.DataValueField = "actcode";
             this.ddlBankName.DataSource = ds1.Tables[0];
             this.ddlBankName.DataBind();
+            Session["bnkinfo"] = ds1.Tables[0];
         }
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
@@ -862,20 +863,44 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void PrintBankStatementAngan()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
             this.checkedValue();
             DataTable dt = (DataTable)Session["tblbankpay"];
             DataView dv = dt.DefaultView;
+
             dv.RowFilter = ("saltrn='True'");
             dt = dv.ToTable();
             if (dt == null || dt.Rows.Count == 0)
                 return;
-            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            string bankcode = this.ddlBankName.SelectedValue.ToString().Trim();
+            DataTable dt2 = (DataTable)Session["bnkinfo"];
+
+            DataView dv2 = dt2.DefaultView;
+            dv2.RowFilter = ("actcode='"+bankcode+"'"); 
+            dt2 = dv2.ToTable();
+
+            string combankname = dt2.Rows[0]["acttdesc"].ToString();
+            string combankbranch = dt2.Rows[0]["actdescbn"].ToString();
+            string combankacc = dt2.Rows[0]["actdesc"].ToString();
+            string combankmail = dt2.Rows[0]["wodesc"].ToString();
+
+
+
+
+
+
+
+
             string comcod = this.GetComeCode();
             string comname = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+     
+
+
 
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
@@ -910,8 +935,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
-            //Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
-            Rpt1.SetParameters(new ReportParameter("rptBankName", "Bank Asia Limited"));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+
 
             Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
             Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
@@ -922,10 +947,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.SetParameters(new ReportParameter("valueDate", valueDate));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-
-
             Rpt1.SetParameters(new ReportParameter("bankAddress", bankAddress));
 
+            Rpt1.SetParameters(new ReportParameter("combankname", combankname));
+            Rpt1.SetParameters(new ReportParameter("combankbranch", combankbranch));
+            Rpt1.SetParameters(new ReportParameter("combankacc", combankacc));
+            Rpt1.SetParameters(new ReportParameter("combankmail", combankmail));
 
 
             //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
