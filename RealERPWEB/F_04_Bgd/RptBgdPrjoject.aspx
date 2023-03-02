@@ -2169,7 +2169,7 @@
                         
                               
                             </div>--%>
-                            <asp:GridView ID="BgdCostDet" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            <asp:GridView ID="gvBgdCostDet" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             
                                 ShowFooter="True" Width="630px">
                                 <RowStyle />
@@ -2188,7 +2188,7 @@
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")).Trim().Length>0 ? "<br>" : "") + 
                                                                           
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")): "")   %>'
-                                                Width="390px" OnClick="lnkgvActDescgrwisedet_Click"></asp:LinkButton>
+                                                Width="390px" OnClick="lnkgvBgdCostDet_Click"></asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
