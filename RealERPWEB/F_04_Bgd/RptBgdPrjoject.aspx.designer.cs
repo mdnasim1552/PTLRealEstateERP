@@ -825,12 +825,12 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.View MasterBgdCostDet;
 
         /// <summary>
-        /// BgdCostDet control.
+        /// gvBgdCostDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView BgdCostDet;
+        protected global::System.Web.UI.WebControls.GridView gvBgdCostDet;
     }
 }

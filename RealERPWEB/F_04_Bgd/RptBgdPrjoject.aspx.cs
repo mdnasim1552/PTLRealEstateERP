@@ -1093,8 +1093,8 @@ namespace RealERPWEB.F_04_Bgd
                     break;
 
                 case "MasterBgdCostDet":
-                    this.BgdCostDet.DataSource = (DataTable)Session["tblbgd"];
-                    this.BgdCostDet.DataBind();
+                    this.gvBgdCostDet.DataSource = (DataTable)Session["tblbgd"];
+                    this.gvBgdCostDet.DataBind();
                     //  this.FooterCalculation((DataTable)Session["tblbgd"]);
                     break;
 
@@ -2558,6 +2558,34 @@ namespace RealERPWEB.F_04_Bgd
             Session["tblbgd"] = this.HiddenSameData(dv.ToTable());
             this.Data_Bind();
         }
+
+
+        //protected void lnkgvBgdCostDet_Click(object sender, EventArgs e)
+        //{
+        //    int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+        //    string acgcode = ((DataTable)Session["tblbgd"]).Rows[index]["acgcode"].ToString();
+        //    DataTable dt = ((DataTable)Session["tblbgd"]);
+        //    DataView dv = new DataView();
+        //    dv = dt.DefaultView;
+        //    dv.RowFilter = ("rescode  like '%000' or rescode   like '%AAA'");
+        //    dt = dv.ToTable();
+
+        //    DataTable dtb = ((DataTable)Session["tblbbgd"]).Copy();
+        //    dv = dtb.DefaultView;
+        //    dv.RowFilter = ("acgcode='" + acgcode + "'");
+        //    dtb = dv.ToTable();
+        //    dt.Merge(dtb);
+
+
+
+        //    dv = dt.DefaultView;
+        //    dv.Sort = ("grp, acgcode");
+        //    DataTable dt1 = dv.ToTable();
+        //    Session["tblbgd"] = this.HiddenSameData(dv.ToTable());
+        //    this.Data_Bind();
+        //}
+
+
         protected void gvmatreq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
