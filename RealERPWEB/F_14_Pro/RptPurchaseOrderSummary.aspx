@@ -62,21 +62,21 @@
             <div class="card mt-4">
                 <div class="card-body pt-2 pb-2">
                     <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6">
                             <asp:Label ID="Label1" runat="server">From</asp:Label>
                             <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6">
                             <asp:Label ID="Label2" runat="server">To</asp:Label>
                             <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true"></asp:TextBox>
                             <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="col-lg-2 col-md-2 col-sm-6">
                             <asp:Label ID="Label4" runat="server">Projects</asp:Label>
                             <asp:DropDownList ID="ddlprjname" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 ">
+                        <div class="col-lg-2 col-md-2 col-sm-6 ">
                             <asp:Label ID="Label3" runat="server">Supplier</asp:Label>
                             <asp:DropDownList ID="ddlsupplierlist" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                         </div>
@@ -303,7 +303,7 @@
                                             <asp:TemplateField HeaderText="Order No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblorderno" runat="server" Width="110px"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno"))%>'
+                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
@@ -333,8 +333,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="MRRNO">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblmrrno" runat="server" Width="210px"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno"))%>'
+                                                    <asp:Label ID="lblmrrno" runat="server" Width="160px"
+                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno1"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
@@ -342,8 +342,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bill NO">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbillno" runat="server" Width="210px"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "billno"))%>'
+                                                    <asp:Label ID="lblbillno" runat="server" Width="160px"
+                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "billno1"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
