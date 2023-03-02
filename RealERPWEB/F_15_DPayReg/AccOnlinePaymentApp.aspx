@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccOnlinePaymentApp.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccOnlinePaymentApp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccOnlinePaymentApp.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccOnlinePaymentApp" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -41,38 +41,50 @@
         <ContentTemplate>
 
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card card-fluid mb-1 mt-2">
+                <div class="card-body">
                     <div class="row">
-                        <fieldset class="scheduler-border">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-4 pading5px">
-                                        <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
-                                        <asp:TextBox ID="txtpaymentdate" OnTextChanged="txtpaymentdate_TextChanged" AutoPostBack="True" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtpaymentdate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtpaymentdate"></cc1:CalendarExtender>
 
 
-                                        <asp:Label ID="lblSearch" runat="server" CssClass=" smLbl_to" Text="Search"></asp:Label>
-
-                                        <asp:TextBox ID="txtSearch" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
-
-
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn"
-                                            OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                                    </div>
-                                    <div class="col-md-3 pading5px pull-right">
-                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
-                                    </div>
-
-                                </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server"  Text="Date"></asp:Label>
+                                <asp:TextBox ID="txtpaymentdate" OnTextChanged="txtpaymentdate_TextChanged" AutoPostBack="True" AutoCompleteType="Disabled" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtpaymentdate_CalendarExtender" runat="server"
+                                    Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtpaymentdate"></cc1:CalendarExtender>
                             </div>
+
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label ID="lblSearch" runat="server"  Text="Search"></asp:Label>
+
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-1" style="margin-top:21px;">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary primaryBtn"
+                                OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            </div>
+                             
+                        </div>
+                        <div class="col-md-3 pading5px pull-right d-none">
+                            <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                        </div>
+
+
+
                     </div>
+                    </div>
+                </div>
+             <div class="card card-fluid mb-1 mt-2">
+                <div class="card-body">
                     <div class="row  table-responsive">
                         <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                            Width="782px" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            Width="782px" CssClass=" table-striped  table-bordered grvContentarea"
                             OnRowDataBound="gvPayment_RowDataBound" OnRowDeleting="gvPayment_RowDeleting">
                             <RowStyle />
                             <Columns>
@@ -98,7 +110,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lbgvslnubillm" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mslnum")) %>'
-                                            Width="60px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
@@ -107,7 +119,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lbgvslnum" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slnum")) %>'
-                                            Width="60px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
@@ -116,7 +128,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lbgvrcvdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "rcvdate")).ToString("dd-MMM-yyyy") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="90px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
@@ -124,7 +136,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lbgvUsrdesig" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrdesig")) %>'
-                                            Width="60px"></asp:Label>
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
@@ -170,7 +182,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Approved Amount">
                                     <FooterTemplate>
-                                        <asp:Label ID="lblFApamt" runat="server" ForeColor="Black"></asp:Label>
+                                        <asp:Label ID="lblFApamt" runat="server"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvAppramt" runat="server" BorderColor="#99CCFF" BackColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Size="11px" Style="text-align: right;"
@@ -204,7 +216,7 @@
                                 <asp:TemplateField HeaderText="Payment Date">
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn  btn-primary primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-sm  btn-primary primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
 
 
@@ -244,7 +256,7 @@
                                     </HeaderTemplate>
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnUpdate_Click">Approved</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lbtnUpdate_Click">Approved</asp:LinkButton>
 
                                     </FooterTemplate>
                                     <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
@@ -272,13 +284,15 @@
 
                             </Columns>
 
-                            <FooterStyle CssClass="grvFooter" />
-                            <EditRowStyle />
-                            <AlternatingRowStyle />
-                            <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeader" />
+                             <FooterStyle CssClass="grvFooterNew" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="" />
+                        <RowStyle CssClass="grvRowsNew" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
+
                     <div class="col-md-2 pading5px asitCol2 pull-right">
                         <asp:Label ID="lblbank" runat="server" Visible="false" Style="margin-left: -261px;" CssClass="lblTxt lblName" v
                             TabIndex="3">Bank Name :</asp:Label>
@@ -286,7 +300,10 @@
                         </asp:DropDownList>
 
                     </div>
-
+                    </div>
+                 </div>
+             <div class="card card-fluid mb-1 mt-2">
+                <div class="card-body">
                     <div class="row">
                         <asp:Panel ID="PanelNar" runat="server">
                             <div class="row">
@@ -298,23 +315,24 @@
                                 </div>
                             </div>
                         </asp:Panel>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <asp:Panel ID="PanelNote" runat="server" Visible="true">
+                            <div class="row">
 
-                        <asp:Panel ID="PanelNote" runat="server" Visible="true">
-                            <div class="form-group">
 
-
-                                <div class="col-sm-3 pading5px">
-                                    <asp:HyperLink ID="lbtnBankPos" runat="server" CssClass="btn btn-success primaryBtn" Visible="False" Target="_blank"
+                                <div class="col-md-12">
+                                    <asp:HyperLink ID="lbtnBankPos" runat="server" CssClass="btn btn-sm btn-success" Visible="False" Target="_blank"
                                         OnLoad="lbtnBankPos_Load"> Bank Position</asp:HyperLink>
-                                    <h3>Bank Position:</h3>
+                                    <asp:Label  runat="server" CssClass="btn btn-sm btn-success mb-3" >Bank Position:</asp:Label>
                                     <div class="clearfix"></div>
-                                    <div class="form-group">
+                                    
                                         <asp:Label ID="lblCl" runat="server" CssClass="lblTxt lblName" Text="Bank Balance"></asp:Label>
                                         <%-- <asp:Label ID="lblClAmt" runat="server" CssClass=" smLbl_to"></asp:Label>--%>
                                         <asp:HyperLink ID="Hyplnk" runat="server" ToolTip="Click Details bank position" CssClass="btn btn-danger btn-sm" NavigateUrl="~/F_17_Acc/AccTrialBalance.aspx?Type=BankPosition&comcod=&Date1=&Date2=" Target="_blank"></asp:HyperLink>
 
                                         <div class="clearfix"></div>
-                                    </div>
+                                    
 
                                     <%--                                    <asp:Panel ID="bankpso" Visible="false" runat="server">
                                         <div class="form-group">
@@ -341,6 +359,9 @@
 
 
                         </asp:Panel>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
