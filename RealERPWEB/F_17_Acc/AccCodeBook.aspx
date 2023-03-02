@@ -380,7 +380,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ref Id" HeaderStyle-Width="60px">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvShortDesc" runat="server" CssClass="form-control inputTxt" MaxLength="20"
+                                        <asp:TextBox ID="txtgvShortDesc" runat="server" CssClass="form-control inputTxt" MaxLength="30"
                                             Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "wodesc")) %>'></asp:TextBox>
                                     </EditItemTemplate>
