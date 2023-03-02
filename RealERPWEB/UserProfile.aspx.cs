@@ -462,6 +462,17 @@ namespace RealERPWEB
                 this.divUnitMetric.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
+            //IR Lead Details
+            if (ds1 == null || ds1.Tables[9].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[9];
+                this.divIRdet.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
+
         }
 
         private void getForm()

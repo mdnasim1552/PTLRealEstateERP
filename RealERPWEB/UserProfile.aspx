@@ -523,6 +523,8 @@
   <div class="dropdown-menu">r
    <a class="dropdown-item"  data-toggle="tab" href="#tabUnitMetric" runat="server">Uniting Metric Presentation</a>
    <a class="dropdown-item"  data-toggle="tab" href="#tabUmTrack" runat="server">UM-Tracker</a>
+    <a class="dropdown-item"  data-toggle="tab" href="#tabIRdet" runat="server">IR Lead Details</a>
+
    <a class="dropdown-item"  data-toggle="tab" href="#tabIncentive" runat="server">Incentive Policy</a>
    <a class="dropdown-item"  data-toggle="tab" href="#tabSalesSupport" runat="server">Commerce Associate</a>
   </div>
@@ -1897,6 +1899,24 @@
                                 <div class="card-body">
                                     <h5 class="text-center">UM-Tracker</h5>
                                     <div runat="server" class="text-center" id="divUmTrack">
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                                            <div class="tab-pane fade" id="tabIRdet">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <h5 class="text-center">IR Lead Details</h5>
+                                    <div runat="server" class="text-center" id="divIRdet">
                                     </div>
 
                                 </div>
