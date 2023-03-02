@@ -412,10 +412,12 @@ namespace RealEntity.C_23_CRR
          public string refno { get; set; }
          public string bookno { get; set; }
          public string schdate { get; set; }
+         public Boolean nillstatus { get; set; }
          public double schamt { get; set; }
          public string paiddate { get; set; }
          public double paidamt { get; set; }
          public double advamt { get; set; }
+         
             public PaymentStatus() { }
      }
 
