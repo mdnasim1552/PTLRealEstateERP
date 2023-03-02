@@ -590,11 +590,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                 }
-
-                Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
-                Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
-                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
+              
                 if (comcod == "2325" || comcod == "3325" || comcod == "3355")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, "", Posteddat, compname, username, printdate, "")));
@@ -605,6 +601,19 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                     Rpt1.SetParameters(new ReportParameter("voutype", VouType));
                 }
+
+                if(comcod == "3353")
+                {
+                    Rpt1.SetParameters(new ReportParameter("venar",  venar));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                }
+               
+
+                Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
