@@ -357,8 +357,9 @@ namespace RealERPWEB.F_22_Sal
                     //resListMulti = "";
                     foreach (ListItem item in lbProjectName.Items)
                     {
-                       resListMulti += item.Value;
-                        
+                        if(item.Value!= "000000000000")
+                          resListMulti += item.Value;
+
                     }
                 }
                 else
@@ -367,11 +368,12 @@ namespace RealERPWEB.F_22_Sal
                     {
                         if (item.Selected)
                         {
-                            resListMulti += item.Value;
+                            if (item.Value != "000000000000")
+                                resListMulti += item.Value;
                         }
                     }
                 }
-                    
+
 
 
                 if (type=="LandO")

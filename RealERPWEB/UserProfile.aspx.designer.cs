@@ -627,6 +627,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUmTrack;
 
         /// <summary>
+        /// divIRdet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divIRdet;
+
+        /// <summary>
         /// divIncentive control.
         /// </summary>
         /// <remarks>

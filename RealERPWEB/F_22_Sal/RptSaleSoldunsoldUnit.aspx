@@ -36,8 +36,7 @@
                     includeSelectAllOption: true,
 
                     enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-                    //$('.chzn-select').chosen({ search_contains: true });
+                    
                 });
             });
           
@@ -65,13 +64,13 @@
             line-height: 28px !important;
         }
         .multiselect {
-            width: 300px !important;
+            width: 220px !important;
             text-wrap: initial !important;
             height: 27px !important;
         }
 
         .multiselect-text {
-            width: 300px !important;
+            width: 220px !important;
         }
 
         .multiselect-container {
