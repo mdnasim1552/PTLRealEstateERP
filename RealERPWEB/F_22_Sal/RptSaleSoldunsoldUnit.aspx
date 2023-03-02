@@ -36,8 +36,7 @@
                     includeSelectAllOption: true,
 
                     enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-                    //$('.chzn-select').chosen({ search_contains: true });
+                    
                 });
             });
           
