@@ -1907,7 +1907,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Voucher No: </Value>
+                      <Value xml:space="preserve"> </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -1951,7 +1951,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Voucher Date :  </Value>
+                      <Value xml:space="preserve">  </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
