@@ -1156,7 +1156,7 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:CommandField ShowDeleteButton="True" DeleteText="" />
+                                        <asp:CommandField ShowDeleteButton="True" DeleteText="Delete" />
                                         <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvEmpId" runat="server"
