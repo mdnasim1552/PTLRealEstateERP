@@ -1542,7 +1542,9 @@ namespace RealEntity.C_22_Sal
             public string flr { get; set; }
             public string recndt { get; set; }
             public string usrname { get; set; }
-            
+            public string digsign { get; set; }
+
+
             public CustomerMoneyrecipt()
             {
             }
