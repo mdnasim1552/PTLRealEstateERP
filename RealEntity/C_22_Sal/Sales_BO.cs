@@ -1329,6 +1329,7 @@ namespace RealEntity.C_22_Sal
             public string usircode { get; set; }
             public double tuamt { get; set; }
             public double suamt { get; set; }
+            public double tcamt { get; set; }
             public double disamt { get; set; }
             public double disper { get; set; }
             public string munit { get; set; }
