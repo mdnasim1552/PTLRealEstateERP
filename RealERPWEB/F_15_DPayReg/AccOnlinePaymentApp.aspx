@@ -216,7 +216,7 @@
                                 <asp:TemplateField HeaderText="Payment Date">
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-sm  btn-primary primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-sm  btn-success primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                     </FooterTemplate>
 
 
