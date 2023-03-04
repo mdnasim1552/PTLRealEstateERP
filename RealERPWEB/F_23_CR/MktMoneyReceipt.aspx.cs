@@ -162,11 +162,12 @@ namespace RealERPWEB.F_23_CR
                 case "3306":
                 case "3309":
                 case "3310":
-                case "3311":
-
-                // case "3101":
+                case "3311":              
                 case "3333":
                 case "3339":
+                case "3351"://Wecon
+                case "3352"://360
+                case "1205"://p2p Engineering
                     this.ddlRecType.Visible = true;
                     this.lblRecType.Visible = true;
                     break;
