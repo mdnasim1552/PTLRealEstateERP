@@ -224,6 +224,9 @@ namespace RealERPWEB.F_14_Pro
                 case "3370": // 
                     PrintReq = "PrintBillCPDL";
                     break;
+                case "3374": // 
+                    PrintReq = "PrintBillCPDL";
+                    break;
 
                 default:
                     PrintReq = "PrintBill05";
@@ -277,6 +280,8 @@ namespace RealERPWEB.F_14_Pro
             else if (printcomreq == "PrintBillCPDL")
                 this.PrintBillCPDL();
 
+            else if (printcomreq == "PrintBillCPDL")
+                this.PrintBillCPDL();
             else
                 this.PrintBill02();
         }

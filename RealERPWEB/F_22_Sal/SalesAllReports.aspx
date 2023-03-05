@@ -578,7 +578,7 @@
                         </asp:View>
                         <asp:View ID="ViewCollectionStatement" runat="server">
                             <asp:GridView ID="gvCollectionStatement" runat="server" AutoGenerateColumns="False" 
-                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCollectionStatement_RowDataBound">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.">

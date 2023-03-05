@@ -685,5 +685,67 @@ namespace RealERPWEB.F_22_Sal
         {
             this.GetCustomerName();
         }
+
+        protected void gvCollectionStatement_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lgvopamt = (Label)e.Row.FindControl("lgvopamt");
+                Label lgvtdwpay = (Label)e.Row.FindControl("lgvtdwpay");
+                Label lgvinstpay = (Label)e.Row.FindControl("lgvinstpay");
+                Label lgvtolam = (Label)e.Row.FindControl("lgvtolam");
+                Label lgvunit = (Label)e.Row.FindControl("lgvunit");
+              
+
+
+
+
+                string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString().Trim();
+         
+
+               
+
+
+                if (usircode == "51AAAAAAAAAA")
+                {
+
+
+                    lgvopamt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvtdwpay.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvinstpay.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvtolam.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvunit.Attributes["style"] = "font-weight:bold; color:Navy;";
+
+
+
+
+                    lgvunit.Style.Add("text-align", "right");
+
+                }
+                if (usircode == "51AAAAAABBBB")
+                {
+
+
+
+                    lgvopamt.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvtdwpay.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvinstpay.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvtolam.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvunit.Attributes["style"] = "font-weight:bold; color:black;";
+
+
+
+                    lgvunit.Style.Add("text-align", "right");
+
+                }
+
+
+              
+
+
+
+            }
+        }
     }
 }
