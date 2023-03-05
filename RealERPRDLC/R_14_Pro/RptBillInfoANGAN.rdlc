@@ -1806,7 +1806,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.04756in</Top>
             <Left>0.00486in</Left>
-            <Height>1.27189in</Height>
+            <Height>1.2719in</Height>
             <Width>3.09097in</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -2366,7 +2366,7 @@
             <Top>0.11006in</Top>
             <Left>4.92172in</Left>
             <Height>0.97501in</Height>
-            <Width>2.71144in</Width>
+            <Width>2.71145in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -2593,7 +2593,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Req Input</Value>
+                      <Value>Received By</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -2631,7 +2631,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!ftReqIn.Value</Value>
+                      <Value>=Parameters!ftRecvby.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -2666,7 +2666,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Req Approved</Value>
+                      <Value>Supply Chain</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -2899,7 +2899,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Received By</Value>
+                      <Value />
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -2937,7 +2937,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!ftRecvby.Value</Value>
+                      <Value />
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
