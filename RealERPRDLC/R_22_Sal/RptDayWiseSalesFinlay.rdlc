@@ -117,10 +117,10 @@
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.50334in</Width>
+                  <Width>0.61792in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.52083in</Width>
+                  <Width>0.64583in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.18416in</Width>
@@ -133,9 +133,6 @@
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.79167in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.10668in</Width>
@@ -541,10 +538,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.82812in</Width>
+                                <Width>1.07291in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.03646in</Width>
+                                <Width>0.79167in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -706,72 +703,14 @@
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Total</Value>
-                                  <Style>
-                                    <FontStyle>Normal</FontStyle>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <TextDecoration>None</TextDecoration>
-                                    <Color>#000000</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Collection</Value>
-                                  <Style>
-                                    <FontStyle>Normal</FontStyle>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <TextDecoration>None</TextDecoration>
-                                    <Color>#000000</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Tablix Name="Tablix2">
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.89835in</Width>
+                                <Width>1.10668in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.78125in</Width>
+                                <Width>0.57292in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1317,45 +1256,6 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="tuamt1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!tuamt.Value,"#,##0.00;(#,##0.00); ")</Value>
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>=IIF(Fields!pactcode.Value="18AAAAAAAAAA","Bold",
-IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>tuamt1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <rd:Selected>true</rd:Selected>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="disamt1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1446,7 +1346,6 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1463,7 +1362,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.6875in</Height>
-            <Width>11.41293in</Width>
+            <Width>10.65251in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1474,7 +1373,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
         <Height>0.70417in</Height>
         <Style />
       </Body>
-      <Width>11.44418in</Width>
+      <Width>11.0796in</Width>
       <Page>
         <PageHeader>
           <Height>1.04042in</Height>
@@ -1742,6 +1641,7 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0in</Top>
               <Left>7.68562in</Left>
               <Height>0.21667in</Height>
               <Width>3.34563in</Width>
@@ -1765,8 +1665,8 @@ IIF(Fields!pactcode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.07in</LeftMargin>
-        <RightMargin>0.07in</RightMargin>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
         <Style />
