@@ -364,7 +364,7 @@ namespace RealERPWEB.F_21_MKT
                 string userrole = hst["userrole"].ToString();
                 if (empid == "" && userrole != "1")
                 {
-                    string Messaged = "User ID did not set Employee ID, please contact your supervisor";
+                    string Messaged = "Please add employee id in the user permission! Thank you.";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                     return;
                 }

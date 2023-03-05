@@ -3070,7 +3070,9 @@
                                                 <asp:TemplateField HeaderText="Source">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvLSrc" runat="server" Width="100px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname"))=="" ?"": "(" + Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname")) + ")")
+                                                                
+                                                            %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--21--%>
