@@ -704,6 +704,9 @@ namespace RealERPWEB.F_24_CC
             string uDesc = (string) Session["udesc"];
 
             DataTable dt = (DataTable)Session["tbladwork"];
+            if (dt == null)
+                return;
+            
             //DataTable dt1 = (DataTable)Session["tbltaddwork"];
 
 
