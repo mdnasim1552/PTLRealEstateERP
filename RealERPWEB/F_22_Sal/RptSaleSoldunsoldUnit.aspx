@@ -807,14 +807,14 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Total Collection">
+                                            <asp:TemplateField HeaderText="Total Collection" Visible="false"  runat="server">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvcostAmt" runat="server"
+                                                    <asp:Label ID="lgvcollAmt" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcamt")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="70px" Style="text-align: right"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lgvFDcostAmt" runat="server" Font-Bold="True"
+                                                    <asp:Label ID="lgvFCollAmt" runat="server" Font-Bold="True"
                                                         Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
