@@ -27,6 +27,19 @@
 
             var gvCollectionStatement = $('#<%=this.gvCollectionStatement.ClientID %>');
             gvCollectionStatement.Scrollable();
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "{{ __('No results found') }}";
+                        }
+                    }
+                });
+            });
             
         }
 
@@ -102,12 +115,19 @@
 
                         </div>
 
-                              <div class="col-md-2 mt-2">
+                              <div class="col-md-2 mt-2"  visible="false"  ID="clsprjname" runat="server">
                             <div class="from-group">
                                 <asp:Label ID="prjName" runat="server" CssClass="form-label">Project Name </asp:Label>
                                 <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:200px" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
+                        <div class="col-md-3  mt-2" visible="false"  ID="clsprjnamemul" runat="server">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblproj" runat="server" Text="Project Name"></asp:Label>
+                                        <asp:ListBox ID="listproj" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="listproj_SelectedIndexChanged"></asp:ListBox>
+                                    </div>
+
+                                </div>
                        <div class="col-md-2 mt-2" runat="server" visible="false" id="clcust">
                            <div class="form-group">
                               <%--  <asp:Label ID="Label6" runat="server" CssClass="control-label"></asp:Label>--%>
@@ -598,7 +618,10 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc"))%>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-
+                                          <FooterTemplate>
+                                                    <asp:Label ID="lgvunamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="35px">Total</asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -609,7 +632,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opnam")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
-
+                                         <FooterTemplate>
+                                                    <asp:Label ID="lgvOpamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="80px"></asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -620,6 +646,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curbkam")).ToString("#,##0;(#,##0); ")%>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                                    <asp:Label ID="lgvDpamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="80px"></asp:Label>
+                                                </FooterTemplate>
 
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -631,7 +661,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curinsam")).ToString("#,##0;(#,##0); ")%>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
-
+                                         <FooterTemplate>
+                                                    <asp:Label ID="lgvIPamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="75px"></asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -644,7 +677,7 @@
                                         </ItemTemplate>
                                             <FooterTemplate>
 
-                                            <asp:Label runat="server" ID="lgvtotamt"></asp:Label>
+                                            <asp:Label runat="server" ID="lgvtotamt" Width="80px"></asp:Label>
 
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
