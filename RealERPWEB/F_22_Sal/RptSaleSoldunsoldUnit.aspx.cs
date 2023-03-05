@@ -221,7 +221,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
+            string comcod = GetComocd();
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
             {
@@ -238,6 +238,10 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "LandO":
                 case "RptDayWSale":
+                    if (comcod == "3370")
+                    {
+                        gvDayWSale.Columns[11].Visible = true;
+                    }
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
                     this.lblSalesTeam.Visible = true;
@@ -552,6 +556,8 @@ namespace RealERPWEB.F_22_Sal
                                     0 : dt2.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDDisAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(disamt)", "")) ?
                                     0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFCollAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tcamt)", "")) ?
+                                    0 : dt2.Compute("sum(tcamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 
                 case "uwiseCosting":

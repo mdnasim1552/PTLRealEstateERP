@@ -201,15 +201,7 @@
                                                     Width="90px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Win">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvwindate" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "win"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "win")) %>'
-                                                    Width="90px" ForeColor="Black"></asp:Label>
-                                            </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>                                        
+                                        </asp:TemplateField>                                                                             
                                         <asp:TemplateField HeaderText="Hold Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvholddate" runat="server" Height="16px"
@@ -226,6 +218,14 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Win">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvwindate" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "win"))=="01-Jan-1900" ? "" :  Convert.ToString(DataBinder.Eval(Container.DataItem, "win")) %>'
+                                                    Width="90px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>   
                                         <asp:TemplateField HeaderText="Last Status">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvlstatus" runat="server" Height="16px"

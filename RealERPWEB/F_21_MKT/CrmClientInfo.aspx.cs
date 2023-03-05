@@ -5451,6 +5451,7 @@ namespace RealERPWEB.F_21_MKT
 
             //DataView dv1;
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
             string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
             string pcomcod = "";
             DropDownList ddlcomp, ddlgval, ddlUnit, ddlVisitor, ddlgval1, ddlgval2, ddlgval3;
@@ -5504,7 +5505,7 @@ namespace RealERPWEB.F_21_MKT
 
                         if (this.lblgeneratedate.Value.Length > 0)
                         {
-                            string comcod = this.GetComeCode();
+                            
                             AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
 
                             DataSet copSetup = compUtility.GetCompUtility();
@@ -5793,6 +5794,10 @@ namespace RealERPWEB.F_21_MKT
                             for (int p = 0; p < ChkBoxLstStatus.Items.Count; p++)
                             {
                                 if (p < index)
+                                {
+                                    ChkBoxLstStatus.Items[p].Enabled = false;
+                                }
+                                if (lstleadstatus == "9501002" && p == 6 && comcod == "3354")
                                 {
                                     ChkBoxLstStatus.Items[p].Enabled = false;
                                 }
