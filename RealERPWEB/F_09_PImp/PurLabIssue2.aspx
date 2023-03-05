@@ -5,6 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <style>
         .multiselect {
             width: 150px !important;
@@ -58,11 +60,18 @@
             });
 
             $(function () {
-                //$('[id*=DropCheck1]').multiselect({
-                //    includeSelectAllOption: true
-                //});
-
+                $('[id*=DropCheck1]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
+                });
             });
+
+            //$(function () {
+            //    $('[id*=DropCheck1]').multiselect({
+            //        includeSelectAllOption: true
+            //    });
+
+            //});
             $('.select2').each(function () {
                 var select = $(this);
                 select.select2({
@@ -260,12 +269,28 @@
                                     </asp:DropDownList>
                                 </div>
 
-
+                                
                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                    <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
+                                          <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control"  SelectionMode="Multiple"></asp:ListBox>
+
+                                </div>
+                                </div>
+
+<%--                                <div class="col-md-4">
                                     <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
                                     <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple"></asp:ListBox>
 
-                                </div>
+                                </div>--%>
+
+                     <%--                  <div class="col-md-3 pl-0">
+
+                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+                                </div>--%>
+
+
                                 <div class="col-md-1" style="margin-top: 22px">
                                     <asp:LinkButton ID="lbtnSelect" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-sm btn-primary"
                                         TabIndex="17">Select</asp:LinkButton>
