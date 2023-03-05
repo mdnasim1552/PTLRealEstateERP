@@ -552,6 +552,8 @@ namespace RealERPWEB.F_22_Sal
                                     0 : dt2.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDDisAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(disamt)", "")) ?
                                     0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDcostAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tcamt)", "")) ?
+                                    0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 
                 case "uwiseCosting":

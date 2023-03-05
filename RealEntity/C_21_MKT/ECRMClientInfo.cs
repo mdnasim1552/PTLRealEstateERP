@@ -126,6 +126,8 @@ namespace RealEntity.C_21_Mkt
             public string qualifiedlead { get; set; }
             public string negotiation { get; set; }
             public string finalnegotiation { get; set; }
+            public string holddate { get; set; }
+            public string lostdate { get; set; }
             public string win { get; set; }
             public string lstatus { get; set; }
             public RptLeadStatusTimestamp() { }
