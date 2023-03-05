@@ -208,6 +208,7 @@ namespace RealERPWEB.F_22_Sal
             this.listproj.DataValueField = "pactcode";
             this.listproj.DataSource = ds1.Tables[0];
             this.listproj.DataBind();
+            ds1.Dispose();
 
 
         }
