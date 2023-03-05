@@ -404,6 +404,10 @@
           <DataField>wd</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="wjd">
+          <DataField>wjd</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="wld">
           <DataField>wld</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -1261,7 +1265,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!wd.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!wjd.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -3886,7 +3890,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
