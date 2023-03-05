@@ -357,8 +357,9 @@ namespace RealERPWEB.F_22_Sal
                     //resListMulti = "";
                     foreach (ListItem item in lbProjectName.Items)
                     {
-                       resListMulti += item.Value;
-                        
+                        if(item.Value!= "000000000000")
+                          resListMulti += item.Value;
+
                     }
                 }
                 else
@@ -367,11 +368,12 @@ namespace RealERPWEB.F_22_Sal
                     {
                         if (item.Selected)
                         {
-                            resListMulti += item.Value;
+                            if (item.Value != "000000000000")
+                                resListMulti += item.Value;
                         }
                     }
                 }
-                    
+
 
 
                 if (type=="LandO")
@@ -549,6 +551,8 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDSAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(suamt)", "")) ?
                                     0 : dt2.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDDisAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(disamt)", "")) ?
+                                    0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDcostAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tcamt)", "")) ?
                                     0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 

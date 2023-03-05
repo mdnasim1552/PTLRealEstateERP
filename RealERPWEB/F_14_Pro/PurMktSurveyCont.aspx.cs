@@ -241,10 +241,14 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvMSRInfo_DataBind()
         {
-            DataTable dt = (DataTable)Session["tblt02"];
 
-            dt.DefaultView.Sort = "rsircode ASC, flrcod ASC";
-            dt = dt.DefaultView.ToTable();
+            // Sort then bind
+            DataTable dt = (DataTable)Session["tblt02"];
+            DataView dv = dt.DefaultView;
+            dv.Sort = ("rsircode asc");         
+            dt = dv.ToTable();
+            Session["tblt02"] = dt;
+
 
             this.gvMSRInfo2.DataSource = dt;
             this.gvMSRInfo2.DataBind();
@@ -794,6 +798,7 @@ namespace RealERPWEB.F_14_Pro
             string txtsign2 = "";
             string txtsign3 = "";
             string recomsup = ds1.Tables[2].Rows[0]["rcmsupdesc"].ToString();
+            string rmrks = ds1.Tables[3].Rows[0]["rmrks"].ToString();
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -866,6 +871,8 @@ namespace RealERPWEB.F_14_Pro
                     i++;
 
                 }
+                Rpt1.SetParameters(new ReportParameter("rmrks", rmrks));
+
             }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -1351,9 +1358,9 @@ namespace RealERPWEB.F_14_Pro
                 }
                 rsircode = dt1.Rows[j]["rsircode"].ToString();
             }
-            DataView dv = dt1.DefaultView;
-            dv.Sort = ("rsircode");
-            dt1 = dv.ToTable();
+            //DataView dv = dt1.DefaultView;
+            //dv.Sort = ("rsircode");
+            //dt1 = dv.ToTable();
             return dt1;
         }
 
@@ -1745,8 +1752,8 @@ namespace RealERPWEB.F_14_Pro
             try
             {
                 DataTable tbl1 = (DataTable)Session["tblt02"];
-                tbl1.DefaultView.Sort = "rsircode ASC, flrcod ASC";
-                tbl1 = tbl1.DefaultView.ToTable();
+                //tbl1.DefaultView.Sort = "rsircode ASC, flrcod ASC";
+                //tbl1 = tbl1.DefaultView.ToTable();
 
                 string Rescode = "";
                 double ResQty = 0;
