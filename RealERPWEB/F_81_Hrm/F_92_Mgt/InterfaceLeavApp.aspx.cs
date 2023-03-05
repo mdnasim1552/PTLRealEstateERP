@@ -519,9 +519,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string urefno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
+
+
+                string mgtusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mgtusid")).ToString().Trim();
+   
                 switch (comcod)
                 {
                     case "3348": //Credence
+                        break;
+                    case "3374":
+                        if (usrid == mgtusid)
+                        {
+                            hlink3.Visible = true;
+                        }
+                        else
+                        {
+                            hlink3.Visible = false;
+                        }
                         break;
                     default:
                         //DataRow[] dr1 = dt.Select("usrid='" + usrid + "' and centrid='" + refno + "'");
