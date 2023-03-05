@@ -913,6 +913,7 @@
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDayWiseSalesFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptLetterOfAllotmentCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAngan - Copy.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAngan.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMonthlySalesBudget.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCollectionSt.rdlc" />

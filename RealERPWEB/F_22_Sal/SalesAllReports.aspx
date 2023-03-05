@@ -620,7 +620,7 @@
                                         </ItemTemplate>
                                           <FooterTemplate>
                                                     <asp:Label ID="lgvunamt" runat="server" Font-Bold="True"
-                                                         Style="text-align: right" Width="35px">Total</asp:Label>
+                                                         Style="text-align: right" Width="35px"></asp:Label>
                                                 </FooterTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

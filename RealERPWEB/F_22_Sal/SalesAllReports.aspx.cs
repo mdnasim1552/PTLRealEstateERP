@@ -489,7 +489,7 @@ namespace RealERPWEB.F_22_Sal
                     this.gvCollectionStatement.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvCollectionStatement.DataSource = dt;
                     this.gvCollectionStatement.DataBind();
-                    this.FooterCal();
+                   
                    
                     //this.FooterCal();                   
                     break;
