@@ -826,6 +826,11 @@ namespace RealERPWEB.F_12_Inv
             if (ds1 == null)
                 return;
 
+            this.ddlQCParamList.DataTextField = "prgdesc";
+            this.ddlQCParamList.DataValueField = "prgcod";
+            this.ddlQCParamList.DataSource = ds1.Tables[2];
+            this.ddlQCParamList.DataBind();
+
 
 
             ViewState["tblMRR"] = this.HiddenSameData(ds1.Tables[0]);
@@ -898,6 +903,8 @@ namespace RealERPWEB.F_12_Inv
             this.txtChalanNo.Text = ds1.Tables[1].Rows[0]["chlnno"].ToString();
             this.txtQc.Text = ds1.Tables[1].Rows[0]["qcno"].ToString();
             this.txtChaDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["challandat"]).ToString("dd.MM.yyyy");
+            this.ddlQCParamList.SelectedValue = ds1.Tables[1].Rows[0]["qcp"].ToString();
+
             this.gvMRRInfo_DataBind();
         }
 
@@ -1281,7 +1288,7 @@ namespace RealERPWEB.F_12_Inv
             string chldate = this.txtChaDate.Text.Trim();
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
-
+            string mQcp = this.ddlQCParamList.SelectedValue.ToString();
 
 
 
@@ -1428,8 +1435,10 @@ namespace RealERPWEB.F_12_Inv
             string appxml = tbl1.Rows[0]["approval"].ToString();
             string Approval = this.GetReqApproval(appxml);
 
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
-                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval);
+            bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
+                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, 
+                             mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, 
+                             Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval, mQcp);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
