@@ -263,7 +263,7 @@
                                     <asp:TemplateField HeaderText="Status of D/P">
                                            <FooterTemplate>
                                                     <asp:Label ID="lblFstatus" runat="server" Font-Bold="True" Font-Size="12px" 
-                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                                        ForeColor="#000" Style="text-align: right">Grand Total:</asp:Label>
                                          </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvstatus" runat="server" style="margin-left:10px"
@@ -272,7 +272,7 @@
                                         </ItemTemplate>
                                            <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
-                                         <FooterStyle HorizontalAlign="Center" />
+                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
 
