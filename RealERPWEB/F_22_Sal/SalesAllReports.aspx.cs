@@ -43,6 +43,7 @@ namespace RealERPWEB.F_22_Sal
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.GetProjectName();
+                this.GetProjectNamemulti();
                 this.ddlReport_SelectedIndexChanged(null, null);
 
 
@@ -76,6 +77,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
+                    this.clsprjname.Visible = true;
+                    this.clsprjnamemul.Visible = true;
                     break;
 
                 case "PrjCollTilldate":
@@ -86,6 +89,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
+                    this.clsprjname.Visible = true;
+                    this.clsprjnamemul.Visible = true;
                     break;
 
                 case "PaymentStatus":
@@ -96,6 +101,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = true;
                     this.clcust.Visible = true;
                     this.grpid.Visible = false;
+                    this.clsprjname.Visible = true;
+                    this.clsprjnamemul.Visible = true;
                     break;
 
                 case "SoldUnSoldUnit":
@@ -107,6 +114,8 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = false;
                     this.grpid.Visible = true;
                     this.GetGroup();
+                    this.clsprjname.Visible = true;
+                    this.clsprjnamemul.Visible = true;
 
 
 
@@ -122,6 +131,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
                     break;
 
 
@@ -136,6 +147,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
+                    this.clsprjname.Visible = true;
+                    this.clsprjnamemul.Visible = false;
                     break;
             }
         }
@@ -182,6 +195,20 @@ namespace RealERPWEB.F_22_Sal
             this.ddlPrjName.DataValueField = "pactcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
             this.ddlPrjName.DataBind();
+
+
+        }
+
+        private void GetProjectNamemulti()
+        {
+            string comcod = this.GetComeCode();
+            string Srchpactcode = "%%";
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPROJECTNAME", Srchpactcode, "", "", "", "", "", "", "", "");
+            this.listproj.DataTextField = "pactdesc";
+            this.listproj.DataValueField = "pactcode";
+            this.listproj.DataSource = ds1.Tables[0];
+            this.listproj.DataBind();
+            ds1.Dispose();
 
 
         }
@@ -351,7 +378,26 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            // string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+
+            string pactcode = "";
+            string gp = this.listproj.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    pactcode = "";
+                else
+                    foreach (ListItem s1 in listproj.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            pactcode = pactcode + s1.Value.Substring(0, 12);
+                        }
+                    }
+
+            }
+
+
             string usircode =  "%" ;
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", pactcode, frmdate, todate, usircode, "", "", "", "");
@@ -445,6 +491,7 @@ namespace RealERPWEB.F_22_Sal
                     this.gvCollectionStatement.DataSource = dt;
                     this.gvCollectionStatement.DataBind();
                    
+                   
                     //this.FooterCal();                   
                     break;
                 default:
@@ -482,8 +529,18 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvpaystatus.FooterRow.FindControl("lgvFPaidamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ?
                0.00 : dt.Compute("Sum(paidamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
                     break;
-               
-                    
+                case "CollectionStatement":
+                    ((Label)this.gvCollectionStatement.FooterRow.FindControl("lgvOpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(opnam)", "")) ?
+               0.00 : dt.Compute("Sum(opnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvCollectionStatement.FooterRow.FindControl("lgvDpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(curbkam)", "")) ?
+               0.00 : dt.Compute("Sum(curbkam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                    ((Label)this.gvCollectionStatement.FooterRow.FindControl("lgvIPamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(curinsam)", "")) ?
+               0.00 : dt.Compute("Sum(curinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvCollectionStatement.FooterRow.FindControl("lgvtotamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(totalam)", "")) ?
+               0.00 : dt.Compute("Sum(totalam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+
                 default:
                     break;
             }
@@ -625,6 +682,71 @@ namespace RealERPWEB.F_22_Sal
             return Type;
         }
 
+        protected void listproj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetCustomerName();
+        }
 
+        protected void gvCollectionStatement_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lgvopamt = (Label)e.Row.FindControl("lgvopamt");
+                Label lgvtdwpay = (Label)e.Row.FindControl("lgvtdwpay");
+                Label lgvinstpay = (Label)e.Row.FindControl("lgvinstpay");
+                Label lgvtolam = (Label)e.Row.FindControl("lgvtolam");
+                Label lgvunit = (Label)e.Row.FindControl("lgvunit");
+              
+
+
+
+
+                string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString().Trim();
+         
+
+               
+
+
+                if (usircode == "51AAAAAAAAAA")
+                {
+
+
+                    lgvopamt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvtdwpay.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvinstpay.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvtolam.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lgvunit.Attributes["style"] = "font-weight:bold; color:Navy;";
+
+
+
+
+                    lgvunit.Style.Add("text-align", "right");
+
+                }
+                if (usircode == "51AAAAAABBBB")
+                {
+
+
+
+                    lgvopamt.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvtdwpay.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvinstpay.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvtolam.Attributes["style"] = "font-weight:bold; color:black;";
+                    lgvunit.Attributes["style"] = "font-weight:bold; color:black;";
+
+
+
+                    lgvunit.Style.Add("text-align", "right");
+
+                }
+
+
+              
+
+
+
+            }
+        }
     }
 }
