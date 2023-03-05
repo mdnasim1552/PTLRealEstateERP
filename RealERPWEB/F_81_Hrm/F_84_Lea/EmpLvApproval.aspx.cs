@@ -737,13 +737,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string roletype = this.Request.QueryString["RoleType"].ToString();
-                    if (comcod == "3354" && roletype == "SUP" )
+                    if (comcod == "3354" && roletype == "DPT")
                     {
                         this.Chboxforward.Checked = false;
                     }
                     else if (comcod == "3354" && roletype == "SUP")
                     {
-                        this.Chboxforward.Checked = true ;
+                        this.Chboxforward.Checked = true;
+                    }
+                    else if (comcod == "3374" && roletype == "DPT")
+                    {
+                        this.Chboxforward.Checked = true;
                     }
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
@@ -1415,8 +1419,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }else if (comcod == "3354" && roletype == "DPT")
                 {
                     this.Chboxforward.Checked = false;
+                }else if (comcod=="3374" && roletype== "DPT")
+                {
+                    this.Chboxforward.Checked = true;
                 }
         
+
                 string isForward = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
 
