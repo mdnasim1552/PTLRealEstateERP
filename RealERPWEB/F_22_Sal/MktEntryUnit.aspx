@@ -33,6 +33,7 @@
         #ContentPlaceHolder1_ddlProjectName_chzn {
             width: 289 px !important;
         }
+
         .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
@@ -139,7 +140,7 @@
             </asp:Panel>
             <div class="card card-fluid">
                 <div class="card-body" style="min-height: 400px;">
-                    <div class="row" style="overflow-x:auto;" >
+                    <div class="row" style="overflow-x: auto;">
                         <asp:GridView ID="gvUnit" runat="server" AllowPaging="True" CssClass="table-striped table-responsive table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging="gvUnit_PageIndexChanging"
                             OnRowDataBound="gvUnit_RowDataBound" OnRowDeleting="gvUnit_RowDeleting"
@@ -154,7 +155,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' ItemStyle-HorizontalAlign="Center"/>
+                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' ItemStyle-HorizontalAlign="Center" />
 
                                 <asp:TemplateField HeaderText="Code">
                                     <%--<FooterTemplate>
@@ -211,8 +212,8 @@
                                             Width="50px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lFUsize" runat="server" 
-                                          Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lFUsize" runat="server"
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -220,7 +221,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtgvRate" runat="server" 
+                                        <asp:TextBox ID="txtgvRate" runat="server"
                                             BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "urate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="60px"></asp:TextBox>
@@ -236,8 +237,8 @@
                                             Width="70px" BorderStyle="None"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFAmt" runat="server"  Font-Size="11px"
-                                             Style="text-align: right"></asp:Label>
+                                        <asp:Label ID="lgvFAmt" runat="server" Font-Size="11px"
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -253,7 +254,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvPAmt" runat="server" Font-Bold="True" Font-Size="11px"
-                                           Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -270,7 +271,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvPUtility" runat="server" Font-Bold="True" Font-Size="11px"
-                                             Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -319,7 +320,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvfAptqty" runat="server" Font-Bold="True" Font-Size="11px"
-                                             Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -338,7 +339,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                     <FooterTemplate>
                                         <asp:Label ID="lgvfParkingqty" runat="server" Font-Bold="True" Font-Size="11px"
-                                         Style="text-align: right"></asp:Label>
+                                            Style="text-align: right"></asp:Label>
                                     </FooterTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Parking Number">
@@ -478,11 +479,12 @@
 
 
                             </Columns>
-                            <FooterStyle CssClass="grvFooterNew" />
-                            <EditRowStyle  CssClass="grvRowsNew" />
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle CssClass="grvHeaderNew" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
                         </asp:GridView>
                     </div>
                 </div>
