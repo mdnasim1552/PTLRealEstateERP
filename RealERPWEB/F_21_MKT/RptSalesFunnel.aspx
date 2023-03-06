@@ -1881,8 +1881,8 @@
                                         <asp:TemplateField HeaderText="Source">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSource" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourtxt")) %>'
-                                                    Width="70px" ForeColor="Black"></asp:Label>
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourtxt"))  + (Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname"))=="" ?"": "(" + Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname")) + ")")  %>'
+                                                    Width="100px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>

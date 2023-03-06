@@ -169,10 +169,10 @@
                                 <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:200px" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-3 pl-0 " style="margin-top:27px;" visible="false"  ID="clsprjnamemul" runat="server">
+                        <div class="col-md-3" style="margin-top:6px;" visible="false"  ID="clsprjnamemul" runat="server">
                                      <div class="from-group">
-                                      
-                                        <asp:ListBox ID="listproj" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Style="min-height: 200px !important;" AutoPostBack="true"></asp:ListBox>
+                                       <asp:Label ID="Label2" runat="server" CssClass="form-label">Project Name </asp:Label>
+                                        <asp:ListBox ID="listproj" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Style="min-height: 200px !important;"></asp:ListBox>
                                     </div>
 
                                 </div>
