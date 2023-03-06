@@ -339,6 +339,7 @@
                                         <div class="form-group ">
 
                                             <asp:Label runat="server" ID="lbltaskbatchid" Visible="false"></asp:Label>
+                                            <asp:Label runat="server" ID="lbltasksid" Visible="false"></asp:Label>
                                             <asp:GridView ID="gv_BatchInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="True" Width="">
                                                 <RowStyle />
@@ -357,6 +358,8 @@
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvjobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                             <asp:Label ID="lblemptype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "emptype")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblfromuser" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fromuser")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="TaskTitle">
@@ -654,21 +657,21 @@
 
                                     <div class=" card bg-light">
                                         <div class="col-md-12" visible="false" id="task" runat="server">
-                                             <div class="row p-1 d-flex w-100 " style="padding: 10px 8px 4px 0px;" >
-                                                  <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                            <div class="row p-1 d-flex w-100 " style="padding: 10px 8px 4px 0px;">
+                                                <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
                                                     <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                                     <asp:Label ID="Label1" runat="server">&nbsp;  InHouseFreelancer</asp:Label>
                                                 </div>
-                                                  <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                                <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
                                                     <asp:CheckBox runat="server" ID="checkfreelancer" OnCheckedChanged="checkfreelancer_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                                     <asp:Label ID="Label3" runat="server">&nbsp;  Freelancer</asp:Label>
 
                                                 </div>
-                                                 
-                                                    <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger mt-3"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
 
-                                                
-                                             </div>
+                                                <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger mt-3"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
+
+
+                                            </div>
 
                                             <div class="form-group row">
                                                 <asp:Label runat="server" ID="lblDoneAnnot" Visible="false"></asp:Label>
@@ -706,26 +709,34 @@
                                                     <asp:DropDownList ID="ddlassignmember" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                                     </asp:DropDownList>
                                                 </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                <div runat="server" id="freelancer" class="d-none col-lg-4 col-md-3 col-sm-12 pl-0">
+                                                   
+                                                        <asp:Label ID="Label4" runat="server">Freelancer Emp.</asp:Label>
+                                                        <asp:DropDownList ID="ddlfreelancer" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                                        </asp:DropDownList>
+                                                    
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-2 col-sm-12">
                                                     <asp:Label ID="Label16" runat="server">Role Type</asp:Label>
                                                     <asp:DropDownList ID="ddlUserRoleType" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlUserRoleType_SelectedIndexChanged" AutoPostBack="true">
                                                     </asp:DropDownList>
                                                 </div>
 
-                                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                                <div class="col-lg-2 col-md-2 col-sm-12">
                                                     <asp:Label ID="Label17" runat="server">Annotation ID</asp:Label>
                                                     <asp:DropDownList ID="ddlAnnotationid" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                                     </asp:DropDownList>
                                                 </div>
+
+
+                                            </div>
+                                            <div class="form-group row">
                                                 <div class="col-lg-2 col-md-3 col-sm-12 pl-0">
                                                     <asp:Label ID="Label8" runat="server">Assigned Type</asp:Label>
                                                     <asp:DropDownList ID="ddlassigntype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                                     </asp:DropDownList>
                                                 </div>
-
-                                            </div>
-                                            <div class="form-group row">
-
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
@@ -736,7 +747,7 @@
                                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                                     <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                               
+
                                                 <div class=" col-lg-3 col-md-3 col-sm-12" id="perrate" runat="server" visible="false">
                                                     <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
                                                     <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
