@@ -45,7 +45,8 @@ namespace RealERPWEB.F_23_CR
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lUpdatPerInfo_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
         }
         private void GetProjectName()
@@ -217,10 +218,18 @@ namespace RealERPWEB.F_23_CR
 
         }
 
-
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;           
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
         protected void lbtnusize_Click(object sender, EventArgs e)
         {
-
+            CommonButton();
             string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
             Session.Remove("UsirBasicInformation");
 
