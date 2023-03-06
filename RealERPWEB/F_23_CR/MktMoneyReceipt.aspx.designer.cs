@@ -177,6 +177,15 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.CheckBox chkAllSchedul;
 
         /// <summary>
+        /// chkPrevious control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPrevious;
+
+        /// <summary>
         /// Panel3 control.
         /// </summary>
         /// <remarks>
@@ -598,15 +607,6 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtRefreshMrr;
-
-        /// <summary>
-        /// chkPrevious control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkPrevious;
 
         /// <summary>
         /// lblSchCode control.
