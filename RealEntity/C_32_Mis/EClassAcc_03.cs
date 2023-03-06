@@ -542,6 +542,7 @@ namespace RealEntity.C_32_Mis
             public DateTime cdate { get; set; }
             public double eamt { get; set; }
             public double peroncpro { get; set; }
+            public double acsaunsold { get; set; }
 
             public EClassMasterBgd() { }
 

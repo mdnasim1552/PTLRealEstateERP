@@ -65,7 +65,7 @@ namespace RealERPWEB.F_22_Sal
                 //    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
                 //    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
 
-               
+                this.SalesPersonName();
             }
 
         }
@@ -86,6 +86,16 @@ namespace RealERPWEB.F_22_Sal
             string qcomcod = this.Request.QueryString["comcod"] ?? "";
             comcod = qcomcod.Length > 0 ? qcomcod : comcod;
             return comcod;
+
+        }
+        private void SalesPersonName()
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESPERSON", "", "", "", "", "", "", "", "", "");
+            this.ddlSalesperson.DataTextField = "salpname";
+            this.ddlSalesperson.DataValueField = "salpercode";
+            this.ddlSalesperson.DataSource = ds1.Tables[0];
+            this.ddlSalesperson.DataBind();
 
         }
 
@@ -129,6 +139,11 @@ namespace RealERPWEB.F_22_Sal
 
                 case "SaleVsCollTypeWise":
                     this.MultiView1.ActiveViewIndex = 8;
+                    this.pnlsales.Visible = true;
+                    this.type.Visible = true;
+
+
+
                     break;
 
 
@@ -262,14 +277,17 @@ namespace RealERPWEB.F_22_Sal
                             0 : dt.Compute("sum(actaptqty)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvacshopqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(actshopqty)", "")) ?
                           0 : dt.Compute("sum(actshopqty)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salaptsfall)", "")) ?
-                        0 : dt.Compute("sum(salaptsfall)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salshopsfall)", "")) ?
-                        0 : dt.Compute("sum(salshopsfall)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontapt)", "")) ?
-                        0 : dt.Compute("sum(perontapt)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontshop)", "")) ?
-                        0 : dt.Compute("sum(perontshop)", ""))).ToString("#,##0;(#,##0); ");
+                   
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salaptsfall)", "")) ?
+                    //    0 : dt.Compute("sum(salaptsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(salshopsfall)", "")) ?
+                    //    0 : dt.Compute("sum(salshopsfall)", ""))).ToString("#,##0;(#,##0); ");
+
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvaptperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontapt)", "")) ?
+                    //    0 : dt.Compute("sum(perontapt)", ""))).ToString("#,##0;(#,##0); ");
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Flgvshopperontsale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(perontshop)", "")) ?
+                    //    0 : dt.Compute("sum(perontshop)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptmoncollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(aptamt)", "")) ?
                         0 : dt.Compute("sum(aptamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopmoncollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopamt)", "")) ?
@@ -278,14 +296,17 @@ namespace RealERPWEB.F_22_Sal
                         0 : dt.Compute("sum(aptaccollamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopaccollamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(shopaccollamt)", "")) ?
                         0 : dt.Compute("sum(shopaccollamt)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collaptsfall)", "")) ?
-                        0 : dt.Compute("sum(collaptsfall)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collshopsfall)", "")) ?
-                        0 : dt.Compute("sum(collshopsfall)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronaptcoll)", "")) ?
-                        0 : dt.Compute("sum(peronaptcoll)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronshopcoll)", "")) ?
-                        0 : dt.Compute("sum(peronshopcoll)", ""))).ToString("#,##0;(#,##0); ");
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollaptsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collaptsfall)", "")) ?
+                    //    0 : dt.Compute("sum(collaptsfall)", ""))).ToString("#,##0;(#,##0); ");
+
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvcollshopsfall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(collshopsfall)", "")) ?
+                    //    0 : dt.Compute("sum(collshopsfall)", ""))).ToString("#,##0;(#,##0); ");
+                    
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvaptperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronaptcoll)", "")) ?
+                    //    0 : dt.Compute("sum(peronaptcoll)", ""))).ToString("#,##0;(#,##0); ");
+
+                    //((Label)this.gvsalvscolltypeWise.FooterRow.FindControl("Ftlgvshopperontcoll")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(peronshopcoll)", "")) ?
+                    //    0 : dt.Compute("sum(peronshopcoll)", ""))).ToString("#,##0;(#,##0); ");
 
                     break;
 
@@ -416,10 +437,12 @@ namespace RealERPWEB.F_22_Sal
                 string comcod = GetComeCode();
                 string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                string salesperson = this.ddlSalesperson.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSalesperson.SelectedValue.ToString() + "%";
                 string pactcode = "18%";
+                string type = this.rbtnType.SelectedValue.ToString();
 
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , "", "", "", "", "", "");
-                if (ds1 == null)
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , salesperson, type, "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
                     this.gvsalvscolltypeWise.DataSource = null;
                     this.gvsalvscolltypeWise.DataBind();
@@ -1276,7 +1299,7 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell4);
 
                 TableCell cell5 = new TableCell();
-                cell5.Text = "Short Fall";
+                cell5.Text = "Short Fall/Gain";
                 cell5.HorizontalAlign = HorizontalAlign.Center;
                 cell5.ColumnSpan = 2;
                 cell5.Font.Bold = true;
@@ -1312,7 +1335,7 @@ namespace RealERPWEB.F_22_Sal
                 gvrow.Cells.Add(cell9);
 
                 TableCell cell10= new TableCell();
-                cell10.Text = "Short Fall";
+                cell10.Text = "Short Fall/Gain";
                 cell10.HorizontalAlign = HorizontalAlign.Center;
                 cell10.ColumnSpan = 2;
                 cell10.Font.Bold = true;

@@ -64,8 +64,9 @@
     <Reference Include="BilSimser.GeoJson">
       <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Reference\bin\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -229,29 +230,34 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Admin\Desktop\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
 
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
 
+=======
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+>>>>>>> c8c31d52ab4a327ffbe75a8ae3c4911acbf03700
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -321,8 +327,13 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\bin\RealERPRPT.dll</HintPath>
+    <Reference Include="RealERPLIB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RealERPLIB.dll</HintPath>
+    </Reference>
+    <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Reference\bin\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RealERPWEB.XmlSerializers">
       <HintPath>..\..\bin\RealERPWEB.XmlSerializers.dll</HintPath>
@@ -2408,6 +2419,7 @@
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseOrderSummary.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx" />
     <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
@@ -2419,6 +2431,7 @@
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptAdvancedAgainstLoan.aspx" />
+    <Content Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx" />
     <Content Include="F_17_Acc\RptLetterOfAlotment.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
@@ -4420,6 +4433,13 @@
     <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
       <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseOrderSummary.aspx.cs">
+      <DependentUpon>RptPurchaseOrderSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseOrderSummary.aspx.designer.cs">
+      <DependentUpon>RptPurchaseOrderSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4496,6 +4516,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAdvancedAgainstLoan.aspx.designer.cs">
       <DependentUpon>RptAdvancedAgainstLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx.cs">
+      <DependentUpon>RptAssociationfreeRecVspayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx.designer.cs">
+      <DependentUpon>RptAssociationfreeRecVspayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
       <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
@@ -13376,10 +13403,6 @@
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
       <Name>RealEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
     </ProjectReference>
     <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>

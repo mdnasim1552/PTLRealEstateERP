@@ -527,12 +527,14 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
+                       // $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
                     case 3101://ASIT
                     case 3370:   //cpdl
                     case 3368: // Finlay
+                    case 3374: // Finlay
+
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
@@ -541,7 +543,7 @@
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
+                      //  $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
 

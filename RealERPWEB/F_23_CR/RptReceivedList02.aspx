@@ -776,6 +776,22 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+
+
+                                        <asp:TemplateField HeaderText="Delay Charge Ins.">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFdelchargeIns" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdelchargeIns" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "crdelay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Return Cheque">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFdischarge" runat="server" Font-Bold="True" Font-Size="12px"

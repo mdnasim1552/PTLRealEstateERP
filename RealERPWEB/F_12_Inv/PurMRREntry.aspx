@@ -173,7 +173,7 @@
                                             <asp:TextBox ID="txtChalanNo" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         </div>
 
-                                        <div class="col-md-9 pading5px ">
+                                        <div class="col-md-4 pading5px ">
                                             <asp:Label ID="lblqtycertificate" runat="server" CssClass="lblTxt lblName" Text="QC No"></asp:Label>
                                             <asp:TextBox ID="txtQc" runat="server" Width="120px" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
@@ -182,6 +182,15 @@
                                             <asp:TextBox ID="txtChaDate" runat="server" AutoPostBack="True" CssClass=" inputtextbox" TabIndex="1" ToolTip="(dd.mm.yyyy)" Style="width: 78px;"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                                 Format="dd.MM.yyyy" TargetControlID="txtChaDate"></cc1:CalendarExtender>
+
+                                           
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to " Text="QC Parameter"></asp:Label>
+                                            <asp:DropDownList ID="ddlQCParamList" runat="server"
+                                                TabIndex="9" CssClass="chzn-select ddlPage" Width="250px">
+                                            </asp:DropDownList>
                                         </div>
 
 
@@ -230,7 +239,7 @@
 
                         </asp:Panel>
 
-                        <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                        <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="False" AutoGenerateColumns="False"
                             ShowFooter="True" OnRowDeleting="gvMRRInfo_RowDeleting" CssClass="table-striped table-hover table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
 
                             <PagerSettings Visible="False" />
@@ -284,12 +293,12 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Materials">
-                                    <FooterTemplate>
-                                        <asp:DropDownList ID="ddlPageNo" runat="server" __designer:wfdid="w67" AutoPostBack="True"
+                                    <FooterTemplate  >
+                                        <%--<asp:DropDownList ID="ddlPageNo" runat="server" __designer:wfdid="w67" AutoPostBack="True" Visible="false"
                                             Font-Bold="True" Font-Size="14px" OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
                                             Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
                                             Width="150px">
-                                        </asp:DropDownList>
+                                        </asp:DropDownList>--%>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvResDesc" runat="server"

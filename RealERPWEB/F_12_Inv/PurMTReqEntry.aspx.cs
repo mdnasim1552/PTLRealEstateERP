@@ -289,11 +289,11 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             Session.Remove("projectreslist");
             Session.Remove("tblspcf");
-          
+
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
-            string lenght = "0"; 
+            string lenght = "0";
             if (comcod == "3348")
             {
                 lenght = "1";
@@ -370,12 +370,7 @@ namespace RealERPWEB.F_12_Inv
             }
             ViewState["tblmattrns"] = dt;
             this.Data_Bind();
-            if (comcod == "3367")
-            {
-                this.grvacc.Columns[6].HeaderText = "Master Quantity";                
-                this.grvacc.Columns[8].HeaderText = "Store Stock Qty";
-                this.grvacc.Columns[11].HeaderText = "Required Quantity";
-            }
+
 
         }
 
@@ -391,14 +386,14 @@ namespace RealERPWEB.F_12_Inv
                 case "3370":
                     for (int i = 0; i < this.grvacc.Rows.Count; i++)
                     {
-                        string rsircode = ((Label)this.grvacc.Rows[i].FindControl("lblgvMatCode")).Text.ToString(); 
-                        string spcfcod = ((Label)this.grvacc.Rows[i].FindControl("lblgspcfcode")).Text.ToString(); 
+                        string rsircode = ((Label)this.grvacc.Rows[i].FindControl("lblgvMatCode")).Text.ToString();
+                        string spcfcod = ((Label)this.grvacc.Rows[i].FindControl("lblgspcfcode")).Text.ToString();
                         double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
 
                         DataRow[] dr3 = dt2.Select("rsircode = '" + rsircode + "' and spcfcod = '" + spcfcod + "'");
                         double rate1 = Convert.ToDouble(dr3[0]["rate"]);
 
-                        double rat = Convert.ToDouble("0" + (rate1)) ;
+                        double rat = Convert.ToDouble("0" + (rate1));
                         int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
                         dt1.Rows[rowindex]["qty"] = qty;
                         double damt = qty * rat;
@@ -938,12 +933,21 @@ namespace RealERPWEB.F_12_Inv
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             string comcod = this.GetCompCode();
+            if (comcod == "3367")
+            {
+                this.grvacc.Columns[7].HeaderText = "Master Quantity";
+                this.grvacc.Columns[8].HeaderText = "Received Qty";
+                this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[10].HeaderText = "Required Quantity";
+            }
             switch (comcod)
             {
                 case "3370":
+                    
                     this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
                     break;
+              
                 default:
                     this.grvacc.Columns[11].Visible = true;
                     this.grvacc.Columns[12].Visible = true;

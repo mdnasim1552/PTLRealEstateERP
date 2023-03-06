@@ -28,7 +28,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-            this.lbtnUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
+         
             if (!IsPostBack)
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
@@ -162,11 +162,12 @@ namespace RealERPWEB.F_23_CR
                 case "3306":
                 case "3309":
                 case "3310":
-                case "3311":
-
-                // case "3101":
+                case "3311":              
                 case "3333":
                 case "3339":
+                //case "3351"://Wecon
+                //case "3352"://360
+                //case "1205"://p2p Engineering
                     this.ddlRecType.Visible = true;
                     this.lblRecType.Visible = true;
                     break;
@@ -1301,17 +1302,33 @@ namespace RealERPWEB.F_23_CR
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
                 // string usercode = ViewState["usricode"].ToString();
-                switch (comcod)
+
+
+
+
+                if (hst["compsms"].ToString() == "True")
                 {
-                    //case "3101": // Pintech                   
-                    case "3356": //Intech                    
-                    case "3366": //Intech                    
-                    case "3101": //Intech                    
-                        this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
-                        break;
-                    default:
-                        break;
+
+
+
+                    switch (comcod)
+                    {
+                        //case "3101": // Pintech                   
+                        case "3356": //Intech                    
+                        case "3366": //Intech                    
+                        case "3101": //Intech                    
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                        default:
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                    }
                 }
+
+
+
+
+
 
                 if (comcod == "3370")
                 {
@@ -1857,7 +1874,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-                this.lbtnUpdate.Visible = true;
+               
             }
 
         }

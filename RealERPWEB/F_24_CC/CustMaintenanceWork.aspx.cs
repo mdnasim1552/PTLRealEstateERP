@@ -44,7 +44,7 @@ namespace RealERPWEB.F_24_CC
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"];
-                if (type == "Check" || type == "Audit" || type == "Approv" || type == "FirstApproval" || type == "SecondApproval")
+                if (type == "Check" || type == "Audit" || type == "Approv" || type == "CsDApproval" || type == "FirstApproval" || type == "SecondApproval")
                 {
                     PreviousAddNumber();
                     lbtnOk_Click(null, null);
@@ -219,6 +219,15 @@ namespace RealERPWEB.F_24_CC
                     this.lblInsmnt.Visible = true;
                     this.ddlInstallment.Visible = true;
                 }
+                if(comcod=="3374" || comcod == "3101")
+                {
+                    this.PnlTermCon.Visible = true;
+                    string s = "1. This amount is for the above mentioned items. For further modification works may change the amount.";
+                    s += "\n2.The amount to be paid for additional works as advance within 7(Seven) Days of issuing this cost sheet & Non - refundable in any case.";
+                    s += "\n3.If client fails to pay the demand amount with in stipulated time, work will be done as per company standard.";
+                    this.txtTermCon.Text = s;
+                }
+
                 this.GetItemName();
                 this.GetInstallment();
                 this.ShowAdWork();
@@ -243,7 +252,7 @@ namespace RealERPWEB.F_24_CC
             this.ddlUnitName.Enabled = true;
             this.PnlNarration.Visible = false;
             this.lblSchCode.Text = "";
-
+            this.PnlTermCon.Visible = false;
         }
         private void ColumnVisible()
         {
@@ -371,6 +380,16 @@ namespace RealERPWEB.F_24_CC
             this.lblSchCode.Text = ds1.Tables[0].Rows[0]["shcod"].ToString();
             this.ddlType.SelectedValue = ds1.Tables[0].Rows[0]["gcod"].ToString().Substring(0, 2) + "0000000";
             this.ddlInstallment.SelectedValue = ds1.Tables[0].Rows[0]["delschcode"].ToString();
+
+            Session["custname"] = ds1.Tables[1].Rows[0]["custname"].ToString();
+            Session["udesc"] = ds1.Tables[1].Rows[0]["udesc"].ToString();
+            DataTable dt = new DataTable();
+            dt = ds1.Tables[3];
+            if (dt.Rows.Count>0 )
+            {
+                this.txtTermCon.Text = ds1.Tables[3].Rows[0]["TERMCON"].ToString();
+            }
+            
             this.Data_DataBind();
 
         }
@@ -431,6 +450,7 @@ namespace RealERPWEB.F_24_CC
                     CompAddWork = "PrintAddWorkEpic";
                     break;
 
+                case "3101":
                 case "3374":
                     CompAddWork = "PrintAddWorkAngan";
                     break;
@@ -674,12 +694,19 @@ namespace RealERPWEB.F_24_CC
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
             string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
+            string custName =(string) Session["custname"];
+            string uDesc = (string) Session["udesc"];
 
             DataTable dt = (DataTable)Session["tbladwork"];
+            if (dt == null)
+                return;
+            
             //DataTable dt1 = (DataTable)Session["tbltaddwork"];
 
 
@@ -700,24 +727,28 @@ namespace RealERPWEB.F_24_CC
                 Rpt1.EnableExternalImages = true;
                 if (tpay < 0)
                 {
-                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Client: " + tnet * -1));
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Demand Tk.= " + tnet * -1));
                 }
                 else
                 {
-                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Payable to Company: " + tnet));
+                    Rpt1.SetParameters(new ReportParameter("tpay", "Total Demand Tk.= " + tnet));
                 }
                 Rpt1.SetParameters(new ReportParameter("InWrd", "In Words: " + inword));
           
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Engineering Department"));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
-
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("custName", custName));
+            Rpt1.SetParameters(new ReportParameter("uDesc", uDesc));
+            
+            Rpt1.SetParameters(new ReportParameter("txtDate", Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtAddNo", this.lblCurNo1.Text.ToString().Trim() + "-" + this.lblCurNo2.Text.ToString().Trim()));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
+            Rpt1.SetParameters(new ReportParameter("txtTermCon", this.txtTermCon.Text));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
-
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -983,6 +1014,10 @@ namespace RealERPWEB.F_24_CC
             tblt02.Columns.Add("fappdat", Type.GetType("System.String"));
             tblt02.Columns.Add("fapptrmid", Type.GetType("System.String"));
             tblt02.Columns.Add("fappseson", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappid", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappdat", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdapptrmid", Type.GetType("System.String"));
+            tblt02.Columns.Add("csdappseson", Type.GetType("System.String"));
             tblt02.Columns.Add("sappid", Type.GetType("System.String"));
             tblt02.Columns.Add("sappdat", Type.GetType("System.String"));
             tblt02.Columns.Add("sapptrmid", Type.GetType("System.String"));
@@ -1032,6 +1067,10 @@ namespace RealERPWEB.F_24_CC
                         dr1["fappdat"] = "";
                         dr1["fapptrmid"] = "";
                         dr1["fappseson"] = "";
+                        dr1["csdappid"] = "";
+                        dr1["csdappdat"] = "";
+                        dr1["csdapptrmid"] = "";
+                        dr1["csdappseson"] = "";
                         dr1["sappid"] = "";
                         dr1["sappdat"] = "";
                         dr1["sapptrmid"] = "";
@@ -1050,12 +1089,37 @@ namespace RealERPWEB.F_24_CC
                         dr2["fappdat"] = Date;
                         dr2["fapptrmid"] = trmnid;
                         dr2["fappseson"] = session;
+                        dr2["csdappid"] = "";
+                        dr2["csdappdat"] = "";
+                        dr2["csdapptrmid"] = "";
+                        dr2["csdappseson"] = "";
                         dr2["sappid"] = "";
                         dr2["sappdat"] = "";
                         dr2["sapptrmid"] = "";
                         dr2["sappseson"] = "";
                         dt2.Rows.Add(dr2);
                         ds1.Merge(dt2);
+                        ds1.Tables[0].TableName = "tbl1";
+                        rapproval = ds1.GetXml();
+                        break;
+                    case "CsDApproval":
+                        this.CreateDataTable02();
+                        DataTable dt3 = (DataTable)ViewState["tblrapproval"];
+                        DataRow dr3 = dt3.NewRow();
+                        dr3["fappid"] = usrid;
+                        dr3["fappdat"] = Date;
+                        dr3["fapptrmid"] = trmnid;
+                        dr3["fappseson"] = session;
+                        dr3["csdappid"] = usrid;
+                        dr3["csdappdat"] = Date;
+                        dr3["csdapptrmid"] = trmnid;
+                        dr3["csdappseson"] = session;
+                        dr3["sappid"] = "";
+                        dr3["sappdat"] = "";
+                        dr3["sapptrmid"] = "";
+                        dr3["sappseson"] = "";
+                        dt3.Rows.Add(dr3);
+                        ds1.Merge(dt3);
                         ds1.Tables[0].TableName = "tbl1";
                         rapproval = ds1.GetXml();
                         break;
@@ -1085,6 +1149,10 @@ namespace RealERPWEB.F_24_CC
                 dr2["fappdat"] = Date;
                 dr2["fapptrmid"] = trmnid;
                 dr2["fappseson"] = session;
+                dr2["csdappid"] = usrid;
+                dr2["csdappdat"] = Date;
+                dr2["csdapptrmid"] = trmnid;
+                dr2["csdappseson"] = session;
                 dr2["sappid"] = usrid;
                 dr2["sappdat"] = Date;
                 dr2["sapptrmid"] = trmnid;
@@ -1356,6 +1424,7 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3367": //EPIC
                             approval = "approval";
                             break;
                     }
@@ -1404,6 +1473,7 @@ namespace RealERPWEB.F_24_CC
 
             string addno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
             string narration = this.txtNarr.Text.Trim();
+            string termcon = this.txtTermCon.Text.Trim();
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -1489,6 +1559,19 @@ namespace RealERPWEB.F_24_CC
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             }
+
+            //if (comcod == "3374" || comcod == "3101")
+            //{
+                bool res = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORKTERMCON", addno, termcon);
+
+                if (!res)
+                {
+                    msg = "Updated Failed in Term & Condition ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+
+            //}
 
             if (ConstantInfo.LogStatus == true)
             {

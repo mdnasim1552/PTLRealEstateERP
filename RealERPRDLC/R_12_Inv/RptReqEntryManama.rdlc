@@ -3103,7 +3103,7 @@ Require</Value>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!txtSign2.Value</Value>
+                        <Value />
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -3208,6 +3208,45 @@ Require</Value>
                     <Style>Solid</Style>
                     <Width>1pt</Width>
                   </BottomBorder>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox52">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Md. Golam Mortaza , Deputy Manager(P&amp;P)</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>#000000</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox39</rd:DefaultName>
+                <Top>0.51042in</Top>
+                <Left>3.02932in</Left>
+                <Height>0.47917in</Height>
+                <Width>1.26667in</Width>
+                <ZIndex>6</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>

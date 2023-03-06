@@ -15,6 +15,7 @@
         $(document).ready(function () {
 
             $(".select2").select2();
+            $('.chzn-select').chosen({ search_contains: true });
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -29,7 +30,7 @@
 
                 //});
 
-
+                $('.chzn-select').chosen({ search_contains: true });
 
                 $('.select2').each(function () {
                     var select = $(this);
@@ -46,6 +47,7 @@
                 });
 
                 //$('.mdb-select').materialSelect();
+                var gvbalsheet = $('#<%=this.gvBalSheet.ClientID%>');
 
                 var gv1 = $('#<%=this.grvBankDet.ClientID %>');
                 var gvGrpRP = $('#<%=this.gvGrpRP.ClientID %>');
@@ -56,6 +58,7 @@
 
 
                 gv1.Scrollable();
+                gvbalsheet.Scrollable();
                 gvGrpRP.Scrollable();
                 gvGrpBB.Scrollable();
                 gvGrpTB.Scrollable();
@@ -113,7 +116,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label id="lblGroup" runat="server">Group</label>
-                                <asp:DropDownList ID="chkListGroup" runat="server" CssClass="form-control form-control-sm" 
+                                <asp:DropDownList ID="chkListGroup" runat="server" CssClass="form-control form-control-sm"
                                     TabIndex="6">
                                     <asp:ListItem Value="1">Level-1</asp:ListItem>
                                     <asp:ListItem Value="2">Level-2</asp:ListItem>
@@ -139,31 +142,31 @@
                             <cc1:CalendarExtender ID="txtDateOpening_CalendarExtender" runat="server"
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateOpening"></cc1:CalendarExtender>
                         </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label id="lblcompanyname" runat="server">Company Name</label>
-                            <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control form-control-sm select2"  SelectionMode="Multiple"></asp:ListBox>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label id="lblcompanyname" runat="server">Company Name</label>
+                                <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control form-control-sm select2" s SelectionMode="Multiple"></asp:ListBox>
 
-                             <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
+                                <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+
+                                <asp:Label ID="lbltakaInLac" runat="server" CssClass="smLbl_to" Visible="False"></asp:Label>
+
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                    <div class="col-md-1">
-                        <div class="form-group">
-                            
-                                            <asp:Label ID="lbltakaInLac" runat="server" CssClass="smLbl_to" Visible="False"></asp:Label>
-                                  
-
-                        </div>
-
-                    </div>
-
                 </div>
-
-            </div>
             </div>
 
             <div class="card card-fluid">
@@ -1039,7 +1042,7 @@
 
                             <asp:View ID="ViewInComeStatement" runat="server">
                                 <asp:GridView ID="gvIncomeSt" runat="server" AutoGenerateColumns="False"
-                                    ShowFooter="True" OnRowDataBound="gvIncomeSt_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                    ShowFooter="True" OnRowDataBound="gvIncomeSt_RowDataBound" CssClass=" table-striped  table-bordered grvContentarea">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -1052,16 +1055,15 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbgraccodIS" runat="server" Font-Size="12px"
+                                                <asp:Label ID="lbgraccodIS" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                             <ItemStyle Font-Size="12px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
-                                            FooterStyle-HorizontalAlign="Right" HeaderText="Description of Accounts"
-                                            FooterText="Total">
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
+                                            FooterStyle-HorizontalAlign="Right" HeaderText="Description of Accounts">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvaccdescIS" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -1087,7 +1089,7 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-01"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
@@ -1101,35 +1103,35 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-02"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt02IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt02IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt02IS" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt02")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-03"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt03IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt03IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt03IS" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt03")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-04"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
@@ -1143,11 +1145,11 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-05"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt05IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt05IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt05IS" runat="server"
@@ -1161,7 +1163,7 @@
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-06"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt06IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt06IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt06IS" runat="server"
@@ -1175,7 +1177,7 @@
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-07"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt07IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt07IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt07IS" runat="server"
@@ -1185,11 +1187,11 @@
                                             <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                        <asp:TemplateField FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" HeaderText="Amt-08"
                                             ItemStyle-HorizontalAlign="Right">
                                             <FooterTemplate>
-                                                <asp:Label ID="lblfamt08IS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                <asp:Label ID="lblfamt08IS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvamt08IS" runat="server"
@@ -1200,17 +1202,19 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
-                                    <EditRowStyle />
-                                    <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+
+                                    <FooterStyle CssClass="grvFooterNew" />
+
+                                    <PagerStyle CssClass="" />
+                                    <RowStyle CssClass="grvRowsNew" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
+
                                 </asp:GridView>
                             </asp:View>
                             <asp:View ID="ViewBalanceSheet" runat="server">
                                 <asp:Panel ID="Panel4" runat="server" ScrollBars="Horizontal">
                                     <asp:GridView ID="gvBalSheet" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" OnRowDataBound="gvBalSheet_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                        ShowFooter="True" OnRowDataBound="gvBalSheet_RowDataBound" CssClass=" table-striped table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -1218,21 +1222,20 @@
                                                     <asp:Label ID="lblserialnoidBS" runat="server" Style="text-align: right"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle Font-Bold="True" Font-Size="12px" />
+                                                <HeaderStyle Font-Bold="True" />
                                                 <ItemStyle Font-Size="12px" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Code" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbgraccodBS" runat="server" Font-Size="12px"
+                                                    <asp:Label ID="lbgraccodBS" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                                 <ItemStyle Font-Size="12px" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
-                                                FooterStyle-HorizontalAlign="Right" HeaderText="Description of Accounts"
-                                                FooterText="Total">
+                                            <asp:TemplateField FooterStyle-Font-Bold="true"
+                                                FooterStyle-HorizontalAlign="Right" HeaderText="Description of Accounts">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvaccdescBS" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -1240,10 +1243,9 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
                                                 <ItemStyle HorizontalAlign="left" />
-                                                <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="Black"
-                                                    HorizontalAlign="Left" />
+
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Total Amt"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
@@ -1258,7 +1260,7 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField ItemStyle-Width="80" FooterStyle-Font-Bold="true" HeaderStyle-Width="80" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField ItemStyle-Width="80" FooterStyle-Font-Bold="true" HeaderStyle-Width="80"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-01"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
@@ -1266,18 +1268,18 @@
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:LinkButton
-                                                        ID="lblgvamt01BS" runat="server"
+                                                        ID="lnkbtngvamt01BS" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt01")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="80px"> </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <FooterStyle Width="80" Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle Width="80" HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-02"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt02BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt02BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt02BS" runat="server"
@@ -1287,11 +1289,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-03"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt03BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt03BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt03BS" runat="server"
@@ -1301,11 +1303,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-04"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt04BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt04BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt04BS" runat="server"
@@ -1315,11 +1317,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-05"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt05BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt05BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt05BS" runat="server"
@@ -1329,11 +1331,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-06"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt06BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt06BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt06BS" runat="server"
@@ -1343,11 +1345,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-07"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt07BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt07BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt07BS" runat="server"
@@ -1357,11 +1359,11 @@
                                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true" FooterStyle-Font-Size="12px"
+                                            <asp:TemplateField HeaderStyle-Width="80" FooterStyle-Font-Bold="true"
                                                 FooterStyle-HorizontalAlign="Right" HeaderText="Amt-08"
                                                 ItemStyle-HorizontalAlign="Right">
                                                 <FooterTemplate>
-                                                    <asp:Label ID="lblfamt08BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                                    <asp:Label ID="lblfamt08BS" runat="server" Font-Bold="True" Width="80px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvamt08BS" runat="server"
@@ -1372,11 +1374,11 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
                                         </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
+                                        <FooterStyle CssClass="grvFooterNew" />
+
+                                        <PagerStyle CssClass="" />
+                                        <RowStyle CssClass="grvRowsNew" />
+                                        <HeaderStyle CssClass="grvHeaderNew" />
                                     </asp:GridView>
                                 </asp:Panel>
                             </asp:View>
@@ -2308,6 +2310,128 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
+                            </asp:View>
+
+                            <asp:View ID="ViewProjectTrialbalance" runat="server">
+
+                                
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label id="lblProjectName" runat="server">Project Name</label>
+
+                                            <asp:DropDownList ID="ddlProject" runat="server" CssClass=" chzn-select form-control  form-control-sm" TabIndex="3"></asp:DropDownList>
+                                            <asp:HiddenField ID="hdncomcode" runat="server" />
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                <div class="col-md-12">
+                                    <asp:GridView ID="gvPrjtrbal" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
+                                    OnRowDataBound="gvPrjtrbal_RowDataBound" ShowFooter="True" Width="658px">
+                                    <RowStyle />
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Sl.No.">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Code">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvCode" runat="server" Height="16px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rescode")) %>' Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText=" Description" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgcActDesc" runat="server" Text='<%# (DataBinder.Eval(Container.DataItem, "rescode").ToString().Trim().Substring(2)=="0000000000"?
+                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim() :                                                             
+                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim()) 
+                                                                           %>'
+                                                    Width="300px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText=" Description">
+                                            <HeaderTemplate>
+                                                <table style="width: 47%;">
+                                                    <tr>
+                                                        <td class="style58">
+                                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                                Text="Description Of Accounts" Width="180px"></asp:Label></td>
+                                                        <td class="style60">&nbsp;</td>
+                                                        <td>
+                                                            <asp:HyperLink ID="hlbtntbCdataExel" runat="server" BackColor="#000066"
+                                                                BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
+                                                                ForeColor="White" Style="text-align: center" Width="90px">Export Exel</asp:HyperLink></td>
+                                                    </tr>
+                                                </table>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HLgvDesc" runat="server" Target="_blank" Font-Underline="false" ForeColor="Black"
+                                                    Text='<%# (DataBinder.Eval(Container.DataItem, "rescode").ToString().Trim().Substring(2)=="0000000000"?
+                                                Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim() :                                                             
+                                           
+                                                Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim()) 
+                                                %>'
+                                                    Width="300px"></asp:HyperLink>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                              
+                                        <asp:TemplateField HeaderText="Debit(in Tk.)">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvAmt" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Credit(in Tk.)">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvCre" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                    </Columns>                                   
+                                     
+                                    <FooterStyle CssClass="grvFooterNew" />                                    
+                                    <RowStyle CssClass="grvRowsNew" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
+
+                                </asp:GridView>
+
+
+                                </div>
+
+                                 
+                               
+
+
+
                             </asp:View>
 
 

@@ -65,6 +65,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.ddlProjectName.Items.Count == 0)
             {
                 this.GetProjectName();
+                this.lbtnOk_Click(null, null);
 
             }
 
@@ -113,29 +114,23 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "LandO":
                 case "RptDayWSale":
-
-                    if (comcod == "3368")//Finlay
+                    this.SoldType.Visible = false;
+                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                    this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.lbltodate.Visible = true;
+                    this.divtodate.Visible = true;
+                    this.txttodate.Visible = true;
+                    if (comcod == "3368" || comcod == "3101")//Finlay
                     {
-                        this.SoldType.Visible = false;
-                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
-                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.lbltodate.Visible = true;
-                        this.divtodate.Visible = true;
-                        this.txttodate.Visible = true;
-
                         this.divgroup.Visible = false;
-
+                        this.ddlProjectName.Visible = false;
+                       
                     }
                     else
                     {
-                        this.SoldType.Visible = false;
-                        this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
-                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.lbltodate.Visible = true;
-                        this.divtodate.Visible = true;
-                        this.txttodate.Visible = true;
+                        this.lbProjectName.Visible = false;
+                        
                         //this.Label15.Text = "From: ";
                         //this.Label15.Visible = false;
                         //this.txtDate.Visible = false;
@@ -198,6 +193,12 @@ namespace RealERPWEB.F_22_Sal
                 this.ddlProjectName.SelectedValue = qryprjcode;
                 ddlProjectName.Enabled = false;
             }
+            //for Listbox
+            this.lbProjectName.DataTextField = "pactdesc";
+            this.lbProjectName.DataValueField = "pactcode";
+            this.lbProjectName.DataSource = ds1.Tables[0];
+            this.lbProjectName.DataBind();
+
         }
         private void GetSalesTeam()
         {
@@ -220,7 +221,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
+            string comcod = GetComocd();
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
             {
@@ -237,6 +238,10 @@ namespace RealERPWEB.F_22_Sal
                     break;
                 case "LandO":
                 case "RptDayWSale":
+                    if (comcod == "3370")
+                    {
+                        gvDayWSale.Columns[11].Visible = true;
+                    }
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
                     this.lblSalesTeam.Visible = true;
@@ -346,9 +351,36 @@ namespace RealERPWEB.F_22_Sal
 
             string calltype = "";
             string type = this.Request.QueryString["Type"].ToString().Trim();
-            if (comcod=="3368")//Finlay
+
+            string resListMulti = "";
+            string resourcelist = this.lbProjectName.SelectedValue.ToString();
+            if (comcod=="3368" || comcod == "3101")//Finlay
             {
-                if(type=="LandO")
+                if (resourcelist == "")
+                {
+                    //resListMulti = "";
+                    foreach (ListItem item in lbProjectName.Items)
+                    {
+                        if(item.Value!= "000000000000")
+                          resListMulti += item.Value;
+
+                    }
+                }
+                else
+                {
+                    foreach (ListItem item in lbProjectName.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            if (item.Value != "000000000000")
+                                resListMulti += item.Value;
+                        }
+                    }
+                }
+
+
+
+                if (type=="LandO")
                 {
                     calltype = "RPTDAYWISHSALFINLAYLO";
                 }
@@ -362,7 +394,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 calltype = "RPTDAYWISHSAL";
             }
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, PactCode, frdate, todate, mRptGroup, steam, steamlen, "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, PactCode, frdate, todate, mRptGroup, steam, steamlen, resListMulti, "", "");
             if (ds1 == null)
             {
                 this.gvDayWSale.DataSource = null;
@@ -373,7 +405,15 @@ namespace RealERPWEB.F_22_Sal
 
             this.gvDayWSale.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             //this.gvDayWSale.Columns[1].Visible = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? true : false;
-            Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            if (comcod == "3368" || comcod == "3101")//Finlay
+            {
+                Session["tblData"] = ds1.Tables[0];
+            }
+            else
+            {
+                Session["tblData"] = HiddenSameData(ds1.Tables[0]);
+            }
+              
             this.gvDayWSale.DataSource = (DataTable)Session["tblData"];
             this.gvDayWSale.DataBind();
             this.FooterCalculation();
@@ -516,6 +556,8 @@ namespace RealERPWEB.F_22_Sal
                                     0 : dt2.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFDDisAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(disamt)", "")) ?
                                     0 : dt2.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDayWSale.FooterRow.FindControl("lgvFCollAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tcamt)", "")) ?
+                                    0 : dt2.Compute("sum(tcamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 
                 case "uwiseCosting":
@@ -888,8 +930,16 @@ namespace RealERPWEB.F_22_Sal
                 Label bgdamt = (Label)e.Row.FindControl("lgvDTAmt");
                 // HyperLink salamt = (HyperLink)e.Row.FindControl("HplgvAmt");
 
-                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-
+                string code = "";
+                if (comcod == "3368" || comcod == "3101")//Finlay
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
+                }
+                else
+                {
+                    code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                }
+                    
                 if (code == "")
                 {
                     return;

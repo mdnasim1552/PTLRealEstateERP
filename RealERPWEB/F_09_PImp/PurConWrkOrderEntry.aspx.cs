@@ -205,6 +205,8 @@ namespace RealERPWEB.F_09_PImp
                 case "1205": // p2p
                 case "3351": // p2p
                 case "3352": // p2p
+                case "3374": // Angan
+
                     this.printWorkOrderFInt();
                     break;
 
@@ -423,7 +425,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
             }
-            else if (comcod == "3370" || comcod == "3368" || comcod == "3101")
+            else if (comcod == "3370" || comcod == "3368" || comcod == "3101" || comcod=="3374")
             {
                 refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
                 string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
@@ -556,6 +558,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3101":
                 case "3368":
                 case "3370": // cpdl
+                case "3374": // Angan
                 case "1205": // p2p 
                 case "3351":  // p2p 
                 case "3352":  // p2p 

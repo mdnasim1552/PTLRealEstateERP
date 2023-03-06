@@ -247,13 +247,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "4301":
                     this.InsertDailyAttnSan();
                     break;
+
+                
+                case "3369": //Acme AI Ltd.               
+                    this.InsertDailyAttnACMEAI();
+                    break;
+
+
                 case "3333":
                 case "3336":
 
                 case "3338": //Acme Technologies Ltd.
                 case "1206": //Acme Construction
                 case "1207": //Acme Service
-                case "3369": //Acme AI Ltd.
+              
                 case "3330": // Bridge
                 case "3355": // Greenwood
                 case "3347": // Peb Steel              
@@ -576,6 +583,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
                     string machineid= dt.Rows[i]["machineid"].ToString();
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, machineid, "", "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('"+HRData.ErrorObject["Msg"].ToString()+"');", true);
+                        return;
+                    }
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
                 this.ShowData();
@@ -584,6 +597,50 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
             }
         }
+        private void InsertDailyAttnACMEAI()
+        {
+
+            try
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                Session.Remove("DayAtten");
+                bool result;
+                string pdate = Convert.ToDateTime(this.txtdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                string date1 = "#" + this.txtdate.Text + " 12:00:00 AM" + "#";
+                string date2 = "#" + this.txtdate.Text + " 11:59:00 PM" + "#";
+
+                HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
+                DataSet ds = DailyAttendance.GetDailyAttenDanceAlli(date1, date2);
+                
+
+                Session["DayAtten"] = ds.Tables[0];
+                DataTable dt = (DataTable)Session["DayAtten"];
+                string comcod = this.GetCompCode();
+                string date = this.txtdate.Text;
+
+                // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEATTEN", date, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                   
+                    string idcardno = dt.Rows[i]["din"].ToString();
+                    string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
+                // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                this.ShowData();
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error in exception";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+        }
+
+        
+
         private void InsertDailyAttnAssure()
         {
             try

@@ -131,7 +131,8 @@ namespace RealERPWEB.F_22_Sal
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
 
-                case "EarlybenADelay02":
+                case "EarlybenADelay02":                 
+                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.ShowDelayRate();
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
@@ -413,6 +414,31 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+        private string GetComDelChCallType()
+        {
+            string CallType = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3374"://Angan
+                    CallType = "SHOWEARBENADELAY03";
+                    break;
+
+                default:
+                    CallType = "SHOWEARBENADELAY";
+                    break;
+
+
+            
+            
+            
+            }
+            return CallType;
+
+
+        }
+
         private void ShowEarbenADelay()
         {
 
@@ -424,7 +450,8 @@ namespace RealERPWEB.F_22_Sal
             //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             // string frmdate = "01-" + ASTUtility.Right(date, 8);
             string todate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SHOWEARBENADELAY", pactcode, custid, frmdate, todate, "", "", "", "", "");
+            string CallType = this.GetComDelChCallType();
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", CallType, pactcode, custid, frmdate, todate, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvearbenadelay.DataSource = null;
