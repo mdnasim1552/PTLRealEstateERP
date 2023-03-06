@@ -2196,7 +2196,7 @@ namespace RealERPWEB.F_22_Sal
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string project = this.ddlProjectName.SelectedItem.Text.Trim();
-            double delcrg = Convert.ToDouble(this.txtdelaychrg.Text.Trim()) / 100;
+           string delcrg = this.txtdelaychrg.Text.Trim();
             string aptvalue = ((Label)this.gvearbenadelay.FooterRow.FindControl("lgvFinsamteben")).Text;
                
                               
@@ -2223,7 +2223,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("Customername", uacustomer));
             Rpt1.SetParameters(new ReportParameter("Unit", unit));
             Rpt1.SetParameters(new ReportParameter("aptvalue", aptvalue));
-            Rpt1.SetParameters(new ReportParameter("delcrg", delcrg.ToString()));
+            Rpt1.SetParameters(new ReportParameter("delcrg", delcrg));
             Rpt1.SetParameters(new ReportParameter("customeradd", customeradd));
             Rpt1.SetParameters(new ReportParameter("customerconpre", customerconpre));
             Rpt1.SetParameters(new ReportParameter("custparcon", custparcon));
