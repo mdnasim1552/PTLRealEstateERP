@@ -745,10 +745,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         this.Chboxforward.Checked = true;
                     }
-                    //else if (comcod == "3374" && roletype == "DPT")
-                    //{
-                    //    this.Chboxforward.Checked = true;
-                    //}
+                    else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                    {
+                        this.Chboxforward.Checked = true;
+                    }
+
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", ApprovByid, Approvtrmid);
@@ -1420,11 +1421,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.Chboxforward.Checked = false;
                 }
-                //else if (comcod=="3374" && roletype== "DPT")
-                //{
-                //    this.Chboxforward.Checked = true;
-                //}
-        
+                else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                {
+                    this.Chboxforward.Checked = true;
+                }
+
 
                 string isForward = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
