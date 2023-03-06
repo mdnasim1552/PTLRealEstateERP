@@ -401,7 +401,8 @@ namespace RealEntity.C_22_Sal
             public string custname { get; set; }
             public string udesc { get; set; }
           
-            public string pactcode { get; set; }
+            
+            public string usircode { get; set; }
             public string pactdesc { get; set; }
 
             public double opnam { get; set; }

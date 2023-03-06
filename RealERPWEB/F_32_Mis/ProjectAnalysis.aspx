@@ -109,7 +109,7 @@
                         </fieldset>
                     </div>
 
-                    <asp:GridView ID="gvprjanalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                      <asp:GridView ID="gvprjanalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                         OnRowDataBound="gvprjanalysis_OnRowDataBound" ShowFooter="True">
                         <RowStyle />
                         <Columns>
@@ -148,7 +148,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>--%>
 
-                            <asp:TemplateField HeaderText="Total Sales Target">
+                            <asp:TemplateField HeaderText="Total Sales </br>Target">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="hlnkbgdamt" Target="_blank" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tosalval")).ToString("#,##0;(#,##0); ") %>'
                                         Width="70px"></asp:HyperLink>
@@ -201,7 +201,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Total Collection Dues">
+                            <asp:TemplateField HeaderText="Total </br>Collection  </br> Dues">
                                 <ItemTemplate>
                                     <asp:Label ID="tcoldues" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcoldue")).ToString("#,##0;(#,##0); ") %>'
                                         Width="70px"></asp:Label>
@@ -214,7 +214,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Total Sales & Collec. Dues">
+                            <asp:TemplateField HeaderText="Total Sales </br> & Collec. Dues">
                                 <ItemTemplate>
                                     <asp:Label ID="tsalcoldues" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tsalcoldue")).ToString("#,##0;(#,##0); ") %>'
                                         Width="70px"></asp:Label>
@@ -228,7 +228,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Sales(%) from S.Tar.">
+                            <asp:TemplateField HeaderText="Sales(%) </br> from S.Tar.">
                                 <ItemTemplate>
                                     <asp:Label ID="salperstg" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salperstg")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="45px"></asp:Label>
@@ -237,7 +237,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Collec.(%) from Sales">
+                            <asp:TemplateField HeaderText="Collec.</br>(%) </br>from</br> Sales">
                                 <ItemTemplate>
                                     <asp:Label ID="colpersal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colpersal")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="45px"></asp:Label>
@@ -246,7 +246,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Collec.(%) from S. tar.">
+                            <asp:TemplateField HeaderText="Collec.</br>(%) </br> from </br>S. tar.">
                                 <ItemTemplate>
                                     <asp:Label ID="scolperstg" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colperstg")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="45px"></asp:Label>
@@ -307,7 +307,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Projected Profit">
+                             <asp:TemplateField HeaderText="Projected </br> Profit">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvprojectedprofit" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pronetprofit")).ToString("#,##0;(#,##0); ") %>'
                                         Width="75px"></asp:Label>
@@ -327,7 +327,7 @@
                             <asp:TemplateField HeaderText="Profit %">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvproprofitpercnt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "propercnt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                        Width="60px"></asp:Label>
+                                        Width="50px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
                                     <asp:Label ID="lblgvFproprofitpercnt" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
