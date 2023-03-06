@@ -248,13 +248,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
+
 
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
 
-=======
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
->>>>>>> c8c31d52ab4a327ffbe75a8ae3c4911acbf03700
+
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
       <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
