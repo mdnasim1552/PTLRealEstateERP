@@ -37,12 +37,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -54,8 +53,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -234,7 +232,6 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+AllotmentInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
-    <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+DaywiseSale.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonSalPerTarWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonthWisseSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+PaymentScheduleN.datasource" />
@@ -333,10 +330,12 @@
     <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2CPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryANGAN.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryCPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryEpic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptBillInfoANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoFinlay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoCPDL.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />

@@ -123,15 +123,6 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.Label lblAccCodedesc;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// lbltxtdetailsCode control.
         /// </summary>
         /// <remarks>
@@ -222,6 +213,15 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.Label lblSpcCodedesc;
 
         /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+
+        /// <summary>
         /// PnlNewCode control.
         /// </summary>
         /// <remarks>
@@ -274,24 +274,6 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAccHeadN;
-
-        /// <summary>
-        /// lnkFinalUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFinalUpdate;
-
-        /// <summary>
-        /// lblmsg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
 
         /// <summary>
         /// lbltxtdetailsCodeN control.
@@ -364,6 +346,24 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSpclficationN;
+
+        /// <summary>
+        /// lnkFinalUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkFinalUpdate;
+
+        /// <summary>
+        /// lblmsg1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsg1;
 
         /// <summary>
         /// View2 control.
