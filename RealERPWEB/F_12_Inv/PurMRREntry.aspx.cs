@@ -904,6 +904,7 @@ namespace RealERPWEB.F_12_Inv
             this.txtQc.Text = ds1.Tables[1].Rows[0]["qcno"].ToString();
             this.txtChaDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["challandat"]).ToString("dd.MM.yyyy");
             this.ddlQCParamList.SelectedValue = ds1.Tables[1].Rows[0]["qcp"].ToString();
+            this.txtQcn.Text = ds1.Tables[1].Rows[0]["qcnote"].ToString();
 
             this.gvMRRInfo_DataBind();
         }
@@ -1289,7 +1290,7 @@ namespace RealERPWEB.F_12_Inv
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
             string mQcp = this.ddlQCParamList.SelectedValue.ToString();
-
+            string mQcn = this.txtQcn.Text.Trim();
 
 
 
@@ -1438,7 +1439,7 @@ namespace RealERPWEB.F_12_Inv
             bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
                              mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, 
                              mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, 
-                             Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval, mQcp);
+                             Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval, mQcp, mQcn);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

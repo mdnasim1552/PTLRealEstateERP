@@ -186,11 +186,16 @@
                                            
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to " Text="QC Parameter"></asp:Label>
                                             <asp:DropDownList ID="ddlQCParamList" runat="server"
-                                                TabIndex="9" CssClass="chzn-select ddlPage" Width="250px">
+                                                TabIndex="9" CssClass="chzn-select ddlPage" Width="180px">
                                             </asp:DropDownList>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <asp:Label ID="Label3" runat="server" CssClass=" smLbl_to " Text="QC Notes"></asp:Label>
+                                            <asp:TextBox ID="txtQcn" runat="server" CssClass="inputTxt inputDateBox" Width="120px"></asp:TextBox>
                                         </div>
 
 
