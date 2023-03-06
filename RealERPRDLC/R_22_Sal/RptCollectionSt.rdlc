@@ -549,7 +549,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>=IIF(Trim(Fields!usircode.Value)="51AAAAAAAAAA" or Trim(Fields!usircode.Value)="51AAAAAABBBB","Right","Default")</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -569,6 +569,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -749,7 +750,10 @@
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
-                <TablixMember />
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                </TablixMember>
                 <TablixMember>
                   <Group Name="Details1" />
                 </TablixMember>
@@ -800,7 +804,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.71931in</Top>
+            <Top>2.09431in</Top>
             <Left>0.1625in</Left>
             <Height>0.35305in</Height>
             <Width>1.875in</Width>
@@ -854,7 +858,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.71931in</Top>
+            <Top>2.09431in</Top>
             <Left>3.02119in</Left>
             <Height>0.34375in</Height>
             <Width>1.82292in</Width>
@@ -908,7 +912,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.71931in</Top>
+            <Top>2.09431in</Top>
             <Left>5.97119in</Left>
             <Height>0.35305in</Height>
             <Width>1.77083in</Width>
@@ -928,7 +932,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.14167in</Height>
+        <Height>2.44736in</Height>
         <Style />
       </Body>
       <Width>7.89602in</Width>
