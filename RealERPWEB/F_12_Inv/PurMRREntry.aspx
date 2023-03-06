@@ -193,6 +193,11 @@
                                             </asp:DropDownList>
                                         </div>
 
+                                        <div class="col-md-3">
+                                            <asp:Label ID="Label3" runat="server" CssClass=" smLbl_to " Text="QC Notes"></asp:Label>
+                                            <asp:TextBox ID="txtQcn" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                        </div>
+
 
 
                                     </div>
