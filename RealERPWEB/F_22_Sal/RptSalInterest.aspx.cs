@@ -872,6 +872,10 @@ namespace RealERPWEB.F_22_Sal
                     {
                         this.RptEarlyBenADelayCPDL();
                     }
+                    else if (comcod == "3374")
+                    {
+                        this.RptEarlyBenADelayANGAN();
+                    }
                     else
                     {
                         this.RptEarlyBenADelay();
@@ -2178,7 +2182,35 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
-            private string CompanyInvoice()
+        private void RptEarlyBenADelayANGAN()
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string project = this.ddlProjectName.SelectedItem.Text.Trim();
+            string uacustomer = this.ddlCustName.SelectedItem.Text.Trim();
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt = (DataTable)ViewState["tblinterest"];
+            List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02> lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEarlybenefitADelayANGAN", lst, null, null);
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("RptHead", "Delay Charge /Discount Calculation Statement"));
+            Rpt1.SetParameters(new ReportParameter("ProjName", "Project Name: " + project));
+            Rpt1.SetParameters(new ReportParameter("Unit", uacustomer));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        private string CompanyInvoice()
         {
 
             string comcod = this.GetCompCode();

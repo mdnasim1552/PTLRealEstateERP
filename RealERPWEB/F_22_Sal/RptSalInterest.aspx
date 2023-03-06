@@ -1039,7 +1039,7 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Installment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFinsamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="70px"></asp:Label>
@@ -1065,7 +1065,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Payment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFpayamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                      Style="text-align: right" Width="70px"></asp:Label>
