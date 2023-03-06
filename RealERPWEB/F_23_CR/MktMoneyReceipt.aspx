@@ -226,7 +226,9 @@
                                 <asp:Label ID="lblCode" runat="server" Visible="False"></asp:Label>
                                 <asp:Label ID="lblPhone" runat="server" Visible="False"></asp:Label>
                                 <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass=" " Text="Multiple Cheque No" />
-
+                                <asp:CheckBox ID="chkPrevious" runat="server" AutoPostBack="True"
+                                    CssClass="btn btn-sm chkBoxControl primaryBtn" OnCheckedChanged="chkPrevious_CheckedChanged"
+                                    Text="Previous Mrr" />
                             </div>
 
                         </div>
@@ -411,9 +413,7 @@
 
                                 </div>
 
-                                <asp:CheckBox ID="chkPrevious" runat="server" AutoPostBack="True"
-                                    CssClass="btn btn-sm chkBoxControl primaryBtn" OnCheckedChanged="chkPrevious_CheckedChanged"
-                                    Text="Previous Mrr" />
+                                
 
                                 <asp:Label ID="lblSchCode" runat="server" Visible="False"></asp:Label>
                                 <asp:CheckBox ID="chkOrginal" runat="server" Text="Orginal " Visible="False" />
@@ -635,7 +635,7 @@
                         <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px" Style="text-align: center"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
