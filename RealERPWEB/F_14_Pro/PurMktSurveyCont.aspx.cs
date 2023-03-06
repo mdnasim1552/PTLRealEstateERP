@@ -64,6 +64,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3101":
                 case "3370":
                 case "3368":
+                case "3374":
                     this.printCPDL_cs_approval();
                     break;
                 case "1205":
