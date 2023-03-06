@@ -173,7 +173,7 @@
                                             <asp:TextBox ID="txtChalanNo" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         </div>
 
-                                        <div class="col-md-9 pading5px ">
+                                        <div class="col-md-4 pading5px ">
                                             <asp:Label ID="lblqtycertificate" runat="server" CssClass="lblTxt lblName" Text="QC No"></asp:Label>
                                             <asp:TextBox ID="txtQc" runat="server" Width="120px" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
@@ -182,6 +182,20 @@
                                             <asp:TextBox ID="txtChaDate" runat="server" AutoPostBack="True" CssClass=" inputtextbox" TabIndex="1" ToolTip="(dd.mm.yyyy)" Style="width: 78px;"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                                 Format="dd.MM.yyyy" TargetControlID="txtChaDate"></cc1:CalendarExtender>
+
+                                           
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to " Text="QC Parameter"></asp:Label>
+                                            <asp:DropDownList ID="ddlQCParamList" runat="server"
+                                                TabIndex="9" CssClass="chzn-select ddlPage" Width="250px">
+                                            </asp:DropDownList>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <asp:Label ID="Label3" runat="server" CssClass=" smLbl_to " Text="QC Notes"></asp:Label>
+                                            <asp:TextBox ID="txtQcn" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         </div>
 
 
