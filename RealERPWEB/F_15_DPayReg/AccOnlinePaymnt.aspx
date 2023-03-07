@@ -82,7 +82,7 @@
 
 
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <asp:Label ID="Label7" runat="server" Text="Resource Head"></asp:Label>
 
@@ -94,7 +94,7 @@
 
 
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <asp:Label ID="Label2" runat="server" Text="Bill No"></asp:Label>
                                             <asp:TextBox ID="txtsrchBillno" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
@@ -106,7 +106,7 @@
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1 Pr-0" style="margin-top:22px;">
                                         <div class="form-group">
 
                                             <asp:RadioButtonList runat="server" ID="rblpaytype" CssClass="rbtnList1 chkBoxControl pull-right" RepeatDirection="Horizontal" Visible="false">
@@ -118,27 +118,27 @@
                                             <asp:CheckBox ID="chkSinglIssue" runat="server" Text="Multi Bill" Checked="false" Style="margin-left: 30px" CssClass="margin5px chkBoxControl" AutoPostBack="true" OnCheckedChanged="chkSinglIssue_CheckedChanged" />
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1 pr-0"  style="margin-top:22px;">
                                         <div class="form-group">
                                             <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Total Payment"></asp:Label>
                                         <asp:TextBox ID="txtrecordno" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-                                        <asp:LinkButton ID="lbtnAddTable" runat="server" CssClass=" margin5px"
+                                        <asp:LinkButton ID="lbtnAddTable" runat="server" CssClass="btn btn-sm btn-primary"
                                             OnClick="lbtnAddTable_Click">Add Bill</asp:LinkButton>
                                         </div>
                                         </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1 Pr-0"  style="margin-top:22px;">
                                         <div class="form-group">
                                         <asp:LinkButton ID="btnAllBill" runat="server" CssClass="btn btn-sm btn-primary" OnClick="btnAllBill_Click">Add All Bill</asp:LinkButton>
                                             </div>
                                         </div>
-                                     <div class="col-md-2">
+                                     <div class="col-md-1"  style="margin-top:22px;">
                                         <div class="form-group">
                                         <asp:LinkButton ID="lbtnRefresh" runat="server" CssClass="btn btn-sm btn-primary" Style="margin-left: 30px"
                                             OnClick="lbtnRefresh_Click">Reset</asp:LinkButton>
 
 
-                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
                                         <asp:Label ID="lblmslnum" runat="server" Visible="False"></asp:Label>
                                         <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
                                             </div>
