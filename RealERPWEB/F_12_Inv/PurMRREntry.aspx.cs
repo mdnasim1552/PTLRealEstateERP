@@ -42,6 +42,12 @@ namespace RealERPWEB.F_12_Inv
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChaDate.Text = (comcod == "3354" ? "" : DateTime.Today.ToString("dd.MM.yyyy"));
+
+                if(comcod=="3354" || comcod == "3101")
+                {
+                    this.divQc.Visible = true;
+                }
+
                 //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
                 //    : "Delete Materials Receive Information Input/Edit Screen";
 
@@ -74,7 +80,10 @@ namespace RealERPWEB.F_12_Inv
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnResFooterTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdateMRR_Click);
 
         }
 
