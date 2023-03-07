@@ -2275,13 +2275,14 @@ namespace RealERPWEB.F_14_Pro
             try
             {
 
-
+                string comcod = GetCompCode();
                 DataTable tbl1 = (DataTable)ViewState["tblBill"];
                 this.gvBillInfo.DataSource = tbl1;
                 this.gvBillInfo.DataBind();
 
+
                 //For Visible Item Serial Manama
-                string comcod = GetCompCode();
+                
                 if (comcod == "3353" || comcod == "3101")
                 {
                     this.gvBillInfo.Columns[1].Visible = true;
@@ -3672,6 +3673,24 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+
+        protected void gvBillInfo_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string comcod = this.GetCompCode();
+
+            if (comcod == "3354")
+            {
+                for (int i = 0; i < this.gvBillInfo.Rows.Count; i++)
+                {
+                    ((TextBox)this.gvBillInfo.Rows[i].FindControl("txtgvMRRAmt")).Enabled=false;
+
+                }
+
+                    
+
+            }
+        }
+
         protected void AsyncFileUpload1_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
         {
             string comcod = this.GetCompCode();
