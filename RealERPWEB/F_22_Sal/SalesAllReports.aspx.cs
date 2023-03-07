@@ -78,7 +78,7 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
                     this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = true;
+                    this.clsprjnamemul.Visible = false;
                     break;
 
                 case "PrjCollTilldate":
@@ -90,7 +90,7 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
                     this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = true;
+                    this.clsprjnamemul.Visible = false;
                     break;
 
                 case "PaymentStatus":
@@ -102,7 +102,7 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = true;
                     this.grpid.Visible = false;
                     this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = true;
+                    this.clsprjnamemul.Visible = false;
                     break;
 
                 case "SoldUnSoldUnit":
@@ -115,7 +115,7 @@ namespace RealERPWEB.F_22_Sal
                     this.grpid.Visible = true;
                     this.GetGroup();
                     this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = true;
+                    this.clsprjnamemul.Visible = false;
 
 
 
