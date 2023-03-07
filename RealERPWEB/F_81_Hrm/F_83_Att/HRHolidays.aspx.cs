@@ -351,6 +351,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string msg = "";
             try
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string PostedByid = hst["usrid"].ToString();
+                string Posttrmid = hst["compname"].ToString();
+                string PostSession = hst["session"].ToString();
+                string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
                 string company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "94%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
                 string department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? company : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
                 string section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString()) + "%";
@@ -368,7 +374,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     empid = dt.Rows[i]["empid"].ToString();
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTOFFDAY", empid, year, "", "", "", "", "", PostedByid, Posttrmid, PostSession, Posteddat,"","","","");
                 }
 
                 msg = rowCount + " Rows affected!";

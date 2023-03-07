@@ -398,6 +398,7 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETACCTRANSFERINFO", trnno,
                           "", "", "", "", "", "", "", "");
             DataTable dt1 = ds1.Tables[0];
+            DataTable dt2 = ds1.Tables[1];
 
             DataTable tblt01 = (DataTable)Session["tblt01"];
             for (int i = 0; i < dt1.Rows.Count; i++)
@@ -421,6 +422,8 @@ namespace RealERPWEB.F_17_Acc
             }
             if (tblt01.Rows.Count == 0)
                 return;
+
+            this.txtNarration.Text = dt2.Rows[0]["narration"].ToString();
             Session["tblt01"] = this.HiddenSameData(tblt01);
             dgv2.DataSource = (DataTable)Session["tblt01"];
             dgv2.DataBind();
