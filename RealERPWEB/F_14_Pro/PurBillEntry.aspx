@@ -376,7 +376,7 @@
                     </div>
                     <div class="row table-responsive">
                         <asp:GridView ID="gvBillInfo" runat="server" AllowPaging="True"
-                            AutoGenerateColumns="False" ShowFooter="True" Width="16px"
+                            AutoGenerateColumns="False" ShowFooter="True" Width="16px" OnRowDataBound="gvBillInfo_RowDataBound"
                             OnRowDeleting="gvBillInfo_RowDeleting" CssClass="table table-striped table-hover table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
                             <RowStyle />
