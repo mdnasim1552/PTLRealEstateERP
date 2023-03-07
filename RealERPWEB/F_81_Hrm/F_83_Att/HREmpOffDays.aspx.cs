@@ -368,8 +368,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
 
-
+            string PostedByid = hst["usrid"].ToString();
+            string Posttrmid = hst["compname"].ToString();
+            string PostSession = hst["session"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");  
             string comcod = this.GetComCode();
             string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string Department = ((this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
@@ -388,7 +392,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 if (this.chkDate.Items[i].Selected)
                 {
                     string offdate = Convert.ToDateTime(this.chkDate.Items[i].Value).ToString("dd-MMM-yyyy");
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, "", "", "", "", "", "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "");
                                  
                     if (!result)
                     {
@@ -466,6 +470,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void lnkbtnFUpOff_Click(object sender, EventArgs e)
         {
             this.SaveValue();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string PostedByid = hst["usrid"].ToString();
+            string Posttrmid = hst["compname"].ToString();
+            string PostSession = hst["session"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable dt = (DataTable)Session["tbloffday"];
             string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
@@ -478,7 +487,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string wkdate = dt.Rows[i]["wkdate"].ToString();
                 string reason = dt.Rows[i]["reason"].ToString();
                 string dlstatus = dt.Rows[i]["dstatus"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, "", "", "", "", "", "", "", "");
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "");
 
             }
 
@@ -494,13 +503,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void gvoffday_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string PostedByid = hst["usrid"].ToString();
+            string Posttrmid = hst["compname"].ToString();
+            string PostSession = hst["session"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
             DataTable dt = (DataTable)Session["tbloffday"];
             string comcod = this.GetComCode();
             int rowindex = (this.gvoffday.PageSize) * (this.gvoffday.PageIndex) + e.RowIndex;
             string empid = dt.Rows[rowindex]["empid"].ToString();
             string date = Convert.ToDateTime(dt.Rows[rowindex]["wkdate"]).ToString("dd-MMMM-yyyy");
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEEMPOFFDAY", empid, date, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "DELETEEMPOFFDAY", empid, date, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "", "", "", "", "", "");
 
 
             if (result == true)
