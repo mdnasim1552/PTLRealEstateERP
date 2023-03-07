@@ -877,7 +877,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!nillstatus.Value=true, "NILL", format(Fields!balamt.Value, "#,##0;(#,##0);"))</Value>
+                                  <Value>=iif(Fields!nillstatus.Value=true,iif(Fields!balamt.Value=0.00,"NILL",format(Fields!balamt.Value, "#,##0;(#,##0); ")), format(Fields!balamt.Value, "#,##0;(#,##0); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -938,6 +938,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2197,7 +2198,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
-              <Top>0in</Top>
               <Left>5.48443in</Left>
               <Height>0.21667in</Height>
               <Width>2.25396in</Width>

@@ -277,7 +277,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvidcard" runat="server" Height="16px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                        Width="50px"></asp:Label>
+                                        Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="left" />
