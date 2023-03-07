@@ -204,15 +204,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblReq;
 
         /// <summary>
-        /// txtSrcRequisition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcRequisition;
-
-        /// <summary>
         /// imgbtnFindRequiSition control.
         /// </summary>
         /// <remarks>
@@ -220,6 +211,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindRequiSition;
+
+        /// <summary>
+        /// txtSrcRequisition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcRequisition;
 
         /// <summary>
         /// lblPage control.

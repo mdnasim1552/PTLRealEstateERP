@@ -53,7 +53,7 @@
                             <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#CDDBC8" CssClass="rbtnList1"
                                 RepeatColumns="6" RepeatDirection="Horizontal"
                                 Width="300px">
-                                <asp:ListItem>Requisition  Basis </asp:ListItem>
+                                <asp:ListItem>Requisition Basis </asp:ListItem>
                                 <asp:ListItem>Materials Basis</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
@@ -65,22 +65,26 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-3">
 
                         <div class="col-md-3">
                             <asp:Label ID="Label1" runat="server" CssClass="form-label">Project Name</asp:Label>
-                            <asp:TextBox ID="txtSrcProject" runat="server" CssClass="inputtextbox" Visible="false"></asp:TextBox>
-                            <asp:LinkButton ID="imgbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="2" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" Style="width: 90%">
-                            </asp:DropDownList>
+                            <div style="display: flex">
+                                <asp:TextBox ID="txtSrcProject" runat="server" CssClass="inputtextbox" Visible="false"></asp:TextBox>
+                                <asp:LinkButton ID="imgbtnFindProject" CssClass="btn btn-primary btn-sm mr-1 srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" Style="width: 90%">
+                                </asp:DropDownList>
+                            </div>
                         </div>
 
                         <div class="col-md-3">
-                            <asp:Label ID="Label2" runat="server" CssClass="form-label">Project Name</asp:Label>
-                            <asp:TextBox ID="txtSrcResource" runat="server" CssClass="inputtextbox" Visible="false"></asp:TextBox>
-                            <asp:LinkButton ID="imgbtnFindResource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="2" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                            <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select" Style="width: 90%">
-                            </asp:DropDownList>
+                            <asp:Label ID="Label2" runat="server" CssClass="form-label">Resource</asp:Label>
+                            <div style="display: flex">
+                                <asp:TextBox ID="txtSrcResource" runat="server" CssClass="inputtextbox" Visible="false"></asp:TextBox>
+                                <asp:LinkButton ID="imgbtnFindResource" CssClass="btn btn-primary btn-sm mr-1 srearchBtn" runat="server" OnClick="imgbtnFindResource_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
+                                <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select" Style="width: 90%">
+                                </asp:DropDownList>
+                            </div>
                         </div>
 
                         <div class="col-md-1 ">
@@ -112,8 +116,10 @@
 
                         <div class="col-md-3">
                             <asp:Label ID="lblReq" runat="server" CssClass="form-label">Req</asp:Label>
-                            <asp:TextBox ID="txtSrcRequisition" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:LinkButton ID="imgbtnFindRequiSition" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindRequiSition_Click" TabIndex="2" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                            <div style="display:flex">
+                                <asp:LinkButton ID="imgbtnFindRequiSition" CssClass="btn btn-primary btn-sm srearchBtn" runat="server" OnClick="imgbtnFindRequiSition_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
+                                <asp:TextBox ID="txtSrcRequisition" runat="server" CssClass="form-control ml-1"></asp:TextBox>
+                            </div>
                         </div>
 
 
