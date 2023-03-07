@@ -51,24 +51,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblProjectList;
 
         /// <summary>
-        /// txtProjectSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProjectSearch;
-
-        /// <summary>
-        /// ImgbtnFindProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindProject;
-
-        /// <summary>
         /// ddlProject control.
         /// </summary>
         /// <remarks>
@@ -85,33 +67,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProjectDesc;
-
-        /// <summary>
-        /// lbtnOk1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk1;
-
-        /// <summary>
-        /// lblpage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpage;
-
-        /// <summary>
-        /// ddlpagesize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
         /// lblvounotext control.
@@ -168,6 +123,33 @@ namespace RealERPWEB.F_09_PImp
         protected global::AjaxControlToolkit.CalendarExtender txtDate_CalendarExtender;
 
         /// <summary>
+        /// lblpage0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpage0;
+
+        /// <summary>
+        /// txtSearchItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchItem;
+
+        /// <summary>
+        /// ImgbtnItemSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ImgbtnItemSearch;
+
+        /// <summary>
         /// lblPreList control.
         /// </summary>
         /// <remarks>
@@ -204,40 +186,31 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevVOUList;
 
         /// <summary>
-        /// lblpage0 control.
+        /// lblpage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpage0;
+        protected global::System.Web.UI.WebControls.Label lblpage;
 
         /// <summary>
-        /// txtSearchItem control.
+        /// ddlpagesize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchItem;
+        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// ImgbtnItemSearch control.
+        /// lbtnOk1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ImgbtnItemSearch;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk1;
 
         /// <summary>
         /// Panel3 control.
