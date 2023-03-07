@@ -470,6 +470,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void lnkbtnFUpOff_Click(object sender, EventArgs e)
         {
             this.SaveValue();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string PostedByid = hst["usrid"].ToString();
+            string Posttrmid = hst["compname"].ToString();
+            string PostSession = hst["session"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable dt = (DataTable)Session["tbloffday"];
             string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00" ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
@@ -482,7 +487,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string wkdate = dt.Rows[i]["wkdate"].ToString();
                 string reason = dt.Rows[i]["reason"].ToString();
                 string dlstatus = dt.Rows[i]["dstatus"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, "", "", "", "", "", "", "", "");
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "");
 
             }
 
