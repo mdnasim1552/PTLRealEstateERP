@@ -126,9 +126,9 @@
                             <asp:CheckBox ID="chkShorting" runat="server" AutoPostBack="true" OnCheckedChanged="chkShorting_CheckedChanged" Text="Alphabet" />
                         </div>
                         <div class="col-md-2" style="margin-top: 20px;">
-                              <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget"
+                            <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget"
                                 Visible="False" CssClass="btn btn-sm btn-primary chkBoxControl primaryBtn" />
-                          
+
                         </div>
                         <div class="col-md-1" style="margin-top: 20px;">
                             <asp:CheckBox ID="ChkCopyTender" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyTender_CheckedChanged" Text="Copy Tender"
@@ -204,7 +204,7 @@
                             <div class="row">
 
 
-                               <div class="col-md-2 col-sm-2 col-lg-2">
+                                <div class="col-md-2 col-sm-2 col-lg-2">
                                     <h3 class="card-title mr-auto" runat="server" id="lblFPhaseTitle">Catagory Selection</h3>
                                     <%-- <asp:Label ID="lblFPhaseTitle" runat="server" CssClass="btn btn-success primaryBtn"
                                         Text="Catagory Selection"></asp:Label>--%>
@@ -214,7 +214,7 @@
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="inputDateBox" Visible="False"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                                    <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnUpdatePCDate_Click" >Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnUpdatePCDate_Click">Update</asp:LinkButton>
 
                                 </div>
 
@@ -258,8 +258,8 @@
 
                             <div class="row">
 
-                               
-                                
+
+
 
                                 <div class="col-md-3 col-sm-3 col-lg-3">
                                     <div class="form-group">
@@ -299,7 +299,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                 <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 25px;">
+                                <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 25px;">
                                     <%--<h3 class="card-title mr-auto">Item Selection (All Catagory)</h3>--%>
                                     <asp:HyperLink ID="lnkbtnAnalysis" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdStdAna.aspx" CssClass="btn btn-xs btn-success" ToolTip="Analysis" BackColor="transparent"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
 
@@ -553,11 +553,11 @@
 
                         </asp:View>
                         <asp:View ID="View3Item" runat="server">
-                             <div class="col-md-2">
-                                     <h3 class="card-title mr-auto">Item Selection (Individual Catagory)</h3>
-                                   
-                                </div>
-                            
+                            <div class="col-md-2">
+                                <h3 class="card-title mr-auto">Item Selection (Individual Catagory)</h3>
+
+                            </div>
+
                             <div class="clearfix"></div>
                             <div class="form-group">
 
@@ -800,17 +800,36 @@
                         </asp:View>
                         <asp:View ID="View4Resource" runat="server">
 
-                            <div class="row">
+                            <div class="row mt-2">
+
                                 <div class="col-md-2 col-sm-2 col-lg-2">
                                     <div class="form-group">
                                         <asp:Label ID="lblTitle2" runat="server" CssClass="control-label" Text="Res. Rate Input"></asp:Label>
-                                        <asp:TextBox ID="txtSearchItem" runat="server" CssClass="inputTextBox"></asp:TextBox>
+                                        <asp:TextBox ID="txtSearchItem" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1 col-sm-1 col-lg-1">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
+                                        <asp:DropDownList ID="ddlPage" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
+                                            Font-Bold="True" OnSelectedIndexChanged="ddlPage_SelectedIndexChanged"
+                                            Width="70px">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20" Selected="True">20</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="150">150</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
 
                                 <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
                                     <asp:LinkButton ID="lbtnSelectFloorRes" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnSelectFloorRes_Click">Show Item</asp:LinkButton>
-
                                 </div>
 
 
@@ -1323,8 +1342,8 @@
                         <asp:View ID="SpReport" runat="server">
                             <div class="row">
                                 <div class="col-md-2">
-                                     <h3 class="card-title mr-auto">Special Reports</h3>
-                                   
+                                    <h3 class="card-title mr-auto">Special Reports</h3>
+
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-lg-2">
                                     <div class="form-group">
