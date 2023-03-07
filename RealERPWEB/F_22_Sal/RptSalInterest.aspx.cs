@@ -2209,7 +2209,7 @@ namespace RealERPWEB.F_22_Sal
             string customeradd = dt1.Rows[0]["custadd"].ToString();
             string customerconpre = dt1.Rows[0]["custprecon"].ToString();
             string custparcon = dt1.Rows[0]["custparcon"].ToString();
-            string parqty = dt1.Rows[0]["parqty"].ToString();
+            string parqty = Convert.ToDouble(dt1.Rows[0]["parqty"]).ToString("#,##0;(#,##0); ");
 
 
             List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02> lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>();

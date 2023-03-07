@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e71b8ccb-c001-4eec-a1bf-bdfdda82634f</rd:DataSourceID>
+      <rd:DataSourceID>d55f6499-a4a4-4e17-b08d-0a74686ac85f</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -31,6 +31,10 @@
         </Field>
         <Field Name="pactdesc">
           <DataField>pactdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pactdesc1">
+          <DataField>pactdesc1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ramt">
@@ -195,14 +199,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="pactdesc">
+                        <Textbox Name="pactdesc1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!pactdesc.Value</Value>
+                                  <Value>=Fields!pactdesc1.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -211,7 +215,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>pactdesc</rd:DefaultName>
+                          <rd:DefaultName>pactdesc1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -224,6 +228,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
