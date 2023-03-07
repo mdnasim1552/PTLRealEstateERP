@@ -58,6 +58,7 @@ namespace RealERPWEB.F_23_CR
                 string tdate = this.Request.QueryString["Date2"] ?? "";
 
                 this.GetProjectName();
+                this.imgbtnFindProject_Click(null, null);
                 this.ViewSelection();
                 this.NameChange();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
@@ -117,8 +118,8 @@ namespace RealERPWEB.F_23_CR
                     this.chkPayDateWise.Visible = true;
                     this.lblProjectname.Visible = false;
                     //this.txtSrcProject.Visible = false;
-                    this.imgbtnFindProject.Visible = false;
-                    this.DropCheck1.Visible = false;
+                   // this.imgbtnFindProject.Visible = false;
+                    //this.DropCheck2.Visible = false;
                     //this.pnlfilter.Visible = false;
 
 
@@ -131,7 +132,7 @@ namespace RealERPWEB.F_23_CR
                     this.lblProjectname.Visible = false;
                     //this.txtSrcProject.Visible = false;
                     this.imgbtnFindProject.Visible = false;
-                    this.DropCheck1.Visible = false;
+                    this.DropCheck2.Visible = false;
                     string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                     this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddMonths(12).AddDays(-1).ToString("dd-MMM-yyyy"); ;
@@ -176,7 +177,7 @@ namespace RealERPWEB.F_23_CR
         }
         private void GetProjectName()
         {
-            string txtSProject = (this.Request.QueryString["prjcode"].ToString().Trim() == "") ? ("%" + this.DropCheck1.SelectedValue + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
+            string txtSProject = (this.Request.QueryString["prjcode"].ToString().Trim() == "") ? ("%" + this.DropCheck2.SelectedValue + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
 
             if (Request.QueryString["Type"].ToString() == "DuesCollectInd")
             {
@@ -186,10 +187,10 @@ namespace RealERPWEB.F_23_CR
                 string usrid = hst["usrid"].ToString();
                 // string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
                 DataSet ds1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GET_PURPROJECTNAME", txtSProject, usrid, "", "", "", "", "", "", "");
-                this.DropCheck1.DataTextField = "pactdesc";
-                this.DropCheck1.DataValueField = "pactcode";
-                this.DropCheck1.DataSource = ds1.Tables[0];
-                this.DropCheck1.DataBind();
+                this.DropCheck2.DataTextField = "pactdesc";
+                this.DropCheck2.DataValueField = "pactcode";
+                this.DropCheck2.DataSource = ds1.Tables[0];
+                this.DropCheck2.DataBind();
                 ds1.Dispose();
 
 
@@ -201,10 +202,10 @@ namespace RealERPWEB.F_23_CR
                 //string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
                 DataSet ds1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
 
-                this.DropCheck1.DataTextField = "pactdesc";
-                this.DropCheck1.DataValueField = "pactcode";
-                this.DropCheck1.DataSource = ds1.Tables[0];
-                this.DropCheck1.DataBind();
+                this.DropCheck2.DataTextField = "pactdesc";
+                this.DropCheck2.DataValueField = "pactcode";
+                this.DropCheck2.DataSource = ds1.Tables[0];
+                this.DropCheck2.DataBind();
 
                 //this.DropCheck1.DataTextField = "pactdesc";
                 //this.DropCheck1.DataValueField = "pactcode";
@@ -230,7 +231,7 @@ namespace RealERPWEB.F_23_CR
             //this.ddlProjectName.DataBind();
             //ds1.Dispose();
             if (this.Request.QueryString["prjcode"].ToString().Trim().Length > 0)
-                this.DropCheck1.SelectedValue = this.Request.QueryString["prjcode"].ToString().Trim();
+                this.DropCheck2.SelectedValue = this.Request.QueryString["prjcode"].ToString().Trim();
 
         }
         protected void imgbtnFindProject_Click(object sender, EventArgs e)
@@ -324,7 +325,7 @@ namespace RealERPWEB.F_23_CR
             // string name = this.DropCheck1.Text;
 
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("ProjectNam", this.DropCheck1.Text));
+            Rpt1.SetParameters(new ReportParameter("ProjectNam", this.DropCheck2.SelectedItem.Text));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Dues Collection Statment Report"));
             Rpt1.SetParameters(new ReportParameter("FTdate", Ftdate));
@@ -637,7 +638,7 @@ namespace RealERPWEB.F_23_CR
         {
             DataTable dt = (DataTable)this.HiddenSameData((DataTable)Session["tblAccRec"]);
             string projectName = "";
-            string pactcode = this.DropCheck1.SelectedValue.ToString();
+            string pactcode = this.DropCheck2.SelectedValue.ToString();
             if (pactcode == "000000000000")
             {
                 projectName = "All Project";
@@ -1199,8 +1200,8 @@ namespace RealERPWEB.F_23_CR
 
 
 
-                    pactcode = (this.DropCheck1.SelectedValue == "000000000000") ? ""
-                        : (this.DropCheck1.SelectedValue.Substring(0, 2) == "18") ? "41" + this.DropCheck1.SelectedValue.Substring(2) : "47" + this.DropCheck1.SelectedValue.Substring(2);
+                    pactcode = (this.DropCheck2.SelectedValue == "000000000000") ? ""
+                        : (this.DropCheck2.SelectedValue.Substring(0, 2) == "18") ? "41" + this.DropCheck2.SelectedValue.Substring(2) : "47" + this.DropCheck2.SelectedValue.Substring(2);
 
 
                     ((HyperLink)this.dgvAccRec02.FooterRow.FindControl("hlnkgvFtoreceived")).NavigateUrl = "~/F_32_Mis/RptProjectCollBrkDown.aspx?Type=PrjCol&pactcode=" + pactcode + "&Date1=" + Convert.ToDateTime(this.txtfrmdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -1407,7 +1408,7 @@ namespace RealERPWEB.F_23_CR
             //string ProjectCode = ((this.DropCheck1.SelectedValue.ToString() == "000000000000") ? "18" : this.DropCheck1.SelectedValue.ToString()) + "%";
 
             string ProjectCode = "";
-            string[] sec = this.DropCheck1.Text.Trim().Split(',');
+            string[] sec = this.DropCheck2.SelectedValue.ToString().Trim().Split(',');
             if (sec[0].Substring(0, 4) == "0000")
                 ProjectCode = "18";
             else
@@ -1461,13 +1462,36 @@ namespace RealERPWEB.F_23_CR
             //string ProjectCode = ((this.DropCheck1.Text.ToString() == "000000000000") ? "1[38]" : this.DropCheck1.Text.ToString()) + "%";
 
 
+            //string ProjectCode1 = "";
+            //string[] sec = this.DropCheck1.Text.Trim().Split(',');
+            //if (sec[0].Substring(0, 3) == "000")
+            //    ProjectCode1 = "";
+            //else
+            //    foreach (string s1 in sec)
+            //        ProjectCode1 = ProjectCode1 + s1.Substring(0, 12);
+
+
+
             string ProjectCode1 = "";
-            string[] sec = this.DropCheck1.Text.Trim().Split(',');
-            if (sec[0].Substring(0, 3) == "000")
-                ProjectCode1 = "";
-            else
-                foreach (string s1 in sec)
-                    ProjectCode1 = ProjectCode1 + s1.Substring(0, 12);
+
+            string gp = this.DropCheck2.SelectedValue.ToString().Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    ProjectCode1 = "";
+                else
+                    foreach (ListItem s1 in DropCheck2.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            ProjectCode1 = ProjectCode1 + s1.Value.Substring(0, 12);
+                        }
+                    }
+
+            }
+
+
+
 
             string searchinfo = "";
             string CurDues = (this.Request.QueryString["Type"].ToString() == "CurDues") ? "CurDues" : "";
@@ -1695,7 +1719,7 @@ namespace RealERPWEB.F_23_CR
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Month Less Than Equal Twelve";
                     return;
                 }
-                string ProjectCode = ((this.DropCheck1.SelectedValue.ToString() == "000000000000") ? "18" : this.DropCheck1.SelectedValue.ToString()) + "%";
+                string ProjectCode = ((this.DropCheck2.SelectedValue.ToString() == "000000000000") ? "18" : this.DropCheck2.SelectedValue.ToString()) + "%";
                 string frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string searchinfo = "";
@@ -1761,7 +1785,7 @@ namespace RealERPWEB.F_23_CR
 
 
             string ProjectCode = "";
-            string[] sec = this.DropCheck1.Text.Trim().Split(',');
+            string[] sec = this.DropCheck2.SelectedValue.ToString().Trim().Split(',');
             if (sec[0].Substring(0, 4) == "0000")
                 ProjectCode = "18";
             else
@@ -1869,7 +1893,7 @@ namespace RealERPWEB.F_23_CR
                 TableCell cell05 = new TableCell();
                 cell05.Text = "Applicable Charge";
                 cell05.HorizontalAlign = HorizontalAlign.Center;
-                cell05.ColumnSpan = 3;
+                cell05.ColumnSpan = 4;
                 gvrow.Cells.Add(cell05);
 
                 TableCell cell06 = new TableCell();
