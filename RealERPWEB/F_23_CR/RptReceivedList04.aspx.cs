@@ -143,26 +143,24 @@ namespace RealERPWEB.F_23_CR
             {
 
                 case "AllProDuesCollect":
-                    this.pnlfilter.Visible = false;
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
 
 
                 case "MonthlyColSchedule":
+                    this.divlanguage.Visible = true; 
                     this.ddllang.Visible = true;
-                    this.pnlfilter.Visible = false;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
 
                 case "MonthlyColl":
-                    this.pnlfilter.Visible = false;
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
 
 
 
                 case "MonthlyColScheduleSum":
-                    this.pnlfilter.Visible = false;
+                    this.divlanguage.Visible = true;
                     this.ddllang.Visible = true;
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
@@ -170,14 +168,13 @@ namespace RealERPWEB.F_23_CR
                 case "MonthlyColScheduleDet":
                     this.GetCatagory();
                     this.lbtnOk_Click(null, null);
+                    this.divlanguage.Visible = true;
                     this.ddllang.Visible = true;
-                    this.pnlfilter.Visible = false;
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
 
 
                 case "MonthlyDuesOverDues":
-                    this.pnlfilter.Visible = false;
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
 
@@ -1436,6 +1433,7 @@ namespace RealERPWEB.F_23_CR
 
         protected void ddlSrchCash_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.divAmountC2.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.lblToCash.Visible = (this.ddlSrchCash.SelectedValue == "between");
             this.txtAmountC2.Visible = (this.ddlSrchCash.SelectedValue == "between");
         }
@@ -1710,6 +1708,31 @@ namespace RealERPWEB.F_23_CR
                 string bname1 = ASITUtility02.ToBangla(digit);
                 valueSet.Text = bname1;
             }
+        }
+              
+
+        protected void gvmoncollschsum_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvmoncollschsum.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void gvDuesOverdues_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvDuesOverdues.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void gvmoncoll_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvmoncoll.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void gvmoncollsch_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvmoncollsch.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
     }
 }
