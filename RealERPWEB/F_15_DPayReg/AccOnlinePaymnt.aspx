@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccOnlinePaymnt.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccOnlinePaymnt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccOnlinePaymnt.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccOnlinePaymnt" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -18,8 +18,8 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         };
-    
-        
+
+
         function Confirmation() {
             if (confirm('Are you sure you want to save?')) {
                 return;
@@ -28,13 +28,16 @@
             }
         }
 
-       
-        
+
+
     </script>
     <style>
-
-          .grvHeader th {
-            text-align:center;
+        .grvHeader th {
+            text-align: center;
+        }
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 31px !important;
         }
     </style>
 
@@ -58,94 +61,98 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card card-fluid mb-1 mt-2">
+                <div class="card-body">
                     <div class="row">
-                        <fieldset class="scheduler-border">
+                        <div class="col-md-12">
                             <asp:Panel ID="PnlBill" runat="server">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class="col-md-5 pading5px">
-                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Receive Date"></asp:Label>
-                                            <asp:TextBox ID="txtReceiveDate"   runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                <div class="row">
+
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label1" runat="server" Text="Receive Date"></asp:Label>
+                                            <asp:TextBox ID="txtReceiveDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                                             <cc1:CalendarExtender ID="txtReceiveDate_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" 
+                                                Enabled="True" Format="dd-MMM-yyyy"
                                                 TargetControlID="txtReceiveDate"></cc1:CalendarExtender>
-                                            
-                                            
-                                          
-                                       
-                                             <asp:RadioButtonList runat="server" ID="rblpaytype" CssClass="rbtnList1 chkBoxControl pull-right" RepeatDirection="Horizontal"  Visible="false">
-                                                
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label7" runat="server" Text="Resource Head"></asp:Label>
+
+                                            <asp:DropDownList ID="ddlResourceHead" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlResourceHead_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <asp:Label ID="Label2" runat="server" Text="Bill No"></asp:Label>
+                                            <asp:TextBox ID="txtsrchBillno" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
+
+                                            <asp:LinkButton ID="ibtnBillNo" CssClass="btn btn-sm btn-primary" runat="server" Visible="false" OnClick="ibtnBillNo_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
+
+                                            <asp:DropDownList ID="ddlBillList" runat="server" CssClass="chzn-select form-control form-control-sm">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+
+                                            <asp:RadioButtonList runat="server" ID="rblpaytype" CssClass="rbtnList1 chkBoxControl pull-right" RepeatDirection="Horizontal" Visible="false">
+
                                                 <%--<asp:ListItem Value="Date Wise">Date Wise</asp:ListItem>--%>
                                                 <asp:ListItem Value="Resource" Selected="True">Resource</asp:ListItem>
                                             </asp:RadioButtonList>
 
-
-                                          
-
-
-                                            <asp:CheckBox ID="chkSinglIssue" runat="server" Text="Multi Bill" Checked="false" style="margin-left:30px" CssClass="margin5px chkBoxControl" AutoPostBack="true" OnCheckedChanged="chkSinglIssue_CheckedChanged" />
-
-                                              
-
-                                         
-
-                                              
-
+                                            <asp:CheckBox ID="chkSinglIssue" runat="server" Text="Multi Bill" Checked="false" Style="margin-left: 30px" CssClass="margin5px chkBoxControl" AutoPostBack="true" OnCheckedChanged="chkSinglIssue_CheckedChanged" />
                                         </div>
-                                      
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-md-5 pading5px">
-                                            <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Resource Head"></asp:Label>
-                                        
-                                            <asp:DropDownList ID="ddlResourceHead" runat="server"  CssClass="inputTxt chzn-select" AutoPostBack="true" Width="375px" OnSelectedIndexChanged="ddlResourceHead_SelectedIndexChanged">
-                                            </asp:DropDownList>
-                                        </div>
-                                        
-                                       
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-5 pading5px">
-                                            <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Bill No"></asp:Label>
-                                            <asp:TextBox ID="txtsrchBillno" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
-
-                                            <asp:LinkButton ID="ibtnBillNo" CssClass="btn btn-primary srearchBtn" runat="server" Visible="false" OnClick="ibtnBillNo_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                       
-                                            <asp:DropDownList ID="ddlBillList" runat="server" CssClass="inputTxt chzn-select" Width="375px">
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-sm-6 pading5px">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
                                             <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Total Payment"></asp:Label>
-                                            <asp:TextBox ID="txtrecordno" runat="server" AutoCompleteType="Disabled"  Visible="false" CssClass="inputTxt inputDateBox"></asp:TextBox>
-                                          
-                                              <asp:LinkButton ID="lbtnAddTable" runat="server" CssClass=" margin5px"
-                                                OnClick="lbtnAddTable_Click">Add Bill</asp:LinkButton>
+                                        <asp:TextBox ID="txtrecordno" runat="server" AutoCompleteType="Disabled" Visible="false" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-
-                                            <asp:LinkButton ID="btnAllBill" runat="server" CssClass="margin5px" OnClick="btnAllBill_Click">Add All Bill</asp:LinkButton>
-
-
-                                             
-                                               <asp:LinkButton ID="lbtnRefresh" runat="server" CssClass="" style="margin-left:30px"
-                                                OnClick="lbtnRefresh_Click">Reset</asp:LinkButton>
-                                            
-
-                                            <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
-                                            <asp:Label ID="lblmslnum" runat="server" Visible="False"></asp:Label>
-                                            <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
+                                        <asp:LinkButton ID="lbtnAddTable" runat="server" CssClass=" margin5px"
+                                            OnClick="lbtnAddTable_Click">Add Bill</asp:LinkButton>
                                         </div>
-                                       
+                                        </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <asp:LinkButton ID="btnAllBill" runat="server" CssClass="btn btn-sm btn-primary" OnClick="btnAllBill_Click">Add All Bill</asp:LinkButton>
+                                            </div>
+                                        </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                        <asp:LinkButton ID="lbtnRefresh" runat="server" CssClass="btn btn-sm btn-primary" Style="margin-left: 30px"
+                                            OnClick="lbtnRefresh_Click">Reset</asp:LinkButton>
+
+
+                                        <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
+                                        <asp:Label ID="lblmslnum" runat="server" Visible="False"></asp:Label>
+                                        <asp:Label ID="lblslnum" runat="server" Visible="False"></asp:Label>
+                                            </div>
                                     </div>
 
-                                    
-                                    
+
+
+
+
                                 </div>
                             </asp:Panel>
-                        </fieldset>
+                        </div>
+
+
                     </div>
                     <div class="row">
                         <div class="table table-responsive">
@@ -173,7 +180,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Bill Id">
+                                    <asp:TemplateField HeaderText="Bill Id">
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvmslnum" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mslnum1")) %>'
@@ -182,7 +189,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
 
-                                   
+
                                     <asp:TemplateField HeaderText="Payment Id">
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvslnum" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -193,16 +200,16 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:CommandField CancelText="Can" ShowEditButton="False" UpdateText="Up"  />
+                                    <asp:CommandField CancelText="Can" ShowEditButton="False" UpdateText="Up" />
 
 
-                                     <asp:TemplateField HeaderText="Value Date">
+                                    <asp:TemplateField HeaderText="Value Date">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvValdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: Left; background-color: Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valdate")) %>'
                                                 Width="60px"></asp:Label>
-                                           
+
 
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
@@ -212,21 +219,21 @@
 
 
                                     <asp:TemplateField HeaderText="Received Date">
-                                         <FooterTemplate>
+                                        <FooterTemplate>
                                             <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                           <asp:Label ID="txtgvrcvdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                            <asp:Label ID="txtgvrcvdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent; font-size: 11px;" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "rcvdate")).ToString("dd-MMM-yyy") %>'
                                                 Width="80px"></asp:Label>
-                                           <%-- <cc1:CalendarExtender ID="txtgvrcvdate_CalendarExtender" runat="server"
+                                            <%-- <cc1:CalendarExtender ID="txtgvrcvdate_CalendarExtender" runat="server"
                                                 Enabled="True" Format="dd-MMM-yyyy"
                                                 TargetControlID="txtgvrcvdate"></cc1:CalendarExtender>--%>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Head of Accounts">
-                                        
+
                                         <EditItemTemplate>
                                             <table style="width: 500px;">
                                                 <tr>
@@ -235,8 +242,7 @@
                                                             <div class="form-group">
                                                                 <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Receive Date:"></asp:Label>
                                                                 <asp:TextBox ID="txteditReceiveDate" runat="server" AutoCompleteType="Disabled"
-                                                                    AutoPostBack="True" CssClass="inputTxt inputDateBox"
-                                                                    ></asp:TextBox>
+                                                                    AutoPostBack="True" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
                                                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                                                     Enabled="True" Format="dd.MM.yyyy"
@@ -256,14 +262,14 @@
 
 
                                                                     <div class="clearfix"></div>
-                                                                    </div>
-                                                              
-                                                              <div class="col-md-4 pading5px asitCol3">
+                                                                </div>
+
+                                                                <div class="col-md-4 pading5px asitCol3">
                                                                     <asp:DropDownList ID="ddlProject" runat="server" AutoPostBack="True" CssClass="inputTxt chzn-select" Width="100%"
                                                                         OnSelectedIndexChanged="ddlProject_SelectedIndexChanged" TabIndex="7">
                                                                     </asp:DropDownList>
                                                                 </div>
-                                                                      
+
                                                             </div>
 
                                                             <div class="form-group">
@@ -277,7 +283,7 @@
                                                                     <div class="clearfix"></div>
                                                                 </div>
                                                                 <div class="col-md-4 pading5px asitCol3">
-                                                                    <asp:DropDownList ID="ddlRescode" runat="server" AutoPostBack="True"  CssClass="inputTxt chzn-select" Width="100%" TabIndex="7">
+                                                                    <asp:DropDownList ID="ddlRescode" runat="server" AutoPostBack="True" CssClass="inputTxt chzn-select" Width="100%" TabIndex="7">
                                                                     </asp:DropDownList>
                                                                 </div>
                                                             </div>
@@ -300,7 +306,7 @@
                                                                     <asp:Label ID="Label9" runat="server" CssClass="lblTxt lblName" Text="Value Date"></asp:Label>
                                                                     <asp:Label ID="lbleditValDate" runat="server" AutoPostBack="true" AutoCompleteType="Disabled" CssClass="inputTxt inputDateBox"></asp:Label>
 
-                                                                  
+
 
                                                                     <asp:Label ID="Label10" runat="server" CssClass=" smLbl_to" Text="Pay Date"></asp:Label>
                                                                     <asp:TextBox ID="txteditpaymentdate" runat="server" AutoCompleteType="Disabled" CssClass="inputTxt inputDateBox"
@@ -314,45 +320,45 @@
                                                                 <div class="clearfix"></div>
                                                             </div>
 
-                                                            <div class="form-group" style="display:none;">
+                                                            <div class="form-group" style="display: none;">
                                                                 <div class="col-md-3 pading5px asitCol3">
-                                                                    <asp:Label ID="Label11" runat="server" CssClass="lblTxt lblName"  Text="Pay To"></asp:Label>
+                                                                    <asp:Label ID="Label11" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
                                                                     <asp:TextBox ID="txtSrhParty" runat="server" AutoCompleteType="Disabled" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-                                                                       <asp:LinkButton ID="ibtnFindParty" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindParty_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                                                   
-                                                                   
+                                                                    <asp:LinkButton ID="ibtnFindParty" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindParty_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
+
 
                                                                 </div>
-                                                                 <div class="col-md-3 pading5px asitCol3">
-                                                                    <asp:DropDownList ID="ddlPartyName" runat="server" CssClass=" ddlistPull" Width="100%" >
-                                                                        </asp:DropDownList>
+                                                                <div class="col-md-3 pading5px asitCol3">
+                                                                    <asp:DropDownList ID="ddlPartyName" runat="server" CssClass=" ddlistPull" Width="100%">
+                                                                    </asp:DropDownList>
 
                                                                 </div>
                                                                 <div class="clearfix"></div>
                                                             </div>
-                                                            <div class="form-group" style="display:none;">
+                                                            <div class="form-group" style="display: none;">
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName" Text="Bill Nature"></asp:Label>
                                                                     <asp:TextBox ID="txtsrchnature" runat="server" AutoCompleteType="Disabled" CssClass="inputTxt inputDateBox"></asp:TextBox>
 
-                                                                       <asp:LinkButton ID="ibtnnature" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnnature_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                                                   
-                                                                   
+                                                                    <asp:LinkButton ID="ibtnnature" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnnature_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
+
 
                                                                 </div>
-                                                                 <div class="col-md-3 pading5px asitCol3">
-                                                                    <asp:DropDownList ID="ddlBillNature" runat="server"  CssClass=" ddlistPull" Width="100%" >
-                                                                        </asp:DropDownList>
+                                                                <div class="col-md-3 pading5px asitCol3">
+                                                                    <asp:DropDownList ID="ddlBillNature" runat="server" CssClass=" ddlistPull" Width="100%">
+                                                                    </asp:DropDownList>
 
                                                                 </div>
                                                                 <div class="clearfix"></div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <asp:LinkButton ID="lbtnGrdUpdate" runat="server"
-                                                                            OnClick="lbtnGrdUpdate_Click"
-                                                                            CssClass="btn btn-danger primaryBtn"
-                                                                            TabIndex="14">Add</asp:LinkButton>
+                                                                    OnClick="lbtnGrdUpdate_Click"
+                                                                    CssClass="btn btn-danger primaryBtn"
+                                                                    TabIndex="14">Add</asp:LinkButton>
                                                             </div>
 
                                                         </asp:Panel>
@@ -368,7 +374,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Details Head">
-                                         <FooterTemplate>
+                                        <FooterTemplate>
                                             <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnUpdate_Click" OnClientClick="return Confirmation();">Update</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
@@ -378,7 +384,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
-                                   
+
 
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <FooterTemplate>
@@ -394,18 +400,18 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                  
 
-                                     <asp:TemplateField HeaderText="">
+
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lbok" runat="server"   CommandArgument="lbok"
+                                            <asp:LinkButton ID="lbok" runat="server" CommandArgument="lbok"
                                                 OnClick="Add_Click" Width="30px">Add</asp:LinkButton>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
 
-                                       <asp:TemplateField HeaderText="Payment Date">
+                                    <asp:TemplateField HeaderText="Payment Date">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvpaymentdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: Left; background-color: Transparent"
@@ -422,7 +428,7 @@
                                     </asp:TemplateField>
 
 
-                               <%--   <asp:TemplateField HeaderText="Cheque Date">
+                                    <%--   <asp:TemplateField HeaderText="Cheque Date">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvchequedate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: Left; background-color: Transparent"
@@ -439,12 +445,12 @@
                                     </asp:TemplateField>--%>
 
 
-                                     <asp:TemplateField HeaderText="Payment Amount">
+                                    <asp:TemplateField HeaderText="Payment Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFtopayamt" runat="server" ForeColor="#000"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvpayamt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" 
+                                            <asp:TextBox ID="txtgvpayamt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="70px"></asp:TextBox>
@@ -484,8 +490,8 @@
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right" VerticalAlign="Middle" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Bill Nature" Visible="false">
-                                       
+                                    <asp:TemplateField HeaderText="Bill Nature" Visible="false">
+
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvbillnaturedsc" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billndesc")) %>'
@@ -494,7 +500,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Party Name" Visible="false">
-                                       
+
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvpartyname" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paydesc")) %>'
@@ -511,12 +517,12 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
-                                    
-                                   
-                                   
 
 
-                                     <asp:CommandField ShowDeleteButton="True" />
+
+
+
+                                    <asp:CommandField ShowDeleteButton="True" />
 
                                 </Columns>
 
@@ -529,7 +535,7 @@
                         </div>
 
 
-                        
+
                     </div>
                 </div>
             </div>
