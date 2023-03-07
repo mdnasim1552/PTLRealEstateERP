@@ -72,7 +72,7 @@
                                 <asp:Label ID="Label5" CssClass="lblTxt lblName" runat="server" Text="Project Name:"></asp:Label>
                                 <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="srearchBtn" OnClick="imgbtnFindProject_Click" TabIndex="12"><i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" form-control form-control-sm" Visible="false"></asp:TextBox>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" Width="310px" TabIndex="13" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" Width="290px" TabIndex="13" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
                                 </asp:DropDownList>
                                 <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender2" runat="server"
                                     QueryPattern="Contains" TargetControlID="ddlProjectName">
@@ -84,7 +84,7 @@
                                 <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName">Customer Name</asp:Label>
                                  <asp:LinkButton ID="imgbtnFindCustomer" runat="server" CssClass="srearchBtn" OnClick="imgbtnFindCustomer_Click" TabIndex="15"><i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcCustomer" runat="server" CssClass=" form-control form-control-sm" Visible="false" TabIndex="14"></asp:TextBox>
-                                <asp:DropDownList ID="ddlCustName" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="13" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlCustName" runat="server" CssClass="chzn-select form-control form-control-sm"  Width="290px" TabIndex="13" AutoPostBack="true"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">

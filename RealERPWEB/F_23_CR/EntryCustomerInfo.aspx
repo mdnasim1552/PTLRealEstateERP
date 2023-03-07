@@ -44,7 +44,6 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
                         <div id="loader">
@@ -69,7 +68,7 @@
                                 <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Project Name:"></asp:Label>
                                 <asp:LinkButton ID="ibtnFindProject" runat="server" CssClass="srearchBtn" OnClick="ibtnFindProject_Click"><i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass=" form-control form-control-sm" Visible="false"></asp:TextBox>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" Width="310px"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" Width="290px"></asp:DropDownList>
                                 <asp:Label ID="lblProjectmDesc" runat="server" CssClass=" inputtextbox" Visible="False"></asp:Label>
                             </div>
                         </div>
