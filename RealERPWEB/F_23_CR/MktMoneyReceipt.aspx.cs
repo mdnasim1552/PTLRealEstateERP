@@ -168,15 +168,15 @@ namespace RealERPWEB.F_23_CR
                 //case "3351"://Wecon
                 //case "3352"://360
                 //case "1205"://p2p Engineering
-                    this.ddlRecType.Visible = true;
-                    this.lblRecType.Visible = true;
+                    this.RecType.Visible = true;
+                    //this.lblRecType.Visible = true;
                     break;
 
 
 
                 default:
-                    this.ddlRecType.Visible = false;
-                    this.lblRecType.Visible = false;
+                    this.RecType.Visible = false;
+                    //this.lblRecType.Visible = false;
                     break;
 
             }
@@ -363,7 +363,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtReceiveDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtpaydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.LoadGrid();
-
+                //
 
             }
             else
@@ -379,7 +379,7 @@ namespace RealERPWEB.F_23_CR
                 // this.ClearScreen();
                 MultiView1.ActiveViewIndex = -1;
                 this.gvSpayment.Visible = true;
-
+                this.lbtnBack.Visible = false;
                 this.Clearmrscreen();
 
 
@@ -436,6 +436,8 @@ namespace RealERPWEB.F_23_CR
 
             try
             {
+
+                this.lbtnBack.Visible = true;
                 this.MultiView1.ActiveViewIndex = 0;
 
                 string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
@@ -679,6 +681,7 @@ namespace RealERPWEB.F_23_CR
             this.gvSpayment.Visible = true;
             this.LoadGrid();
             this.Clearmrscreen();
+            this.lbtnBack.Visible = false;
         }
         private void Clearmrscreen()
         {

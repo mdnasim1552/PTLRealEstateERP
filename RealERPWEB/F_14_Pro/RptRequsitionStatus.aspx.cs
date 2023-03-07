@@ -60,8 +60,7 @@ namespace RealERPWEB.F_14_Pro
             string type = this.Request.QueryString["WType"].ToString().Trim();
             switch (type)
             {
-                case "ReqStatus":
-                    this.MultiView1.ActiveViewIndex = 0;
+                case "ReqStatus":  
                     this.ChkBalance.Checked = false;
                     this.rbtnList1.SelectedIndex = 0;
                     this.CheckReqApp.Visible = true;
