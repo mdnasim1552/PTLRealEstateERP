@@ -801,12 +801,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702430", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollVsClearance", "Cheque Received Vs. Clearance", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702431", "F_17_Acc", "RptAccCollVsClearance?", "Type=DailyPayment", "Payment Status(All)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702432", "F_17_Acc", "RptAccCollVsClearance?", "Type=DetRealColl", "Real Collection - Details", "Accounts", "False", "False", "False", "False" }); ;
-            
+            tblObj.Rows.Add(new Object[] { "1702000", "1702433", "F_17_Acc", "RptAssociationfreeRecVspayment?", "Type=Associa", "Association Fee", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1702000", "1702434", "F_17_Acc", "AccPettyCashApp?", "Type=Entry", "Petty Cash Bill Entry", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702435", "F_17_Acc", "AccTopPage?", "Type=pttycash", "Petty Cash Bill List", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702436", "F_17_Acc", "RptAdvancedAgainstLoan?", "Type=Advagaintsloan", "Advance Againts Loan", "Accounts", "False", "False", "False", "False" }); ;          
-            tblObj.Rows.Add(new Object[] { "1702000", "1702437", "F_17_Acc", "RptAssociationfreeRecVspayment?", "Type=Assoc", "Association Fee", "Accounts", "False", "False", "False", "False" }); ;
+
             //tblObj.Rows.Add(new Object[] { "1702000", "1702438", "F_17_Acc", "RptAssociationfreeRecVspayment?", "Type=Asssociation", "Association Fee 01", "Accounts", "False", "False", "False", "False" }); ;
 
 
@@ -6527,8 +6527,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "13. TDS VDS SD Deduction Individual Project Wise", "F_17_Acc/RptATITaxIndProj01", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000016", "15. Petty Cash Bill List", "F_17_Acc/AccTopPage?Type=pttycash", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000016", "15. Advance Againts Loan", "F_17_Acc/RptAdvancedAgainstLoan?Type=Advagaintsloan", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000017", "15. Association Fee", "F_17_Acc/RptAssociationfreeRecVspayment?Type=Assoc", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000016", "16. Advance Againts Loan", "F_17_Acc/RptAdvancedAgainstLoan?Type=Advagaintsloan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000017", "17. Association Fee", "F_17_Acc/RptAssociationfreeRecVspayment?Type=Associa", "", true, "" });
 
 
 
