@@ -2560,30 +2560,47 @@ namespace RealERPWEB.F_04_Bgd
         }
 
 
-        //protected void lnkgvBgdCostDet_Click(object sender, EventArgs e)
-        //{
-        //    int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-        //    string acgcode = ((DataTable)Session["tblbgd"]).Rows[index]["acgcode"].ToString();
-        //    DataTable dt = ((DataTable)Session["tblbgd"]);
-        //    DataView dv = new DataView();
-        //    dv = dt.DefaultView;
-        //    dv.RowFilter = ("rescode  like '%000' or rescode   like '%AAA'");
-        //    dt = dv.ToTable();
+        protected void lnkgvBgdCostDet_Click(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string acgcode = ((DataTable)Session["tblbgd"]).Rows[index]["acgcode"].ToString();
+            string colst = ((DataTable)Session["tblbgd"]).Rows[index]["colst"].ToString();
+            DataTable dt = ((DataTable)Session["tblbgd"]);
+            DataView dv = new DataView();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("rescode= '000000000000' or rescode= 'AAAAAAAAAAAA'");
+            dt = dv.ToTable();
 
-        //    DataTable dtb = ((DataTable)Session["tblbbgd"]).Copy();
-        //    dv = dtb.DefaultView;
-        //    dv.RowFilter = ("acgcode='" + acgcode + "'");
-        //    dtb = dv.ToTable();
-        //    dt.Merge(dtb);
+            DataRow[] dr1 = dt.Select("acgcode='" + acgcode + "'");
+            dr1[0]["colst"] = (colst == "0") ? "1" : "0";
+
+            // For Status 0
+            foreach (DataRow dr2 in dt.Rows)
+            {
+                if (dr2["acgcode"] != acgcode)
+                {
+                    dr2["colst"] = "0";
+
+                }
+            }
+
+            colst = (dt.Select("acgcode='" + acgcode + "'"))[0]["colst"].ToString();
+            if (colst == "1")
+            {
+                DataTable dtb = ((DataTable)Session["tblbbgd"]).Copy();
+                dv = dtb.DefaultView;
+                dv.RowFilter = ("acgcode='" + acgcode + "' and  rescode not like '%00000'");
+                dtb = dv.ToTable();
+                dt.Merge(dtb);
+
+            }
 
 
-
-        //    dv = dt.DefaultView;
-        //    dv.Sort = ("grp, acgcode");
-        //    DataTable dt1 = dv.ToTable();
-        //    Session["tblbgd"] = this.HiddenSameData(dv.ToTable());
-        //    this.Data_Bind();
-        //}
+            dv = dt.DefaultView;
+            dv.Sort = ("acgcode, rescode");
+            Session["tblbgd"] = dv.ToTable();
+            this.Data_Bind();
+        }
 
 
         protected void gvmatreq_RowDataBound(object sender, GridViewRowEventArgs e)
