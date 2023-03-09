@@ -564,7 +564,7 @@
                                 <asp:TemplateField HeaderText="Bill Amount">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvMRRAmt" runat="server" BackColor="Transparent"
-                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"  
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px">
                                         </asp:TextBox>

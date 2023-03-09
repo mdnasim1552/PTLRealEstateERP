@@ -207,20 +207,20 @@
                                     <asp:TemplateField HeaderText="Voucher Date">
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvopndr" runat="server"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "voudat1")).ToString("dd-MMM-yyyy") %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
+                                        <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Voucher Date">
+                                    <asp:TemplateField HeaderText="Voucher Name">
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvopncr" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum1")) %>'
-                                                Width="90px"></asp:Label>
+                                                Width="100px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
+                                        <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
@@ -270,8 +270,8 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refnum"))%>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
-                                        <HeaderStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
                                     
