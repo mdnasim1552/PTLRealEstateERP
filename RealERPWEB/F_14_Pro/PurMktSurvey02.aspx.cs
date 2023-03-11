@@ -611,12 +611,13 @@ namespace RealERPWEB.F_14_Pro
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
                
-                
+                string rsircode= tbl1.Rows[i]["rsircode"].ToString();
+                 spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
 
-                for (int j = 0; j < tbls1.Rows.Count; j++)
+                    for (int j = 0; j < tbls1.Rows.Count; j++)
                 {
                     ssircode = tbls1.Rows[j]["ssircode"].ToString();
-                    DataRow[] drp = dtlpurrate.Select("rsircode = '" + mResCode + "' and  ssircode='" + ssircode + "'");
+                    DataRow[] drp = dtlpurrate.Select("rsircode = '" + rsircode + "' and  ssircode='" + ssircode + "'  and  spcfcod='" + spcfcod + "'");
                     string prerate = "prerate" + (j+1).ToString();
                     tbl1.Rows[i][prerate] = drp.Length == 0 ? "0" : drp[0]["lastpurrate"].ToString();
                 }
@@ -628,7 +629,8 @@ namespace RealERPWEB.F_14_Pro
 
             Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
-            }catch(Exception exp)
+            }
+            catch(Exception exp)
             {
 
             }
