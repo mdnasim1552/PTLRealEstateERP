@@ -43,6 +43,7 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+        .grvContentarea {}
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -992,7 +993,7 @@
 
                             <asp:View ID="ViewEarbenefittADelay" runat="server">
                                 <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
-                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="500px"
+                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="577px"
                                     CssClass="table table-striped table-bordered grvContentarea">
                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                         Mode="NumericFirstLast" />
@@ -1073,6 +1074,19 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpayamteben" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pamount")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                         <asp:TemplateField HeaderText="Due Amount">
+                                           
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdueamteben" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dueamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
