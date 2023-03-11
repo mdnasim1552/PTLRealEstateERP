@@ -157,7 +157,7 @@
                     <div class="row">
                         <div class="table table-responsive">
                             <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                                Style="margin-top: 0px" Width="831px" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                Style="margin-top: 0px" Width="831px" CssClass=" table-striped table-bordered grvContentarea"
                                 OnRowCancelingEdit="gvPayment_RowCancelingEdit"
                                 OnRowEditing="gvPayment_RowEditing" OnRowUpdating="gvPayment_RowUpdating"
                                 OnRowDeleting="gvPayment_RowDeleting" OnRowDataBound="gvPayment_RowDataBound">
@@ -175,7 +175,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvbillno" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno1")) %>'
-                                                Width="70px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
@@ -184,7 +184,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvmslnum" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mslnum1")) %>'
-                                                Width="60px"></asp:Label>
+                                                Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
@@ -194,7 +194,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lbgvslnum" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slnum")) %>'
-                                                Width="60px"></asp:Label>
+                                                Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                     </asp:TemplateField>
@@ -526,11 +526,12 @@
 
                                 </Columns>
 
-                                <FooterStyle CssClass="grvFooter" />
-                                <EditRowStyle />
-                                <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <FooterStyle CssClass="grvFooterNew" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="" />
+                        <RowStyle CssClass="grvRowsNew" />
+                        <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
                         </div>
 
