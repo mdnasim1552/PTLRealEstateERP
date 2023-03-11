@@ -177,7 +177,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Customer's Copy</Value>
+                    <Value>Clients Copy</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -909,7 +909,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>(Subject to encashment)</Value>
+                    <Value>( This receipt is valid subject to encashment)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                     </Style>
@@ -920,9 +920,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
             <Top>2.84987in</Top>
-            <Left>5.89869in</Left>
+            <Left>5.15118in</Left>
             <Height>0.21875in</Height>
-            <Width>1.95958in</Width>
+            <Width>2.70709in</Width>
             <ZIndex>22</ZIndex>
             <Style>
               <Border>
@@ -1023,11 +1023,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Client/Representative</Value>
+                    <Value>(Client /Representative)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2039,7 +2039,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>(Subject to encashment)</Value>
+                    <Value>(This receipt is valid subject to encashment)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                     </Style>
@@ -2050,9 +2050,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
             <Top>7.2581in</Top>
-            <Left>5.86993in</Left>
+            <Left>5.15118in</Left>
             <Height>0.21875in</Height>
-            <Width>1.95958in</Width>
+            <Width>2.67833in</Width>
             <ZIndex>55</ZIndex>
             <Style>
               <Border>
@@ -2153,11 +2153,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Client/Representative</Value>
+                    <Value>(Client /Representative)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -3169,7 +3169,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>(Subject to encashment)</Value>
+                    <Value>( This receipt is valid subject to encashment)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                     </Style>
@@ -3180,9 +3180,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
             <Top>11.59038in</Top>
-            <Left>5.85952in</Left>
+            <Left>5.15118in</Left>
             <Height>0.21875in</Height>
-            <Width>1.95958in</Width>
+            <Width>2.66792in</Width>
             <ZIndex>88</ZIndex>
             <Style>
               <Border>
@@ -3283,11 +3283,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Client/Representative</Value>
+                    <Value>(Client /Representative)</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>

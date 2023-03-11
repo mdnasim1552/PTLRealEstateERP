@@ -900,7 +900,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds4 == null)
                 return;
             DataTable dt2 = ds4.Tables[0];
-            Session["tblfreeempname"] = ds4.Tables[0];
+            Session["tblempname"] = ds4.Tables[0];
             DataView dv2 = dt2.DefaultView;
             DataTable dt1 = new DataTable();
             if (ischeck)
@@ -1133,8 +1133,8 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "empname";
-                        ddlgval.DataValueField = "empid";
+                        ddlgval.DataTextField = "sirdesc";
+                        ddlgval.DataValueField = "sircode";
                         ddlgval.DataSource = dv4.ToTable();
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
