@@ -84,14 +84,14 @@ namespace RealERPWEB.F_17_Acc
         {
             string comcod = this.GetComeCode();
             string pactcode = this.ddlPrjName.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETEMPLOYEENAME", pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETUNITNAME", pactcode, "", "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
             }
 
-            this.ddlUnit.DataTextField = "empname";
-            this.ddlUnit.DataValueField = "empcode";
+            this.ddlUnit.DataTextField = "custname";
+            this.ddlUnit.DataValueField = "usircode";
             this.ddlUnit.DataSource = ds1.Tables[0];
             this.ddlUnit.DataBind();
             ViewState["tblemp"] = ds1.Tables[0];

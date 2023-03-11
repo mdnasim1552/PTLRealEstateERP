@@ -343,6 +343,7 @@ namespace RealEntity.C_22_Sal
 
             public string pactcode { get; set; }
             public string pactdesc { get; set; }
+            public string pactdesc1 { get; set; }
             public string aptdesc { get; set; }
            
             public double ramt { get; set; }
@@ -361,6 +362,7 @@ namespace RealEntity.C_22_Sal
             public string pactcode { get; set; }
             public string musircode { get; set; }
             public string pactdesc { get; set; }
+            public string pactdesc1 { get; set; }
             public string aptdesc { get; set; }
 
             public double ramt { get; set; }

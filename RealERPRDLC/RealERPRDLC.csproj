@@ -199,6 +199,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusReconcile.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollection.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollectiontilldate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInterest.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory1.datasource" />

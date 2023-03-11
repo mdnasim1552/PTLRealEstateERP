@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e71b8ccb-c001-4eec-a1bf-bdfdda82634f</rd:DataSourceID>
+      <rd:DataSourceID>dd386694-a3d9-4223-b653-10f7c01d7d09</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -31,6 +31,10 @@
         </Field>
         <Field Name="pactdesc">
           <DataField>pactdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pactdesc1">
+          <DataField>pactdesc1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ramt">
