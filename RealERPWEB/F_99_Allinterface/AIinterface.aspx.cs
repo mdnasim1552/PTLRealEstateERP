@@ -1876,6 +1876,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnvrdelete_Click(object sender, EventArgs e)
         {
             try
+
             {
                 DataTable dt = (DataTable)ViewState["tblt01"];
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
