@@ -3098,7 +3098,7 @@ namespace RealERPWEB.F_21_MKT
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Please Select Source!');", true);
                         return;
                     }
-                    if (sourcecode == "3101040")//IR EPIC
+                    if (sourcecode == "3101040")
                     {
                         string empIR = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlIREmp")).SelectedValue.ToString();
                         if (empIR.Trim().Length == 0)
@@ -3109,6 +3109,9 @@ namespace RealERPWEB.F_21_MKT
                     }
                 }
 
+               
+                
+                
                 //Source Remarks
                 if (Gcode == "0302002")
                 {
@@ -7206,8 +7209,8 @@ namespace RealERPWEB.F_21_MKT
                 ddlgval.SelectedValue = teamid;
             }
 
-            //IR EPIC
-            if (ddlValue == "3101040") 
+            //IR, F Prospect
+            if (ddlValue == "3101040" || ddlValue == "3101028") 
             {
                 DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
                 if (ds3 == null)
