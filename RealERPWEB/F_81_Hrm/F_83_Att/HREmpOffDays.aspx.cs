@@ -488,11 +488,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string reason = dt.Rows[i]["reason"].ToString();
                 string dlstatus = dt.Rows[i]["dstatus"].ToString();
                 bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "");
+                if (!result)
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString()+ "');", true);
+                    return;
+                }
 
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
 
 
