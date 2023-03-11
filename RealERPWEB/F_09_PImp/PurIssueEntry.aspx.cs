@@ -121,14 +121,15 @@ namespace RealERPWEB.F_09_PImp
             this.pnlgrd.Visible = true;
             if (this.lbtnOk.Text == "New")
             {
-
-                this.lbtnPrevISSList.Visible = true;
-                this.ddlPrevISSList.Visible = true;
+                 
+                this.lbtnPrevISSList.Enabled = true;
+                this.ddlPrevISSList.Enabled = true;
                 this.ddlPrevISSList.Items.Clear();
-                this.ddlprjlist.Visible = true;
+                this.ddlprjlist.Enabled = true;
                 this.lblddlProject.Visible = false;
                 this.lblCurISSNo1.Text = "WEN" + "00" + "-";
                 this.txtCurISSDate.Enabled = true;
+
 
                 this.ddlfloorno.Items.Clear();
                 this.ddlitemlist.Items.Clear();
@@ -143,12 +144,12 @@ namespace RealERPWEB.F_09_PImp
                 this.lbtnOk.Text = "Ok";
                 return;
             }
-            this.lbtnPrevISSList.Visible = false;
-            this.ddlPrevISSList.Visible = false;
+            this.lbtnPrevISSList.Enabled = false;
+            this.ddlPrevISSList.Enabled = false;
 
             this.lblddlProject.Text = (this.ddlprjlist.Items.Count == 0 ? "XXX" : this.ddlprjlist.SelectedItem.Text.Trim());
-            this.ddlprjlist.Visible = false;//it will be used
-            this.lblddlProject.Visible = true;
+            this.ddlprjlist.Enabled = false;//it will be used
+            this.lblddlProject.Visible = false;
             this.txtCurISSNo2.ReadOnly = true;
             this.ddlfloorno.Items.Clear();
             this.ddlitemlist.Items.Clear();
