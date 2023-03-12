@@ -44,7 +44,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetProjectNamemulti();
-                this.ddlReport_SelectedIndexChanged(null, null);
+               // this.ddlReport_SelectedIndexChanged(null, null);
 
 
 
@@ -472,19 +472,19 @@ namespace RealERPWEB.F_22_Sal
                 return dt1;
           
               
-                    string pactcode = dt1.Rows[0]["pactcode"].ToString();
+                    string pactcode = dt1.Rows[0]["typecode"].ToString();
 
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
-                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                        if (dt1.Rows[j]["typecode"].ToString() == pactcode)
                         {
-                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            pactcode = dt1.Rows[j]["typecode"].ToString();
                             dt1.Rows[j]["pactdesc"] = "";
                         }
 
                         else
                         {
-                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            pactcode = dt1.Rows[j]["typecode"].ToString();
                         }
                     }
                    
