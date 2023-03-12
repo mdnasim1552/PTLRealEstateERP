@@ -880,6 +880,7 @@
     <EmbeddedResource Include="R_17_Acc\RptShareQty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAdvancedAgainstLoan.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummary.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptSPLedgerANGAN.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummary.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummarydemo.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptConOvAllPSummaryDetails.rdlc" />
