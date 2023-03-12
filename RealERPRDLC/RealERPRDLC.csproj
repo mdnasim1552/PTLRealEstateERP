@@ -346,6 +346,9 @@
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchaseStatusSupplierandMaterial.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan05C.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan04C.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan03C.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurSumVsPay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPOMRRBillStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchasePrjwiseReport.rdlc" />
