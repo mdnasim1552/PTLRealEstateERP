@@ -2085,7 +2085,8 @@ namespace RealERPWEB.F_09_PImp
                 int index = row.RowIndex;
                 string issuno = ((Label)this.gvSubBill.Rows[index].FindControl("lgcIsuno1")).Text.ToString();
                 string floor = ((Label)this.gvSubBill.Rows[index].FindControl("lgcFlrcod")).Text.ToString();
-                bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETECBILLCONFIRM", issuno, floor, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                string billno = Request.QueryString["genno"].ToString();
+                bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETECBILLCONFIRM", issuno, floor, billno, "", "", "", "", "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {

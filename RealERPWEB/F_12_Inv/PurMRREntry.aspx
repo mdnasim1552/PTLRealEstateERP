@@ -159,7 +159,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblsuplist" runat="server" CssClass="control-label" Text="Supplier"></asp:Label>
                                 <asp:TextBox ID="txtSupSearch" runat="server" CssClass="inputTxt inpPixedWidth" Visible="false" TabIndex="10"></asp:TextBox>
-                                <asp:LinkButton ID="ImgbtnFindSup" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindSup_Click" Visible="false" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                <asp:LinkButton ID="ImgbtnFindSup"  runat="server" OnClick="ImgbtnFindSup_Click"  TabIndex="9"><i class="fa fa-search"> </i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlSupList" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm" OnSelectedIndexChanged="ddlSupList_SelectedIndexChanged">
                                 </asp:DropDownList>
 

@@ -569,7 +569,7 @@ namespace RealERPWEB.F_99_Allinterface
             string ctype = "";
             switch (GetCompCode())
             {
-                case "3101":
+              
                 case "3367":
                     ctype = "UPDATEMODSECONDAPP";
                     break;
