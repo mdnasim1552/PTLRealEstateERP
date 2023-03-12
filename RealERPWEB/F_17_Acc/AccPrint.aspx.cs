@@ -510,7 +510,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherManama", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("chqno", "Cheque No : " + chequeno));
-                    Rpt1.SetParameters(new ReportParameter("voutype1", " Bank Payment Voucher "));
+                    Rpt1.SetParameters(new ReportParameter("voutype1", " Post Dated Cheque Voucher "));
                     Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
 
                 }

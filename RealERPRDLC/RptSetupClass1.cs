@@ -477,6 +477,7 @@ namespace RealERPRDLC
 
                 case "R_17_Acc.RptPaymentIncSch": Rpt1a = SetRptPaymentIncSch(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedger": Rpt1a = SetRptSPLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptSPLedgerANGAN": Rpt1a = SetRptSPLedgerANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedgerRup": Rpt1a = SetRptSPLedgerRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedger02": Rpt1a = SetRptSPLedger02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSPLedger02Intech": Rpt1a = SetRptSPLedger02Intech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4750,7 +4751,7 @@ namespace RealERPRDLC
         } 
         private static LocalReport SetRptEarlybenefitADelayANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet5", (List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptEarlybenefitADelayCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -5617,6 +5618,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptSPLedger(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSPLedgerANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>)RptDataSet));
             return Rpt1a;
