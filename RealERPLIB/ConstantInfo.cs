@@ -1172,6 +1172,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103128", "F_21_MKT", "RptLeadStatus?", "Type=Report", "Lead Status (Timestamp)", "CRM", "False", "False", "False", "False" });
 
 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
+
+
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2102126", "F_39_MyPage", "RptMIS02?", "Type=EvaonProBasis", "Evaluation on Project", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -7484,6 +7487,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "13. Client's Marriage Day", "F_21_Mkt/RptFindClient?Type=ClientMrgDay", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "24. Send Letter", "F_21_Mkt/RptMktAppointment?Type=ClientLetter&UType=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "25. Send Letter(Online)", "F_21_Mkt/RptMktAppointment?Type=SendOnlineLetter&UType=Mgt", "", true, "" });
+
+
+            mnuTbl1.Rows.Add(new Object[] { "040200006", "Missing Followup Status", "F_21_MKT/RptMissFollowup", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0427000000", "", "", "", true, "" });
