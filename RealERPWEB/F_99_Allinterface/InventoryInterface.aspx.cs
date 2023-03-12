@@ -778,7 +778,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             }
 
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRREQCHECK", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTREQCHEKED", mtreqno, "", "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
