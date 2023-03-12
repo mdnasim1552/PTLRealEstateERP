@@ -34,6 +34,9 @@
         th {
             padding: 0.1rem !important;
         }
+        .chzn-container-single .chzn-search input{
+            width:100%!important;
+        }
     </style>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -159,14 +162,8 @@
                                                            <div class="btn-group">
                                             <asp:LinkButton ID="lbtnAllLab" runat="server" CssClass="btn btn-primary btn-sm mt20 rounded" OnClick="lbtnAllLab_Click">Select</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnAllLaball" runat="server" CssClass="btn btn-primary btn-sm mt20 ml-2 rounded" OnClick="lbtnAllLaball_Click">Select ALL</asp:LinkButton>
-                                          
-
-                                            </div>
-                                        </div>
-                                   
-
-                                        <div class="col-lg-1">
-                                            <asp:Label ID="lblPage" runat="server" CssClass="" Text="Page"></asp:Label>
+                                                                <div class="ml-2">   
+                                                                    <asp:Label ID="lblPage" runat="server" CssClass="" Text="Page"></asp:Label>
 
                                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
                                                 <asp:ListItem Value="15">15</asp:ListItem>
@@ -178,6 +175,24 @@
                                                 <asp:ListItem Value="200">200</asp:ListItem>
                                                 <asp:ListItem Value="300">300</asp:ListItem>
                                             </asp:DropDownList>
+</div>   
+                                            </div>
+                                        </div>
+                                   
+
+                                        <div class="col-lg-1">
+               <%--                             <asp:Label ID="lblPage" runat="server" CssClass="" Text="Page"></asp:Label>
+
+                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
+                                                <asp:ListItem Value="15">15</asp:ListItem>
+                                                <asp:ListItem Value="20">20</asp:ListItem>
+                                                <asp:ListItem Value="30">30</asp:ListItem>
+                                                <asp:ListItem Value="50">50</asp:ListItem>
+                                                <asp:ListItem Value="100">100</asp:ListItem>
+                                                <asp:ListItem Value="150">150</asp:ListItem>
+                                                <asp:ListItem Value="200">200</asp:ListItem>
+                                                <asp:ListItem Value="300">300</asp:ListItem>
+                                            </asp:DropDownList>--%>
 
                                         </div>
 
@@ -292,7 +307,7 @@
 
                         <div class="row">
                             <asp:Panel ID="Panel2" runat="server">
-                                <table style="width: 100%;">
+                                <table style="width: 100%;" class="mt-2">
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td class="style33">

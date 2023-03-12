@@ -58,6 +58,7 @@ namespace RealERPWEB.F_21_MKT
                 this.GetParcipants();
                 this.ShowDiscussion();
                 this.IsTeamLeader();
+                this.GetIRComARefProspect();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
@@ -242,6 +243,20 @@ namespace RealERPWEB.F_21_MKT
                 return true;
             else
                 return false;
+        }
+
+        private void GetIRComARefProspect()
+        {
+            Session.Remove("tblircapro");
+            string comcod = this.GetComeCode();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            Session["tblircapro"] = ds1.Tables[0];
+            ds1.Dispose();
+
+
         }
         public string GetUserID()
         {
@@ -7175,6 +7190,8 @@ namespace RealERPWEB.F_21_MKT
                 ddlgval.DataValueField = "gcod";
                 ddlgval.DataSource = dv5;
                 ddlgval.DataBind();
+                this.DataBindIRaProspect(RowIndex, ddlValue);
+
             }
             if (ddlValue == "2901004")
             {
@@ -7187,6 +7204,7 @@ namespace RealERPWEB.F_21_MKT
                 ddlgval.DataValueField = "gcod";
                 ddlgval.DataSource = dv5;
                 ddlgval.DataBind();
+                this.DataBindIRaProspect(RowIndex, ddlValue);
             }
            
             if (Gcode == "0302005")
@@ -7209,28 +7227,83 @@ namespace RealERPWEB.F_21_MKT
                 ddlgval.SelectedValue = teamid;
             }
 
-            //IR, F Prospect
-            if (ddlValue == "3101040" || ddlValue == "3101028") 
+           //IR, F Prospect
+            if (ddlValue == "3101040" || ddlValue == "3101028")
             {
-                DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
-                if (ds3 == null)
-                    return;
-               
-                ((TextBox)this.gvSourceInfo.Rows[RowIndex].FindControl("txtgvVal")).Visible = false;
-                ((TextBox)this.gvSourceInfo.Rows[RowIndex].FindControl("txtgvdVal")).Visible = false;
-                //((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("Panegrd")).Visible = false;
-                ((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("pnlIREmp")).Visible = true;
-                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlIREmp"));
-                ddlgval.DataTextField = "empname";
-                ddlgval.DataValueField = "empid";
-                ddlgval.DataSource = ds3.Tables[0];
-                ddlgval.DataBind();
+                this.DataBindIRaProspect(RowIndex, ddlValue);
+
+
             }
             else
             {
                 ((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("pnlIREmp")).Visible = false;
                 ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlIREmp")).Items.Clear();
             }
+
+
+        }
+
+        private void DataBindIRaProspect(int RowIndex, string gcod)
+        {
+            DataTable dt = ((DataTable)Session["tblircapro"]).Copy();
+            DataView dv= dt.DefaultView;
+            DataRow dr1 = dt.NewRow();
+            dr1["empid"] = "";
+            dr1["empname"] = "None";
+            dt.Rows.Add(dr1);
+
+
+
+
+            switch (gcod)
+            {
+                case "2901003"://From Prospect
+                
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex+1].FindControl("txtgvVal")).Visible = false;
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex+1].FindControl("txtgvdVal")).Visible = false;
+                    //((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("Panegrd")).Visible = false;
+                    ((Panel)this.gvSourceInfo.Rows[RowIndex+1].FindControl("pnlIREmp")).Visible = true;
+                    ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex+1].FindControl("ddlIREmp"));
+                  
+                    dv.RowFilter = ("empid like '83%' or empname='None'");
+                    break;
+
+                case "2901004"://From Company official
+               
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("txtgvVal")).Visible = false;
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("txtgvdVal")).Visible = false;
+                    //((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("Panegrd")).Visible = false;
+                    ((Panel)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("pnlIREmp")).Visible = true;
+                    ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex + 1].FindControl("ddlIREmp"));
+                    dv.RowFilter = ("empid like '83%' or empname='None'"); ;
+                    break;
+
+                case "3101040"://IR(Person)
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex].FindControl("txtgvVal")).Visible = false;
+                    ((TextBox)this.gvSourceInfo.Rows[RowIndex].FindControl("txtgvdVal")).Visible = false;
+                    //((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("Panegrd")).Visible = false;
+                    ((Panel)this.gvSourceInfo.Rows[RowIndex].FindControl("pnlIREmp")).Visible = true;
+                    ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlIREmp"));
+                    dv.RowFilter = ("empid like '93%' or empname='None'"); ;
+                    break;
+
+
+                default:
+                    break;
+            
+            
+            
+            }
+            dv.Sort = ("empid");
+            dt = dv.ToTable();
+           
+            
+  
+            ddlgval.DataTextField = "empname";
+            ddlgval.DataValueField = "empid";
+            ddlgval.DataSource = dt;
+            ddlgval.DataBind();
+         
 
 
         }
