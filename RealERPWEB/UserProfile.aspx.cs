@@ -300,6 +300,8 @@ namespace RealERPWEB
             {
                 case "3365":
                 case "3102":
+                case "3101":
+
 
                     string userrole = hst["userrole"].ToString();
                     this.winsList.Visible = true;
@@ -334,15 +336,15 @@ namespace RealERPWEB
                     this.modalPayslipBti.Visible = false;
 
 
-                    break;
-                case "3101":
-                    this.PaySlipPart.Visible = true;
-                    this.hrpolicy.Visible = true;
-                    this.List_EmpDirectory.Visible = true;
+                //    break;
+                //case "3101":
+                //    this.PaySlipPart.Visible = true;
+                //    this.hrpolicy.Visible = true;
+                //    this.List_EmpDirectory.Visible = true;
 
-                    this.pnlUpcmEdison.Visible = false;
-                    this.pnlUpcmBti.Visible = true;
-                    this.modalPayslipBti.Visible = true;
+                //    this.pnlUpcmEdison.Visible = false;
+                //    this.pnlUpcmBti.Visible = true;
+                //    this.modalPayslipBti.Visible = true;
 
                     break;
                    
