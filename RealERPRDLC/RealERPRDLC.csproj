@@ -1413,6 +1413,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummDetails.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSecuritySalarySuvstu.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSignatureSheet.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptEmpWiseSal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptEmpWiseSwf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptIndPfSattlement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptIndvPfAlli.rdlc" />

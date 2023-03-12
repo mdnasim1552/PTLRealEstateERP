@@ -90,6 +90,13 @@ namespace RealEntity.C_81_Hrm.C_90_PF
         public double pfamt { get; set; }
         public double swf { get; set; }
         public double totalamt { get; set; }
+        public double bankamt { get; set; }
+        public double cashamt { get; set; }
+        public double pfund { get; set; }
+        public double gssal { get; set; }
+
+
+
 
 
         public EmpWiseSWF()
