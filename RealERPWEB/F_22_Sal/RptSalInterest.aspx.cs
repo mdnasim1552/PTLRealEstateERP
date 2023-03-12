@@ -872,7 +872,7 @@ namespace RealERPWEB.F_22_Sal
                     {
                         this.RptEarlyBenADelayCPDL();
                     }
-                    else if (comcod == "3374")
+                    else if (comcod == "3374" || comcod=="3101")
                     {
                         this.RptEarlyBenADelayANGAN();
                     }

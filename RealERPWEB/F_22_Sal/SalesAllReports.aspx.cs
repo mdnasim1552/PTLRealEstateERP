@@ -44,7 +44,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetProjectNamemulti();
-               // this.ddlReport_SelectedIndexChanged(null, null);
+                this.ddlReport_SelectedIndexChanged(null, null);
 
 
 

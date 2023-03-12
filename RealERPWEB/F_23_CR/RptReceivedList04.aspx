@@ -533,7 +533,7 @@
 
                         </asp:View>
                         <asp:View ID="ViewmonthlycollSchedule" runat="server">
-                            <div class="table-responsive">
+                      
                                 <asp:GridView ID="gvmoncollsch" runat="server" ClientIDMode="Static" AutoGenerateColumns="False" CssClass="table-striped table-bordered grvContentarea" AllowPaging="true" PageSize="10"
                                     ShowFooter="True" OnRowDataBound="gvmoncollsch_RowDataBound" OnPageIndexChanging="gvmoncollsch_PageIndexChanging">
                                     <RowStyle />
@@ -1070,13 +1070,15 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooterNew" />
-                                    <EditRowStyle />
-                                    <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPaginationNew" />
-                                    <HeaderStyle CssClass="grvHeaderNew" />
+                                  <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+
+                                    
                                 </asp:GridView>
-                            </div>
+                       
                         </asp:View>
                         <asp:View ID="ViewMonthyCollection" runat="server">
                             <div class="table-responsive">
@@ -1360,11 +1362,11 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeaderNew" />
+                                    <PagerStyle CssClass="gvPaginationNew" />
+                                    <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
                             </div>
                         </asp:View>
