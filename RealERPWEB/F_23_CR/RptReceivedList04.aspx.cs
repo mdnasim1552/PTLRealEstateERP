@@ -889,6 +889,7 @@ namespace RealERPWEB.F_23_CR
 
                             j++;
                         }
+                        this.gvmoncollsch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvmoncollsch.DataSource = dt;
                         this.gvmoncollsch.DataBind();
 
@@ -918,7 +919,7 @@ namespace RealERPWEB.F_23_CR
                         }
 
 
-
+                        this.gvmoncoll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvmoncoll.DataSource = dt;
                         this.gvmoncoll.DataBind();
                         break;
@@ -931,6 +932,7 @@ namespace RealERPWEB.F_23_CR
                             this.gvmoncollschsum.Visible = true;
 
                             this.gvmoncollschsumBN.Visible = false;
+                            this.gvmoncollschsum.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                             this.gvmoncollschsum.DataSource = dt;
                             this.gvmoncollschsum.DataBind();
                             this.FooterCalculation();
@@ -940,6 +942,7 @@ namespace RealERPWEB.F_23_CR
                             this.gvmoncollschsum.Visible = false;
                             this.gvmoncollschsumBN.Visible = true;
 
+                            this.gvmoncollschsumBN.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                             this.gvmoncollschsumBN.DataSource = dt;
                             this.gvmoncollschsumBN.DataBind();
                             this.FooterCalculation();
@@ -952,6 +955,7 @@ namespace RealERPWEB.F_23_CR
 
 
                     case "MonthlyColScheduleDet":
+                        this.gvmoncolschandac.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvmoncolschandac.DataSource = dt;
                         this.gvmoncolschandac.DataBind();
 
@@ -966,6 +970,7 @@ namespace RealERPWEB.F_23_CR
                         break;
 
                     case "MonthlyDuesOverDues":
+                        this.gvDuesOverdues.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvDuesOverdues.DataSource = dt;
                         this.gvDuesOverdues.DataBind();
                         this.FooterCalculation();
