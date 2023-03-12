@@ -119,24 +119,37 @@ namespace RealERPWEB.F_17_Acc
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            switch (comcod)
+            string qtype = this.Request.QueryString["Type"].ToString().Trim();
+
+            if (qtype == "Allotment")
             {
-                case "3370":
-                case "3101":
-                    string qtype = this.Request.QueryString["Type"].ToString().Trim();
-                    if (qtype == "Allotment")
-                    {
-                        this.LetterofAllotmentCPDL();
-                    }
-                    else if (qtype == "CustomerSettlement")
-                    {
-                        this.CustomerSettlementCPDL();
-                    }
-                    break;
-                default:
-                    break;
+                this.LetterofAllotmentCPDL();
             }
+
+            else if (qtype == "CustomerSettlement")
+            {
+                this.CustomerSettlementCPDL();
+            }
+
+
+            //string comcod = this.GetCompCode();
+            //switch (comcod)
+            //{
+            //    case "3370":
+            //    case "3101":
+            //        string qtype = this.Request.QueryString["Type"].ToString().Trim();
+            //        if (qtype == "Allotment")
+            //        {
+            //            this.LetterofAllotmentCPDL();
+            //        }
+            //        else if (qtype == "CustomerSettlement")
+            //        {
+            //            this.CustomerSettlementCPDL();
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
 
         }
 

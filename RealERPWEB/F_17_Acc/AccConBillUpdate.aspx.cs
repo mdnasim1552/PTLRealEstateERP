@@ -1020,11 +1020,11 @@ namespace RealERPWEB.F_17_Acc
                 todramt = todramt + dramt;
                 TblRowIndex2 = (this.dgv2.PageIndex) * this.dgv2.PageSize + j;
                 if (ASTUtility.Left(Supplier, 2) == "98" && spcfcod == "000000000000")
-                {
+                {           
                     dt1.Rows[TblRowIndex2]["trncram"] = todramt - tocramt;
 
-                    ////dt1.Rows[TblRowIndex2]["trncram"] = todramt - tocramt<0? 0: todramt - tocramt;
-                    ////dt1.Rows[TblRowIndex2]["trndram"] = todramt - tocramt<0? (dramt + (todramt - tocramt)*-1) :0;
+                    ////dt1.Rows[TblRowIndex2]["trncram"] = todramt - tocramt < 0 ? 0 : todramt - tocramt;
+                    ////dt1.Rows[TblRowIndex2]["trndram"] = todramt - tocramt < 0 ? (todramt-+(todramt - tocramt) * -1) : 0;
 
 
                     todramt = 0; tocramt = 0;
