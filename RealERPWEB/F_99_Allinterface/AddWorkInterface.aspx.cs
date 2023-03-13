@@ -552,9 +552,9 @@ namespace RealERPWEB.F_99_Allinterface
             //dv.RowFilter = "pactcode=" + pactcode + " and adno="+addno+"";
             //dt = dv.ToTable();
             //string appxml = dt.Rows[0]["approval"].ToString();
-
-            string calltype = this.GetRemoveAuditCType();
-            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", calltype, adno, "", "", "", "", "", "", "", "", "", "");
+           
+            string comskip = this.GetSKIP1csdsecAPP();
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODCHECK", adno, comskip, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Deleted failed..!');", true);
@@ -564,21 +564,25 @@ namespace RealERPWEB.F_99_Allinterface
             this.lbtnok_Click(null, null);
         }
 
-        private string GetRemoveAuditCType()
+        private string GetSKIP1csdsecAPP()
         {
-            string ctype = "";
+            string comskip = "";
             switch (GetCompCode())
             {
               
                 case "3367":
-                    ctype = "UPDATEMODSECONDAPP";
+                    
                     break;
                 default:
-                    ctype = "UPDATEMODCHECK";
+                    comskip = "SKIP3";
+                   
                     break;
             }
-            return ctype;
+            return comskip;
         }
+      
+
+
         protected void lnkremoveap_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tbladdwrk"];
@@ -587,6 +591,7 @@ namespace RealERPWEB.F_99_Allinterface
             string adno = ((Label)this.gvCltmodapp.Rows[Rowindex].FindControl("lbladdnoap")).Text.Trim();
 
             //UPDATEMODAPPROVAL
+            
             bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODAUDIT", adno, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
