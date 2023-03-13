@@ -971,18 +971,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
+                                        <div class="row ">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2">
                                                 <div class="form group">
-                                                    <asp:Label ID="lbltext01" runat="server">Vat</asp:Label>
+                                                    <asp:Label ID="lbltext01" runat="server" Font-Bold="true" Font-Size="16px" >Vat</asp:Label>
                                                     <asp:DropDownList ID="ddlvat" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
                                                 </div>
                                             </div>
                                            
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form group">
-                                                        <asp:Label ID="Label9" runat="server">Tax</asp:Label>
+                                                        <asp:Label ID="Label9" runat="server" Font-Bold="true" Font-Size="16px" >Tax</asp:Label>
                                                         <asp:DropDownList ID="ddltax" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
                                                     </div>
