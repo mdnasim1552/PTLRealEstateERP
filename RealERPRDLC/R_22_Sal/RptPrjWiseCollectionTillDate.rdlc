@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e71b8ccb-c001-4eec-a1bf-bdfdda82634f</rd:DataSourceID>
+      <rd:DataSourceID>226793ef-5435-4399-a789-a2fa9f41118c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -25,12 +25,20 @@
           <DataField>comcod</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="musircode">
+          <DataField>musircode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="pactcode">
           <DataField>pactcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="pactdesc">
           <DataField>pactdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pactdesc1">
+          <DataField>pactdesc1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ramt">
@@ -40,8 +48,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>PrjWiseCollection</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+PrjWiseCollection, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>PrjWiseCollectiontilldate</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+PrjWiseCollectiontilldate, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -195,14 +203,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="pactdesc">
+                        <Textbox Name="pactdesc1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!pactdesc.Value</Value>
+                                  <Value>=Fields!pactdesc1.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -211,7 +219,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>pactdesc</rd:DefaultName>
+                          <rd:DefaultName>pactdesc1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>

@@ -44,7 +44,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetProjectNamemulti();
-                this.ddlReport_SelectedIndexChanged(null, null);
+               // this.ddlReport_SelectedIndexChanged(null, null);
 
 
 
@@ -77,8 +77,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
-                    this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
                     break;
 
                 case "PrjCollTilldate":
@@ -89,8 +89,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
-                    this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
                     break;
 
                 case "PaymentStatus":
@@ -101,8 +101,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = true;
                     this.clcust.Visible = true;
                     this.grpid.Visible = false;
-                    this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
                     break;
 
                 case "SoldUnSoldUnit":
@@ -114,8 +114,8 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = false;
                     this.grpid.Visible = true;
                     this.GetGroup();
-                    this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
 
 
 
@@ -147,8 +147,8 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Visible = false;
                     this.clcust.Visible = false;
                     this.grpid.Visible = false;
-                    this.clsprjname.Visible = true;
-                    this.clsprjnamemul.Visible = false;
+                    this.clsprjnamemul.Visible = true;
+                    this.clsprjname.Visible = false;
                     break;
             }
         }
@@ -277,8 +277,23 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            //string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string pactcode = "";
+            string gp = this.listproj.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    pactcode = "";
+                else
+                    foreach (ListItem s1 in listproj.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            pactcode = pactcode + s1.Value.Substring(0, 12);
+                        }
+                    }
 
+            }
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETTOTALCOLLECTION", pactcode, frmdate, todate, "", "", "", "", "");
             if (ds1 == null)
             {
@@ -304,8 +319,24 @@ namespace RealERPWEB.F_22_Sal
 
             // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+          //  string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string length = "Length";
+            string pactcode = "";
+            string gp = this.listproj.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    pactcode = "";
+                else
+                    foreach (ListItem s1 in listproj.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            pactcode = pactcode + s1.Value.Substring(0, 12);
+                        }
+                    }
+
+            }
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETTOTALCOLLECTION", pactcode, "", todate, length, "", "", "", "");
             if (ds1 == null)
             {
@@ -354,8 +385,24 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetComeCode();          
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            //string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
+            string pactcode = "";
+            string gp = this.listproj.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    pactcode = "";
+                else
+                    foreach (ListItem s1 in listproj.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            pactcode = pactcode + s1.Value.Substring(0, 12);
+                        }
+                    }
+
+            }
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDUNITSTATUS", pactcode, "", todate, grpcode, "", "", "", "");
             if (ds1 == null)
             {
@@ -425,19 +472,19 @@ namespace RealERPWEB.F_22_Sal
                 return dt1;
           
               
-                    string pactcode = dt1.Rows[0]["pactcode"].ToString();
+                    string pactcode = dt1.Rows[0]["typecode"].ToString();
 
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
-                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                        if (dt1.Rows[j]["typecode"].ToString() == pactcode)
                         {
-                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            pactcode = dt1.Rows[j]["typecode"].ToString();
                             dt1.Rows[j]["pactdesc"] = "";
                         }
 
                         else
                         {
-                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            pactcode = dt1.Rows[j]["typecode"].ToString();
                         }
                     }
                    

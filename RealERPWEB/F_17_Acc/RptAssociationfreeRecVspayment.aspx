@@ -147,7 +147,7 @@
                 <div class="card-body">
                    
                             <asp:GridView ID="gvassociation" runat="server" AutoGenerateColumns="False"
-                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvassociation_RowDataBound">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -174,15 +174,17 @@
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
-<%--                                    <asp:TemplateField HeaderText="Particulars Name">
+                                    
+
+                                    <asp:TemplateField HeaderText="grp" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvrperticulars" runat="server"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                                Width="180px"></asp:Label>
+                                            <asp:Label ID="lblgvgrp" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'
+                                                Width="30px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
-                                    </asp:TemplateField>--%>
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Customer. Name">
                                         <ItemTemplate>
@@ -207,20 +209,21 @@
                                     <asp:TemplateField HeaderText="Voucher Date">
                                         <ItemTemplate>
                                                 <asp:Label ID="lblgvopndr" runat="server"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "voudat1")).ToString("dd-MMM-yyyy") %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
+                                        <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Voucher Date">
+                                    
+                                    <asp:TemplateField HeaderText="Voucher Name">
                                         <ItemTemplate>
-                                                <asp:Label ID="lblgvopncr" runat="server"
+                                                <asp:HyperLink ID="HLgvVounum1" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum1")) %>'
-                                                Width="90px"></asp:Label>
+                                                Width="100px"></asp:HyperLink>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
+                                        <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
 
@@ -270,8 +273,8 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refnum"))%>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" />
-                                        <HeaderStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
                                     

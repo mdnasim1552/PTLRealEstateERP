@@ -784,6 +784,28 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lbtnDelcsdApp_Click(object sender, EventArgs e)
         {
+            DataTable dt = (DataTable)Session["tbladdwrk"];
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string adno = ((Label)this.gvcsdApproval.Rows[Rowindex].FindControl("lblgvcsdApadno")).Text.Trim();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "mycsdApprovedModal();", true);
+            
+        }
+
+        private void CsdStageDelete()
+        {
+
+          
+            //bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "DELADDWORK", adno, "", "", "", "", "", "", "", "", "", "");
+            //if (!result)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
+            //    return;
+            //}
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
+            this.lbtnok_Click(null, null);
+
 
         }
 

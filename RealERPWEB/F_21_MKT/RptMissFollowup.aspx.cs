@@ -40,7 +40,7 @@ namespace RealERPWEB.F_21_MKT
         protected void Data_Bind()
         {
             DataTable dt = (DataTable)Session["MissFollowUpData"];
-            this.grvMissFollowUp.PageSize = 10;
+            this.grvMissFollowUp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvMissFollowUp.DataSource = dt;
             this.grvMissFollowUp.DataBind();
         }
@@ -75,39 +75,42 @@ namespace RealERPWEB.F_21_MKT
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
         }
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Data_Bind();
+        }
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
             string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
             string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
             DataTable dt = (DataTable)Session["MissFollowUpData"];
 
-            LocalReport Rpt1 = new LocalReport();
+            //if(dt != null)
+            //{
+                LocalReport Rpt1 = new LocalReport();
+                var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptMissFollowup>();
 
-            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptMissFollowup>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptMissFollowup", lst, null, null);
 
-            //Running
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptMissFollowup", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Missing Followup Status"));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("compName", comnam));
-            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Missing Followup Status"));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            //Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
-
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&embedded=true', target='_blank');</script>";
+            //}
+            //else
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "There is no data to show";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //}
         }
     }
 }

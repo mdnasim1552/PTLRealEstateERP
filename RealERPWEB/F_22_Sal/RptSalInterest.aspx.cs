@@ -2196,7 +2196,8 @@ namespace RealERPWEB.F_22_Sal
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string project = this.ddlProjectName.SelectedItem.Text.Trim();
-           string delcrg = this.txtdelaychrg.Text.Trim();
+           string delcrge = this.txtdelaychrg.Text.Trim();
+            string delcrg = Convert.ToDouble(this.txtdelaychrg.Text.Trim()).ToString("#,##0.00;(#,##0.00); ");
             string aptvalue = ((Label)this.gvearbenadelay.FooterRow.FindControl("lgvFinsamteben")).Text;
                
                               
@@ -2209,7 +2210,7 @@ namespace RealERPWEB.F_22_Sal
             string customeradd = dt1.Rows[0]["custadd"].ToString();
             string customerconpre = dt1.Rows[0]["custprecon"].ToString();
             string custparcon = dt1.Rows[0]["custparcon"].ToString();
-            string parqty = dt1.Rows[0]["parqty"].ToString();
+            string parqty = Convert.ToDouble(dt1.Rows[0]["parqty"]).ToString("#,##0;(#,##0); ");
 
 
             List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02> lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>();
@@ -2218,7 +2219,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("RptHead", "Delay Charge /Discount Calculation Statement"));
+            Rpt1.SetParameters(new ReportParameter("RptHead", "Delay Charge Calculation"));
             Rpt1.SetParameters(new ReportParameter("ProjName", "Project Name: " + project));
             Rpt1.SetParameters(new ReportParameter("Customername", uacustomer));
             Rpt1.SetParameters(new ReportParameter("Unit", unit));

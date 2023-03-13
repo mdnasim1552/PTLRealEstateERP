@@ -84,14 +84,14 @@ namespace RealERPWEB.F_17_Acc
         {
             string comcod = this.GetComeCode();
             string pactcode = this.ddlPrjName.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETEMPLOYEENAME", pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_LETTERINFO", "GETUNITNAME", pactcode, "", "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
             }
 
-            this.ddlUnit.DataTextField = "empname";
-            this.ddlUnit.DataValueField = "empcode";
+            this.ddlUnit.DataTextField = "custname";
+            this.ddlUnit.DataValueField = "usircode";
             this.ddlUnit.DataSource = ds1.Tables[0];
             this.ddlUnit.DataBind();
             ViewState["tblemp"] = ds1.Tables[0];
@@ -257,89 +257,97 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        protected void gvadvLoan_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvassociation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
 
-                Label lblgvempname = (Label)e.Row.FindControl("lblgvempname");
-                Label lblgvopndr = (Label)e.Row.FindControl("lblgvopndr");
-                Label lblgvopncr = (Label)e.Row.FindControl("lblgvopncr");
-                Label lblgvcurrentdr = (Label)e.Row.FindControl("lblgvcurrentdr");
-                Label lblgvcurrentcr = (Label)e.Row.FindControl("lblgvcurrentcr");
-                Label lblgvclsdr = (Label)e.Row.FindControl("lblgvclsdr");
-                Label lblgvclscr = (Label)e.Row.FindControl("lblgvclscr");
-                Label lblgvnetamt = (Label)e.Row.FindControl("lblgvnetamt");
-                Label lblgvdrcr = (Label)e.Row.FindControl("lblgvdrcr");
+            //    Label lblgvempname = (Label)e.Row.FindControl("lblgvempname");
+            //    Label lblgvopndr = (Label)e.Row.FindControl("lblgvopndr");
+            //    Label lblgvopncr = (Label)e.Row.FindControl("lblgvopncr");
+            //    Label lblgvcurrentdr = (Label)e.Row.FindControl("lblgvcurrentdr");
+            //    Label lblgvcurrentcr = (Label)e.Row.FindControl("lblgvcurrentcr");
+            //    Label lblgvclsdr = (Label)e.Row.FindControl("lblgvclsdr");
+            //    Label lblgvclscr = (Label)e.Row.FindControl("lblgvclscr");
+            //    Label lblgvnetamt = (Label)e.Row.FindControl("lblgvnetamt");
+            //    Label lblgvdrcr = (Label)e.Row.FindControl("lblgvdrcr");
 
-                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
-
-                if (grp == "")
-                {
-                    return;
-                }
-
-                if (grp == "B")
-                {
-
-
-                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
-                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //    string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
 
 
 
 
-                    lblgvempname.Style.Add("text-align", "right");
 
-                }
-                if (grp == "C")
-                {
+            //    if (grp == "")
+            //    {
+            //        return;
+            //    }
 
-
-                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Green;";
-                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
-                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //    if (grp == "B")
+            //    {
 
 
-                    lblgvempname.Style.Add("text-align", "right");
-
-                }
-                if (grp == "D")
-                {
-
-
-                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Orange;";
-                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
-                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+            //        lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
 
 
-                    lblgvempname.Style.Add("text-align", "right");
 
-                }
 
-            }
+            //        lblgvempname.Style.Add("text-align", "right");
+
+            //    }
+            //    if (grp == "C")
+            //    {
+
+
+            //        lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Green;";
+            //        lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+            //        lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+
+
+            //        lblgvempname.Style.Add("text-align", "right");
+
+            //    }
+            //    if (grp == "D")
+            //    {
+
+
+            //        lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Orange;";
+            //        lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+            //        lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+
+
+            //        lblgvempname.Style.Add("text-align", "right");
+
+            //    }
+
+            //}
         }
 
-       
+        //protected void gvassociation_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+
+
+        //}
     }
 
 

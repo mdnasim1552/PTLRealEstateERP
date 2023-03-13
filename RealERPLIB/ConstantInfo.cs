@@ -7482,7 +7482,6 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "2403000", "2403836", "F_24_CC", "", "", "", "Customer Care", "False", "False", "False", "False" });
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "	Other Related Report", "", "", false, "mb" });
-
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "12. Client's Birthday", "F_21_Mkt/RptFindClient?Type=ClientBrthDay", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "13. Client's Marriage Day", "F_21_Mkt/RptFindClient?Type=ClientMrgDay", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "24. Send Letter", "F_21_Mkt/RptMktAppointment?Type=ClientLetter&UType=Mgt", "", true, "" });

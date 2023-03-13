@@ -93,7 +93,7 @@ namespace RealERPWEB.F_17_Acc
             string quType = this.Request.QueryString["InputType"].ToString();
             if(quType=="Marketing")
             {
-                this.grvacc.Columns[17].Visible = true;
+                this.grvacc.Columns[18].Visible = true;
             }
         }
 
@@ -158,7 +158,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlOthersBook.DataSource = dsone.Tables[0];
                 this.ddlOthersBook.DataBind();
 
-                this.grvacc.Columns[10].Visible = (Querytype == "DeptCode") ? true : false;
+                this.grvacc.Columns[11].Visible = (Querytype == "DeptCode") ? true : false;
             }
             catch (Exception ex)
             {
@@ -325,6 +325,7 @@ namespace RealERPWEB.F_17_Acc
 
                 actcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlProName")).SelectedValue.ToString();
 
+                string itemcode = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvitemcode")).Text.Trim();
                 string Descbn = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDescbn")).Text.Trim();
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtype = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgridsirtype")).Text.Trim();
@@ -421,7 +422,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, Descbn,
-                        unitCode, mapCode, "", "", "");
+                        unitCode, mapCode, itemcode, "", "");
                     this.ShowInformation();
                     if (result)
                     {
@@ -470,7 +471,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     this.grvacc.FooterRow.Visible = true;
 
-                    this.grvacc.Columns[16].Visible = true;
+                    this.grvacc.Columns[17].Visible = true;
 
                 }
                 else
@@ -626,7 +627,7 @@ namespace RealERPWEB.F_17_Acc
                     //this.lbalterofddl0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
                     string tempddl1 = (this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2);
                     string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
-                    grvacc.Columns[7].HeaderText = (tempddl1 == "01") ? "Std.Rate" : (tempddl1 == "02") ? "Std.Rate"
+                    grvacc.Columns[8].HeaderText = (tempddl1 == "01") ? "Std.Rate" : (tempddl1 == "02") ? "Std.Rate"
                                 : (tempddl1 == "03") ? "Std.Rate" : (tempddl1 == "04") ? "Std.Rate" : (tempddl1 == "41") ? "Qty. Considered" : "";
 
                     this.GetBaseUnit();
@@ -1067,7 +1068,7 @@ namespace RealERPWEB.F_17_Acc
                     : ((isircode != tsircode) ? tsircode : isircode);
 
                 string mnumber = (isircode == tsircode) ? "" : "manual";
-                
+                string itemcode = this.txtitemcode.Text;
 
                 string Desc = this.txtresourcehead.Text.Trim();
                 string DescBN = this.txtresourceheadBN.Text.Trim();
@@ -1139,8 +1140,8 @@ namespace RealERPWEB.F_17_Acc
                 {
 
 
-                    bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
-                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, mapCode);
+                    bool result = da.UpdateTransInfo3(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
+                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, mapCode,itemcode, "");
 
                     if (!result)
                     {
