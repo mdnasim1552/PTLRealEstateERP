@@ -402,7 +402,7 @@ namespace RealERPLIB
           string mDesc1 = "", string mDesc2 = "", string mDesc3 = "", string mDesc4 = "", string mDesc5 = "", string mDesc6 = "",
           string mDesc7 = "", string mDesc8 = "", string mDesc9 = "", string mDesc10 = "", string mDesc11 = "", string mDesc12 = "",
           string mDesc13 = "", string mDesc14 = "", string mDesc15 = "", string mDesc16 = "", string mDesc17 = "", string mDesc18 = "",
-         string mDesc19 = "", string mDesc20 = "", string mDesc21 = "", string mDesc22 = "",
+         string mDesc19 = "", string mDesc20 = "", string mDesc21 = "", string mDesc22 = "", string mDesc23 = "",
             string mUserID = "")
         {
             try
@@ -435,6 +435,7 @@ namespace RealERPLIB
                 cmd.Parameters.Add(new SqlParameter("@Desc20", mDesc20));
                 cmd.Parameters.Add(new SqlParameter("@Desc21", mDesc21));
                 cmd.Parameters.Add(new SqlParameter("@Desc22", mDesc22));
+                cmd.Parameters.Add(new SqlParameter("@Desc23", mDesc23));
 
 
                 cmd.Parameters.Add(new SqlParameter("@UserID", mUserID));
