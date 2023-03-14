@@ -2604,7 +2604,8 @@
                                             <asp:TemplateField HeaderText="Req Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2706,7 +2707,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2841,7 +2843,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2993,7 +2996,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3151,7 +3155,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcReqdatemb" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3315,7 +3320,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcReqdatembapp" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3470,7 +3476,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>

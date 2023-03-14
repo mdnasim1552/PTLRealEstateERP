@@ -731,7 +731,7 @@
                     <Value>=Parameters!takainword.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -741,7 +741,7 @@
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>2.0714in</Top>
             <Left>0.95077in</Left>
-            <Height>0.23333in</Height>
+            <Height>0.18125in</Height>
             <Width>6.9075in</Width>
             <ZIndex>17</ZIndex>
             <Style>
@@ -812,7 +812,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>2.5839in</Top>
-            <Left>0.4473in</Left>
+            <Left>0.45772in</Left>
             <Height>0.2368in</Height>
             <Width>5.32292in</Width>
             <ZIndex>19</ZIndex>
@@ -1861,7 +1861,7 @@
                     <Value>=Parameters!takainword.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1871,7 +1871,7 @@
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>6.39213in</Top>
             <Left>0.93451in</Left>
-            <Height>0.24583in</Height>
+            <Height>0.1625in</Height>
             <Width>6.9075in</Width>
             <ZIndex>50</ZIndex>
             <Style>
@@ -2991,7 +2991,7 @@
                     <Value>=Parameters!takainword.Value</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -3001,7 +3001,7 @@
             <rd:DefaultName>Textbox15</rd:DefaultName>
             <Top>10.72441in</Top>
             <Left>0.9241in</Left>
-            <Height>0.24583in</Height>
+            <Height>0.18333in</Height>
             <Width>6.9075in</Width>
             <ZIndex>83</ZIndex>
             <Style>
