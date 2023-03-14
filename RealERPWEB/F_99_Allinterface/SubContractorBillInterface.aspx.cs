@@ -1048,29 +1048,38 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "gvConUpdat":
-                    this.gvConUpdat.DataSource = HiddenSameData(dt);
+                    //this.gvConUpdat.DataSource = HiddenSameData(dt);
+                    this.gvConUpdat.DataSource = dt;
+
                     this.gvConUpdat.DataBind();
                     break;
 
                 case "gvsubbill":
-                    this.gvsubbill.DataSource = HiddenSameData(dt);
+                    //this.gvsubbill.DataSource = HiddenSameData(dt);
+                    this.gvsubbill.DataSource = dt;
+
                     this.gvsubbill.DataBind();
                     break;
 
 
                 case "gvfrec":
-                    this.gvfrec.DataSource = HiddenSameData(dt);
+                    //this.gvfrec.DataSource = HiddenSameData(dt);
+                    this.gvfrec.DataSource = dt;
+
                     this.gvfrec.DataBind();
                     break;
 
                 case "gvsrec":
-                    this.gvsrec.DataSource = HiddenSameData(dt);
+                    //this.gvsrec.DataSource = HiddenSameData(dt);
+                    this.gvsrec.DataSource = dt;
+
                     this.gvsrec.DataBind();
                     break;
 
 
                 case "gvthrec":
-                    this.gvthrec.DataSource = HiddenSameData(dt);
+                    //this.gvthrec.DataSource = HiddenSameData(dt);
+                    this.gvthrec.DataSource = dt;
                     this.gvthrec.DataBind();
                     break;
 
@@ -1085,55 +1094,75 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 case "gvfinal":
-                    this.gvfinal.DataSource = HiddenSameData(dt);
+                    //this.gvfinal.DataSource = HiddenSameData(dt);
+                    this.gvfinal.DataSource = dt;
+
                     this.gvfinal.DataBind();
                     break;
 
 
                 case "gvfinalapp":
-                    this.gvfinalapp.DataSource = HiddenSameData(dt);
+                    //this.gvfinalapp.DataSource = HiddenSameData(dt);
+                    this.gvfinalapp.DataSource = dt;
+
                     this.gvfinalapp.DataBind();
 
                     break;
                 case "gvlabbillreq":
-                    this.gvlabbillreq.DataSource = HiddenSameData(dt);
+                    //this.gvlabbillreq.DataSource = HiddenSameData(dt);
+                    this.gvlabbillreq.DataSource = dt;
+
                     this.gvlabbillreq.DataBind();
 
                     break;
 
                 case "gvAllReq":
-                    this.gvAllReq.DataSource = HiddenSameData(dt);
+                    //this.gvAllReq.DataSource = HiddenSameData(dt);
+                    this.gvAllReq.DataSource = dt;
+
                     this.gvAllReq.DataBind();
                     break;
 
 
                 case "gvbillcs":
-                    this.gvbillcs.DataSource = HiddenSameData(dt);
+                    //this.gvbillcs.DataSource = HiddenSameData(dt);
+                    this.gvbillcs.DataSource = dt;
+
                     this.gvbillcs.DataBind();
                     break;
 
                 case "gvWorkOrder":
-                    this.gvWorkOrder.DataSource = HiddenSameData(dt);
+                    //this.gvWorkOrder.DataSource = HiddenSameData(dt);
+                    this.gvWorkOrder.DataSource = dt;
+
                     this.gvWorkOrder.DataBind();
                     break;
 
                 case "gvmbook":
-                    this.gvmbook.DataSource = HiddenSameData(dt);
+                    //this.gvmbook.DataSource = HiddenSameData(dt);
+                    this.gvmbook.DataSource = dt;
+
                     this.gvmbook.DataBind();
                     break;
 
 
                 case "gvmbookapp":
-                    this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    //this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    this.gvmbookapp.DataSource = dt;
+
                     this.gvmbookapp.DataBind();
                     break;
                 case "gvReadyForBill":
-                    this.gvReadyForBill.DataSource = HiddenSameData(dt);
+                    //this.gvReadyForBill.DataSource = HiddenSameData(dt);
+                    this.gvReadyForBill.DataSource = dt;
+
                     this.gvReadyForBill.DataBind();
                     break;
 
                 case "gvbillapp":
-                    this.gvbillapp.DataSource = HiddenSameData(dt);
+                    //this.gvbillapp.DataSource = HiddenSameData(dt);
+                    this.gvbillapp.DataSource = dt;
+
                     this.gvbillapp.DataBind();
                     break;
 
