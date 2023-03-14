@@ -1481,6 +1481,32 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         break;
 
+
+                    case "10009": //M Phil
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter = ("maincode='99999' or maincode='" + Maincode + "'");
+                        ddlgval = ((DropDownList)this.gvDegree.Rows[i].FindControl("ddlAcadegree"));
+                        ddlgval.DataTextField = "subdesc";
+                        ddlgval.DataValueField = "subcode";
+                        ddlgval.DataSource = dt1;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = subcode;
+                        //this.gvDegree.Rows[i].FindControl("ddlinstitute").Visible = true;
+                        break;
+
+
+                    case "10010": //Phd
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter = ("maincode='99999' or maincode='" + Maincode + "'");
+                        ddlgval = ((DropDownList)this.gvDegree.Rows[i].FindControl("ddlAcadegree"));
+                        ddlgval.DataTextField = "subdesc";
+                        ddlgval.DataValueField = "subcode";
+                        ddlgval.DataSource = dt1;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = subcode;
+                        //this.gvDegree.Rows[i].FindControl("ddlinstitute").Visible = true;
+                        break;
+
                     case "99999": //Doctoral
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("maincode='99999'");
