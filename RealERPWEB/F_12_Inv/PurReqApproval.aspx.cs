@@ -2242,7 +2242,7 @@ namespace RealERPWEB.F_12_Inv
 
 
                         result = accData.UpdateTransInfo3(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "UPDATEPURREQARATEINF", Reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mEXPUSEDT, mREQNOTE,
-                                    PursDate, Lpurrate, storecode, ssircode, orderno, reqsrat, dispercnt, ptype, mSPCFCODOld, Approval, "", "", "", "", "","");
+                                    PursDate, Lpurrate, storecode, ssircode, orderno, reqsrat, dispercnt, ptype, mSPCFCODOld, Approval, "", "", "", "", "");
                         if (!result)
                         {
                             ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
