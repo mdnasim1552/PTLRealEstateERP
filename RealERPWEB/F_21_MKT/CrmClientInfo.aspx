@@ -745,6 +745,15 @@
                 }
 
 
+                //$('#ChkBoxLstStatus').change(function () {
+
+                //  //  alert("checked");
+
+
+                //});
+
+
+                
 
 
 
@@ -1156,28 +1165,7 @@
 
 
 
-        //function  funReschedule(date, number)
-        //{
-
-        //    try
-        //    {
-
-        //        var date=$(this).parent().find('#lblsubjects').val();
-        //        alert(date);
-        //        console.log(date);
-
-        //        return;
-
-        //    }
-
-        //    catch(e)
-        //    {
-
-        //        alert(e.message)
-
-        //    }
-
-        //}
+      
 
 
 
@@ -4472,7 +4460,7 @@
                                                         <asp:Panel ID="pnlStatus" runat="server" Visible="false">
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" ClientIDMode="Static"  RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
