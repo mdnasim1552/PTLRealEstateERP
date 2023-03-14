@@ -677,9 +677,14 @@
                         tblData = document.getElementById("<%=gvsubbill.ClientID %>");
                         break;
                 }
+          
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
+       
+   
+
+
                     var styleDisplay = 'none';
                     for (var j = 0; j < strData.length; j++) {
                         if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
@@ -690,7 +695,30 @@
                         }
                     }
                     tblData.rows[i].style.display = styleDisplay;
+
+
+
+                    ////console.log('pid1', tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML)
+                    //pid = tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML
+                    //console.log(pid);
+
+
+                    //if (tblData.rows[i].style.display = '') {
+                    //    //pid = tblData.rows[i].cells[cellNr].innerHTML;
+
+                    //    pid=  tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML
+                    //}
+                    //if (tblData.rows[i].style.display = 'none') {
+                    //    var pid2 = tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML;
+                
+                    //    if (pid == pid2) {
+                    //        tblData.rows[i].style.display = '';
+                    //    }
+     
+                    //}
+    
                 }
+
             }
             catch (e) {
                 alert(e.message);
@@ -2606,6 +2634,9 @@
                                                 <ItemStyle Width="150px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+        
 
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
