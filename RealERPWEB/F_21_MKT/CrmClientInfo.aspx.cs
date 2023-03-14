@@ -6019,7 +6019,7 @@ namespace RealERPWEB.F_21_MKT
                             //Lost, Close Enabled
                             switch (comcod)
                             {
-                                case "3354"://Edison
+                             //   case "3354"://Edison
                                 case "3101"://PTL
                                 if (lstleadstatus == "9501002") //Query
                                 {
@@ -6046,6 +6046,32 @@ namespace RealERPWEB.F_21_MKT
 
                                         }
                                     }
+
+                                    if (dts.Select("gcod='9501020'").Length > 0)//Hold
+                                    {
+
+
+
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
+
+
+                                            if (statuscode == "9501020")
+                                            {
+
+                                                chkboxstatus.Enabled = false;
+                                                break;
+
+                                            }
+
+
+                                        }
+                                    }
+
+
+
+
                                 }
 
                                         else if(lstleadstatus.Length>0)  //Lead or Upword
