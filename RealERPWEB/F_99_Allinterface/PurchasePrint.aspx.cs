@@ -2756,7 +2756,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3369": // acme ai 
                 case "3370": // cpdl 
                 case "3348": //credence
-                case "3374": //credence
+                case "3374": //angan
 
 
                     this.OrderPrintRDLC();

@@ -817,12 +817,12 @@
                                             <asp:TemplateField>
                                                 <ItemTemplate>
                                                     <asp:TextBox
-                                                        ID="txtgvValRmrk" runat="server" BackColor="Transparent"  mode="multiline" BorderStyle="None"
+                                                        ID="txtgvValRmrk" runat="server" BackColor="Transparent"  TextMode ="multiline"  BorderStyle="None"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                         Width="300px"></asp:TextBox>
 
                                                     <asp:TextBox
-                                                        ID="txtgvdValNominated" runat="server" Visible="false" BackColor="Transparent" mode="multiline" BorderStyle="None"
+                                                        ID="txtgvdValNominated" runat="server" Visible="false" BackColor="Transparent" TextMode="multiline" BorderStyle="None"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                         Width="300px"></asp:TextBox>
 
