@@ -6019,7 +6019,7 @@ namespace RealERPWEB.F_21_MKT
                             //Lost, Close Enabled
                             switch (comcod)
                             {
-                                case "3354"://Edison
+                             //   case "3354"://Edison
                                 case "3101"://PTL
                                 if (lstleadstatus == "9501002") //Query
                                 {
@@ -6046,6 +6046,32 @@ namespace RealERPWEB.F_21_MKT
 
                                         }
                                     }
+
+                                    if (dts.Select("gcod='9501020'").Length > 0)//Hold
+                                    {
+
+
+
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
+
+
+                                            if (statuscode == "9501020")
+                                            {
+
+                                                chkboxstatus.Enabled = false;
+                                                break;
+
+                                            }
+
+
+                                        }
+                                    }
+
+
+
+
                                 }
 
                                         else if(lstleadstatus.Length>0)  //Lead or Upword
@@ -7368,7 +7394,7 @@ namespace RealERPWEB.F_21_MKT
 
         protected void lnkDeletekpisum_Click(object sender, EventArgs e)
         {
-
+           
         }
         protected void lbtnViewkpisum_Click(object sender, EventArgs e)
         {
@@ -7520,6 +7546,254 @@ namespace RealERPWEB.F_21_MKT
                 }
 
             }
+        }
+
+        protected void lblgvkpicall_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601001' or gp ='9601001' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpiextmeeting_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601004' or gp ='9601004' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpiintmeeting_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601008' or gp ='9601008' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpivisit_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601016' or gp ='9601016' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpiproposal_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601020' or gp ='9601020' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpileads_Click1(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601099' or gp ='9601099' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpiclosing_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601050' or gp ='9601050' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
+        }
+
+        protected void lblgvkpiothers_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+            ViewState["tbltempdt"] = ds1.Tables[0];
+            DataView dv = new DataView(ds1.Tables[0]);
+            dv.RowFilter = ("sircode='9601024' or gp ='9601024' ");
+
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = dv;
+            this.gvkpidet.DataBind();
         }
     }
 

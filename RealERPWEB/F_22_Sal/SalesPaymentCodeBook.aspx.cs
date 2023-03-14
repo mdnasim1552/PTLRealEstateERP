@@ -127,7 +127,7 @@ namespace RealERPWEB.F_22_Sal
 
                 string comcod = this.GetCompCode();
                 string gcode1 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-                string gcode2 = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
+                string gcode2 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
 
                 string Desc = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string tgcod = gcode1.Substring(0, 2) + gcode2;
