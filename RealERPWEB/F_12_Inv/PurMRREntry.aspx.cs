@@ -62,7 +62,7 @@ namespace RealERPWEB.F_12_Inv
                     }
 
                 }
-                this.Get_Receive_Info();
+                //this.Get_Receive_Info();
                 this.DupMRR();
                 this.ImgbtnFindProject_Click(null, null);
                 //this.ImgbtnFindSup_Click(null, null);
