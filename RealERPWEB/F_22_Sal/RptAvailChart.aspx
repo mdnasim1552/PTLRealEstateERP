@@ -33,7 +33,7 @@
             line-height:12px;
         }
         .chzn-container-single .chzn-single {
-            height: 28px !important;
+            height: 29px !important;
             line-height: 28px !important;
         }
     </style>
