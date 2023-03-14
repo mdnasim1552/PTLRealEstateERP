@@ -6583,23 +6583,24 @@ namespace RealERPWEB.F_21_MKT
                     {
                         result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", hempid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
 
-                        if (result)
+                        if (!result)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                            
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail');", true);
+                         
+                            return;
+
 
                         }
-                        else
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Update Fail";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                            return;
-                        }
+                       
                         Gvalue = "";
                     }
 
 
                 }
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
 
 
