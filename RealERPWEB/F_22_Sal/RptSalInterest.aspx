@@ -1056,10 +1056,10 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Date">
+                                        <asp:TemplateField HeaderText="Realized Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpaiddateeben" runat="server"
-                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy") %>'
+                                                    Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
@@ -1098,7 +1098,7 @@
                                         <asp:TemplateField HeaderText="Delay/Discount in Days">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdodisdayeben" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dodisday")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dodisday")).ToString("#,##0;-#,##0;") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
