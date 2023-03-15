@@ -2317,7 +2317,7 @@
                             <asp:Panel ID="penlInvoice" runat="server" Visible="false">
                                 <asp:Label runat="server" ID="lblsircode" Visible="false"></asp:Label>
                                 <asp:GridView ID="gv_Invoice" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Invoice_RowDataBound">
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL # ">
                                             <ItemTemplate>
@@ -2403,7 +2403,7 @@
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtotalrate" runat="server" Width="60px"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalrate")).ToString("#,##0;(#,##0); ") %>'>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalrate")).ToString("#,##0.00;(#,##0.00); ") %>'>
                                                 </asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2441,7 +2441,10 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Invoice Print">
                                             <ItemTemplate>
+                                                <asp:HyperLink ID="lnkbtnapproved" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span></asp:HyperLink>
                                                 <asp:LinkButton runat="server" ID="btninvoiceprint" OnClick="btninvoiceprint_Click"><i class="fa fa-print fa-xl"></i></asp:LinkButton>
+
+                                                                    
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
