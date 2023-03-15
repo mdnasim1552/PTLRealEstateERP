@@ -119,24 +119,37 @@ namespace RealERPWEB.F_17_Acc
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            switch (comcod)
+            string qtype = this.Request.QueryString["Type"].ToString().Trim();
+
+            if (qtype == "Allotment")
             {
-                case "3370":
-                case "3101":
-                    string qtype = this.Request.QueryString["Type"].ToString().Trim();
-                    if (qtype == "Allotment")
-                    {
-                        this.LetterofAllotmentCPDL();
-                    }
-                    else if (qtype == "CustomerSettlement")
-                    {
-                        this.CustomerSettlementCPDL();
-                    }
-                    break;
-                default:
-                    break;
+                this.LetterofAllotmentCPDL();
             }
+
+            else if (qtype == "CustomerSettlement")
+            {
+                this.CustomerSettlementCPDL();
+            }
+
+
+            //string comcod = this.GetCompCode();
+            //switch (comcod)
+            //{
+            //    case "3370":
+            //    case "3101":
+            //        string qtype = this.Request.QueryString["Type"].ToString().Trim();
+            //        if (qtype == "Allotment")
+            //        {
+            //            this.LetterofAllotmentCPDL();
+            //        }
+            //        else if (qtype == "CustomerSettlement")
+            //        {
+            //            this.CustomerSettlementCPDL();
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
 
         }
 
@@ -189,7 +202,7 @@ namespace RealERPWEB.F_17_Acc
                       "be made to " + "<strong>" + companyname + "</strong>" + " by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " +
                       "in foreign exchange by international TT or  DD. Any type of Cash payment is totally restricted. Payments of installment and" +
                       " other charges are to be made on due dates. The company may issue reminders to the Allottee " +
-                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time." + "</div>" + "<br><br>" +
+                      "but not withstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time." + "</div>" + "<br>" +
                       "2. Delay in payments beyond the due date will make the allottee liable to pay a delay charge of 3% per 30 (Thirty) days on " +
                       "the amount of payment delayed.If the payment is delayed beyond 60(sixty) days or if the allottee wishes to surrender " +
                       "his allotment, the Company shall cancel the allotment without serving any notice to the Allottee. In such an " +
@@ -207,14 +220,14 @@ namespace RealERPWEB.F_17_Acc
                       "In the event, additional cost is involved in implementing any such modification request, the concerned allottee must bear such cost. " +
                       "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + " s " +
                       "standard materials specification sheet." + "<br><br>" +
-                      "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
+                      "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br><br><br>" +
                       "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
                       "the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per  " + "<strong>" + companyname + "</strong>" + " standard. " +
-                      "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement" + "<br><br><br><br><br><br>" +
+                      "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + "<strong>" + type + "</strong>" + " owner with his/her own cost and arrangement." + "<br><br>" +
                       "10. The possession of each " + "<strong>" + type + "</strong>" + " shall duly be handed over to the allottee on completion and on full payment of installments and other charges and dues." +
                       "Until then the possession will be held by the " + "<strong>" + companyname + "</strong>" + " . If the construction and finishing work of each building is completed on " +
                       "before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +
-                      "and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective " + "<strong>" + type + "</strong>" + "(s)" + "<br><br>" +
+                      "and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective " + "<strong>" + type + "</strong>" + "(s)." + "<br><br>" +
                       "11. Upon registration, the " + "<strong>" + type + "</strong>" + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land on  " +
                       "which the building is constructed. After having possession of the " + "<strong>" + type + "</strong>" + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " prior to undertake " +
                       "structural or layout change within the " + "<strong>" + type + "</strong>" + " complex. Failure to do so will be at the sole risk of allottee." + "<br><br>" +

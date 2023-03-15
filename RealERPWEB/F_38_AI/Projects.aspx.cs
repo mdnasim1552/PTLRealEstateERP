@@ -49,7 +49,8 @@ namespace RealERPWEB.F_38_AI
                     this.MultiView1.ActiveViewIndex = 0;
 
                     this.GetPrjOverView();
-                    this.GetEmployeeName(ischeck);
+                    this.GetEmployeeName();
+                    this.GetFreeEmployeeName();
                     this.GetAnnotationList(ischeck);
                     this.GetProjectInformation(ischeck);
                     this.GetBatchInfo();
@@ -236,7 +237,7 @@ namespace RealERPWEB.F_38_AI
 
         }
 
-        private void GetEmployeeName(bool ischeck)
+        private void GetEmployeeName()
         {
             Session.Remove("tblempname");
             string comcod = this.GetComdCode();
@@ -247,22 +248,34 @@ namespace RealERPWEB.F_38_AI
             Session["tblfreeempname"] = ds4.Tables[0];
             DataView dv2 = dt2.DefaultView;
             DataTable dt1 = new DataTable();
-            if (ischeck)
-            {
-                dv2.RowFilter = "sircode like '9351%'";
+            
+                dv2.RowFilter = "sircode  like '9301%' ";
                 dt1 = dv2.ToTable();
-            }
-            else
-            {
-                dv2.RowFilter = "sircode not like '9351%' ";
-                dt1 = dv2.ToTable();
-            }
+                this.ddlassignmember.DataTextField = "sirdesc";
+                this.ddlassignmember.DataValueField = "sircode";
+                this.ddlassignmember.DataSource = dt1;
+                this.ddlassignmember.DataBind();
+           
 
-            this.ddlassignmember.DataTextField = "sirdesc";
-            this.ddlassignmember.DataValueField = "sircode";
-            this.ddlassignmember.DataSource = dt1;
-            this.ddlassignmember.DataBind();
+        }
+        private void GetFreeEmployeeName()
+        {
+            Session.Remove("tblempname");
+            string comcod = this.GetComdCode();
+            DataSet ds4 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETFREELANCERIMP", "", "", "", "", "", "", "", "", "");
+            if (ds4 == null)
+                return;
+            DataTable dt2 = ds4.Tables[0];
+            Session["tblfreeempname"] = ds4.Tables[0];
+            DataView dv2 = dt2.DefaultView;
+            DataTable dt1 = new DataTable();
 
+            dv2.RowFilter = "sircode  like '9351%' ";
+            dt1 = dv2.ToTable();
+            this.ddlfreelancer.DataTextField = "sirdesc";
+            this.ddlfreelancer.DataValueField = "sircode";
+            this.ddlfreelancer.DataSource = dt1;
+            this.ddlfreelancer.DataBind();
 
         }
         private void GetAnnotationList(bool ischeck)
@@ -571,9 +584,11 @@ namespace RealERPWEB.F_38_AI
                 string editdat = "01-Jan-1900";
                 string editbyid = "";
                 string emptype ="";
+                string fromuser = " ";
                 if (freelancer)
                 {
                     emptype = "Freelancer";
+                    fromuser = this.ddlfreelancer.SelectedValue.Trim();
                 }
                 else if (infreelancer)
                 {
@@ -588,7 +603,7 @@ namespace RealERPWEB.F_38_AI
 
                 bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype,
                     createtask, userid, remarks, estimationtime,
-                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, emptype, "");
+                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, emptype, fromuser);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ToString() + "');", true);
@@ -695,32 +710,40 @@ namespace RealERPWEB.F_38_AI
                 double assginqty = Convert.ToDouble("0" + ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString());
                 string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
                 string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
+                string fromuser = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblfromuser")).Text.ToString();
+                string taskid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblid")).Text.ToString();
+                this.lbltasksid.Text = taskid;
                 if (emptype== "Freelancer")
                 {
                     this.checkfreelancer.Checked = true;
                     this.checkinoutsourcing.Checked = false;
+                    this.checkinoutsourcing.Enabled = false;
                     bool ischeck = this.checkfreelancer.Checked;
-                    this.GetEmployeeName(ischeck);
-                    this.ddlassignmember.SelectedValue = empid;
+                    this.freelancer.Attributes.Add("class", "col-md-3");
+                    this.GetFreeEmployeeName();                    
+                    this.ddlfreelancer.SelectedValue = fromuser;
                 }
                 else if(emptype == "InHouse")
                 {
                     
                     this.checkinoutsourcing.Checked = true;
                     this.checkfreelancer.Checked = false;
-                    bool ischeck = false;
-                    this.GetEmployeeName(ischeck);
-                    this.ddlassignmember.SelectedValue = empid;
+                    this.checkfreelancer.Enabled = false;
+                    this.freelancer.Attributes.Add("class", " d-none col-md-3");
+                    this.GetEmployeeName();
+                   
                 }
                 else
                 {
                     this.checkinoutsourcing.Checked = false;
                     this.checkfreelancer.Checked = false;
-                    bool ischeck = false;
-                    this.GetEmployeeName(ischeck);
-                    this.ddlassignmember.SelectedValue = empid;
+                    
+                    this.freelancer.Attributes.Add("class", " d-none col-md-3");
+                    this.GetEmployeeName();
+                    
                 }
-
+                
+                this.ddlassignmember.SelectedValue = empid;
                 this.txttasktitle.Text = titlename;                
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedItem.Text = anotationid;
@@ -765,9 +788,10 @@ namespace RealERPWEB.F_38_AI
                 string roletype = this.ddlUserRoleType.SelectedItem.Value;
                 string textrate = Convert.ToDouble("0" + this.textrate.Text).ToString();
                 string titlename = this.txttasktitle.Text;
+                string id = this.lbltasksid.Text;
 
 
-                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate, titlename);
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate, titlename,id);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);
@@ -1017,8 +1041,9 @@ namespace RealERPWEB.F_38_AI
             bool ischeck = this.checkfreelancer.Checked;
             if (!ischeck)
             {
+                this.freelancer.Attributes.Add("class", "d-none col-md-3");
                 this.checkinoutsourcing.Enabled = true;
-                this.GetEmployeeName(ischeck);
+                this.GetEmployeeName();
                 this.GetProjectInformation(ischeck);
                 this.GetAnnotationList(ischeck);
                 this.perrate.Visible = false;
@@ -1027,8 +1052,9 @@ namespace RealERPWEB.F_38_AI
             }
             else
             {
+                this.freelancer.Attributes.Add("class", "col-md-3");
                 this.checkinoutsourcing.Enabled = false;
-                this.GetEmployeeName(ischeck);
+                this.GetFreeEmployeeName();
                 this.GetProjectInformation(ischeck);
                 this.GetAnnotationList(ischeck);
                 this.perrate.Visible = true;

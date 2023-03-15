@@ -76,8 +76,8 @@ namespace RealERPWEB.F_09_PImp
             {
                 Session.Remove("tblImplemt");
                 this.lbtnOk1.Text = "OK";
-                this.txtProjectSearch.Enabled = true;
-                this.ImgbtnFindProject.Enabled = true;
+                //this.txtProjectSearch.Enabled = true;
+                //this.ImgbtnFindProject.Enabled = true;
                 this.ddlProject.Visible = true;
                 this.lblProjectDesc.Visible = false;
 
@@ -99,11 +99,11 @@ namespace RealERPWEB.F_09_PImp
             }
             this.lbtnOk1.Text = "New";
             this.lbtnPrevVOUList.Visible = false;
-            this.lblPreList.Visible = false;
-            this.ddlPrevVOUList.Visible = false;
-            this.txtPreVouSearch.Visible = false;
-            this.txtProjectSearch.Enabled = false;
-            this.ImgbtnFindProject.Enabled = false;
+            this.lblPreList.Enabled = false;
+            this.ddlPrevVOUList.Enabled = false;
+            this.txtPreVouSearch.Enabled = false;
+            //this.txtProjectSearch.Enabled = false;
+            //this.ImgbtnFindProject.Enabled = false;
             this.ddlProject.Visible = false;
             this.lblProjectDesc.Text = this.ddlProject.SelectedItem.Text.Trim();
             this.lblProjectDesc.Width = this.ddlProject.Width;
@@ -264,7 +264,8 @@ namespace RealERPWEB.F_09_PImp
         {
 
             string comcod = this.GetCompCode();
-            string srchTxt = "%" + this.txtProjectSearch.Text.Trim() + "%";
+            //string srchTxt = "%" + this.txtProjectSearch.Text.Trim() + "%";
+            string srchTxt = "%%";
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "PRJCODELIST", srchTxt, "", "", "", "", "", "", "", "");
             Session["tblPrjCod"] = ds1.Tables[0];

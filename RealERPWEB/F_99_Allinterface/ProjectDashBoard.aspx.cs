@@ -31,11 +31,11 @@ namespace RealERPWEB.F_99_Allinterface
 
         public string GetCompCode()
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
             //return (hst["comcod"].ToString());
-            // string qcomcod = this.Request.QueryString["comcod"].ToString();
-            //string comcod = qcomcod ?? hst["comcod"].ToString();
-            return (this.Request.QueryString["comcod"].ToString());
+            string qcomcod = this.Request.QueryString["comcod"]??"";
+            string comcod = qcomcod.Length>0?qcomcod: hst["comcod"].ToString();
+            return comcod;
 
         }
         public string GetModulevalue()

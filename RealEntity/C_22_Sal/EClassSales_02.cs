@@ -937,6 +937,7 @@ namespace RealEntity.C_22_Sal
             public double intamtpday { get; set; }
             public double delodis { get; set; }
             public double pamount { get; set; }
+            public double dueamt { get; set; }
             public double balamt { get; set; }
             public double advday { get; set; }
             public double delday { get; set; }

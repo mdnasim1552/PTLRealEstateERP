@@ -43,6 +43,7 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+        .grvContentarea {}
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -154,16 +155,14 @@
                     <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewInterest" runat="server">
-                                <div class="row">
-                                    <div class="col-md-6">
+                                <div class="row">                                    
                                         <asp:Label ID="lblDelayCharge" runat="server" CssClass="lblTxt lblName" Text="Delay Charge:" Visible="False"></asp:Label>
-                                    </div>
                                 </div>
 
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvInterest" runat="server" AllowPaging="false"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
-                                        CssClass="table table-striped table-bordered grvContentarea">
+                                        CssClass=" table-striped table-bordered grvContentarea">
                                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="bottom"
                                             Mode="NumericFirstLast" />
 
@@ -171,7 +170,7 @@
                                             <asp:TemplateField HeaderText="SL">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
+                                                        Style="text-align: center"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -263,7 +262,7 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cumdue")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="90px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Right" />
+                                                <HeaderStyle HorizontalAlign="Right" VerticalAlign="Top" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
@@ -370,7 +369,7 @@
 
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mt-2 mb-0">
                                     <div class="row">
                                         <asp:Label ID="lblchqnotyetCleared" runat="server" CssClass="lblTxt lblName" Text="Cheque not yet Cleared:" Visible="False"></asp:Label>
                                     </div>
@@ -379,15 +378,15 @@
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvChqnocl" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
-                                        CssClass="table table-striped table-bordered grvContentarea">
+                                        CssClass="table-striped table-bordered grvContentarea">
                                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                             Mode="NumericFirstLast" />
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
+                                            <asp:TemplateField HeaderText="Sl.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
+                                                        Style="text-align: center"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
@@ -398,7 +397,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>' Width="80px">                                 
                                                     </asp:Label>
                                                 </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" Font-Size="12px" ForeColor="#000" />
+                                                <FooterStyle Font-Bold="True" Font-Size="13px" />
                                                 <HeaderStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Cheque No">
@@ -458,23 +457,14 @@
                                 </div>
 
 
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblchqdishonour" runat="server" CssClass="lblTxt lblName" Text="Cheque Dishonour:" Visible="False"></asp:Label>
-
-                                    </div>
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                    </div>
-                                    <div class="clearfix"></div>
+                                <div class="row mt-2 mb-0">
+                                    <asp:Label ID="lblchqdishonour" runat="server" CssClass="lblTxt lblName" Text="Cheque Dishonour:" Visible="False"></asp:Label>
                                 </div>
 
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvCDHonour" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
-                                        CssClass="table table-striped  table-bordered grvContentarea">
+                                        CssClass="table-striped  table-bordered grvContentarea">
                                         <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                             Mode="NumericFirstLast" />
 
@@ -482,8 +472,8 @@
                                             <asp:TemplateField HeaderText="Sl.No.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                        Style="text-align: center"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -493,7 +483,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvMrrno" runat="server" ForeColor="Black" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
-                                                        Width="49px"></asp:Label>
+                                                        Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -1003,7 +993,7 @@
 
                             <asp:View ID="ViewEarbenefittADelay" runat="server">
                                 <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
-                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="500px"
+                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="577px"
                                     CssClass="table table-striped table-bordered grvContentarea">
                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                         Mode="NumericFirstLast" />
@@ -1050,7 +1040,7 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Due Installment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFinsamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="70px"></asp:Label>
@@ -1076,7 +1066,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Payment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFpayamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                      Style="text-align: right" Width="70px"></asp:Label>
@@ -1084,6 +1074,19 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpayamteben" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pamount")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                         <asp:TemplateField HeaderText="Due Amount">
+                                           
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdueamteben" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dueamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />

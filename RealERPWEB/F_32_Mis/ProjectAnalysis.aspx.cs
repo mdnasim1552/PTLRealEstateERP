@@ -38,7 +38,27 @@ namespace RealERPWEB.F_32_Mis
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectGroup();
+                this.CompanyGridColumVisible();
             }
+        }
+
+        private void CompanyGridColumVisible()
+        {
+
+            string comcod = this.GetComecod();
+            switch (comcod)
+            {
+                case "3339"://Tropical
+                    this.gvprjanalysis.Columns[14].Visible = true;
+                    break;
+                default:
+                    this.gvprjanalysis.Columns[14].Visible = false;
+                    break;
+
+            
+            
+            }
+        
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -81,14 +101,39 @@ namespace RealERPWEB.F_32_Mis
             this.ddlprjgroup.DataBind();
 
         }
+
+
+        private string GetComCollReconorMr()
+        {
+            string reconormr = "";
+            string comcod = this.GetComecod();
+            switch (comcod)
+            {
+                case "3339":// Tropical                  
+                    break;
+
+                default:
+                    reconormr = "Reconcile";
+                    break;
+            
+            
+            
+            
+            }
+            return reconormr;
+
+
+
+        }
         private void ProjectDetails()
         {
 
             string comcod = this.GetComecod();
             string date = this.txtdate.Text;
             string prjgrp = this.ddlprjgroup.SelectedValue == "00000" ? "%%" : "%" + this.ddlprjgroup.SelectedValue + "%";
+            string reconormr = this.GetComCollReconorMr();
 
-            DataSet ds = _access.GetTransInfo(comcod, "[SP_ENTRY_SALSMGT02]", "PROJECTANALYSIS", date, prjgrp);
+            DataSet ds = _access.GetTransInfo(comcod, "[SP_ENTRY_SALSMGT02]", "PROJECTANALYSIS", date, prjgrp, reconormr);
 
             if (ds == null)
             {
@@ -157,7 +202,11 @@ namespace RealERPWEB.F_32_Mis
              Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdprofit)", "")) ?
              0.00 : dt.Compute("Sum(bgdprofit)", ""))).ToString("#,##0;(#,##0); ");
 
-           
+          ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFprojectedprofit")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(pronetprofit)", "")) ? 0.00 : dt.Compute("Sum(pronetprofit)", ""))).ToString("#,##0;(#,##0); ");
+          ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFcashflow")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cashflow)", "")) ? 0.00 : dt.Compute("Sum(cashflow)", ""))).ToString("#,##0;(#,##0); ");
+       
+
+
 
         }
         private void Data_Bind()
@@ -261,7 +310,10 @@ namespace RealERPWEB.F_32_Mis
                 // Label lblbgdtotal  = (Label)e.Row.FindControl ("bgdtotal");
                 // Label lblcost     = (Label)e.Row.FindControl ("cost");
                 Label lblbgdprofit = (Label)e.Row.FindControl("bgdprofit");
-                // Label lblbgdamt = (Label)e.Row.FindControl ("bgdamt");
+                Label lblgvprojectedprofit = (Label)e.Row.FindControl("lblgvprojectedprofit");
+                Label lblgvproprofitpercnt = (Label)e.Row.FindControl("lblgvproprofitpercnt");
+                Label lblgvcashflow = (Label)e.Row.FindControl("lblgvcashflow");
+
 
                 HyperLink hlnkbgdamt = (HyperLink)e.Row.FindControl("hlnkbgdamt");
                 HyperLink hlnktsal = (HyperLink)e.Row.FindControl("hlnktsal");
@@ -308,6 +360,9 @@ namespace RealERPWEB.F_32_Mis
                     hlnkbgdtotal.Attributes["style"] = "font-weight:bold; color:maroon;";
                     hlnkcost.Attributes["style"] = "font-weight:bold; color:maroon;";
                     lblbgdprofit.Attributes["style"] = "font-weight:bold; color:maroon;";
+                    lblgvprojectedprofit.Attributes["style"] = "font-weight:bold; color:maroon;";
+                    lblgvproprofitpercnt.Attributes["style"] = "font-weight:bold; color:maroon;";
+                    lblgvcashflow.Attributes["style"] = "font-weight:bold; color:maroon;";
                     hlnkbgdamt.Attributes["style"] = "font-weight:bold; color:maroon;";
                     acresdesc.Style.Add("text-align", "left");
                 }

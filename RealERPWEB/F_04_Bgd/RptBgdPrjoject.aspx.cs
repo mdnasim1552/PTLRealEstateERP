@@ -164,6 +164,14 @@ namespace RealERPWEB.F_04_Bgd
                     break;
 
 
+                case "MasterBgdCostDet":
+                    this.GetGroup();
+                    this.chkSum.Visible = true;
+                    this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.MultiView1.ActiveViewIndex = 16;
+                    break;
+
+
             }
 
 
@@ -336,6 +344,10 @@ namespace RealERPWEB.F_04_Bgd
                 case "MatRequired":
                     this.showMatRequired();
                     break;
+
+                case "MasterBgdCostDet":
+                    this.showMstrBgdCostDet();
+                    break;
             }
         }
         private void showMstrBgd()
@@ -496,6 +508,62 @@ namespace RealERPWEB.F_04_Bgd
             }
             string Spname = (this.ddlGrp.SelectedItem.Text == "Work") ? "SP_REPORT_BGDANALYSIS" : "SP_REPORT_ACCOUNTS_PROJECT";
             string CallType = (this.ddlGrp.SelectedItem.Text == "Work") ? "RPTMASBGDGRPWISEDET" : "RPTPRJCOSTRESBASIS";
+
+            DataSet ds2 = purData.GetTransInfo(comcod, Spname, CallType, "", "", pactcode, "000", summary, grp, "", "", "");
+            if (ds2 == null)
+            {
+                this.gvbgdgrwisedet.DataSource = null;
+                this.gvbgdgrwisedet.DataBind();
+                return;
+            }
+
+            string Comcode = ASTUtility.Left((this.GetComeCode()), 1);
+
+            string txtconarea = (Comcode == "2") ? "Development Area: " : "Construction Area: ";
+            if (ds2.Tables[2].Rows.Count > 0)
+            {
+                this.lblConAreagrwisedet.Text = txtconarea + Convert.ToDouble(ds2.Tables[2].Rows[0]["conarea"]).ToString("#,##0; (#,##0); ") + " " + ds2.Tables[2].Rows[0]["conunit"].ToString();
+                this.lblSalAreagrwisedet.Text = "Saleable Area: " + Convert.ToDouble(ds2.Tables[2].Rows[0]["salarea"]).ToString("#,##0; (#,##0); ") + " " + ds2.Tables[2].Rows[0]["salunit"].ToString();
+            }
+            else
+            {
+                this.lblConAreagrwisedet.Text = txtconarea;
+                this.lblSalAreagrwisedet.Text = "Saleable Area:";
+
+            }
+
+            Session["tblbgd"] = this.HiddenSameData(ds2.Tables[1]);
+            Session["tblbbgd"] = this.HiddenSameData(ds2.Tables[0]);
+            this.Data_Bind();
+        }
+
+        private void showMstrBgdCostDet()
+        {
+            Session.Remove("tblbgd");
+            string comcod = this.GetComeCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string summary = this.chkSum.Checked ? "Summary" : "";
+
+            string grp = "";
+            //string[] gp = this.DropCheck1.Text.Trim().Split(',');
+            string gp = this.DropCheck1.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "00000000" || gp.Trim() == "")
+                    grp = "";
+                else
+                    foreach (ListItem s1 in DropCheck1.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            grp = grp + s1.Value.Substring(0, 8);
+                        }
+
+                    }
+
+            }
+            string Spname = (this.ddlGrp.SelectedItem.Text == "Work") ? "SP_REPORT_BGDANALYSIS" : "SP_REPORT_ACCOUNTS_PROJECT";
+            string CallType = (this.ddlGrp.SelectedItem.Text == "Work") ? "RPTMASBGDCOSTWISEDET" : "RPTPRJCOSTRESBASIS2";
 
             DataSet ds2 = purData.GetTransInfo(comcod, Spname, CallType, "", "", pactcode, "000", summary, grp, "", "", "");
             if (ds2 == null)
@@ -793,6 +861,18 @@ namespace RealERPWEB.F_04_Bgd
                     }
                     break;
 
+                case "MasterBgdCostDet":
+                     acgcode = dt1.Rows[0]["acgcode"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["acgcode"].ToString() == acgcode)
+                        {
+                            dt1.Rows[j]["acgdesc"] = "";
+                        }
+                        acgcode = dt1.Rows[j]["acgcode"].ToString();
+                    }
+                    break;
+
                 case "PrjInfo":
                     actcode = dt1.Rows[0]["grp"].ToString();
 
@@ -1012,6 +1092,12 @@ namespace RealERPWEB.F_04_Bgd
                     //  this.FooterCalculation((DataTable)Session["tblbgd"]);
                     break;
 
+                case "MasterBgdCostDet":
+                    this.gvBgdCostDet.DataSource = (DataTable)Session["tblbgd"];
+                    this.gvBgdCostDet.DataBind();
+                    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                    break;
+
 
                 case "AddBudget":
                     this.gvadwrk.DataSource = (DataTable)Session["tblbgd"];
@@ -1162,6 +1248,9 @@ namespace RealERPWEB.F_04_Bgd
                     this.PrintBudgetBalance();
                     break;
                 case "MasterBgdGrWiseDet":
+                    this.PrinMasterBgdgrpDet();
+                    break;
+                case "MasterBgdCostDet":
                     this.PrinMasterBgdgrpDet();
                     break;
                 case "AddBudget":
@@ -1747,6 +1836,18 @@ namespace RealERPWEB.F_04_Bgd
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            string rpttitle = "";
+            if (Type== "MasterBgdCostDet")
+            {
+                rpttitle = "Engineering Budgeted Cost - Details";
+            }
+            else
+            {
+                rpttitle = "Budgeted Cost - Details";
+
+            }
+
             DataTable dt = (DataTable)Session["tblbgd"];
 
             LocalReport Rpt1 = new LocalReport();
@@ -1756,7 +1857,7 @@ namespace RealERPWEB.F_04_Bgd
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("ProjectNam", this.ddlProjectName.SelectedItem.Text.ToString()));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Budgeted Cost - Details"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", rpttitle));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("Construction", this.lblConAreagrwisedet.Text.Trim().ToString()));
@@ -2457,6 +2558,51 @@ namespace RealERPWEB.F_04_Bgd
             Session["tblbgd"] = this.HiddenSameData(dv.ToTable());
             this.Data_Bind();
         }
+
+
+        protected void lnkgvBgdCostDet_Click(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string acgcode = ((DataTable)Session["tblbgd"]).Rows[index]["acgcode"].ToString();
+            string colst = ((DataTable)Session["tblbgd"]).Rows[index]["colst"].ToString();
+            DataTable dt = ((DataTable)Session["tblbgd"]);
+            DataView dv = new DataView();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("rescode= '000000000000' or rescode= 'AAAAAAAAAAAA'");
+            dt = dv.ToTable();
+
+            DataRow[] dr1 = dt.Select("acgcode='" + acgcode + "'");
+            dr1[0]["colst"] = (colst == "0") ? "1" : "0";
+
+            // For Status 0
+            foreach (DataRow dr2 in dt.Rows)
+            {
+                if (dr2["acgcode"] != acgcode)
+                {
+                    dr2["colst"] = "0";
+
+                }
+            }
+
+            colst = (dt.Select("acgcode='" + acgcode + "'"))[0]["colst"].ToString();
+            if (colst == "1")
+            {
+                DataTable dtb = ((DataTable)Session["tblbbgd"]).Copy();
+                dv = dtb.DefaultView;
+                dv.RowFilter = ("acgcode='" + acgcode + "' and  rescode not like '%00000'");
+                dtb = dv.ToTable();
+                dt.Merge(dtb);
+
+            }
+
+
+            dv = dt.DefaultView;
+            dv.Sort = ("acgcode, rescode");
+            Session["tblbgd"] = dv.ToTable();
+            this.Data_Bind();
+        }
+
+
         protected void gvmatreq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 

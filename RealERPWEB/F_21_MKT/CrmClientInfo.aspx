@@ -2894,6 +2894,15 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Reassign Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvrassigndate" runat="server" Font-Size="11px" Width="70px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rassigndat"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+
                                                 <%--7--%>
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
@@ -3061,7 +3070,9 @@
                                                 <asp:TemplateField HeaderText="Source">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvLSrc" runat="server" Width="100px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname"))=="" ?"": "(" + Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname")) + ")")
+                                                                
+                                                            %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--21--%>

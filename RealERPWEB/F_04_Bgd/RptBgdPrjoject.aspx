@@ -2143,6 +2143,103 @@
 
 
                         </asp:View>
+
+                                    <asp:View ID="MasterBgdCostDet" runat="server">
+       <%--                     <div class="form-group">
+                                <div class=" col-md-3 pading5px  asitCol3">
+                                    <asp:Label ID="Label6" CssClass="smLbl_to" runat="server"></asp:Label>
+                                    <asp:Label ID="Label7" CssClass=" smLbl_to" runat="server"></asp:Label>
+
+
+
+                                </div>
+
+                                <div class=" col-md-3 pading5px  asitCol3 d-none">
+                                    
+                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindgroup_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label8" runat="server" CssClass="form-label">Group</asp:Label>
+                                    <asp:ListBox ID="ListBox1" runat="server" CssClass="form-control select2"  SelectionMode="Multiple"></asp:ListBox>
+
+
+                                </div>
+                        
+                              
+                            </div>--%>
+                            <asp:GridView ID="gvBgdCostDet" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            
+                                ShowFooter="True" Width="630px">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText=" Description">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkgvActDescgrwisedet" runat="server" ForeColor="Black" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "resdesc").ToString().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")).Trim().Length>0 ? "<br>" : "") + 
+                                                                          
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")): "")   %>'
+                                                Width="390px" OnClick="lnkgvBgdCostDet_Click"></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Unit">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvUnitgrwisedet" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resunit")) %>'
+                                                Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Budgeted">
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="HLgvBgdamtgrwisedet" runat="server" Font-Bold="false" ForeColor="Black" Target="_blank" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdam")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="75px"></asp:HyperLink>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Construction Cost Per SFT">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvconcostgrwisedet" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "devcost")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="75px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Saleable Cost Per SFT">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvsalcostgrwisedet" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salcost")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="75px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+
+                            </asp:GridView>
+
+
+                        </asp:View>
+
                     </asp:MultiView>
                   
                     

@@ -544,6 +544,7 @@ namespace RealERPWEB.F_09_PImp
             string mBillNo = this.ddlPrevBillList.SelectedValue.ToString();
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCBILLINFO", mBillNo, "",
                           "", "", "", "", "", "", "");
+
             Session["tblbill"] = HiddenSameData(ds1.Tables[0]);
             DataTable dt = (DataTable)Session["tblbill"];
             var lst = dt.DataTableToList<RealEntity.C_09_PIMP.EClassOrder.BillFinalization>();
@@ -1646,6 +1647,7 @@ namespace RealERPWEB.F_09_PImp
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
 
+
             }
 
 
@@ -2071,6 +2073,38 @@ namespace RealERPWEB.F_09_PImp
             Session["tblbill"] = dt;
            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
             
+        }
+
+        protected void lbtnDelIssu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                DataTable dt = (DataTable)Session["tblbill"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string issuno = ((Label)this.gvSubBill.Rows[index].FindControl("lgcIsuno1")).Text.ToString();
+                string floor = ((Label)this.gvSubBill.Rows[index].FindControl("lgcFlrcod")).Text.ToString();
+                string billno = Request.QueryString["genno"].ToString();
+                bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETECBILLCONFIRM", issuno, floor, billno, "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + PurData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+                dt.Rows.RemoveAt(index);
+                dt.AcceptChanges();
+                Session["tblbill"] = dt;
+                this.Data_DataBind();
+
+            }
+            catch(Exception exp)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + exp.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
         }
 
         protected void btnDelall_OnClick(object sender, EventArgs e)

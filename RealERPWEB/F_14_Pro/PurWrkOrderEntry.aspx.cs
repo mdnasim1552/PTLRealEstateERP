@@ -1507,10 +1507,10 @@ namespace RealERPWEB.F_14_Pro
                                 ds1.Tables[0].Rows[0]["fappdat"] = Date;
                                 ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
                                 ds1.Tables[0].Rows[0]["fappseson"] = session;
-                                ds1.Tables[0].Rows[0]["secappid"] = sappusrid;
-                                ds1.Tables[0].Rows[0]["secappdat"] = sappDate;
-                                ds1.Tables[0].Rows[0]["secapptrmid"] = sapptrmnid;
-                                ds1.Tables[0].Rows[0]["secappseson"] = sappsession;
+                                ds1.Tables[0].Rows[0]["secappid"] = "";
+                                ds1.Tables[0].Rows[0]["secappdat"] = "";
+                                ds1.Tables[0].Rows[0]["secapptrmid"] = "";
+                                ds1.Tables[0].Rows[0]["secappseson"] = "";
                                 approval = ds1.GetXml();
                             }
                             break;
@@ -1711,6 +1711,8 @@ namespace RealERPWEB.F_14_Pro
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
+            string vatcode = this.ddlvat.SelectedValue.Trim();
+            string taxcode = this.ddltax.SelectedValue.Trim();
 
             //end log
             bool result = false;
@@ -1846,7 +1848,7 @@ namespace RealERPWEB.F_14_Pro
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
                              mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward,
-                             terms, "", "");
+                             terms, vatcode, taxcode,"");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -2131,6 +2133,7 @@ namespace RealERPWEB.F_14_Pro
         {
 
             this.Get_Pur_Order_Info();
+            this.Get_Vat_Tax();
 
 
 
@@ -5051,12 +5054,49 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+
+        private void Get_Vat_Tax()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETVATANDTAX", "", "", "", "", "", "", "", "", "");
+
+            if (ds == null)
+                return;
+            ViewState["vattax"] = ds.Tables[0];
+
+            DataTable dt = new DataTable();
+            DataView dv = new DataView();
+            dv.Table = ds.Tables[0];
+            dv.RowFilter = "sircode not like '970200101%'";
+            dt = dv.ToTable();
+            this.ddlvat.DataTextField = "sirdesc";
+            this.ddlvat.DataValueField = "sircode";
+            this.ddlvat.DataSource = dt;
+            this.ddlvat.DataBind();
+
+
+            DataTable dt1 = new DataTable();
+            DataView dv1 = new DataView();
+            dv1.Table = ds.Tables[0];
+            dv1.RowFilter = "sircode not like '970200102%' ";
+            dt1 = dv1.ToTable();
+            this.ddltax.DataTextField = "sirdesc";
+            this.ddltax.DataValueField = "sircode";
+            this.ddltax.DataSource = dt1;
+            this.ddltax.DataBind();
+        }
+
+
+
         private void SetError(Exception exp)
         {
             this._errObj["Src"] = exp.Source;
             this._errObj["Msg"] = exp.Message;
             this._errObj["Location"] = exp.StackTrace;
         }
+
+
+
 
         
     }

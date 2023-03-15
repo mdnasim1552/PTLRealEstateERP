@@ -28,7 +28,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-            this.lbtnUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
+         
             if (!IsPostBack)
             {
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
@@ -162,20 +162,21 @@ namespace RealERPWEB.F_23_CR
                 case "3306":
                 case "3309":
                 case "3310":
-                case "3311":
-
-                // case "3101":
+                case "3311":              
                 case "3333":
                 case "3339":
-                    this.ddlRecType.Visible = true;
-                    this.lblRecType.Visible = true;
+                //case "3351"://Wecon
+                //case "3352"://360
+                //case "1205"://p2p Engineering
+                    this.RecType.Visible = true;
+                    //this.lblRecType.Visible = true;
                     break;
 
 
 
                 default:
-                    this.ddlRecType.Visible = false;
-                    this.lblRecType.Visible = false;
+                    this.RecType.Visible = false;
+                    //this.lblRecType.Visible = false;
                     break;
 
             }
@@ -362,7 +363,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtReceiveDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtpaydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.LoadGrid();
-
+                //
 
             }
             else
@@ -378,7 +379,7 @@ namespace RealERPWEB.F_23_CR
                 // this.ClearScreen();
                 MultiView1.ActiveViewIndex = -1;
                 this.gvSpayment.Visible = true;
-
+                this.lbtnBack.Visible = false;
                 this.Clearmrscreen();
 
 
@@ -435,6 +436,8 @@ namespace RealERPWEB.F_23_CR
 
             try
             {
+
+                this.lbtnBack.Visible = true;
                 this.MultiView1.ActiveViewIndex = 0;
 
                 string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
@@ -678,6 +681,7 @@ namespace RealERPWEB.F_23_CR
             this.gvSpayment.Visible = true;
             this.LoadGrid();
             this.Clearmrscreen();
+            this.lbtnBack.Visible = false;
         }
         private void Clearmrscreen()
         {
@@ -1301,17 +1305,33 @@ namespace RealERPWEB.F_23_CR
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
                 // string usercode = ViewState["usricode"].ToString();
-                switch (comcod)
+
+
+
+
+                if (hst["compsms"].ToString() == "True")
                 {
-                    //case "3101": // Pintech                   
-                    case "3356": //Intech                    
-                    case "3366": //Intech                    
-                    case "3101": //Intech                    
-                        this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
-                        break;
-                    default:
-                        break;
+
+
+
+                    switch (comcod)
+                    {
+                        //case "3101": // Pintech                   
+                        case "3356": //Intech                    
+                        case "3366": //Intech                    
+                        case "3101": //Intech                    
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                        default:
+                            this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
+                            break;
+                    }
                 }
+
+
+
+
+
 
                 if (comcod == "3370")
                 {
@@ -1857,7 +1877,7 @@ namespace RealERPWEB.F_23_CR
 
 
 
-                this.lbtnUpdate.Visible = true;
+               
             }
 
         }

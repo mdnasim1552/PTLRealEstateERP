@@ -194,6 +194,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlBankName.DataValueField = "actcode";
             this.ddlBankName.DataSource = ds1.Tables[0];
             this.ddlBankName.DataBind();
+            Session["bnkinfo"] = ds1.Tables[0];
         }
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
@@ -483,9 +484,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementFinlay();
                     break;
 
-                case "3101":
+
                 case "3370":
                     this.PrintBankStatementCPDL();
+                    break;
+
+                case "3101":
+                case "3374":
+                    this.PrintBankStatementAngan();
                     break;
 
                 default:
@@ -839,9 +845,123 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void checkedValue()
+        {
+            Session.Remove("tblcashpay");
+            DataTable dt = (DataTable)Session["tblover"];
+            int rowindex;
+
+            for (int i = 0; i < this.gvBankPayment.Rows.Count; i++)
+            {
+                string ischeck = ((CheckBox)this.gvBankPayment.Rows[i].FindControl("chksaltrns")).Checked ? "True" : "False";
+                rowindex = (this.gvBankPayment.PageSize) * (this.gvBankPayment.PageIndex) + i;
+                dt.Rows[rowindex]["saltrn"] = ischeck;
+            }
+
+            Session["tblbankpay"] = dt;
+        }
+
+        private void PrintBankStatementAngan()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            this.checkedValue();
+            DataTable dt = (DataTable)Session["tblbankpay"];
+            DataView dv = dt.DefaultView;
+
+            dv.RowFilter = ("saltrn='True'");
+            dt = dv.ToTable();
+            if (dt == null || dt.Rows.Count == 0)
+                return;
+
+            string bankcode = this.ddlBankName.SelectedValue.ToString().Trim();
+            DataTable dt2 = (DataTable)Session["bnkinfo"];
+
+            DataView dv2 = dt2.DefaultView;
+            dv2.RowFilter = ("actcode='"+bankcode+"'"); 
+            dt2 = dv2.ToTable();
+
+            string combankname = dt2.Rows[0]["acttdesc"].ToString();
+            string combankbranch = dt2.Rows[0]["actdescbn"].ToString();
+            string combankacc = dt2.Rows[0]["actdesc"].ToString();
+            string combankmail = dt2.Rows[0]["wodesc"].ToString();
 
 
 
+
+
+
+
+
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+     
+
+
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+            string month2 = this.txtDate.Text.Substring(4);
+            string selMon = this.txtDate.Text.Substring(2, 2);
+
+            var lastDayOfMonth = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month2));
+
+            //string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
+            string totalAmt =  Convert.ToDouble(dt.Compute("Sum(amt)", string.Empty)).ToString("#,##0;(#,##0); ");
+            //string totalAmt2 = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "0")) ? 0.00 : dt.Compute("sum(amt)", "0"))).ToString("#,##0;(#,##0); ");
+
+            string ttlwrd = ASTUtility.Trans(Convert.ToDouble(totalAmt), 2);
+            string bankAddress = dt.Rows[0]["bankaddr"].ToString();
+            string curdate = DateTime.Now.ToString("MMMM dd,yyyy");
+            string desc = "Salary For The Month Of " + month + "/" + year;
+
+
+            string valueDate = lastDayOfMonth.ToString() + "/" + month2 + "/" + year;
+
+
+
+            ReportDocument rptstk = new ReportDocument();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementAngan", lst, null, null);
+
+
+
+            Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
+            Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+
+
+            Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
+            Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
+            Rpt1.SetParameters(new ReportParameter("curDate", curdate));
+            Rpt1.SetParameters(new ReportParameter("desc", desc));
+            Rpt1.SetParameters(new ReportParameter("refMon", month2));
+
+
+            Rpt1.SetParameters(new ReportParameter("valueDate", valueDate));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("bankAddress", bankAddress));
+
+            Rpt1.SetParameters(new ReportParameter("combankname", combankname));
+            Rpt1.SetParameters(new ReportParameter("combankbranch", combankbranch));
+            Rpt1.SetParameters(new ReportParameter("combankacc", combankacc));
+            Rpt1.SetParameters(new ReportParameter("combankmail", combankmail));
+
+
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void PrintForwardingLetter()
         {
 

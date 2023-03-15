@@ -512,6 +512,11 @@
                 alert(e);
             }
         }
+
+        function mycsdApprovedModal() {
+            $('#mycsdApproved').modal('toggle');
+        }
+
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -553,7 +558,7 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnok" runat="server" Text="Reload" OnClick="lbtnok_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                <asp:LinkButton ID="lbtnok" runat="server" Text="Ok" OnClick="lbtnok_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
                             </div>
                         </div>
@@ -578,13 +583,13 @@
                                         <div class="form-group">
                                             <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Value="0" Selected="True"></asp:ListItem>
-                                                    <asp:ListItem Value="1"></asp:ListItem>
-                                                    <asp:ListItem Value="2"></asp:ListItem>
-                                                    <asp:ListItem Value="3"></asp:ListItem>
-                                                    <asp:ListItem Value="4"></asp:ListItem>
-                                                    <asp:ListItem Value="5"></asp:ListItem>
-                                                    <asp:ListItem Value="6"></asp:ListItem>
+                                                   <asp:ListItem Value="0" Selected="True"></asp:ListItem> <%-- status--%>
+                                                    <asp:ListItem Value="1"></asp:ListItem> <%-- Checked--%>
+                                                    <asp:ListItem Value="2"></asp:ListItem> <%-- First Approval--%>
+                                                    <asp:ListItem Value="3"></asp:ListItem><%-- CSD Approval--%>
+                                                    <asp:ListItem Value="4"></asp:ListItem><%-- 2nd Approval--%>
+                                                    <asp:ListItem Value="5"></asp:ListItem><%-- Audit--%>
+                                                    <asp:ListItem Value="6"></asp:ListItem><%-- Final Approval--%>
                                                 </asp:RadioButtonList>
                                             </div>
                                         </div>
@@ -896,7 +901,9 @@
                                         <asp:HyperLink ID="lnkchk1st" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprint1stpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDel1stApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel1stApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                            
                                         </asp:LinkButton>
+                                        <asp:CheckBox runat="server" ID="checkcsd"  AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -911,7 +918,106 @@
                         </asp:GridView>
                     </asp:Panel>
                     <asp:Panel runat="server" ID="Pnlcsdapproval" Visible="false">
-                        <h2>Hello</h2>
+                        <asp:GridView ID="gvcsdApproval" runat="server" AutoGenerateColumns="False"
+                            ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvcsdApproval_RowDataBound">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgv1stApSl" runat="server" Font-Bold="True"
+                                            Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Type">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApgdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
+                                            Width="150px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="ADW No">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApadno" runat="server" Visible="false"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "adno")) %>'
+                                            Width="80px"></asp:Label>
+                                        <asp:Label ID="lblgvcsdApadno1" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "adno1")) %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Date">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApaddate" runat="server"
+                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "addate")).ToString("dd-MMM-yyyy") %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Project Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApactdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Unit Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdAppudesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
+                                            Width="150px"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="Customer Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcsdApcusname" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cusname")) %>'
+                                            Width="200px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Amount">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="lnkgvcsdApamt" runat="server" BorderColor="#99CCFF" BorderStyle="none"
+                                            Font-Size="11px" Font-Underline="false" Style="background-color: Transparent; color: Black;"
+                                            Target="_blank"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:HyperLink>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="right" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="lnkchkcsd" Target="_blank" runat="server" ToolTip="CSD Approved" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                        <asp:HyperLink ID="hlnkprintcsdpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
+                                        <asp:LinkButton ID="lbtnDelcsdApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelcsdApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle Width="110px" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnl2ndApp" Visible="false">
@@ -999,7 +1105,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                        <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="2nd Approval" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprint2ndApp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
                                         <asp:LinkButton ID="lbtnDel2ndApp" runat="server" ToolTip="Cancel 1st Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel2ndApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
@@ -1246,6 +1352,46 @@
                         </asp:GridView>
 
                     </asp:Panel>
+
+
+                    <!--Csd Aproved Delete Modal-->
+                 <div class="modal" id="mycsdApproved" data-backdrop="false" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content" style="background: #f3f7f9">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title text-primary">Delete Reason </h4>
+
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <asp:Label ID="lbladwid" runat="server" Visible="false"></asp:Label>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Reason</label>
+                                        <asp:TextBox ID="tbxcsdreason" runat="server" TextMode="MultiLine"  class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" runat="server" id="btncsddelete" data-dismiss="modal" aria-hidden="true"  class="btn btn-primary btn-sm">Delete</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
 
 
                 </div>

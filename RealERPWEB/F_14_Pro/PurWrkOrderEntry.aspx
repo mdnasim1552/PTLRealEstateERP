@@ -108,7 +108,7 @@
 
 
 
-                                       <%-- <div class="msgHandSt">
+                                        <%-- <div class="msgHandSt">
 
 
                                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="50">
@@ -120,9 +120,6 @@
                                             </asp:UpdateProgress>
 
                                         </div>--%>
-
-
-
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4 pull-right">
                                         <asp:LinkButton ID="lbtnPrevOrderList" runat="server" CssClass="lblTxt lblName" OnClick="lbtnPrevOrderList_Click"
@@ -747,7 +744,7 @@
                                         <div class="col-md-2 pading5px ">
 
                                             <asp:LinkButton ID="lnkSendEmail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendEmail_Click"><span class="glyphicon glyphicon-eye-open"></span> View For Email </asp:LinkButton>
-                                             
+
                                         </div>
                                         <div class="col-md-2 pading5px hidden">
                                             <asp:LinkButton ID="lnkSendMail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendMail_Click">Send Email</asp:LinkButton>
@@ -974,6 +971,26 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row ">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2">
+                                                <div class="form group">
+                                                    <asp:Label ID="lbltext01" runat="server" Font-Bold="true" Font-Size="16px" >Vat</asp:Label>
+                                                    <asp:DropDownList ID="ddlvat" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
+
+                                                </div>
+                                            </div>
+                                           
+                                                <div class="col-md-2">
+                                                    <div class="form group">
+                                                        <asp:Label ID="Label9" runat="server" Font-Bold="true" Font-Size="16px" >Tax</asp:Label>
+                                                        <asp:DropDownList ID="ddltax" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
+
+                                                    </div>
+                                                
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group" id="divterms" runat="server" visible="true">
                                             <div class="form-group" style="margin-top: 10px;">
@@ -1439,10 +1456,10 @@
                                 <!--Header-->
                                 <div class="modal-header">
                                     <p class="heading">
-                                        <button aria-label="Close" class="close btn btn-danger" data-dismiss="modal" type="button" style="margin:0; background:#d95350;opacity:2; padding:5px 12px; color:#fff;">
+                                        <button aria-label="Close" class="close btn btn-danger" data-dismiss="modal" type="button" style="margin: 0; background: #d95350; opacity: 2; padding: 5px 12px; color: #fff;">
                                             <span aria-hidden="true" class="white-text">×</span>
                                         </button>
-                                        <h4 id="lblheader" runat="server"><span class="glyphicon glyphicon-info-sign "></span> PURCHASE ORDER SEND EMAIL</h4>
+                                        <h4 id="lblheader" runat="server"><span class="glyphicon glyphicon-info-sign "></span>PURCHASE ORDER SEND EMAIL</h4>
                                 </div>
 
                                 <!--Body-->

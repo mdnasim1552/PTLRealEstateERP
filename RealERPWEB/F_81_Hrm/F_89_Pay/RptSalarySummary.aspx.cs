@@ -173,6 +173,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = ds3.Tables[0];
             Session["tblSalSum"] = dt;
             this.Data_Bind();
+            if (comcod=="3370")
+            {
+                this.gvSalSum.Columns[4].Visible = true;
+                this.gvSalSum.Columns[5].Visible = true;
+                                                   
+                this.gvSalSum.Columns[9].Visible = true;
+                this.gvSalSum.Columns[10].Visible= true;
+
+            }
 
         }
 
@@ -267,10 +276,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTPreSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(presal)", "")) ? 0.00 : dt.Compute("sum(presal)", ""))).ToString("#,##0;(#,##0); ");
 
                     ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTpreBankSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(prebankpay)", "")) ? 0.00 : dt.Compute("sum(prebankpay)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvpreCashsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(precashpay)", "")) ? 0.00 : dt.Compute("sum(precashpay)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTpreCashSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(precashpay)", "")) ? 0.00 : dt.Compute("sum(precashpay)", ""))).ToString("#,##0;(#,##0); ");
 
-                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvcurBanksal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curbankpay)", "")) ? 0.00 : dt.Compute("sum(curbankpay)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvcurCashsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curcashpay)", "")) ? 0.00 : dt.Compute("sum(curcashpay)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTCurBankSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curbankpay)", "")) ? 0.00 : dt.Compute("sum(curbankpay)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSalSum.FooterRow.FindControl("lgvFTCurCashSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curcashpay)", "")) ? 0.00 : dt.Compute("sum(curcashpay)", ""))).ToString("#,##0;(#,##0); ");
 
                     break;
 

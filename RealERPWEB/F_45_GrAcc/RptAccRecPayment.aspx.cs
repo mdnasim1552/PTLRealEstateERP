@@ -146,6 +146,15 @@ namespace RealERPWEB.F_45_GrAcc
                     this.lbltakaInLac.Text = "Select Max 6 Company";
                     this.MultiView1.ActiveViewIndex = 8;
                     break;
+
+
+
+                case "PrjTrialBal":
+                    this.GetProjectName();
+                    this.lblGroup.Visible = false;
+                    this.chkListGroup.Visible = false;                    
+                    this.MultiView1.ActiveViewIndex = 9;
+                    break;
             }
         }
 
@@ -162,7 +171,20 @@ namespace RealERPWEB.F_45_GrAcc
             this.ddlComCode.DataValueField = "comcod";
             this.ddlComCode.DataSource = dt;
             this.ddlComCode.DataBind();
+            this.hdncomcode.Value = dt.Rows.Count == 0 ? "" : dt.Rows[0]["comcod"].ToString();
 
+        }
+
+        private void GetProjectName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.hdncomcode.Value;
+            DataSet ds1 = GrpData.GetTransInfo(comcod, "SP_REPORTO_GROUP_ACC_TB_RP", "GETPROJECTNAME", "", "", "", "", "", "", "", "", "");
+            DataTable dt1 = ds1.Tables[0];
+            this.ddlProject.DataSource = dt1;
+            this.ddlProject.DataTextField = "actdesc1";
+            this.ddlProject.DataValueField = "actcode";
+            this.ddlProject.DataBind();
         }
         private void GetAccountCode()
         {
@@ -232,6 +254,10 @@ namespace RealERPWEB.F_45_GrAcc
 
                 case "BankBalance":
                     this.ShowBankBalance();
+                    break;
+
+                case "PrjTrialBal":
+                    this.ShowProjTrialBalance();
                     break;
             }
 
@@ -410,6 +436,37 @@ namespace RealERPWEB.F_45_GrAcc
 
             Session["tblrecandpayment"] = ds1.Tables[0];
             this.Data_Bind();
+        }
+
+
+        private void ShowProjTrialBalance()
+        {
+
+
+
+            Session.Remove("tblrecandpayment");
+            string comp1 = "";
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                comp1 += (this.ddlComCode.Items[i].Selected ? this.ddlComCode.Items[i].Value.ToString() : "");
+            string date1 = this.txtDateFrom.Text;
+           // string date2 = this.txtDateto.Text;
+            string grp1 = this.chkListGroup.SelectedValue;
+           
+            string grp1val = (grp1 == "1") ? "2" : (grp1 == "2") ? "4" : (grp1 == "3") ? "8" : "12";
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+
+            DataSet ds1 = this.GrpData.GetTransInfo(comp1, "SP_REPORTO_GROUP_ACC_PROJECTTB", "PROJECTTRIALBALANCE", "", date1, pactcode, "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                this.gvPrjtrbal.DataSource = null;
+                this.gvPrjtrbal.DataBind();
+            }
+
+            Session["tblrecandpayment"] = ds1.Tables[0];
+            this.Data_Bind();
+
+
         }
 
         private string GetCompanyHeadAllocation()
@@ -1256,6 +1313,16 @@ namespace RealERPWEB.F_45_GrAcc
                     this.gvGrpIVsC.DataSource = dt1;
                     this.gvGrpIVsC.DataBind();
                     break;
+
+
+                case "PrjTrialBal":
+                  
+                  
+                    this.gvPrjtrbal.DataSource = dt1;
+                    this.gvPrjtrbal.DataBind();
+                    break;
+
+                   
             }
 
         }
@@ -2301,7 +2368,7 @@ namespace RealERPWEB.F_45_GrAcc
 
                 Label actdesc = (Label)e.Row.FindControl("lblgvaccdescBS");
                 Label toamt = (Label)e.Row.FindControl("lblgvtotamtBS");
-                Label amt01 = (Label)e.Row.FindControl("lblgvamt01BS");
+                LinkButton amt01 = (LinkButton)e.Row.FindControl("lnkbtngvamt01BS");
                 Label amt02 = (Label)e.Row.FindControl("lblgvamt02BS");
                 Label amt03 = (Label)e.Row.FindControl("lblgvamt03BS");
                 Label amt04 = (Label)e.Row.FindControl("lblgvamt04BS");
@@ -2633,6 +2700,82 @@ namespace RealERPWEB.F_45_GrAcc
 
 
             }
+        }
+
+
+        protected void gvPrjtrbal_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink actdesc = (HyperLink)e.Row.FindControl("HLgvDesc");
+                Label DAmount = (Label)e.Row.FindControl("lgvAmt");
+                Label CAmount = (Label)e.Row.FindControl("lgvCre");
+
+               
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode")).ToString();
+
+                if (code == "")
+                {
+                    return;
+                }
+                if (ASTUtility.Right((code), 10) == "0000000000")
+                {
+                    actdesc.Font.Bold = true;
+                    DAmount.Font.Bold = true;
+                    CAmount.Font.Bold = true;
+
+                    DAmount.Style.Add("text-align", "Left");
+                    CAmount.Style.Add("text-align", "Left");
+                    actdesc.Attributes["style"] = "color:maroon;";
+                }
+                else if (code == "000000000001" || (ASTUtility.Right((code), 3) == "000"))
+                {
+                    actdesc.Font.Bold = true;
+                    DAmount.Font.Bold = true;
+                    CAmount.Font.Bold = true;
+                    DAmount.Style.Add("text-align", "Left");
+                    CAmount.Style.Add("text-align", "Left");
+
+                }
+                if (code == "999999999999" || code == "000000000002" || code == "000000000003" || code == "000000000004")
+                {
+                    actdesc.Font.Bold = true;
+                    DAmount.Font.Bold = true;
+                    CAmount.Font.Bold = true;
+                    actdesc.Style.Add("text-align", "Right");
+                    DAmount.Style.Add("text-align", "Right");
+                    CAmount.Style.Add("text-align", "Right");
+                }
+                if (code == "AAAAAAAAAAAA")
+                {
+                    actdesc.Style.Add("text-align", "Left");
+                }
+
+
+                //if (e.Row.RowType != DataControlRowType.DataRow)
+                //    return;
+                string rescode1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode1")).ToString();
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
+                string Actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString(); ;
+                string Date1 = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyy");
+                string rescode = ((Label)e.Row.FindControl("lblgvCode")).Text;
+                if (ASTUtility.Left(rescode1, 2) == "51")
+                {
+                    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=PrjCol&pactcode=" + Actcode + "&Date1=" + Date1;
+                }
+
+                else if (ASTUtility.Right((code), 3) != "000" && code != "000000000001" && code != "999999999999" && code != "000000000002")
+                {
+                    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=SpLedger&pactcode=" + Actcode + "&Date1=" + Date1 + "&rescode=" + rescode;
+                }
+
+
+
+
+            }
+
+
         }
     }
 }

@@ -376,7 +376,7 @@
                     </div>
                     <div class="row table-responsive">
                         <asp:GridView ID="gvBillInfo" runat="server" AllowPaging="True"
-                            AutoGenerateColumns="False" ShowFooter="True" Width="16px"
+                            AutoGenerateColumns="False" ShowFooter="True" Width="16px" OnRowDataBound="gvBillInfo_RowDataBound"
                             OnRowDeleting="gvBillInfo_RowDeleting" CssClass="table table-striped table-hover table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
                             <RowStyle />
@@ -564,7 +564,7 @@
                                 <asp:TemplateField HeaderText="Bill Amount">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvMRRAmt" runat="server" BackColor="Transparent"
-                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"  
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px">
                                         </asp:TextBox>

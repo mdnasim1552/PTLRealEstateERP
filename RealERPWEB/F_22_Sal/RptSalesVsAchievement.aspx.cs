@@ -361,7 +361,7 @@ namespace RealERPWEB.F_22_Sal
                 case "MonsalVsAchieve":
                     this.gvsalesvscoll.DataSource = dt;
                     this.gvsalesvscoll.DataBind();
-                    // this.FooterCalculation(dt);
+                    this.FooterCalculation(dt);
                     break;
 
                 case "LandO":
@@ -392,18 +392,37 @@ namespace RealERPWEB.F_22_Sal
         {
             if (dt1.Rows.Count == 0)
                 return;
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
 
+            switch (Type)
+            {
+                case "MonsalVsAchieve":
 
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvopamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(opnam)", "")) ? 0.00 :
-                 dt1.Compute("sum(opnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvsalesvscoll.FooterRow.FindControl("lblFtvalue")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(tsalval)", "")) ? 0.00 :
+               dt1.Compute("sum(tsalval)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvdpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curbkam)", "")) ? 0.00 :
-                 dt1.Compute("sum(curbkam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvsalesvscoll.FooterRow.FindControl("lblFNetvalue")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(netvalue)", "")) ? 0.00 :
+                         dt1.Compute("sum(netvalue)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvinamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curinsam)", "")) ? 0.00 :
-                 dt1.Compute("sum(curinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvtotalam")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(totalam)", "")) ? 0.00 :
-                 dt1.Compute("sum(totalam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvsalesvscoll.FooterRow.FindControl("lblFgvreceived")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(ramt)", "")) ? 0.00 :
+                         dt1.Compute("sum(ramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+                default:
+
+                    ((Label)this.gvcolcnst.FooterRow.FindControl("fgvopamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(opnam)", "")) ? 0.00 :
+               dt1.Compute("sum(opnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                    ((Label)this.gvcolcnst.FooterRow.FindControl("fgvdpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curbkam)", "")) ? 0.00 :
+                         dt1.Compute("sum(curbkam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                    ((Label)this.gvcolcnst.FooterRow.FindControl("fgvinamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curinsam)", "")) ? 0.00 :
+                         dt1.Compute("sum(curinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvcolcnst.FooterRow.FindControl("fgvtotalam")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(totalam)", "")) ? 0.00 :
+                         dt1.Compute("sum(totalam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+            }
+
+          
 
         }
         private void FooterCal()
