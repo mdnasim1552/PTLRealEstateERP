@@ -312,6 +312,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptSubprjConBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptTest.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcmeConst.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptWorkOrderANGAN.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2PBN.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptGroupStockEva - Copy.rdlc" />
