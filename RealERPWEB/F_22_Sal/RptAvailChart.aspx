@@ -7,7 +7,7 @@
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
@@ -33,7 +33,7 @@
             line-height:12px;
         }
         .chzn-container-single .chzn-single {
-            height: 28px !important;
+            height: 29px !important;
             line-height: 28px !important;
         }
     </style>
@@ -63,8 +63,8 @@
                     <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                 </div>
                 <div class="col-md-3">
-                    <asp:Label ID="Label4" runat="server" CssClass="form-lable" Text="Project Name:"></asp:Label>
-                    <asp:DropDownList ID="ddlProjectName" CssClass="chzn-select form-control form-control-sm" runat="server" Font-Bold="True">
+                    <asp:Label ID="Label4" runat="server" CssClass="form-lable" Text="Project Name"></asp:Label>
+                    <asp:DropDownList ID="ddlProjectName" CssClass="chzn-select form-control form-control-sm" runat="server" Font-Bold="True" Width="290px">
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-1" style="margin-top: 22px;">

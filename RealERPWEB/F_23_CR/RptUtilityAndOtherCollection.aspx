@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptUtilityAndOtherCollection.aspx.cs" Inherits="RealERPWEB.F_23_CR.RptUtilityAndOtherCollection" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" AutoEventWireup="true" CodeBehind="RptUtilityAndOtherCollection.aspx.cs" Inherits="RealERPWEB.F_23_CR.RptUtilityAndOtherCollection" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" language="javascript">
@@ -6,6 +6,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
 
@@ -26,6 +27,16 @@
         }
 
     </script>
+    <style>
+        #ContentPlaceHolder1_ddlProjectName_chzn {
+            width: 289 px !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 29px !important;
+        }
+    </style>
    
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -52,39 +63,28 @@
 
             <div class="card card-fluid">
                 <div class="card-body">
-                    <div class="row">
-                        
-                        <div class="col-md-3">
-                           <div class="form-group">
-                                <asp:Label ID="Label2" CssClass="lblTxt lblName" runat="server" Text="Project Name :"></asp:Label>
-                                                                      
-                                    <div class="col-md-2 pading5px">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control flatpickr-input chzn-select" Width="300px" TabIndex="13" AutoPostBack="true">
-                                        </asp:DropDownList>
-                                    
-                                    </div>
-
-
-
-                           </div>
-
-
-                        </div>
-                
-                        <div class="col-md-2">
+                    <div class="row">    
+                        <div class="col-md-1.5">
                             <div class="form-group">
-                                <label class="control-label" for="ToDate">Date :</label>
-                                <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control flatpickr-input"></asp:TextBox>
+                                 <asp:Label ID="lbldate" runat="server" CssClass=" lblTxt lblName" Text="Date"></asp:Label>                               
+                                <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
-
                             </div>
-
                         </div>
+                        <div class="col-md-3">
+                           <div class="form-group">
+                                <asp:Label ID="Label2" CssClass="lblTxt lblName" runat="server" Text="Project Name"></asp:Label>                                                                     
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select" Width="290px"  TabIndex="13" AutoPostBack="true">
+                                </asp:DropDownList>                                  
+                               
+                           </div>
+                        </div>                
+                        
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label class="control-label" for="ddlUserName">Reports</label>
-                                <asp:DropDownList ID="ddlReport" runat="server" CssClass="custom-select  chzn-select">
+                                <asp:label ID="lblreport" runat="server" CssClass="lblTxt lblName">Reports</asp:label>
+                                <asp:DropDownList ID="ddlReport" runat="server" CssClass="form-control form-control-sm chzn-select">
                                      <asp:ListItem Value="AllOtherColl">All </asp:ListItem>
                                     <asp:ListItem Value="UtilityCharge">Utility Charge</asp:ListItem>                                 
                                     <asp:ListItem Value="Registration">Registration</asp:ListItem>
@@ -96,15 +96,18 @@
                                     <asp:ListItem Value="Optional">Optional </asp:ListItem>
                                     <asp:ListItem Value="DelayCharge">Delay Charge </asp:ListItem>                                  
                                 </asp:DropDownList>
-
+                            </div>
+                        </div>                        
+                        <div class="col-md-1" style="margin-top:20px">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary ml-2" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <label id="lblpage" runat="server" class="control-label" for="ddlUserName">Page Size</label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
-                                    Width="85px">
+                                <asp:Label ID="lblPage1" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select"
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem Value="10">10</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
                                     <asp:ListItem Value="30">30</asp:ListItem>
@@ -116,26 +119,20 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
 
-            <div class="card card-fluid" style="min-height: 250px;">
+            <div class="card card-fluid" style="min-height: 500px;">
                 <div class="card-body">
-                    <asp:MultiView ID="MultiView1" runat="server">
+                    <div class="row responsive"> 
+                        <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewOtherCharge" runat="server">
-
                             <asp:GridView ID="gvotherColl" runat="server" AutoGenerateColumns="False"
-                                ShowFooter="True" OnPageIndexChanging="gvotherColl_PageIndexChanging" AllowPaging="false" OnRowDataBound="gvotherColl_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                ShowFooter="True" OnPageIndexChanging="gvotherColl_PageIndexChanging" AllowPaging="false" OnRowDataBound="gvotherColl_RowDataBound" CssClass=" table-striped table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right"
@@ -263,12 +260,12 @@
                                    
                                 </Columns>
 
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="grvFooterNew" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
+                                <RowStyle CssClass="grvRowsNew" />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
-                                <RowStyle CssClass="grvRows" />
+                                <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
 
                         </asp:View>
@@ -277,17 +274,17 @@
                             <div class="table-responsive">
                                 <asp:GridView ID="gvallothrcoll" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" OnPageIndexChanging="gvallothrcoll_PageIndexChanging" AllowPaging="false" OnRowCreated="gvallothrcoll_RowCreated" OnRowDataBound="gvallothrcoll_RowDataBound"
-                                     CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                     CssClass=" table-striped table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
-                                                Style="text-align: right"
+                                                Style="text-align: center"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="25px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Names="Century Gothic"  />
-                                         <ItemStyle HorizontalAlign="Center"  Font-Names="Century Gothic" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
 
@@ -312,7 +309,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" Font-Names="Century Gothic"  />
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Left" Font-Names="Century Gothic"  />
+                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" Font-Names="Century Gothic"  />
                             </asp:TemplateField>
                                    
 
@@ -787,12 +784,12 @@
                                    
                                 </Columns>
 
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="grvFooterNew" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
+                                <RowStyle CssClass="grvRowsNew" />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
-                                <RowStyle CssClass="grvRows" />
+                                <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
                             </div>
 
@@ -807,6 +804,8 @@
                         
 
                     </asp:MultiView>
+                    </div>
+                    
 
                 </div>
             </div>
