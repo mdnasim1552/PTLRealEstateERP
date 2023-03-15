@@ -250,7 +250,7 @@ namespace RealERPWEB
                               where (int)dr["menuid"] == 1386
                               select (int)dr["menuid"]).FirstOrDefault();
 
-            if (topuserAct > 0)
+            if (topuserAct > 0  && comcod=="3368")
             {
                 this.pnlClientMrrdayFinlay.Visible = true;
                 getclientdata();
@@ -683,6 +683,8 @@ namespace RealERPWEB
                 case "3369":
                 case "3365":
                 case "3102":
+                case "3101":
+
                     calltype = "RPTMYSERVICESBTI";
                     break;
 
@@ -1037,6 +1039,7 @@ namespace RealERPWEB
             string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
+               case "3101":
                case "3365":
                case "3102":
                     this.EventBirthday.Visible = false;
@@ -1109,7 +1112,7 @@ namespace RealERPWEB
                         {
                             BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
 
-                            if (comcod == "3367" || comcod=="3101")
+                            if (comcod == "3367")
                             {
 
                       
