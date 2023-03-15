@@ -211,11 +211,11 @@
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
-                                  <asp:TemplateField HeaderText="PF Fund">
+                                  <asp:TemplateField HeaderText="Deduction">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvpfswf" runat="server" Font-Size="11PX"
                                         Style="text-align: right"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pfund")).ToString("#, ##0.00;(#, ##0.00); ") %>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tdeduc")).ToString("#, ##0.00;(#, ##0.00); ") %>'
                                         Width="60px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>

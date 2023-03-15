@@ -419,6 +419,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrmentAcme": Rpt1a = SetRptAnnInctrmentAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrment": Rpt1a = SetRptAnnInctrment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                case "R_21_MKT.RptMissFollowup": Rpt1a = SetRptMissFollowup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
 
 
@@ -1597,7 +1599,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport SetRptMissFollowup(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptMissFollowup>)RptDataSet));
+            return Rpt1a;
+        }
 
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
