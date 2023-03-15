@@ -2137,7 +2137,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!empname.Value</Value>
+                                  <Value>=Fields!empname.Value+"-"+Fields!desig.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -2159,6 +2159,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -6327,7 +6328,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>11.66792in</Width>
               <Style>
@@ -6360,7 +6360,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Left>11.80209in</Left>
               <Height>0.25in</Height>
               <Width>2.92708in</Width>
