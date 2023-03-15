@@ -99,7 +99,7 @@
                 <div class="card-body">
                     <div class="row p-2">
                         <div class="table-responsive">
-                            <asp:GridView runat="server" ID="grvMissFollowUp" AllowPaging="True" CssClass=" table-striped  table-bordered grvContentarea"
+                            <asp:GridView runat="server" ID="grvMissFollowUp" AllowPaging="True" CssClass="table-striped  table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True" OnPageIndexChanging="grvMissFollowUp_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">

@@ -889,6 +889,9 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedgerIntect", lst, null, null);
                     break;
+                case "3374":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedgerANGAN", lst, null, null);
+                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger", lst, null, null);
                     break;

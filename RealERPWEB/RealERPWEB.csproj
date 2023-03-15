@@ -3323,6 +3323,7 @@
     <Content Include="F_81_Hrm\F_90_PF\RptAccDTransaction.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\RptAccProFund.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\RptPaymentAndProvidentinf.aspx" />
+    <Content Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\RptPFIndvPay.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\TransectionPrint.aspx" />
     <Content Include="F_81_Hrm\F_91_ACR\ACRCodeBook.aspx" />
@@ -5787,6 +5788,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx.designer.cs">
       <DependentUpon>RptSalaryReconciliationBonus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx.cs">
+      <DependentUpon>RptPFIndvSal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx.designer.cs">
+      <DependentUpon>RptPFIndvSal.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.cs">
       <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
