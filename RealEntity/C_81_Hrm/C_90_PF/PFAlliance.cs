@@ -94,6 +94,8 @@ namespace RealEntity.C_81_Hrm.C_90_PF
         public double cashamt { get; set; }
         public double pfund { get; set; }
         public double gssal { get; set; }
+        public double tdeduc { get; set; }
+
 
 
 

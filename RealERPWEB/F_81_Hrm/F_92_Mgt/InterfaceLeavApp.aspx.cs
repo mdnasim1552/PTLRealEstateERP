@@ -527,6 +527,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     case "3348": //Credence
                         break;
+                    case "3101":
                     case "3374":
                         if (usrid == mgtusid)
                         {

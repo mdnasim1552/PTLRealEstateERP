@@ -445,6 +445,9 @@
                                         <asp:Label ID="lblgvMRRNo1" runat="server" CssClass="textwrap"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno1")) %>'
                                             Width="65px"></asp:Label>
+                                         <asp:Label ID="lblgvrsircode" runat="server" Visible="false"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
+                                            Width="65px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>

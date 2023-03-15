@@ -106,6 +106,7 @@ namespace RealERPRDLC
                 #region Project Implementation
                 case "R_09_PIMP.RptWorkOrder": Rpt1a = SetRptWorkOrder(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderCPDL": Rpt1a = SetRptWorkOrderCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptWorkOrderANGAN": Rpt1a = SetRptWorkOrderANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_09_PIMP.RptWorkOrder2": Rpt1a = SetRptWorkOrder2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderP2PBN": Rpt1a = SetRptWorkOrderP2PBN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -418,6 +419,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrmentBridge": Rpt1a = SetRptAnnInctrmentBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrmentAcme": Rpt1a = SetRptAnnInctrmentAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrment": Rpt1a = SetRptAnnInctrment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                case "R_21_MKT.RptMissFollowup": Rpt1a = SetRptMissFollowup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1597,7 +1600,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport SetRptMissFollowup(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptMissFollowup>)RptDataSet));
+            return Rpt1a;
+        }
 
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -1801,6 +1808,10 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptWorkOrderCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
+            return Rpt1a;
+        }private static LocalReport SetRptWorkOrderANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
             return Rpt1a;

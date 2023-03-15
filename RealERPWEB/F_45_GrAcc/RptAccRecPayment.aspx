@@ -147,7 +147,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label id="lblcompanyname" runat="server">Company Name</label>
-                                <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control form-control-sm select2" s SelectionMode="Multiple"></asp:ListBox>
+                                <asp:ListBox ID="ddlComCode" runat="server" CssClass=" form-control form-control-sm select2"  SelectionMode="Multiple"></asp:ListBox>
 
                                 <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
                             </div>

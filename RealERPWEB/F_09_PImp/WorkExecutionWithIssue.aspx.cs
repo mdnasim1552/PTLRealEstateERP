@@ -223,12 +223,12 @@ namespace RealERPWEB.F_09_PImp
                 {
                     isBudget = true;
                 }
-                
-               dt.Rows[TblRowIndex]["wrkqty"] = txtwrkqty;
+
+                dt.Rows[TblRowIndex]["wrkqty"] = txtwrkqty;
 
             }
             Session["sessionforgrid"] = dt;
-           
+
         }
         protected void btnSelectOne_Click(object sender, EventArgs e)
         {
@@ -239,10 +239,10 @@ namespace RealERPWEB.F_09_PImp
         {
             string comcod = GetComCode();
             string pactcode = this.ddlProject.SelectedValue.ToString();
-           
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETWORKEXELOCK", pactcode, "", "", "", "", "", "", "", "");
 
-            Session["exelock"] = ds1.Tables[0];  
+            Session["exelock"] = ds1.Tables[0];
         }
 
 
@@ -268,7 +268,7 @@ namespace RealERPWEB.F_09_PImp
                         string flrcode = s1.Value.Substring(0, 3);
                         DataRow[] dr1 = tempforgrid.Select("flrcod='" + flrcode + "'  and itemcode='" + itemcode + "'");
                         DataRow[] dr2 = lockexe.Select("flrcod='" + flrcode + "'  and isircode='" + itemcode + "'");
-                        if (dr1.Length == 0 && dr2.Length==0)
+                        if (dr1.Length == 0 && dr2.Length == 0)
                         {
                             DataRow drforgrid = tempforgrid.NewRow();
                             drforgrid["flrcod"] = flrcode;
@@ -284,7 +284,7 @@ namespace RealERPWEB.F_09_PImp
                         }
                         if (dr2.Length != 0)
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Work Execution Locked." + "');", true);                            
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Work Execution Locked." + "');", true);
                         }
 
                     }
@@ -507,7 +507,7 @@ namespace RealERPWEB.F_09_PImp
                 DataTable dt1 = (DataTable)ViewState["labourexefinal"];
                 DataView dv = new DataView(dt1);
                 dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
-                ViewState["labourexefinal"]= dv.ToTable();
+                ViewState["labourexefinal"] = dv.ToTable();
                 DataGridThree.DataSource = HiddenTableTwo(dv.ToTable());
                 DataGridThree.DataBind();
                 //FooterCalculaton();
@@ -714,19 +714,27 @@ namespace RealERPWEB.F_09_PImp
             string pactcode = ddlProject.SelectedValue.ToString();
             string date = Convert.ToDateTime(txtEntryDate.Text).ToString("dd-MMM-yyyy");
             List<bool> arrResult = new List<bool>();
-            foreach (DataRow dr in tbl2.Rows)
+
+            if (tbl2.Rows.Count > 0)
             {
-                string ISircode = dr["isircode"].ToString();
-                string Flrcod = dr["flrcod"].ToString();
-                string grp = "001";
-                string Rsircode = dr["rsircode"].ToString();
-                double LWorkqty = Convert.ToDouble(dr["wrkqty"].ToString().Trim());
-                double Isuqty = Convert.ToDouble(dr["isuqty"].ToString().Trim());
-                double Isuamt = Convert.ToDouble("0.00");
-                double balqty = Convert.ToDouble(dr["balqty"].ToString().Trim());
-                bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLISSUEF", mISUNO, Flrcod, grp, Rsircode, date,
-                    LWorkqty.ToString(), Isuqty.ToString(), Isuamt.ToString(), pactcode, ISircode);
-                arrResult.Add(result);
+                foreach (DataRow dr in tbl2.Rows)
+                {
+                    string ISircode = dr["isircode"].ToString();
+                    string Flrcod = dr["flrcod"].ToString();
+                    string grp = "001";
+                    string Rsircode = dr["rsircode"].ToString();
+                    double LWorkqty = Convert.ToDouble(dr["wrkqty"].ToString().Trim());
+                    double Isuqty = Convert.ToDouble(dr["isuqty"].ToString().Trim());
+                    double Isuamt = Convert.ToDouble("0.00");
+                    double balqty = Convert.ToDouble(dr["balqty"].ToString().Trim());
+                    bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLISSUEF", mISUNO, Flrcod, grp, Rsircode, date,
+                        LWorkqty.ToString(), Isuqty.ToString(), Isuamt.ToString(), pactcode, ISircode);
+                    arrResult.Add(result);
+                }
+            }
+            else
+            {
+                arrResult.Add(true);
             }
             if (arrResult.Contains(false))
             {
@@ -801,7 +809,7 @@ namespace RealERPWEB.F_09_PImp
                 string Editdat = (this.Request.QueryString["type"] == "Entry") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                
+
                 DataTable tbl02 = (DataTable)ViewState["materialexefinal"];
                 // Duplicate 
                 string mRef = this.txtSMCR.Text;
@@ -841,37 +849,39 @@ namespace RealERPWEB.F_09_PImp
                         break;
 
                     default:
-
-                        if (mRef.Length == 0)
+                        if (pnlMat.Visible)
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "SMCR No Should Not Be Empty" + "');", true);
-                            return;
-
-                        }
-                        else if (dmirfno.Length == 0)
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "DMIRF No Should Not Be Empty" + "');", true);
-
-                            return;
-                        }
-
-                        DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
-                        if (ds2.Tables[0].Rows.Count == 0)
-                        {
-                        }
-
-                        else
-                        {
-                            DataView dv1 = ds2.Tables[0].DefaultView;
-                            dv1.RowFilter = ("isuno <>'" + mMISUNO + "'");
-                            DataTable dt = dv1.ToTable();
-                            if (dt.Rows.Count == 0)
-                            { }
-                            else
+                            if (mRef.Length == 0)
                             {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate SMCR.No" + "');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "SMCR No Should Not Be Empty" + "');", true);
+                                return;
+
+                            }
+                            else if (dmirfno.Length == 0)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "DMIRF No Should Not Be Empty" + "');", true);
+
                                 return;
                             }
+                            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
+                            if (ds2.Tables[0].Rows.Count == 0)
+                            {
+                            }
+
+                            else
+                            {
+                                DataView dv1 = ds2.Tables[0].DefaultView;
+                                dv1.RowFilter = ("isuno <>'" + mMISUNO + "'");
+                                DataTable dt = dv1.ToTable();
+                                if (dt.Rows.Count == 0)
+                                { }
+                                else
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate SMCR.No" + "');", true);
+                                    return;
+                                }
+                            }
+
                         }
                         break;
                 }
@@ -899,7 +909,7 @@ namespace RealERPWEB.F_09_PImp
                         {
                             string Rsircode = tbl02.Rows[i]["rsircode"].ToString();
                             string Spcfcod = tbl02.Rows[i]["spcfcod"].ToString();
-                            double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());                            
+                            double Isuqty = Convert.ToDouble(tbl02.Rows[i]["isuqty"].ToString());
                             string txtlocation = tbl02.Rows[i]["useoflocation"].ToString();
                             string txtremarks = tbl02.Rows[i]["remarks"].ToString();
                             string flrcod = tbl02.Rows[i]["flrcod"].ToString();
@@ -927,6 +937,21 @@ namespace RealERPWEB.F_09_PImp
                         //---------------------------------------End of Pur Material Issue--------------------------
 
 
+                        
+
+
+
+                        if (ConstantInfo.LogStatus == true)
+                        {
+                            string eventtype = "Materials Issue Information";
+                            string eventdesc = "Update New QTY";
+                            string eventdesc2 = "Bill No : " + this.txtWRefNo.Text.Trim() + " - " + mISUNO;
+                            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                        }
+                    }
+
+                    if (result)
+                    {
                         result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEB",
                                          mISUNO, mISUDAT, mPACTCODE, "", mISUUSRID, mAPPRUSRID, mAPPRDAT, mISUBYDES, mAPPBYDES, mISUREF, mISURNAR, mBILLNO, usrid, sessionid, trmid, "", "", "", "", "");
                         if (!result)
@@ -955,18 +980,19 @@ namespace RealERPWEB.F_09_PImp
                             }
                         }
 
-
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
-                        InitPage();
-                        if (ConstantInfo.LogStatus == true)
-                        {
-                            string eventtype = "Materials Issue Information";
-                            string eventdesc = "Update New QTY";
-                            string eventdesc2 = "Bill No : " + this.txtWRefNo.Text.Trim() + " - " + mISUNO;
-                            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                        }
                     }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFailed('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+
+                    }
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
+                    InitPage();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFailed('" + purData.ErrorObject["Msg"].ToString() + "');", true);
 
                 }
             }
