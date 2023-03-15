@@ -236,9 +236,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3038,6 +3038,7 @@
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\AIInvoiceApproved.aspx" />
     <Content Include="F_38_AI\AIInVoiceCreate.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
@@ -5214,6 +5215,13 @@
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIInvoiceApproved.aspx.cs">
+      <DependentUpon>AIInvoiceApproved.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIInvoiceApproved.aspx.designer.cs">
+      <DependentUpon>AIInvoiceApproved.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\AIInVoiceCreate.aspx.cs">
       <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
