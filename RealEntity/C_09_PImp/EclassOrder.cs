@@ -87,6 +87,7 @@ namespace RealEntity.C_09_PIMP
             public string pordref { get; set; }
 
             public string term { get; set; }
+            public string payterm { get; set; }
             public string duration { get; set; }
             public string billtype { get; set; }
             public string paddress { get; set; }
