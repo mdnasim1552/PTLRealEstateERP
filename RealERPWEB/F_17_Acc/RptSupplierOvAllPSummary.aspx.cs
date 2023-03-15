@@ -610,7 +610,7 @@ namespace RealERPWEB.F_17_Acc
             if (stindex == "0")
             {
                 var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummary>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSupplierOvAllPSummary", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSupplierOvAllPSummary", lst, null, null);//
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));

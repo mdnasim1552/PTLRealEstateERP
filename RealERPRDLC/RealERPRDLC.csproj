@@ -61,9 +61,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPLIB">
-      <HintPath>..\..\..\..\Reference\bin\bin\RealERPLIB.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -183,10 +180,33 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.RptProjectWiseCollectionStatusall.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EAdvTopSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EClassAddUser.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EClassClentEntry.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EclassClientdetails.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EclassClientDiscuss.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EClassLeadClentEntry.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EclassLOdetails.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EclassLODiscuss.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EClassRptCallCenterLead.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EempList.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EGetLastAdNo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EPaper.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EPaperadDes.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement+EPaperName.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.EClassAdvertisement.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+CrmClientInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassLeadReason.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptMissFollowup.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectWorking.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ESourceWiseLeadsclass+CallCenter.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ESourceWiseLeadsclass+CallCenterLeads.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ESourceWiseLeadsclass.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassBaseGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRevGrandNoteSheet.datasource" />
@@ -912,6 +932,7 @@
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptMissFollowup.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
@@ -1481,6 +1502,10 @@
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
       <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
