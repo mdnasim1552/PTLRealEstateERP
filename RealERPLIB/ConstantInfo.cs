@@ -1386,7 +1386,6 @@ namespace RealERPLIB
 
 
 
-
             tblObj.Rows.Add(new Object[] { "2303000", "2303120", "F_23_CR", "RptCustomerDues?", "Type=Report", "Customer Dues Information", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303121", "F_23_CR", "RptDuesReportAll", "", "Dues Report ALL", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303122", "F_23_CR", "RptOtherCollHistory", "", "Other's Collection History", "Credit Realization", "False", "False", "False", "False" });
@@ -7988,6 +7987,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Thanks Letter", "F_22_Sal/RptThanksLetter?Type=Thanks", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "05. Cancelation Letter", "F_22_Sal/RptThanksLetter?Type=Cancel", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "11. Cancellation Money Receipt", "F_23_CR/RptDelMonyRec", "", true });
+            mnuTbl1.Rows.Add(new Object[] { "0402000003", "20. Customer Settlement Report", "F_17_Acc/RptLetterOfAlotment?Type=CustomerSettlement", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0435000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0436000000", "", "", "", true, "" });

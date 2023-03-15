@@ -35,6 +35,10 @@
         .mt20 {
             margin-top: 20px;
         }
+        .chzn-container-single .chzn-single {
+            height: 29px !important;
+            line-height: 28px !important;
+        }
     </style>
     <script type="text/javascript">
 
