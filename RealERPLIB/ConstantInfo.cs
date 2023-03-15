@@ -1172,6 +1172,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103128", "F_21_MKT", "RptLeadStatus?", "Type=Report", "Lead Status (Timestamp)", "CRM", "False", "False", "False", "False" });
 
 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
+
+
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2102126", "F_39_MyPage", "RptMIS02?", "Type=EvaonProBasis", "Evaluation on Project", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -1383,7 +1386,6 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303118", "F_23_CR", "RptPrjwisecollofSummDetails", "", "Project wise Summary of Collection Details", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303119", "F_23_CR", "RptUtilityAndOtherCollection", "", "Utility & Other Collection", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303124", "F_23_CR", "RptReceivedList02?", "Type=yCollectionDetails", "Yearly Collection Forcasting Details", "Credit Realization", "False", "False", "False", "False" });
-
 
 
 
@@ -7487,6 +7489,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "25. Send Letter(Online)", "F_21_Mkt/RptMktAppointment?Type=SendOnlineLetter&UType=Mgt", "", true, "" });
 
 
+            mnuTbl1.Rows.Add(new Object[] { "040200006", "Missing Followup Status", "F_21_MKT/RptMissFollowup", "", true, "" });
+
+
             mnuTbl1.Rows.Add(new Object[] { "0427000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0428000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0429000000", "", "", "", true, "" });
@@ -7988,6 +7993,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Thanks Letter", "F_22_Sal/RptThanksLetter?Type=Thanks", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "05. Cancelation Letter", "F_22_Sal/RptThanksLetter?Type=Cancel", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "11. Cancellation Money Receipt", "F_23_CR/RptDelMonyRec", "", true });
+            mnuTbl1.Rows.Add(new Object[] { "0402000003", "20. Customer Settlement Report", "F_17_Acc/RptLetterOfAlotment?Type=CustomerSettlement", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0435000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0436000000", "", "", "", true, "" });

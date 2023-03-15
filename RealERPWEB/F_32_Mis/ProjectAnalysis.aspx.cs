@@ -322,8 +322,15 @@ namespace RealERPWEB.F_32_Mis
                 HyperLink hlnkconsbgd = (HyperLink)e.Row.FindControl("hlnkconsbgd");
                 HyperLink hlnkbgdtotal = (HyperLink)e.Row.FindControl("hlnkbgdtotal");
                 HyperLink hlnkcost = (HyperLink)e.Row.FindControl("hlnkcost");
+
+                //Label lblgvproprofitpercnt = (Label)e.Row.FindControl("lblgvproprofitpercnt");
+                //Label lblgvcashflow = (Label)e.Row.FindControl("lblgvcashflow");
+
+
                 //string sum = this.chkSum.Checked == true ? "Summary" : "";
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                double perpercnt = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "propercnt"));
+                double cashflow = Convert.ToDouble(DataBinder.Eval(e.Row.DataItem, "cashflow"));
 
                 if (code == "")
                 {
@@ -388,6 +395,14 @@ namespace RealERPWEB.F_32_Mis
                     hlnkcost.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal&prjcode=" + pactcode;
 
                 }
+
+
+                if(perpercnt<0)
+                    lblgvproprofitpercnt.Attributes["style"] = " color:red;";
+
+
+                if (cashflow < 0)
+                    lblgvcashflow.Attributes["style"] = " color:red;";
             }
         }
         protected void lnkPrint_Click(object sender, EventArgs e)

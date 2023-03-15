@@ -10,7 +10,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
 
         function pageLoaded() {
@@ -30,8 +30,12 @@
         .table th,.table td{
             padding:4px;
         }
+        .chzn-container-single .chzn-single {
+            height: 29px !important;
+            line-height: 28px !important;
+        }
     </style>
-    <div class="card mt-4">
+    <div class="card mt-4 mb-1">
         <div class="card-body">
             <div class="row mb-4">
 
@@ -42,20 +46,21 @@
 
 
                 <div class="col-md-3">
-                    <asp:Label ID="Label4" runat="server" CssClass="form-label"
-                        Text="Project Name:"></asp:Label>
-                    <asp:LinkButton ID="ibtnFindProject" runat="server" OnClick="ibtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
-                    <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass="chzn-select form-control"
-                        OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
-                    </asp:DropDownList>
-
+                    <div class="form-group">
+                        <asp:Label ID="Label4" runat="server" CssClass="form-label"
+                            Text="Project Name"></asp:Label>
+                        <asp:LinkButton ID="ibtnFindProject" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+                        <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass="chzn-select form-control form-control-sm chzn-select"
+                            OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
                 </div>
                 <div class="col-md-2 ml-2">
 
                     <asp:Label ID="Label15" runat="server" CssClass="form-label"
                         Text="Date:"></asp:Label>
 
-                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                     <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
                         TargetControlID="txtDate"></cc1:CalendarExtender>
 
@@ -66,7 +71,7 @@
                         Text="Group:"></asp:Label>
 
                     <asp:DropDownList ID="ddlRptGroup" runat="server" AutoPostBack="True" Font-Bold="True"
-                        CssClass="form-control" OnSelectedIndexChanged="ddlRptGroup_SelectedIndexChanged">
+                        CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlRptGroup_SelectedIndexChanged">
                         <asp:ListItem>Main</asp:ListItem>
                         <asp:ListItem>Sub-1</asp:ListItem>
                         <asp:ListItem>Sub-2</asp:ListItem>
@@ -75,10 +80,10 @@
                     </asp:DropDownList>
 
                 </div>
-                <div class="col-md-1" style="margin-top: 22px;">
+                <div class="col-md-1" style="margin-top: 20px;">
 
                     <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
-                        CssClass="btn btn-sm btn-primary primaryBtn"
+                        CssClass="btn btn-sm btn-primary "
                         Font-Underline="False">Ok</asp:LinkButton>
 
                 </div>
@@ -88,7 +93,7 @@
                     <asp:Label ID="lblPage" runat="server" CssClass="form-label"
                         Text="Size:" Visible="False"></asp:Label>
 
-                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
+                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                         Visible="False">
                         <asp:ListItem Value="10">10</asp:ListItem>
                         <asp:ListItem Value="20">20</asp:ListItem>
