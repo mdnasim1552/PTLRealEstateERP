@@ -18,22 +18,23 @@ namespace RealERPWEB.F_38_AI
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Create";
+                   ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Create";
 
-                string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
-                string duedate = DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
-                this.txtduedate.Text = duedate;
-                this.txtdate.Text = currentdate;
-                this.txtNarration.Text = this.bindDataText();
-                this.GETINVOLASTID();
-                this.GetCustomerList();
-                this.GetProjectList();
-                this.GetBatchList();
-                this.GetDataSet();
-                this.GetDataSetList();
-                //this.GetCurrency();
-                this.CreateTableAssign();
-                this.lblquantity_TextChanged(null, null);
+                    string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
+                    string duedate = DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
+                    this.txtduedate.Text = duedate;
+                    this.txtdate.Text = currentdate;
+                    this.txtNarration.Text = this.bindDataText();
+                    this.GETINVOLASTID();
+                    this.GetCustomerList();
+                    this.GetProjectList();
+                    this.GetBatchList();
+                    this.GetDataSet();
+                    this.GetDataSetList();
+                    //this.GetCurrency();
+                    this.CreateTableAssign();
+                    this.lblquantity_TextChanged(null, null);
+               
             }
         }
         private string GetComdCode()
@@ -83,7 +84,7 @@ namespace RealERPWEB.F_38_AI
                 string subjects = this.txtsubjects.Text.ToString();
                 string remark = subjects;
                 string duedate = this.txtduedate.Text.ToString();
-                string currency = this.txtcurrency.Text;
+                string currency = this.ddlcurrency.SelectedValue.Trim();
                 string isstatus = "true";
                 string notes = this.txtNarration.Text;
 
@@ -216,15 +217,16 @@ namespace RealERPWEB.F_38_AI
                 DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "BATCH_LIST", projid, "", "", "", "", "");
                 if (ds == null)
                     return;
+                Session["currency"] = ds.Tables[1];
                 this.ddlbatchname.DataTextField = "batrchname";
                 this.ddlbatchname.DataValueField = "batchid";
                 this.ddlbatchname.DataSource = ds.Tables[0];
                 this.ddlbatchname.DataBind();
 
 
-                // this.txtrate.Text = ds.Tables[0].Rows[1]["rate"].ToString();
+                this.GetCurrency();
 
-                this.txtcurrency.Text = ds.Tables[0].Rows[1]["currencydesc"].ToString();
+
 
 
             }
@@ -234,6 +236,34 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+
+        private void GetCurrency()
+        {
+            try
+            {
+                DataTable tbl1 = (DataTable)Session["currency"];
+                if (tbl1 == null)
+                    return;
+                string prj = this.ddlprojname.SelectedValue;
+                if (prj.Length > 0)
+                {
+                    this.ddlcurrency.DataTextField = "curdesc";
+                    this.ddlcurrency.DataValueField = "currency";
+                    this.ddlcurrency.DataSource = tbl1;
+                    this.ddlcurrency.DataBind();
+                }
+                
+               
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
+        }
+
+
         protected void ddlprojname_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetBatchList();
@@ -361,7 +391,7 @@ namespace RealERPWEB.F_38_AI
                 dr1["dataset"] = this.ddldataset.SelectedItem.Text.Trim().ToString();
                 dr1["quantity"] = Convert.ToDouble("0" + this.txtdoneqty.Text.Trim());
                 dr1["rate"] = Convert.ToDouble("0" + this.txtrate.Text.Trim());
-                dr1["currency"] = this.txtcurrency.Text.Trim();
+                dr1["currency"] = this.ddlcurrency.SelectedItem.Text.Trim();
                 dr1["subjects"] = this.txtsubjects.Text.Trim();
                 tblt01.Rows.Add(dr1);
 
@@ -417,20 +447,20 @@ namespace RealERPWEB.F_38_AI
             try
             {
 
-           
-            DataTable dt = (DataTable)ViewState["tblt01"];
-            int TblRowIndex;
-            for (int i = 0; i < this.gv_AIInvoice.Rows.Count; i++)
-            {
-                string qty = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblquantity")).Text.Trim()).ToString();
-                string rate = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblrate")).Text.Trim()).ToString();              
-                TblRowIndex = (gv_AIInvoice.PageIndex) * gv_AIInvoice.PageSize + i;
-                //dt.Rows[TblRowIndex]["lblquantity"] = qty;
-                //dt.Rows[TblRowIndex]["lblrate"] = rate;             
+
+                DataTable dt = (DataTable)ViewState["tblt01"];
+                int TblRowIndex;
+                for (int i = 0; i < this.gv_AIInvoice.Rows.Count; i++)
+                {
+                    string qty = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblquantity")).Text.Trim()).ToString();
+                    string rate = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblrate")).Text.Trim()).ToString();
+                    TblRowIndex = (gv_AIInvoice.PageIndex) * gv_AIInvoice.PageSize + i;
+                    //dt.Rows[TblRowIndex]["lblquantity"] = qty;
+                    //dt.Rows[TblRowIndex]["lblrate"] = rate;             
 
 
-            }
-            Session["tblt02"] = dt;
+                }
+                Session["tblt02"] = dt;
             }
             catch (Exception exp)
             {

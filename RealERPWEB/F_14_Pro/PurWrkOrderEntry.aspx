@@ -750,7 +750,21 @@
                                             <asp:LinkButton ID="lnkSendMail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendMail_Click">Send Email</asp:LinkButton>
 
                                         </div>
+                                         <div class="col-md-2">
+                                                <div class="from-group">
+                                                    <asp:Label ID="lbltext01" runat="server" Font-Bold="true" Font-Size="16px" >Vat</asp:Label>
+                                                    <asp:DropDownList ID="ddlvat" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
 
+                                                </div>
+                                            </div>
+                                           <div class="col-md-2">
+                                                    <div class="from-group">
+                                                        <asp:Label ID="Label9" runat="server" Font-Bold="true" Font-Size="16px" >Tax</asp:Label>
+                                                        <asp:DropDownList ID="ddltax" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
+
+                                                    </div>
+                                                
+                                            </div>
                                         <div class="col-md-3 pading5px pull-right">
                                             <div class="input-group">
                                                 <span class="input-group-addon glypingraddon">
@@ -762,7 +776,12 @@
                                     </div>
                                 </div>
                             </fieldset>
-
+                             <div class="row ">
+                                            <div class="col-md-1"></div>
+                                           
+                                           
+                                             
+                                        </div>
 
                             <asp:Panel ID="pnlsch" runat="server">
                                 <fieldset class="scheduler-border fieldset_Nar">
@@ -971,25 +990,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-2">
-                                                <div class="form group">
-                                                    <asp:Label ID="lbltext01" runat="server" Font-Bold="true" Font-Size="16px" >Vat</asp:Label>
-                                                    <asp:DropDownList ID="ddlvat" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
-
-                                                </div>
-                                            </div>
-                                           
-                                                <div class="col-md-2">
-                                                    <div class="form group">
-                                                        <asp:Label ID="Label9" runat="server" Font-Bold="true" Font-Size="16px" >Tax</asp:Label>
-                                                        <asp:DropDownList ID="ddltax" CssClass="form-control form-control-sm" runat="server"></asp:DropDownList>
-
-                                                    </div>
-                                                
-                                            </div>
-                                        </div>
+                                       
 
 
                                         <div class="form-group" id="divterms" runat="server" visible="true">
