@@ -242,6 +242,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             LocalReport Rpt1 = new LocalReport();
@@ -259,6 +260,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+
             Rpt1.SetParameters(new ReportParameter("printdate", "Date : " + printdate));
             Rpt1.SetParameters(new ReportParameter("empname", empinfo.Rows[0]["name"].ToString()));
             Rpt1.SetParameters(new ReportParameter("empid", empinfo.Rows[0]["idcard"].ToString()));
