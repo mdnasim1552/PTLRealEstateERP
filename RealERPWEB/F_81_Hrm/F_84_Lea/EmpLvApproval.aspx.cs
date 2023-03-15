@@ -745,7 +745,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         this.Chboxforward.Checked = true;
                     }
-                    else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                    else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
                     {
                         this.Chboxforward.Checked = true;
                     }
@@ -1421,7 +1421,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.Chboxforward.Checked = false;
                 }
-                else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
                 {
                     this.Chboxforward.Checked = true;
                 }
