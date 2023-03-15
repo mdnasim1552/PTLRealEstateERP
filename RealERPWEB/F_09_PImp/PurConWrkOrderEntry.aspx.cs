@@ -607,7 +607,16 @@ namespace RealERPWEB.F_09_PImp
                 return;
             ViewState["tblorder"] = ds1.Tables[0];
             ViewState["UserLog"] = ds1.Tables[1];
-            this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+            if (comcod == "3374")
+            {
+                this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+                this.txtPayTerm.Text = ds1.Tables[3].Rows[0]["Payterm"].ToString();
+            }
+            else
+            {
+                this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+            }
+            
 
             this.grvissue_DataBind();
             if (mNEWORDNo == "NEWORDER")
@@ -640,6 +649,7 @@ namespace RealERPWEB.F_09_PImp
             this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
+            this.txtPayTerm.Text = ds1.Tables[1].Rows[0]["payterm"].ToString();
 
 
 
@@ -886,12 +896,13 @@ namespace RealERPWEB.F_09_PImp
             string comncdat = txtcomncdat.Text.Trim();
             string compltdat = txtcompltdat.Text.Trim();
             string term = this.txtTerm.Text.Trim();
+            string payterm = this.txtPayTerm.Text.Trim();
             string days = "";
             string biltype = "";
             string lreqno = this.Request.QueryString["genno"] ?? "";
             bool result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATECORDER", "PURCORDERB",
                              mOrdernoO, mDATE, csircode, mPACTCODE, mRef, subject, letdes, term, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Edittrmid, EditSession, Editdat, days, biltype, comncdat, compltdat, lreqno,
-                             language, "", "", "", "", "", "", "", "", "");
+                             language, payterm, "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

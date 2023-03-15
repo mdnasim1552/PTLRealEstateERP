@@ -2220,7 +2220,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("RptHead", "Delay Charge Calculation"));
-            Rpt1.SetParameters(new ReportParameter("ProjName", "Project Name: " + project));
+            Rpt1.SetParameters(new ReportParameter("ProjName",  project));
             Rpt1.SetParameters(new ReportParameter("Customername", uacustomer));
             Rpt1.SetParameters(new ReportParameter("Unit", unit));
             Rpt1.SetParameters(new ReportParameter("aptvalue", aptvalue));
