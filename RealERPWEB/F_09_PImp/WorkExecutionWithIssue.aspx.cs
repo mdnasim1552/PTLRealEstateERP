@@ -461,7 +461,8 @@ namespace RealERPWEB.F_09_PImp
                         else
                         {
 
-                            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEINFOFROMWORKDETAILS", isircode, flrcode, wrkqty.ToString(), pactcode, EntryDate, "", "", "", "");
+                            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEINFOFROMWORKDETAILS", isircode, flrcode, 
+                                wrkqty.ToString(), pactcode, EntryDate, "", "", "", "");
 
                             dt1.Merge(ds1.Tables[0]);
 
