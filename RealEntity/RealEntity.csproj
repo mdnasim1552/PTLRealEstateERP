@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RealERPLIB">
-      <HintPath>..\..\..\..\Reference\bin\bin\RealERPLIB.dll</HintPath>
+      <HintPath>..\RealERPLIB\bin\Debug\RealERPLIB.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
