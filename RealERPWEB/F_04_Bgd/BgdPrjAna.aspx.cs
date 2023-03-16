@@ -1484,12 +1484,12 @@ namespace RealERPWEB.F_04_Bgd
             }
 
             this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
-
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
             // this.gvAnalysis.Attributes["style"] = "readonly:true;";
 
-
+            if (tbl1.Rows.Count > 0)
+                return;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chkProjectLock")).Checked = (this.lblProjectLock.Text == "True") ? true : false;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked = Convert.ToBoolean(tbl1.Rows[0]["lock"].ToString());
 

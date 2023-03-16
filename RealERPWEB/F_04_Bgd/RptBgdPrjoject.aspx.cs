@@ -1838,21 +1838,26 @@ namespace RealERPWEB.F_04_Bgd
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             string rpttitle = "";
-            if (Type== "MasterBgdCostDet")
-            {
-                rpttitle = "Engineering Budgeted Cost - Details";
-            }
-            else
-            {
-                rpttitle = "Budgeted Cost - Details";
 
-            }
 
             DataTable dt = (DataTable)Session["tblbgd"];
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_04_Bgd.BugCostDetails>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdGrDet", lst, null, null);
+
+            if (Type == "MasterBgdCostDet")
+            {
+                rpttitle = "Engineering Budgeted Cost - Details";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdCostDet", lst, null, null);
+
+            }
+            else
+            {
+                rpttitle = "Budgeted Cost - Details";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdGrDet", lst, null, null);
+
+            }
+
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));

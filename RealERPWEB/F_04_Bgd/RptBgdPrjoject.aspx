@@ -2219,7 +2219,7 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Saleable Cost Per SFT">
+                                    <asp:TemplateField HeaderText="Saleable Cost Per SFT" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvsalcostgrwisedet" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salcost")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="75px"></asp:Label>
