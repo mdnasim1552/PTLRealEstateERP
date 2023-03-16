@@ -60,7 +60,8 @@ namespace RealERPWEB.F_12_Inv
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -332,7 +333,7 @@ namespace RealERPWEB.F_12_Inv
             string qgenno = this.Request.QueryString["genno"] ?? "";
             string genno = (qgenno.Length == 0 ? "%" : this.Request.QueryString["genno"].ToString()) + "%";
             string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"1[16]";
+            string pactcodetype = Request.QueryString["Type"].ToString()=="ComplainMgt"?"1561":"1[156]";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVMISSUELIST", CurDate1, genno, pactcodetype, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -354,8 +355,7 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlPrevISSList.Visible = true;
                 this.ddlPrevISSList.Items.Clear();
 
-                this.ddlprjlist.Visible = true;
-                this.lblddlProject.Visible = false;
+                this.ddlprjlist.Enabled = true;
                 this.txtCurISSDate.Enabled = true;
                 this.lblCurISSNo1.Text = "ISU" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurISSNo2.Text = "";
@@ -374,9 +374,7 @@ namespace RealERPWEB.F_12_Inv
             this.lbtnPrevISSList.Visible = false;
             this.ddlPrevISSList.Visible = false;
             //this.txtsmcr.Visible = false;
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;//it will be used
-            this.lblddlProject.Visible = true;
+            this.ddlprjlist.Enabled = false;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
@@ -431,7 +429,7 @@ namespace RealERPWEB.F_12_Inv
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["isuno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["isudat"]).ToString("dd-MMM-yyyy");
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtISSNarr.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
             this.txtMIsuRef.Text = ds1.Tables[1].Rows[0]["isurefno"].ToString();
             this.txtsmcr.Text = ds1.Tables[1].Rows[0]["smcrno"].ToString();
