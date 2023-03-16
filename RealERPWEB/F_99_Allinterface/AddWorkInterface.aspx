@@ -1373,7 +1373,9 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
+
                                         <label for="username">Reason</label>
+                                          <asp:CheckBox ID="chkPermanent" runat="server" Text="Permanent" class="ml-5"/>
                                         <asp:TextBox ID="tbxcsdreason" runat="server" TextMode="MultiLine"  class="form-control"></asp:TextBox>
                                     </div>
                                 </div>
@@ -1383,7 +1385,8 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" runat="server" id="btncsddelete" data-dismiss="modal" aria-hidden="true"  class="btn btn-primary btn-sm">Delete</button>
+                           
+                            <asp:LinkButton ID="btncsddelete"  runat="server" class="btn btn-primary btn-sm"  OnClick="btncsddelete_Click">Delete</asp:LinkButton>
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                         </div>
 

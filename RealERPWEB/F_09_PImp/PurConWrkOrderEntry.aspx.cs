@@ -423,7 +423,7 @@ namespace RealERPWEB.F_09_PImp
                          "<p><strong>Hardware & Accessories:</strong></p>" +
                         "<ul><li style = 'margin-top:10px;' >Weather Silicone: Silande MF-889/BPL.</ li >" +
                         "<li style='margin-top:10px;'>Structural Silicone: Silande MF-899/BPL</li>" +
-                        "<li style='margin-top:10px;'>Anchor Bolt: 10X100 (China)</li></ul>"+
+                        "<li style='margin-top:10px;'>Anchor Bolt: 10X100 (China)</li>"+
                        "<li style='margin-top:10px;'>Norton tape, SS Screw, Backer rod Quality Hardware & Accessories with finishing work.</li></ul>";
 
 
@@ -484,6 +484,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
                 Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
                 Rpt1.SetParameters(new ReportParameter("refNo1", refNo));
+                Rpt1.SetParameters(new ReportParameter("reference", "Casa Bianca/GAW/NJS Artisan/APL/Cell-0089"));
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("lang", lang));
                 Rpt1.SetParameters(new ReportParameter("paddress", paddress));

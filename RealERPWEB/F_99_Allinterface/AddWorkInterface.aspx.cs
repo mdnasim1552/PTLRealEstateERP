@@ -828,5 +828,12 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
         }
+
+       
+
+        protected void lnkcsddelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
