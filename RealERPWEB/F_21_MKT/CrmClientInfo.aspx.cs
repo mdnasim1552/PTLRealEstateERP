@@ -5677,7 +5677,7 @@ namespace RealERPWEB.F_21_MKT
             string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
             string pcomcod = "";
             DropDownList ddlcomp, ddlgval, ddlUnit, ddlVisitor, ddlgval1, ddlgval2, ddlgval3;
-            ListBox ddlPartic, lstProject;
+            ListBox ddlPartic, ddlProject;
             DataRow dr1;
             int j;
             int k = 0;
@@ -5701,8 +5701,9 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                       // ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-                        ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                       
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
@@ -5773,8 +5774,8 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                       // ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-                        ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
@@ -5850,28 +5851,28 @@ namespace RealERPWEB.F_21_MKT
 
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-                        lstProject = ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject"));
-                        lstProject.DataTextField = "pactdesc";
-                        lstProject.DataValueField = "pactcode";
-                        lstProject.DataSource = dv.ToTable();// ds1.Tables[0];
-                        lstProject.DataBind();
-                        lstProject.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-                        count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());                     
+                        ddlgval = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject"));
+                        ddlgval.DataTextField = "pactdesc";
+                        ddlgval.DataValueField = "pactcode";
+                        ddlgval.DataSource = dv.ToTable();// ds1.Tables[0];
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());                     
 
                      
-                        for (j = 0; j < count / 12; j++)
-                        {
-                            data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
-                            foreach (ListItem item in lstProject.Items)
-                            {
-                                if (item.Value == data)
-                                {
-                                    item.Selected = true;
-                                }
+                        //for (j = 0; j < count / 12; j++)
+                        //{
+                        //    data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
+                        //    foreach (ListItem item in lstProject.Items)
+                        //    {
+                        //        if (item.Value == data)
+                        //        {
+                        //            item.Selected = true;
+                        //        }
 
-                            }
-                            k = k + 12;
-                        }
+                        //    }
+                        //    k = k + 12;
+                        //}
 
 
 
@@ -5898,7 +5899,7 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-                        string pactcode = ((ListBox)this.gvInfo.Rows[i - 1].FindControl("lstProject")).Text.Trim();
+                        string pactcode = ((DropDownList)this.gvInfo.Rows[i - 1].FindControl("ddlProject")).Text.Trim();
 
                         DataTable dt1 = ds1.Tables[1].Copy();
                         DataView dv2;
@@ -6195,8 +6196,8 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                       // ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-                        ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
@@ -6299,8 +6300,8 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                        //((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-                        ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
@@ -6332,8 +6333,8 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                        //((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-                        ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
@@ -6641,26 +6642,26 @@ namespace RealERPWEB.F_21_MKT
 
 
                         //Gvalue == "";
-                        foreach (ListItem item in ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Items)
-                        {
-                            //if (item.Selected)
-                            //{
+                        //foreach (ListItem item in ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Items)
+                        //{
+                        //    //if (item.Selected)
+                        //    //{
 
-                            if (item.Selected)
-                            {
-                                Gvalue += item.Value;
-                                remarks = remarks + item.Text + ", ";
+                        //    if (item.Selected)
+                        //    {
+                        //        Gvalue += item.Value;
+                        //        remarks = remarks + item.Text + ", ";
 
-                            }
-                            // }
-                        }
+                        //    }
+                        //    // }
+                        //}
 
-                        remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
+                        //remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
 
 
 
-                        //Gvalue = (((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
-                        //            : ((ListBox)this.gvInfo.Rows[i].FindControl("lstProject")).SelectedValue.ToString();
+                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
+                                    : ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).SelectedValue.ToString();
                     }
 
                     else if (Gcode == "810100101019")
@@ -7155,7 +7156,7 @@ namespace RealERPWEB.F_21_MKT
                             ((CheckBoxList)gvr1.FindControl("ChkBoxLstFollow")).SelectedValue = null;
                             ((CheckBoxList)gvr1.FindControl("ChkBoxLstStatus")).SelectedValue = null;
                             ((TextBox)gvr1.FindControl("txtgvValdis")).Text = "";
-                           // ((DropDownList)gvr1.FindControl("ddlProject")).SelectedValue = null;
+                           ((DropDownList)gvr1.FindControl("ddlProject")).SelectedValue = null;
                             ((DropDownList)gvr1.FindControl("ddlUnit")).SelectedValue = null;
                             ((DropDownList)gvr1.FindControl("ddlVisit")).SelectedValue = null;
                             break;
