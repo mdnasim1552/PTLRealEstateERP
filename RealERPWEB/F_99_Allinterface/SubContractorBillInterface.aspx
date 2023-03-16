@@ -1152,6 +1152,17 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bundle No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="txtbundno" runat="server" BackColor="Transparent"
@@ -1480,7 +1491,17 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Nature Of Work">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
                                                             <ItemTemplate>
@@ -1620,6 +1641,17 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Amount">
@@ -2242,7 +2274,17 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
 
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
@@ -2398,6 +2440,17 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "csirdesc")) %>'
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bundle No" Visible="false">
@@ -3185,6 +3238,18 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3350,6 +3415,17 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3505,6 +3581,17 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                              <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Work Order">
