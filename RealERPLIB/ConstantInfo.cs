@@ -1172,6 +1172,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103128", "F_21_MKT", "RptLeadStatus?", "Type=Report", "Lead Status (Timestamp)", "CRM", "False", "False", "False", "False" });
 
 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
+
+
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2102126", "F_39_MyPage", "RptMIS02?", "Type=EvaonProBasis", "Evaluation on Project", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -2007,6 +2010,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3802000", "3802002", "F_38_AI", "MyTasks.aspx?", "Type=IND&EmpID=", "My Tasks", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3802000", "3802005", "F_38_AI", "MyTasks.aspx?", "Type=Edit&EmpID=", "My Tasks Edit", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3802000", "3802003", "F_38_AI", "MyTasks.aspx?", "Type=MGT&EmpID=", "Employee Wise Task (MGT)", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3802000", "3802006", "F_38_AI", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "AI Invoice Aproved", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3802000", "3802004", "F_38_AI", "RptOngoingProjects.aspx?", "Type=Report", "Month Wise Ongoing Projects", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "AI -Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
 
@@ -7486,6 +7490,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "25. Send Letter(Online)", "F_21_Mkt/RptMktAppointment?Type=SendOnlineLetter&UType=Mgt", "", true, "" });
 
 
+            mnuTbl1.Rows.Add(new Object[] { "040200006", "Missing Followup Status", "F_21_MKT/RptMissFollowup", "", true, "" });
+
+
             mnuTbl1.Rows.Add(new Object[] { "0427000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0428000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0429000000", "", "", "", true, "" });
@@ -10768,6 +10775,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Employee Wise Task (MGT)", "F_38_AI/MyTasks.aspx?Type=MGT&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task", "F_38_AI/MyTasks.aspx?Type=IND&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task Edit", "F_38_AI/MyTasks.aspx?Type=Edit&EmpID=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. AI Invoice Aproved", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "Project Information", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "", "", "", true, "" });

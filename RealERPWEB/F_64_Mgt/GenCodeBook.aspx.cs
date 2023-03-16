@@ -35,7 +35,7 @@ namespace RealERPWEB.F_64_Mgt
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Resource Code";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Discussion Field Code";
 
 
                 this.Load_CodeBooList();
@@ -319,7 +319,10 @@ namespace RealERPWEB.F_64_Mgt
                     this.ShowInformation();
                     if (result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                        // ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+
+                        string msg = "Update Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     }
                     else
                     {
@@ -413,6 +416,7 @@ namespace RealERPWEB.F_64_Mgt
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
                     //this.lbalterofddl.Text = this.ddlOthersBook.SelectedItem.ToString().Trim();
+                    this.lbalterofddl0.CssClass = "mt-2";
                     this.lbalterofddl0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
                     //string tempddl1 = (this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2);
                     //string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
@@ -465,7 +469,7 @@ namespace RealERPWEB.F_64_Mgt
                 return;
             }
 
-            Session["storedata"] = ds1.Tables[1];
+            Session["storedata"] = ds1.Tables[0];
             this.grvacc_DataBind();
 
         }
@@ -489,10 +493,11 @@ namespace RealERPWEB.F_64_Mgt
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
+                LinkButton lbtnAdd = (LinkButton)e.Row.FindControl("lbtnAdd");
 
                 string Code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
                 string mgcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
+                int additem = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "additem"));
 
                 if (Code == "")
                     return;
@@ -502,8 +507,10 @@ namespace RealERPWEB.F_64_Mgt
                     e.Row.Attributes["style"] = "background:#b9b9b9;";
                 }
 
-
-
+                if (additem == 1)
+                {
+                    lbtnAdd.Visible = true;
+                }
 
             }
         }
@@ -547,6 +554,92 @@ namespace RealERPWEB.F_64_Mgt
         {
             //this.GetEmpllist();
 
+        }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["storedata"];
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+
+                int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+                
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                
+                string comcod = hst["comcod"].ToString();
+
+                string sircode = dt.Rows[index]["sircode"].ToString();
+
+                this.lblsircode.Text = sircode;
+
+                this.txtCode.Text = sircode.Substring(0, 2) + "-" + sircode.Substring(2, 2) + "-" + sircode.Substring(4, 3) + "-" + sircode.Substring(7, 2) + "-" + ASTUtility.Right(sircode, 3);
+
+                this.Chboxchild.Checked = (ASTUtility.Right(sircode, 8) == "00000000" && ASTUtility.Right(sircode, 10) != "0000000000") || (ASTUtility.Right(sircode, 5) == "00000" && ASTUtility.Right(sircode, 8) != "00000000") || (ASTUtility.Right(sircode, 3) == "000");
+
+                this.chkbod.Visible = (ASTUtility.Right(sircode, 8) == "00000000" && ASTUtility.Right(sircode, 10) != "0000000000") || (ASTUtility.Right(sircode, 5) == "00000" && ASTUtility.Right(sircode, 8) != "00000000") || (ASTUtility.Right(sircode, 3) == "000");
+
+                this.lblchild.Visible = (ASTUtility.Right(sircode, 8) == "00000000" && ASTUtility.Right(sircode, 10) != "0000000000") || (ASTUtility.Right(sircode, 5) == "00000" && ASTUtility.Right(sircode, 8) != "00000000") || (ASTUtility.Right(sircode, 3) == "000");
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+
+                string comcod = hst["comcod"].ToString();
+
+                string txtCode = this.txtCode.Text.Trim();
+
+                string txtDescCode = this.txtDescCode.Text.Trim();
+
+                string txtShrtDesc = this.txtShrtDesc.Text.Trim();
+
+                string textDataTyp = this.textDataTyp.Text.Trim();
+
+                string isircode = this.lblsircode.Text.Trim();
+
+                string tsircode = this.txtCode.Text.Trim().Replace("-", ""); 
+
+                string sircode = (this.Chboxchild.Checked) ? ((ASTUtility.Right(isircode, 8) == "00000000") ? (ASTUtility.Left(isircode, 4) + "001" + ASTUtility.Right(isircode, 5))
+                    : ((ASTUtility.Right(isircode, 5) == "00000" && ASTUtility.Right(isircode, 8) != "00000000") ? (ASTUtility.Left(isircode, 7) + "01" + ASTUtility.Right(isircode, 3)) : ASTUtility.Left(isircode, 9) + "001"))
+                    : ((isircode != tsircode) ? tsircode : isircode);
+
+                bool addDone = this.da.UpdateTransInfo(comcod, "dbo_kpi.SP_ENTRY_KPI_CODEBOOK", "INSERTTOTEAMINF", sircode, txtDescCode, textDataTyp, txtShrtDesc);
+
+                if (addDone)
+                {
+                    string msg = "Code Book Update Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    this.clearDataField();
+                    this.ShowInformation();
+                    this.Chboxchild.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void clearDataField()
+        {
+            this.txtCode.Text="";
+
+            this.txtDescCode.Text = "";
+
+            this.txtShrtDesc.Text = "";
+
+            this.textDataTyp.Text = "";
+
+            this.lblsircode.Text = "";
         }
     }
 }

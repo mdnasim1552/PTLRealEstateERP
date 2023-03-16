@@ -1479,7 +1479,11 @@ namespace RealERPWEB.F_04_Bgd
                 tbl1 = tbl1.DefaultView.ToTable();
             }
 
+<<<<<<< HEAD
             
+=======
+            this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
+>>>>>>> 66388a282e49903341d72f7e2fa9b751c6dcda98
 
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
@@ -2968,6 +2972,11 @@ namespace RealERPWEB.F_04_Bgd
                 string eventdesc2 = Itemcode;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
+        }
+
+        protected void ddlPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ShowResourceList();
         }
     }
 

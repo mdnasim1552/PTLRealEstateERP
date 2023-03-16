@@ -3678,11 +3678,25 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetCompCode();
 
+
             if (comcod == "3354")
             {
                 for (int i = 0; i < this.gvBillInfo.Rows.Count; i++)
                 {
-                    ((TextBox)this.gvBillInfo.Rows[i].FindControl("txtgvMRRAmt")).Enabled=false;
+                    string charging = ((Label)this.gvBillInfo.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+
+                    string ischeck = charging.Substring(0, 4);
+                    if (ischeck == "0199")
+                    {
+                        ((TextBox)this.gvBillInfo.Rows[i].FindControl("txtgvMRRAmt")).Enabled = true;
+
+                    }
+                    else
+                    {
+                        ((TextBox)this.gvBillInfo.Rows[i].FindControl("txtgvMRRAmt")).Enabled = false;
+
+                    }
+
 
                 }
 

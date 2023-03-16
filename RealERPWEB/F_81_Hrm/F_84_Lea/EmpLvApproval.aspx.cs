@@ -745,7 +745,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         this.Chboxforward.Checked = true;
                     }
-                    else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                    else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
                     {
                         this.Chboxforward.Checked = true;
                     }
@@ -1412,6 +1412,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Approvtrmid = hst["compname"].ToString();
                 string ApprovSession = hst["session"].ToString();
                 string roletype = this.Request.QueryString["RoleType"].ToString();
+
                 this.SaveLeave();
 
                 if (comcod == "3354" && roletype =="SUP")
@@ -1421,7 +1422,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.Chboxforward.Checked = false;
                 }
-                else if (comcod == "3374" && (roletype == "DPT" || roletype == "MGT"))
+                else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
                 {
                     this.Chboxforward.Checked = true;
                 }
@@ -1589,7 +1590,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                       "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>" + htmtableboyd;
-                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approval</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
                     string msgbody = maildescription;
