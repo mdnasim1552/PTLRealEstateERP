@@ -321,6 +321,7 @@
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
+    <EmbeddedResource Include="R_04_Bgd\RptProjectBgdCostDet.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillEpic.rdlc" />
