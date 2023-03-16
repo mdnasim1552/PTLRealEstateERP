@@ -1479,13 +1479,18 @@ namespace RealERPWEB.F_04_Bgd
                 tbl1 = tbl1.DefaultView.ToTable();
             }
 
+<<<<<<< HEAD
+            
+=======
             this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
+>>>>>>> 66388a282e49903341d72f7e2fa9b751c6dcda98
 
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
             // this.gvAnalysis.Attributes["style"] = "readonly:true;";
 
-
+            if (tbl1.Rows.Count > 0)
+                return;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chkProjectLock")).Checked = (this.lblProjectLock.Text == "True") ? true : false;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked = Convert.ToBoolean(tbl1.Rows[0]["lock"].ToString());
 

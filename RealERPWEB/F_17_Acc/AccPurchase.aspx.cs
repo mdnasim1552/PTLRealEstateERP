@@ -113,7 +113,10 @@ namespace RealERPWEB.F_17_Acc
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -291,7 +294,7 @@ namespace RealERPWEB.F_17_Acc
             this.txtCurrntlast6.Text = "";
             Session.Remove("tblt01");
 
-            this.lnkFinalUpdate.Enabled = true;
+            //this.lnkFinalUpdate.Enabled = true;
             this.dgv2.DataSource = null;
             this.dgv2.DataBind();
         }
@@ -573,7 +576,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully.";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                 //this.lblmsg.Text=@"<SCRIPT language= "JavaScript"  > window.open('RptViewer.aspx');</script>";
-                this.lnkFinalUpdate.Enabled = false;
+                //this.lnkFinalUpdate.Enabled = false;
                 this.txtcurrentvou.Enabled = false;
                 this.txtCurrntlast6.Enabled = false;
 
