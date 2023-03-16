@@ -603,6 +603,7 @@ namespace RealERPWEB.F_12_Inv
             //////////
             DataTable dt = (DataTable)ViewState["tblmatissue"];
 
+
             DataTable dt2 = ((DataTable)Session["specification"]).Copy();
 
 
@@ -617,6 +618,8 @@ namespace RealERPWEB.F_12_Inv
 
                 string rsircode = this.ddlMaterials.Items[i].Value.ToString();
                 string msmcfcod = this.ddlMaterials.Items[i].Value.ToString().Substring(0, 9);
+                //string msmcfcod = this.ddlMaterials.Items[i].Value.ToString().Substring(0, 9);
+
                 // string msmcfcod = this.ddlMaterials.Items[i].Value.ToString().Substring(0, 12);
 
 
@@ -624,8 +627,20 @@ namespace RealERPWEB.F_12_Inv
                 // dv.RowFilter = ("mspcfcod='" + msmcfcod + "'");
 
 
-                dv.RowFilter = ("mspcfcod='" + msmcfcod + "' or mspcfcod='000000000'");
-                DataTable dt3 = dv.ToTable();
+
+                //bigin
+
+                //DataTable tbl1 = (DataTable)Session["specification"];
+                DataView dv5 = dt2.DefaultView;
+                dv5.RowFilter = "rsircode = '" + rsircode + "'";
+                DataTable dt3 = dv5.ToTable();
+
+
+                //end
+
+
+                //dv.RowFilter = ("mspcfcod='" + msmcfcod + "' or mspcfcod='000000000'");
+                //DataTable dt3 = dv.ToTable();
 
 
                 for (int j = 0; j < dt3.Rows.Count; j++)

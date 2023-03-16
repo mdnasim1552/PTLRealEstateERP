@@ -1479,12 +1479,7 @@ namespace RealERPWEB.F_04_Bgd
                 tbl1 = tbl1.DefaultView.ToTable();
             }
 
-<<<<<<< HEAD
-            
-=======
             this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
->>>>>>> 66388a282e49903341d72f7e2fa9b751c6dcda98
-
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
             // this.gvAnalysis.Attributes["style"] = "readonly:true;";
