@@ -78,13 +78,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.TextBox txtdate;
 
         /// <summary>
-        /// CalendarExtender1 control.
+        /// txtdate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender txtdate_CalendarExtender;
 
         /// <summary>
         /// lbtnOk control.
@@ -105,22 +105,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.CheckBox chkBill;
 
         /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
         /// pnlBill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlBill;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlBill;
 
         /// <summary>
         /// lblsuplist control.
@@ -192,7 +183,7 @@ namespace RealERPWEB.F_17_Acc
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xMilk.DropCheck DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
 
         /// <summary>
         /// lbtnSelectBill control.
@@ -219,7 +210,7 @@ namespace RealERPWEB.F_17_Acc
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlNarration;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PnlNarration;
 
         /// <summary>
         /// lblRefNum control.
@@ -276,24 +267,6 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.TextBox txtAdvanced;
 
         /// <summary>
-        /// chkpost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkpost;
-
-        /// <summary>
-        /// lbtnBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lbtnBalance;
-
-        /// <summary>
         /// lblpayto control.
         /// </summary>
         /// <remarks>
@@ -312,6 +285,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.TextBox txtPayto;
 
         /// <summary>
+        /// chkpost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkpost;
+
+        /// <summary>
+        /// lbtnBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lbtnBalance;
+
+        /// <summary>
         /// lblNaration control.
         /// </summary>
         /// <remarks>
@@ -328,14 +319,5 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNarration;
-
-        /// <summary>
-        /// lnkFinalUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFinalUpdate;
     }
 }

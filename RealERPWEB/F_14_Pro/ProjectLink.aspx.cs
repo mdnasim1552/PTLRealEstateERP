@@ -49,10 +49,21 @@ namespace RealERPWEB.F_14_Pro
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string invtype = hst["invtype"].ToString();
             string FindProject = "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "GETPRJLIST", FindProject, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
+            //if (invtype == "15")
+            //{
+            //    foreach (DataRow dr in ds1.Tables[0].Rows)
+            //    {
+            //        if (ASTUtility.Left(dr["actcode"].ToString(), 2) == "16")
+            //            dr.Delete();
+            //    }
+            //}
+
 
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
