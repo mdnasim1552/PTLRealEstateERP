@@ -759,6 +759,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptReceivedList": Rpt1a = SetRptReceivedList(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCalTValAvgVal": Rpt1a = SetRptCalTValAvgVal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalRegisClearence": Rpt1a = SetRptSalRegisClearence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalRegisClearenceANGAN": Rpt1a = SetRptSalRegisClearenceANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalRegisClearence02": Rpt1a = SetRptSalRegisClearence02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptUnsoldUnit": Rpt1a = SetRptUnsoldUnit(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEnvelopNew": Rpt1a = SetRptEnvelopPrintNew(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3446,6 +3447,12 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptSalRegisClearence(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.EClassSaleRegisClearance>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptSalRegisClearenceANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.EClassSaleRegisClearance>)RptDataSet));
             return Rpt1a;
