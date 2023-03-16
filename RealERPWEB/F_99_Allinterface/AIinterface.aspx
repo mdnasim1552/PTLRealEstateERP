@@ -2351,6 +2351,15 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Invoice Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvinvoicedate" runat="server" Width="120px"
+                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "invoicedate")).ToString("dd-MMM-yyyy") %>'>
+                                                </asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Customer Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvIncustomer" runat="server" Width="250px"

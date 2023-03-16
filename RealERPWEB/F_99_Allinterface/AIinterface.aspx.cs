@@ -96,7 +96,8 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetSearchProject()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSERCHPRJNAME", "", "", "", "", "", "");
+            string prj = "16%";
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSERCHPRJNAME", prj, "", "", "", "", "");
             if (ds == null)
                 return;
             this.ddlprjsearch.DataTextField = "infdesc";
@@ -2698,8 +2699,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnapproved");
                 string invono = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invno")).ToString().Trim();
-                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Pactcode=" + pactcode;
+                string invoicedate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invoicedate")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Date=" + invoicedate;
 
             }
 
