@@ -1412,6 +1412,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Approvtrmid = hst["compname"].ToString();
                 string ApprovSession = hst["session"].ToString();
                 string roletype = this.Request.QueryString["RoleType"].ToString();
+
                 this.SaveLeave();
 
                 if (comcod == "3354" && roletype =="SUP")

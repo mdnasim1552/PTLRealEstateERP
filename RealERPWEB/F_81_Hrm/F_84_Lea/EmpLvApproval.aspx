@@ -364,12 +364,15 @@
 
 
 
-                                                <asp:TemplateField HeaderText="End Date">
+                                       <asp:TemplateField HeaderText="End Date">
 
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
+
+                                                        <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"  
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "enddat")).ToString("dd-MMM-yyyy") %>'
                                                             Width="80px"></asp:Label>
+                                           
+
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                     </FooterTemplate>
