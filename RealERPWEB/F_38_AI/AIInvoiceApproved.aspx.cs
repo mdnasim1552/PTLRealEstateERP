@@ -12,6 +12,7 @@ namespace RealERPWEB.F_38_AI
 {
     public partial class AIInvoiceApproved : System.Web.UI.Page
     {
+        ProcessAccess AIData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,8 +23,33 @@ namespace RealERPWEB.F_38_AI
                
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Aproved";
 
+                this.txtfrmdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                this.tblinvo.Text = Request.QueryString["Invono"];
+               
 
+            }
+        }
 
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+
+        
+
+        protected void lnkbtnok_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                this.pnlupdate.Visible = true;
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
