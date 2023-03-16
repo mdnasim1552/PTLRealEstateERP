@@ -55,6 +55,8 @@ namespace RealERPRDLC
                 case "R_04_Bgd.RptPrjInfo": Rpt1a = SetRptPrjInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_04_Bgd.RptPrjInfoEnt": Rpt1a = SetRptPrjInfoEnt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_04_Bgd.RptProjectBgdGrDet": Rpt1a = SetRptProjectBgdGrDet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_04_Bgd.RptProjectBgdCostDet": Rpt1a = SetRptProjectBgdCostDet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_04_Bgd.RptMaterialsReq": Rpt1a = SetRptMaterialsReq(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_04_Bgd.RptMaterialsReqDetails": Rpt1a = SetRptMaterialsReqDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_04_Bgd.RptProjectBgd": Rpt1a = SetRptProjectBgd(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4595,6 +4597,12 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptProjectBgdGrDet(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.BugCostDetails>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptProjectBgdCostDet(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.BugCostDetails>)RptDataSet));
             return Rpt1a;
