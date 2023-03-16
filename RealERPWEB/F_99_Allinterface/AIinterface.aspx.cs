@@ -2699,7 +2699,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnapproved");
                 string invono = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invno")).ToString().Trim();
-                string invoicedate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invoicedate")).ToString().Trim();
+                string invoicedate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "invoicedate")).ToString("dd-MMM-yyyy");
                 hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Date=" + invoicedate;
 
             }
