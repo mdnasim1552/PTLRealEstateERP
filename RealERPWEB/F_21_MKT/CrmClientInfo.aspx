@@ -744,19 +744,81 @@
 
                 }
 
+                //$('#ChkBoxLstStatus input[type=checkbox]').click(function () {
+
+                //    $('#ChkBoxLstStatus >input').each(function (index, item) {
+
+                //        if ($(item).is(':checked')) {
+                //            // alert($(item).val());
+                //            ;
+
+                //        }
+                //        else {
+
+                //            alert($(item).val());
+
+                //        }
+
+                //        //  if ($('input.checkbox_check').is(':checked'))
+
+
+                //        // $(item).attr('checked', true);
+                //        // $(item).attr('disabled', '');
 
 
 
 
 
-            }
+                //    });
+
+
+
+
+                    //    //$('#ChkBoxLstStatus input[type=checkbox]:not(:checked)').each(function () {
+                    //    //   alert($(this).val());
+                    //    //});
+
+                    // });
+
+
+
+                    //$('#ChkBoxLstStatus').change(function () {
+
+
+                    //    alert($(this).val());
+
+                    //    //if ($(this).is(':checked')) {
+                    //    //    alert($(this).val());
+
+                    //    //}
+                    //    //else
+                    //    //{
+
+                    //    //   // alert($(item).val());
+
+
+                    //    //}
+
+
+
+
+
+                    //});
+
+
+
+
+
+
+
+                }
 
             catch (e) {
 
-                //  alert(e.message);
-            }
+                    //  alert(e.message);
+                }
 
-        }
+            }
 
 
 
@@ -764,9 +826,9 @@
 
         function VisibilitycomNotification() {
 
-            try {
+                try {
 
-                var comcod =<%=this.GetComeCode()%>;
+                    var comcod =<%=this.GetComeCode()%>;
 
                 switch (comcod) {
                     case 3354://Edison Real Estate                 
@@ -777,164 +839,164 @@
                         $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
 
 
-                        break;
+                            break;
 
-                    default:
+                        default:
 
-                        break;
+                            break;
+                    }
+
+
+
                 }
 
-
+                catch (e) {
+                    alert(e.message);
+                }
 
             }
 
-            catch (e) {
-                alert(e.message);
+
+
+
+            $(document).on('click', '.panel-heading span.clickable', function (e) {
+
+
+
+                var $this = $(this);
+                if (!$this.hasClass('panel-collapsed')) {
+                    $this.parents('.panel').find('.panel-body').slideUp();
+                    $this.addClass('panel-collapsed');
+                    $this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
+                } else {
+                    $this.parents('.panel').find('.panel-body').slideDown();
+                    $this.removeClass('panel-collapsed');
+                    $this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
+                }
+            });
+
+
+
+
+            function alertmsg(message, faclass) {
+                //$('.popup-container').css('display', 'block');
+                document.querySelector(".popup-container").style.visibility = "visible";
+                setTimeout(function () { document.querySelector(".popup-container").style.visibility = "hidden"; }, 3000);
+                //fa-times  fa-trash  fa-check fa-exclamation-circle fa-external-link-square 
+                //console.log(document.querySelector("#icons"));            
+                document.querySelector("#icons").classList.remove("fa-check")
+                document.querySelector("#icons").classList.add(faclass);
+                document.querySelector(".msg-text").innerHTML = message;
+                if (faclass === "fa-times") {
+                    document.querySelector(".icons").style.backgroundColor = "red";
+                    document.querySelector(".popup").style.borderColor = "red";
+                }
+                if (faclass === "fa-exclamation-circle") {
+                    document.querySelector(".icons").style.backgroundColor = "red";
+                    document.querySelector(".popup").style.borderColor = "red";
+                }
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            }
+            function openModal() {
+
+                $('#contact').modal('toggle');
             }
 
-        }
+            function CloseModal() {
 
-
-
-
-        $(document).on('click', '.panel-heading span.clickable', function (e) {
-
-
-
-            var $this = $(this);
-            if (!$this.hasClass('panel-collapsed')) {
-                $this.parents('.panel').find('.panel-body').slideUp();
-                $this.addClass('panel-collapsed');
-                $this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
-            } else {
-                $this.parents('.panel').find('.panel-body').slideDown();
-                $this.removeClass('panel-collapsed');
-                $this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
+                $('#contact').modal('hide');
             }
-        });
+            function openViewModal() {
 
-
-
-
-        function alertmsg(message, faclass) {
-            //$('.popup-container').css('display', 'block');
-            document.querySelector(".popup-container").style.visibility = "visible";
-            setTimeout(function () { document.querySelector(".popup-container").style.visibility = "hidden"; }, 3000);
-            //fa-times  fa-trash  fa-check fa-exclamation-circle fa-external-link-square 
-            //console.log(document.querySelector("#icons"));            
-            document.querySelector("#icons").classList.remove("fa-check")
-            document.querySelector("#icons").classList.add(faclass);
-            document.querySelector(".msg-text").innerHTML = message;
-            if (faclass === "fa-times") {
-                document.querySelector(".icons").style.backgroundColor = "red";
-                document.querySelector(".popup").style.borderColor = "red";
+                $('#ViewModal').modal('toggle');
             }
-            if (faclass === "fa-exclamation-circle") {
-                document.querySelector(".icons").style.backgroundColor = "red";
-                document.querySelector(".popup").style.borderColor = "red";
+
+            function CloseViewModal() {
+
+                $('#ViewModal').modal('hide');
             }
-            $('html, body').animate({ scrollTop: 0 }, 'fast');
-        }
-        function openModal() {
+            function OpenGvModal() {
 
-            $('#contact').modal('toggle');
-        }
+                $('#GridHeader').modal('toggle');
+            }
 
-        function CloseModal() {
+            function CloseGvModal() {
 
-            $('#contact').modal('hide');
-        }
-        function openViewModal() {
+                $('#GridHeader').modal('hide');
+            }
+            function OpenAssureModal() {
 
-            $('#ViewModal').modal('toggle');
-        }
+                $('#modalassure').modal('toggle');
+            }
+            function CloseAssureModal() {
 
-        function CloseViewModal() {
+                $('#modalassure').modal('hide');
+            }
 
-            $('#ViewModal').modal('hide');
-        }
-        function OpenGvModal() {
-
-            $('#GridHeader').modal('toggle');
-        }
-
-        function CloseGvModal() {
-
-            $('#GridHeader').modal('hide');
-        }
-        function OpenAssureModal() {
-
-            $('#modalassure').modal('toggle');
-        }
-        function CloseAssureModal() {
-
-            $('#modalassure').modal('hide');
-        }
-
-        function openComModal() {
-            $('#modalComments').modal('toggle');
-        }
-        function closeComModal() {
-            $('#modalComments').modal('hide');
-        }
+            function openComModal() {
+                $('#modalComments').modal('toggle');
+            }
+            function closeComModal() {
+                $('#modalComments').modal('hide');
+            }
 
 
-        function openNotesModal() {
-            $('#modalNotes').modal('toggle');
-        }
+            function openNotesModal() {
+                $('#modalNotes').modal('toggle');
+            }
 
-        function closeNotesModal() {
-            $('#modalNotes').modal('hide');
-        }
+            function closeNotesModal() {
+                $('#modalNotes').modal('hide');
+            }
 
 
 
 
-        function AddButton(id) {
+            function AddButton(id) {
 
-            $(".hiddenb" + id).css("display", "inline");
+                $(".hiddenb" + id).css("display", "inline");
 
-        }
-        function HiddenButton(id) {
-            $(".hiddenb" + id).css("display", "none");
-        }
-
-
-        function openModal() {
-
-            $('#contact').modal('toggle');
-        }
-
-        function CloseModal() {
-
-            $('#contact').modal('hide');
-        }
+            }
+            function HiddenButton(id) {
+                $(".hiddenb" + id).css("display", "none");
+            }
 
 
+            function openModal() {
 
-        function openModaldis() {
+                $('#contact').modal('toggle');
+            }
 
-            $('#mdiscussion').modal('toggle');
-            //  $('#lbtntfollowup').click();
-        }
+            function CloseModal() {
+
+                $('#contact').modal('hide');
+            }
+
+
+
+            function openModaldis() {
+
+                $('#mdiscussion').modal('toggle');
+                //  $('#lbtntfollowup').click();
+            }
 
 
 
 
 
 
-        function CloseModaldis() {
+            function CloseModaldis() {
 
-            $('#mdiscussion').modal('toggle');
-        }
+                $('#mdiscussion').modal('toggle');
+            }
 
 
 
-        function DetNotification(rtype) {
+            function DetNotification(rtype) {
 
-            try {
+                try {
 
-                var empid =<%=this.GetEmpID()%>;
+                    var empid =<%=this.GetEmpID()%>;
                 var comcod =<%=this.GetComeCode()%>;
 
 
@@ -962,339 +1024,318 @@
                     }
                 });
 
-            }
+                }
 
-            catch (e) {
-                alert(e.message);
+                catch (e) {
+                    alert(e.message);
 
-            }
-
-        }
-        function CreateTable(data) {
-
-            try {
-                // console.log(data);
-                var adata = JSON.parse(data);
-                // console.log(adata);
-                var row = '';
-                var i = 1;
-                $.each(adata,
-                    function (key, val) {
-
-                        row += "<tr class='grvRows'>";
-                        row += "<td class='tSl'>" + i + "</td>";
-                        row += "<td class='tStatus'>" + val.pid + "</td>";
-                        row += "<td class='tdate'>" + val.generated1 + "</td>";
-                        row += "<td class='tdatetime'>" + val.lfollowup + "</td>";
-                        row += "<td class='tDiscussion'>" + val.ownname + "</td>";
-                        row += "<td class='tDiscussion'>" + val.ldetails + "</td>";
-                        row += "<td class='tAssociateadeal'>" + val.assoc + "</td>";
-                        row += "<td class='tAssociateadeal'>" + val.dealname + "</td>";
-                        row += "<td class='tStatus'>" + val.lstatus + "</td>";
-                        row += "<td class='tStatus'>" + val.prio + "</td>";
-                        row += "</tr>";
-                        //row += "<tr class='grvRows'>";
-                        //row += "<td class='tSl'>" +  i + "</td>";
-                        //row += "<td class='tPid'>" + val.sircode1+ "</td>";                           
-                        //row += "<td class='tdate'>" + val.generated1 + "</td>";
-                        //row += "<td class='tCdetails'>" + val.sirdesc + "</td>";
-                        //row += "<td class='tAssociate'>" + val.assoc + "</td>";
-                        //row += "<td class='tTeamHead'>" + val.teamdesc + "</td>";        
-                        //row += "<td class='tStatus'>" + val.lstatus + "</td>"; 
-                        //row += "<td class='tType'>" + val.LeadType + "</td>"; 
-                        //row += "<td class='tActive'>" + val.active + "</td>"; 
-                        //row += "<td class='tMobile'>" + val.phone + "</td>"; 
-                        //row += "<td class='tEmail'>" + val.email + "</td>"; 
-                        //row += "<td class='tOccupation'>" + val.profession + "</td>"; 
-                        //row += "<td class='tResidence' >" + val.caddress + "</td>"; 
-                        //row += "<td class='tIntProject'>" + val.pactdesc + "</td>"; 
-                        //row += "<td class='tSource'>" + val.LeadSrc + "</td>"; 
-                        //row += "<td class='tFeedBack'>" + val.ldiscuss + "</td>"; 
-                        //row += "<td class='tComments'>" + val.note + "</td>"; 
-                        row += "</tr>";
-                        $("#tblinformation tbody").html(row);
-                        i++;
-
-                    });
-                loadModal();
-            }
-
-            catch (e) {
-
-                alert(e.message);
+                }
 
             }
+            function CreateTable(data) {
 
-        }
+                try {
+                    // console.log(data);
+                    var adata = JSON.parse(data);
+                    // console.log(adata);
+                    var row = '';
+                    var i = 1;
+                    $.each(adata,
+                        function (key, val) {
+
+                            row += "<tr class='grvRows'>";
+                            row += "<td class='tSl'>" + i + "</td>";
+                            row += "<td class='tStatus'>" + val.pid + "</td>";
+                            row += "<td class='tdate'>" + val.generated1 + "</td>";
+                            row += "<td class='tdatetime'>" + val.lfollowup + "</td>";
+                            row += "<td class='tDiscussion'>" + val.ownname + "</td>";
+                            row += "<td class='tDiscussion'>" + val.ldetails + "</td>";
+                            row += "<td class='tAssociateadeal'>" + val.assoc + "</td>";
+                            row += "<td class='tAssociateadeal'>" + val.dealname + "</td>";
+                            row += "<td class='tStatus'>" + val.lstatus + "</td>";
+                            row += "<td class='tStatus'>" + val.prio + "</td>";
+                            row += "</tr>";
+                            //row += "<tr class='grvRows'>";
+                            //row += "<td class='tSl'>" +  i + "</td>";
+                            //row += "<td class='tPid'>" + val.sircode1+ "</td>";                           
+                            //row += "<td class='tdate'>" + val.generated1 + "</td>";
+                            //row += "<td class='tCdetails'>" + val.sirdesc + "</td>";
+                            //row += "<td class='tAssociate'>" + val.assoc + "</td>";
+                            //row += "<td class='tTeamHead'>" + val.teamdesc + "</td>";        
+                            //row += "<td class='tStatus'>" + val.lstatus + "</td>"; 
+                            //row += "<td class='tType'>" + val.LeadType + "</td>"; 
+                            //row += "<td class='tActive'>" + val.active + "</td>"; 
+                            //row += "<td class='tMobile'>" + val.phone + "</td>"; 
+                            //row += "<td class='tEmail'>" + val.email + "</td>"; 
+                            //row += "<td class='tOccupation'>" + val.profession + "</td>"; 
+                            //row += "<td class='tResidence' >" + val.caddress + "</td>"; 
+                            //row += "<td class='tIntProject'>" + val.pactdesc + "</td>"; 
+                            //row += "<td class='tSource'>" + val.LeadSrc + "</td>"; 
+                            //row += "<td class='tFeedBack'>" + val.ldiscuss + "</td>"; 
+                            //row += "<td class='tComments'>" + val.note + "</td>"; 
+                            row += "</tr>";
+                            $("#tblinformation tbody").html(row);
+                            i++;
+
+                        });
+                    loadModal();
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+            }
 
 
-        function loadModal() {
+            function loadModal() {
 
-            $('#detnotification').modal('toggle', {
-                backdrop: 'static',
-                keyboard: false
-            });
-        }
+                $('#detnotification').modal('toggle', {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
 
-        function CloseModal() {
-            $('#detnotification').modal('hide');
-
-
-        }
+            function CloseModal() {
+                $('#detnotification').modal('hide');
 
 
+            }
 
 
 
-        function funPost(date, number) {
-            try {
-                var comdate = $('#txtcomdate' + number).val();
-                var comcod =<%=this.GetComeCode()%>;
+
+
+            function funPost(date, number) {
+                try {
+                    var comdate = $('#txtcomdate' + number).val();
+                    var comcod =<%=this.GetComeCode()%>;
                 var comments = $('#lblcomments' + number).val();
 
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
 
 
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/UpdatePost",
-                    data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '" , post: "' + comments + '", comdate: "' + comdate + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/UpdatePost",
+                        data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '" , post: "' + comments + '", comdate: "' + comdate + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
 
 
-                    success: function (response) {
-                        //console.log(JSON.parse(response.d));
-                        var data = JSON.parse(response.d);
-                        alert(data.Message);
+                        success: function (response) {
+                            //console.log(JSON.parse(response.d));
+                            var data = JSON.parse(response.d);
+                            alert(data.Message);
 
-                        //console.log(data['account']);
+                            //console.log(data['account']);
 
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
+                        },
 
 
+                        failure: function (response) {
 
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
+                            alert("failure");
+                        }
+                    });
 
 
 
-
-        }
-
-
-
-
-        function funCancel(date) {
-            try {
-                if (!confirm("Are you sure you want to delete this  Item?")) {
-                    return;
                 }
 
-                var comcod =<%=this.GetComeCode()%>;
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+
+
+
+            }
+
+
+
+
+            function funCancel(date) {
+                try {
+                    if (!confirm("Are you sure you want to delete this  Item?")) {
+                        return;
+                    }
+
+                    var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
 
 
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/FollowupCancel",
-                    data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/FollowupCancel",
+                        data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
 
 
-                    success: function (response) {
-                        //console.log(JSON.parse(response.d));
-                        var data = JSON.parse(response.d);
-                        //  console.log(data);
+                        success: function (response) {
+                            //console.log(JSON.parse(response.d));
+                            var data = JSON.parse(response.d);
+                            //  console.log(data);
 
-                        //console.log(data['account']);
+                            //console.log(data['account']);
 
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
+                        },
 
 
+                        failure: function (response) {
 
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
+                            alert("failure");
+                        }
+                    });
 
 
 
-
-        }
-
-
-
-
-
-
-
-
-
-        //function  funReschedule(date, number)
-        //{
-
-        //    try
-        //    {
-
-        //        var date=$(this).parent().find('#lblsubjects').val();
-        //        alert(date);
-        //        console.log(date);
-
-        //        return;
-
-        //    }
-
-        //    catch(e)
-        //    {
-
-        //        alert(e.message)
-
-        //    }
-
-        //}
-
-
-
-        function Search_Gridview(strKey) {
-
-            var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById("<%=gvSummary.ClientID %>");
-            var rowData;
-            for (var i = 1; i < tblData.rows.length; i++) {
-
-                rowData = tblData.rows[i].innerHTML;
-                var styleDisplay = 'none';
-                for (var j = 0; j < strData.length; j++) {
-                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                        styleDisplay = '';
-                    else {
-                        styleDisplay = 'none';
-                        break;
-                    }
                 }
-                tblData.rows[i].style.display = styleDisplay;
 
-            }
-        }
+                catch (e) {
+
+                    alert(e.message);
+
+                }
 
 
 
-
-        function funDupMobile(comcod, sircode, mobile) {
-
-            try {
-                $.ajax({
-
-                    url: "CrmClientInfo.aspx/CheckMobile",
-                    type: "POST",
-                    data: '{comcod:"' + comcod + '", sircode:"' + sircode + '", mobile:"' + mobile + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    //  async: false,
-                    success: function (data) {
-                        var jdata = JSON.parse(data.d);
-
-                        var mesult = jdata.result;
-                        if (!mesult) {
-                            alert(jdata.Message);
-
-                        }
-                    }
-                });
 
             }
 
 
-            catch (e) {
-                alert(e.message);
-
-            }
-
-        }
 
 
 
-        function funschedulenumber(comcod, followupdate, lastfollowup, number) {
 
-            try {
 
-                var empid =<%=this.GetEmpID()%>;
-                var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
 
-                $.ajax({
 
-                    url: "CrmClientInfo.aspx/GetSchedulenumber",
-                    type: "POST",
-                    data: '{comcod:"' + comcod + '", followupdate:"' + followupdate + '", lastfollowup:"' + lastfollowup + '", empid:"' + empid + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    //  async: false,
-                    success: function (data) {
-                        var jdata = JSON.parse(data.d);
 
-                        var mesult = jdata.result;
-                        if (!mesult) {
-                            alert(jdata.Message);
 
-                        }
+
+
+            function Search_Gridview(strKey) {
+
+                var strData = strKey.value.toLowerCase().split(" ");
+                var tblData = document.getElementById("<%=gvSummary.ClientID %>");
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
                         else {
-
-                            $(lblschedulenumber).text(jdata.Message);
+                            styleDisplay = 'none';
+                            break;
                         }
                     }
-                });
+                    tblData.rows[i].style.display = styleDisplay;
+
+                }
+            }
+
+
+
+
+            function funDupMobile(comcod, sircode, mobile) {
+
+                try {
+                    $.ajax({
+
+                        url: "CrmClientInfo.aspx/CheckMobile",
+                        type: "POST",
+                        data: '{comcod:"' + comcod + '", sircode:"' + sircode + '", mobile:"' + mobile + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        //  async: false,
+                        success: function (data) {
+                            var jdata = JSON.parse(data.d);
+
+                            var mesult = jdata.result;
+                            if (!mesult) {
+                                alert(jdata.Message);
+
+                            }
+                        }
+                    });
+
+                }
+
+
+                catch (e) {
+                    alert(e.message);
+
+                }
 
             }
 
 
-            catch (e) {
-                alert(e.message);
+
+            function funschedulenumber(comcod, followupdate, lastfollowup, number) {
+
+                try {
+
+                    var empid =<%=this.GetEmpID()%>;
+                    var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
+
+                    $.ajax({
+
+                        url: "CrmClientInfo.aspx/GetSchedulenumber",
+                        type: "POST",
+                        data: '{comcod:"' + comcod + '", followupdate:"' + followupdate + '", lastfollowup:"' + lastfollowup + '", empid:"' + empid + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        //  async: false,
+                        success: function (data) {
+                            var jdata = JSON.parse(data.d);
+
+                            var mesult = jdata.result;
+                            if (!mesult) {
+                                alert(jdata.Message);
+
+                            }
+                            else {
+
+                                $(lblschedulenumber).text(jdata.Message);
+                            }
+                        }
+                    });
+
+                }
+
+
+                catch (e) {
+                    alert(e.message);
+
+                }
+
 
             }
 
 
-        }
+            function funCompanyProject(comcod, company) {
+                try {
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/GetCompanyProject",
+                        data: '{comcod:"' + comcod + '", company:"' + company + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
 
+                            var data = JSON.parse(response.d);
 
-        function funCompanyProject(comcod, company) {
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetCompanyProject",
-                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                            var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
                         var numberrl;
 
                         for (var i = 0; i < arrgschcodl.length; i++) {
@@ -1339,33 +1380,33 @@
 
 
 
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+
+
             }
 
-            catch (e) {
-
-                alert(e.message);
-
-            }
 
 
+            function funLeadReason(comcod, leadquality) {
 
-        }
+                try {
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/GetLeadReason",
+                        data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            var data = JSON.parse(response.d);
 
-
-
-        function funLeadReason(comcod, leadquality) {
-
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetLeadReason",
-                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                            var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
                         var numberrl;
 
                         for (var i = 0; i < arrgschcodl.length; i++) {
@@ -1401,116 +1442,116 @@
 
 
 
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+
             }
 
-            catch (e) {
 
-                alert(e.message);
+            function funDupAllMobile() {
 
-            }
-
-
-        }
+                try {
 
 
-        function funDupAllMobile() {
-
-            try {
-
-
-                //Company Name change
-                var comcod =<%=this.GetComeCode()%>;
+                    //Company Name change
+                    var comcod =<%=this.GetComeCode()%>;
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
                 var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
 
-                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
+                    console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
 
-                var cc0 = "";
-                var cc1 = "";
-                var cc2 = "";
-                var number = "";
-                var gval;
-                //number = gval.Length > 0 ? gval + "," : "";
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+                    var cc0 = "";
+                    var cc1 = "";
+                    var cc2 = "";
+                    var number = "";
+                    var gval;
+                    //number = gval.Length > 0 ? gval + "," : "";
+                    //number = number + (gval.Length > 0 ? gval + "," : "");
+                    //number = number + (gval.Length > 0 ? gval + "," : "");
+                    //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
-                for (var i = 0; i < arrgcodl.length; i++) {
-
-
-                    var gcod = $(arrgcodl[i]).text();
-
-                    var number;
-                    switch (gcod) {
-
-                        case '0301003':
-                            gval = $(arraygval[i]).val();
-                            cc0 = $(arryccc[i]).val();
-                            number = gval.length > 0 ? gval + "," : "";
-                            console.log(cc0);
-
-                            break;
+                    for (var i = 0; i < arrgcodl.length; i++) {
 
 
-                        case '0301004':
+                        var gcod = $(arrgcodl[i]).text();
 
-                            switch (comcod) {
-                                case '3315':
-                                case '3316':
-                                    break;
+                        var number;
+                        switch (gcod) {
 
-                                default:
-                                    gval = $(arraygval[i]).val();
-                                    number = number + (gval.length > 0 ? gval + "," : "");
-                                    break;
-                            }
-                            break;
+                            case '0301003':
+                                gval = $(arraygval[i]).val();
+                                cc0 = $(arryccc[i]).val();
+                                number = gval.length > 0 ? gval + "," : "";
+                                console.log(cc0);
 
-                        case '0301005':
-                            gval = $(arraygval[i]).val();
-                            number = number + (gval.length > 0 ? gval + "," : "");
-                            break;
+                                break;
+
+
+                            case '0301004':
+
+                                switch (comcod) {
+                                    case '3315':
+                                    case '3316':
+                                        break;
+
+                                    default:
+                                        gval = $(arraygval[i]).val();
+                                        number = number + (gval.length > 0 ? gval + "," : "");
+                                        break;
+                                }
+                                break;
+
+                            case '0301005':
+                                gval = $(arraygval[i]).val();
+                                number = number + (gval.length > 0 ? gval + "," : "");
+                                break;
+                        }
+
                     }
+                    alert(cc0);
+
+                    number = number.length > 0 ? number.substring(0, number.length - 1) : number;
+                    var objchkmob = new RealERPScript();
+                    var res = objchkmob.DupAllMobile(comcod, sircode, number);
+                    var jdata = JSON.parse(res);
+                    if (!jdata.result) {
+
+
+                        alert(jdata.Message);
+                        return false;
+
+                    }
+                    else {
+
+                        return true;
+
+                    }
+                }
+
+
+                catch (e) {
+                    // alert(e.message);
 
                 }
-                alert(cc0);
 
-                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
-                var objchkmob = new RealERPScript();
-                var res = objchkmob.DupAllMobile(comcod, sircode, number);
-                var jdata = JSON.parse(res);
-                if (!jdata.result) {
-
-
-                    alert(jdata.Message);
-                    return false;
-
-                }
-                else {
-
-                    return true;
-
-                }
             }
 
 
-            catch (e) {
-                // alert(e.message);
+            function funStatus() {
 
-            }
-
-        }
-
-
-        function funStatus() {
-
-            try {
+                try {
 
 
 
-                var comcod =<%=this.GetComeCode()%>;
+                    var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var statusid = $('#ddlmStatus option:selected').val();
                 var empid =<%=this.GetEmpID()%>;
@@ -1546,303 +1587,196 @@
 
 
 
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+
+
+
+
+
             }
 
-            catch (e) {
 
-                alert(e.message);
-
-            }
+            function funReschedule(cdate, number) {
+                try {
 
 
-
-
-
-
-        }
-
-
-        function funReschedule(cdate, number) {
-            try {
-
-
-                //var  comdate =$('#txtcomdate'+number).val();
-                var comcod =<%=this.GetComeCode()%>;
+                    //var  comdate =$('#txtcomdate'+number).val();
+                    var comcod =<%=this.GetComeCode()%>;
                 var empid =<%=this.GetEmpID()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
 
 
 
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetReschedule",
-                    data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/GetReschedule",
+                        data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
 
 
-                    success: function (response) {
+                        success: function (response) {
 
-                        var data = JSON.parse(response.d);
-                        funDataBind(data);
-                        console.log(data);
-                        //var date=data[0].gdesc1;
-                        //alert(date);
-                        $('#lbtntfollowup').click();
-
-
-                    },
+                            var data = JSON.parse(response.d);
+                            funDataBind(data);
+                            console.log(data);
+                            //var date=data[0].gdesc1;
+                            //alert(date);
+                            $('#lbtntfollowup').click();
 
 
-                    failure: function (response) {
+                        },
 
-                        alert("failure");
-                    }
-                });
+
+                        failure: function (response) {
+
+                            alert("failure");
+                        }
+                    });
+
+
+
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
 
 
 
             }
 
-            catch (e) {
 
-                alert(e.message);
+            function funDataBind(data) {
+                try {
+                    var number = 0;
+                    $.each(data, function (index, data) {
 
-            }
-
-
-
-
-        }
+                        var gcod = data.gcod;
 
 
-        function funDataBind(data) {
-            try {
-                var number = 0;
-                $.each(data, function (index, data) {
+                        switch (gcod) {
 
-                    var gcod = data.gcod;
+                            case "810100101001": //Followup Date                        
+                                var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                                $(txtgvdValdis).val(data.gdesc1);
+                                $(txtgvdValdis).attr("disabled", true);
 
+                                //var dropdown
+                                var dtimehour = data.gtime;
+                                var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                                $(ddlhour).val(dtimehour.substr(0, 2));
+                                $(ddlhour).attr("disabled", true);
 
-                    switch (gcod) {
+                                var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                                $(ddlmin).val(dtimehour.substr(3, 2));
+                                $(ddlmin).attr("disabled", true);
 
-                        case "810100101001": //Followup Date                        
-                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
-                            $(txtgvdValdis).val(data.gdesc1);
-                            $(txtgvdValdis).attr("disabled", true);
+                                var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                                $(ddlslb).val(dtimehour.substr(6, 2));
+                                $(ddlslb).attr("disabled", true);
+                                break;
 
-                            //var dropdown
-                            var dtimehour = data.gtime;
-                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
-                            $(ddlhour).val(dtimehour.substr(0, 2));
-                            $(ddlhour).attr("disabled", true);
+                            case "810100101002": //New Followup
+                                var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                                //alert(data.gdesc1);
+                                var newfollowup = data.gdesc1;
+                                if (newfollowup.length <= 7) {
 
-                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
-                            $(ddlmin).val(dtimehour.substr(3, 2));
-                            $(ddlmin).attr("disabled", true);
-
-                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
-                            $(ddlslb).val(dtimehour.substr(6, 2));
-                            $(ddlslb).attr("disabled", true);
-                            break;
-
-                        case "810100101002": //New Followup
-                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
-                            //alert(data.gdesc1);
-                            var newfollowup = data.gdesc1;
-                            if (newfollowup.length <= 7) {
-
-
-                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
-
-                                    if ($(item).val() == newfollowup) {
-                                        $(item).attr('checked', true);
-                                    }
-                                    else {
-
-                                        $(item).attr('checked', false);
-
-                                    }
-
-
-                                });
-
-                            }
-                            else {
-                                var ar = new Array();
-                                // alert(newfollowup);
-                                var j = 0;
-                                for (i = 0; i < newfollowup.length; i = i + 7) {
-                                    ar[j++] = newfollowup.substr(i, 7);
-                                }
-
-                                //console.log(ar);
-                                //alert(ar.length);
-
-                                for (i = 0; i < ar.length; i++) {
 
                                     $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
-                                        if ($(item).val() == ar[i]) {
+
+                                        if ($(item).val() == newfollowup) {
                                             $(item).attr('checked', true);
                                         }
                                         else {
+
                                             $(item).attr('checked', false);
 
                                         }
 
+
                                     });
 
-
                                 }
-                            }
+                                else {
+                                    var ar = new Array();
+                                    // alert(newfollowup);
+                                    var j = 0;
+                                    for (i = 0; i < newfollowup.length; i = i + 7) {
+                                        ar[j++] = newfollowup.substr(i, 7);
+                                    }
 
-                            break;
+                                    //console.log(ar);
+                                    //alert(ar.length);
 
+                                    for (i = 0; i < ar.length; i++) {
 
+                                        $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                            if ($(item).val() == ar[i]) {
+                                                $(item).attr('checked', true);
+                                            }
+                                            else {
+                                                $(item).attr('checked', false);
 
-                        case "810100101007": //Company
-                            console.log(data.gdesc1);
+                                            }
 
-                            var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
+                                        });
 
-                            $(ddlcompany + ' > option').each(function (index, item) {
-                                if ($(item).val() == data.gdesc1) {
-                                    $(item).attr("selected", true);
-                                }
-
-
-                            });
-
-
-
-                            break;
-
-
-                        case "810100101003": //Project
-
-                            var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
-
-
-
-                            $(ddlProject + ' > option').each(function (index, item) {
-                                if ($(item).val() == data.gdesc1) {
-                                    $(item).attr("selected", true);
-                                }
-
-
-                            });
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-                        case "810100101019"://Follow
-
-                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
-                            var newfollowup = data.gdesc1;
-                            if (newfollowup.length = 7) {
-
-                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
-                                    if ($(item).val() == newfollowup) {
-                                        $(item).attr('checked', true);
 
                                     }
-                                    else {
+                                }
 
-                                        $(item).attr('checked', false);
+                                break;
 
+
+
+                            case "810100101007": //Company
+                                console.log(data.gdesc1);
+
+                                var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
+
+                                $(ddlcompany + ' > option').each(function (index, item) {
+                                    if ($(item).val() == data.gdesc1) {
+                                        $(item).attr("selected", true);
                                     }
 
 
                                 });
 
-                            }
-                            break;
+
+
+                                break;
+
+
+                            case "810100101003": //Project
+
+                                var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
 
 
 
-
-
-                        case "810100101016": //Status
-
-
-
-                            var ChkBoxLstStatus = '#ContentPlaceHolder1_gvInfo_ChkBoxLstStatus_' + number;
-                            var status = data.gdesc1;
-                            if (status.length = 7) {
-
-                                $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
-                                    if ($(item).val() == status) {
-                                        $(item).attr('checked', true);
-                                        // $(item).attr('disabled', '');
-
-                                    }
-                                    else {
-                                        $(item).attr('checked', false);
-                                        // $(item).attr('disabled', true);
-
-
+                                $(ddlProject + ' > option').each(function (index, item) {
+                                    if ($(item).val() == data.gdesc1) {
+                                        $(item).attr("selected", true);
                                     }
 
 
                                 });
 
-                            }
-
-
-                            break;
-
-                        case "810100101018": //PARTICIPANTS  
 
 
 
-
-                            //var ddlParticipant='#ContentPlaceHolder1_gvInfo_ddlParticdis_'+number;  
-                            //var participant=data.gdesc1;
-
-
-                            //if(participant.length=12)
-                            //{ 
-
-                            //    var inci=1;
-                            //    $('#ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn .chzn-choices').html('');
-
-                            //    $(''+ddlParticipant+' > option').each(function (index,item) 
-                            //    {  
-
-
-                            //        alert($(item).text());
-                            //        if($(item).val()==participant)
-                            //        {
-
-
-
-
-                            //            $('.chzn-choices').append('<li class="search-choice" id="ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_c_'+inci+'"><span>'+$(item).text()+'</span><a href="javascript:void(0)" class="search-choice-close" rel="'+inci+'"></a></li>')
-
-                            //            $(' .chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('active-result');
-                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('result-selected');
-
-                            //        }
-                            //        else{
-                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('result-selected');
-                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('active-result');
-                            //        }
-
-                            //        inci++;
-                            //    });
-
-
-
-                            //    $('.chzn-choices').append('<li class="search-field"><input type="text" value="Choose Participant......" class="" autocomplete="off" style="width: 25px;"></li>');
+                                break;
 
 
 
@@ -1850,115 +1784,222 @@
 
 
 
-                            // }
+
+                            case "810100101019"://Follow
+
+                                var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                                var newfollowup = data.gdesc1;
+                                if (newfollowup.length = 7) {
+
+                                    $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                        if ($(item).val() == newfollowup) {
+                                            $(item).attr('checked', true);
+
+                                        }
+                                        else {
+
+                                            $(item).attr('checked', false);
+
+                                        }
+
+
+                                    });
+
+                                }
+                                break;
 
 
 
 
 
-                            break;
+                            case "810100101016": //Status
 
 
 
-                        case "810100101015": //Summary
-                        case "810100101025": //Subject
+                                var ChkBoxLstStatus = '#ContentPlaceHolder1_gvInfo_ChkBoxLstStatus_' + number;
+                                var status = data.gdesc1;
+                                if (status.length = 7) {
 
-                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvValdis_' + number;
-                            $(txtgvdValdis).val(data.gdesc1);
-                            break;
+                                    $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
+                                        if ($(item).val() == status) {
+                                            $(item).attr('checked', true);
+                                            // $(item).attr('disabled', '');
 
-
-                        case "810100101020": //next Followup date
-                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
-                            $(txtgvdValdis).val(data.gdesc1);
-                            //var dropdown
-                            var dtimehour = data.gtime;
-                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
-                            $(ddlhour).val(dtimehour.substr(0, 2));
-                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
-                            $(ddlmin).val(dtimehour.substr(3, 2));
-                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
-                            $(ddlslb).val(dtimehour.substr(6, 2));
+                                        }
+                                        else {
+                                            $(item).attr('checked', false);
+                                            // $(item).attr('disabled', true);
 
 
-                            break;
+                                        }
 
 
-                        default:
+                                    });
+
+                                }
 
 
-                            break;
+                                break;
 
-                    }
-                    number++;
+                            case "810100101018": //PARTICIPANTS  
 
 
-                });
+
+
+                                //var ddlParticipant='#ContentPlaceHolder1_gvInfo_ddlParticdis_'+number;  
+                                //var participant=data.gdesc1;
+
+
+                                //if(participant.length=12)
+                                //{ 
+
+                                //    var inci=1;
+                                //    $('#ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn .chzn-choices').html('');
+
+                                //    $(''+ddlParticipant+' > option').each(function (index,item) 
+                                //    {  
+
+
+                                //        alert($(item).text());
+                                //        if($(item).val()==participant)
+                                //        {
+
+
+
+
+                                //            $('.chzn-choices').append('<li class="search-choice" id="ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_c_'+inci+'"><span>'+$(item).text()+'</span><a href="javascript:void(0)" class="search-choice-close" rel="'+inci+'"></a></li>')
+
+                                //            $(' .chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('active-result');
+                                //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('result-selected');
+
+                                //        }
+                                //        else{
+                                //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('result-selected');
+                                //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('active-result');
+                                //        }
+
+                                //        inci++;
+                                //    });
+
+
+
+                                //    $('.chzn-choices').append('<li class="search-field"><input type="text" value="Choose Participant......" class="" autocomplete="off" style="width: 25px;"></li>');
+
+
+
+
+
+
+
+                                // }
+
+
+
+
+
+                                break;
+
+
+
+                            case "810100101015": //Summary
+                            case "810100101025": //Subject
+
+                                var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvValdis_' + number;
+                                $(txtgvdValdis).val(data.gdesc1);
+                                break;
+
+
+                            case "810100101020": //next Followup date
+                                var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                                $(txtgvdValdis).val(data.gdesc1);
+                                //var dropdown
+                                var dtimehour = data.gtime;
+                                var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                                $(ddlhour).val(dtimehour.substr(0, 2));
+                                var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                                $(ddlmin).val(dtimehour.substr(3, 2));
+                                var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                                $(ddlslb).val(dtimehour.substr(6, 2));
+
+
+                                break;
+
+
+                            default:
+
+
+                                break;
+
+                        }
+                        number++;
+
+
+                    });
+                }
+
+
+
+                catch (e) {
+                    alert(e.message);
+
+                }
+
+
             }
 
-
-
-            catch (e) {
-                alert(e.message);
-
+            function OpenKpiDetailsModal() {
+                $('#modalKpiDetials').modal('toggle');
             }
 
+            function RateUpdate() {
 
-        }
-
-        function OpenKpiDetailsModal() {
-            $('#modalKpiDetials').modal('toggle');
-        }
-
-        function RateUpdate() {
-
-            try {
+                try {
 
 
 
-                var comcod =<%=this.GetComeCode()%>;
+                    var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
-                var ratevalue = $('#ddlRating option:selected').val();
+                    var ratevalue = $('#ddlRating option:selected').val();
 
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/UpdateRate",
-                    data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-
-
-                    success: function (response) {
+                    $.ajax({
+                        type: "POST",
+                        url: "CrmClientInfo.aspx/UpdateRate",
+                        data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
 
 
-                    },
+                        success: function (response) {
 
 
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
+                        },
 
 
+                        failure: function (response) {
 
-            }
+                            alert("failure");
+                        }
+                    });
 
-            catch (e) {
 
-                alert(e.message);
 
-            }
-        };
-        //// for selected follow then selected lead status
-        //Retreive Confirmation
-        function FunRetProsConfirm() {
-            if (confirm('Are you sure you want to retrieve this Prospect?')) {
-                return;
-            } else {
-                return false;
-            }
-        };
+                }
+
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+            };
+            //// for selected follow then selected lead status
+            //Retreive Confirmation
+            function FunRetProsConfirm() {
+                if (confirm('Are you sure you want to retrieve this Prospect?')) {
+                    return;
+                } else {
+                    return false;
+                }
+            };
 
 
     </script>
@@ -2716,7 +2757,7 @@
 
                                     <div class="col-md-1">
                                         <asp:LinkButton ID="SrchBtn" runat="server" class="btn btn-success" OnClientClick="CloseModal();" OnClick="SrchBtn_Click">Search</asp:LinkButton>
-                                    </div>                                   
+                                    </div>
 
                                 </div>
                             </asp:Panel>
@@ -2894,6 +2935,15 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Reassign Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvrassigndate" runat="server" Font-Size="11px" Width="70px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rassigndat"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+
                                                 <%--7--%>
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
@@ -3061,7 +3111,9 @@
                                                 <asp:TemplateField HeaderText="Source">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvLSrc" runat="server" Width="100px"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname"))=="" ?"": "(" + Convert.ToString(DataBinder.Eval(Container.DataItem, "irpersonname")) + ")")
+                                                                
+                                                            %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <%--21--%>
@@ -3215,8 +3267,8 @@
 
                                                 <asp:TemplateField HeaderText="Call">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpicall" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "call")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpicall" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpicall_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "call")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3231,8 +3283,8 @@
 
                                                 <asp:TemplateField HeaderText="Ext. Meeting">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpiextmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "extmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpiextmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpiextmeeting_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "extmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3249,8 +3301,8 @@
 
                                                 <asp:TemplateField HeaderText="Internal. Meeting">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpiintmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpiintmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpiintmeeting_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3267,8 +3319,8 @@
 
                                                 <asp:TemplateField HeaderText="visit">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpivisit" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "visit")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpivisit" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpivisit_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "visit")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3287,8 +3339,8 @@
 
                                                 <asp:TemplateField HeaderText="Proposal">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpiproposal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposal")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpiproposal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpiproposal_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposal")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:Label ID="lblgvFproposalsum" runat="server" Style="text-align: center"
@@ -3303,8 +3355,8 @@
 
                                                 <asp:TemplateField HeaderText="Leads">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpileads" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leads")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpileads" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpileads_Click1"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leads")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3321,8 +3373,8 @@
 
                                                 <asp:TemplateField HeaderText="Closing">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpiclosing" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "close")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpiclosing" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpiclosing_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "close")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -3339,8 +3391,8 @@
 
                                                 <asp:TemplateField HeaderText="Others">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvkpiothers" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "others")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                        <asp:LinkButton ID="lblgvkpiothers" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpiothers_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "others")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
                                                     </ItemTemplate>
 
                                                     <FooterTemplate>
@@ -4242,7 +4294,10 @@
 
                                     <button type="button" class="btn  btn-success btn-xs" id="lbtntfollowup" data-toggle="collapse" data-target="#followup"><i class="fa fa-handshake"></i>Followup</button>
                                     <button type="button" class="btn  btn-success btn-xs" id="lbtnStatus"><i class="fa  fa-star-and-crescent"></i><span id="lbllaststatus" runat="server">Status</span></button>
+
+                                    <button type="button" class="btn  btn-success btn-xs" id="lbtnprestatus" runat="server"><i class="fa  fa-star-and-crescent"></i><span id="lblprelaststatus" runat="server"> Previous</span></button>
                                     <asp:HiddenField ID="hiddenLedStatus" runat="server" />
+                                    <asp:HiddenField ID="hdlpreleadst" runat="server" />
 
                                     <%--<asp:LinkButton ID="lbtntfollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtntfollowup_Click"><i  class="fa fa-handshake"></i> Followup</asp:LinkButton>--%>
                                     <%-- <asp:LinkButton ID="lbtnStatus" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnStatus_Click"> <i  class="fa  fa-star-and-crescent"></i> Status</asp:LinkButton>
@@ -4461,7 +4516,7 @@
                                                         <asp:Panel ID="pnlStatus" runat="server" Visible="false">
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
@@ -4482,9 +4537,13 @@
 
 
                                                         <asp:Panel ID="PnlProject" runat="server">
-                                                            <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
+                                                           <%-- <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
                                                                 TabIndex="12">
-                                                            </asp:DropDownList>
+                                                            </asp:DropDownList>--%>
+
+                                                             <asp:ListBox ID="lstProject" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Project" multiple="true"></asp:ListBox>
+
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">
                                                             <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
@@ -4528,6 +4587,9 @@
                                                     <ItemStyle Width="700px" />
                                                 </asp:TemplateField>
 
+
+
+                                                 
 
                                             </Columns>
                                             <PagerStyle CssClass="gvPagination" />

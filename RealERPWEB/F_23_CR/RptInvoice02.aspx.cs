@@ -64,8 +64,19 @@ namespace RealERPWEB.F_23_CR
         {
 
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdateInvoice_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
 
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+        private void CommonButton()
+        {
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
@@ -238,11 +249,8 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
-            //DataTable dt = new DataTable();
-            //Session["CustSubDesc"] = dt;
-
             this.ShowCustPayment();
+            CommonButton();
 
         }
 
@@ -282,7 +290,7 @@ namespace RealERPWEB.F_23_CR
 
             this.txthead.Visible = true;
             this.Label12.Visible = true;
-            this.Label3.Visible = true;
+            //this.Label3.Visible = true;
 
             DataTable dt = (DataTable)Session["CustSubDesc"];
             if (dt.Rows.Count > 0)

@@ -737,14 +737,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string roletype = this.Request.QueryString["RoleType"].ToString();
-                    if (comcod == "3354" && roletype == "SUP" )
+                    if (comcod == "3354" && roletype == "DPT")
                     {
                         this.Chboxforward.Checked = false;
                     }
                     else if (comcod == "3354" && roletype == "SUP")
                     {
-                        this.Chboxforward.Checked = true ;
+                        this.Chboxforward.Checked = true;
                     }
+                    else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
+                    {
+                        this.Chboxforward.Checked = true;
+                    }
+
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", ApprovByid, Approvtrmid);
@@ -1416,7 +1421,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.Chboxforward.Checked = false;
                 }
-        
+                else if ((comcod == "3374" || comcod=="3101") && (roletype == "DPT" || roletype == "MGT"))
+                {
+                    this.Chboxforward.Checked = true;
+                }
+
+
                 string isForward = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
 
@@ -1579,7 +1589,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                       "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>" + htmtableboyd;
-                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approval</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
                     string msgbody = maildescription;

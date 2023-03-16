@@ -31,9 +31,9 @@ namespace RealERPWEB.F_21_MKT
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect Transfer";
+                this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 GetAllSubdata();
-
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
                 this.ddlEmpid_SelectedIndexChanged(null, null);
@@ -51,7 +51,15 @@ namespace RealERPWEB.F_21_MKT
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            
+
+
+         
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);           
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
 
         }
@@ -206,7 +214,7 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblproswork"] = dt;
         }
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
+        protected void lnkFinalUpdate_Click(object sender, EventArgs e)
         {
             string msg;
             bool result = false;
@@ -214,6 +222,7 @@ namespace RealERPWEB.F_21_MKT
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             string userid = hst["usrid"].ToString();
+            string assigndate = this.txtDate.Text.Trim();
 
             for (int i = 0; i < this.gvProspectWorking.Rows.Count; i++)
             {
@@ -225,7 +234,7 @@ namespace RealERPWEB.F_21_MKT
                     string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
                     string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
 
-                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "LOST_TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
+                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "LOST_TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, assigndate, "", "", "",
                    "", "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
@@ -301,6 +310,15 @@ namespace RealERPWEB.F_21_MKT
             this.rpclientinfo.DataBind();
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+        }
+
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+
+            Response.Redirect(this.Request.UrlReferrer.ToString());
+
         }
     }
 }

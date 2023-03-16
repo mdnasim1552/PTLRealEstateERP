@@ -563,7 +563,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                  <asp:TemplateField HeaderText="Shop">
+                                  <asp:TemplateField HeaderText="Shop/Com. Space">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFShopqty" runat="server"></asp:Label>
                                         </FooterTemplate>
@@ -598,7 +598,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Shop Amount">
+                                      <asp:TemplateField HeaderText="Shop/Com. Space Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFshopsalTotal" runat="server" ></asp:Label>
                                         </FooterTemplate>
@@ -637,7 +637,7 @@
 
 
 
-                                    <asp:TemplateField HeaderText="Shop">
+                                    <asp:TemplateField HeaderText="Shop/Com. Space">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFShopCollTotal" runat="server" ></asp:Label>
                                         </FooterTemplate>

@@ -250,7 +250,7 @@ namespace RealERPWEB
                               where (int)dr["menuid"] == 1386
                               select (int)dr["menuid"]).FirstOrDefault();
 
-            if (topuserAct > 0)
+            if (topuserAct > 0  && comcod=="3368")
             {
                 this.pnlClientMrrdayFinlay.Visible = true;
                 getclientdata();
@@ -300,6 +300,8 @@ namespace RealERPWEB
             {
                 case "3365":
                 case "3102":
+                case "3101":
+
 
                     string userrole = hst["userrole"].ToString();
                     this.winsList.Visible = true;
@@ -334,15 +336,15 @@ namespace RealERPWEB
                     this.modalPayslipBti.Visible = false;
 
 
-                    break;
-                case "3101":
-                    this.PaySlipPart.Visible = true;
-                    this.hrpolicy.Visible = true;
-                    this.List_EmpDirectory.Visible = true;
+                //    break;
+                //case "3101":
+                //    this.PaySlipPart.Visible = true;
+                //    this.hrpolicy.Visible = true;
+                //    this.List_EmpDirectory.Visible = true;
 
-                    this.pnlUpcmEdison.Visible = false;
-                    this.pnlUpcmBti.Visible = true;
-                    this.modalPayslipBti.Visible = true;
+                //    this.pnlUpcmEdison.Visible = false;
+                //    this.pnlUpcmBti.Visible = true;
+                //    this.modalPayslipBti.Visible = true;
 
                     break;
                    
@@ -460,6 +462,17 @@ namespace RealERPWEB
             {
                 DataTable dt = ds1.Tables[8];
                 this.divUnitMetric.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
+            }
+
+            //IR Lead Details
+            if (ds1 == null || ds1.Tables[9].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[9];
+                this.divIRdet.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
         }
@@ -670,6 +683,8 @@ namespace RealERPWEB
                 case "3369":
                 case "3365":
                 case "3102":
+                case "3101":
+
                     calltype = "RPTMYSERVICESBTI";
                     break;
 
@@ -1024,6 +1039,7 @@ namespace RealERPWEB
             string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
+               case "3101":
                case "3365":
                case "3102":
                     this.EventBirthday.Visible = false;
@@ -1096,7 +1112,7 @@ namespace RealERPWEB
                         {
                             BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-3'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + url + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
 
-                            if (comcod == "3367" || comcod=="3101")
+                            if (comcod == "3367")
                             {
 
                       

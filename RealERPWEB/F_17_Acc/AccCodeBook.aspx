@@ -380,7 +380,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ref Id" HeaderStyle-Width="60px">
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtgvShortDesc" runat="server" CssClass="form-control inputTxt" MaxLength="20"
+                                        <asp:TextBox ID="txtgvShortDesc" runat="server" CssClass="form-control inputTxt" MaxLength="30"
                                             Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "wodesc")) %>'></asp:TextBox>
                                     </EditItemTemplate>
@@ -458,7 +458,7 @@
 
                                 <asp:TemplateField HeaderText="Project">
                                     <EditItemTemplate>
-                                        <asp:Panel ID="pnlProject" runat="server" BorderColor="Yellow" BorderStyle="Solid"
+                                        <asp:Panel ID="pnlProject" runat="server" BorderColor="Yellow" BorderStyle="Solid" Visible="false"
                                             BorderWidth="1px">
 
 
@@ -467,6 +467,20 @@
 
                                                     <td>
                                                         <asp:DropDownList ID="ddlpro" runat="server" CssClass=" chzn-select ddlPage" Width="180px" TabIndex="6">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </asp:Panel>
+                                        <asp:Panel ID="pnlaiProject" runat="server" BorderColor="Yellow" BorderStyle="Solid" Visible="false"
+                                            BorderWidth="1px">
+
+
+                                            <table style="width: 100%;">
+                                                <tr>
+
+                                                    <td>
+                                                        <asp:DropDownList ID="ddlaiproject" runat="server" CssClass=" chzn-select ddlPage" Width="180px" TabIndex="6">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>

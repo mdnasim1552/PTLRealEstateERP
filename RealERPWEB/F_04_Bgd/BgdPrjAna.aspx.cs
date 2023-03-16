@@ -490,7 +490,7 @@ namespace RealERPWEB.F_04_Bgd
             DataView dv = dt.Copy().DefaultView;
 
             //dv.RowFilter = ("rptcod   not like '%00000000' and  rptcod   not like '4111AAAAAAAA%' and rptcod not like  '01AAAAAAAAAA%'  and  rptcod not like  '04AAAAAAAAAA%'   and  rptcod not like  '21AAAAAAAAAA%'");
-            dv.RowFilter = ("rptcod   not like '%00000000' or  rptcod   not like '4111AAAAAAAA%' or rptcod not like  '01AAAAAAAAAA%'  or  rptcod not like  '04AAAAAAAAAA%'   or  rptcod not like  '21AAAAAAAAAA%'");
+            dv.RowFilter = ("rptcod   not like '%00000000' and  rptcod   not like '4111AAAAAAAA%' and rptcod not like  '01AAAAAAAAAA%'  and  rptcod not like  '04AAAAAAAAAA%'   and  rptcod not like  '21AAAAAAAAAA%'");
 
             DataTable dt2 = dv.ToTable();
 
@@ -1479,7 +1479,7 @@ namespace RealERPWEB.F_04_Bgd
                 tbl1 = tbl1.DefaultView.ToTable();
             }
 
-
+            this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
 
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
@@ -2967,6 +2967,11 @@ namespace RealERPWEB.F_04_Bgd
                 string eventdesc2 = Itemcode;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
+        }
+
+        protected void ddlPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ShowResourceList();
         }
     }
 

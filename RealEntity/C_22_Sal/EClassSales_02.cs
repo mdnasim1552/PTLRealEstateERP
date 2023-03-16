@@ -930,13 +930,14 @@ namespace RealEntity.C_22_Sal
 
             public double cinsam { get; set; }
 
-            public DateTime paiddate { get; set; }
+            public string paiddate { get; set; }
            
             public double dodisday { get; set; }
             public double intrate { get; set; }
             public double intamtpday { get; set; }
             public double delodis { get; set; }
             public double pamount { get; set; }
+            public double dueamt { get; set; }
             public double balamt { get; set; }
             public double advday { get; set; }
             public double delday { get; set; }

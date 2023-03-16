@@ -171,11 +171,18 @@ namespace RealERPWEB.F_34_Mgt
         {
 
             DataTable dt = (DataTable)Session["UserLog"];
+
             DataView dv = dt.Copy().DefaultView;
             dv.RowFilter = ("rgp='A'");
             this.gvLogType.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvLogType.DataSource = dv.ToTable();
+            this.gvLogType.DataSource = dt;
             this.gvLogType.DataBind();
+
+            //DataView dv = dt.Copy().DefaultView;
+            //dv.RowFilter = ("rgp='A'");
+            //this.gvLogType.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            //this.gvLogType.DataSource = dv.ToTable();
+            //this.gvLogType.DataBind();
 
             DataView dv1 = dt.Copy().DefaultView;
             dv1.RowFilter = ("rgp='B'");
@@ -332,13 +339,24 @@ namespace RealERPWEB.F_34_Mgt
 
             this.lbmodalheading.Text = "Edit Voucher Details";
 
-            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int RowIndex = gvr.RowIndex;
-            int rownumber = this.gvLogType.PageSize * this.gvLogType.PageIndex + RowIndex;
-            string vounum = ((DataTable)Session["UserLog"]).Rows[RowIndex]["gennum"].ToString();
+            //GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int RowIndex = gvr.RowIndex;
+            //int rownumber = this.gvLogType.PageSize * this.gvLogType.PageIndex + RowIndex;
+
+            //string vounum = ((DataTable)Session["UserLog"]).Rows[rownumber]["gennum"].ToString();
+            ////string vounum = ((DataTable)Session["UserLog"]).Rows[RowIndex]["gennum"].ToString();
+
+            //this.LabelVounum.Text = vounum;
+            //this.GetEditDet(vounum);
+
+            int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rownumber = this.gvLogType.PageSize * this.gvLogType.PageIndex + rownum;         
+            string vounum = ((DataTable)Session["UserLog"]).Rows[rownumber]["gennum"].ToString();
             this.LabelVounum.Text = vounum;
             this.GetEditDet(vounum);
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+           
         }
 
         private void GetEditDet(string vounum)

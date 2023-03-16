@@ -191,7 +191,9 @@ namespace RealERPWEB.F_17_Acc
 
 
             DropDownList ddlpro = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlpro");
+            DropDownList ddlaiproject = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlaiproject");
             Panel pnlProject = (Panel)this.grvacc.Rows[e.NewEditIndex].FindControl("pnlProject");
+            Panel pnlaiProject = (Panel)this.grvacc.Rows[e.NewEditIndex].FindControl("pnlaiProject");
 
             if (actcode.Trim().Substring(0, 4) == "2357" && actcode.Trim().Substring(8) != "0000")
             {
@@ -255,7 +257,28 @@ namespace RealERPWEB.F_17_Acc
 
             // Project Link
 
-            if ((actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29" || actcode.Trim().Substring(0, 2) == "21" || actcode.Trim().Substring(0, 2) == "14") && actcode.Trim().Substring(8) != "0000")
+            //for ai
+            if(actcode.Trim().Substring(0, 2) == "16")
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string SearchProject = "%";
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETAIPROJECT", SearchProject, "", "", "", "", "", "", "", "");
+
+
+                ddlaiproject.DataTextField = "pactdesc";
+                ddlaiproject.DataValueField = "pactcode";
+                ddlaiproject.DataSource = ds1.Tables[0];
+                ddlaiproject.DataBind();
+                ddlaiproject.SelectedValue = pactcode;
+                pnlProject.Visible = false;
+                pnlaiProject.Visible = true;
+
+            }
+
+
+
+            if (( actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29" || actcode.Trim().Substring(0, 2) == "21" || actcode.Trim().Substring(0, 2) == "14") && actcode.Trim().Substring(8) != "0000")
             {
 
 
@@ -271,6 +294,8 @@ namespace RealERPWEB.F_17_Acc
                 ddlpro.DataBind();
                 ddlpro.SelectedValue = pactcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
                 pnlProject.Visible = true;
+                
+
 
 
                 //foreach (ListItem lteam in ddlpro.Items)
@@ -291,6 +316,7 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 pnlProject.Visible = false;
+                
                 ddlpro.Items.Clear();
             }
 
@@ -376,7 +402,8 @@ namespace RealERPWEB.F_17_Acc
                 string wodesc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvShortDesc")).Text.Trim();
                 string mProCode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlProName")).Text.Trim();
                 string catcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).Text.Trim();
-                string pactcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlpro")).Text.Trim();
+
+                string pactcode = (actcode.Trim().Substring(0,2)=="16")? ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlaiproject")).Text.Trim() : ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlpro")).Text.Trim();
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
                 string dd2value = this.ddlCodeBookSegment.SelectedValue.ToString().Trim();

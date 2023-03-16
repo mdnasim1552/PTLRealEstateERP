@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RealEntity.C_21_Mkt
 {
-   public class ECRMClientInfo
+    public class ECRMClientInfo
     {
 
         [Serializable]
 
         public class CrmClientInfo
         {
-            public string sircode1 { get; set;}
+            public string sircode1 { get; set; }
             public string generated { get; set; }
             public string sirdesc { get; set; }
             public string appbydat { get; set; }
@@ -34,9 +34,9 @@ namespace RealEntity.C_21_Mkt
             public string gdesc { get; set; }
 
             public EClassLeadReason()
-            { 
-            
-            
+            {
+
+
             }
         }
 
@@ -49,20 +49,20 @@ namespace RealEntity.C_21_Mkt
             public string comcod { get; set; }
             public string empcode { get; set; }
             public string empname { get; set; }
-            public double  qty1 { get; set; }
-            public double  qty2 { get; set; }
-            public double  qty3 { get; set; }
-            public double  qty4 { get; set; }
-            public double  qty5 { get; set; }
-            public double  qty6 { get; set; }
-            public double  qty7 { get; set; }
-            public double  qty8 { get; set; }
-            public double  qty9 { get; set; }
-            public double  qty10 { get; set; }
-            public double  qty11 { get; set; }
-            public double  qty12 { get; set; }
-            public double  tqty { get; set; }
-           
+            public double qty1 { get; set; }
+            public double qty2 { get; set; }
+            public double qty3 { get; set; }
+            public double qty4 { get; set; }
+            public double qty5 { get; set; }
+            public double qty6 { get; set; }
+            public double qty7 { get; set; }
+            public double qty8 { get; set; }
+            public double qty9 { get; set; }
+            public double qty10 { get; set; }
+            public double qty11 { get; set; }
+            public double qty12 { get; set; }
+            public double tqty { get; set; }
+
             public EClassYearlySalesCRM()
             {
 
@@ -126,13 +126,15 @@ namespace RealEntity.C_21_Mkt
             public string qualifiedlead { get; set; }
             public string negotiation { get; set; }
             public string finalnegotiation { get; set; }
+            public string holddate { get; set; }
+            public string lostdate { get; set; }
             public string win { get; set; }
             public string lstatus { get; set; }
             public RptLeadStatusTimestamp() { }
         }
 
 
-            [Serializable]
+        [Serializable]
         public class EClassDailyWorkStatus
         {
             public string grp { get; set; }
@@ -150,6 +152,21 @@ namespace RealEntity.C_21_Mkt
             public string statuslead { get; set; }
             public string statusleadp { get; set; }
             public EClassDailyWorkStatus() { }
+        }
+
+
+        [Serializable]
+        public class RptMissFollowup
+        {
+            public string prosid { get; set; }
+            public string teampname { get; set; }
+            public string prosdesc { get; set; }
+            public string cdate { get; set; }
+            public string followupdesc { get; set; }
+            public string nfupdate { get; set; }
+            public string repdate { get; set; }
+
+            public RptMissFollowup() { }
         }
 
     }

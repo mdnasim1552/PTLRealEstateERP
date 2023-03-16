@@ -376,7 +376,7 @@
                     </div>
                     <div class="row table-responsive">
                         <asp:GridView ID="gvBillInfo" runat="server" AllowPaging="True"
-                            AutoGenerateColumns="False" ShowFooter="True" Width="16px"
+                            AutoGenerateColumns="False" ShowFooter="True" Width="16px" OnRowDataBound="gvBillInfo_RowDataBound"
                             OnRowDeleting="gvBillInfo_RowDeleting" CssClass="table table-striped table-hover table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
                             <RowStyle />
@@ -444,6 +444,9 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvMRRNo1" runat="server" CssClass="textwrap"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrno1")) %>'
+                                            Width="65px"></asp:Label>
+                                         <asp:Label ID="lblgvrsircode" runat="server" Visible="false"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
                                             Width="65px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Left" />
@@ -564,7 +567,7 @@
                                 <asp:TemplateField HeaderText="Bill Amount">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvMRRAmt" runat="server" BackColor="Transparent"
-                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"  
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px">
                                         </asp:TextBox>

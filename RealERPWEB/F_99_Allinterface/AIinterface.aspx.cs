@@ -144,7 +144,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA2</div></div></div>";
             this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
             this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Feedback</div></div></div>";
-            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
+            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice Update</div></div></div>";
             this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
 
 
@@ -900,7 +900,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds4 == null)
                 return;
             DataTable dt2 = ds4.Tables[0];
-            Session["tblfreeempname"] = ds4.Tables[0];
+            Session["tblempname"] = ds4.Tables[0];
             DataView dv2 = dt2.DefaultView;
             DataTable dt1 = new DataTable();
             if (ischeck)
@@ -1133,8 +1133,8 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "empname";
-                        ddlgval.DataValueField = "empid";
+                        ddlgval.DataTextField = "sirdesc";
+                        ddlgval.DataValueField = "sircode";
                         ddlgval.DataSource = dv4.ToTable();
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
@@ -1556,9 +1556,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string doneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
                 string balqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvqcbalqty")).Text.ToString();
                 string prodoneqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvproqcdoneqty")).Text.ToString();
-                double prodone = Convert.ToDouble("0"+doneqty);
-                double prodonebal = Convert.ToDouble("0"+balqty);
-                double prodoneassign= Convert.ToDouble("0"+ prodoneqty);
+                double prodone = Convert.ToDouble("0" + doneqty);
+                double prodonebal = Convert.ToDouble("0" + balqty);
+                double prodoneassign = Convert.ToDouble("0" + prodoneqty);
                 string prodoneannot = "";
                 double proassgin = 0;
                 if (prodone < prodonebal)
@@ -1633,7 +1633,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void GetAnnotationList( bool ischeck)
+        private void GetAnnotationList(bool ischeck)
         {
             string comcod = this.GetCompCode();
             string prjlist = this.lblproprjid.Text.Trim() + "%";
@@ -1695,7 +1695,7 @@ namespace RealERPWEB.F_99_Allinterface
                 dv3.RowFilter = "gcod like'95%' and gcod not like'%00'";
                 dt01 = dv3.ToTable();
             }
-            
+
             this.ddlUserRoleType.DataTextField = "gdesc";
             this.ddlUserRoleType.DataValueField = "gcod";
             this.ddlUserRoleType.DataSource = dt01;
@@ -1808,8 +1808,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                     string empid = this.ddlassignmember.SelectedValue.ToString();
                     string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                    bool ischeck = this.checkinoutsourcing.Checked==true?true: this.checkfreelancer.Checked==true?true:false;                  
-                 
+                    bool ischeck = this.checkinoutsourcing.Checked == true ? true : this.checkfreelancer.Checked == true ? true : false;
+
                     //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
                     //if (dr2.Length == 0)
                     //{
@@ -1876,6 +1876,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnvrdelete_Click(object sender, EventArgs e)
         {
             try
+
             {
                 DataTable dt = (DataTable)ViewState["tblt01"];
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -2018,23 +2019,23 @@ namespace RealERPWEB.F_99_Allinterface
                 string qcdone = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
                 string qcdonebal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqaBalqty")).Text.ToString();
                 string qcpendbal = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcqcdoneqty")).Text.ToString();
-                double qcassdone = Convert.ToDouble("0"+qcdone);
-                double qcdonebalqty = Convert.ToDouble("0"+qcdonebal);
-                double qcpend = Convert.ToDouble("0"+qcpendbal);
+                double qcassdone = Convert.ToDouble("0" + qcdone);
+                double qcdonebalqty = Convert.ToDouble("0" + qcdonebal);
+                double qcpend = Convert.ToDouble("0" + qcpendbal);
                 string doneqc1 = "";
                 double actualassign = 0;
                 if (qcassdone < qcdonebalqty)
                 {
-                    
+
                     if (qcassdone > qcpend)
                     {
                         actualassign = qcassdone - qcpend;
                     }
                     else
                     {
-                        actualassign =  qcpend- qcassdone;
+                        actualassign = qcpend - qcassdone;
                     }
-                   
+
                     doneqc1 = Convert.ToString(actualassign);
                 }
                 else
@@ -2477,7 +2478,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-       
+
 
         protected void btnsowConvert_Click(object sender, EventArgs e)
         {
@@ -2679,7 +2680,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
             else
             {
-                
+
                 this.checkinoutsourcing.Enabled = false;
                 this.GetEmployeeName(ischeck);
                 this.GetAnnotationList(ischeck);
@@ -2688,6 +2689,21 @@ namespace RealERPWEB.F_99_Allinterface
                 string rate = "80";
                 this.textrate.Text = rate;
             }
+        }
+
+        protected void gv_Invoice_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnapproved");
+                string invono = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invno")).ToString().Trim();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Pactcode=" + pactcode;
+
+            }
+
+
         }
     }
 }

@@ -341,6 +341,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Item Code">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="txtgvitemcode" runat="server" Font-Size="12px" MaxLength="100"
+                                                Style="border-style: none;"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcode")) %>'
+                                                Width="280px"></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllgritemcode" runat="server" Font-Size="12px"
+                                                MaxLength="13" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcode")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
+                                        <ItemStyle Font-Size="12px" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description of Code" HeaderStyle-Width="400px">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtgvDesc" runat="server" Font-Size="12px" MaxLength="250"
@@ -592,15 +608,18 @@
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtresourcecode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-
                             </div>
                             <div class="row mb-1">
-
+                                <label class="col-md-4">Item Code</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtitemcode" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
                                 <label class="col-md-4">Description EN</label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtresourcehead" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-
                             </div>
                             <div class="row mb-1">
                                 <label class="col-md-4">Description BN</label>

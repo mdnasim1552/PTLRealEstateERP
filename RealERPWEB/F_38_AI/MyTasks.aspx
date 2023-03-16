@@ -392,7 +392,8 @@
                                                                 OnClick="lnkStartJobByID_Click"><i class="fa fa-toggle-off"></i></asp:LinkButton>
 
 
-                                                            <asp:LinkButton ID="lnkJObDone" runat="server" CssClass="text-green pr-1 pl-1" Font-Size="20px" ToolTip="Hold Job" OnClick="lnkJObDone_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>'><i class="fa fa-check-square"></i></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkJObDone"  runat="server"  CssClass="text-green pr-1 pl-1" Font-Size="20px" ToolTip="Done Job" OnClick="lnkJObDone_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>'><i class="fa fa-check-square"></i></asp:LinkButton>
+
 
 
 

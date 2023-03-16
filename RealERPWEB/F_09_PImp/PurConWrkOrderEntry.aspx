@@ -351,7 +351,7 @@
                                         <div class="col-md-6 pading5px">
                                             <div class="input-group">
                                                 <span class="input-group-addon glypingraddon">
-                                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Vendor,"></asp:Label>
+                                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Concern,"></asp:Label>
                                                 </span>
                                             </div>
                                         </div>
@@ -362,7 +362,7 @@
                                                 <span class="input-group-addon glypingraddon">
                                                     <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Text=":"></asp:Label>
                                                 </span>
-                                                <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt"> </asp:TextBox>
+                                                <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt" TextMode="MultiLine" Style="height: 150px; line-height: 18px;"> </asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-2 pading5px">
@@ -375,6 +375,19 @@
                                                     <asp:Label ID="lblNaration" runat="server" CssClass="lblTxt lblName" Text="Term & Condition:"></asp:Label>
                                                 </span>
                                                 <asp:TextBox ID="txtTerm" runat="server" class="form-control" Rows="2" TextMode="MultiLine" Style="height: 300px; line-height: 18px;"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 pading5px">
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <div class="col-md-12 pading5px">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glypingraddon">
+                                                    <asp:Label ID="lblPayTerms" runat="server" CssClass="lblTxt lblName" Text="Payment Terms:"></asp:Label>
+                                                </span>
+                                                <asp:TextBox ID="txtPayTerm" runat="server" class="form-control" Rows="2" TextMode="MultiLine" Style="height: 300px; line-height: 18px;"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-3 pading5px">
