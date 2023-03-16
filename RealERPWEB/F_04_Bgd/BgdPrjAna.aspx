@@ -287,6 +287,8 @@
                                         <asp:Label ID="lblFloor1" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
                                         <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
                                             <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
                                             <asp:ListItem Value="30">30</asp:ListItem>
                                             <asp:ListItem Value="50">50</asp:ListItem>
                                             <asp:ListItem Value="100">100</asp:ListItem>
