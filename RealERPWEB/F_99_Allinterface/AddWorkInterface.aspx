@@ -1006,6 +1006,7 @@
                                         <asp:HyperLink ID="hlnkprintcsdpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDelcsdApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelcsdApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
+                                        
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -1358,7 +1359,7 @@
                  <div class="modal" id="mycsdApproved" data-backdrop="false" tabindex="-1">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content" style="background: #f3f7f9">
-
+                        <asp:Label ID="lbladnotest"  runat="server" Visible="false"></asp:Label>
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title text-primary">Delete Reason </h4>
@@ -1386,7 +1387,8 @@
                         <!-- Modal footer -->
                         <div class="modal-footer">
                            
-                            <asp:LinkButton ID="btncsddelete"  runat="server" class="btn btn-primary btn-sm"  OnClick="btncsddelete_Click">Delete</asp:LinkButton>
+                           
+                            <asp:LinkButton ID="lnkcsddelete" runat="server" OnClick="lnkcsddelete_Click" ToolTip="Remove" CssClass="btn btn-sm">Delete</asp:LinkButton>
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                         </div>
 
