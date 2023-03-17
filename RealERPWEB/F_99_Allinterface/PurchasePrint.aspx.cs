@@ -4049,7 +4049,8 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                   
+                    //case "3101": //bridge
+
                     case "3330": //bridge
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4164,7 +4165,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                 switch (comcod)
                 {
-                   
+
+                    //case "3101": //ptl
+
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4443,7 +4446,9 @@ namespace RealERPWEB.F_99_Allinterface
                     case "2325": //Leisure
                         Reportpath = "~/Report/RptPurchaseOrderLeisure.rdlc";
                         break;
-                   
+
+                    //case "3101":
+
                     case "3353": //Manama
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
                         break;
@@ -4502,9 +4507,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                        
                         break;
-                    case "3101": //ptl               
-                    case "3370": // cpdl                        
-                                          
+
+                    case "3370": // cpdl
+                    case "3101": // cpdl                        
+                                 
+
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno =ASTUtility.CustomReqFormat(wrkid);
                         break;
@@ -4615,7 +4622,9 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
 
-                    case "3101": //ptl
+
+                    case "3101": // cpdl  
+
                     case "3370": // cpdl
                     case "3374": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
@@ -4650,7 +4659,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                         break;
 
-                   
+
                     case"3330":
                         double balamt = 0.00;
                         double ntotal = (amtmat + amtcar - amtdis);

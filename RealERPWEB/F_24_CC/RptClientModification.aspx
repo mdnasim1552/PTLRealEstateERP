@@ -16,6 +16,9 @@
             $('.chzn-select').chosen({ search_contains: true });
 
         }
+        function PrintRpt() {
+            window.open('<%= ResolveUrl("../RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
+        }
 
     </script>
 
@@ -324,7 +327,7 @@
                                             <asp:HyperLink ID="HLgvDesc" runat="server"
                                                 Font-Size="12px" Font-Underline="False" Target="_blank"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                                Width="300px"></asp:HyperLink>
+                                                Width="280px"></asp:HyperLink>
                                         </ItemTemplate>
 
 
@@ -375,7 +378,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lgvDatef" runat="server"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "addate")).ToString("dd-MMM-yyyy") %>'
-                                                Width="70px"></asp:Label>
+                                                Width="85px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <FooterStyle HorizontalAlign="Right" />
@@ -433,7 +436,12 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
-
+                                    <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>                                       
+                                        <asp:LinkButton ID="hlnkprintapp" runat="server" OnClick="hlnkprintapp_Click" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:LinkButton>     
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />

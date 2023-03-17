@@ -28,7 +28,7 @@ namespace RealERPWEB.F_04_Bgd
         {
             if (!IsPostBack)
             {
-                
+
                 string type = this.Request.QueryString["InputType"].ToString();
                 //string antype = this.Request.QueryString["AnaType"].ToString();
                 if (type == "BgdMainRpt")
@@ -478,7 +478,7 @@ namespace RealERPWEB.F_04_Bgd
 
 
             //string comcod = this.GetComeCode();
-           
+
 
             //ViewState["tblconarea"] = ds1.Tables[0];
 
@@ -503,11 +503,11 @@ namespace RealERPWEB.F_04_Bgd
 
             double totalCost = totalCost1;
 
-          
 
-           
 
-            double conarea =  dt1.Rows.Count == 0 ? 0 : Convert.ToDouble(dt1.Rows[0]["conarea"]);
+
+
+            double conarea = dt1.Rows.Count == 0 ? 0 : Convert.ToDouble(dt1.Rows[0]["conarea"]);
 
             double CostPsft = conarea == 0 ? 0 : (totalCost / conarea);
 
@@ -762,6 +762,10 @@ namespace RealERPWEB.F_04_Bgd
                 case 1:
                     //this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
+                    if (ddlgroupwrk.SelectedValue.ToString() == "")
+                    {
+                        divlbtnSelectMultiItem.Visible = false;
+                    }
                     //this.ChkCopyTender.Visible = true;
                     this.ChkCopyTenderVisiable();
 
@@ -835,7 +839,7 @@ namespace RealERPWEB.F_04_Bgd
 
         private void ChkCopyTenderVisiable()
         {
-            string comcod = ASTUtility.Left(this.GetComeCode(),2);
+            string comcod = ASTUtility.Left(this.GetComeCode(), 2);
             switch (comcod)
             {
                 case "11":
@@ -944,7 +948,7 @@ namespace RealERPWEB.F_04_Bgd
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
             dv.Sort = ("cattype,flrslno");
-            dt = dv.ToTable();            
+            dt = dv.ToTable();
             //dv.RowFilter = ("cattype='" + cattype + "' or cattype='CCC'"); // for common work
             //dv.Sort = ("cattype,flrcod");
             //dt = dv.ToTable();
@@ -1480,12 +1484,12 @@ namespace RealERPWEB.F_04_Bgd
             }
 
             this.gvResInfo.PageSize = Convert.ToInt32(this.ddlPage.SelectedValue.ToString());
-
             this.gvResInfo.DataSource = tbl1;
             this.gvResInfo.DataBind();
             // this.gvAnalysis.Attributes["style"] = "readonly:true;";
 
-
+            if (tbl1.Rows.Count > 0)
+                return;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chkProjectLock")).Checked = (this.lblProjectLock.Text == "True") ? true : false;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked = Convert.ToBoolean(tbl1.Rows[0]["lock"].ToString());
 
@@ -1530,7 +1534,7 @@ namespace RealERPWEB.F_04_Bgd
             double ResQty = 0;
             double ResRat = 0;
             int RowIndex = 0;
-             
+
             for (int i = 0; i < this.gvResInfo.Rows.Count; i++)
             {
 
@@ -1917,8 +1921,8 @@ namespace RealERPWEB.F_04_Bgd
         }
         private void Show_All_Reports()
         {
-            
-            
+
+
             Session.Remove("tblResource");
 
 
@@ -2545,6 +2549,8 @@ namespace RealERPWEB.F_04_Bgd
 
         protected void dddlgroupwrk_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlgroupwrk.SelectedValue.ToString() != "")
+                divlbtnSelectMultiItem.Visible = true;
             this.ImgbtnFindItem_Click(null, null);
         }
         protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
@@ -2897,7 +2903,7 @@ namespace RealERPWEB.F_04_Bgd
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNotesModal();", true);
         }
 
-        private void GetDetailsInfo(string pactcode,string rsircode)
+        private void GetDetailsInfo(string pactcode, string rsircode)
         {
             string comcod = this.GetComeCode();
             DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "GETNOTEDETEAILS", pactcode, rsircode, "", "", "", "", "", "", "");
@@ -2972,6 +2978,71 @@ namespace RealERPWEB.F_04_Bgd
         protected void ddlPage_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ShowResourceList();
+        }
+
+        protected void lbtnSelectMultiItem_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = ((DataTable)ViewState["tblItmCod"]).Copy();
+            string comcod = this.GetComeCode();
+            string groupwrk = this.ddlgroupwrk.SelectedValue.ToString();
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("misircode='" + groupwrk + "'");
+            dt = dv.ToTable();
+            this.gvMultiSelectItem.DataSource = dt;
+            this.gvMultiSelectItem.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenMulitSelectModal();", true);
+        }
+
+        protected void lbtnUpdateMultiItem_Click(object sender, EventArgs e)
+        {
+            DataTable tbl1 = (DataTable)Session["tblActAna1"];
+            DataTable dt01 = (DataTable)ViewState["tblItmCod"];
+
+            for (int i = 0; i < this.gvMultiSelectItem.Rows.Count; i++)
+            {
+
+                string ItmCode = ((Label)this.gvMultiSelectItem.Rows[i].FindControl("lblgvmsiItemCode")).Text.ToString();
+                string ItmDesc = ((Label)this.gvMultiSelectItem.Rows[i].FindControl("lblgvmsiItemDesc")).Text.ToString();
+                if (((CheckBox)this.gvMultiSelectItem.Rows[i].FindControl("chkCol")).Checked)
+                {
+                    DataRow[] dr1 = tbl1.Select("isircode='" + ItmCode + "'");
+                    if (dr1.Length > 0)
+                        continue;
+                    DataRow[] dr2 = dt01.Select("isircode='" + ItmCode + "'");
+                    string ItmUnit = dr2[0]["isirunit"].ToString();
+                    DataRow dr3 = tbl1.NewRow();
+                    dr3["misircode"] = dt01.Select("isircode='" + ItmCode + "'")[0]["misircode7"].ToString();
+                    dr3["misirdesc"] = dt01.Select("isircode='" + ItmCode + "'")[0]["misirdesc7"].ToString();
+                    dr3["isircode"] = ItmCode;
+                    dr3["isirdesc1"] = ItmDesc;
+                    dr3["isirunit"] = ItmUnit;
+                    dr3["bgdwqty"] = 0;
+                    dr3["edited"] = "Eidted";
+                    dr3["link"] = Convert.ToBoolean(dt01.Select("isircode='" + ItmCode + "'")[0]["link"].ToString());
+                    tbl1.Rows.Add(dr3);
+                }
+
+            }
+
+
+            if (this.ddlItem.Items.Count == 0)
+                return;
+
+
+            Session["tblActAna1"] = this.HiddenSameDataEn(tbl1);
+            this.gvAnalysis.EditIndex = -1;
+            this.ShowScheduledItemList();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Constraction Budget";
+                string eventdesc = "Floor Selection Item";
+                string eventdesc2 = this.ddlItem.SelectedItem.ToString();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
         }
     }
 

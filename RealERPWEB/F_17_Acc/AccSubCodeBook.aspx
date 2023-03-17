@@ -608,13 +608,7 @@
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtresourcecode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                            </div>
-                            <div class="row mb-1">
-                                <label class="col-md-4">Item Code</label>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtitemcode" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                            </div>
+                            </div>                            
                             <div class="row mb-1">
                                 <label class="col-md-4">Description EN</label>
                                 <div class="col-md-8">
@@ -625,6 +619,12 @@
                                 <label class="col-md-4">Description BN</label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtresourceheadBN" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Item Code</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtitemcode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row mb-1" runat="server" id="divMobile">

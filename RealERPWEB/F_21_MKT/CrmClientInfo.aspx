@@ -451,6 +451,8 @@
             document.cookie = "yPos=!~" + intY + "~!";
         }
 
+        var comcod =<%=this.GetComeCode()%>;
+
 
 
         $(document).ready(function () {
@@ -505,7 +507,7 @@
                 $('.chzn-select').chosen({ search_contains: true });
 
                 //Company Name change
-                var comcod =<%=this.GetComeCode()%>;
+                //var comcod =<%=this.GetComeCode()%>;
 
                 switch (comcod) {
                     case 3352://p2p360                 
@@ -828,7 +830,7 @@
 
                 try {
 
-                    var comcod =<%=this.GetComeCode()%>;
+                  //  var comcod =<%=this.GetComeCode()%>;
 
                 switch (comcod) {
                     case 3354://Edison Real Estate                 
@@ -997,7 +999,7 @@
                 try {
 
                     var empid =<%=this.GetEmpID()%>;
-                var comcod =<%=this.GetComeCode()%>;
+               // var comcod =<%=this.GetComeCode()%>;
 
 
 
@@ -1111,7 +1113,7 @@
             function funPost(date, number) {
                 try {
                     var comdate = $('#txtcomdate' + number).val();
-                    var comcod =<%=this.GetComeCode()%>;
+                 //   var comcod =<%=this.GetComeCode()%>;
                 var comments = $('#lblcomments' + number).val();
 
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
@@ -1166,7 +1168,7 @@
                         return;
                     }
 
-                    var comcod =<%=this.GetComeCode()%>;
+                 //   var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
 
@@ -1337,7 +1339,7 @@
 
                             var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
                         var numberrl;
-
+                          
                         for (var i = 0; i < arrgschcodl.length; i++) {
 
                             gcod = $(arrgschcodl[i]).text();
@@ -1351,16 +1353,25 @@
 
                         }
 
-
+                            console.log(data);
+                         
 
                         //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
 
-                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+                            var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+
+                            //var ddlProject = '#ddlProject';
+                            
 
                         //console.log(ddlProject);
-                        $(ddlProject).html('');
+                            $(ddlProject).html('');
+                           
+                           // $(lstProject).empty();
                         $.each(data, function (key, data) {
 
+
+
+                           // $('#Select1').append('<option value="5">item 5</option>')
                             $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
                         });
 
@@ -1460,7 +1471,7 @@
 
 
                     //Company Name change
-                    var comcod =<%=this.GetComeCode()%>;
+                //    var comcod =<%=this.GetComeCode()%>;
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
@@ -1551,7 +1562,7 @@
 
 
 
-                    var comcod =<%=this.GetComeCode()%>;
+                //    var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var statusid = $('#ddlmStatus option:selected').val();
                 var empid =<%=this.GetEmpID()%>;
@@ -1608,7 +1619,7 @@
 
 
                     //var  comdate =$('#txtcomdate'+number).val();
-                    var comcod =<%=this.GetComeCode()%>;
+                   
                 var empid =<%=this.GetEmpID()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
 
@@ -1742,7 +1753,7 @@
 
 
                             case "810100101007": //Company
-                                console.log(data.gdesc1);
+                                //console.log(data.gdesc1);
 
                                 var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
 
@@ -1755,19 +1766,28 @@
                                 });
 
 
+                                $('#hdncompany').text(data.gdesc1);
+                             
+                                
+
 
                                 break;
 
 
-                            case "810100101003": //Project
+                            case "810100101003": //Project                               
 
+                                //For Company Chnage                              
+                              //  funCompanyProject(comcod, $('#hdncompany').text());
                                 var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
 
-
+                               // var ddlProject = "#ddlProject";
+                              
 
                                 $(ddlProject + ' > option').each(function (index, item) {
                                     if ($(item).val() == data.gdesc1) {
+                                      
                                         $(item).attr("selected", true);
+                                        alert(data.gdesc1);
                                     }
 
 
@@ -1957,7 +1977,7 @@
 
 
 
-                    var comcod =<%=this.GetComeCode()%>;
+                  //  var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                     var ratevalue = $('#ddlRating option:selected').val();
 
@@ -4298,6 +4318,7 @@
                                     <button type="button" class="btn  btn-success btn-xs" id="lbtnprestatus" runat="server"><i class="fa  fa-star-and-crescent"></i><span id="lblprelaststatus" runat="server"> Previous</span></button>
                                     <asp:HiddenField ID="hiddenLedStatus" runat="server" />
                                     <asp:HiddenField ID="hdlpreleadst" runat="server" />
+                                    <asp:HiddenField ID="hdncompany" ClientIDMode="Static" runat="server" />
 
                                     <%--<asp:LinkButton ID="lbtntfollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtntfollowup_Click"><i  class="fa fa-handshake"></i> Followup</asp:LinkButton>--%>
                                     <%-- <asp:LinkButton ID="lbtnStatus" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnStatus_Click"> <i  class="fa  fa-star-and-crescent"></i> Status</asp:LinkButton>
@@ -4537,12 +4558,12 @@
 
 
                                                         <asp:Panel ID="PnlProject" runat="server">
-                                                           <%-- <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
-                                                                TabIndex="12">
-                                                            </asp:DropDownList>--%>
+                                                            <asp:DropDownList ID="ddlProject"   runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;" 
+                                                                TabIndex="12" >
+                                                            </asp:DropDownList>
 
-                                                             <asp:ListBox ID="lstProject" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
-                                                                data-placeholder="Choose Project" multiple="true"></asp:ListBox>
+                                                          <%--   <asp:ListBox ID="lstProject"  SelectionMode="Multiple" runat="server"  class="form-control chosen-select" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Project" multiple="true"></asp:ListBox>--%>
 
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">

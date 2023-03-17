@@ -298,6 +298,7 @@ namespace RealERPWEB.F_12_Inv
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string ddldesc = hst["ddldesc"].ToString();
+            string invtype = hst["invtype"].ToString();
             string comcod = this.GetCompCode();
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
@@ -331,6 +332,15 @@ namespace RealERPWEB.F_12_Inv
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", CallType, ReFindProject, fxtast, Aproval, userid, "", "", "", "", "");
             if (ds2 == null)
                 return;
+
+            //if (invtype == "STO")
+            //{
+            //    foreach (DataRow dr in ds2.Tables[0].Rows)
+            //    {
+            //        if (ASTUtility.Left(dr["actcode"].ToString(),2) == "16")
+            //            dr.Delete();
+            //    }
+            //}
 
             string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
             this.ddlProject.DataTextField = TextField;
@@ -2485,8 +2495,8 @@ namespace RealERPWEB.F_12_Inv
 
         protected void ImgbtnFindRes_Click(object sender, EventArgs e)
         {
-
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string invtype = hst["invtype"].ToString();
             string comcod = this.GetCompCode();
             string approved = "";
             switch (comcod)
@@ -2504,6 +2514,24 @@ namespace RealERPWEB.F_12_Inv
                     approved = "approved";
                     break;
             }
+            //string sProject = "";
+            //if (invtype == "15")
+            //{
+            //    if (ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 4) != "1561" && ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "15")
+            //    {
+            //        sProject = "16" + ASTUtility.Right(this.ddlProject.SelectedValue.ToString(), 10);
+            //    }
+            //    else
+            //    {
+            //        sProject = this.ddlProject.SelectedValue.ToString();
+            //    }
+
+            //}
+            //else
+            //{
+            //    sProject = this.ddlProject.SelectedValue.ToString();
+            //}
+
 
             string mProject = this.ddlProject.SelectedValue.ToString();
             string mSrchTxt = "%" + this.txtResSearch.Text.Trim() + "%";
