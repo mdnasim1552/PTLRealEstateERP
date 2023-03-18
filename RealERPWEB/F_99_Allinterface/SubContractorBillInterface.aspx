@@ -1155,7 +1155,7 @@
                                             <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server"  Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -1494,7 +1494,7 @@
                                             <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -1645,7 +1645,7 @@
                                             <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -2277,7 +2277,7 @@
                                             <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -2445,7 +2445,7 @@
                                             <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -3241,7 +3241,7 @@
                                              <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -3418,7 +3418,7 @@
                                              <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>
@@ -3585,7 +3585,7 @@
                                               <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvntrwk" runat="server"
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
                                                         Width="100px"></asp:Label>
                                                 </ItemTemplate>

@@ -1369,7 +1369,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             else
             {
-                chkBoxSkippWH.Checked = true;
+               
+
+                if(GetComeCode()=="3101" || GetComeCode() == "3370")
+                {
+                    chkBoxSkippWH.Checked = false;
+                }
+                else
+                {
+                    chkBoxSkippWH.Checked = true;
+                }
                 chkBoxSkippWH_CheckedChanged(null, null);
                 frmdate.InnerText = "From Date";
                 todate.InnerText = "To Date";
