@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ProjectAnalysis.aspx.cs" Inherits="RealERPWEB.F_32_Mis.ProjectAnalysis" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ProjectAnalysis.aspx.cs" Inherits="RealERPWEB.F_32_Mis.ProjectAnalysis" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-    
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
@@ -23,7 +23,7 @@
 
 
 
-                var gvprjanalysis = $('#<%=this.gvprjanalysis.ClientID %>');
+                <%--var gvprjanalysis = $('#<%=this.gvprjanalysis.ClientID %>');
 
                 gvprjanalysis.gridviewScroll({
                     width: 2040,
@@ -36,7 +36,7 @@
                     harrowleftimg: "../Image/arrowhl.png",
                     harrowrightimg: "../Image/arrowhr.png",
                     freezesize: 9
-                });
+                });--%>
 
               <%--  $('#<%=this.gvprjanalysis.ClientID%>').tblScrollable();--%>
                 $('.chzn-select').chosen({ search_contains: true });
@@ -72,10 +72,10 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
 
 
+            <div class="card">
+                <div class="card-body m-2">
                     <div class="row">
                         <fieldset class="scheduler-border">
 
@@ -127,8 +127,8 @@
                             <asp:TemplateField HeaderText=" Description">
                                 <ItemTemplate>
 
-                                    <asp:Label ID="lblpactcode" runat="server" Visible="False" ForeColor="Black" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
-                                        Width="115px" OnClick="lnkgvprjanalysis_OnClick"></asp:Label>
+                                        <asp:Label ID="lblpactcode" runat="server" Visible="False" ForeColor="Black" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                            Width="115px" OnClick="lnkgvprjanalysis_OnClick"></asp:Label>
 
                                     <asp:LinkButton ID="lnkgvprjanalysis" runat="server" ForeColor="Black" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
                                         Width="115px" OnClick="lnkgvprjanalysis_OnClick" ></asp:LinkButton>
@@ -153,19 +153,19 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>--%>
 
-                            <asp:TemplateField HeaderText="Total Sales </br>Target">
-                                <ItemTemplate>
-                                    <asp:HyperLink ID="hlnkbgdamt" Target="_blank" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tosalval")).ToString("#,##0;-#,##0; ")  %>'
-                                        Width="70px"></asp:HyperLink>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    <asp:Label ID="lgvFtsaltg" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
-                                </FooterTemplate>
+                                <asp:TemplateField HeaderText="Total Sales </br>Target">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="hlnkbgdamt" Target="_blank" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tosalval")).ToString("#,##0;-#,##0; ")  %>'
+                                            Width="80px"></asp:HyperLink>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFtsaltg" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Total Sales">
                                 <ItemTemplate>
@@ -228,10 +228,10 @@
                                     <asp:Label ID="lgvFtsalcoldue" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Sales </br>(%)</br> from </br>S.Tar.">
                                 <ItemTemplate>
@@ -242,14 +242,14 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Collec.</br>(%) </br>from</br> Sales">
-                                <ItemTemplate>
-                                    <asp:Label ID="colpersal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colpersal")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                        Width="45px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Collec.</br>(%) </br>from</br> Sales">
+                                    <ItemTemplate>
+                                        <asp:Label ID="colpersal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colpersal")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="45px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Collec.</br>(%) </br> from </br>S. tar.">
                                 <ItemTemplate>
@@ -307,10 +307,10 @@
                                     <asp:Label ID="lgvFbgdprft" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
                              <asp:TemplateField HeaderText="Projected </br> Profit">
                                 <ItemTemplate>
@@ -321,10 +321,10 @@
                                     <asp:Label ID="lblgvFprojectedprofit" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
 
 
@@ -338,10 +338,10 @@
                                     <asp:Label ID="lblgvFproprofitpercnt" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
 
                              <asp:TemplateField HeaderText="Cash Flow">
@@ -353,17 +353,19 @@
                                     <asp:Label ID="lblgvFcashflow" runat="server" Font-Size="12px" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
 
-                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <ItemStyle HorizontalAlign="Right" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
-                        </Columns>
-                        <FooterStyle CssClass="grvFooter" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
+                            </Columns>
+
+                            <FooterStyle CssClass="grvFooterNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
+                            <RowStyle CssClass="grvRowsNew" />
 
                     </asp:GridView>
              
@@ -372,17 +374,19 @@
                     <div class="row" style="margin-top: 50px;">
                         <div id="tab1primary" style="float: left;">
 
-                            <div id="ProjAnabar" style="width: 500px; height: 250px;"></div>
-                        </div>
+                                <div id="ProjAnabar" style="width: 500px; height: 250px;"></div>
+                            </div>
 
-                        <div id="tab2primary" style="float: left; margin-left: 80px;">
+                            <div id="tab2primary" style="float: left; margin-left: 80px;">
 
-                            <div id="ProjAnapie" style="width: 500px; height: 250px;"></div>
+                                <div id="ProjAnapie" style="width: 500px; height: 250px;"></div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -449,31 +453,31 @@
                         "name": "Project Analysis",
                         "colorByPoint": true,
                         "data": [
-                           {
-                               "name": "Total Sales",
-                               "y": sdata[0]["salamt"],
+                            {
+                                "name": "Total Sales",
+                                "y": sdata[0]["salamt"],
 
-                           },
-                           {
-                               "name": "Total Sales Dues",
-                               "y": sdata[0]["tsaldue"],
+                            },
+                            {
+                                "name": "Total Sales Dues",
+                                "y": sdata[0]["tsaldue"],
 
-                           },
-                           {
-                               "name": "Total Collection",
-                               "y": sdata[0]["collamt"],
+                            },
+                            {
+                                "name": "Total Collection",
+                                "y": sdata[0]["collamt"],
 
-                           },
-                           {
-                               "name": "Total collection Dues",
-                               "y": sdata[0]["tcoldue"],
+                            },
+                            {
+                                "name": "Total collection Dues",
+                                "y": sdata[0]["tcoldue"],
 
-                           },
-                           {
-                               "name": "Total Sales & Collection Dues",
-                               "y": sdata[0]["tsalcoldue"]
+                            },
+                            {
+                                "name": "Total Sales & Collection Dues",
+                                "y": sdata[0]["tsalcoldue"]
 
-                           }
+                            }
 
 
                         ]
