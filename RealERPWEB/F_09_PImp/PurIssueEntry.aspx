@@ -86,7 +86,7 @@
                                     <asp:Label ID="Label9" runat="server" CssClass="lblTxt smLbl_to" Text="Ref. No."></asp:Label>
                                     <asp:TextBox ID="txtBillno" runat="server" CssClass="form-control form-control-sm" TabIndex="3"></asp:TextBox>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-1">
                                     <asp:Label ID="lblIssuno" runat="server" CssClass="lblTxt lblName" Text="Issue No:"></asp:Label>
                                     <div class="row">
                                         <asp:Label ID="lblCurISSNo1" runat="server" CssClass="form-control form-control-sm col-lg-6">WEN</asp:Label>
@@ -103,17 +103,23 @@
                                 </div>
                                 <div class="col-lg-2">
 
+                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" >
+
+                                        Previous Issue    <asp:LinkButton ID="lbtnPrevISSList" runat="server"  OnClick="lbtnPrevISSList_Click"><i class="fa fa-search"></i></asp:LinkButton>
+
+                                    </asp:Label>
 
 
-
-
+                                               <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="form-control form-control-sm chzn-select">
+                                        </asp:DropDownList>
+<%--
                                     <div class="input-group input-group-sm mb-3 mt20">
                                         <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="form-control form-control-sm">
                                         </asp:DropDownList>
                                         <div class="input-group-append">
                                             <asp:LinkButton ID="lbtnPrevISSList" runat="server" CssClass="form-control form-control-sm" OnClick="lbtnPrevISSList_Click">Previous Issue</asp:LinkButton>
                                         </div>
-                                    </div>
+                                    </div>--%>
 
                                 </div>
                                 <div class="col-lg-1">

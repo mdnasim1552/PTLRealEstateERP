@@ -232,7 +232,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string isCheck = (this.chkresign.Checked ? "True" : "False");
 
-            if (comcod == "3365" || comcod == "3354" || comcod == "3101" || comcod == "3102")
+            if (comcod == "3365" || comcod == "3354")
             {
 
                 this.sspnlv.Visible = true;
@@ -1371,7 +1371,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                
 
-                if(GetComeCode()=="3101" || GetComeCode() == "3370")
+                if(GetComeCode()!="3365" )
                 {
                     chkBoxSkippWH.Checked = false;
                 }
