@@ -2410,6 +2410,7 @@
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
+    <Content Include="F_14_Pro\RegisteredVendorList.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseOrderSummary.aspx" />
@@ -4410,6 +4411,13 @@
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RegisteredVendorList.aspx.cs">
+      <DependentUpon>RegisteredVendorList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RegisteredVendorList.aspx.designer.cs">
+      <DependentUpon>RegisteredVendorList.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptDateWiseBill.aspx.cs">
       <DependentUpon>RptDateWiseBill.aspx</DependentUpon>
