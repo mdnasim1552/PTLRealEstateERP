@@ -827,7 +827,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox172</rd:DefaultName>
-                <Top>4.76042in</Top>
+                <Top>4.75in</Top>
                 <Height>0.25in</Height>
                 <Width>1.47001in</Width>
                 <Style>
@@ -858,7 +858,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Term</rd:DefaultName>
-                <Top>5.06042in</Top>
+                <Top>5.05in</Top>
                 <Left>0.00327in</Left>
                 <Height>0.30625in</Height>
                 <Width>7.18857in</Width>
@@ -1607,7 +1607,7 @@
                 </TablixRowHierarchy>
                 <RepeatRowHeaders>true</RepeatRowHeaders>
                 <DataSetName>DataSet1</DataSetName>
-                <Top>3.77058in</Top>
+                <Top>3.76016in</Top>
                 <Height>0.8151in</Height>
                 <Width>7.132in</Width>
                 <ZIndex>2</ZIndex>
@@ -1624,39 +1624,6 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!workSuppl.Value</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Suppl</rd:DefaultName>
-                <Top>1.14355in</Top>
-                <Left>0.05245in</Left>
-                <Height>0.22917in</Height>
-                <Width>3.1875in</Width>
-                <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Address">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
                         <Value>=Parameters!Address.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
@@ -1667,12 +1634,12 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>Address</rd:DefaultName>
-                <Top>1.43104in</Top>
+                <rd:DefaultName>Suppl</rd:DefaultName>
+                <Top>1.30813in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.22917in</Height>
                 <Width>3.1875in</Width>
-                <ZIndex>4</ZIndex>
+                <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1702,11 +1669,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>subject</rd:DefaultName>
-                <Top>2.0498in</Top>
+                <Top>2.03938in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.30069in</Height>
                 <Width>7.1in</Width>
-                <ZIndex>5</ZIndex>
+                <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1730,7 +1697,6 @@
                         <Value>=Parameters!CurDate.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -1738,11 +1704,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox203</rd:DefaultName>
-                <Top>0.3498in</Top>
+                <Top>0.02688in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.25in</Height>
                 <Width>3.1875in</Width>
-                <ZIndex>6</ZIndex>
+                <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1760,7 +1726,15 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Dear Vendor,</Value>
+                        <Value>Dear,  </Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value>=Parameters!Attn.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -1772,11 +1746,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox162</rd:DefaultName>
-                <Top>2.40605in</Top>
+                <Top>2.39563in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.25in</Height>
-                <Width>1in</Width>
-                <ZIndex>7</ZIndex>
+                <Width>1.16016in</Width>
+                <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1805,11 +1779,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>body</rd:DefaultName>
-                <Top>2.71229in</Top>
+                <Top>2.70187in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.5625in</Height>
                 <Width>7.1in</Width>
-                <ZIndex>8</ZIndex>
+                <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1827,10 +1801,9 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!prjname.Value</Value>
+                        <Value>Proprietor</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -1838,11 +1811,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>0.65397in</Top>
+                <Top>0.81855in</Top>
                 <Left>0.05245in</Left>
                 <Height>0.19513in</Height>
                 <Width>3.1875in</Width>
-                <ZIndex>9</ZIndex>
+                <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1860,10 +1833,9 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!paddress.Value</Value>
+                        <Value>=Parameters!workSuppl.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -1871,11 +1843,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>0.89105in</Top>
+                <Top>1.05563in</Top>
                 <Left>0.05313in</Left>
                 <Height>0.19513in</Height>
                 <Width>3.1875in</Width>
-                <ZIndex>10</ZIndex>
+                <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1904,9 +1876,40 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox203</rd:DefaultName>
-                <Top>0.04813in</Top>
-                <Left>0.06596in</Left>
+                <Top>0.28771in</Top>
                 <Height>0.25in</Height>
+                <Width>3.1875in</Width>
+                <ZIndex>10</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox7">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!Attn.Value</Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>0.56598in</Top>
+                <Left>0.0212in</Left>
+                <Height>0.19513in</Height>
                 <Width>3.1875in</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
@@ -1921,9 +1924,9 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>1.23416in</Top>
+            <Top>1.24458in</Top>
             <Left>0.09546in</Left>
-            <Height>6.14792in</Height>
+            <Height>6.1375in</Height>
             <Width>7.20491in</Width>
             <ZIndex>7</ZIndex>
             <Style>

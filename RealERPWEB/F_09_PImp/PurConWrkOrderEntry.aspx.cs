@@ -706,6 +706,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
             this.txtPayTerm.Text = ds1.Tables[1].Rows[0]["payterm"].ToString();
+            this.txtLETDES.Text = ds1.Tables[1].Rows[0]["leterdes"].ToString();
 
 
 
