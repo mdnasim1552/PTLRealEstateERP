@@ -86,7 +86,10 @@ namespace RealERPWEB.F_12_Inv
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnktotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -898,9 +901,9 @@ namespace RealERPWEB.F_12_Inv
                 // this.lbtnPrevTransList.Visible = true;
 
                 this.ImgbtnPreList.Visible = false;
-                this.lblPre.Visible = false;
+                //this.lblPre.Visible = false;
                 this.ddlPrevISSList.Visible = false;
-                this.txtRefNo1.Visible = false;
+                //this.txtRefNo1.Visible = false;
 
                 this.chkGatePass.Visible = false;
                 this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text;
@@ -914,8 +917,8 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlprjlistfrom.Visible = true;
                 this.ddlprjlistto.Visible = true;
                 this.ImgbtnPreList.Visible = true; ;
-                this.lblPre.Visible = true;
-                this.txtRefNo1.Visible = true;
+                //this.lblPre.Visible = true;
+                //this.txtRefNo1.Visible = true;
                 //this.lbtnPrevTransList.Visible = true;
                 this.ddlPrevISSList.Visible = true;
                 this.lblddlProjectFrom.Visible = false;
@@ -1026,7 +1029,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
-            ((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             this.FooterCalCulation();
         }
 
@@ -1525,7 +1528,7 @@ namespace RealERPWEB.F_12_Inv
         protected void chkGatePass_CheckedChanged(object sender, EventArgs e)
         {
             this.lblGatePassNo.Visible = this.chkGatePass.Checked;
-            this.txtsrchGatePass.Visible = this.chkGatePass.Checked;
+            //this.txtsrchGatePass.Visible = this.chkGatePass.Checked;
             this.lbtnGatePassNo.Visible = this.chkGatePass.Checked;
             this.ddlGatePass.Visible = this.chkGatePass.Checked;
         }
