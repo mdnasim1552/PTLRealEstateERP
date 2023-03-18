@@ -23,13 +23,14 @@
 
     </script>
     <style type="text/css">
-    .chzn-single {
+        .chzn-single {
             border-radius: 3px !important;
             height: 29px !important;
         }
-    .table th, .table td{
-        padding: 4px;
-    }
+
+        .table th, .table td {
+            padding: 4px;
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -75,12 +76,12 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate" TodaysDateFormat=""></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-0" style="margin-top:21px;">
+                        <div class="col-md-0" style="margin-top: 21px;">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnShow_Click">Show</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-md-1"  style="margin-top:21px;">
+                        <div class="col-md-1" style="margin-top: 21px;">
                             <div class="form-group">
                                 <asp:CheckBox ID="chkconsolidate" runat="server" CssClass="form-control form-control-sm"
                                     Text="Consolidate" Visible="False" />
@@ -168,7 +169,7 @@
 
                                 <asp:TemplateField HeaderText="Location">
                                     <HeaderTemplate>
-                                      <%--  <table style="width: 47%;">
+                                        <%--  <table style="width: 47%;">
                                             <tr>
                                                 <td class="style58">
                                                     
@@ -181,11 +182,11 @@
                                             </tr>
                                         </table>--%>
                                         <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Location"></asp:Label>
-                                         <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
-                                           </asp:HyperLink>
+                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i>
+                                        </asp:HyperLink>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvlocation" runat="server" Style="text-align: left;  line-height: 12px;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjloc")) %>'
+                                        <asp:Label ID="lblgvlocation" runat="server" Style="text-align: left; line-height: 12px;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjloc")) %>'
                                             Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -204,7 +205,7 @@
                                         <asp:Label ID="lblgvNLand" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "natland")) %>'
                                             Width="60px"></asp:Label>
                                     </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" Font-Size="12px"  HorizontalAlign="Right" />
+                                    <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
@@ -214,7 +215,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Sales </br> Value">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFTSVal" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFTSVal" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px">
                                         </asp:Label>
                                     </FooterTemplate>
@@ -229,7 +230,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="This Month">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFTmonSVal" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFTmonSVal" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -243,7 +244,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Received  </br>against Sales">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFTReSVal" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFTReSVal" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -256,7 +257,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Non-Operating </br> Income">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFNOI" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFNOI" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -270,7 +271,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total </br> Received">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFRecamt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFRecamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -284,7 +285,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Receivable">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFBRecSalamt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFBRecSalamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -303,7 +304,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Construction </br>  Admin </br>  Selling Exp.">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFExpAmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFExpAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -317,7 +318,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Advance">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFPAdvAmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFPAdvAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -331,7 +332,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Land Cost </br>(Non-Refundable)">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFLCNFAmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFLCNFAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -345,7 +346,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Overhead">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFOvmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFOvmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -359,7 +360,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Bank Interest">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFIAmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFIAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -373,7 +374,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Actual </br> Expenses">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFtExp" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFtExp" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -392,7 +393,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Liabilities">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFLibAmt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFLibAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -406,7 +407,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Loan from</br> Head Office">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFLframt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFLframt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -420,7 +421,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Loan to</br> Head Office">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFLtoamt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFLtoamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -434,7 +435,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Refundable </br>Loan">
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFRLamt" runat="server" Font-Bold="True" Font-Size="12px" 
+                                        <asp:Label ID="lgvFRLamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -446,7 +447,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-                              <%--  <asp:TemplateField HeaderText="Sl">
+                                <%--  <asp:TemplateField HeaderText="Sl">
                                     <ItemTemplate>
                                         <asp:Label ID="serialnodup" runat="server" Style="text-align: right" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'
                                             Width="30px"></asp:Label>
@@ -455,11 +456,11 @@
                                 </asp:TemplateField>--%>
                             </Columns>
                             <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
                 </asp:View>
@@ -658,11 +659,11 @@
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
                 </asp:View>
@@ -944,12 +945,12 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
                             </Columns>
-                           <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <FooterStyle CssClass="grvFooterNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
 
                         </asp:GridView>
                         <div class="table table-responsive">
@@ -1137,12 +1138,12 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
                             </Columns>
-                           <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <FooterStyle CssClass="grvFooterNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
                 </asp:View>
@@ -1364,11 +1365,11 @@
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
 
                         </asp:GridView>
                     </div>
@@ -1434,11 +1435,11 @@
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
                     </div>
                 </asp:View>
@@ -1465,11 +1466,11 @@
 
                                 <asp:TemplateField HeaderText="Group">
                                     <HeaderTemplate>
-                                     
-                                                    <asp:Label ID="lblheader" runat="server" Text="Group"></asp:Label>
-                                                
-                                                    <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn btn-danger btn-xs fa fa-file-excel" ToolTip="Export to Excel"></asp:HyperLink>
-                                           
+
+                                        <asp:Label ID="lblheader" runat="server" Text="Group"></asp:Label>
+
+                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn btn-danger btn-xs fa fa-file-excel" ToolTip="Export to Excel"></asp:HyperLink>
+
                                     </HeaderTemplate>
 
 
@@ -1840,11 +1841,11 @@
 
                             </Columns>
                             <FooterStyle CssClass="grvFooterNew" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="" />
-                        <RowStyle CssClass="grvRowsNew" />
-                        <HeaderStyle CssClass="grvHeaderNew" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="" />
+                            <RowStyle CssClass="grvRowsNew" />
+                            <HeaderStyle CssClass="grvHeaderNew" />
                         </asp:GridView>
 
                     </div>
