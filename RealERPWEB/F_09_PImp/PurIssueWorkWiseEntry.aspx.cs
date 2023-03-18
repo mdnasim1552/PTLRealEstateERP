@@ -128,11 +128,11 @@ namespace RealERPWEB.F_09_PImp
                 this.lbtnOk.Text = "Ok";
                 return;
             }
-            this.lbtnPrevISSList.Visible = false;
-            this.ddlPrevISSList.Visible = false;
+            this.lbtnPrevISSList.Enabled = false;
+            this.ddlPrevISSList.Enabled = false;
 
             this.lblddlProject.Text = (this.ddlprjlist.Items.Count == 0 ? "XXX" : this.ddlprjlist.SelectedItem.Text.Trim());
-            this.ddlprjlist.Visible = false;//it will be used
+            this.ddlprjlist.Enabled = false;//it will be used
             this.lblddlProject.Visible = true;
             this.txtCurISSNo2.ReadOnly = true;
             ////this.ddlfloorno.Items.Clear();

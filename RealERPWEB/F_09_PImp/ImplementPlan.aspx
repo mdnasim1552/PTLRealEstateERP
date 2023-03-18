@@ -23,15 +23,11 @@
             width: 100% !important;
         }
 
-        div#ContentPlaceHolder1_ddlPrevVOUList_chzn {
-            margin-top: 20px !important;
-        }
 
-        div#ContentPlaceHolder1_ddlitemlist_chzn {
-            margin-top: 20px !important;
-        }
-        th{
-            padding:0.1rem!important;
+
+
+        th {
+            padding: 0.1rem !important;
         }
     </style>
 
@@ -98,13 +94,10 @@
                         <div class="row">
                             <div class="col-lg-12 p-0">
                                 <div class="form-group row mb-0">
-                                    <%--     <div class="col-lg-3" runat="server" visible="false">
-                                        <asp:TextBox ID="txtProjectSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                        <asp:LinkButton ID="ImgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindProject_Click" TabIndex="12"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>--%>
+               
 
 
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-3">
                                         <asp:Label ID="lblProjectList" runat="server" Text="Project Name "></asp:Label>
                                         <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="13" AutoPostBack="true">
                                         </asp:DropDownList>
@@ -112,13 +105,19 @@
                                     </div>
 
                                     <div class="col-lg-2">
+
                                         <asp:Label ID="lblvounotext" runat="server"
                                             Text="Implement No"></asp:Label>
 
-                                        <asp:Label ID="lblCurVOUNo1" runat="server" CssClass="smLbl_to"
-                                            Text="WEP"></asp:Label>
-                                        <asp:TextBox ID="txtCurVOUNo2" runat="server" CssClass="form-control form-control-sm"
-                                            ReadOnly="True" TabIndex="5">000000000</asp:TextBox>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <asp:Label ID="lblCurVOUNo1" runat="server" CssClass="input-group-text"
+                                                    Text="WEP"></asp:Label>
+                                            </div>
+                                            <asp:TextBox ID="txtCurVOUNo2" runat="server" CssClass="form-control"
+                                                ReadOnly="True">000000000</asp:TextBox>
+                                        </div>
+
                                     </div>
                                     <div class="col-lg-1">
                                         <asp:Label ID="lbldate" runat="server" Text="Date "></asp:Label>
@@ -131,6 +130,15 @@
 
 
                                     <div class="col-lg-2">
+
+
+                                        <asp:Label ID="lblPreList" runat="server">Prev. List
+                                                                    <asp:LinkButton ID="lbtnPrevVOUList" runat="server" OnClick="lbtnPrevVOUList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                                        </asp:Label>
+                                        <asp:DropDownList ID="ddlPrevVOUList" runat="server" CssClass="chzn-select form-control form-control-sm " AutoPostBack="true"></asp:DropDownList>
+                                    </div>
+
+                                    <div class="col-lg-1">
                                         <asp:Label ID="lblpage0" CssClass="lblTxt lblName" runat="server" Text="Item Search"></asp:Label>
                                         <div class="input-group input-group-sm mb-3">
                                             <asp:TextBox ID="txtSearchItem" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -140,20 +148,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-1">
-                                        <asp:Label ID="lblPreList" runat="server" Text="Prev. List"></asp:Label>
 
-                                        <div class="input-group input-group-sm mb-3">
-                                            <asp:TextBox ID="txtPreVouSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                            <div class="input-group-append">
-                                                <asp:LinkButton ID="lbtnPrevVOUList" runat="server" CssClass="btn btn-primary" OnClick="lbtnPrevVOUList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <asp:DropDownList ID="ddlPrevVOUList" runat="server" CssClass="chzn-select form-control form-control-sm mt20" AutoPostBack="true"></asp:DropDownList>
-                                    </div>
                                     <div class="col-lg-1">
                                         <asp:Label ID="lblpage" runat="server" Text="Page Size"></asp:Label>
 
@@ -191,38 +186,27 @@
                                             </asp:DropDownList>
                                         </div>
 
-                                        <div class="col-lg-1">
-                                            <asp:Label ID="lblitemList" runat="server" Text="Item List"></asp:Label>
-
-
-                                            <div class="input-group input-group-sm mb-3">
-                                                <asp:TextBox ID="txtsrchItemName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                <div class="input-group-append">
-                                                    <asp:LinkButton ID="imgbtnSearchItemList" CssClass="btn btn-primary srearchBtn" runat="server" TabIndex="9" OnClick="imgbtnSearchItemList_Click"><i class="fa fa-search "> </i></asp:LinkButton>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
+                      
 
 
 
                                         <div class="col-lg-2">
+                                            <asp:Label ID="lblitemList" runat="server" Text="Item List">
+                                                <asp:LinkButton ID="imgbtnSearchItemList" runat="server" OnClick="imgbtnSearchItemList_Click"><i class="fa fa-search "> </i></asp:LinkButton>
+                                            </asp:Label>
                                             <asp:DropDownList ID="ddlitemlist" runat="server" CssClass=" chzn-select fform-control form-control-sm " AutoPostBack="True" OnSelectedIndexChanged="ddlitemlist_SelectedIndexChanged"></asp:DropDownList>
-
-
-
                                         </div>
+
+
                                         <div class="col-lg-1">
                                             <asp:LinkButton ID="lbtnAllLab" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnAllLab_Click">Select</asp:LinkButton>
 
                                         </div>
                                     </div>
-                                      </asp:Panel>
-                                    </div>
-   
-            </div>
+                                </asp:Panel>
+                            </div>
+
+                        </div>
                     </div>
 
                 </asp:Panel>
@@ -386,7 +370,7 @@
                     </div>
                 </div>
             </div>
-                
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
