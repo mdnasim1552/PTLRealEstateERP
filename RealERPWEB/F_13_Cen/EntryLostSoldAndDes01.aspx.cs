@@ -46,7 +46,10 @@ namespace RealERPWEB.F_13_Cen
             // Create an event handler for the master page's contentCallEvent event
             //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnktotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
         }
 
         private string GetCompCode()
@@ -204,8 +207,7 @@ namespace RealERPWEB.F_13_Cen
                 this.ddlProject.Visible = false;
                 this.lblddlProject.Visible = true;
                 this.PanelSub.Visible = true;
-                this.lblPreViousList.Visible = false;
-                this.txtSrchPrevious.Visible = false;
+                //this.txtSrchPrevious.Visible = false;
                 this.ImgbtnFindPrevious.Visible = false;
                 this.ddlPreList.Visible = false;
                 this.GetLSDInfo();
@@ -218,8 +220,7 @@ namespace RealERPWEB.F_13_Cen
             this.lblddlProject.Visible = false;
             this.txtCurDate.Enabled = true;
             this.PanelSub.Visible = false;
-            this.lblPreViousList.Visible = true;
-            this.txtSrchPrevious.Visible = true;
+            //this.txtSrchPrevious.Visible = true;
             this.ImgbtnFindPrevious.Visible = true;
             this.ddlPreList.Visible = true;
             this.ddlPreList.Items.Clear();
@@ -337,7 +338,7 @@ namespace RealERPWEB.F_13_Cen
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
                 return;
             }
             this.SaveValue();
@@ -356,7 +357,7 @@ namespace RealERPWEB.F_13_Cen
             string Refno = this.txtrefno.Text.ToString();
             if (Refno.Length == 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Ref. No. Should Not Be Empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Ref. No. Should Not Be Empty');", true);
                 return;
             }
 
@@ -375,8 +376,7 @@ namespace RealERPWEB.F_13_Cen
                     ;
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref. No.";
-                    //this.ddlPrevReqList.Items.Clear();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Found Duplicate Ref. No.');", true);
                     return;
                 }
             }
@@ -396,7 +396,7 @@ namespace RealERPWEB.F_13_Cen
                     curdate, Refno, lqty, sqty, dqty, rate, PostedByid, Posttrmid, PostSession, Posteddat, "");
             }
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
             this.txtCurDate.Enabled = false;
 
 

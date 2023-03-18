@@ -119,6 +119,32 @@ namespace RealERPWEB.F_12_Inv
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            string type = this.Request.QueryString["Type"].ToString();
+            if (type == "Entry" || type== "ReqEdit") 
+            {
+                ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnktotal_Click);
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
+            }
+            else if (type == "ReqApproval")
+            {
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Approved";
+                ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkaptotal_Click);
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnApproved_Click);
+            }
+            else if (type == "ReqChecked")
+            {
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Checked";
+                ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkaptotalchk_Click);
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnChecked_Click);
+            }
+            else if (type == "MgtChecked")
+            {
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Checked";
+                ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkmgchktotal_Click);
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnMgtChecked_Click);
+            }
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -771,9 +797,9 @@ namespace RealERPWEB.F_12_Inv
                 this.lblddlProjectTo.Visible = true;
                 this.ddlprjlistfrom.Visible = false;
                 this.ddlprjlistto.Visible = false;
-                this.lblprious.Visible = false;
+                
                 this.ImgbtnFindMTno.Visible = false;
-                this.txtSrchMrfNo.Visible = false;
+                //this.txtSrchMrfNo.Visible = false;
                 //this.lbtnPrevTransList.Visible = false;
                 this.ddlPrevISSList.Visible = false;
                 this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text;
@@ -795,8 +821,8 @@ namespace RealERPWEB.F_12_Inv
 
                 this.ddlprjlistfrom.Visible = true;
                 this.ddlprjlistto.Visible = true;
-                this.lblprious.Visible = true;
-                this.txtSrchMrfNo.Visible = true;
+                
+                //this.txtSrchMrfNo.Visible = true;
                 this.ImgbtnFindMTno.Visible = true; ;
 
                 // this.lbtnPrevTransList.Visible = true;
@@ -956,7 +982,9 @@ namespace RealERPWEB.F_12_Inv
 
             if (dt1.Rows.Count == 0)
                 return;
-            ((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
+
+            //((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             this.FooterCalCulation();
 
 
@@ -1297,8 +1325,7 @@ namespace RealERPWEB.F_12_Inv
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
                 return;
             }
             this.SaveApproval();
@@ -1332,8 +1359,8 @@ namespace RealERPWEB.F_12_Inv
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    string msg = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -1343,14 +1370,14 @@ namespace RealERPWEB.F_12_Inv
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, aprNarr, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string msg = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
+            
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
         }
@@ -1375,9 +1402,7 @@ namespace RealERPWEB.F_12_Inv
 
                 if (aprvqty > reqqty)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Approved Qty Can't Large Requisition Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);",
-                        true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Approved Qty Can't Large Requisition Qty');", true);
                     return;
                 }
 
@@ -1479,9 +1504,7 @@ namespace RealERPWEB.F_12_Inv
 
                 if (chkqty > reqqty)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Checked Qty Can't Large Requisition Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);",
-                        true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Checked Qty Can't Large Requisition Qty');", true);
                     return;
                 }
 
@@ -1502,8 +1525,7 @@ namespace RealERPWEB.F_12_Inv
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
                 return;
             }
             this.SaveChecked();
@@ -1537,8 +1559,8 @@ namespace RealERPWEB.F_12_Inv
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    string msg = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -1548,14 +1570,13 @@ namespace RealERPWEB.F_12_Inv
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKED", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, txtNarchk, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string msg = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
         }
 
         private void getMatReqMgtChecked()
@@ -1641,8 +1662,7 @@ namespace RealERPWEB.F_12_Inv
                 double rat = Convert.ToDouble("0" + ((Label)this.gvreqchkmgt.Rows[j].FindControl("lblgvmgrate")).Text.Trim());
                 if (chkqty > reqqty)
                 {
-                    string message = "Checked Qty Can't Large Requisition Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Checked Qty Can't Large Requisition Qty');", true);
                     return;
                 }
                 tbl1.Rows[index]["tqty"] = chkqty;

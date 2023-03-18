@@ -7,7 +7,7 @@
 
 
 
-    
+
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -24,6 +24,7 @@
             var gv = $('#<%=this.gvPermission.ClientID %>');
             gv.Scrollable();
         }
+
 
     </script>
 
@@ -90,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -110,7 +111,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" EditText="Edit"/>
+                                <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" EditText="Edit" />
                                 <asp:TemplateField HeaderText="User Id">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnUserId" runat="server"
@@ -214,68 +215,67 @@
                             <EditRowStyle />
                             <AlternatingRowStyle />
                         </asp:GridView>
-                        </div>
-                     
+                    </div>
+
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
                             <div class="row">
 
-                               
-                                    <div class="col-md-1">
-                                        <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size" Visible="false"></asp:Label>
 
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
-                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False"
-                                           >
-                                            <asp:ListItem Value="10">10</asp:ListItem>
-                                            <asp:ListItem Value="15">15</asp:ListItem>
-                                            <asp:ListItem Value="20">20</asp:ListItem>
-                                            <asp:ListItem Value="30">30</asp:ListItem>
-                                            <asp:ListItem Value="50">50</asp:ListItem>
-                                            <asp:ListItem Value="100">100</asp:ListItem>
-                                            <asp:ListItem Value="150">150</asp:ListItem>
-                                            <asp:ListItem Value="200">200</asp:ListItem>
-                                            <asp:ListItem Value="300">300</asp:ListItem>
-                                            <asp:ListItem Value="900">900</asp:ListItem>
-                                            <asp:ListItem Value="1500">1500</asp:ListItem>
-                                        </asp:DropDownList>
+                                <div class="col-md-1">
+                                    <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size" Visible="false"></asp:Label>
 
-                                    </div>
-                                    <div class="col-md-1" style="margin-top:20px;">
-                                        <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
-                                            Font-Bold="True"
-                                            OnCheckedChanged="chkShowall_CheckedChanged" Text="Show All" CssClass="btn btn-sm btn-primary" />
-                                    </div>
+                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
+                                        OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
+                                        <asp:ListItem Value="10">10</asp:ListItem>
+                                        <asp:ListItem Value="15">15</asp:ListItem>
+                                        <asp:ListItem Value="20">20</asp:ListItem>
+                                        <asp:ListItem Value="30">30</asp:ListItem>
+                                        <asp:ListItem Value="50">50</asp:ListItem>
+                                        <asp:ListItem Value="100">100</asp:ListItem>
+                                        <asp:ListItem Value="150">150</asp:ListItem>
+                                        <asp:ListItem Value="200">200</asp:ListItem>
+                                        <asp:ListItem Value="300">300</asp:ListItem>
+                                        <asp:ListItem Value="900">900</asp:ListItem>
+                                        <asp:ListItem Value="1500">1500</asp:ListItem>
+                                    </asp:DropDownList>
 
-                                    <div class="col-md-3" style="margin-top:18px;">
+                                </div>
+                                <div class="col-md-1" style="margin-top: 20px;">
+                                    <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
+                                        Font-Bold="True"
+                                        OnCheckedChanged="chkShowall_CheckedChanged" Text="Show All" CssClass="btn btn-sm btn-primary" />
+                                </div>
 
-                                        <asp:DropDownList ID="ddlModuleName" runat="server" AutoPostBack="True"
-                                            OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="chzn-select form-control form-control-sm">
-                                            <asp:ListItem Value="04">&nbsp; A. Budgetary Control</asp:ListItem>
-                                            <asp:ListItem Value="12">&nbsp; B. Inventory Control</asp:ListItem>
-                                            <asp:ListItem Value="17">&nbsp; C. General Accounts </asp:ListItem>
-                                            <asp:ListItem Value="22">&nbsp; D. Sales</asp:ListItem>
-                                            <asp:ListItem Value="32">&nbsp; E. MIS Module</asp:ListItem>
-                                            <asp:ListItem Value="35">&nbsp; F. Management Module</asp:ListItem>
-                                            <asp:ListItem Value="45">&nbsp; A. Management Interface</asp:ListItem>
-                                            <asp:ListItem Value="46">&nbsp; B. Group MIS</asp:ListItem>
-                                            <asp:ListItem Value="00" Selected="True">All</asp:ListItem>
+                                <div class="col-md-3" style="margin-top: 18px;">
 
-                                        </asp:DropDownList>
-                                    </div>
+                                    <asp:DropDownList ID="ddlModuleName" runat="server" AutoPostBack="True"
+                                        OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="chzn-select form-control form-control-sm">
+                                        <asp:ListItem Value="04">&nbsp; A. Budgetary Control</asp:ListItem>
+                                        <asp:ListItem Value="12">&nbsp; B. Inventory Control</asp:ListItem>
+                                        <asp:ListItem Value="17">&nbsp; C. General Accounts </asp:ListItem>
+                                        <asp:ListItem Value="22">&nbsp; D. Sales</asp:ListItem>
+                                        <asp:ListItem Value="32">&nbsp; E. MIS Module</asp:ListItem>
+                                        <asp:ListItem Value="35">&nbsp; F. Management Module</asp:ListItem>
+                                        <asp:ListItem Value="45">&nbsp; A. Management Interface</asp:ListItem>
+                                        <asp:ListItem Value="46">&nbsp; B. Group MIS</asp:ListItem>
+                                        <asp:ListItem Value="00" Selected="True">All</asp:ListItem>
 
-                                    <div class="col-md-2" style="margin-top:20px;">
+                                    </asp:DropDownList>
+                                </div>
 
-                                        <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn btn-sm  btn-primary"
-                                            OnClick="lnkbtnBack_Click">Back</asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-2 pull-right">
-                                        <asp:Label ID="lblMsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
-                                    </div>
+                                <div class="col-md-2" style="margin-top: 20px;">
 
-                                
+                                    <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn btn-sm  btn-primary"
+                                        OnClick="lnkbtnBack_Click">Back</asp:LinkButton>
+                                </div>
+                                <div class="col-md-2 pull-right">
+                                    <asp:Label ID="lblMsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
+                                </div>
+
+
                             </div>
-                            <div class="row mt-3" style="margin-left:11px;">
+                            <div class="row mt-3" style="margin-left: 11px;">
                                 <asp:GridView ID="gvPermission" runat="server" AllowPaging="True"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvPermission_PageIndexChanging"
