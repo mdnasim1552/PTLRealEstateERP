@@ -1800,6 +1800,13 @@ namespace RealERPWEB.F_22_Sal
                 string txtRemarks = this.txtregRemarks.Text.Trim();
                 string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
 
+                if (comcod == "3374")
+                {
+                    DataView dv9 = dt1.DefaultView;
+                    dv9.RowFilter = (" amt <> 0.000000 or [rescode]  = '20000' or [rescode] = '30000'");
+                    dt1 = dv9.ToTable();
+                }
+
                 var lst = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassSaleRegisClearance>();
 
                 LocalReport RptSalRegisClearence = new LocalReport();
@@ -1813,6 +1820,9 @@ namespace RealERPWEB.F_22_Sal
                     case "3311":
                     case "3101":
                         RptSalRegisClearence = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalRegisClearence02", lst, null, null);
+                        break;
+                    case "3374":
+                        RptSalRegisClearence = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalRegisClearenceANGAN", lst, null, null);
                         break;
                     default:
                         RptSalRegisClearence = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalRegisClearence", lst, null, null);

@@ -116,7 +116,7 @@
 
                         <div class="col-md-3">
                             <asp:Label ID="lblReq" runat="server" CssClass="form-label">Req</asp:Label>
-                            <div style="display:flex">
+                            <div style="display: flex">
                                 <asp:LinkButton ID="imgbtnFindRequiSition" CssClass="btn btn-primary btn-sm srearchBtn" runat="server" OnClick="imgbtnFindRequiSition_Click" TabIndex="2"><span class="fa fa-search"> </span></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcRequisition" runat="server" CssClass="form-control ml-1"></asp:TextBox>
                             </div>

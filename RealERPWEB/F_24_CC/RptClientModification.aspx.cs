@@ -481,6 +481,50 @@ namespace RealERPWEB.F_24_CC
             }
         }
 
-       
+        protected void hlnkprintapp_Click(object sender, EventArgs e)
+        {
+            DataTable dt =(DataTable) Session["tblstatus"];
+            DataView dv = dt.DefaultView;         
+            
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string awdno = ((Label)this.gvfbillapproval.Rows[index].FindControl("lblgvAdwNof")).Text.ToString();
+            dv.RowFilter=("adno1='"+ awdno+"'");
+            DataTable dt1 = dv.ToTable();
+
+            string adno = dt1.Rows[0]["adno1"].ToString();
+            string date =Convert.ToDateTime(dt1.Rows[0]["addate"]).ToString("dd-MMM-yyyy");
+            Response.Redirect("~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + adno + "&Date1=" + date);
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comadd = hst["comadd1"].ToString();
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string session = hst["session"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string printFooter = "Printed from Computer Address :" + comnam + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            //LocalReport Rpt1 = new LocalReport();
+            //var list = dt1.DataTableToList<RealEntity.C_24_CC.RptClientModification>();
+            //Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptClientModification", list, null, null);
+            //Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            //Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            //Rpt1.SetParameters(new ReportParameter("frmDate", frmdate));
+            //Rpt1.SetParameters(new ReportParameter("toDate", todate));
+            //Rpt1.SetParameters(new ReportParameter("comAdd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Modification Report"));
+            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            //Session["Report1"] = Rpt1;
+            //string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            //ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
+
+        }
     }
 }

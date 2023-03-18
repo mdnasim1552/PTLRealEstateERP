@@ -17,6 +17,19 @@
             font-size: 12px;
             font-weight: bold;
         }
+
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+                    
+        }
+
+        input[type=radio] {
+            box-sizing: border-box;
+            padding: 0;
+            margin-right: 5px;
+            margin-left: 25px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -52,10 +65,20 @@
         function openNotesModal() {
             $('#noteDetails').modal('toggle');
         }
-
         function closeNotesModal() {
             $('#noteDetails').modal('hide');
         }
+
+
+
+        function OpenMulitSelectModal() {
+            $('#MulitSelectModal').modal('show');
+        }
+
+        function CloseMulitSelectModal() {
+            $('#MulitSelectModal').modal('hide');
+        }
+
 
         function pageLoaded() {
 
@@ -74,9 +97,23 @@
 
                 alert(e);
             }
-
-
         }
+
+
+        function SelectAllCheckboxes(chk) {
+            var tblData1 = document.getElementById("<%=gvMultiSelectItem.ClientID %>");
+            console.log("Executed.");
+            var i = 0
+            $('#<%=gvMultiSelectItem.ClientID %>').find("input:checkbox").each(function () {
+                if ((this).disabled == false && tblData1.rows[i].style.display != "none") {
+                    if (this != chk) {
+                        this.checked = chk.checked;
+                    }
+                }
+                i = i + 1;
+            });
+        }
+
 
     </script>
 
@@ -109,7 +146,7 @@
 
 
             <div class="card card-fluid">
-                <div class="card-body">
+                <div class="card-body mb-3">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <div class="form-group">
@@ -121,13 +158,13 @@
                                 <asp:Label ID="lblProjectDesc" runat="server" Visible="false" CssClass="form-control form-control-sm"></asp:Label>
                             </div>
                         </div>
-                        <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;">
-                            <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnOk1_Click">Ok</asp:LinkButton>
+                        <div class="col-md-1 col-sm-1 col-lg-1 text-center" style="margin-top: 20px;">
+                            <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnOk1_Click">Ok</asp:LinkButton>
                             <asp:CheckBox ID="chkShorting" runat="server" AutoPostBack="true" OnCheckedChanged="chkShorting_CheckedChanged" Text="Alphabet" />
                         </div>
                         <div class="col-md-2" style="margin-top: 20px;">
                             <asp:CheckBox ID="ChkCopyProject" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopyProject_CheckedChanged" Text="Copy Budget"
-                                Visible="False" CssClass="btn btn-sm btn-primary chkBoxControl primaryBtn" />
+                                Visible="False" />
 
                         </div>
                         <div class="col-md-1" style="margin-top: 20px;">
@@ -142,8 +179,8 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-md-12 col-sm-12 col-lg-12">
-                            <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn " OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
+                        <div class="col-md-9 col-sm-9 col-lg-9">
+                            <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
                                 RepeatColumns="7" RepeatDirection="Horizontal">
                                 <asp:ListItem>Catagory Selection</asp:ListItem>
                                 <asp:ListItem>Item Selection(All Cat.)</asp:ListItem>
@@ -175,7 +212,7 @@
                         </div>
 
                         <div class="col-md-2" style="margin-top: 20px;">
-                            <asp:CheckBox ID="chkwithoutqty" runat="server" Text="Without Qty" CssClass="btn btn-sm btn-primary primaryBtn chkBoxControl" />
+                            <asp:CheckBox ID="chkwithoutqty" runat="server" Text="Without Qty" />
                         </div>
                     </div>
                     <div class="row" runat="server" id="PnlCopyTender" visible="false">
@@ -264,7 +301,7 @@
                                 <div class="col-md-3 col-sm-3 col-lg-3">
                                     <div class="form-group">
                                         <asp:Label ID="Label8" runat="server" CssClass="control-label" Text="Group"></asp:Label>
-                                        <asp:DropDownList ID="ddlgroupwrk" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="dddlgroupwrk_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlgroupwrk" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="dddlgroupwrk_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -273,7 +310,7 @@
                                         <asp:Label ID="Label13" runat="server" CssClass="control-label" Text="Desc. of Items"></asp:Label>
                                         <asp:LinkButton ID="ImgbtnFindItem" CssClass="srearchBtn" runat="server" OnClick="ImgbtnFindItem_Click" TabIndex="2"><i class="fas fa-search"></i></asp:LinkButton>
                                         <asp:TextBox ID="txtItemSearch" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
-                                        <asp:DropDownList ID="ddlItem" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" TabIndex="3">
+                                        <asp:DropDownList ID="ddlItem" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="3">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -282,11 +319,17 @@
                                     <asp:LinkButton ID="lbtnSelectItem" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnSelectItem_Click" TabIndex="4">Select Item</asp:LinkButton>
 
                                 </div>
+                                <div class="col-md-1 col-sm-1 col-lg-1" style="margin-top: 20px;" runat="server" id="divlbtnSelectMultiItem">
+                                    <asp:LinkButton ID="lbtnSelectMultiItem" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnSelectMultiItem_Click">Multi Item</asp:LinkButton>
+
+                                </div>
                                 <div class="col-md-1 col-sm-1 col-lg-1">
                                     <div class="form-group">
                                         <asp:Label ID="lblFloor1" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass=" form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
                                             <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
                                             <asp:ListItem Value="30">30</asp:ListItem>
                                             <asp:ListItem Value="50">50</asp:ListItem>
                                             <asp:ListItem Value="100">100</asp:ListItem>
@@ -322,19 +365,14 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
                                             <HeaderTemplate>
-                                                <table style="width: 30px;">
-                                                    <tr>
-                                                        <td class="style58">
-                                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="SL" Width="30px"></asp:Label>
-                                                        </td>
-                                                        <td class="style60">&nbsp;</td>
-                                                        <td>
-                                                            <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
-                                                                CssClass="btn btn-success btn-xs" ToolTip="Export Excel"><i class="fa fa-file-excel"></i></asp:HyperLink>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                <div class="row">
+                                                    <div class="col-7 text-center">
+                                                        <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="SL"></asp:Label>
+                                                    </div>
+                                                    <div class="col-5 text-center">
+                                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server" ToolTip="Export Excel"><i class="fa fa-file-excel"></i></asp:HyperLink>
+                                                    </div>
+                                                </div>
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
@@ -345,22 +383,22 @@
                                         <%--<asp:CommandField ShowDeleteButton="True" />--%> <%--<span class="fa fa-file-excel-o"></span>--%>
                                         <asp:TemplateField ShowHeader="true">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnDelWork" runat="server" OnClick="lbtnDelWork_Click" ToolTip="Delete Work" OnClientClick="javascript:return FunConfirm();"><i class="fa fa-trash" style="color:red"> </i> </asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnDelWork" runat="server" OnClick="lbtnDelWork_Click" ToolTip="Delete Work" Font-Size="X-Small" OnClientClick="javascript:return FunConfirm();"><i class="fa fa-trash" style="color:red"> </i> </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item Code" Visible="False">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCod" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCod" runat="server" Height="16px" Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isircode")) %>'
                                                     Width="49px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Description of Item" SortExpression="isirdesc">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="350px" placeholder="Description of Item" onkeyup="Search_Gridview(this,2)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" CssClass="form-control form-control-sm" BorderStyle="None" runat="server" placeholder="Description of Item" onkeyup="Search_Gridview(this,2)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmDesc" runat="server"
+                                                <asp:Label ID="lblgvItmDesc" runat="server" Font-Size="X-Small"
                                                     Text='<%# "<span class=grditem>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "misirdesc")) + "</span>"+
                                                                          (DataBinder.Eval(Container.DataItem, "isirdesc1").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "misirdesc")).Trim().Length>0 ? "<br>" : "") +                                                                           
@@ -377,7 +415,7 @@
                                                 <table>
                                                     <tr>
                                                         <td style="text-align: left">
-                                                            <asp:Label ID="lblgvItmDesc_e" runat="server" Font-Bold="True"
+                                                            <asp:Label ID="lblgvItmDesc_e" runat="server" Font-Bold="True" Font-Size="X-Small"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdesc1")).Trim() %>'
                                                                 Width="350px"></asp:Label>
                                                         </td>
@@ -460,24 +498,25 @@
                                                 </table>
                                             </EditItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Bottom"/>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit">
                                             <HeaderTemplate>
                                                 <table style="width: 100%;">
                                                     <tr>
-
-                                                        <td class="auto-style2">
-                                                            <asp:TextBox ID="txtIgrdtemSearch" runat="server" CssClass="form-control form-control-md" TabIndex="1"></asp:TextBox>
-                                                        </td>
-                                                        <td>
-                                                            <asp:LinkButton ID="ImgbtngrdFindItem" runat="server" CssClass="srearchBtn" OnClick="ImgbtngrdFindItem_Click" TabIndex="2"><i class="fas fa-search"></i></asp:LinkButton>
-                                                        </td>
+                                                        <div class="input-group input-group-alt">
+                                                            <asp:TextBox ID="txtIgrdtemSearch" runat="server" Font-Size="X-Small" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
+                                                            <div class="input-group-append">
+                                                                <asp:LinkButton ID="ImgbtngrdFindItem" runat="server" CssClass="input-group-text" OnClick="ImgbtngrdFindItem_Click" TabIndex="2"><i class="fas fa-search"></i></asp:LinkButton>
+                                                            </div>
+                                                        </div>
+                                                        <td class="auto-style2"></td>
+                                                        <td></td>
                                                     </tr>
                                                 </table>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmUnit" runat="server"
+                                                <asp:Label ID="lblgvItmUnit" runat="server" Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirunit")) %>'
                                                     Width="35px"></asp:Label>
                                             </ItemTemplate>
@@ -485,14 +524,14 @@
 
                                         <asp:TemplateField ShowHeader="true">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" OnClick="lbtnDelete_Click" ToolTip="Budget Qty Zero" OnClientClick="javascript:return FunConfirm();"><i class="fa fa-trash"> </i> </asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnDelete" runat="server" CommandName="Delete" Font-Size="X-Small" OnClick="lbtnDelete_Click" ToolTip="Budget Qty Zero" OnClientClick="javascript:return FunConfirm();"><i class="fa fa-trash"> </i> </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Budgeted Qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvQty" runat="server"
+                                                <asp:Label ID="lblgvQty" runat="server" Font-Size="X-Small"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdwqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                     Width="100px" CssClass="style101"></asp:Label>
                                             </ItemTemplate>
@@ -501,7 +540,7 @@
 
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvEdited" runat="server"
+                                                <asp:Label ID="lblgvEdited" runat="server" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "edited")) %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
@@ -510,7 +549,7 @@
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblpostdat" runat="server" Font-Size="10px"
+                                                <asp:Label ID="lblpostdat" runat="server"  Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "postdat")).Length==0?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "postdat")).ToString("dd-MMM-yyyy hh:mm tt")%>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
@@ -519,7 +558,7 @@
 
                                         <asp:TemplateField HeaderText="User">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblpostid" runat="server"
+                                                <asp:Label ID="lblpostid" runat="server" Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrname")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -528,13 +567,13 @@
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnAddNotes" runat="server" CssClass="btn btn-success btn-xs" OnClick="lbtnAddNotes_Click" ToolTip="Add Notes"><i class="fas fa-comment-alt-plus"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnAddNotes" runat="server" OnClick="lbtnAddNotes_Click" ToolTip="Add Notes"><i class="fas fa-comment-alt-plus"></i></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Notes">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvNotes" runat="server"
+                                                <asp:Label ID="lblgvNotes" runat="server" Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes")) %>'
                                                     Width="250px"></asp:Label>
                                             </ItemTemplate>
@@ -765,7 +804,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description of Item">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvItmDesc" runat="server" Font-Bold="True"
+                                            <asp:Label ID="lblgvItmDesc" runat="server" Font-Bold="True" Font-Size="X-Small"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdesc1")) %>'
                                                 Width="350px"></asp:Label>
                                         </ItemTemplate>
@@ -773,17 +812,17 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Unit">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvItmUnit" runat="server"
+                                            <asp:Label ID="lblgvItmUnit" runat="server"  Font-Size="X-Small"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirunit")) %>'
                                                 Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Budgeted Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvQty" runat="server" BorderColor="#99CCFF"
+                                            <asp:TextBox ID="txtgvQty" runat="server" BorderColor="#99CCFF"  Font-Size="X-Small"
                                                 BorderStyle="Solid" BorderWidth="0px" Style="background-color: Transparent; text-align: right;"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdwqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                                Width="80px" Font-Size="12px"></asp:TextBox>
+                                                Width="80px" ></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnFinalUpdate2" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnFinalUpdate2_Click">Final Update</asp:LinkButton>
@@ -1657,6 +1696,65 @@
 
 
                     </asp:MultiView>
+                </div>
+            </div>
+
+            <div class="modal fade " id="MulitSelectModal" role="dialog">
+                <div class="modal-dialog  modal-lg " style="width: 500px;">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h3><i class="fa fa-table"></i>Select Multiple Items</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive col-12">
+                                <div class="row" style="max-height: 350px">
+                                    <asp:GridView ID="gvMultiSelectItem" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea" ShowFooter="True">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="SL">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvmsiSlNo" runat="server" Font-Bold="True"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Item Code" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvmsiItemCode" runat="server" Font-Size="X-Small"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isircode")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Item Description">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvmsiItemDesc" runat="server" Font-Size="X-Small"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdesc1")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkCol" runat="server" />
+                                                </ItemTemplate>
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="chkhead" onclick="javascript:SelectAllCheckboxes(this);" CssClass="checkbox" ClientIDMode="Static" runat="server" />
+                                                </HeaderTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="30px" />
+                                                <ItemStyle HorizontalAlign="Center" Width="30px" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="lbtnUpdateMultiItem" runat="server" class="btn btn-success" aria-hidden="true" OnClick="lbtnUpdateMultiItem_Click" OnClientClick="CloseMulitSelectModal();">Update</asp:LinkButton>
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
