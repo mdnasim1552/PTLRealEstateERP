@@ -120,7 +120,9 @@ namespace RealERPWEB.F_21_MKT
                 tblt02.Rows[rowindex]["policydesc"] = policydesc;
                 tblt02.Rows[rowindex]["policyday"] = policyday;
             }
+            //ViewState
             ViewState["tblPolicy"] = tblt02;
+            
         }
     }
 }
