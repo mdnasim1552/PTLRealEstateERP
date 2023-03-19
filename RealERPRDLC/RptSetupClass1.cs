@@ -417,6 +417,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptLetterOfAllotmentCPDL": Rpt1a = SetRptLetterOfAllotmentCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustomerSettlementCPDL": Rpt1a = RptCustomerSettlementCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptCustomerSettlementANGAN": Rpt1a = RptCustomerSettlementANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalEncashment": Rpt1a = SetRptSalEncashment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptFinalSettlmntCP": Rpt1a = SetRptFinalSettlmntCP(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesInvCPDLPrint": Rpt1a = SetRptSalesInvCPDLPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1561,7 +1562,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport RptCustomerSettlementANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustomerSettlement>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptSalEncashment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
