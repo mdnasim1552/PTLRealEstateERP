@@ -433,6 +433,7 @@ namespace RealERPWEB.F_09_PImp
 
             string Address = lst[0].conadd.ToString();
             string Attn = lst[0].atten.ToString();
+            string Supname = lst[0].atten.ToString();
             string body = lst1[0].leterdes.ToString();
             string subject = lst1[0].subject.ToString();
             string Term = lst1[0].term.ToString();
@@ -491,6 +492,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("generalbody2", generalbody2));
                 Rpt1.SetParameters(new ReportParameter("generalbody3", generalbody3));
                 Rpt1.SetParameters(new ReportParameter("payterm", payterm));
+                Rpt1.SetParameters(new ReportParameter("Supname", Supname));
             }
         
             else
@@ -706,6 +708,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
             this.txtPayTerm.Text = ds1.Tables[1].Rows[0]["payterm"].ToString();
+            this.txtLETDES.Text = ds1.Tables[1].Rows[0]["leterdes"].ToString();
 
 
 
