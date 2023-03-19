@@ -333,6 +333,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptSubprjConBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptTest.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcmeConst.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptWorkOrderANGAN - Copy.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderANGAN.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2PBN.rdlc" />
@@ -368,9 +369,11 @@
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchaseStatusSupplierandMaterial.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyANGAN03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan05C.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan04C.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan03C.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL03CANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurSumVsPay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPOMRRBillStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchasePrjwiseReport.rdlc" />
@@ -1502,6 +1505,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
+      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
+      <Name>RealEntity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
       <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
       <Name>RealERPLIB</Name>
