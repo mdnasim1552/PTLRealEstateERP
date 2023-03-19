@@ -430,6 +430,7 @@ namespace RealERPWEB
             else
             {
                 DataTable dt = ds1.Tables[5];
+                //this.hyplnkumtracker.NavigateUrl = dt.Rows[0]["fileurl"].ToString();
                 this.divUmTrack.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
@@ -451,6 +452,8 @@ namespace RealERPWEB
             else
             {
                 DataTable dt = ds1.Tables[7];
+                //this.hyplnkcomassociate.NavigateUrl = dt.Rows[0]["fileurl"].ToString();
+
                 this.divSales.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
             //Unit Metric
@@ -472,6 +475,8 @@ namespace RealERPWEB
             else
             {
                 DataTable dt = ds1.Tables[9];
+                //this.hyplnkleaddetails.NavigateUrl = dt.Rows[0]["fileurl"].ToString();
+
                 this.divIRdet.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='100%' height='700px'></iframe>";
             }
 
