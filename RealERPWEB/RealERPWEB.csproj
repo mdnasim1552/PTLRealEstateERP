@@ -248,7 +248,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -2406,6 +2406,7 @@
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
+    <Content Include="F_14_Pro\RegisteredVendorDetails.aspx" />
     <Content Include="F_14_Pro\RegisteredVendorList.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
@@ -4410,6 +4411,13 @@
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RegisteredVendorDetails.aspx.cs">
+      <DependentUpon>RegisteredVendorDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RegisteredVendorDetails.aspx.designer.cs">
+      <DependentUpon>RegisteredVendorDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RegisteredVendorList.aspx.cs">
       <DependentUpon>RegisteredVendorList.aspx</DependentUpon>

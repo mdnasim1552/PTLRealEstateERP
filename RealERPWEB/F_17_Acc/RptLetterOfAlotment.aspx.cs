@@ -475,8 +475,9 @@ namespace RealERPWEB.F_17_Acc
                 string location = ds3.Tables[1].Rows[0]["location"].ToString();
                 string refdesc = ds3.Tables[2].Rows[0]["refdesc"].ToString();
                 string unitrate = Convert.ToDouble("0" + ds3.Tables[1].Rows[0]["unitrate"].ToString()).ToString("#,##0.00;(#,##0.00); ");
-                string bookingdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy") == "1-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy");
-                string handovdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy") == "1-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+                string bookingdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy");
+                //string handovdate1 = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+                string handovdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
 
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("customername", customername));
