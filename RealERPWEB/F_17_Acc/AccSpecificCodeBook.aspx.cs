@@ -522,5 +522,12 @@ namespace RealERPWEB.F_17_Acc
 
             }
         }
+
+        protected void ddlpagesize_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.grvacc_DataBind();
+        }
     }
+   
 }
