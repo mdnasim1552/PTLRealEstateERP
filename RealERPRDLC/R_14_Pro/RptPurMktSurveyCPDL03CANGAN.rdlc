@@ -3066,7 +3066,7 @@
         <Height>3.09518in</Height>
         <Style />
       </Body>
-      <Width>11.3202in</Width>
+      <Width>11.39768in</Width>
       <Page>
         <PageHeader>
           <Height>0.86144in</Height>
@@ -3252,7 +3252,22 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>BOQ &amp; Contracting</Value>
+                          <Value>Prepared by</Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Sr. Manager, B &amp; BC</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3290,7 +3305,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Manager/Sr. Manager</Value>
+                          <Value>Checked by</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3305,7 +3320,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>/AGM/DGM/Sr. DGM</Value>
+                          <Value>Manager (PO)</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3320,7 +3335,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
                   <Top>0.61299in</Top>
-                  <Left>1.92569in</Left>
+                  <Left>3.17569in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.48333in</Width>
                   <ZIndex>1</ZIndex>
@@ -3344,7 +3359,22 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Sr. DGM/GM</Value>
+                          <Value>Recommended by</Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>DGM</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3359,7 +3389,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
                   <Top>0.61299in</Top>
-                  <Left>3.80017in</Left>
+                  <Left>6.55017in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.47083in</Width>
                   <ZIndex>2</ZIndex>
@@ -3383,7 +3413,22 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Director (Engineering)</Value>
+                          <Value>Approved by</Value>
+                          <Style>
+                            <FontFamily>cambria</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Executive Vice Chairman</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3398,88 +3443,10 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
                   <Top>0.61299in</Top>
-                  <Left>5.62268in</Left>
+                  <Left>9.52991in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.6375in</Width>
                   <ZIndex>3</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <TopBorder>
-                      <Style>Solid</Style>
-                    </TopBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox33">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Control &amp; Compliance</Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox13</rd:DefaultName>
-                  <Top>0.61299in</Top>
-                  <Left>7.59351in</Left>
-                  <Height>0.36667in</Height>
-                  <Width>1.57083in</Width>
-                  <ZIndex>4</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <TopBorder>
-                      <Style>Solid</Style>
-                    </TopBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox65">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>President</Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>0.61299in</Top>
-                  <Left>9.49768in</Left>
-                  <Height>0.36667in</Height>
-                  <Width>1.57083in</Width>
-                  <ZIndex>5</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -3497,7 +3464,7 @@
               <KeepTogether>true</KeepTogether>
               <Left>0.0125in</Left>
               <Height>0.98171in</Height>
-              <Width>11.29393in</Width>
+              <Width>11.38518in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>

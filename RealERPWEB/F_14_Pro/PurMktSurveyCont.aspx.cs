@@ -1027,7 +1027,7 @@ namespace RealERPWEB.F_14_Pro
          
             else
             {
-                if (comcod == "3374")
+                if (comcod == "3374" || comcod=="3101")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03CANGAN", lst, lst1, null);
 
