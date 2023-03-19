@@ -509,8 +509,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1302000", "1302021", "F_13_Cen", "CentralStore?", "Type=Stockrptqbasis", "Materials Stock- Quantity Basis", "Central Warehouse", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1302000", "1302022", "F_13_Cen", "CentralStore?", "Type=Stockrptamtbasis", "Materials Stock- Amount Basis", "Central Warehouse", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1302000", "1302030", "F_13_Cen", "MatTransfer02", "", "Material Issue", "Central Warehouse", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1302000", "1302040", "F_13_Cen", "EntryLostSoldADes", "", "Lost, Sold & Destroyed", "Central Warehouse", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1302000", "1302050", "F_13_Cen", "EntryLostSoldAndDes01", "", " Entry Lost, Sold & Destroyed", "Central Warehouse", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1302000", "1302040", "F_13_Cen", "EntryLostSoldADes", "", "Lost, Sold & Destroyed(FA)", "Central Warehouse", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1302000", "1302050", "F_13_Cen", "EntryLostSoldAndDes01", "", "Lost, Sold & Destroyed(Project)", "Central Warehouse", "False", "False", "False", "False" }); ;
 
 
             #endregion
@@ -1175,6 +1175,8 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103130", "F_21_MKT", "CrmPolicy", "", "Policy Setup", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103131", "F_21_MKT", "DeviceIPSetup", "", "IP Setup", "CRM", "False", "False", "False", "False" });
 
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
@@ -5316,7 +5318,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "08. Inter Company  Material Transfer", "F_12_Inv/PurInterComMatTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "03. Inter Company Voucher Delete", "F_17_Acc/InterCompMatTranStatusDel", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "09. Material Conversion", "F_12_Inv/MatConversion", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000011", "04. Entry Lost, Sold & Destroyed", "F_13_Cen/EntryLostSoldAndDes01", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000011", "04. Lost, Sold & Destroyed(Project)", "F_13_Cen/EntryLostSoldAndDes01", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000012", "06. Material Issue(Complain)", "F_12_Inv/PurMatIssue?Type=ComplainMgt", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000000", "05. Indent Requisition", "F_12_Inv/PurReqEntry?InputType=IndentEntry&prjcode=&genno=", "", true, "" });
@@ -5521,7 +5523,7 @@ namespace RealERPLIB
         {
             mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Store Requisition", "F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Material Issue", "F_12_Inv/MatTransfer02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Lost, Sold & Destroyed", "F_13_Cen/EntryLostSoldADes", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Lost, Sold & Destroyed(FA)", "F_13_Cen/EntryLostSoldADes", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0201000004", "04. Entry Lost, Sold & Destroyed", "F_13_Cen/EntryLostSoldAndDes01", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0201000005", "01. Lc Requisition", "F_12_Inv/PurReqEntry?InputType=LcEntry&prjcode=&genno=", "", true, "" });
@@ -7311,6 +7313,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "07. Client Entry Initial", "F_21_Mkt/ClientInitial?Type=MktCl", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "08. Client Assign", "F_21_Mkt/ClientAssign?Type=MktClAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "08. Accept Prospective  Client", "F_21_Mkt/ClientAssign?Type=MktAcceptClient", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000009", "09. Policy Setup", "F_21_Mkt/CrmPolicy", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000010", "10. Ip Setup", "F_21_Mkt/DeviceIPSetup", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Client All Information", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. CRM Dashboard", "F_99_Allinterface/CRMDashboard", "", true, "" });
@@ -7493,6 +7497,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "24. Send Letter", "F_21_Mkt/RptMktAppointment?Type=ClientLetter&UType=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "25. Send Letter(Online)", "F_21_Mkt/RptMktAppointment?Type=SendOnlineLetter&UType=Mgt", "", true, "" });
 
+            //Policy Setup
 
             mnuTbl1.Rows.Add(new Object[] { "040200006", "Missing Followup Status", "F_21_MKT/RptMissFollowup", "", true, "" });
 

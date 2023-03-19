@@ -85,8 +85,8 @@ namespace RealERPWEB.F_09_PImp
                 this.gvRptResBasis.DataBind();
                 this.ddlPrevVOUList.Items.Clear();
                 this.lbtnPrevVOUList.Visible = true;
-                this.lblPreList.Visible = true;
-                this.txtPreVouSearch.Visible = true;
+                //this.lblPreList.Visible = true;
+                //this.txtPreVouSearch.Visible = true;
                 this.ddlPrevVOUList.Visible = true;
                 this.txtDate.Enabled = true;
 
@@ -99,9 +99,9 @@ namespace RealERPWEB.F_09_PImp
             }
             this.lbtnOk1.Text = "New";
             this.lbtnPrevVOUList.Visible = false;
-            this.lblPreList.Enabled = false;
+            //this.lblPreList.Enabled = false;
             this.ddlPrevVOUList.Enabled = false;
-            this.txtPreVouSearch.Enabled = false;
+            //this.txtPreVouSearch.Enabled = false;
             //this.txtProjectSearch.Enabled = false;
             //this.ImgbtnFindProject.Enabled = false;
             this.ddlProject.Visible = false;
@@ -149,7 +149,7 @@ namespace RealERPWEB.F_09_PImp
             string pactcode = this.ddlProject.SelectedValue.ToString();
             string flrcode = this.ddlfloorno.SelectedValue.ToString();
             string date = (this.txtDate.Text.Trim());
-            string txtsrchItem = this.txtsrchItemName.Text.Trim() + "%";
+            string txtsrchItem = "%";
 
             string ItemSearch = "%" + this.txtSearchItem.Text.Trim() + "%";
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "RPTWRKBASIS", pactcode, flrcode, "12", date, ItemSearch, "", "", "", "");

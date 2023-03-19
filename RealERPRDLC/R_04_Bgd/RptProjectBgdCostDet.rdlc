@@ -382,7 +382,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -571,7 +571,7 @@ iif(Fields!rescode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -786,7 +786,7 @@ iif(Fields!rescode.Value="AAAAAAAAAAAA","Bold","Default"))</FontWeight>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.26958in</Top>
             <Height>0.89584in</Height>
-            <Width>7.61309in</Width>
+            <Width>7.61311in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>

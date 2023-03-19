@@ -89,7 +89,7 @@
                         <div class="col-md-2">
                             <asp:Label ID="lblCurNo" runat="server" CssClass="smLbl_to" Text="Issue No."></asp:Label>
                             <div class="d-flex">
-                                <asp:TextBox ID="lblCurISSNo1" runat="server" CssClass="form-control form-control-sm" Text="MRR00-" ReadOnly="True"></asp:TextBox>
+                                <asp:TextBox ID="lblCurISSNo1" runat="server" CssClass="form-control form-control-sm" Text="ISU00-" ReadOnly="True"></asp:TextBox>
                                 <asp:TextBox ID="txtCurISSNo2" runat="server" CssClass="form-control form-control-sm disabled" ReadOnly="True">00000</asp:TextBox>
                             </div>
                         </div>

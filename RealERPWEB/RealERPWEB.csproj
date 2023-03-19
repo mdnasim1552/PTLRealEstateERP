@@ -248,9 +248,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2425,6 +2425,8 @@
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
+    <Content Include="F_21_MKT\CrmPolicy.aspx" />
+    <Content Include="F_21_MKT\DeviceIPSetup.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
@@ -3323,6 +3325,7 @@
     <Content Include="F_81_Hrm\F_90_PF\RptAccProFund.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\RptPaymentAndProvidentinf.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\RptPFIndvPay.aspx" />
+    <Content Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx" />
     <Content Include="F_81_Hrm\F_90_PF\TransectionPrint.aspx" />
     <Content Include="F_81_Hrm\F_91_ACR\ACRCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_91_ACR\EmpEntryACR.aspx" />
@@ -4540,6 +4543,20 @@
     </Compile>
     <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
       <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\CrmPolicy.aspx.cs">
+      <DependentUpon>CrmPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\CrmPolicy.aspx.designer.cs">
+      <DependentUpon>CrmPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.designer.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
@@ -5779,6 +5796,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx.designer.cs">
       <DependentUpon>RptSalaryReconciliationBonus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx.cs">
+      <DependentUpon>RptPFIndvSal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvSal.aspx.designer.cs">
+      <DependentUpon>RptPFIndvSal.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.cs">
       <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
