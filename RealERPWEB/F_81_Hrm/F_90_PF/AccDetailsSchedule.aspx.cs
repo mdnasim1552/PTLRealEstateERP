@@ -62,8 +62,10 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string date1 = this.txtFromdat.Text.Substring(0, 11);
-            string date2 = this.txtTodat.Text.Substring(0, 11);
+            //string date1 = this.txtFromdat.Text.Substring(0, 11);
+            //string date2 = this.txtTodat.Text.Substring(0, 11);
+            string date1 = this.txtFromdat.Text;
+            string date2 = this.txtTodat.Text;
             //string level = this.ddlRptlbl.SelectedItem.Text.Substring(5);
             string TopHead = "dfdsf";//(this.ChkTopHead.Checked == true ? "TOPHEAD" : "NOTOPHEAD");
             string actcode = this.ddlAccHeads.SelectedValue.ToString();
@@ -87,8 +89,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Please select Accounts Code Or Resource code.";
                 return;
             }// End If
-            try
-            {
+            //try
+            //{
                 this.dgv2.DataSource = null;
                 this.dgv2.DataBind();
                 DataSet ds2 = GetDataForReport();
@@ -114,11 +116,11 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
                 Session["Report1"] = dgv2;
                 ((HyperLink)this.dgv2.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-            }
-            catch (Exception ex)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+            //}
         }
 
         protected void imgsearch_Click(object sender, EventArgs e)

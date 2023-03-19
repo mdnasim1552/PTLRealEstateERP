@@ -960,6 +960,7 @@ namespace RealERPWEB.F_14_Pro
             string txtsign3 = "";
             string recomsup = ds1.Tables[2].Rows[0]["rcmsupdesc"].ToString();
             string rmrks = ds1.Tables[3].Rows[0]["rmrks"].ToString();
+            string remarks = ds1.Tables[2].Rows[0]["remarks"].ToString();
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -1032,7 +1033,7 @@ namespace RealERPWEB.F_14_Pro
                     i++;
 
                 }
-                Rpt1.SetParameters(new ReportParameter("rmrks", rmrks));
+                Rpt1.SetParameters(new ReportParameter("rmrks", remarks));
 
             }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
