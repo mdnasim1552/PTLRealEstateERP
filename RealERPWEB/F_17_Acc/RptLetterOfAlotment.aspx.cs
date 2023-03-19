@@ -477,7 +477,7 @@ namespace RealERPWEB.F_17_Acc
                 string unitrate = Convert.ToDouble("0" + ds3.Tables[1].Rows[0]["unitrate"].ToString()).ToString("#,##0.00;(#,##0.00); ");
                 string bookingdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy");
                 //string handovdate1 = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
-                string handovdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+                string aggrementdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["aggrementdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["aggrementdate"]).ToString("dd-MMM-yyyy");
 
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("customername", customername));
@@ -490,7 +490,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));
                 Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));
                 Rpt1.SetParameters(new ReportParameter("unitrate", unitrate));
-                Rpt1.SetParameters(new ReportParameter("handovdate", handovdate));
+                Rpt1.SetParameters(new ReportParameter("aggrementdate", aggrementdate));
                 Rpt1.SetParameters(new ReportParameter("bookingdate", bookingdate));
                 Rpt1.SetParameters(new ReportParameter("totaltk", amginword));
 
