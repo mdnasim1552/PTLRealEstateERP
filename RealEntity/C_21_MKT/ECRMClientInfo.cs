@@ -169,5 +169,17 @@ namespace RealEntity.C_21_Mkt
             public RptMissFollowup() { }
         }
 
+
+        [Serializable]
+        public class IPSetupInf
+        {
+            public string machno { get; set; }
+            public string ipaddress { get; set; }
+            public string machinealias { get; set; }
+            public string port { get; set; }
+
+            public IPSetupInf() { }
+        }
+
     }
 }

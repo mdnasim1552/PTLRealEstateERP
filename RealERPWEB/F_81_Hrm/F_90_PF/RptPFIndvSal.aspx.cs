@@ -256,7 +256,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             //Rpt1.SetParameters(new ReportParameter("txtconpriod", Convert.ToDouble(empinfo.Rows[0]["years"]).ToString("#,##0;(#,##0") + "  Year  " + Convert.ToDouble(empinfo.Rows[0]["months"]).ToString("#,##0;(#,##0") + "  Month"));
 
 
-
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
