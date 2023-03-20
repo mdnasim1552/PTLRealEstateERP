@@ -179,7 +179,8 @@ namespace RealERPWEB.F_09_PImp
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string csircode = this.ddlSubName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds1 = ImpData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTSCONBILWORKWISE", pactcode, csircode, date, "", "", "", "", "", "");
+            string chkfloor = this.chkfloor.Checked ? "checked" : "";
+            DataSet ds1 = ImpData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTSCONBILWORKWISE", pactcode, csircode, date, chkfloor, "", "", "", "", "");
 
             this.txtsub.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["sub"].ToString();
             this.txtmemo.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["memono"].ToString();
@@ -207,19 +208,48 @@ namespace RealERPWEB.F_09_PImp
             {
                 return dt1;
             }
-            string rsircode = dt1.Rows[0]["rsircode"].ToString();
-            for (int j = 1; j < dt1.Rows.Count; j++)
-            {
-                if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
-                {
 
-                    dt1.Rows[j]["rsirdesc"] = "";
+
+             
+
+            string rsircode = dt1.Rows[0]["rsircode"].ToString();
+            string flrcod = dt1.Rows[0]["rsircode"].ToString();
+
+
+            if (chkfloor.Checked)
+            {
+                for(int j = 1; j < dt1.Rows.Count; j++)
+                {
+                    if (dt1.Rows[j]["flrcod"].ToString() == flrcod)
+                    {
+
+                        dt1.Rows[j]["flrdesc"] = "";
+
+                    }
+
+                    rsircode = dt1.Rows[j]["flrcod"].ToString();
 
                 }
 
-                rsircode = dt1.Rows[j]["rsircode"].ToString();
+            }
+
+            else
+            {
+                for (int j = 1; j < dt1.Rows.Count; j++)
+                {
+                    if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
+                    {
+
+                        dt1.Rows[j]["rsirdesc"] = "";
+
+                    }
+
+                    rsircode = dt1.Rows[j]["rsircode"].ToString();
+
+                }
 
             }
+           
             return dt1;
 
         }
