@@ -5118,6 +5118,49 @@ namespace RealERPWEB.F_21_MKT
         }
 
 
+
+        public static string ShowStatusSerial(string comcod, string empid, string proscod)
+        {
+            string kpigrp = "000000000000";
+            string wrkdpt = "000000000000";
+            //ProcessAccess JData = new ProcessAccess();
+            //DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", empid, proscod, kpigrp, "", wrkdpt, "", "", "", "", "");
+
+
+            ////DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            ////   DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            //if (ds1 == null)
+            //{
+            //    //List<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum> lst5 = ds2.Tables[0].DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum>();
+            //    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+            //    var jsonSerialiser = new JavaScriptSerializer();
+            //    var json = jsonSerialiser.Serialize(lst);
+            //    return json;
+            //}
+
+            //else
+            //{
+            //    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+            //    // var lst = new { Message = "Update successfully.", result = true };
+            //    var jsonSerialiser = new JavaScriptSerializer();
+            //    var json = jsonSerialiser.Serialize(lst);
+            //    return json;
+            //}
+
+
+            var lst = new { Message = "Update successfully.", result = true };
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(lst);
+            return json;
+
+
+
+
+        }
+
+
         //public static string ShowDetNotification(string comcod, string empid, string rtype, string date)
         //{
 

@@ -1488,7 +1488,7 @@ namespace RealERPWEB.F_04_Bgd
             this.gvResInfo.DataBind();
             // this.gvAnalysis.Attributes["style"] = "readonly:true;";
 
-            if (tbl1.Rows.Count > 0)
+            if (tbl1.Rows.Count == 0)
                 return;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chkProjectLock")).Checked = (this.lblProjectLock.Text == "True") ? true : false;
             ((CheckBox)this.gvResInfo.FooterRow.FindControl("chklkrate")).Checked = Convert.ToBoolean(tbl1.Rows[0]["lock"].ToString());
@@ -1519,7 +1519,7 @@ namespace RealERPWEB.F_04_Bgd
 
 
 
-            if (tbl1.Rows.Count > 0)
+         
                 ((Label)this.gvResInfo.FooterRow.FindControl("lblgvTResAmtFooter")).Text =
                     Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("sum(tresamt)", "")) ? 0.00 : tbl1.Compute("sum(tresamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 

@@ -106,6 +106,9 @@
 
                             </div>
                         </div>
+                        <div class="col-lg-1 mt20">
+                             <asp:CheckBox ID="chckAll" runat="server" Text="Update All" Visible="false" />  
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

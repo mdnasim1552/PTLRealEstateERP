@@ -87,7 +87,7 @@ namespace RealERPWEB.F_12_Inv
             string ctype = "";
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "2325":
                 case "3325":
                     ctype = "GETPURPROJECTNAMELEISURE";
