@@ -69,14 +69,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="SL">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvRVLSlNo2" runat="server" Height="16px" Font-Size="X-Small"
-                                                Style="text-align: right" Font-Bold="true"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
 
                                     <asp:TemplateField HeaderText="Vendor Id">
                                         <ItemTemplate>
