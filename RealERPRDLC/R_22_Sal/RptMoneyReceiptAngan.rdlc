@@ -252,7 +252,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Receipt No</Value>
+                    <Value>MR No</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -639,7 +639,7 @@
             <Top>1.43417in</Top>
             <Left>2.04105in</Left>
             <Height>0.25403in</Height>
-            <Width>5.82764in</Width>
+            <Width>5.79639in</Width>
             <ZIndex>14</ZIndex>
             <Style>
               <Border>
@@ -675,7 +675,7 @@
             <Top>1.9714in</Top>
             <Left>0.95077in</Left>
             <Height>0.18125in</Height>
-            <Width>6.9075in</Width>
+            <Width>6.86583in</Width>
             <ZIndex>15</ZIndex>
             <Style>
               <Border>
@@ -711,7 +711,7 @@
             <Top>2.2464in</Top>
             <Left>1.24244in</Left>
             <Height>0.23333in</Height>
-            <Width>6.61583in</Width>
+            <Width>6.57416in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -820,7 +820,7 @@
             <Top>2.5339in</Top>
             <Left>6.33272in</Left>
             <Height>0.2368in</Height>
-            <Width>1.52556in</Width>
+            <Width>1.4839in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -855,7 +855,7 @@
             <Top>2.82487in</Top>
             <Left>5.15118in</Left>
             <Height>0.21875in</Height>
-            <Width>2.70709in</Width>
+            <Width>2.68626in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
@@ -1050,7 +1050,7 @@
             <Top>3.86237in</Top>
             <Left>3.41715in</Left>
             <Height>0.11805in</Height>
-            <Width>4.44112in</Width>
+            <Width>4.39945in</Width>
             <ZIndex>25</ZIndex>
             <Style>
               <Border>
@@ -1066,7 +1066,7 @@
             <Top>4.15279in</Top>
             <Left>0.12785in</Left>
             <Height>0in</Height>
-            <Width>7.73043in</Width>
+            <Width>7.68877in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -1200,10 +1200,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>1.72987in</Top>
+            <Top>1.71598in</Top>
             <Left>2.04106in</Left>
             <Height>0.17764in</Height>
-            <Width>5.82764in</Width>
+            <Width>5.77556in</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
@@ -1257,7 +1257,7 @@
             <Top>4.65767in</Top>
             <Left>5.42535in</Left>
             <Height>0.47917in</Height>
-            <Width>2.42708in</Width>
+            <Width>2.40625in</Width>
             <ZIndex>32</ZIndex>
             <Style>
               <Border>
@@ -1315,7 +1315,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Receipt No</Value>
+                    <Value>MR No</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -1330,7 +1330,7 @@
             <Top>5.39725in</Top>
             <Left>4.90674in</Left>
             <Height>0.20833in</Height>
-            <Width>1.19792in</Width>
+            <Width>1.16667in</Width>
             <ZIndex>34</ZIndex>
             <Style>
               <Border>
@@ -1428,9 +1428,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
             <Top>5.39725in</Top>
-            <Left>6.13133in</Left>
+            <Left>6.10119in</Left>
             <Height>0.20833in</Height>
-            <Width>1.79861in</Width>
+            <Width>1.73625in</Width>
             <ZIndex>37</ZIndex>
             <Style>
               <Border>
@@ -1530,10 +1530,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>5.16115in</Top>
+            <Top>5.15073in</Top>
             <Left>6.11507in</Left>
             <Height>0.20833in</Height>
-            <Width>1.73736in</Width>
+            <Width>1.72694in</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>
@@ -2320,7 +2320,7 @@
             <Top>8.97745in</Top>
             <Left>5.41494in</Left>
             <Height>0.47917in</Height>
-            <Width>2.42708in</Width>
+            <Width>2.41666in</Width>
             <ZIndex>63</ZIndex>
             <Style>
               <Border>
@@ -2378,7 +2378,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Receipt No</Value>
+                    <Value>MR No</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -2493,7 +2493,7 @@
             <Top>9.68926in</Top>
             <Left>6.11507in</Left>
             <Height>0.20833in</Height>
-            <Width>1.72694in</Width>
+            <Width>1.71653in</Width>
             <ZIndex>68</ZIndex>
             <Style>
               <Border>
@@ -2596,7 +2596,7 @@
             <Top>9.48093in</Top>
             <Left>6.10466in</Left>
             <Height>0.20833in</Height>
-            <Width>1.73736in</Width>
+            <Width>1.72694in</Width>
             <ZIndex>71</ZIndex>
             <Style>
               <Border>
@@ -3558,10 +3558,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>3.32626in</Top>
-            <Left>2.70772in</Left>
-            <Height>0.4875in</Height>
-            <Width>0.82813in</Width>
+            <Top>3.29501in</Top>
+            <Left>2.62439in</Left>
+            <Height>0.51875in</Height>
+            <Width>0.91146in</Width>
             <ZIndex>95</ZIndex>
             <Style>
               <Border>
@@ -3594,10 +3594,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>7.66227in</Top>
-            <Left>2.33216in</Left>
-            <Height>0.4875in</Height>
-            <Width>0.82813in</Width>
+            <Top>7.61019in</Top>
+            <Left>2.23841in</Left>
+            <Height>0.53958in</Height>
+            <Width>0.92188in</Width>
             <ZIndex>96</ZIndex>
             <Style>
               <Border>
@@ -3630,10 +3630,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>12.01747in</Top>
-            <Left>2.33216in</Left>
-            <Height>0.4875in</Height>
-            <Width>0.82813in</Width>
+            <Top>11.95497in</Top>
+            <Left>2.24883in</Left>
+            <Height>0.55in</Height>
+            <Width>0.91146in</Width>
             <ZIndex>97</ZIndex>
             <Style>
               <Border>
@@ -3651,7 +3651,7 @@
         <Height>12.73135in</Height>
         <Style />
       </Body>
-      <Width>7.92994in</Width>
+      <Width>7.86869in</Width>
       <Page>
         <PageHeight>14in</PageHeight>
         <LeftMargin>0.33in</LeftMargin>

@@ -15,7 +15,7 @@ namespace RealERPWEB.F_14_Pro
         ProcessAccess mktData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Vendor Profile";
                 this.Master.Page.Title = "Vendor Profile";
@@ -48,7 +48,17 @@ namespace RealERPWEB.F_14_Pro
             this.lblProName.Text = ds.Tables[0].Rows[0]["username"].ToString();
             this.lblProCompName.Text = ds.Tables[0].Rows[0]["companyname"].ToString();
             this.lblVendorId.Text = ds.Tables[0].Rows[0]["vendorid"].ToString();
-            this.lbtngvRVLenlist.CommandArgument = ds.Tables[0].Rows[0]["id"].ToString();
+            this.lbtngvRVLvarify.CommandArgument = ds.Tables[0].Rows[0]["id"].ToString();
+
+            string status = ds.Tables[0].Rows[0]["varify"].ToString();
+            if (status != "True")
+            {
+                this.lbtngvRVLvarify.Visible = true;
+                this.lbtnExistingEnlist.Visible = true;
+            }
+            else
+                this.lblEnlisted.Visible = true;
+
         }
 
         protected void lbtngvRVLvarify_Click(object sender, EventArgs e)
@@ -62,10 +72,39 @@ namespace RealERPWEB.F_14_Pro
             bool result = mktData.UpdateTransInfo(comcod, "SP_MGT_REPORT_SCM_PORTAL", "UPDATE_VENDOR_VARIFY_STATUS", id, varify);
             if (result)
             {
+                this.GetVendor();
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully updated');", true);
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Failed to update');", true);
         }
 
+        protected void lbtnExistingEnlist_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            DataSet ds1 = mktData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRSUPLIST", "%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            this.ddlSupl2.DataTextField = "ssirdesc1";
+            this.ddlSupl2.DataValueField = "ssircode";
+            this.ddlSupl2.DataSource = ds1.Tables[0];
+            this.ddlSupl2.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenSuppModal();", true);
+        }
+
+        protected void lbtnEnlistExisting_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string id = Request.QueryString["id"];
+            string suppcod = this.ddlSupl2.SelectedValue;
+            bool result = mktData.UpdateTransInfo(comcod, "SP_MGT_REPORT_SCM_PORTAL", "ENLIST_WITH_EXISTING_SUPPLIER", id, suppcod);
+            if (result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully updated');", true);
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Failed to update');", true);
+        }
     }
 }

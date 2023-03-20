@@ -33,13 +33,31 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lbtngvRVLenlist control.
+        /// lbtnExistingEnlist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtngvRVLenlist;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnExistingEnlist;
+
+        /// <summary>
+        /// lbtngvRVLvarify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtngvRVLvarify;
+
+        /// <summary>
+        /// lblEnlisted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnlisted;
 
         /// <summary>
         /// lblcompanyname control.
@@ -183,7 +201,7 @@ namespace RealERPWEB.F_14_Pro
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcomoverview;
+        protected global::System.Web.UI.WebControls.TextBox lblcomoverview;
 
         /// <summary>
         /// lblProName control.
@@ -211,5 +229,32 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVendorId;
+
+        /// <summary>
+        /// lblSuplList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuplList2;
+
+        /// <summary>
+        /// ddlSupl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupl2;
+
+        /// <summary>
+        /// lbtnEnlistExisting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnEnlistExisting;
     }
 }
