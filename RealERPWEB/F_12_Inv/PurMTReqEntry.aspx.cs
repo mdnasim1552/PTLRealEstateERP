@@ -355,7 +355,7 @@ namespace RealERPWEB.F_12_Inv
             {
 
            
-            string mResCode = this.ddlreslist.SelectedValue.ToString();
+            string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
             //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)Session["tblspcf"];
