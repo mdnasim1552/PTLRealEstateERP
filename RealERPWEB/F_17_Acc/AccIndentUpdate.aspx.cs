@@ -317,7 +317,10 @@ namespace RealERPWEB.F_17_Acc
                     string dgmrnar = dt1.Rows[i]["mrnar"].ToString();
 
                     DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
-                    
+                    if (dr2.Length > 0)
+                    {
+                        return;
+                    }
 
                     DataRow dr1 = tblt01.NewRow();
                     dr1["actcode"] = dgAccCode;
@@ -351,7 +354,7 @@ namespace RealERPWEB.F_17_Acc
                     dr1["actcode"] = actcode;
                     dr1["rsircode"] = rescode;
                     dr1["actdesc"] = this.ddlActCode.SelectedItem.Text.Trim(); 
-                    dr1["rsirdesc"] = this.ddlresuorcecode.SelectedItem.Text.Trim();
+                    dr1["rsirdesc"] = (this.ddlresuorcecode.SelectedValue.Length == 0)?"": this.ddlresuorcecode.SelectedItem.Text.Trim();
                     dr1["spclcode"] = "000000000000";
                     dr1["spcldesc"] = "";
                     dr1["trnqty"] = 0;

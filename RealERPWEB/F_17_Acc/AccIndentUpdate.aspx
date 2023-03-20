@@ -228,7 +228,7 @@
                                                 Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:TextBox ID="lblgvDrAmt" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="lblgvDrAmt" runat="server" style="text-align:right" BackColor="Transparent"
                                                 BorderColor="Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:TextBox>
