@@ -1305,7 +1305,7 @@ namespace RealERPWEB.F_34_Mgt
 
             this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
             this.chkmUserActive.Checked= (ds1.Tables[0].Rows[0]["usractive"].ToString()=="True")?true:false;
-            this.ddlMenuLink.SelectedValue = ds1.Tables[0].Rows[0]["homeurl"].ToString();
+            this.ddlMenuLink.SelectedValue = ds1.Tables[0].Rows[0]["homeurl"].ToString().Trim().Length==0? "index?id=": ds1.Tables[0].Rows[0]["homeurl"].ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
 
         }

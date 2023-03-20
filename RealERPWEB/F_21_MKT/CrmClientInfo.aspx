@@ -746,53 +746,47 @@
 
                 }
 
-                //$('#ChkBoxLstStatus input[type=checkbox]').click(function () {
+                $('#ChkBoxLstStatus input[type=checkbox]').click(function () {
 
-                //    $('#ChkBoxLstStatus >input').each(function (index, item) {
+                 
 
-                //        if ($(item).is(':checked')) {
-                //            // alert($(item).val());
-                //            ;
+                    $('#ChkBoxLstStatus >input').each(function (index, item) {
 
-                //        }
-                //        else {
-
-                //            alert($(item).val());
-
-                //        }
-
-                //        //  if ($('input.checkbox_check').is(':checked'))
+                      
+                     
+                        if ($(item).is(':checked')) {
+                          //  alert($(item).val());
 
 
-                //        // $(item).attr('checked', true);
-                //        // $(item).attr('disabled', '');
+                        }
+                        //else
+                        //{
+                        //    alert($(item).val());
+
+                       // }
 
 
 
 
 
-                //    });
+
+                    });
+                });
 
 
 
 
-                    //    //$('#ChkBoxLstStatus input[type=checkbox]:not(:checked)').each(function () {
-                    //    //   alert($(this).val());
-                    //    //});
-
-                    // });
 
 
+                    //$('#ChkBoxLstStatus').change(function (index, item) {
 
-                    //$('#ChkBoxLstStatus').change(function () {
 
+                    //    alert($(item).val());
 
-                    //    alert($(this).val());
+                    //    if ($(this).is(':checked')) {
+                    //        alert($(item).val());
 
-                    //    //if ($(this).is(':checked')) {
-                    //    //    alert($(this).val());
-
-                    //    //}
+                    //    }
                     //    //else
                     //    //{
 
@@ -813,7 +807,7 @@
 
 
 
-                }
+            }
 
             catch (e) {
 
