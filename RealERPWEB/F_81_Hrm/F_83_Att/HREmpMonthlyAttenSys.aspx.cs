@@ -33,6 +33,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 this.GetMonth();
                 this.GetEmployeeName();
+                if (GetCompCode() == "3365")
+                {
+                    chckAll.Visible = true;
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -170,8 +174,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Session.Remove("tblEmpDesc");
             string comcod = this.GetCompCode();
             string Empid = this.ddlEmpName.SelectedValue.ToString();
-            string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();       
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERATTENDANCEMSYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
+            string MonthId = this.ddlMonth.SelectedValue.ToString().Trim();
+            DataSet ds4 = new DataSet();
+            if (chckAll.Checked && comcod=="3365")
+            {
+                 ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERATTENDANCEMSYSTEMALL", "" ,MonthId, "", "", "", "", "", "", "");
+            }
+            else
+            {
+                 ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERATTENDANCEMSYSTEM", Empid, MonthId, "", "", "", "", "", "", "");
+            }
+
             if (ds4 == null)
             {
                 this.gvMonthlyAttn.DataSource = null;
