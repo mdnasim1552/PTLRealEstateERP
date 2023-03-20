@@ -730,9 +730,9 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlPrevList.Items.Clear();
 
                 this.ddlContractorlist.Visible = true;
-                this.lblddlContractor.Visible = false;
+                //this.lblddlContractor.Visible = false;
                 this.ddlprjlist.Visible = true;
-                this.lblddlProject.Visible = false;
+                //this.lblddlProject.Visible = false;
                 this.txtCurISSDate.Enabled = true;
                 this.lblCurISSNo1.Text = "ISU" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurISSNo2.Text = "";
@@ -746,15 +746,15 @@ namespace RealERPWEB.F_09_PImp
                 this.gvorder.DataBind();
                 return;
             }
-            this.lbtnPrevList.Visible = false;
-            this.ddlPrevList.Visible = false;
+            //this.lbtnPrevList.Visible = false;
+            this.ddlPrevList.Enabled = false;
             //this.txtsmcr.Visible = false;
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
-            this.ddlContractorlist.Visible = false;//it will be used
-            this.lblddlContractor.Visible = true;
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;
-            this.lblddlProject.Visible = true;
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            this.ddlContractorlist.Enabled = false;//it will be used
+            //this.lblddlContractor.Visible = true;
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            this.ddlprjlist.Enabled = false;
+            //this.lblddlProject.Visible = true;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
@@ -807,10 +807,10 @@ namespace RealERPWEB.F_09_PImp
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["orderno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
             this.ddlContractorlist.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtTerm.Text =(comcod=="3101")? ds1.Tables[2].Rows[0]["term"].ToString() : ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
             this.txtduration.Text = ds1.Tables[1].Rows[0]["duration"].ToString();

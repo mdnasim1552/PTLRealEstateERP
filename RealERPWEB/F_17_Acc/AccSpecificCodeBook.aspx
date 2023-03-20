@@ -79,7 +79,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid mb-1 mt-4">
+            <div class="card card-fluid p-1  mt-3">
                 <div class="card-body">
                     <div class="row ">
                         <div class="col-md-3">
@@ -118,6 +118,17 @@
                             </div>
 
                         </div>
+                        <div class="col-md-2 mt-2">
+                                        <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged1"  CssClass="form-control form-control-sm">
+                                            
+                                            <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem>500</asp:ListItem>
+                                            <asp:ListItem>1000</asp:ListItem>
+                                            <asp:ListItem>2000</asp:ListItem>
+                                            <asp:ListItem>3000</asp:ListItem>                                            
+                                        </asp:DropDownList>
+                                    </div>
                     </div>
 
                 </div>
@@ -130,7 +141,7 @@
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" 
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="499px"
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="300" Width="499px"
                             OnPageIndexChanging="grvacc_PageIndexChanging"  CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="grvacc_RowDataBound">
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                     Mode="NumericFirstLast" />

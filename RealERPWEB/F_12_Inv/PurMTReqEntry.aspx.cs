@@ -351,17 +351,26 @@ namespace RealERPWEB.F_12_Inv
 
         private void GetSpecification()
         {
-            string mResCode = this.ddlreslist.SelectedValue.ToString();
+            try
+            {
+
+           
+            string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
             //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)Session["tblspcf"];
             DataView dv1 = tbl1.DefaultView;
-            dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
+            //dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
+            dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
             DataTable dt = dv1.ToTable();
             this.ddlResSpcf.DataTextField = "spcfdesc";
             this.ddlResSpcf.DataValueField = "spcfcod";
             this.ddlResSpcf.DataSource = dt;
             this.ddlResSpcf.DataBind();
+            }catch(Exception exp)
+            {
+
+            }
 
 
         }
