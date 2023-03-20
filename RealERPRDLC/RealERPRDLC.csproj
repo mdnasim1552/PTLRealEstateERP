@@ -51,9 +51,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -333,6 +335,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptSubprjConBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptTest.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcmeConst.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptWorkOrderANGAN - Copy.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderANGAN.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2PBN.rdlc" />
@@ -368,9 +371,11 @@
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchaseStatusSupplierandMaterial.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyANGAN03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan05C.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan04C.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyAngan03C.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL03CANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurSumVsPay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPOMRRBillStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchasePrjwiseReport.rdlc" />
@@ -1361,6 +1366,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL- Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAngan.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsJbs - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
