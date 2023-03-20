@@ -231,15 +231,15 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
-        private void calculation()
+        private void calculation(DataTable d2)
         {
-            DataTable dt2 = (DataTable)Session["tblt01"];
-            if (dt2.Rows.Count == 0)
+            //DataTable dt2 = (DataTable)Session["tblt01"];
+            if (d2.Rows.Count == 0)
                 return;
-            accData.ToDramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(trndram)", "")) ?
-                          0.00 : dt2.Compute("Sum(trndram)", ""))));
-            accData.ToCramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(trncram)", "")) ?
-                          0.00 : dt2.Compute("Sum(trncram)", ""))));
+            accData.ToDramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(d2.Compute("Sum(trndram)", "")) ?
+                          0.00 : d2.Compute("Sum(trndram)", ""))));
+            accData.ToCramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(d2.Compute("Sum(trncram)", "")) ?
+                          0.00 : d2.Compute("Sum(trncram)", ""))));
             ((Label)this.dgv2.FooterRow.FindControl("lblgvFDrAmt")).Text = (accData.ToDramt).ToString("#,##0.00;(#,##0.00); - ");
             ((Label)this.dgv2.FooterRow.FindControl("lblgvFCrAmt")).Text = (accData.ToCramt).ToString("#,##0.00;(#,##0.00); - ");
 
@@ -368,12 +368,13 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
-            
-            
-            Session["tblt01"] = HiddenSameData(tblt01);
-            dgv2.DataSource = (DataTable)Session["tblt01"];
+
+            DataTable dt2 = (DataTable)Session["tblt01"];
+            DataTable d2 = HiddenSameData(dt2);
+            dgv2.DataSource = d2;
             dgv2.DataBind();
-            calculation();
+            calculation(d2);
+           
             this.txtCurrntlast6.ReadOnly = false;
           
         }
@@ -406,8 +407,35 @@ namespace RealERPWEB.F_17_Acc
             return dt1;
         }
 
+        protected void lbtnTotal_Click(object sender, EventArgs e)
+        {
+            this.Session_tblacc_Update();
+
+            
+        }
+        protected void Session_tblacc_Update()
+        {
+
+            DataTable dt1 = (DataTable)Session["tblt01"];
+            //DataTable dt1 = (DataTable)Session["tblt01"];
+            
 
 
+            for (int i = 0; i < this.dgv2.Rows.Count; i++)
+            {
+             
+
+                dt1.Rows[i]["trndram"] = Convert.ToDouble("0" + ((TextBox)this.dgv2.Rows[i].FindControl("lblgvDrAmt")).Text.Trim()); ;
+                dt1.Rows[i]["trncram"]= Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvCrAmt")).Text.Trim());;
+              
+            }
+            DataTable dt2 = (DataTable)Session["tblt01"];
+            DataTable d2 = HiddenSameData(dt2);
+            dgv2.DataSource = d2;
+            dgv2.DataBind();
+            calculation(d2);
+
+        }
 
 
         private void GetVouCherNumber()

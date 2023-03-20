@@ -186,6 +186,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="A/C Description" ItemStyle-Font-Size="9px">
+                                         <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnTotal" runat="server"
+                                            OnClick="lbtnTotal_Click" CssClass="btn btn-primary primarygrdBtn">
+                                            Total</asp:LinkButton>
+                                    </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblAccdesc1" runat="server" Font-Size="11px"
                                                 Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>"+
