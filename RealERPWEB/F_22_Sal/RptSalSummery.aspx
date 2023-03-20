@@ -50,9 +50,9 @@
     </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
-
+             <fieldset class="scheduler-border fieldset_A">
             <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
+               
 
                     <div class="form-horizontal">
                         <div class="form-group">
@@ -78,24 +78,45 @@
                                  <asp:Label ID="lsalesteam" runat="server" CssClass="lblTxt lblName" Text="Sales Team"></asp:Label>
                                                 <asp:DropDownList ID="ddlSalesperson" runat="server" AutoPostBack="True" CssClass="chzn-select">
                                                 </asp:DropDownList>
+
+                                
                               </div>
-                            <div class="col-md-1">
+
+
+                            
+
+                        
+
+
+                            <div class="col-md-1" style="margin-left:-50px;">
                                  <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
                                     CssClass="btn btn-primary primaryBtn">Ok</asp:LinkButton>
                             </div>
-                            <div class="col-md4 asitCol4 pading5px">
+                            <div class="col-md-2 asitCol4 pading5px">
                                 <asp:CheckBox ID="chkwithoutrep" runat="server" BackColor="#000066"
                                     BorderColor="Yellow" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
                                     Font-Size="12px" ForeColor="Yellow" Text="Without Replacement" Visible="False"
                                     Width="150px" />
                             </div>
 
+                        <div class="col-md-2 asitCol4 pading5px" style="margin-left:-380px;"  id="type" runat="server" visible="false">
+                                        <asp:RadioButtonList ID="rbtnType" RepeatDirection="Horizontal" CssClass="rbtnList1"   runat="server" >
+                                           <asp:ListItem Value="QtyBased" Selected="True">Quantity Basis</asp:ListItem>
+                                            <asp:ListItem Value="Amount">Amount Basis</asp:ListItem>       
+
+                                        </asp:RadioButtonList>
+                                    </div>
+                                
+                        </div>
+
 
 
                         </div>
 
                     </div>
+
                 </fieldset>
+            
 
                 <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="sal" runat="server">
@@ -1745,7 +1766,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Shop ">
+                                 <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvaptshop" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1777,7 +1798,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Shop">
+                                    <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvacshopqty" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1809,7 +1830,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Shop">
+                                   <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopsfall" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1842,7 +1863,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Shop">
+                                    <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopperontsale" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1923,7 +1944,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Shop">
+                                     <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopmoncollamt" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1957,7 +1978,7 @@
                                 </asp:TemplateField>
 
                                 
-                                <asp:TemplateField HeaderText="Shop">
+                                <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopacuatcollamt" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -1989,7 +2010,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                  <asp:TemplateField HeaderText="Shop">
+                                  <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopcollsfall" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -2023,7 +2044,7 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                   <asp:TemplateField HeaderText="Shop">
+                                   <asp:TemplateField HeaderText="Shop/Com. Space">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvshopperontcoll" runat="server" BorderColor="#99CCFF"
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"

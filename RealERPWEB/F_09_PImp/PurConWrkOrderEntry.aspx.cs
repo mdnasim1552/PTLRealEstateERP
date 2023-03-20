@@ -154,7 +154,7 @@ namespace RealERPWEB.F_09_PImp
         private void GetContractorList()
         {
             string comcod = this.GetCompCode();
-            string conlist = "%" + this.txtsrchContractor.Text + "%";
+            string conlist = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUECONTLIST", conlist, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -171,7 +171,7 @@ namespace RealERPWEB.F_09_PImp
 
             string comcod = this.GetCompCode();
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
+            string srchproject = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJODRLIST", srchproject, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -205,6 +205,8 @@ namespace RealERPWEB.F_09_PImp
                 case "1205": // p2p
                 case "3351": // p2p
                 case "3352": // p2p
+                case "3374": // Angan
+
                     this.printWorkOrderFInt();
                     break;
 
@@ -376,6 +378,7 @@ namespace RealERPWEB.F_09_PImp
             }
             string ordercopy = this.GetCompOrderCopy();
 
+            
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", morderno, ordercopy, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -388,6 +391,41 @@ namespace RealERPWEB.F_09_PImp
             LocalReport Rpt1 = new LocalReport();
 
             //  DataTable dt1 = (DataTable)ViewState["UserLog"];GetWorkOrder1
+           
+
+
+
+            
+            string generalbody2 = "Stick System Facade Curtain Glass: This work generally includes Supply, Fabrication and " +
+                               "installation of Stick System Structural Curtain wall glazing of 24mm Double Glazing Insulated Low-" +
+                               "E coated glass panel hold by mullion and transom, glass will be glazed by Spacer Tape &Structural " +
+                               "Silicon & Weather proofing silicon with Backer rod from outside, Curtain frame shall be anchored " + 
+                                "with R.C.C surface by hot deep galvanized Bracket/angles & Fasteners. And all support system " + 
+                               "substructures guaranteed for specified performance of the same after complete in all respect as per" + 
+                               "approved design and instruction of concern Architect/Engineer."  ;
+
+            string generalbody3 = "<p><strong>Aluminum Profile:</strong></p>" +
+                       "<ul><li style='Vertical Profile: 101X50, Nose 30mm</li>" +
+                        "<li style='margin-top:10px;'>Thickness: 2mm</li>" +
+                        "<li style='margin-top:10px;'>Horizontal Profile: 101X50, Nose 30mm</li>" +
+                        "<li style='margin-top:10px;'>Thickness: 2mm</li>" +
+                        "<li style='margin-top:10px;'>Top & Side Profile: 101X27, Nose 30mm</li>" +
+                        "<li style='margin-top:10px;'>Thickness: 2mm</li>" +
+                        "<li style='margin-top:10px;'>Thickness: 2mm</li>" +
+                        "<li style='margin-top:10px;'>Thickness: 1.80mm</li>" +
+                        "<li style='margin-top:10px;'>Color: Charcoal Gray</li>" +
+                        "<li style='margin-top:10px;'>Angle: 32X19X 3mm</li>" +
+                        "<li style='margin-top:10px;'>Brand: Dhaka Thai Ltd/ Altech</li></ul>" +
+                        "<p><strong>Glass:</strong></p>" +
+                        "<ul><li style = 'margin-top:10px;' >24mm DGU: 6mm ST-136 + 12mm AG+6mm clear & all glass should be tempered.</ li >" +
+                        "<li style='margin-top:10px;'>Brand : Saint-Gobain</li>" +
+                        "<li style='margin-top:10px;'>o	Glass Process: Locally</li></ul>" +
+                         "<p><strong>Hardware & Accessories:</strong></p>" +
+                        "<ul><li style = 'margin-top:10px;' >Weather Silicone: Silande MF-889/BPL.</ li >" +
+                        "<li style='margin-top:10px;'>Structural Silicone: Silande MF-899/BPL</li>" +
+                        "<li style='margin-top:10px;'>Anchor Bolt: 10X100 (China)</li>"+
+                       "<li style='margin-top:10px;'>Norton tape, SS Screw, Backer rod Quality Hardware & Accessories with finishing work.</li></ul>";
+
 
 
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
@@ -395,12 +433,15 @@ namespace RealERPWEB.F_09_PImp
 
             string Address = lst[0].conadd.ToString();
             string Attn = lst[0].atten.ToString();
+            string Supname = lst[0].atten.ToString();
             string body = lst1[0].leterdes.ToString();
             string subject = lst1[0].subject.ToString();
             string Term = lst1[0].term.ToString();
+            string payterm = lst1[0].payterm.ToString();
             string Suppl = lst1[0].csirdesc.ToString();
             string GDesc = lst[0].grpdesc;
             string prjname = lst1[0].pactdesc.ToString();
+            string paddress = lst1[0].paddress.ToString();
             string lang = ds1.Tables[1].Rows[0]["lang"].ToString();
 
             if (comcod == "1205" || comcod == "3351" || comcod == "3352")
@@ -423,7 +464,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
             }
-            else if (comcod == "3370" || comcod == "3368" || comcod == "3101")
+            else if (comcod == "3370" || comcod == "3368" || comcod == "3101" )
             {
                 refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
                 string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
@@ -435,6 +476,25 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("lang", lang));
             }
+            else if (comcod == "3374")
+            {
+                refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
+                string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderANGAN", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
+                Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
+                Rpt1.SetParameters(new ReportParameter("refNo1", refNo));
+                Rpt1.SetParameters(new ReportParameter("reference", "Casa Bianca/GAW/NJS Artisan/APL/Cell-0089"));
+                Rpt1.SetParameters(new ReportParameter("orderno", orderno));
+                Rpt1.SetParameters(new ReportParameter("lang", lang));
+                Rpt1.SetParameters(new ReportParameter("paddress", paddress));
+                Rpt1.SetParameters(new ReportParameter("generalbody2", generalbody2));
+                Rpt1.SetParameters(new ReportParameter("generalbody3", generalbody3));
+                Rpt1.SetParameters(new ReportParameter("payterm", payterm));
+                Rpt1.SetParameters(new ReportParameter("Supname", Supname));
+            }
+        
             else
             {
                 refNo = this.txtOrderRef.Text.ToString();
@@ -450,7 +510,7 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("Address", Address));
             Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
             Rpt1.SetParameters(new ReportParameter("body", body));
-            Rpt1.SetParameters(new ReportParameter("subject", subject));
+            Rpt1.SetParameters(new ReportParameter("subject","Subject: " +subject));
             Rpt1.SetParameters(new ReportParameter("Term", Term));
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
@@ -504,9 +564,9 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlPrevList.Items.Clear();
 
                 this.ddlContractorlist.Visible = true;
-                this.lblddlContractor.Visible = false;
+                //this.lblddlContractor.Visible = false;
                 this.ddlprjlist.Visible = true;
-                this.lblddlProject.Visible = false;
+                //this.lblddlProject.Visible = false;
                 this.txtCurISSDate.Enabled = true;
                 this.lblCurISSNo1.Text = "ISU" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurISSNo2.Text = "";
@@ -526,12 +586,12 @@ namespace RealERPWEB.F_09_PImp
             this.lbtnPrevList.Visible = false;
             this.ddlPrevList.Visible = false;
             //this.txtsmcr.Visible = false;
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
-            this.ddlContractorlist.Visible = false;//it will be used
-            this.lblddlContractor.Visible = true;
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;
-            this.lblddlProject.Visible = true;
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            this.ddlContractorlist.Enabled = false;//it will be used
+            //this.lblddlContractor.Visible = true;
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            this.ddlprjlist.Enabled = false;
+            //this.lblddlProject.Visible = true;
             this.PnlRes.Visible = true;
             string genno = this.Request.QueryString["genno"] ?? "";
             if (genno.Length > 0)
@@ -556,6 +616,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3101":
                 case "3368":
                 case "3370": // cpdl
+                case "3374": // Angan
                 case "1205": // p2p 
                 case "3351":  // p2p 
                 case "3352":  // p2p 
@@ -604,7 +665,16 @@ namespace RealERPWEB.F_09_PImp
                 return;
             ViewState["tblorder"] = ds1.Tables[0];
             ViewState["UserLog"] = ds1.Tables[1];
-            this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+            if (comcod == "3374")
+            {
+                this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+                this.txtPayTerm.Text = ds1.Tables[3].Rows[0]["Payterm"].ToString();
+            }
+            else
+            {
+                this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
+            }
+            
 
             this.grvissue_DataBind();
             if (mNEWORDNo == "NEWORDER")
@@ -631,12 +701,14 @@ namespace RealERPWEB.F_09_PImp
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["orderno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
             this.ddlContractorlist.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
+            this.txtPayTerm.Text = ds1.Tables[1].Rows[0]["payterm"].ToString();
+            this.txtLETDES.Text = ds1.Tables[1].Rows[0]["leterdes"].ToString();
 
 
 
@@ -883,12 +955,13 @@ namespace RealERPWEB.F_09_PImp
             string comncdat = txtcomncdat.Text.Trim();
             string compltdat = txtcompltdat.Text.Trim();
             string term = this.txtTerm.Text.Trim();
+            string payterm = this.txtPayTerm.Text.Trim();
             string days = "";
             string biltype = "";
             string lreqno = this.Request.QueryString["genno"] ?? "";
             bool result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATECORDER", "PURCORDERB",
                              mOrdernoO, mDATE, csircode, mPACTCODE, mRef, subject, letdes, term, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Edittrmid, EditSession, Editdat, days, biltype, comncdat, compltdat, lreqno,
-                             language, "", "", "", "", "", "", "", "", "");
+                             language, payterm, "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

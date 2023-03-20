@@ -758,7 +758,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.0625in</Top>
             <Height>0.70834in</Height>
-            <Width>7.00679in</Width>
+            <Width>7.0068in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -769,7 +769,7 @@
         <Height>0.90625in</Height>
         <Style />
       </Body>
-      <Width>7.00679in</Width>
+      <Width>7.0068in</Width>
       <Page>
         <PageHeader>
           <Height>1.17535in</Height>
@@ -999,7 +999,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.19792in</Height>
               <Width>5.16524in</Width>
               <Style>
@@ -1032,7 +1031,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0in</Top>
               <Left>5.19302in</Left>
               <Height>0.19792in</Height>
               <Width>1.76167in</Width>

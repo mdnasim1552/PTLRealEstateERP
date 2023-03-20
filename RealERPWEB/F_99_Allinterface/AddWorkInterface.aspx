@@ -512,6 +512,11 @@
                 alert(e);
             }
         }
+
+        function mycsdApprovedModal() {
+            $('#mycsdApproved').modal('toggle');
+        }
+
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -896,7 +901,9 @@
                                         <asp:HyperLink ID="lnkchk1st" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprint1stpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDel1stApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel1stApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                            
                                         </asp:LinkButton>
+                                        <asp:CheckBox runat="server" ID="checkcsd"  AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -999,6 +1006,7 @@
                                         <asp:HyperLink ID="hlnkprintcsdpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDelcsdApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelcsdApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
+                                        
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -1345,6 +1353,50 @@
                         </asp:GridView>
 
                     </asp:Panel>
+
+
+                    <!--Csd Aproved Delete Modal-->
+                 <div class="modal" id="mycsdApproved" data-backdrop="false" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content" style="background: #f3f7f9">
+                        <asp:Label ID="lbladnotest"  runat="server" Visible="false"></asp:Label>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title text-primary">Delete Reason </h4>
+
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <asp:Label ID="lbladwid" runat="server" Visible="false"></asp:Label>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+
+                                        <label for="username">Reason</label>
+                                          <asp:CheckBox ID="chkPermanent" runat="server" Text="Permanent" class="ml-5"/>
+                                        <asp:TextBox ID="tbxcsdreason" runat="server" TextMode="MultiLine"  class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                           
+                           
+                            <asp:LinkButton ID="lnkcsddelete" runat="server" OnClick="lnkcsddelete_Click" ToolTip="Remove" CssClass="btn btn-sm">Delete</asp:LinkButton>
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
 
 
                 </div>

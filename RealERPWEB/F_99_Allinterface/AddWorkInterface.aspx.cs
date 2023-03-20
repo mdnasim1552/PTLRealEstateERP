@@ -21,6 +21,7 @@ namespace RealERPWEB.F_99_Allinterface
     public partial class AddWorkInterface : System.Web.UI.Page
     {
         ProcessAccess feaData = new ProcessAccess();
+        string adnotest;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -552,9 +553,9 @@ namespace RealERPWEB.F_99_Allinterface
             //dv.RowFilter = "pactcode=" + pactcode + " and adno="+addno+"";
             //dt = dv.ToTable();
             //string appxml = dt.Rows[0]["approval"].ToString();
-
-            string calltype = this.GetRemoveAuditCType();
-            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", calltype, adno, "", "", "", "", "", "", "", "", "", "");
+           
+            string comskip = this.GetSKIP1csdsecAPP();
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODCHECK", adno, comskip, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Deleted failed..!');", true);
@@ -564,21 +565,25 @@ namespace RealERPWEB.F_99_Allinterface
             this.lbtnok_Click(null, null);
         }
 
-        private string GetRemoveAuditCType()
+        private string GetSKIP1csdsecAPP()
         {
-            string ctype = "";
+            string comskip = "";
             switch (GetCompCode())
             {
-                case "3101":
+              
                 case "3367":
-                    ctype = "UPDATEMODSECONDAPP";
+                    
                     break;
                 default:
-                    ctype = "UPDATEMODCHECK";
+                    comskip = "SKIP3";
+                   
                     break;
             }
-            return ctype;
+            return comskip;
         }
+      
+
+
         protected void lnkremoveap_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tbladdwrk"];
@@ -587,6 +592,7 @@ namespace RealERPWEB.F_99_Allinterface
             string adno = ((Label)this.gvCltmodapp.Rows[Rowindex].FindControl("lbladdnoap")).Text.Trim();
 
             //UPDATEMODAPPROVAL
+            
             bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODAUDIT", adno, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
@@ -739,7 +745,7 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string adno = ((Label)this.gv2ndApp.Rows[Rowindex].FindControl("lblgv2ndApadno")).Text.Trim();
-            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODFIRSTAPP", adno, "", "", "", "", "", "", "", "", "", "");
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODSECONDAPP", adno, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
@@ -755,7 +761,7 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string adno = ((Label)this.gv1stApp.Rows[Rowindex].FindControl("lblgv1stApadno")).Text.Trim();
-            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODCHECK", adno, "", "", "", "", "", "", "", "", "", "");
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODFIRSTAPP", adno, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
@@ -784,6 +790,32 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lbtnDelcsdApp_Click(object sender, EventArgs e)
         {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+             string adnono = ((Label)this.gvcsdApproval.Rows[index].FindControl("lblgvcsdApadno")).Text.ToString();
+            DataTable dt = (DataTable)Session["tbladdwrk"];
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string adno = ((Label)this.gvcsdApproval.Rows[Rowindex].FindControl("lblgvcsdApadno")).Text.Trim();
+            this.lbladnotest.Text = adnono;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "mycsdApprovedModal();", true);
+            
+        }
+
+        private void CsdStageDelete()
+        {
+
+          
+            //bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "DELADDWORK", adno, "", "", "", "", "", "", "", "", "", "");
+            //if (!result)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
+            //    return;
+            //}
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
+            this.lbtnok_Click(null, null);
+
 
         }
 
@@ -800,6 +832,39 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnkprintcsdpp.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&genno=" + pactcode + "&Date1=" + date;
             }
 
+        }
+
+       
+
+        protected void lnkcsddelete_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tbladdwrk"];
+            string comcod = this.GetCompCode();
+            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int index = row.RowIndex;
+            //string adno = ((Label)this.gvcsdApproval.Rows[index].FindControl("lblgvcsdApadno")).Text.ToString();
+            string adno = this.lbladnotest.Text;
+            string dellen = this.Getdel();
+            string res = this.tbxcsdreason.Text.Trim();
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODCSDAPP", adno, dellen, res, "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
+            this.lbtnok_Click(null, null);
+        }
+        private string Getdel()
+        {
+            string dellen = "";
+           
+            if (this.chkPermanent.Checked == true)
+            {
+                dellen = "delete";
+            }
+           
+            return dellen;
         }
     }
 }

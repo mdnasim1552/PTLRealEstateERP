@@ -46,11 +46,20 @@ namespace RealERPWEB.F_17_Acc
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.LoadBillCombo();
                 CreateTable();
-
+                this.lbtnOk_Click(null, null);
             }
 
 
 
+
+        }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
 
@@ -69,6 +78,8 @@ namespace RealERPWEB.F_17_Acc
             tblt01.Columns.Add("trnrmrk", Type.GetType("System.String"));
             tblt01.Columns.Add("billid", Type.GetType("System.String"));
             tblt01.Columns.Add("billar", Type.GetType("System.String"));
+            tblt01.Columns.Add("trnrate", Type.GetType("System.Double"));
+
             Session["tblt01"] = tblt01;
         }
 
@@ -140,8 +151,7 @@ namespace RealERPWEB.F_17_Acc
             this.dgv2.DataBind();
             this.txtcurrentvou.Text = "";
             this.txtCurrntlast6.Text = "";
-            this.lnkFinalUpdate.Enabled = true;
-           // this.Panel1.Visible = false;
+            
         }
 
 
@@ -186,7 +196,7 @@ namespace RealERPWEB.F_17_Acc
                     double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
                     string dgMemono = dt1.Rows[i]["billid"].ToString();
                     string dgmrnar = dt1.Rows[i]["billnar"].ToString();
-
+                    double dgtrnrate = Convert.ToDouble(dt1.Rows[i]["trnrate"]);
                     DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
                     if (dr2.Length > 0)
                     {
@@ -207,6 +217,8 @@ namespace RealERPWEB.F_17_Acc
                     dr1["trncram"] = dgTrnCrAmt;
                     dr1["billid"] = dgMemono;
                     dr1["billar"] = dgmrnar;
+                    dr1["trnrate"] = dgtrnrate;
+
                     tblt01.Rows.Add(dr1);
                 }
                 //if (tblt01.Rows.Count == 0)
@@ -418,8 +430,6 @@ namespace RealERPWEB.F_17_Acc
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
-               
-                this.lnkFinalUpdate.Enabled = false;
                 this.txtcurrentvou.Enabled = false;
                 this.txtCurrntlast6.Enabled = false;
                 if (ConstantInfo.LogStatus == true)

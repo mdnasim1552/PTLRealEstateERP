@@ -527,12 +527,14 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
+                       // $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
                     case 3101://ASIT
                     case 3370:   //cpdl
                     case 3368: // Finlay
+                    case 3374: // Finlay
+
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
@@ -541,7 +543,7 @@
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
+                      //  $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
 
@@ -675,9 +677,14 @@
                         tblData = document.getElementById("<%=gvsubbill.ClientID %>");
                         break;
                 }
+          
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
+       
+   
+
+
                     var styleDisplay = 'none';
                     for (var j = 0; j < strData.length; j++) {
                         if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
@@ -688,7 +695,30 @@
                         }
                     }
                     tblData.rows[i].style.display = styleDisplay;
+
+
+
+                    ////console.log('pid1', tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML)
+                    //pid = tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML
+                    //console.log(pid);
+
+
+                    //if (tblData.rows[i].style.display = '') {
+                    //    //pid = tblData.rows[i].cells[cellNr].innerHTML;
+
+                    //    pid=  tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML
+                    //}
+                    //if (tblData.rows[i].style.display = 'none') {
+                    //    var pid2 = tblData.rows[i].cells[7].getElementsByTagName("span")[0].innerHTML;
+                
+                    //    if (pid == pid2) {
+                    //        tblData.rows[i].style.display = '';
+                    //    }
+     
+                    //}
+    
                 }
+
             }
             catch (e) {
                 alert(e.message);
@@ -1122,6 +1152,17 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server"  Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bundle No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="txtbundno" runat="server" BackColor="Transparent"
@@ -1450,7 +1491,17 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Nature Of Work">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
                                                             <ItemTemplate>
@@ -1590,6 +1641,17 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Amount">
@@ -2212,7 +2274,17 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
 
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
@@ -2368,6 +2440,17 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "csirdesc")) %>'
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bundle No" Visible="false">
@@ -2574,7 +2657,8 @@
                                             <asp:TemplateField HeaderText="Req Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2604,6 +2688,9 @@
                                                 <ItemStyle Width="150px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+        
 
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
@@ -2673,7 +2760,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2808,7 +2896,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -2960,7 +3049,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3118,7 +3208,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcReqdatemb" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3147,6 +3238,18 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3282,7 +3385,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcReqdatembapp" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3310,6 +3414,17 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Req Item">
 
@@ -3437,7 +3552,8 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat"))==""?"":
+                                                        Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -3465,6 +3581,17 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                              <asp:TemplateField HeaderText="Nature Of Work">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "naturewrk")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Work Order">

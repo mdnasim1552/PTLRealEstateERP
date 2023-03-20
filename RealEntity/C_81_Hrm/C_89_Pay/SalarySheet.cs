@@ -717,6 +717,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
             public double extday { get; set; }
             public double extdayamt { get; set; }
+            public double wjd { get; set; }
+
 
 
             public SalaryPaySlip()

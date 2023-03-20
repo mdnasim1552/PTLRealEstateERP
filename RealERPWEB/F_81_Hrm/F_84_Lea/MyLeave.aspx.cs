@@ -232,7 +232,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string isCheck = (this.chkresign.Checked ? "True" : "False");
 
-            if (comcod == "3365" || comcod == "3354" || comcod == "3101" || comcod == "3102")
+            if (comcod == "3365" || comcod == "3354")
             {
 
                 this.sspnlv.Visible = true;
@@ -754,7 +754,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         htmtableboyd = "<table><tr><th>From Date</th><th>To Date</th><th>Days</th></tr>";
 
                         result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, qtype, delegationEMPID, "", "", "", "",Editrmid);
-                        htmtableboyd += "<tr><td>" + frmdate + "<td><td>" + todate + "</td><td>(" + ttdays.ToString() + ") day</td></tr>";
+                        htmtableboyd += "<tr><td>" + frmdate + "</td><td>" + todate + "</td><td>(" + ttdays.ToString() + ") day</td></tr>";
                         htmtableboyd += "</table>";
                     }
 
@@ -971,7 +971,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
          + "</td><tr>"
          + "</tbody></table>" +
          "" + htmtableboyd +
-         "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>" +
+         "<div style='color:red'><br><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approve</a> or Login ERP Software and check Leave Interface</div>" + "<br/>" +
         "</body></html>";
 
 
@@ -1369,7 +1369,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             else
             {
-                //chkBoxSkippWH.Checked = true;
+               
+
+                if(GetComeCode()!="3365" )
+                {
+                    chkBoxSkippWH.Checked = false;
+                }
+                else
+                {
+                    chkBoxSkippWH.Checked = true;
+                }
                 chkBoxSkippWH_CheckedChanged(null, null);
                 frmdate.InnerText = "From Date";
                 todate.InnerText = "To Date";

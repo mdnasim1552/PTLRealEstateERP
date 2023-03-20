@@ -119,24 +119,49 @@ namespace RealERPWEB.F_17_Acc
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            switch (comcod)
+            string qtype = this.Request.QueryString["Type"].ToString().Trim();
+
+            if (qtype == "Allotment")
             {
-                case "3370":
-                case "3101":
-                    string qtype = this.Request.QueryString["Type"].ToString().Trim();
-                    if (qtype == "Allotment")
-                    {
-                        this.LetterofAllotmentCPDL();
-                    }
-                    else if (qtype == "CustomerSettlement")
-                    {
-                        this.CustomerSettlementCPDL();
-                    }
-                    break;
-                default:
-                    break;
+                this.LetterofAllotmentCPDL();
             }
+
+            else if (qtype == "CustomerSettlement")
+            {
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "3374":
+                        this.CustomerSettlementANGAN();
+                        break;
+                    default:
+                        this.CustomerSettlementCPDL();
+                        break;
+                }
+
+
+                        
+            }
+            
+
+            //string comcod = this.GetCompCode();
+            //switch (comcod)
+            //{
+            //    case "3370":
+            //    case "3101":
+            //        string qtype = this.Request.QueryString["Type"].ToString().Trim();
+            //        if (qtype == "Allotment")
+            //        {
+            //            this.LetterofAllotmentCPDL();
+            //        }
+            //        else if (qtype == "CustomerSettlement")
+            //        {
+            //            this.CustomerSettlementCPDL();
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
 
         }
 
@@ -407,7 +432,75 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
+        private void CustomerSettlementANGAN()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
+            string prjname = this.ddlprjname.SelectedValue.ToString();
+            string ProjectName = this.ddlprjname.SelectedItem.ToString();
+            string custname = this.ddlcustomerName.SelectedValue.ToString();
+            if (custname != "")
+            {
 
+
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILSANGAN", prjname, custname, "", "", "", "", "", "", "");
+                DataTable dt = (DataTable)ds3.Tables[0];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = "code='05AAA'";
+                DataRow[] dr = dt.Select("code='05AAA'");
+                double totaltk = Convert.ToDouble(dr[0]["amt"]);
+
+
+                string amginword = ASTUtility.Trans(Convert.ToDouble(totaltk), 2);
+
+
+                if (ds3 == null)
+                    return;
+                LocalReport Rpt1 = new LocalReport();
+                var lst = ds3.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustomerSettlement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerSettlementANGAN", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+
+
+                string customername = ds3.Tables[1].Rows[0]["custname"].ToString();
+                string projectname = ds3.Tables[1].Rows[0]["projectname"].ToString();
+                string unitname = ds3.Tables[1].Rows[0]["udesc"].ToString();
+                string usize = Convert.ToDouble(ds3.Tables[1].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
+                string floordesc = ds3.Tables[1].Rows[0]["flrdesc"].ToString();
+                string unit = ds3.Tables[1].Rows[0]["munit"].ToString();
+                string aprtsize = usize + " " + unit;
+                string location = ds3.Tables[1].Rows[0]["location"].ToString();
+                string refdesc = ds3.Tables[2].Rows[0]["refdesc"].ToString();
+                string unitrate = Convert.ToDouble("0" + ds3.Tables[1].Rows[0]["unitrate"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string bookingdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy");
+                //string handovdate1 = Convert.ToDateTime(ds3.Tables[1].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+                string aggrementdate = Convert.ToDateTime(ds3.Tables[1].Rows[0]["aggrementdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(ds3.Tables[1].Rows[0]["aggrementdate"]).ToString("dd-MMM-yyyy");
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("customername", customername));
+                Rpt1.SetParameters(new ReportParameter("projectname", projectname));
+                Rpt1.SetParameters(new ReportParameter("unitname", unitname));
+                Rpt1.SetParameters(new ReportParameter("location", location));
+                Rpt1.SetParameters(new ReportParameter("usize", usize));
+                Rpt1.SetParameters(new ReportParameter("refdesc", "Ref: " + refdesc));
+                Rpt1.SetParameters(new ReportParameter("unit", unit));
+                Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));
+                Rpt1.SetParameters(new ReportParameter("floordesc", floordesc));
+                Rpt1.SetParameters(new ReportParameter("unitrate", unitrate));
+                Rpt1.SetParameters(new ReportParameter("aggrementdate", aggrementdate));
+                Rpt1.SetParameters(new ReportParameter("bookingdate", bookingdate));
+                Rpt1.SetParameters(new ReportParameter("totaltk", amginword));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+
+        }
         private void GetSettleMentno()
         {
 
@@ -453,7 +546,16 @@ namespace RealERPWEB.F_17_Acc
 
                 if (type == "CustomerSettlement")
                 {
-                    DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                    DataSet ds1 = new DataSet();
+                    if (comcod == "3374")
+                    {
+                         ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILSANGAN", prjname, custname, "", "", "", "", "", "", "");
+                    }
+                    else
+                    {
+                         ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILS", prjname, custname, "", "", "", "", "", "", "");
+                    }
+                    
                     if (ds1.Tables[0].Rows.Count == 0)
                     {
                         this.gvcustsettlement.DataSource = null;

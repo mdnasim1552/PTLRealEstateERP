@@ -140,6 +140,10 @@ namespace RealERPWEB.F_22_Sal
                 case "SaleVsCollTypeWise":
                     this.MultiView1.ActiveViewIndex = 8;
                     this.pnlsales.Visible = true;
+                    this.type.Visible = true;
+
+
+
                     break;
 
 
@@ -435,9 +439,10 @@ namespace RealERPWEB.F_22_Sal
                 string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
                 string salesperson = this.ddlSalesperson.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSalesperson.SelectedValue.ToString() + "%";
                 string pactcode = "18%";
+                string type = this.rbtnType.SelectedValue.ToString();
 
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , salesperson, "", "", "", "", "");
-                if (ds1 == null)
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate , salesperson, type, "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
                     this.gvsalvscolltypeWise.DataSource = null;
                     this.gvsalvscolltypeWise.DataBind();

@@ -102,7 +102,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint1";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3305":
                 case "3310":
                     //case "3311":          
@@ -162,7 +162,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3353":
                     vouprint = "VocherPrintManama";
                     break;
@@ -510,7 +510,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherManama", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("chqno", "Cheque No : " + chequeno));
-                    Rpt1.SetParameters(new ReportParameter("voutype1", " Bank Payment Voucher "));
+                    Rpt1.SetParameters(new ReportParameter("voutype1", " Post Dated Cheque Voucher "));
                     Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
 
                 }
@@ -590,11 +590,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                 }
-
-                Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
-                Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
-                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
+              
                 if (comcod == "2325" || comcod == "3325" || comcod == "3355")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, "", Posteddat, compname, username, printdate, "")));
@@ -605,6 +601,19 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                     Rpt1.SetParameters(new ReportParameter("voutype", VouType));
                 }
+
+                if(comcod == "3353")
+                {
+                    Rpt1.SetParameters(new ReportParameter("venar",  venar));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                }
+               
+
+                Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
@@ -755,7 +764,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintLei";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3353":
                     vouprint = "VoucherPrintManama";
                     break;
@@ -797,7 +806,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintAngan";
                     break;
 
-                case "3101": // Bricks & Bridges Ltd
+                //case "3101": // Bricks & Bridges Ltd
                 case "1211": // Bricks & Bridges Ltd
                     vouprint = "VocherPrintBricksBridges";
                     break;

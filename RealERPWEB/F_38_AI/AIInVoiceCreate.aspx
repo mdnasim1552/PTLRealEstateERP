@@ -122,8 +122,9 @@
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-6">
                                     <%--<asp:TextBox ID="ddlcurency" readonly="true" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>--%>
-                                    <asp:TextBox ReadOnly="true" runat="server" ID="txtcurrency" CssClass="form-control form-control-sm" ></asp:TextBox>
-                                    
+                                    <%--<asp:TextBox ReadOnly="true" Visible="false" runat="server" ID="txtcurrency" CssClass="form-control form-control-sm" ></asp:TextBox>--%>
+                                      <asp:DropDownList ID="ddlcurrency" readonly="true" Enabled="false" runat="server" AutoPostBack="true" CssClass="form-control form-control-sm chzn-select">
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="row mb-1">

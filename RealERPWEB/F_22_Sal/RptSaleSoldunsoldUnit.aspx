@@ -36,8 +36,7 @@
                     includeSelectAllOption: true,
 
                     enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-                    //$('.chzn-select').chosen({ search_contains: true });
+                    
                 });
             });
           
@@ -65,13 +64,13 @@
             line-height: 28px !important;
         }
         .multiselect {
-            width: 300px !important;
+            width: 220px !important;
             text-wrap: initial !important;
             height: 27px !important;
         }
 
         .multiselect-text {
-            width: 300px !important;
+            width: 220px !important;
         }
 
         .multiselect-container {
@@ -806,6 +805,21 @@
 
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Total Collection" Visible="false"  runat="server">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvcollAmt" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcamt")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFCollAmt" runat="server" Font-Bold="True"
+                                                        Style="text-align: right" Width="75px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Discount">

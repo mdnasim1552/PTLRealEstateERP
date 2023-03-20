@@ -1084,7 +1084,7 @@ namespace RealERPWEB.F_17_Acc
             else if (Type == "MRPrintAngan")
             {
 
-                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptAngan", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("CompName", comnam));

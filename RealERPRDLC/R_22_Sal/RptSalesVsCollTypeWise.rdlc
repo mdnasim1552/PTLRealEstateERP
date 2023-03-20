@@ -108,13 +108,13 @@
                   <Width>0.25in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.5598in</Width>
+                  <Width>1.41397in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.66667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.44792in</Width>
+                  <Width>0.53126in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.70833in</Width>
@@ -123,7 +123,7 @@
                   <Width>0.51042in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.68958in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.51041in</Width>
@@ -150,18 +150,18 @@
                   <Width>0.6875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.72917in</Width>
+                  <Width>0.63542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65625in</Width>
+                  <Width>0.80208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.54167in</Width>
+                  <Width>0.59375in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.63542in</Height>
+                  <Height>0.89584in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -248,12 +248,12 @@
                                 <Width>0.67188in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.44271in</Width>
+                                <Width>0.52604in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -298,7 +298,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -347,7 +347,22 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -416,7 +431,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -460,7 +475,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -509,7 +524,22 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -570,15 +600,15 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.69896in</Width>
+                                <Width>0.69375in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.51145in</Width>
+                                <Width>0.50624in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -623,7 +653,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -672,7 +702,22 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -741,7 +786,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -786,7 +831,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -835,7 +880,22 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -904,7 +964,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -949,7 +1009,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -998,7 +1058,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1067,7 +1127,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1112,7 +1172,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1161,7 +1221,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1222,15 +1282,15 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.6875in</Width>
+                                <Width>0.68229in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.72917in</Width>
+                                <Width>0.64063in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1274,7 +1334,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1323,7 +1383,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1384,15 +1444,15 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.65104in</Width>
+                                <Width>0.80208in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.54688in</Width>
+                                <Width>0.59375in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1437,7 +1497,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.31771in</Height>
+                                <Height>0.44792in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -1486,7 +1546,22 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Shop</Value>
+                                                <Value>Shop/</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>Com. Space</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -2905,8 +2980,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.025in</Top>
-            <Height>1.07292in</Height>
-            <Width>12.24971in</Width>
+            <Height>1.33334in</Height>
+            <Width>12.28096in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2914,10 +2989,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.16042in</Height>
+        <Height>1.66042in</Height>
         <Style />
       </Body>
-      <Width>12.26012in</Width>
+      <Width>12.28096in</Width>
       <Page>
         <PageHeader>
           <Height>0.79166in</Height>

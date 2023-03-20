@@ -69,24 +69,6 @@ namespace RealERPWEB.F_15_DPayReg
         protected global::AjaxControlToolkit.CalendarExtender txtReceiveDate_CalendarExtender;
 
         /// <summary>
-        /// rblpaytype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblpaytype;
-
-        /// <summary>
-        /// chkSinglIssue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkSinglIssue;
-
-        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -139,6 +121,24 @@ namespace RealERPWEB.F_15_DPayReg
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBillList;
+
+        /// <summary>
+        /// rblpaytype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblpaytype;
+
+        /// <summary>
+        /// chkSinglIssue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSinglIssue;
 
         /// <summary>
         /// Label3 control.

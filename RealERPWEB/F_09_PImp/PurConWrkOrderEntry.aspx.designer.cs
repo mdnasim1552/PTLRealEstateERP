@@ -105,6 +105,42 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.TextBox txtOrderRef;
 
         /// <summary>
+        /// lblContractorList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContractorList;
+
+        /// <summary>
+        /// ddlContractorlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlContractorlist;
+
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
+
+        /// <summary>
+        /// ddlprjlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlprjlist;
+
+        /// <summary>
         /// lbtnPrevList control.
         /// </summary>
         /// <remarks>
@@ -123,51 +159,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevList;
 
         /// <summary>
-        /// lblContractorList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContractorList;
-
-        /// <summary>
-        /// txtsrchContractor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchContractor;
-
-        /// <summary>
-        /// lbtnFindContractor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnFindContractor;
-
-        /// <summary>
-        /// ddlContractorlist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlContractorlist;
-
-        /// <summary>
-        /// lblddlContractor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblddlContractor;
-
-        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>
@@ -175,60 +166,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
-        /// lblmsg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
-
-        /// <summary>
-        /// lblProjectList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjectList;
-
-        /// <summary>
-        /// txtsrchproject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchproject;
-
-        /// <summary>
-        /// lbtnFindProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnFindProject;
-
-        /// <summary>
-        /// ddlprjlist control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlprjlist;
-
-        /// <summary>
-        /// lblddlProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblddlProject;
 
         /// <summary>
         /// PnlRes control.
@@ -267,15 +204,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblLabour;
 
         /// <summary>
-        /// txtSearchLabour control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchLabour;
-
-        /// <summary>
         /// LinkButton1 control.
         /// </summary>
         /// <remarks>
@@ -283,6 +211,15 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+
+        /// <summary>
+        /// txtSearchLabour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchLabour;
 
         /// <summary>
         /// DropCheck1 control.
@@ -463,5 +400,23 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTerm;
+
+        /// <summary>
+        /// lblPayTerms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPayTerms;
+
+        /// <summary>
+        /// txtPayTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPayTerm;
     }
 }

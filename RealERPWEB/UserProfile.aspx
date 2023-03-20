@@ -522,9 +522,15 @@
   </button>
   <div class="dropdown-menu">r
    <a class="dropdown-item"  data-toggle="tab" href="#tabUnitMetric" runat="server">Uniting Metric Presentation</a>
-   <a class="dropdown-item"  data-toggle="tab" href="#tabUmTrack" runat="server">UM-Tracker</a>
+   <%--<a class="dropdown-item"  data-toggle="tab" href="#tabUmTrack" runat="server">UM-Tracker</a>--%>
+     <asp:HyperLink ID="hyplnkumtracker" CssClass="dropdown-item" NavigateUrl="https://docs.google.com/spreadsheets/d/1Z9lmNfGbWyjoeMtou6_lsuOQ5O4zS8Eg/edit?usp=sharing&ouid=105663352034576969510&rtpof=true&sd=true" Target="_blank" runat="server">UM-Tracker</asp:HyperLink>
+     <asp:HyperLink ID="hyplnkleaddetails" CssClass="dropdown-item" NavigateUrl="https://docs.google.com/spreadsheets/d/1Z9lmNfGbWyjoeMtou6_lsuOQ5O4zS8Eg/edit#gid=1662827138" Target="_blank" runat="server">IR-Lead Details</asp:HyperLink>
+
+    <%--<a class="dropdown-item"  data-toggle="tab" href="#tabIRdet" runat="server">IR Lead Details</a>--%>
+
    <a class="dropdown-item"  data-toggle="tab" href="#tabIncentive" runat="server">Incentive Policy</a>
-   <a class="dropdown-item"  data-toggle="tab" href="#tabSalesSupport" runat="server">Commerce Associate</a>
+
+   <%--<a class="dropdown-item"  data-toggle="tab" href="#tabSalesSupport" runat="server">Commerce Associate</a>--%>
   </div>
 </div>
            </li>                              <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
@@ -1897,6 +1903,24 @@
                                 <div class="card-body">
                                     <h5 class="text-center">UM-Tracker</h5>
                                     <div runat="server" class="text-center" id="divUmTrack">
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                                            <div class="tab-pane fade" id="tabIRdet">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                                <div class="card-body">
+                                    <h5 class="text-center">IR Lead Details</h5>
+                                    <div runat="server" class="text-center" id="divIRdet">
                                     </div>
 
                                 </div>

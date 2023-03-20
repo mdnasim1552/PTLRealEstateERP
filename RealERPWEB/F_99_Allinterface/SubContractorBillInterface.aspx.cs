@@ -82,6 +82,8 @@ namespace RealERPWEB.F_99_Allinterface
                
                 case "3368": // Finlay
                 case "3370": // cpdl
+                case "3374": // cpdl
+
                 case "1205":
                 case "3351":
                 case "3352":
@@ -103,7 +105,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void CheckHyperLink()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3368" || comcod == "3101")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3374" || comcod == "3368" || comcod == "3101")
             {
                 hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
             }
@@ -190,6 +192,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3101":
                 case "3370"://
+                case "3374"://
+
                 case "3368"://
                     billchk = "Bill Checked";
                     break;
@@ -281,7 +285,9 @@ namespace RealERPWEB.F_99_Allinterface
             string ratecsapp = "";
             switch (comcod)
             {
-                case "3101":              
+                case "3101":
+                case "3374":
+
                 case "3370"://
                     orderApp = "Bill Generate";
                     billcs = "Bill CS";
@@ -1042,29 +1048,38 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "gvConUpdat":
-                    this.gvConUpdat.DataSource = HiddenSameData(dt);
+                    //this.gvConUpdat.DataSource = HiddenSameData(dt);
+                    this.gvConUpdat.DataSource = dt;
+
                     this.gvConUpdat.DataBind();
                     break;
 
                 case "gvsubbill":
-                    this.gvsubbill.DataSource = HiddenSameData(dt);
+                    //this.gvsubbill.DataSource = HiddenSameData(dt);
+                    this.gvsubbill.DataSource = dt;
+
                     this.gvsubbill.DataBind();
                     break;
 
 
                 case "gvfrec":
-                    this.gvfrec.DataSource = HiddenSameData(dt);
+                    //this.gvfrec.DataSource = HiddenSameData(dt);
+                    this.gvfrec.DataSource = dt;
+
                     this.gvfrec.DataBind();
                     break;
 
                 case "gvsrec":
-                    this.gvsrec.DataSource = HiddenSameData(dt);
+                    //this.gvsrec.DataSource = HiddenSameData(dt);
+                    this.gvsrec.DataSource = dt;
+
                     this.gvsrec.DataBind();
                     break;
 
 
                 case "gvthrec":
-                    this.gvthrec.DataSource = HiddenSameData(dt);
+                    //this.gvthrec.DataSource = HiddenSameData(dt);
+                    this.gvthrec.DataSource = dt;
                     this.gvthrec.DataBind();
                     break;
 
@@ -1079,55 +1094,75 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 case "gvfinal":
-                    this.gvfinal.DataSource = HiddenSameData(dt);
+                    //this.gvfinal.DataSource = HiddenSameData(dt);
+                    this.gvfinal.DataSource = dt;
+
                     this.gvfinal.DataBind();
                     break;
 
 
                 case "gvfinalapp":
-                    this.gvfinalapp.DataSource = HiddenSameData(dt);
+                    //this.gvfinalapp.DataSource = HiddenSameData(dt);
+                    this.gvfinalapp.DataSource = dt;
+
                     this.gvfinalapp.DataBind();
 
                     break;
                 case "gvlabbillreq":
-                    this.gvlabbillreq.DataSource = HiddenSameData(dt);
+                    //this.gvlabbillreq.DataSource = HiddenSameData(dt);
+                    this.gvlabbillreq.DataSource = dt;
+
                     this.gvlabbillreq.DataBind();
 
                     break;
 
                 case "gvAllReq":
-                    this.gvAllReq.DataSource = HiddenSameData(dt);
+                    //this.gvAllReq.DataSource = HiddenSameData(dt);
+                    this.gvAllReq.DataSource = dt;
+
                     this.gvAllReq.DataBind();
                     break;
 
 
                 case "gvbillcs":
-                    this.gvbillcs.DataSource = HiddenSameData(dt);
+                    //this.gvbillcs.DataSource = HiddenSameData(dt);
+                    this.gvbillcs.DataSource = dt;
+
                     this.gvbillcs.DataBind();
                     break;
 
                 case "gvWorkOrder":
-                    this.gvWorkOrder.DataSource = HiddenSameData(dt);
+                    //this.gvWorkOrder.DataSource = HiddenSameData(dt);
+                    this.gvWorkOrder.DataSource = dt;
+
                     this.gvWorkOrder.DataBind();
                     break;
 
                 case "gvmbook":
-                    this.gvmbook.DataSource = HiddenSameData(dt);
+                    //this.gvmbook.DataSource = HiddenSameData(dt);
+                    this.gvmbook.DataSource = dt;
+
                     this.gvmbook.DataBind();
                     break;
 
 
                 case "gvmbookapp":
-                    this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    //this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    this.gvmbookapp.DataSource = dt;
+
                     this.gvmbookapp.DataBind();
                     break;
                 case "gvReadyForBill":
-                    this.gvReadyForBill.DataSource = HiddenSameData(dt);
+                    //this.gvReadyForBill.DataSource = HiddenSameData(dt);
+                    this.gvReadyForBill.DataSource = dt;
+
                     this.gvReadyForBill.DataBind();
                     break;
 
                 case "gvbillapp":
-                    this.gvbillapp.DataSource = HiddenSameData(dt);
+                    //this.gvbillapp.DataSource = HiddenSameData(dt);
+                    this.gvbillapp.DataSource = dt;
+
                     this.gvbillapp.DataBind();
                     break;
 
@@ -1142,6 +1177,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3101":
                 case "3368"://Finlay
                 case "3370":
+                case "3374":
+
                     isShow = true;
                     break;
                 default:
@@ -1903,6 +1940,8 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3351":   //p2p
                     case "3352":   //p2p
                     case "3101":   //ptl
+                    case "3374":   //ptl
+
 
                         hlink1.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode;
 

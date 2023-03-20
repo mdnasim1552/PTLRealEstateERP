@@ -118,6 +118,12 @@ namespace RealERPWEB.F_33_Doc
                     this.gvdoc.DataSource = dv;
                     this.gvdoc.DataBind();
                     break;
+                case 5:
+                    dv = dt.DefaultView;
+                    dv.RowFilter = "gcod='99905' or gcod='99908' or gcod='99909'";
+                    this.gvdoc.DataSource = dv;
+                    this.gvdoc.DataBind();
+                    break;
             }
 
         }
@@ -169,8 +175,9 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlMonth.Visible = false;
                     this.pnlTxt.Visible = true;
                     this.pnlFile.Visible = true;
-                    break;
                     this.pnlEditor.Visible = true;
+
+                    break;
 
                 case "99903":
                     this.lbltitle.Text = "Month";
@@ -194,8 +201,39 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlMonth.Visible = false;
                     this.pnlFile.Visible = false;
                     this.pnlEditor.Visible = true;
+                    break;
 
+                case "99905":
+                    this.lbltitle.Text = "Title";
+                    this.txtsName.Text = "";
+                    this.txtsName.Enabled = true;
+                    this.pnlTxt.Visible = true;
+                    this.pnlDept.Visible = false;
+                    this.pnlMonth.Visible = false;
+                    this.pnlFile.Visible = false;
+                    this.pnlEditor.Visible = true;
+                    break;
 
+                case "99908":
+                    this.lbltitle.Text = "Title";
+                    this.txtsName.Text = "";
+                    this.txtsName.Enabled = true;
+                    this.pnlTxt.Visible = true;
+                    this.pnlDept.Visible = false;
+                    this.pnlMonth.Visible = false;
+                    this.pnlFile.Visible = false;
+                    this.pnlEditor.Visible = true;
+                    break;
+
+                case "99909":
+                    this.lbltitle.Text = "Title";
+                    this.txtsName.Text = "";
+                    this.txtsName.Enabled = true;
+                    this.pnlTxt.Visible = true;
+                    this.pnlDept.Visible = false;
+                    this.pnlMonth.Visible = false;
+                    this.pnlFile.Visible = false;
+                    this.pnlEditor.Visible = true;
                     break;
                 default:
                     this.lbltitle.Text = "Title";
@@ -251,6 +289,15 @@ namespace RealERPWEB.F_33_Doc
             string imgPath = "";
             string msg = "";
             string id = "";
+            if(gcod=="99905" || gcod =="99908"|| gcod == "99909"){
+                System.Text.RegularExpressions.Regex rx = new System.Text.RegularExpressions.Regex("<[^>]*>");
+
+
+
+                // replace all matches with empty strin
+
+                remarks = rx.Replace(remarks, "");
+            }
 
 
             //validates the posted file before saving  

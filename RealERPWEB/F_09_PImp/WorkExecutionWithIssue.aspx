@@ -68,40 +68,45 @@
         }
         function onSaveValidate() {
 
+            console.log("Im in", $("#ContentPlaceHolder1_txtSMCR").val())
 
+            if ($("#ContentPlaceHolder1_txtSMCR").val() == undefined) {
 
-            if ($("#ContentPlaceHolder1_txtSMCR").val().length == 0) {
-                showContentFail("Enter SMCR No.");
-                $("#ContentPlaceHolder1_txtSMCR").focus();
-                return false;
             }
             else {
-                if ($("#ContentPlaceHolder1_txtDMIRF").val().length == 0) {
-                    showContentFail("Enter DMIRF No.");
-                    $("#ContentPlaceHolder1_txtDMIRF").focus();
+                if ($("#ContentPlaceHolder1_txtSMCR").val().length == 0) {
+                    showContentFail("Enter SMCR No.");
+                    $("#ContentPlaceHolder1_txtSMCR").focus();
                     return false;
                 }
                 else {
-                    if ($("#ContentPlaceHolder1_txtRefno").val().length == 0) {
-                        showContentFail("Enter R/A No.");
-                        $("#ContentPlaceHolder1_txtRefno").focus();
+
+                    if ($("#ContentPlaceHolder1_txtDMIRF").val().length == 0) {
+                        showContentFail("Enter DMIRF No.");
+                        $("#ContentPlaceHolder1_txtDMIRF").focus();
+                        return false;
                     }
                     else {
-                        if (confirm("Are you sure to Save?") == true) {
-                            return true;
+                        if ($("#ContentPlaceHolder1_txtRefno").val().length == 0) {
+                            showContentFail("Enter R/A No.");
+                            $("#ContentPlaceHolder1_txtRefno").focus();
                         }
                         else {
-                            return false;
+                            if (confirm("Are you sure to Save?") == true) {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
                         }
+
+
+
+
+
                     }
-
-
-
-
-
                 }
             }
-
         }
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -514,7 +519,7 @@
                             </div>
                             <div class="backgroundColorContainer mt-1">
                                 <div class="row">
-                                    <asp:GridView ID="DataGridThree" runat="server" AutoGenerateColumns="False" 
+                                    <asp:GridView ID="DataGridThree" runat="server" AutoGenerateColumns="False"
                                         CssClass="table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True">
                                         <RowStyle />
