@@ -39,7 +39,7 @@ namespace RealERPWEB.F_12_Inv
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalprojectname;
+        protected global::System.Web.UI.WebControls.TextBox lblvalprojectname;
 
         /// <summary>
         /// lblmaterial control.
@@ -57,7 +57,7 @@ namespace RealERPWEB.F_12_Inv
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalmaterial;
+        protected global::System.Web.UI.WebControls.TextBox lblvalmaterial;
 
         /// <summary>
         /// lbldaterange control.
@@ -75,7 +75,7 @@ namespace RealERPWEB.F_12_Inv
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvaldaterange;
+        protected global::System.Web.UI.WebControls.TextBox lblvaldaterange;
 
         /// <summary>
         /// lblPage control.
