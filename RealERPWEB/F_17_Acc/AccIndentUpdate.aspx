@@ -117,6 +117,13 @@
                                             </asp:DropDownList>
 
                                         </div>
+                                        <div class="col-md-4 pading5px ">
+                                             <div class="col-md-4 pading5px ">
+                                            <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True"
+                                                Text="MultipleHead" ForeColor="Green" />
+                                        </div>
+                                           
+                                        </div>
 
                                     </div>
                                     <div class="form-group">
@@ -221,10 +228,10 @@
                                                 Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvDrAmt" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="lblgvDrAmt" runat="server" BackColor="Transparent"
                                                 BorderColor="Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="80px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="11px" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -237,7 +244,7 @@
                                                 ForeColor="Black" Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvCrAmt" runat="server" BackColor="Transparent"
+                                            <asp:Label ID="lblgvCrAmt" runat="server" BackColor="Transparent"  BorderColor="Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncram")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
