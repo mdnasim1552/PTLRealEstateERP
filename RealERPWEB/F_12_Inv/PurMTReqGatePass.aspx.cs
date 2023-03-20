@@ -68,7 +68,10 @@ namespace RealERPWEB.F_12_Inv
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnResFooterTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdatePurAprov_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -275,8 +278,8 @@ namespace RealERPWEB.F_12_Inv
         {
             if (this.lbtnOk.Text == "New")
             {
-                this.lblpreGatePassNo.Visible = true;
-                this.txtGatePassNo.Visible = true;
+                //this.lblpreGatePassNo.Visible = true;
+                //this.txtGatePassNo.Visible = true;
                 this.ImgbtnFinGatePass.Visible = true;
 
                 //this.lbtnPrevAprovList.Visible = true;
@@ -306,8 +309,8 @@ namespace RealERPWEB.F_12_Inv
             }
 
             //this.lbtnPrevAprovList.Visible = false;
-            this.lblpreGatePassNo.Visible = false;
-            this.txtGatePassNo.Visible = false;
+            //this.lblpreGatePassNo.Visible = false;
+            //this.txtGatePassNo.Visible = false;
             this.ImgbtnFinGatePass.Visible = false;
             this.ddlPrevList.Visible = false;
             this.txtGatePassNo2.ReadOnly = true;            

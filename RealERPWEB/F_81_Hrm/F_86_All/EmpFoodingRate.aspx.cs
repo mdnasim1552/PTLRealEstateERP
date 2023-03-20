@@ -219,6 +219,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Session["tblempfood"] = dt;
             this.Data_Bind();
         }
+
+
+      
+
         protected void lbntFoodrateUpdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -287,8 +291,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         }
 
-
-
-
+       
     }
 }

@@ -154,7 +154,7 @@ namespace RealERPWEB.F_09_PImp
         private void GetContractorList()
         {
             string comcod = this.GetCompCode();
-            string conlist = "%" + this.txtsrchContractor.Text + "%";
+            string conlist = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUECONTLIST", conlist, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -171,7 +171,7 @@ namespace RealERPWEB.F_09_PImp
 
             string comcod = this.GetCompCode();
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
+            string srchproject = "%%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJODRLIST", srchproject, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -433,6 +433,7 @@ namespace RealERPWEB.F_09_PImp
 
             string Address = lst[0].conadd.ToString();
             string Attn = lst[0].atten.ToString();
+            string Supname = lst[0].atten.ToString();
             string body = lst1[0].leterdes.ToString();
             string subject = lst1[0].subject.ToString();
             string Term = lst1[0].term.ToString();
@@ -491,6 +492,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("generalbody2", generalbody2));
                 Rpt1.SetParameters(new ReportParameter("generalbody3", generalbody3));
                 Rpt1.SetParameters(new ReportParameter("payterm", payterm));
+                Rpt1.SetParameters(new ReportParameter("Supname", Supname));
             }
         
             else
@@ -562,9 +564,9 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlPrevList.Items.Clear();
 
                 this.ddlContractorlist.Visible = true;
-                this.lblddlContractor.Visible = false;
+                //this.lblddlContractor.Visible = false;
                 this.ddlprjlist.Visible = true;
-                this.lblddlProject.Visible = false;
+                //this.lblddlProject.Visible = false;
                 this.txtCurISSDate.Enabled = true;
                 this.lblCurISSNo1.Text = "ISU" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurISSNo2.Text = "";
@@ -584,12 +586,12 @@ namespace RealERPWEB.F_09_PImp
             this.lbtnPrevList.Visible = false;
             this.ddlPrevList.Visible = false;
             //this.txtsmcr.Visible = false;
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
-            this.ddlContractorlist.Visible = false;//it will be used
-            this.lblddlContractor.Visible = true;
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;
-            this.lblddlProject.Visible = true;
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            this.ddlContractorlist.Enabled = false;//it will be used
+            //this.lblddlContractor.Visible = true;
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            this.ddlprjlist.Enabled = false;
+            //this.lblddlProject.Visible = true;
             this.PnlRes.Visible = true;
             string genno = this.Request.QueryString["genno"] ?? "";
             if (genno.Length > 0)
@@ -699,13 +701,14 @@ namespace RealERPWEB.F_09_PImp
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["orderno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
             this.ddlContractorlist.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
-            this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
+            //this.lblddlContractor.Text = this.ddlContractorlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
             this.txtPayTerm.Text = ds1.Tables[1].Rows[0]["payterm"].ToString();
+            this.txtLETDES.Text = ds1.Tables[1].Rows[0]["leterdes"].ToString();
 
 
 

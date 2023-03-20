@@ -78,6 +78,8 @@ namespace RealERPWEB.F_17_Acc
             tblt01.Columns.Add("trnrmrk", Type.GetType("System.String"));
             tblt01.Columns.Add("billid", Type.GetType("System.String"));
             tblt01.Columns.Add("billar", Type.GetType("System.String"));
+            tblt01.Columns.Add("trnrate", Type.GetType("System.Double"));
+
             Session["tblt01"] = tblt01;
         }
 
@@ -194,7 +196,7 @@ namespace RealERPWEB.F_17_Acc
                     double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
                     string dgMemono = dt1.Rows[i]["billid"].ToString();
                     string dgmrnar = dt1.Rows[i]["billnar"].ToString();
-
+                    double dgtrnrate = Convert.ToDouble(dt1.Rows[i]["trnrate"]);
                     DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
                     if (dr2.Length > 0)
                     {
@@ -215,6 +217,8 @@ namespace RealERPWEB.F_17_Acc
                     dr1["trncram"] = dgTrnCrAmt;
                     dr1["billid"] = dgMemono;
                     dr1["billar"] = dgmrnar;
+                    dr1["trnrate"] = dgtrnrate;
+
                     tblt01.Rows.Add(dr1);
                 }
                 //if (tblt01.Rows.Count == 0)

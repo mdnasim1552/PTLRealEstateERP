@@ -78,13 +78,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.TextBox txtdate;
 
         /// <summary>
-        /// CalendarExtender1 control.
+        /// txtdate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender txtdate_CalendarExtender;
 
         /// <summary>
         /// lbtnOk control.
@@ -96,22 +96,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
         /// pnlTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlTrans;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlTrans;
 
         /// <summary>
         /// lblBillList control.
@@ -174,7 +165,7 @@ namespace RealERPWEB.F_17_Acc
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlNarration;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PnlNarration;
 
         /// <summary>
         /// lblRefNum control.
@@ -229,15 +220,6 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNarration;
-
-        /// <summary>
-        /// lnkFinalUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFinalUpdate;
 
         /// <summary>
         /// chkpost control.

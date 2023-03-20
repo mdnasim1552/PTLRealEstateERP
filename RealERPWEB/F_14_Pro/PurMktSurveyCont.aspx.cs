@@ -64,11 +64,12 @@ namespace RealERPWEB.F_14_Pro
                 case "3101":
                 case "3370":
                 case "3368":
+                case "3374":
                     this.printCPDL_cs_approval();
                     break;
-                case "3374":
-                    this.printAngan_cs_approval();
-                    break;
+                //case "3374":
+                //    this.printAngan_cs_approval();
+                //    break;
                 case "1205":
                 case "3351":
                 case "3352":
@@ -371,6 +372,10 @@ namespace RealERPWEB.F_14_Pro
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyManama03", lst, lst1, null);
                 }
+                else if(comcod == "3374")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyANGAN03", lst, lst1, null);
+                }
                 else
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurvey03", lst, lst1, null);
@@ -561,6 +566,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3101": // cpdl
                 case "3370": // cpdl
                 case "3368"://Finlay6
+                case "3374"://Finlay6
                     this.printCPDL_cs_approval();
                     break;
                 default:
@@ -1018,9 +1024,19 @@ namespace RealERPWEB.F_14_Pro
                     i++;
                 }
             }
+         
             else
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03C", lst, lst1, null);
+                if (comcod == "3374" || comcod=="3101")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03CANGAN", lst, lst1, null);
+
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03C", lst, lst1, null);
+
+                }
                 Rpt1.EnableExternalImages = true;
                 DataTable dt = (DataTable)Session["tblt01"];
                 int i = 1;

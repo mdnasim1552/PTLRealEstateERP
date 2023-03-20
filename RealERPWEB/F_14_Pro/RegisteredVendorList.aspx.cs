@@ -23,9 +23,10 @@ namespace RealERPWEB.F_14_Pro
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                string Date01 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date01, 8);
+                this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetRegistredVendorList();
-
-
             }
         }
 
@@ -61,8 +62,10 @@ namespace RealERPWEB.F_14_Pro
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                LinkButton btn = (LinkButton)(e.Row.FindControl("lbtngvRVLvarify"));
-                btn.CssClass = btn.Text == "True" ? "btn btn-sm btn-success" : "btn btn-sm btn-warning";
+                Label lblVarify = (Label)(e.Row.FindControl("lbtngvRVLvarify"));
+                lblVarify.CssClass = (lblVarify.Text.ToLower() == "enlisted") ? "text-success" : "text-warning";
+                //LinkButton btn = (LinkButton)(e.Row.FindControl("lbtngvRVLvarify"));
+                //btn.CssClass = btn.Text == "True" ? "btn btn-sm btn-success" : "btn btn-sm btn-warning";
             }
         }
     }

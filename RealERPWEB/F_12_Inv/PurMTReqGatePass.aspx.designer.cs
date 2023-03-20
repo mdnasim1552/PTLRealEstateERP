@@ -114,22 +114,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// lblmsg1 control.
+        /// ImgbtnFinGatePass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
-
-        /// <summary>
-        /// lblpreGatePassNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpreGatePassNo;
+        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFinGatePass;
 
         /// <summary>
         /// txtGatePassNo control.
@@ -139,15 +130,6 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtGatePassNo;
-
-        /// <summary>
-        /// ImgbtnFinGatePass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFinGatePass;
 
         /// <summary>
         /// ddlPrevList control.
@@ -186,13 +168,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.DropDownList ddlprjlistfrom;
 
         /// <summary>
-        /// Label1 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
         /// ddlprjlistto control.
@@ -213,22 +195,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton lbtnPrject;
 
         /// <summary>
-        /// Panel0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Panel0;
-
-        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Panel1;
 
         /// <summary>
         /// lblResList control.
@@ -312,15 +285,6 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.GridView gvAprovInfo;
 
         /// <summary>
-        /// Panel3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
-
-        /// <summary>
         /// lblReqNarr0 control.
         /// </summary>
         /// <remarks>
@@ -337,14 +301,5 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtgetpNarr;
-
-        /// <summary>
-        /// pnlMarketSurvey control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMarketSurvey;
     }
 }

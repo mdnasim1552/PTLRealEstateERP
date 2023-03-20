@@ -42,10 +42,21 @@
 
         });
 
-        function Search_Gridview(strKey, cellNr) {
+        function Search_Gridview(strKey, cellNr, gvname) {
 
             var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById("<%=this.gvAnalysis.ClientID %>");
+
+            switch (gvname) {
+
+                case 'gvAnalysis':
+                    tblData = document.getElementById("<%=this.gvAnalysis.ClientID %>");
+                    console.log('Ok');
+                    break;
+                case 'gvMultiSelectItem':
+                    tblData = document.getElementById("<%=this.gvMultiSelectItem.ClientID %>");
+                    console.log('Ok');
+                    break;
+            }
             var rowData;
             for (var i = 1; i < tblData.rows.length; i++) {
                 rowData = tblData.rows[i].cells[cellNr].innerHTML;
@@ -395,7 +406,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Description of Item" SortExpression="isirdesc">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" CssClass="form-control form-control-sm" BorderStyle="None" runat="server" placeholder="Description of Item" onkeyup="Search_Gridview(this,2)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" CssClass="form-control form-control-sm" BorderStyle="None" runat="server" placeholder="Description of Item" onkeyup="Search_Gridview(this,2, 'gvAnalysis')"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvItmDesc" runat="server" Font-Size="X-Small"
@@ -498,7 +509,7 @@
                                                 </table>
                                             </EditItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Bottom"/>
+                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Bottom" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit">
                                             <HeaderTemplate>
@@ -540,7 +551,7 @@
 
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvEdited" runat="server" 
+                                                <asp:Label ID="lblgvEdited" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "edited")) %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
@@ -549,7 +560,7 @@
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblpostdat" runat="server"  Font-Size="X-Small"
+                                                <asp:Label ID="lblpostdat" runat="server" Font-Size="X-Small"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "postdat")).Length==0?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "postdat")).ToString("dd-MMM-yyyy hh:mm tt")%>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
@@ -812,17 +823,17 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Unit">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvItmUnit" runat="server"  Font-Size="X-Small"
+                                            <asp:Label ID="lblgvItmUnit" runat="server" Font-Size="X-Small"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirunit")) %>'
                                                 Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Budgeted Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvQty" runat="server" BorderColor="#99CCFF"  Font-Size="X-Small"
+                                            <asp:TextBox ID="txtgvQty" runat="server" BorderColor="#99CCFF" Font-Size="X-Small"
                                                 BorderStyle="Solid" BorderWidth="0px" Style="background-color: Transparent; text-align: right;"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdwqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                                Width="80px" ></asp:TextBox>
+                                                Width="80px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnFinalUpdate2" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbtnFinalUpdate2_Click">Final Update</asp:LinkButton>
@@ -1725,6 +1736,9 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Item Description">
+                                                <HeaderTemplate>
+                                                    <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" CssClass="form-control form-control-sm" BorderStyle="None" runat="server" placeholder="Item Description" onkeyup="Search_Gridview(this,1,'gvMultiSelectItem')"></asp:TextBox>
+                                                </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvmsiItemDesc" runat="server" Font-Size="X-Small"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirdesc1")) %>'></asp:Label>

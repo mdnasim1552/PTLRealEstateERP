@@ -7,7 +7,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
+     <style>
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
@@ -145,17 +150,17 @@
                                     <ItemStyle Font-Size="11px" />
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField FooterText="Total" Visible="false" HeaderText="Rate"
+                                <asp:TemplateField FooterText="Total" HeaderText="Rate"
                                     ItemStyle-Font-Size="11px">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtgvRate" runat="server" BackColor="Transparent"
+                                        <asp:Label ID="txtgvRate" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                             CssClass="GridTextbox" ReadOnly="True" ForeColor="Black"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="70px"></asp:TextBox>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle ForeColor="Black" />
-                                    <ItemStyle Font-Size="11px" />
+                                    <ItemStyle Font-Size="11px" HorizontalAlign="Right" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Dr.Amount" ItemStyle-Font-Size="11px">
                                     <FooterTemplate>
