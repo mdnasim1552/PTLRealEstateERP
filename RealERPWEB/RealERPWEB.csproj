@@ -2426,7 +2426,6 @@
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
-    <Content Include="F_21_MKT\DeviceIPSetup.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
@@ -2998,6 +2997,7 @@
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
     <Content Include="F_34_Mgt\DashBoardAllLP.aspx" />
     <Content Include="F_34_Mgt\DataBackup.aspx" />
+    <Content Include="F_34_Mgt\DeviceIPSetup.aspx" />
     <Content Include="F_34_Mgt\EntryFinResult.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry02.aspx" />
@@ -4550,13 +4550,6 @@
     <Compile Include="F_21_MKT\CrmPolicy.aspx.designer.cs">
       <DependentUpon>CrmPolicy.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.designer.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5137,6 +5130,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.designer.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
