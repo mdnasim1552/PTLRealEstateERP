@@ -130,7 +130,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvRVLConcernPerson" runat="server" Font-Size="X-Small"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "username")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="120px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Left" />
@@ -138,11 +138,15 @@
 
                                     <asp:TemplateField HeaderText="Verify">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lbtngvRVLvarify" runat="server" Font-Size="X-Small" CssClass="btn btn-sm btn-primary"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "varify")) %>' 
+                                            <%--<asp:LinkButton ID="lbtngvRVLvarify" runat="server" Font-Size="X-Small" CssClass="btn btn-sm btn-primary"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "varify")) %>' Enabled="false"
                                                 CommandArgument='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
-                                                OnClientClick="return confirm('Are you sure you want to change.');"
-                                                OnClick="lbtngvRVLvarify_Click"></asp:LinkButton>
+                                                OnClientClick="return confirm('Once enlisted a vendor. You cannot unenlist later.');"
+                                                OnClick="lbtngvRVLvarify_Click"></asp:LinkButton>--%>
+
+                                            <asp:Label ID="lbtngvRVLvarify" runat="server" Font-Size="X-Small" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "varify")).ToLower() == "true" ? "Enlisted" : "Enlist" %>'></asp:Label>
+
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center"/> 
                                         <FooterStyle HorizontalAlign="Center" />
@@ -186,6 +190,17 @@
                                             <asp:Label ID="lblgvRVLpaymntschdle" runat="server" Font-Size="X-Small" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paymntschdle")) %>'
                                                 Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Address">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvRVLadd" runat="server" Font-Size="X-Small" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "address")) %>'
+                                                Width="240px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" />
