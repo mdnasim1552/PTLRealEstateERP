@@ -122,7 +122,7 @@ namespace RealERPWEB.F_12_Inv
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             string type = this.Request.QueryString["Type"].ToString();
-            if (type == "Entry" || type== "ReqEdit") 
+            if (type == "Entry" || type == "ReqEdit")
             {
                 ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnktotal_Click);
                 ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkupdate_Click);
@@ -354,20 +354,21 @@ namespace RealERPWEB.F_12_Inv
             try
             {
 
-           
-            string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
-            //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
-            this.ddlResSpcf.Items.Clear();
-            DataTable tbl1 = (DataTable)Session["tblspcf"];
-            DataView dv1 = tbl1.DefaultView;
-            //dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
-            dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
-            DataTable dt = dv1.ToTable();
-            this.ddlResSpcf.DataTextField = "spcfdesc";
-            this.ddlResSpcf.DataValueField = "spcfcod";
-            this.ddlResSpcf.DataSource = dt;
-            this.ddlResSpcf.DataBind();
-            }catch(Exception exp)
+
+                string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
+                //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
+                this.ddlResSpcf.Items.Clear();
+                DataTable tbl1 = (DataTable)Session["tblspcf"];
+                DataView dv1 = tbl1.DefaultView;
+                //dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
+                dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
+                DataTable dt = dv1.ToTable();
+                this.ddlResSpcf.DataTextField = "spcfdesc";
+                this.ddlResSpcf.DataValueField = "spcfcod";
+                this.ddlResSpcf.DataSource = dt;
+                this.ddlResSpcf.DataBind();
+            }
+            catch (Exception exp)
             {
 
             }
@@ -376,35 +377,44 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkselect_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            this.SaveValue();
-            string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
-            string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
-            DataTable dt = (DataTable)ViewState["tblmattrns"];
-            DataTable dt1 = (DataTable)Session["projectreslist"];
-            DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
-            DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
-
-            if (projectrow2.Length == 0)
+            try
             {
-                DataRow drforgrid = dt.NewRow();
-                drforgrid["comcod"] = projectrow1[0]["comcod"];
-                drforgrid["rsircode"] = projectrow1[0]["rsircode"];
-                drforgrid["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                drforgrid["resdesc"] = projectrow1[0]["resdesc"];
-                drforgrid["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text;
-                drforgrid["sirunit"] = projectrow1[0]["sirunit"];
-                drforgrid["qty"] = projectrow1[0]["qty"];
-                drforgrid["rate"] = projectrow1[0]["rate"];
-                drforgrid["amt"] = projectrow1[0]["amt"];
-                drforgrid["balqty"] = projectrow1[0]["balqty"];
-                drforgrid["receivedqty"] = projectrow1[0]["mtrecev"];
-                drforgrid["actualstock"] = projectrow1[0]["acstock"];
+                string comcod = this.GetCompCode();
+                this.SaveValue();
+                string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
+                string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
+                DataTable dt = (DataTable)ViewState["tblmattrns"];
+                DataTable dt1 = (DataTable)Session["projectreslist"];
+                DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
+                DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
 
-                dt.Rows.Add(drforgrid);
+                if (projectrow2.Length == 0)
+                {
+
+
+                    DataRow drforgrid = dt.NewRow();
+                    drforgrid["comcod"] = projectrow1[0]["comcod"];
+                    drforgrid["rsircode"] = projectrow1[0]["rsircode"];
+                    drforgrid["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
+                    drforgrid["resdesc"] = projectrow1[0]["resdesc"];
+                    drforgrid["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text;
+                    drforgrid["sirunit"] = projectrow1[0]["sirunit"];
+                    drforgrid["qty"] = projectrow1[0]["qty"];
+                    drforgrid["rate"] = projectrow1[0]["rate"];
+                    drforgrid["amt"] = projectrow1[0]["amt"];
+                    drforgrid["balqty"] = projectrow1[0]["balqty"];
+                    drforgrid["receivedqty"] = projectrow1[0]["mtrecev"];
+                    drforgrid["actualstock"] = projectrow1[0]["acstock"];
+
+                    dt.Rows.Add(drforgrid);
+                }
+                ViewState["tblmattrns"] = dt;
+                this.Data_Bind();
             }
-            ViewState["tblmattrns"] = dt;
-            this.Data_Bind();
+            catch (Exception exp)
+            {
+
+            }
 
 
         }
@@ -806,7 +816,7 @@ namespace RealERPWEB.F_12_Inv
                 this.lblddlProjectTo.Visible = true;
                 this.ddlprjlistfrom.Visible = false;
                 this.ddlprjlistto.Visible = false;
-                
+
                 this.ImgbtnFindMTno.Visible = false;
                 //this.txtSrchMrfNo.Visible = false;
                 //this.lbtnPrevTransList.Visible = false;
@@ -830,7 +840,7 @@ namespace RealERPWEB.F_12_Inv
 
                 this.ddlprjlistfrom.Visible = true;
                 this.ddlprjlistto.Visible = true;
-                
+
                 //this.txtSrchMrfNo.Visible = true;
                 this.ImgbtnFindMTno.Visible = true; ;
 
@@ -978,11 +988,11 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
                 case "3370":
-                    
+
                     this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
                     break;
-              
+
                 default:
                     this.grvacc.Columns[11].Visible = true;
                     this.grvacc.Columns[12].Visible = true;
@@ -1384,7 +1394,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-            
+
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
 

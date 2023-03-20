@@ -108,7 +108,7 @@
                                 <label class="control-label" for="ddlUserName">Project Name:</label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
-                                <asp:ListBox ID="lbProjectName" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple"></asp:ListBox>
+                                <asp:ListBox ID="lbProjectName" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Visible="false"></asp:ListBox>
                             </div>
                         </div>
                         
