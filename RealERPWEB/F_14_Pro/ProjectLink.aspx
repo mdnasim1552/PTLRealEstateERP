@@ -4,6 +4,14 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    <style>
+        .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
+    </style>
+    
     <script type="text/javascript">
 
 
