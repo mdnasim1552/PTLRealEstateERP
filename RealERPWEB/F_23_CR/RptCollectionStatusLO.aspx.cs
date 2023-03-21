@@ -36,8 +36,12 @@ namespace RealERPWEB.F_23_CR
 
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Collection Status";
 
-               // DateTime date = System.DateTime.Today;
-               // DateTime frmdate = Convert.ToDateTime("01" + date.ToString("dd-MMM-yyyy").Substring(2));
+                // DateTime date = System.DateTime.Today;
+                // DateTime frmdate = Convert.ToDateTime("01" + date.ToString("dd-MMM-yyyy").Substring(2));
+                DateTime nowDate = DateTime.Now;
+                DateTime yearfday = new DateTime(nowDate.Year, nowDate.Month, 1);
+                string fdate = yearfday.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = fdate;
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");                
                 this.ProjectName();
                 this.Benefname();
@@ -82,7 +86,8 @@ namespace RealERPWEB.F_23_CR
         private void Benefname()
         {
             string comcod = this.GetComeCode();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETBENEFNAME", "", "", "", "", "", "", "", "", "");
+            string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETBENEFNAME", prjcode, "", "", "", "", "", "", "", "");
             this.ddlbenefname.DataTextField = "benefname";
             this.ddlbenefname.DataValueField = "benefcode";
             this.ddlbenefname.DataSource = ds1.Tables[0];
@@ -94,12 +99,13 @@ namespace RealERPWEB.F_23_CR
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Session.Remove("tbllocollstatus");
-            string comcod = this.GetComeCode();        
+            string comcod = this.GetComeCode();
+            string frmdate = (this.chkDate.Checked) ? "01-Jan-1990": this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();        
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string benefname = this.ddlbenefname.SelectedValue.ToString() == "0000000" ? "%" : this.ddlbenefname.SelectedValue.ToString() + "%";
            // string LomonColl = this.GetLoMonColl();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benefname, "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benefname, frmdate, "", "", "", "");
             if (ds1 == null)
                 return;
      
@@ -184,7 +190,10 @@ namespace RealERPWEB.F_23_CR
 
         }
 
-
+        protected void ddlPrjName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Benefname();
+        }
     }
 
 }

@@ -359,8 +359,7 @@ namespace RealERPWEB.F_34_Mgt
 
             if (updateProjectPermission())
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Project Permission Updated Successfully!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Permission Updated Successfully!!');", true);
             }
 
         }
@@ -409,6 +408,8 @@ namespace RealERPWEB.F_34_Mgt
 
         private bool updateProjectPermission()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string invtype = hst["invtype"].ToString();
             DataTable dt1 = (DataTable)Session["EmployeeList"];
             DataView dv = dt1.DefaultView;
             dv.RowFilter = "permission=True";
@@ -416,15 +417,16 @@ namespace RealERPWEB.F_34_Mgt
             ds1.Tables.Add(dv.ToTable());
             ds1.Tables[0].TableName = "tbl1";
             string procode1 = this.HiddednPactcode.Value.ToString();
-            string procode = "16" + ASTUtility.Right(procode1, 10);
+            //string procode =(invtype=="15") ? "15" + ASTUtility.Right(procode1, 10) :  "16" + ASTUtility.Right(procode1, 10);
+            string procode =  "16" + ASTUtility.Right(procode1, 10);
 
             string comcod = this.GetComeCode();
             string ss = ds1.GetXml();
             bool result = mgtData.UpdateXmlTransInfo(comcod, "[SP_ENTRY_MGT]", "UPDATEUSERINF", ds1, null, null, procode, "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = mgtData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+                string msg = mgtData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
 
             return true;
