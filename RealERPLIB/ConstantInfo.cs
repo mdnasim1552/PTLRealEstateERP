@@ -1511,6 +1511,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2403000", "2403835", "F_24_CC", "SalesPermissionCost", "", "Sales Permission Cost", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2403000", "2403836", "F_24_CC", "RptProjectwiseClient", "", "Customer Notification", "Customer Care", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "2403000", "2403837", "F_24_CC", "CancellationAddWrk", "", "Cancellation Additional Work", "Customer Care", "False", "False", "False", "False" });
+
+
 
             tblObj.Rows.Add(new Object[] { "2451000", "2451001", "F_99_Allinterface", "AddWorkInterface", "", "Customer Care", "Customer Care-Interface", "False", "False", "False", "False" });
 
@@ -8223,6 +8226,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000007", "13. Service Charge Payment Details", "F_22_Sal/RptTransactionSt?Type=ServicePayment&Prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000008", "14. Service Charge Collection Details", "F_22_Sal/RptTransactionSt?Type=ServiceCollection&Prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000009", "25. Customer Notification", "F_24_CC/RptProjectwiseClient", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000010", "26. Cancellation Additional Work", "F_24_CC/CancellationAddWrk", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0420000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0421000000", "", "", "", true, "" });
