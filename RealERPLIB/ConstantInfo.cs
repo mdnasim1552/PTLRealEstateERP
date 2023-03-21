@@ -1176,7 +1176,6 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103130", "F_21_MKT", "CrmPolicy", "", "Policy Setup", "CRM", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2103000", "2103131", "F_21_MKT", "DeviceIPSetup", "", "IP Setup", "CRM", "False", "False", "False", "False" });
 
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
@@ -2392,7 +2391,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102166", "F_81_Hrm/F_92_Mgt", "HRSupervisorTransfer", "", "Supervisor Transfer", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102167", "F_33_Doc", "SimCardMange", "", "SIM Card Manage", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102168", "F_34_Mgt", "ResetPassword", "", "User Reset Password", "Management", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8102000", "8102169", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102169", "F_33_Doc", "UploadDocumentation", "", "Documentation Upload", "Management", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "8102000", "8102185", "F_34_Mgt", "DeviceIPSetup", "", "IP Setup", "Management", "False", "False", "False", "False" });
 
 
 
@@ -7314,7 +7315,6 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "08. Client Assign", "F_21_Mkt/ClientAssign?Type=MktClAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "08. Accept Prospective  Client", "F_21_Mkt/ClientAssign?Type=MktAcceptClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "09. Policy Setup", "F_21_Mkt/CrmPolicy", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000010", "10. Ip Setup", "F_21_Mkt/DeviceIPSetup", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Client All Information", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. CRM Dashboard", "F_99_Allinterface/CRMDashboard", "", true, "" });
@@ -16187,7 +16187,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000024", "08. SIM Card Manage", "F_33_Doc/SimCardMange", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000025", "19. User Reset Password", "F_34_Mgt/ResetPassword", "", true, "" });
 
-
+            mnuTbl1.Rows.Add(new Object[] { "0206000026", "20. Ip Setup", "F_34_Mgt/DeviceIPSetup", "", true, "" });
 
 
 
