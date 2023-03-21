@@ -746,20 +746,22 @@
 
                 }
 
-                $('#ChkBoxLstStatus input[type=checkbox]').click(function () {
-
+              $('#ChkBoxLstStatus input[type=checkbox]').click(function ()
+                {
                    
 
-                    $('#ChkBoxLstStatus >input').each(function (index, item) {
+                    $('#ChkBoxLstStatus >input').each(function (index, item)
+                    {
 
-                    
-                        //alert("test");
+                     
+
+                       
                         if ($(item).is(':checked')) {
                             alert($(item).val());
 
 
 
-                            <%--switch (comcod) {
+                            switch (comcod) {
                                 case 3101:
                                 case 3354:// Edison
                                     alert("test");
@@ -797,7 +799,7 @@
 
 
 
-                            }--%>
+                            }
 
 
                         }
