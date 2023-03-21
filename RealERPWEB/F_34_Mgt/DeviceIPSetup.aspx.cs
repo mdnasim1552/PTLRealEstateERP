@@ -9,7 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using RealEntity;
 
-namespace RealERPWEB.F_21_MKT
+namespace RealERPWEB.F_34_Mgt
 {
     public partial class DeviceIPSetup : System.Web.UI.Page
     {
@@ -18,9 +18,7 @@ namespace RealERPWEB.F_21_MKT
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
@@ -57,11 +55,21 @@ namespace RealERPWEB.F_21_MKT
             {
                 List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf> dl = (List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf>)Session["IpSetup"];
 
-                int index = dl.Count-1;
+                int index = dl.Count - 1;
 
-                string machno = dl[index].machno;
+                string machno;
 
-                this.txtMachineNo.Text = Convert.ToString(Convert.ToInt32(machno)+1);
+                if (index < 0)
+                {
+                    machno = "100";
+                    this.txtMachineNo.Text = Convert.ToString(Convert.ToInt32(machno) + 1);
+                }
+                else
+                {
+                    machno = dl[index].machno;
+                    this.txtMachineNo.Text = Convert.ToString(Convert.ToInt32(machno) + 1);
+                }
+
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
             }
@@ -83,6 +91,13 @@ namespace RealERPWEB.F_21_MKT
             string ipaddress = this.txtIpAddress.Text;
             string alias = this.txtAlias.Text;
             string port = this.txtPort.Text;
+
+            if (ipaddress == "")
+            {
+                string msg = "IP Address Field Is Empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
 
             bool addDone = this.MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "ADD_COMWISE_MACH_IP", machno, ipaddress, alias, port);
 
@@ -110,16 +125,18 @@ namespace RealERPWEB.F_21_MKT
         {
             this.SaveValue();
             string comcod = GetComCode();
-            List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf> dt = (List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf>)ViewState["tblIpAddress"];
+            List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf> lst = (List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf>)ViewState["tblIpAddress"];
 
-            for(int i=0; i<dt.Count; i++)
+            foreach (RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf lst1 in lst)
             {
-                string machno = dt[i].machno.ToString();
-                string ipaddress = dt[i].ipaddress.ToString();
-                string machinealias = dt[i].machinealias.ToString();
-                string port = dt[i].port.ToString();
+
+                string machno = lst1.machno.ToString();
+                string ipaddress = lst1.ipaddress.ToString();
+                string machinealias = lst1.machinealias.ToString();
+                string port = lst1.port.ToString();
 
                 MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATE_COMWISE_MACH_IP", machno, ipaddress, machinealias, port);
+
             }
 
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
@@ -129,7 +146,7 @@ namespace RealERPWEB.F_21_MKT
         {
             int rowindex;
             List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf> tblt02 = (List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf>)Session["IpSetup"];
-            
+
             for (int i = 0; i < this.grvIpSetup.Rows.Count; i++)
             {
                 string machno = ((Label)this.grvIpSetup.Rows[i].FindControl("lblMachNo")).Text.ToString().Trim();
@@ -145,6 +162,25 @@ namespace RealERPWEB.F_21_MKT
                 tblt02[rowindex].port = port;
             }
             ViewState["tblIpAddress"] = tblt02;
+        }
+
+        protected void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            string comcod = GetComCode();
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+            int index = this.grvIpSetup.PageSize * this.grvIpSetup.PageIndex + RowIndex;
+
+            List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf> tblt02 = (List<RealEntity.C_21_Mkt.ECRMClientInfo.IPSetupInf>)Session["IpSetup"];
+
+            string machno = tblt02[index].machno;
+
+            bool deleted = MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETE_IP_ADDRESS", machno);
+
+            if (deleted)
+            {
+                this.GetIpSetup();
+            }
         }
     }
 }
