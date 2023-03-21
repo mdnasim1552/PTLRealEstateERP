@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="DeviceIPSetup.aspx.cs" Inherits="RealERPWEB.F_21_MKT.DeviceIPSetup" UnobtrusiveValidationMode="None" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="DeviceIPSetup.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.DeviceIPSetup" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -54,7 +54,7 @@
             <div class="card mt-4" style="min-height: 500px">
                 <div class="card-body">
                     <div class="row">
-                        <div class="mb-2" style="margin-left: 360px">
+                        <div class="mb-2" style="margin-left: 342px">
                             <asp:LinkButton ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" CssClass="btn btn-primary btn-sm" AutoPostBack="True"><i class="fa fa-plus" aria-hidden="true"></i> Add New IP</asp:LinkButton>
                         </div>
                     </div>
@@ -63,30 +63,47 @@
                             <asp:GridView runat="server" ID="grvIpSetup" AllowPaging="True" CssClass="table-striped  table-bordered grvContentarea"
                                 AutoGenerateColumns="False" OnPageIndexChanging="grvacc_PageIndexChanging">
                                 <Columns>
+                                    <asp:TemplateField HeaderText="Sl">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblserialnoid" runat="server"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle />
+                                        <ItemStyle />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Action">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="DeleteBtn" CssClass="btn btn-secondary btn-sm" Style="color: red;" runat="server" OnClick="DeleteBtn_Click" OnClientClick="return FunConfirm();"><i class="fa fa-trash" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Width="60px" />
+                                        <ItemStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Machine No">
                                         <ItemTemplate>
                                             <asp:Label runat="server" ID="lblMachNo" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machno")) %>'>></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Width="40px" />
+                                        <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Ip Address">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtIpAddress" runat="server" CssClass="border-0 text-center" Wrap="true"
+                                            <asp:TextBox ID="txtIpAddress" runat="server" CssClass="border-0" Wrap="true"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ipaddress")) %>'>
                                             </asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Alias">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtAlias" runat="server" CssClass="border-0 text-center" Wrap="true"
+                                            <asp:TextBox ID="txtAlias" runat="server" CssClass="border-0" Wrap="true"
+                                                Style="width: 80px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machinealias")) %>'>>
                                             </asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Port">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtPort" runat="server" CssClass="border-0 text-center"
+                                            <asp:TextBox ID="txtPort" runat="server" CssClass="border-0"
+                                                Style="width: 75px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "port")) %>'>
                                             </asp:TextBox>
                                         </ItemTemplate>
