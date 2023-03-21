@@ -195,6 +195,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.lblfrmdate.Text = "Date:";
                     this.lbltodate.Visible = false;
                     this.txttodate.Visible = false;
+                    if (comcod == "3365")
+                    {
+                        this.lbltodate.Text = "Prev. Month";
+
+                        this.lbltodate.Visible = true;
+                        this.txttodate.Visible = true;
+                    }
                     break;
                 case "Payslip":
                     this.MultiView1.ActiveViewIndex = 2;
@@ -990,8 +997,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string compBranch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName  : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? compBranch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
-
-
+            string prevmon = "";
+            if (comcod == "3365")
+            {
+                 prevmon= Convert.ToDateTime(this.txttodate).ToString("yyyMM");
+            }
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
             DataSet ds3;
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, compBranch, "", "", "", "", "", "", "");
@@ -1036,7 +1046,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch);
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch, prevmon);
             }
             if (ds3 == null)
             {

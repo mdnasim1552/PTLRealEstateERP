@@ -97,10 +97,6 @@
           <DataField>desigid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="diffamt">
-          <DataField>diffamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
         <Field Name="duration">
           <DataField>duration</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -153,10 +149,6 @@
           <DataField>pfund</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="prevbonamt">
-          <DataField>prevbonamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
         <Field Name="refdesc">
           <DataField>refdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -181,16 +173,8 @@
           <DataField>slength</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="spbonamt">
-          <DataField>spbonamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
         <Field Name="tallow">
           <DataField>tallow</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="tbamt">
-          <DataField>tbamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tdeduc">
@@ -201,7 +185,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_84_Lea</rd:DataSetName>
         <rd:TableName>BonusSheet</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
