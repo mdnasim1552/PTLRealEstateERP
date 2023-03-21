@@ -213,7 +213,7 @@ namespace RealERPWEB.F_09_PImp
              
 
             string rsircode = dt1.Rows[0]["rsircode"].ToString();
-            string flrcod = dt1.Rows[0]["rsircode"].ToString();
+            string flrcod = dt1.Rows[0]["flrcod"].ToString();
 
 
             if (chkfloor.Checked)
@@ -227,7 +227,7 @@ namespace RealERPWEB.F_09_PImp
 
                     }
 
-                    rsircode = dt1.Rows[j]["flrcod"].ToString();
+                    flrcod = dt1.Rows[j]["flrcod"].ToString();
 
                 }
 
@@ -394,7 +394,7 @@ namespace RealERPWEB.F_09_PImp
                     txtrptbillamt.Style.Add("font-weight", "bold");
                 }
 
-                if (rsircode != "EEEEAAAAAAAA")
+                if (rsircode != "GGGGAAAAAAAA")
                 {
                     txtrptbillamt.ReadOnly = true;
 
