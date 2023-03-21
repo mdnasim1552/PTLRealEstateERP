@@ -264,7 +264,105 @@
                             </div>
                         </div>
                         <div class="card-body" style="min-height: 500px">
-                            <div class="row">
+                           
+                            <div class="row">                                 
+                                    <h5>Assessment</h5>                                
+                                
+                                <asp:GridView ID="gvAssessment" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                        ShowFooter="True">
+                        <RowStyle />
+                        <Columns>
+                            <asp:TemplateField HeaderText="#">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                        Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtasscod" runat="server" Style="text-align: left; font-size: 11px;"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "asscode")) %>'
+                                        Width="40px" BackColor="Transparent" BorderStyle="None"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Description ">
+                                <ItemTemplate>
+                                    <asp:Label ID="txtDescription" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assdesc"))%>'
+                                        Width="200px" />
+                                </ItemTemplate>
+
+                                <FooterTemplate>
+                                    <asp:LinkButton ID="lbtnUpPerAppraisal" runat="server" Font-Bold="True"
+                                        CssClass="btn btn-danger btn-sm" OnClick="lbtnUpPerAppraisal_OnClick">Update</asp:LinkButton>
+                                </FooterTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Base">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblbase" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "baseval")).ToString("#,##0.00") %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                           
+                            <asp:TemplateField HeaderText="05">
+                                <ItemTemplate>
+                                    <asp:RadioButton name="Assessment" ID="lblexec" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "exc"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="04">
+                                <ItemTemplate>
+                                    <asp:RadioButton name="Assessment" ID="lblgood" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "good"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="03">
+                                <ItemTemplate>
+                                    <asp:RadioButton ID="lblavrg" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "avrg"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="02">
+                                <ItemTemplate>
+                                    <asp:RadioButton ID="lblpoor" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "poor"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="01">
+                                <ItemTemplate>
+                                    <asp:RadioButton ID="lblnill" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nill"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
                             </div>
                         </div>
                     </div>

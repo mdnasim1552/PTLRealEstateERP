@@ -231,6 +231,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblVendorId;
 
         /// <summary>
+        /// gvAssessment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAssessment;
+
+        /// <summary>
         /// lblSuplList2 control.
         /// </summary>
         /// <remarks>

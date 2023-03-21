@@ -57,10 +57,82 @@ namespace RealERPWEB.F_14_Pro
                 this.lbtnExistingEnlist.Visible = true;
             }
             else
+            {
                 this.lblEnlisted.Visible = true;
 
-        }
+            }
 
+            DataSet ds1 = mktData.GetTransInfo(comcod, "SP_MGT_SCM_PORTAL", "GET_PRE_ASSESMENT_CODE", id);
+            if (ds1 == null)
+                return;
+
+            this.gvAssessment.DataSource = ds1.Tables[0];
+            this.gvAssessment.DataBind();
+        }
+        protected void lbtnUpPerAppraisal_OnClick(object sender, EventArgs e)
+        {
+            //try
+            //{
+
+            //    string comcod = this.GetComeCode();
+            //    if (this.ddlPrevAssNo.Items.Count == 0)
+            //        this.GetAssNO();
+
+            //    this.SaveValue();
+            //    DataTable dt = (DataTable)ViewState["tblAss"];
+            //    string empid = this.ddlSuplist.SelectedValue.ToString();
+            //    string matcod = this.ddlmatlist.SelectedValue.ToString();
+            //    string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            //    string assno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
+            //    string txtref = this.txtassRef.Text.Trim();
+
+
+            //    bool result = false;
+            //    result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESUPASS", "ASSINFB", assno, empid, matcod, curdate, txtref, "", "", "", "", "", "", "", "", "");
+
+            //    if (!result)
+            //    {
+            //        return;
+
+            //    }
+
+
+            //    foreach (DataRow dr1 in dt.Rows)
+            //    {
+
+            //        string gcod = dr1["asscode"].ToString();
+            //        string desc = dr1["assdesc"].ToString();
+            //        string exc = dr1["exc"].ToString();
+            //        string good = dr1["good"].ToString();
+            //        string avg = dr1["avrg"].ToString();
+            //        string poor = dr1["poor"].ToString();
+            //        string nill = dr1["nill"].ToString();
+
+
+            //        result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESUPASS", "ASSINFA", assno, gcod, desc, exc, good,
+            //            avg, poor, nill, "", "", "", "", "", "");
+            //        if (!result)
+            //        {
+            //            ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
+            //            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //            return;
+            //        }
+
+            //    }
+
+
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            //}
+
+        }
         protected void lbtngvRVLvarify_Click(object sender, EventArgs e)
         {
             LinkButton linkButton = (LinkButton)sender;
@@ -99,7 +171,7 @@ namespace RealERPWEB.F_14_Pro
             string comcod = hst["comcod"].ToString();
             string id = Request.QueryString["id"];
             string suppcod = this.ddlSupl2.SelectedValue;
-            bool result = mktData.UpdateTransInfo(comcod, "SP_MGT_REPORT_SCM_PORTAL", "ENLIST_WITH_EXISTING_SUPPLIER", id, suppcod);
+            bool result = mktData.UpdateTransInfo(comcod, "SP_MGT_SCM_PORTAL", "ENLIST_WITH_EXISTING_SUPPLIER", id, suppcod);
             if (result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully updated');", true);
