@@ -186,6 +186,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlresuorcecode;
 
         /// <summary>
+        /// chkCharging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkCharging;
+
+        /// <summary>
         /// lblBillList control.
         /// </summary>
         /// <remarks>
