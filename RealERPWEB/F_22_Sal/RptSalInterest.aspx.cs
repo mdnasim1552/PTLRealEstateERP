@@ -72,6 +72,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.divchkPayment.Visible = true;
                     this.chkPayment.Visible = true;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.ShowDelayRate();
@@ -84,6 +85,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
@@ -94,6 +96,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
@@ -106,6 +109,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;

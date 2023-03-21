@@ -466,15 +466,30 @@ namespace RealERPWEB.F_09_PImp
             }
             else if (comcod == "3370" || comcod == "3368" || comcod == "3101" )
             {
+                string signatory;
+                string signatory1;
+                if(comcod == "3370")
+                {
+                    signatory = "Prepared By ";
+                    signatory1 = "Manager/Sr. Manager/AGM/DGM/Sr.DGM ";
+                }
+                else
+                {
+                    signatory = "Sr. AM ";
+                    signatory1 = "Manager/Sr. Manager/AGM/DGM/Sr.GM ";
+                }
                 refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
                 string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderCPDL", lst, null, null);
                 Rpt1.EnableExternalImages = true;
+         
                 Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
                 Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
                 Rpt1.SetParameters(new ReportParameter("refNo1", refNo));
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("lang", lang));
+                Rpt1.SetParameters(new ReportParameter("signatory", signatory));
+                Rpt1.SetParameters(new ReportParameter("signatory1", signatory1));
             }
             else if (comcod == "3374")
             {
