@@ -197,8 +197,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.txttodate.Visible = false;
                     if (comcod == "3365")
                     {
+                        chckdiff.Visible = true;
                         this.lbltodate.Text = "Prev. Month";
-
+                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                         this.lbltodate.Visible = true;
                         this.txttodate.Visible = true;
                     }
@@ -998,10 +999,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? compBranch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
             string prevmon = "";
-            if (comcod == "3365")
-            {
-                 prevmon= Convert.ToDateTime(this.txttodate).ToString("yyyMM");
-            }
+       
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
             DataSet ds3;
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, compBranch, "", "", "", "", "", "", "");
@@ -1012,6 +1010,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
             string mantype = "";
+            if (comcod == "3365" && this.chckdiff.Checked)
+            {
+                Calltype = "EMPBONUSBTIWITHDIFF";
+                prevmon = Convert.ToDateTime(this.txttodate.Text).ToString("yyyMM");
+            }
             //mon = this.Datediffday1(Convert.ToDateTime(curdate), Convert.ToDateTime(dt1));
             switch (comcod)
             {
@@ -1836,7 +1839,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             double tAmt = list.Select(p => p.bonamt).Sum();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+            if (chckdiff.Checked)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTIwithDiff", list, null, null);
+
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+
+            }
+     
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
