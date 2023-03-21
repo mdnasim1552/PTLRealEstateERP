@@ -230,23 +230,23 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2430,7 +2430,6 @@
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
-    <Content Include="F_21_MKT\DeviceIPSetup.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
@@ -3003,6 +3002,7 @@
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
     <Content Include="F_34_Mgt\DashBoardAllLP.aspx" />
     <Content Include="F_34_Mgt\DataBackup.aspx" />
+    <Content Include="F_34_Mgt\DeviceIPSetup.aspx" />
     <Content Include="F_34_Mgt\EntryFinResult.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry02.aspx" />
@@ -4585,13 +4585,6 @@
     <Compile Include="F_21_MKT\CrmPolicy.aspx.designer.cs">
       <DependentUpon>CrmPolicy.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.designer.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5179,6 +5172,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.designer.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>

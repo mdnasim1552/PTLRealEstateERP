@@ -117,6 +117,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                 string asscod1 = ((Label)this.grvAssessmntCodeinfo.Rows[e.RowIndex].FindControl("lblasscode")).Text.Trim().Replace("-", "");
                 string asscod3 = ((TextBox)this.grvAssessmntCodeinfo.Rows[e.RowIndex].FindControl("txtasscode")).Text.Trim().Replace("-", "");
                 string Desc = ((TextBox)this.grvAssessmntCodeinfo.Rows[e.RowIndex].FindControl("txtassDesc")).Text.Trim();
+                string baseValue = ((TextBox)this.grvAssessmntCodeinfo.Rows[e.RowIndex].FindControl("txtBaseValue")).Text.Trim();
                 string Code = asscod1 + asscod3;
                 if (Code.Length != 7)
                 {
@@ -126,7 +127,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     return;
                 }
 
-                bool result = this.accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_APPOINTMENT_LETTER", "INORUPASSMNTCODE", Code, Desc, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                bool result = this.accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_APPOINTMENT_LETTER", "INORUPASSMNTCODE", Code, Desc, baseValue, "", "", "", "", "", "", "", "", "", "", "", "");
                 this.grvAssessmntCodeinfo.EditIndex = -1;
 
                 if (result)
