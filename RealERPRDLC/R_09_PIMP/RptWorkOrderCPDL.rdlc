@@ -1469,7 +1469,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Sr. AM</Value>
+                        <Value>=Parameters!signatory.Value</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -1506,7 +1506,14 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Manager/Sr. Manager/AGM/DGM/Sr.GM</Value>
+                        <Value>=Parameters!signatory1.Value</Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value xml:space="preserve"> </Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -1968,11 +1975,23 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="signatory">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="signatory1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>10</NumberOfRows>
+      <NumberOfRows>11</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2068,6 +2087,16 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>lang</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>signatory</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>signatory1</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
