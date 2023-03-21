@@ -170,6 +170,8 @@
 
                                     </div>
 
+                                     <asp:CheckBox ID="chkfloor" runat="server" Text="Floor Wise" />
+
                                 </div>
                             </div>
                         </fieldset>
@@ -202,17 +204,51 @@
                                             </td>
                                            
                                             <td>
-                                                <asp:Label ID="lrprsirdesc" runat="server" 
+                                                <asp:Label ID="lrprsirdesc" runat="server"    
+
+                                                  
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "fstatus")).Trim()=="1"?
+
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) +
+
+                                                        ((DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length) > 0 ?
+
+                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim().Length) > 0 ?"" : "<br>"
+
+                                                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) : "")
+
+                                                        :
+
+
+                                                        "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "flrdesc").ToString().Trim().Length>0 ?
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim().Length>0 ?  "<br>" : "")+
+                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")).Trim(): "")
+                                                        
+                                                        
+                                                         %>'
+                                                            
+                                                     
+
+
+
+                                                  
+
+                                                     Width="300px">
+                                                        
+                                                                   
                                          
-                                                    
+                                                   <%-- 
                                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "flrdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")).Trim(): "") 
                                                                          
-                                                                    %>'
-                                                    Width="300px">
+                                                                    %>'--%>
+                                                 
 
 
 
