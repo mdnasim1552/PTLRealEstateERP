@@ -117,6 +117,13 @@
                                             </asp:DropDownList>
 
                                         </div>
+                                        <div class="col-md-4 pading5px ">
+                                             <div class="col-md-4 pading5px ">
+                                            <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True"
+                                                Text="MultipleHead" ForeColor="Green" />
+                                        </div>
+                                           
+                                        </div>
 
                                     </div>
                                     <div class="form-group">
@@ -179,6 +186,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="A/C Description" ItemStyle-Font-Size="9px">
+                                         <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnTotal" runat="server"
+                                            OnClick="lbtnTotal_Click" CssClass="btn btn-primary primarygrdBtn">
+                                            Total</asp:LinkButton>
+                                    </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblAccdesc1" runat="server" Font-Size="11px"
                                                 Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>"+
@@ -221,10 +233,10 @@
                                                 Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvDrAmt" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="lblgvDrAmt" runat="server" style="text-align:right" BackColor="Transparent"
                                                 BorderColor="Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="80px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="11px" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -237,7 +249,7 @@
                                                 ForeColor="Black" Width="80px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvCrAmt" runat="server" BackColor="Transparent"
+                                            <asp:Label ID="lblgvCrAmt" runat="server" BackColor="Transparent"  BorderColor="Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncram")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>

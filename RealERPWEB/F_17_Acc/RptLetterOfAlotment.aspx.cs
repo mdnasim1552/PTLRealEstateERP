@@ -436,7 +436,8 @@ namespace RealERPWEB.F_17_Acc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string username = hst["username"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
             string prjname = this.ddlprjname.SelectedValue.ToString();
@@ -465,8 +466,11 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.EnableExternalImages = true;
 
 
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("compname", comnam));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
                 string customername = ds3.Tables[1].Rows[0]["custname"].ToString();
-                string projectname = ds3.Tables[1].Rows[0]["projectname"].ToString();
                 string unitname = ds3.Tables[1].Rows[0]["udesc"].ToString();
                 string usize = Convert.ToDouble(ds3.Tables[1].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
                 string floordesc = ds3.Tables[1].Rows[0]["flrdesc"].ToString();
@@ -481,7 +485,7 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("customername", customername));
-                Rpt1.SetParameters(new ReportParameter("projectname", projectname));
+                Rpt1.SetParameters(new ReportParameter("projectname", ProjectName));
                 Rpt1.SetParameters(new ReportParameter("unitname", unitname));
                 Rpt1.SetParameters(new ReportParameter("location", location));
                 Rpt1.SetParameters(new ReportParameter("usize", usize));
