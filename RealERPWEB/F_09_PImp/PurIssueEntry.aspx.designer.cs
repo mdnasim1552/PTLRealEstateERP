@@ -60,15 +60,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblddlProject;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// Label9 control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBillno;
-
-        /// <summary>
-        /// lblmsg1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg1;
 
         /// <summary>
         /// lblIssuno control.
@@ -150,6 +132,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::AjaxControlToolkit.CalendarExtender txtCurISSDate_CalendarExtender;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// lbtnPrevISSList control.
         /// </summary>
         /// <remarks>
@@ -166,6 +157,15 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevISSList;
+
+        /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// pnlgrd control.

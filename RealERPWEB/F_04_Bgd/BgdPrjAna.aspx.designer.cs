@@ -429,6 +429,24 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.LinkButton lbtnSelectItem;
 
         /// <summary>
+        /// divlbtnSelectMultiItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divlbtnSelectMultiItem;
+
+        /// <summary>
+        /// lbtnSelectMultiItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSelectMultiItem;
+
+        /// <summary>
         /// lblFloor1 control.
         /// </summary>
         /// <remarks>
@@ -643,6 +661,24 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearchItem;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// ddlPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPage;
 
         /// <summary>
         /// lbtnSelectFloorRes control.
@@ -1093,6 +1129,24 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRptResBasis02;
+
+        /// <summary>
+        /// gvMultiSelectItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMultiSelectItem;
+
+        /// <summary>
+        /// lbtnUpdateMultiItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnUpdateMultiItem;
 
         /// <summary>
         /// txtpactcode control.

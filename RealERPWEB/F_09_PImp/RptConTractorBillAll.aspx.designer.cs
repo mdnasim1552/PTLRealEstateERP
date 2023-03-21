@@ -222,6 +222,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnconbill;
 
         /// <summary>
+        /// chkfloor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkfloor;
+
+        /// <summary>
         /// MultiView1 control.
         /// </summary>
         /// <remarks>

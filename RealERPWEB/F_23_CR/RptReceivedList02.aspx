@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptReceivedList02.aspx.cs" Inherits="RealERPWEB.F_23_CR.RptReceivedList02" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc2" %>
+<%--<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc2" %>--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -16,6 +16,42 @@
     <!-- Include the plugin's CSS and JS: -->
     <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+
+      <style type="text/css">
+        .modalcss {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: scroll;
+        }
+
+        .multiselect {
+            width: 300px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 300px !important;
+        }
+
+        .multiselect-container {
+            height: 350px !important;
+            width: 350px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 300px !important;
+        }
+
+        .form-control {
+            height: 34px;
+        }
+    </style>
+
     <style>
         
         .mt20 {
@@ -70,13 +106,18 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+
+      
     </style>
+
+   
     <script type="text/javascript">
 
 
 
         $(document).ready(function () {
-            $(".select2").select2();
+
+            //$(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('.chzn-select').chosen({ search_contains: true });
         });
@@ -84,6 +125,16 @@
             try {
 
 
+                $(function () {
+                    $('[id*=DropCheck2]').multiselect({
+                        includeSelectAllOption: true,
+
+                        enableCaseInsensitiveFiltering: true,
+                        //enableFiltering: true,
+
+                    });
+
+                });
               
            <%-- var gv = $('#<%=this.dgvAccRec.ClientID %>');
             gv.Scrollable();--%>
@@ -125,19 +176,19 @@
 
                 $('.chzn-select').chosen({ search_contains: true });
 
-                $('.select2').each(function () {
-                    var select = $(this);
-                    select.select2({
-                        placeholder: 'Select an option',
-                        width: '100%',
-                        allowClear: !select.prop('required'),
-                        language: {
-                            noResults: function () {
-                                return "{{ __('No results found') }}";
-                            }
-                        }
-                    });
-                });
+                //$('.select2').each(function () {
+                //    var select = $(this);
+                //    select.select2({
+                //        placeholder: 'Select an option',
+                //        width: '100%',
+                //        allowClear: !select.prop('required'),
+                //        language: {
+                //            noResults: function () {
+                //                return "{{ __('No results found') }}";
+                //            }
+                //        }
+                //    });
+                //});
 
             }
             catch (e)
@@ -194,9 +245,16 @@
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click"><span class="fas fa-search"> </span></asp:LinkButton>
                                 </asp:Label>
                                 <%--<asp:ListBox runat="server" ID="DropCheck1" CssClass="form-control form-control-sm select2 " SelectionMode="Multiple" AutoPostBack="true"></asp:ListBox>--%>
-                                   <cc2:DropCheck ID="DropCheck1" runat="server" BackColor="Black"
-                                        MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="333px" Height="23px" CssClass="chzn-select" >
-                                    </cc2:DropCheck>
+
+                        
+                                      <asp:ListBox ID="DropCheck2" runat="server" CssClass="form-control" Style="min-width: 200px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+
+                           
+
+                                  <%-- <cc2:DropCheck ID="DropCheck1" runat="server" BackColor="Black"
+                                        MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="333px" Height="23px" CssClass="chzn-select" Visible="false" >
+                                    </cc2:DropCheck>--%>
                             </div>
 
                           
@@ -776,6 +834,22 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+
+
+                                        <asp:TemplateField HeaderText="Delay Charge Ins.">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFdelchargeIns" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdelchargeIns" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "crdelay")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Return Cheque">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFdischarge" runat="server" Font-Bold="True" Font-Size="12px"

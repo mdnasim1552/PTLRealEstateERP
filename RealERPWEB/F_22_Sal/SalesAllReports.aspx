@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="SalesAllReports.aspx.cs" Inherits="RealERPWEB.F_22_Sal.SalesAllReports" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -27,11 +30,69 @@
 
             var gvCollectionStatement = $('#<%=this.gvCollectionStatement.ClientID %>');
             gvCollectionStatement.Scrollable();
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "{{ __('No results found') }}";
+                        }
+                    }
+                });
+            });
+
+            $(function () {
+                $('[id*=listproj]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
+                });
+            });
             
         }
 
     </script>
     <style type="text/css">
+           .multiselect  {
+            width:300px !important;
+           border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+           
+        }
+        .multiselect-container{
+            overflow: scroll;
+            max-height: 300px !important;
+        }
+        /*.multiselect {
+            width: 270px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }*/
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        /*.multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }*/
+        .caret {
+            display: none !important;
+        }
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        #ContentPlaceHolder1_divgrp {
+            /*width: 395px !important;*/
+        }
+
         .chzn-single{
                 border-radius: 3px!important;
                 height: 29px!important;
@@ -102,12 +163,24 @@
 
                         </div>
 
-                              <div class="col-md-2 mt-2">
+                              <div class="col-md-2 mt-2"  visible="false"  ID="clsprjname" runat="server">
                             <div class="from-group">
                                 <asp:Label ID="prjName" runat="server" CssClass="form-label">Project Name </asp:Label>
                                 <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:200px" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
+                        <div class="col-md-3" style="margin-top:6px;" visible="false"  ID="clsprjnamemul" runat="server">
+                                     <div class="from-group">
+                                       <asp:Label ID="Label2" runat="server" CssClass="form-label">Project Name </asp:Label>
+                                        <asp:ListBox ID="listproj" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Style="min-height: 200px !important;"></asp:ListBox>
+                                    </div>
+
+                                </div>
+                        <%-- <div class="col-md-3 pl-0">
+
+                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+                                </div>--%>
                        <div class="col-md-2 mt-2" runat="server" visible="false" id="clcust">
                            <div class="form-group">
                               <%--  <asp:Label ID="Label6" runat="server" CssClass="control-label"></asp:Label>--%>
@@ -558,7 +631,7 @@
                         </asp:View>
                         <asp:View ID="ViewCollectionStatement" runat="server">
                             <asp:GridView ID="gvCollectionStatement" runat="server" AutoGenerateColumns="False" 
-                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCollectionStatement_RowDataBound">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.">
@@ -598,7 +671,10 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc"))%>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
-
+                                          <FooterTemplate>
+                                                    <asp:Label ID="lgvunamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -609,7 +685,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opnam")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
-
+                                         <FooterTemplate>
+                                                    <asp:Label ID="lgvOpamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="80px"></asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -620,6 +699,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curbkam")).ToString("#,##0;(#,##0); ")%>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                                    <asp:Label ID="lgvDpamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="80px"></asp:Label>
+                                                </FooterTemplate>
 
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -631,7 +714,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curinsam")).ToString("#,##0;(#,##0); ")%>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
-
+                                         <FooterTemplate>
+                                                    <asp:Label ID="lgvIPamt" runat="server" Font-Bold="True"
+                                                         Style="text-align: right" Width="75px"></asp:Label>
+                                                </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -644,7 +730,7 @@
                                         </ItemTemplate>
                                             <FooterTemplate>
 
-                                            <asp:Label runat="server" ID="lgvtotamt"></asp:Label>
+                                            <asp:Label runat="server" ID="lgvtotamt" Width="80px"></asp:Label>
 
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />

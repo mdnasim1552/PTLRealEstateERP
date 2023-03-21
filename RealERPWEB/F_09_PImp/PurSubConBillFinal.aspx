@@ -255,7 +255,11 @@
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                         </asp:TemplateField>
-
+                        <asp:TemplateField ShowHeader="true">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtnDelIssu" runat="server"  OnClick="lbtnDelIssu_Click" ToolTip="Delete Issue" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="" Visible="false">
                             <ItemTemplate>
@@ -310,6 +314,10 @@
                             <ItemTemplate>
                                 <asp:Label ID="lgcFlrDesc" runat="server"
                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdes")) %>'
+                                    
+                                    Width="100px"></asp:Label>
+                                <asp:Label ID="lgcFlrcod" runat="server" Visible="false"
+                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
                                     Width="100px"></asp:Label>
                             </ItemTemplate>
 
@@ -587,7 +595,7 @@
 
                                     <a href="<%=this.ResolveUrl ("~/F_09_PImp/RptConTractorBillAll")%>" target="_blank" class="btn btn-info btn-sm" style="margin-left: 10px; font-weight: bold; font-size: 14px;">Details<span class="fa fa-history"></span></a>
 
-                                     <asp:Label ID="lblAdvpay" runat="server"
+                                    <asp:Label ID="lblAdvpay" runat="server"
                                         Text="Advanced Payment" CssClass=" smLbl_to"></asp:Label>
                                     <asp:TextBox ID="txtadvpay" runat="server" CssClass="inputtextbox" Style="width: 60px; text-align: right;"></asp:TextBox>
 

@@ -43,6 +43,7 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+        .grvContentarea {}
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -992,7 +993,7 @@
 
                             <asp:View ID="ViewEarbenefittADelay" runat="server">
                                 <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
-                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="500px"
+                                    AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="577px"
                                     CssClass="table table-striped table-bordered grvContentarea">
                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                         Mode="NumericFirstLast" />
@@ -1039,7 +1040,7 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Due Installment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFinsamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="70px"></asp:Label>
@@ -1055,17 +1056,17 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Date">
+                                        <asp:TemplateField HeaderText="Realized Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpaiddateeben" runat="server"
-                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy") %>'
+                                                    Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Amount">
+                                        <asp:TemplateField HeaderText="Payment Amount">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFpayamteben" runat="server" Font-Bold="True" Font-Size="12px"
                                                      Style="text-align: right" Width="70px"></asp:Label>
@@ -1081,10 +1082,23 @@
                                         </asp:TemplateField>
 
 
+                                         <asp:TemplateField HeaderText="Due Amount">
+                                           
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvdueamteben" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dueamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Delay/Discount in Days">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdodisdayeben" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dodisday")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dodisday")).ToString("#,##0;-#,##0;") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />

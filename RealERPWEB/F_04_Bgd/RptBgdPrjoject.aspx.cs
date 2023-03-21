@@ -1093,8 +1093,8 @@ namespace RealERPWEB.F_04_Bgd
                     break;
 
                 case "MasterBgdCostDet":
-                    this.BgdCostDet.DataSource = (DataTable)Session["tblbgd"];
-                    this.BgdCostDet.DataBind();
+                    this.gvBgdCostDet.DataSource = (DataTable)Session["tblbgd"];
+                    this.gvBgdCostDet.DataBind();
                     //  this.FooterCalculation((DataTable)Session["tblbgd"]);
                     break;
 
@@ -1838,21 +1838,26 @@ namespace RealERPWEB.F_04_Bgd
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             string rpttitle = "";
-            if (Type== "MasterBgdCostDet")
-            {
-                rpttitle = "Engineering Budgeted Cost - Details";
-            }
-            else
-            {
-                rpttitle = "Budgeted Cost - Details";
 
-            }
 
             DataTable dt = (DataTable)Session["tblbgd"];
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_04_Bgd.BugCostDetails>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdGrDet", lst, null, null);
+
+            if (Type == "MasterBgdCostDet")
+            {
+                rpttitle = "Engineering Budgeted Cost - Details";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdCostDet", lst, null, null);
+
+            }
+            else
+            {
+                rpttitle = "Budgeted Cost - Details";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdGrDet", lst, null, null);
+
+            }
+
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -2558,6 +2563,51 @@ namespace RealERPWEB.F_04_Bgd
             Session["tblbgd"] = this.HiddenSameData(dv.ToTable());
             this.Data_Bind();
         }
+
+
+        protected void lnkgvBgdCostDet_Click(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string acgcode = ((DataTable)Session["tblbgd"]).Rows[index]["acgcode"].ToString();
+            string colst = ((DataTable)Session["tblbgd"]).Rows[index]["colst"].ToString();
+            DataTable dt = ((DataTable)Session["tblbgd"]);
+            DataView dv = new DataView();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("rescode= '000000000000' or rescode= 'AAAAAAAAAAAA'");
+            dt = dv.ToTable();
+
+            DataRow[] dr1 = dt.Select("acgcode='" + acgcode + "'");
+            dr1[0]["colst"] = (colst == "0") ? "1" : "0";
+
+            // For Status 0
+            foreach (DataRow dr2 in dt.Rows)
+            {
+                if (dr2["acgcode"] != acgcode)
+                {
+                    dr2["colst"] = "0";
+
+                }
+            }
+
+            colst = (dt.Select("acgcode='" + acgcode + "'"))[0]["colst"].ToString();
+            if (colst == "1")
+            {
+                DataTable dtb = ((DataTable)Session["tblbbgd"]).Copy();
+                dv = dtb.DefaultView;
+                dv.RowFilter = ("acgcode='" + acgcode + "' and  rescode not like '%00000'");
+                dtb = dv.ToTable();
+                dt.Merge(dtb);
+
+            }
+
+
+            dv = dt.DefaultView;
+            dv.Sort = ("acgcode, rescode");
+            Session["tblbgd"] = dv.ToTable();
+            this.Data_Bind();
+        }
+
+
         protected void gvmatreq_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 

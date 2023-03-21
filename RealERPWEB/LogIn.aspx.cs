@@ -45,15 +45,13 @@ namespace RealERPWEB
 
                 this.getListModulename();
                 listComName_SelectedIndexChanged(null, null);
-
-                Session.Remove("tbllog1");
-                
+                Session.Remove("tbllog1");                
                 //this.notice();
                 if ((Hashtable)Session["tblLogin"] == null)
                     return;
                 this.txtuserid.Text = ((Hashtable)Session["tblLogin"])["username"].ToString();
                 this.txtuserpass.Text = ((Hashtable)Session["tblLogin"])["password"].ToString();
-                //test
+               
             }
             Session.Remove("tblLogin");
         }
@@ -477,6 +475,7 @@ namespace RealERPWEB
                 hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
                 hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
                 hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+                hst["invtype"] = ds5.Tables[0].Rows[0]["invtype"];
 
                 //if (ds5.Tables[0].Columns.Contains("comunpost"))
                 //{

@@ -377,7 +377,7 @@ namespace RealERPWEB.F_22_Sal
                 return;
             }
 
-            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, type, "", "", "", "", "", "", "");
 
             //DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHARt", pactcode, "", "", "", "", "", "", "", "");
 

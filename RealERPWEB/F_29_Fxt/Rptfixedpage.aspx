@@ -34,41 +34,78 @@
             
         };
 
+        function onlyNumberKey(evt) {
 
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
+
+
+  <%--      function Validate(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("lblErrorMsg");
+            var textbox = document.getElementById('<%=txtSrcProject.ClientID%>');
+   
+
+            errorMsg.innerHTML = "";
+       
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[a-z\d\-_\s]+$/i;
+            
+
+        
+           
+            
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+
+       
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphanumeric, dash , underscore and space are allowed.";
+            }
+
+            return isValid;
+        }--%>
      
 
-        function Myfunction() {
+<%--        function Myfunction() {
             var textbox = document.getElementById('<%=txtSrcProject.ClientID%>');
 
             if (textbox.value.length == 0) {
                 alert(" I am in ");
             }
-        }
+        }--%>
 
-        function valid()
-        {
-            document.getElementById(txtSrcProject).value;
+        //function valid()
+        //{
+        //    document.getElementById(txtSrcProject).value;
 
-        }
+        //}
 
        
-            function userValid() {
-                var Name, gender, con, EmailId, emailExp;
-                Name = document.getElementById("txtSrcProject").value;
-                gender = document.getElementById("ddlType").value;
-                con = document.getElementById("txt2").value;
-                EmailId = document.getElementById("txtmail").value;
-                emailExp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([com\co\.\in])+$/; // to validate email id  
+        //    function userValid() {
+        //        var Name, gender, con, EmailId, emailExp;
+        //        Name = document.getElementById("txtSrcProject").value;
+        //        gender = document.getElementById("ddlType").value;
+        //        con = document.getElementById("txt2").value;
+        //        EmailId = document.getElementById("txtmail").value;
+        //        emailExp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([com\co\.\in])+$/; // to validate email id  
 
-                if (Name == '' && gender == 0 && == '' && con == '' && EmailId == '') {
-                    alert("Enter All Fields");
-                    return false;
-                }
-                if (Name == '') {
-                    alert("Please Enter Login ID");
-                    return false;
-                }
-            }
+        //        if (Name == '' && gender == 0 && == '' && con == '' && EmailId == '') {
+        //            alert("Enter All Fields");
+        //            return false;
+        //        }
+        //        if (Name == '') {
+        //            alert("Please Enter Login ID");
+        //            return false;
+        //        }
+        //    }
         
     
      
@@ -81,7 +118,10 @@
                           <div class="form-group">
                               <div class="col-md-3">
                                      <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName">Project Name</asp:Label>
-                                            <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" inputTxt inputName inpPixedWidth" ></asp:TextBox>
+                                            <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" inputTxt inputName inpPixedWidth"  onkeypress="return onlyNumberKey(event);" ></asp:TextBox>
+                                        
+                                   <span style="color:red;" id="lblErrorMsg"></span>
+                                  <%--  <asp:Label ID="lblErrorMsg" runat="server" CssClass="lblTxt lblName">  <span style="color:red;"></span></asp:Label>--%>
                                             
                                        <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn"  önclick="Myfunction()" value="Click">ok </asp:LinkButton>
 

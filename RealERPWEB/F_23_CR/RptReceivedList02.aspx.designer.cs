@@ -114,13 +114,13 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindProject;
 
         /// <summary>
-        /// DropCheck1 control.
+        /// DropCheck2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xMilk.DropCheck DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck2;
 
         /// <summary>
         /// lblAmount0 control.

@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RealERPLIB">
-      <HintPath>..\..\..\..\Reference\bin\bin\RealERPLIB.dll</HintPath>
+      <HintPath>..\RealERPLIB\bin\Debug\RealERPLIB.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -237,6 +237,12 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EmptaskDesk.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

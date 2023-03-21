@@ -42,6 +42,12 @@ namespace RealERPWEB.F_12_Inv
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChaDate.Text = (comcod == "3354" ? "" : DateTime.Today.ToString("dd.MM.yyyy"));
+
+                if(comcod=="3354" || comcod == "3101")
+                {
+                    this.divQc.Visible = true;
+                }
+
                 //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
                 //    : "Delete Materials Receive Information Input/Edit Screen";
 
@@ -56,7 +62,7 @@ namespace RealERPWEB.F_12_Inv
                     }
 
                 }
-
+                //this.Get_Receive_Info();
                 this.DupMRR();
                 this.ImgbtnFindProject_Click(null, null);
                 //this.ImgbtnFindSup_Click(null, null);
@@ -74,7 +80,10 @@ namespace RealERPWEB.F_12_Inv
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnResFooterTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdateMRR_Click);
 
         }
 
@@ -826,6 +835,11 @@ namespace RealERPWEB.F_12_Inv
             if (ds1 == null)
                 return;
 
+            this.ddlQCParamList.DataTextField = "prgdesc";
+            this.ddlQCParamList.DataValueField = "prgcod";
+            this.ddlQCParamList.DataSource = ds1.Tables[2];
+            this.ddlQCParamList.DataBind();
+
 
 
             ViewState["tblMRR"] = this.HiddenSameData(ds1.Tables[0]);
@@ -898,6 +912,9 @@ namespace RealERPWEB.F_12_Inv
             this.txtChalanNo.Text = ds1.Tables[1].Rows[0]["chlnno"].ToString();
             this.txtQc.Text = ds1.Tables[1].Rows[0]["qcno"].ToString();
             this.txtChaDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["challandat"]).ToString("dd.MM.yyyy");
+            this.ddlQCParamList.SelectedValue = ds1.Tables[1].Rows[0]["qcp"].ToString();
+            this.txtQcn.Text = ds1.Tables[1].Rows[0]["qcnote"].ToString();
+
             this.gvMRRInfo_DataBind();
         }
 
@@ -1281,8 +1298,8 @@ namespace RealERPWEB.F_12_Inv
             string chldate = this.txtChaDate.Text.Trim();
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
-
-
+            string mQcp = this.ddlQCParamList.SelectedValue.ToString();
+            string mQcn = this.txtQcn.Text.Trim();
 
 
 
@@ -1428,8 +1445,10 @@ namespace RealERPWEB.F_12_Inv
             string appxml = tbl1.Rows[0]["approval"].ToString();
             string Approval = this.GetReqApproval(appxml);
 
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
-                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval);
+            bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
+                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, 
+                             mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, 
+                             Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, Approval, mQcp, mQcn);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

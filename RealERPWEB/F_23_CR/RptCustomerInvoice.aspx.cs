@@ -169,14 +169,14 @@ namespace RealERPWEB.F_23_CR
         {
             DataTable dt = (DataTable)Session["tblCustPayment"];
 
-            if (dt.Rows.Count == null)
+            if (dt.Rows.Count >0)
             {
-                return;
+                ((Label)this.gvCustInvoice.FooterRow.FindControl("lfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueamt)", "")) ? 0.00
+                      : dt.Compute("Sum(dueamt)", ""))).ToString("#,##0;(#,##0); ");
             }
 
 
-            ((Label)this.gvCustInvoice.FooterRow.FindControl("lfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(dueamt)", "")) ? 0.00
-                    : dt.Compute("Sum(dueamt)", ""))).ToString("#,##0;(#,##0); ");
+            
 
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
