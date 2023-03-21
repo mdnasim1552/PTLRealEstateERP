@@ -96,7 +96,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="divtoDate" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lbltoDate" runat="server" Text="To" TabIndex="9" CssClass=" smLbl_to"></asp:Label>
                                 <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control form-control-sm" TabIndex="10"></asp:TextBox>
@@ -152,14 +152,14 @@
 
             <div class="card card-fluid  mt-0">
                 <div class="card-body" style="min-height:400px;">
-                    <div class="row">
+                  
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewInterest" runat="server">
                                 <div class="row">                                    
                                         <asp:Label ID="lblDelayCharge" runat="server" CssClass="lblTxt lblName" Text="Delay Charge:" Visible="False"></asp:Label>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvInterest" runat="server" AllowPaging="false"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
                                         CssClass=" table-striped table-bordered grvContentarea">
@@ -375,7 +375,7 @@
                                     </div>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvChqnocl" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
                                         CssClass="table-striped table-bordered grvContentarea">
@@ -461,7 +461,7 @@
                                     <asp:Label ID="lblchqdishonour" runat="server" CssClass="lblTxt lblName" Text="Cheque Dishonour:" Visible="False"></asp:Label>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvCDHonour" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
                                         CssClass="table-striped  table-bordered grvContentarea">
@@ -563,7 +563,7 @@
                             </asp:View>
 
                             <asp:View ID="ViewRegistration" runat="server">
-                                <div class="table-responsive">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvRegis" runat="server" AllowPaging="false" OnRowDataBound="gvRegis_RowDataBound"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
                                         CssClass="table table-striped  table-bordered grvContentarea" Width="671px">
@@ -671,31 +671,23 @@
                                     </asp:GridView>
 
                                 </div>
-
+                                <div class="row">
+                                    <asp:Panel ID="PanelNarration" runat="server" Visible="False">
+                                        <div class="form-group">
+                                            <div class="">
+                                                <span class="input-group-addon glypingraddon">
+                                                    <asp:Label ID="lblinterest0" runat="server" CssClass="lblTxt" Text="Remarks:  "></asp:Label>
+                                                </span>
+                                                <asp:TextBox ID="txtregRemarks" runat="server" class="form-control" TextMode="MultiLine" Width="500px"></asp:TextBox>
+                                            </div>                                               
+                                        </div>
+                                    </asp:Panel>
+                                </div>
 
                                 <fieldset class="scheduler-border fieldset_D">
                                     <div class="form-horizontal">
 
-                                        <asp:Panel ID="PanelNarration" runat="server" Visible="False">
-
-                                            <div class="form-group">
-
-                                                <div class="col-md-6 pading5px">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon glypingraddon">
-                                                            <asp:Label ID="lblinterest0" runat="server" CssClass="lblTxt" Text="Remarks:  "></asp:Label>
-                                                        </span>
-                                                        <asp:TextBox ID="txtregRemarks" runat="server" class="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="clearfix"></div>
-                                            </div>
-
-
-
-                                        </asp:Panel>
+                                        
 
                                     </div>
                                 </fieldset>
@@ -703,7 +695,7 @@
                             </asp:View>
                             <asp:View ID="ViewDuesCollAll" runat="server">
 
-                                <div class="table-responsive">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvDueCollAll" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true" OnPageIndexChanging="gvDueCollAll_PageIndexChanging"
                                         CssClass="table table-striped table-bordered grvContentarea">
@@ -992,7 +984,8 @@
                             </asp:View>
 
                             <asp:View ID="ViewEarbenefittADelay" runat="server">
-                                <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
+                                <div class="row table-responsive">
+                                    <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
                                     AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="577px"
                                     CssClass="table table-striped table-bordered grvContentarea">
                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
@@ -1151,13 +1144,15 @@
                                     <HeaderStyle CssClass="grvHeaderNew" />
                                     <RowStyle CssClass="grvRowsNew" />
                                 </asp:GridView>
+                                </div>
+                                
                             </asp:View>
 
 
                             <asp:View ID="ViewEarlybenefitadelay02" runat="server">
 
 
-                                <div class="row">
+                                <div class="row table-responsive">
                                     <asp:GridView ID="gvearbenadelay02" runat="server" AllowPaging="false"
                                         AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="500px"
                                         CssClass="table table-striped  table-bordered grvContentarea">
@@ -1345,7 +1340,7 @@
 
                                 </div>
 
-                                <div class="row">
+                                <div class="row table-responsive">
                                     <div class="col-md-12">
                                         <label id="lblbasecase" runat="server" style="color: blue; font-size: 14px; font-weight: bold;">Summary</label>
 
@@ -1511,7 +1506,7 @@
                                 </div>
                             </asp:View>
                         </asp:MultiView>
-                    </div>
+                    
                 </div>
             </div>
             
