@@ -489,7 +489,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 this.ddlfloorno.Items.Clear();
-                DropCheck1.Items.Clear();
+                txtSearchLabour.Items.Clear();
                 this.PnlRes.Visible = false;
                 this.PnlNarration.Visible = false;
                 this.grvissue.DataSource = null;
@@ -560,10 +560,10 @@ namespace RealERPWEB.F_09_PImp
             // this.GetMaterials();
         }
 
-        protected void ibtnSearchMaterisl_Click(object sender, EventArgs e)
-        {
-            this.GetMaterials();
-        }
+        //protected void ibtnSearchMaterisl_Click(object sender, EventArgs e)
+        //{
+        //    this.GetMaterials();
+        //}
 
 
 
@@ -630,7 +630,7 @@ namespace RealERPWEB.F_09_PImp
             this.ddlfloorno.Visible = true;
             // this.txtSearchLabour.Visible = true;
             //this.ibtnSearchMaterisl.Visible = true;
-            DropCheck1.Visible = true;
+            txtSearchLabour.Visible = true;
             this.lbtnSelect.Visible = true;
             this.txtRefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
             this.lblCurISSNo1.Text = ds1.Tables[1].Rows[0]["lreqno1"].ToString().Substring(0, 6);
@@ -793,10 +793,10 @@ namespace RealERPWEB.F_09_PImp
             if (ds1 == null)
                 return;
 
-            this.DropCheck1.DataTextField = "rsirdesc1";
-            this.DropCheck1.DataValueField = "rsircode";
-            this.DropCheck1.DataSource = ds1.Tables[0];
-            this.DropCheck1.DataBind();
+            this.txtSearchLabour.DataTextField = "rsirdesc1";
+            this.txtSearchLabour.DataValueField = "rsircode";
+            this.txtSearchLabour.DataSource = ds1.Tables[0];
+            this.txtSearchLabour.DataBind();
             ds1.Dispose();
 
 
@@ -820,10 +820,10 @@ namespace RealERPWEB.F_09_PImp
             if (ds1 == null)
                 return;
 
-            this.DropCheck1.DataTextField = "rsirdesc1";
-            this.DropCheck1.DataValueField = "rsircode";
-            this.DropCheck1.DataSource = ds1.Tables[0];
-            this.DropCheck1.DataBind();
+            this.txtSearchLabour.DataTextField = "rsirdesc1";
+            this.txtSearchLabour.DataValueField = "rsircode";
+            this.txtSearchLabour.DataSource = ds1.Tables[0];
+            this.txtSearchLabour.DataBind();
             ds1.Dispose();
 
 
@@ -866,7 +866,7 @@ namespace RealERPWEB.F_09_PImp
                 string flrcode = this.ddlfloorno.SelectedValue.ToString().Trim();
                 string flrdes = this.ddlfloorno.SelectedItem.Text.Trim();
                 string comcod = this.GetCompCode();
-                foreach (ListItem lab1 in DropCheck1.Items)
+                foreach (ListItem lab1 in txtSearchLabour.Items)
                 {
                     if (lab1.Selected)
                     {

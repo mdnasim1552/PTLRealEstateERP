@@ -258,13 +258,22 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.DropDownList ddlcatagory;
 
         /// <summary>
-        /// lblLabour control.
+        /// clsprjnamemul control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLabour;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clsprjnamemul;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
         /// txtSearchLabour control.
@@ -273,25 +282,7 @@ namespace RealERPWEB.F_09_PImp
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchLabour;
-
-        /// <summary>
-        /// ibtnSearchMaterisl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnSearchMaterisl;
-
-        /// <summary>
-        /// DropCheck1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox txtSearchLabour;
 
         /// <summary>
         /// lbtnSelect control.

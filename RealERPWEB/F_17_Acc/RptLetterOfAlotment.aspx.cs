@@ -132,6 +132,7 @@ namespace RealERPWEB.F_17_Acc
                 switch (comcod)
                 {
                     case "3374":
+                    case "3376":
                         this.CustomerSettlementANGAN();
                         break;
                     default:
@@ -551,7 +552,7 @@ namespace RealERPWEB.F_17_Acc
                 if (type == "CustomerSettlement")
                 {
                     DataSet ds1 = new DataSet();
-                    if (comcod == "3374")
+                    if (comcod == "3374" || comcod == "3376")
                     {
                          ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETSETTLEMENTDETAILSANGAN", prjname, custname, "", "", "", "", "", "", "");
                     }
