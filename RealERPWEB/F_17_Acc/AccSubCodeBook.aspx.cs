@@ -627,7 +627,7 @@ namespace RealERPWEB.F_17_Acc
                     //this.lbalterofddl0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
                     string tempddl1 = (this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2);
                     string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
-                    grvacc.Columns[8].HeaderText = (tempddl1 == "01") ? "Std.Rate" : (tempddl1 == "02") ? "Std.Rate"
+                    grvacc.Columns[9].HeaderText = (tempddl1 == "01") ? "Std.Rate" : (tempddl1 == "02") ? "Std.Rate"
                                 : (tempddl1 == "03") ? "Std.Rate" : (tempddl1 == "04") ? "Std.Rate" : (tempddl1 == "41") ? "Qty. Considered" : "";
 
                     this.GetBaseUnit();

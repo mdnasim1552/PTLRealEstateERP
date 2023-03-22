@@ -6087,21 +6087,29 @@ namespace RealERPWEB.F_21_MKT
                         if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
                         {
                             index = index - 1;
-                            for (int p = 0; p < ChkBoxLstStatus.Items.Count; p++)
+                            for (int p = 0; p < index; p++)
                             {
+                                
+                                
+                                
                                 if (p < index)
                                 {
                                     ChkBoxLstStatus.Items[p].Enabled = false;
                                 }
-                                if (lstleadstatus == "9501002" && p == 6 && comcod == "3354")
-                                {
-                                    ChkBoxLstStatus.Items[p].Enabled = false;
-                                }
+
+
+                                //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
+                                //{
+                                //    ChkBoxLstStatus.Items[p].Enabled = false;
+                                //}
                             }
                         }
 
 
-                        //Lost, Close Enabled
+                        //
+
+
+                        //Lost, Hold & Close Enabled
                         switch (comcod)
                         {
                             //   case "3354"://Edison
@@ -6128,6 +6136,28 @@ namespace RealERPWEB.F_21_MKT
                                         }
                                     }
 
+
+                                    if (dts.Select("gcod='9501020'").Length > 0)//Hold
+                                    {
+
+
+
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
+
+
+                                            if (statuscode == "9501020")
+                                            {
+
+                                                chkboxstatus.Enabled = false;
+                                                break;
+
+                                            }
+
+
+                                        }
+                                    }
 
 
 
@@ -6160,33 +6190,46 @@ namespace RealERPWEB.F_21_MKT
                                         }
                                     }
 
-                                    if (dts.Select("gcod='9501020'").Length > 0)//Hold
-                                    {
-
-
-
-                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-                                        {
-                                            string statuscode = chkboxstatus.Value;
-
-
-                                            if (statuscode == "9501020")
-                                            {
-
-                                                chkboxstatus.Enabled = false;
-                                                break;
-
-                                            }
-
-
-                                        }
-                                    }
+                                   
 
 
 
                                    
 
                                 }
+
+                                //Not Skipping                                   
+                               
+                                index = rows.Length == 0 ? 0 : (Convert.ToInt32(rows[0]["rowid"]) - 1);
+                                int chkstatus = 0;
+                                
+                                for (int st = index+1; st < ChkBoxLstStatus.Items.Count; st++)
+                                {
+
+                                    string statuscode = ChkBoxLstStatus.Items[st].Value;
+                                    if (statuscode == "9501020" || statuscode == "9501028" || statuscode == "9501035")
+
+                                        continue;
+                                    else
+                                    {
+                                        if (chkstatus == 0)
+                                        {
+                                            ChkBoxLstStatus.Items[st].Enabled = true;
+                                            chkstatus++;
+                                        }
+                                        else
+                                            ChkBoxLstStatus.Items[st].Enabled = false;
+
+                                    }
+
+
+
+
+
+
+                                }
+
+
                                 break;
 
                             default:
