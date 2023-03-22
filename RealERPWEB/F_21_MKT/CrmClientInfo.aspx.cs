@@ -6106,8 +6106,36 @@ namespace RealERPWEB.F_21_MKT
                         {
                             //   case "3354"://Edison
                             case "3101"://PTL
+                                //Clost Inactive only Query
                                 if (lstleadstatus == "9501002") //Query
                                 {
+                                    if (dts.Select("gcod='9501035'").Length > 0)//Close
+                                    {
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
+
+
+                                            if (statuscode == "9501035")
+                                            {
+
+                                                chkboxstatus.Enabled = false;
+                                                break;
+
+                                            }
+
+
+                                        }
+                                    }
+
+
+
+
+                                }
+
+                                else if (lstleadstatus.Length > 0)  //hold or Lost Activef Lead or Upword
+                                {
+
 
 
                                     if (dts.Select("gcod='9501028'").Length > 0)//Lost
@@ -6156,30 +6184,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-
-                                }
-
-                                else if (lstleadstatus.Length > 0)  //Lead or Upword
-                                {
-
-                                    if (dts.Select("gcod='9501035'").Length > 0)//Close
-                                    {
-                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-                                        {
-                                            string statuscode = chkboxstatus.Value;
-
-
-                                            if (statuscode == "9501035")
-                                            {
-
-                                                chkboxstatus.Enabled = false;
-                                                break;
-
-                                            }
-
-
-                                        }
-                                    }
+                                   
 
                                 }
                                 break;
