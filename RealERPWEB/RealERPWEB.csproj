@@ -3396,6 +3396,7 @@
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CRMDashboard03.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
@@ -5963,6 +5964,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.designer.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard03.aspx.cs">
+      <DependentUpon>CRMDashboard03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard03.aspx.designer.cs">
+      <DependentUpon>CRMDashboard03.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
