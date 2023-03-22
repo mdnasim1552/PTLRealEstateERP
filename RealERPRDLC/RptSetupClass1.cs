@@ -1020,6 +1020,7 @@ namespace RealERPRDLC
                 case "R_34_Mgt.rptActiveSimUser": Rpt1a = SetrptActiveSimUser(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqPrintFinlay": Rpt1a = SetRptOtherReqPrintFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAdvancedAgainstLoan": Rpt1a = SetRptAdvancedAgainstLoan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAdvancedAssosiationfee": Rpt1a = SetRptAdvancedAssosiationfee(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1058,6 +1059,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptEmpBonusAssure": Rpt1a = SetRptEmpBonusAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetAcme": Rpt1a = SetRptBonusSheetAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetBTI": Rpt1a = SetRptBonusSheetBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetBTIwithDiff": Rpt1a = SetRptBonusSheetBTIwithDiff(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetEdison": Rpt1a = SetRptBonusSheetEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetFinlay": Rpt1a = SetRptBonusSheetFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -4662,6 +4665,12 @@ namespace RealERPRDLC
 
             return Rpt1a;
         }
+        private static LocalReport SetRptAdvancedAssosiationfee(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptAssosiationfee>)RptDataSet));
+
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptBillRateEntry(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6198,6 +6207,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptBonusSheetBTIwithDiff(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptBonusSheetEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));

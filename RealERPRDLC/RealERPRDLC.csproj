@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -164,6 +164,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+ChequeDepositPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+EClassRptIssueVsPaymentSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAdvancedAgainstLoan.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAssosiationfee.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
@@ -394,6 +395,7 @@
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccCashbook1Intech.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAdvancedAssosiationfee.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeCityBankCPDL.rdlc" />
@@ -1303,6 +1305,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlayExcel.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPayAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
@@ -1319,7 +1322,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusBridge1.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetAcme.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTIwithDiff.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetGreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetPebBank.rdlc" />
@@ -1515,6 +1518,5 @@
       <Name>RealERPLIB</Name>
     </ProjectReference>
   </ItemGroup>
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

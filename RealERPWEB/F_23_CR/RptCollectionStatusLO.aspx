@@ -38,6 +38,9 @@
         .form-control {
             height: 34px;
         }
+        .mt22 {
+            margin-top: 36px;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -45,7 +48,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
 
         function pageLoaded() {
@@ -96,7 +99,15 @@
                         </div>--%>
                         <div class="col-md-2">
                             
-                                <label class="control-label" for="ToDate"> Date :</label>
+                                <label class="control-label" for="frmDate"> From :</label>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                           
+                        </div>
+                        <div class="col-md-2">
+                            
+                                <label class="control-label" for="ToDate"> To :</label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
@@ -105,7 +116,7 @@
                         <div class="col-md-3">
                             
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                           
                         </div>
 
@@ -121,7 +132,11 @@
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" style="margin-top:30px;" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
                            
                         </div>
-
+                        <div class="col-md-2" runat="server">
+                            <div class="form-group mt22">
+                                <asp:CheckBox ID="chkDate" runat="server" CssClass="smLbl_to " Text="&nbsp; Till Date" />
+                            </div>
+                        </div>
 
 
 
