@@ -26,7 +26,7 @@ namespace RealERPRDLC
             var assamblyPath = Assembly.GetExecutingAssembly().CodeBase;
             Assembly assembly1 = Assembly.LoadFrom(assamblyPath);
             //Assembly assembly1 = Assembly.LoadFrom("ASITHmsRpt2Inventory.dll");
-            Stream stream1 = assembly1.GetManifestResourceStream("RealERPRDLC." + RptName + ".rdlc");
+            Stream stream1 = assembly1.GetManifestResourceStream("RealERPRDLC." + RptName + ".rdlc");//R_24_CC.CancellationAddWork
             LocalReport Rpt1a = new LocalReport();
             Rpt1a.DisplayName = RptName;
             Rpt1a.LoadReportDefinition(stream1);
@@ -426,6 +426,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrment": Rpt1a = SetRptAnnInctrment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_21_MKT.RptMissFollowup": Rpt1a = SetRptMissFollowup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                
+                case "R_24_CC.CancellationAddWork": Rpt1a = SetCancellationAddWork(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1619,6 +1621,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetCancellationAddWork(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.CancellationAddWork>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
