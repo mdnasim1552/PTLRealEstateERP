@@ -15,10 +15,13 @@
     <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <style>
-        .multiselect {
-            width: 270px !important;
-            text-wrap: initial !important;
-            height: 27px !important;
+           .multiselect  {
+            width:300px !important;
+           border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+           
         }
 
         .multiselect-text {
@@ -84,6 +87,12 @@
                             return "{{ __('No results found') }}";
                         }
                     }
+                });
+            });
+            $(function () {
+                $('[id*=txtSearchLabour]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
                 });
             });
             //gvisu.gridviewScroll({
@@ -189,8 +198,8 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <asp:Label ID="lbtnPrevISSList" runat="server" >Prev. List:</asp:Label>
-                               
+                                <asp:Label ID="lbtnPrevISSList" runat="server">Prev. List:</asp:Label>
+
                                 <asp:LinkButton ID="ibtnPreBillList" runat="server" OnClick="ibtnPreBillList_Click" TabIndex="2"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="chzn-select form-control  form-control-sm" TabIndex="3"></asp:DropDownList>
                             </div>
@@ -222,15 +231,29 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
+                                <div class="col-md-4 " id="clsprjnamemul" runat="server">
+                                    <%--  <div class="form-group">
                                         <asp:Label ID="lblLabour" runat="server" Text="Labour"></asp:Label>
                                         <asp:TextBox ID="txtSearchLabour" runat="server" CssClass="inputTxt inputDateBox d-none" Visible="false"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnSearchMaterisl" runat="server" OnClick="ibtnSearchMaterisl_Click" TabIndex="2" Visible="false"></asp:LinkButton>
 
                                         <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple"></asp:ListBox>
 
+                                    </div>--%>
+
+
+                                    <div class="form-group">
+                                        <asp:Label ID="Label2" runat="server" CssClass="form-label">Labour </asp:Label>
+
+                                        <div class="col-md-3 pl-0 ">
+                                            <div CssClass="form-control  form-control-sm">
+                                            <asp:ListBox ID="txtSearchLabour" runat="server"  Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+                                              
+                                            </div>
+
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="col-md-1" style="margin-top: 22px;">
                                     <div class="form-group">
@@ -505,7 +528,7 @@
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ></asp:Label>
+                                                Width="70px" Font-Size="12px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
