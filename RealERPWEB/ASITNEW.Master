@@ -65,7 +65,7 @@
     <link href="Content/GridViewScrooling.css" rel="stylesheet" />
     <link href="Content/progressbar.css" rel="stylesheet" />
     <link href="Content/select2.min.css" rel="stylesheet" />
-        
+    <link href="Content/crm-new-dashboard.css" rel="stylesheet" />
     --%>
 
     <script>

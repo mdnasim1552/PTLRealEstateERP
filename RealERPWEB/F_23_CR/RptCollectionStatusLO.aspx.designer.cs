@@ -78,13 +78,13 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
 
         /// <summary>
-        /// ddlbenefname control.
+        /// listben control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbenefname;
+        protected global::System.Web.UI.WebControls.ListBox listben;
 
         /// <summary>
         /// lnkbtnOk control.
