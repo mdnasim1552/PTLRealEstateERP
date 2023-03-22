@@ -654,6 +654,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3374": //ANGAN
+                case "3376":
                     ReceivedApp = "QC";
 
                     break;

@@ -1432,7 +1432,42 @@ namespace RealEntity.C_17_Acc
 
             }
         }
+        [Serializable]
+        public class RptAssosiationfee
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public string custname { get; set; }
+            public string udesc { get; set; }
+            public string head1 { get; set; }
+            public string voudat1 { get; set; }
+            public string voudat { get; set; }
+            public string vounum { get; set; }
+            public string vounum1 { get; set; }
+            public string trnrmrk { get; set; }
+            public string refnum { get; set; }
+            public string srinfo { get; set; }
+        
+            public double opam { get; set; }
+            public double trnam { get; set; }
+            public double trnqty { get; set; }
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double clsam { get; set; }
+          
 
+
+
+
+            public RptAssosiationfee()
+            {
+
+            }
+        }
 
 
     }
