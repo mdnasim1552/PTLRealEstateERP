@@ -93,6 +93,8 @@ namespace RealERPWEB.F_04_Bgd
             string comcod = this.GetComCode();
             string txtSProject = "%" + this.txtSrcPro.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "GETEXPRJNAME", txtSProject, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             this.ddlPrjName.DataTextField = "actdesc";
             this.ddlPrjName.DataValueField = "actcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];

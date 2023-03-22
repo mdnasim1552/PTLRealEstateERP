@@ -215,7 +215,7 @@ namespace RealERPWEB.F_34_Mgt
                         {
 
                             reqno = dt1.Rows[j]["reqno"].ToString();
-                            dt1.Rows[j]["reqno1"] = "";
+                            dt1.Rows[j]["reqno"] = "";
                             dt1.Rows[j]["reqdat1"] = "";
                         }
 
