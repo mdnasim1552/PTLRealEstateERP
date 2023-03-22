@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_21_MKT
+namespace RealERPWEB.F_34_Mgt
 {
 
 

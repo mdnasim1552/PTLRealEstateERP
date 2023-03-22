@@ -5118,6 +5118,49 @@ namespace RealERPWEB.F_21_MKT
         }
 
 
+
+        public static string ShowStatusSerial(string comcod, string empid, string proscod)
+        {
+            string kpigrp = "000000000000";
+            string wrkdpt = "000000000000";
+            //ProcessAccess JData = new ProcessAccess();
+            //DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", empid, proscod, kpigrp, "", wrkdpt, "", "", "", "", "");
+
+
+            ////DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            ////   DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            //if (ds1 == null)
+            //{
+            //    //List<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum> lst5 = ds2.Tables[0].DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum>();
+            //    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+            //    var jsonSerialiser = new JavaScriptSerializer();
+            //    var json = jsonSerialiser.Serialize(lst);
+            //    return json;
+            //}
+
+            //else
+            //{
+            //    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+            //    // var lst = new { Message = "Update successfully.", result = true };
+            //    var jsonSerialiser = new JavaScriptSerializer();
+            //    var json = jsonSerialiser.Serialize(lst);
+            //    return json;
+            //}
+
+
+            var lst = new { Message = "Update successfully.", result = true };
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(lst);
+            return json;
+
+
+
+
+        }
+
+
         //public static string ShowDetNotification(string comcod, string empid, string rtype, string date)
         //{
 
@@ -6063,8 +6106,36 @@ namespace RealERPWEB.F_21_MKT
                         {
                             //   case "3354"://Edison
                             case "3101"://PTL
+                                //Clost Inactive only Query
                                 if (lstleadstatus == "9501002") //Query
                                 {
+                                    if (dts.Select("gcod='9501035'").Length > 0)//Close
+                                    {
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
+
+
+                                            if (statuscode == "9501035")
+                                            {
+
+                                                chkboxstatus.Enabled = false;
+                                                break;
+
+                                            }
+
+
+                                        }
+                                    }
+
+
+
+
+                                }
+
+                                else if (lstleadstatus.Length > 0)  //hold or Lost Activef Lead or Upword
+                                {
+
 
 
                                     if (dts.Select("gcod='9501028'").Length > 0)//Lost
@@ -6113,30 +6184,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-
-                                }
-
-                                else if (lstleadstatus.Length > 0)  //Lead or Upword
-                                {
-
-                                    if (dts.Select("gcod='9501035'").Length > 0)//Close
-                                    {
-                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-                                        {
-                                            string statuscode = chkboxstatus.Value;
-
-
-                                            if (statuscode == "9501035")
-                                            {
-
-                                                chkboxstatus.Enabled = false;
-                                                break;
-
-                                            }
-
-
-                                        }
-                                    }
+                                   
 
                                 }
                                 break;

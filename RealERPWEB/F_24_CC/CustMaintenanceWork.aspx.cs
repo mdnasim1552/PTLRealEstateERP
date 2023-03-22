@@ -647,8 +647,9 @@ namespace RealERPWEB.F_24_CC
             string ClientName = dt1.Rows[0]["custname"].ToString(); 
             string projectName = dt1.Rows[0]["pactdesc"].ToString();
 
-            string ftxtcheck = "";// ds1.Tables[2].Rows[0]["chkusr"].ToString();
+            string ftxtcheck = "Tanjina Amin";// ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
+            string csdaproval = ds1.Tables[2].Rows[0]["csdaprval"].ToString();
             string ftxtapp2nd = ds1.Tables[2].Rows[0]["sapvusr"].ToString();
             string ftxtapp3rd = ds1.Tables[2].Rows[0]["auditusr"].ToString();
             string finalapvusr = ds1.Tables[2].Rows[0]["finalapvusr"].ToString();
@@ -670,6 +671,7 @@ namespace RealERPWEB.F_24_CC
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("ftxtcheck", ftxtcheck));
             Rpt1.SetParameters(new ReportParameter("ftxtapp1st", ftxtapp1st));
+            Rpt1.SetParameters(new ReportParameter("csdaproval", csdaproval));
             Rpt1.SetParameters(new ReportParameter("ftxtapp2nd", ftxtapp2nd));
             Rpt1.SetParameters(new ReportParameter("ftxtapp3rd", ftxtapp3rd));
             Rpt1.SetParameters(new ReportParameter("finalapvusr", finalapvusr));

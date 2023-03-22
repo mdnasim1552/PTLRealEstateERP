@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>C:\Users\Admin\Desktop\New folder\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>C:\Users\Admin\Desktop\New folder\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1303,6 +1303,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlayExcel.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPayAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
@@ -1319,7 +1320,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusBridge1.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetAcme.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTIwithDiff.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetGreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetPebBank.rdlc" />

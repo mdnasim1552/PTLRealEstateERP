@@ -167,8 +167,10 @@
 
                                                     </asp:RadioButtonList>
 
-
+                                          <asp:CheckBox ID="chkfloor" runat="server" Text="Floor Wise" />
                                     </div>
+
+                                   
 
                                 </div>
                             </div>
@@ -184,8 +186,9 @@
                                             <tr>
                                                 <th>Sl No#</th>                                         
 
-                                                <th style="width: 250px;">Work Description</th>
+                                                <th style="width: 300px;">Work Description</th>
                                                 <th style="width: 50px;">Unit</th>
+                                                <th style="width: 70px;">Budget Qty</th>
                                                 <th style="width: 70px;">Previous Bill Qty</th>
                                                 <th style="width: 70px;">This Bill Qty</th>
                                                 <th style="width: 70px;">Total Bill Qty</th>
@@ -202,17 +205,51 @@
                                             </td>
                                            
                                             <td>
-                                                <asp:Label ID="lrprsirdesc" runat="server" 
+                                                <asp:Label ID="lrprsirdesc" runat="server"    
+
+                                                  
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "fstatus")).Trim()=="1"?
+
+                                                        "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc"))+"</B>"+  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+
+                                                        ((DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length) > 0 ?
+
+                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")).Trim().Length)==0 ? Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) : "<br>"
+
+                                                            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) : "")
+
+                                                        :
+
+
+                                                        "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "flrdesc").ToString().Trim().Length>0 ?
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim().Length>0 ?  "<br>" : "")+
+                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")).Trim(): "")
+                                                        
+                                                        
+                                                         %>'
+                                                            
+                                                     
+
+
+
+                                                  
+
+                                                     Width="300px">
+                                                        
+                                                                   
                                          
-                                                    
+                                                   <%-- 
                                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "flrdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")).Trim(): "") 
                                                                          
-                                                                    %>'
-                                                    Width="300px">
+                                                                    %>'--%>
+                                                 
 
 
 
@@ -227,6 +264,10 @@
                                                                          
                                                                     %>'
                                                     Width="50px"></asp:Label>
+                                            </td>
+
+                                            <td style="text-align: right">
+                                                <asp:Label ID="lblbudgetqty" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="70px"></asp:Label>
                                             </td>
 
                                             <td style="text-align: right">
@@ -255,6 +296,8 @@
                                             <th></th>
                                             <th></th>
                                             <th></th>
+                                           
+
                                             <th>
                                             <asp:LinkButton ID="lbtnUpdate" runat="server" onclick="lbtnUpdate_Click"  CssClass="btn  btn-danger primarygrdBtn" Font-Size="Small"> Update</asp:LinkButton>
                                            

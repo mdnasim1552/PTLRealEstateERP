@@ -230,27 +230,27 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>C:\Users\Admin\Desktop\New folder\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>C:\Users\Admin\Desktop\New folder\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2298,6 +2298,7 @@
     <Content Include="F_04_Bgd\RptOtherReqStatus.aspx" />
     <Content Include="F_04_Bgd\RptPrjFloorWise.aspx" />
     <Content Include="F_04_Bgd\RptWorkSchedule.aspx" />
+    <Content Include="F_04_Bgd\RptWorkWiResVariance.aspx" />
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
@@ -2418,16 +2419,17 @@
     <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
+    <Content Include="F_14_Pro\RptWorkOdrAdvSupplierWise.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptAdvancedAgainstLoan.aspx" />
+    <Content Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx" />
     <Content Include="F_17_Acc\RptLetterOfAlotment.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
-    <Content Include="F_21_MKT\DeviceIPSetup.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
@@ -2435,6 +2437,7 @@
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
     <Content Include="F_21_MKT\RptLeadStatus.aspx" />
+    <Content Include="F_21_MKT\RptMissFollowup.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
     <Content Include="F_22_Sal\SaleUnitMapping.aspx" />
@@ -2999,6 +3002,7 @@
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
     <Content Include="F_34_Mgt\DashBoardAllLP.aspx" />
     <Content Include="F_34_Mgt\DataBackup.aspx" />
+    <Content Include="F_34_Mgt\DeviceIPSetup.aspx" />
     <Content Include="F_34_Mgt\EntryFinResult.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry.aspx" />
     <Content Include="F_34_Mgt\OtherReqEntry02.aspx" />
@@ -3040,6 +3044,7 @@
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\AIInvoiceApproved.aspx" />
     <Content Include="F_38_AI\AIInVoiceCreate.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
@@ -4286,6 +4291,13 @@
     <Compile Include="F_02_Fea\RptProductCost.aspx.designer.cs">
       <DependentUpon>RptProductCost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_04_Bgd\RptWorkWiResVariance.aspx.designer.cs">
+      <DependentUpon>RptWorkWiResVariance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
       <DependentUpon>CivilConBOQ.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4496,6 +4508,13 @@
     <Compile Include="F_14_Pro\RptSupAdvanceDetails.aspx.designer.cs">
       <DependentUpon>RptSupAdvanceDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_14_Pro\RptWorkOdrAdvSupplierWise.aspx.cs">
+      <DependentUpon>RptWorkOdrAdvSupplierWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptWorkOdrAdvSupplierWise.aspx.designer.cs">
+      <DependentUpon>RptWorkOdrAdvSupplierWise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_17_Acc\AccIssueUpdate.aspx.cs">
       <DependentUpon>AccIssueUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4523,6 +4542,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAdvancedAgainstLoan.aspx.designer.cs">
       <DependentUpon>RptAdvancedAgainstLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx.cs">
+      <DependentUpon>RptAssociationfreeRecVspayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAssociationfreeRecVspayment.aspx.designer.cs">
+      <DependentUpon>RptAssociationfreeRecVspayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
       <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
@@ -4558,13 +4584,6 @@
     </Compile>
     <Compile Include="F_21_MKT\CrmPolicy.aspx.designer.cs">
       <DependentUpon>CrmPolicy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_21_MKT\DeviceIPSetup.aspx.designer.cs">
-      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
@@ -4614,6 +4633,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptLeadStatus.aspx.designer.cs">
       <DependentUpon>RptLeadStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptMissFollowup.aspx.cs">
+      <DependentUpon>RptMissFollowup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptMissFollowup.aspx.designer.cs">
+      <DependentUpon>RptMissFollowup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
@@ -5147,6 +5173,13 @@
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.designer.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
+      <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5230,6 +5263,13 @@
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIInvoiceApproved.aspx.cs">
+      <DependentUpon>AIInvoiceApproved.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIInvoiceApproved.aspx.designer.cs">
+      <DependentUpon>AIInvoiceApproved.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\AIInVoiceCreate.aspx.cs">
       <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>

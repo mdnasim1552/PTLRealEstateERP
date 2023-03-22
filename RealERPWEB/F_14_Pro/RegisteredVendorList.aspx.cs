@@ -62,8 +62,10 @@ namespace RealERPWEB.F_14_Pro
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                LinkButton btn = (LinkButton)(e.Row.FindControl("lbtngvRVLvarify"));
-                btn.CssClass = btn.Text == "True" ? "btn btn-sm btn-success" : "btn btn-sm btn-warning";
+                Label lblVarify = (Label)(e.Row.FindControl("lbtngvRVLvarify"));
+                lblVarify.CssClass = (lblVarify.Text.ToLower() == "enlisted") ? "text-success" : "text-warning";
+                //LinkButton btn = (LinkButton)(e.Row.FindControl("lbtngvRVLvarify"));
+                //btn.CssClass = btn.Text == "True" ? "btn btn-sm btn-success" : "btn btn-sm btn-warning";
             }
         }
     }

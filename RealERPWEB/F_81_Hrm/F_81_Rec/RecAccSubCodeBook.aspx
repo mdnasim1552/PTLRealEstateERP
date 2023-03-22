@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RecAccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RecAccSubCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RecAccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_81_Rec.RecAccSubCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
