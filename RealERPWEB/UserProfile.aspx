@@ -2189,6 +2189,13 @@
                                         <td>Others</td>
                                         <td>:<span id="Others" runat="server">400</span></td>
                                     </tr>
+                                     <tr>
+                                        <td>Bonus</td>
+                                        <td>:<span id="BonusEarning" runat="server">25223</span></td>
+                                        <td style="border-left: 1px solid"></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
 
                                     <tr class="text-bold">
                                         <td>Total Earnings</td>
@@ -2197,6 +2204,7 @@
                                         <td>Total Deduction</td>
                                         <td>:<span id="TotalDeduction" runat="server">43000</span></td>
                                     </tr>
+                        
 
                                 </table>
 
@@ -2284,8 +2292,8 @@
 
                             <div class="card-body" id="payslipdiv">
 
-                                <div class="table-responsive pb-3">
-                                    <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                                <div class="pb-3">
+                                    <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless pb-3 border-0" OnRowDataBound="gvPaySlip_RowDataBound"
                                         ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
@@ -2296,7 +2304,7 @@
                                                         Style="text-align: center"
                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Month">
                                                 <ItemTemplate>
@@ -2308,8 +2316,8 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Amount">
                                                 <ItemTemplate>
@@ -2317,8 +2325,8 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Right" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Center" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="">
@@ -2326,7 +2334,7 @@
                                                     <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class=" fa fa-print"> Print</span>
                                                     </asp:HyperLink>
                                                     <%-- <asp:HyperLink ID="HyplnkModal" runat="server" data-dismiss="modal" CssClass="btn btn-xs btn-success" ForeColor="White" data-toggle="modal" data-target="#exampleModal" ToolTip="Print Pay Slip"><span class=" fa fa-print"> View</span>     </asp:HyperLink>--%>
-                                                    <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click" Style="margin-left: 3px;" runat="server" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> View</asp:LinkButton>
+                                                    <asp:LinkButton ID="HyplnkModal" OnClick="payslip_modal_Click" Style="margin-left: 3px;" runat="server" class="text-info"><i class="fa fa-eye"></i> View</asp:LinkButton>
 
                                                 </ItemTemplate>
                                             </asp:TemplateField>

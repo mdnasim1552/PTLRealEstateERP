@@ -1510,6 +1510,8 @@ namespace RealERPWEB
 
             this.TotalEarning.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["grossalsub"])).ToString()??"";
             this.TotalDeduction.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["tdeduc"])).ToString()??"";
+            this.BonusEarning.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["subfee"])).ToString() ?? "";
+
 
             this.NetPayment.InnerText = Math.Round(Convert.ToDouble(dt.Rows[0]["netpay"])).ToString()??"";
             this.InWords.InnerText = dt.Rows[0]["aminword"].ToString()??"";
