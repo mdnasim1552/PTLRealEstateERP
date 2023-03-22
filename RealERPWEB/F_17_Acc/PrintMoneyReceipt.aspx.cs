@@ -111,6 +111,7 @@ namespace RealERPWEB.F_17_Acc
 
                 case "3101":
                 case "3374":
+                case "3376":
                     mrprint = "MRPrintAngan";
                     break;
 
