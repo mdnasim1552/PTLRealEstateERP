@@ -679,6 +679,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3367"://  Epic  Properties
                 case "3370"://  cpdl
                 case "3374"://  angan
+                case "3376":
                 case "1211"://  Bricks & Bridges Ltd
 
 
@@ -803,6 +804,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //case "3101": // Angan
                 case "3374": // Angan
+                case "3376":
                     vouprint = "VocherPrintAngan";
                     break;
 

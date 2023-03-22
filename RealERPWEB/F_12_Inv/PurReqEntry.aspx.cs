@@ -233,6 +233,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3353":
                 case "3366":
                 case "3374": //Angan
+                case "3376":
                     this.lblmrfno.Text = "MPR No: ";
 
                     break;
