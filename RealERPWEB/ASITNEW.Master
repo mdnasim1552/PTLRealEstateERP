@@ -67,7 +67,7 @@
     <link href="Content/select2.min.css" rel="stylesheet" />
     <link href="Content/crm-new-dashboard.css" rel="stylesheet" />
     --%>
-
+     <link href="Content/crm-new-dashboard.css" rel="stylesheet" />
     <script>
         function submitform() { document.getElementById("form1").submit(); }
         var skin = localStorage.getItem('skin') || 'default';
