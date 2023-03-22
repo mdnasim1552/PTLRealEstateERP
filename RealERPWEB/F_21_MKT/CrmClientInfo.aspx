@@ -746,25 +746,25 @@
 
                 }
 
-              $('#ChkBoxLstStatus input[type=checkbox]').click(function ()
+             <%-- $('#ChkBoxLstStatus input[type=checkbox]').click(function ()
                 {
-                   
+                 
 
                     $('#ChkBoxLstStatus >input').each(function (index, item)
                     {
 
-                     
+                        alert("test");
 
                        
                         if ($(item).is(':checked')) {
-                            alert($(item).val());
+                           
 
 
 
                             switch (comcod) {
                                 case 3101:
                                 case 3354:// Edison
-                                    alert("test");
+                                    alert($(item).val());
                                     var empid =<%=this.GetEmpID()%>;
                                     var proscod = $('#<%=this.lblproscod.ClientID%>').val();
 
@@ -815,7 +815,7 @@
 
 
                     });
-                });
+                });--%>
 
 
 
@@ -855,7 +855,7 @@
 
             catch (e) {
 
-                //  alert(e.message);
+                alert(e.message);
             }
 
         }
@@ -874,9 +874,9 @@
                     case 3354://Edison Real Estate                 
 
                         $('#<%=this.lnkBtnDaypassed.ClientID%>').hide();
-                            $('#<%=this.lnkBtnComments.ClientID%>').hide();
-                            $('#<%=this.lnkBtnFreezing.ClientID%>').hide();
-                            $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
+                        $('#<%=this.lnkBtnComments.ClientID%>').hide();
+                        $('#<%=this.lnkBtnFreezing.ClientID%>').hide();
+                        $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
 
 
                         break;
@@ -1045,24 +1045,24 @@
                     type: "POST",
                     url: "CrmClientInfo.aspx/ShowNotifications",
                     data: '{comcod:"' + comcod + '",  empid: "' + empid + '", rtype:"' + rtype + '", fdate: "' + $('#<%=this.txtfrmdate.ClientID%>').val() + '", tdate: "' + $('#<%=this.txttodate.ClientID%>').val() + '"}',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
 
 
-                        success: function (response) {
-                            //console.log(JSON.parse(response.d));
-                            var data = response.d;
-                            CreateTable(data);
-                            //console.log(data['account']);
+                    success: function (response) {
+                        //console.log(JSON.parse(response.d));
+                        var data = response.d;
+                        CreateTable(data);
+                        //console.log(data['account']);
 
-                        },
+                    },
 
 
-                        failure: function (response) {
-                            //  alert(response);
-                            alert("failure");
-                        }
-                    });
+                    failure: function (response) {
+                        //  alert(response);
+                        alert("failure");
+                    }
+                });
 
             }
 
@@ -1621,18 +1621,18 @@
 
 
                         $('#<%=this.lbllaststatus.ClientID%>').html("Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>"
-                                + $('#ddlmStatus option:selected').text() + "</span>");
+                            + $('#ddlmStatus option:selected').text() + "</span>");
 
-                            //console.log(data['account']);
+                        //console.log(data['account']);
 
-                        },
+                    },
 
 
-                        failure: function (response) {
+                    failure: function (response) {
 
-                            alert("failure");
-                        }
-                    });
+                        alert("failure");
+                    }
+                });
 
 
 
@@ -5140,6 +5140,134 @@
             </div>
 
 
+
+            <div id="msold" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-full-width  ">
+                    <div class="modal-content modal-content-full-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i>
+                                Discussion </h4>
+
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+
+                        </div>
+                        <div class="modal-body ">
+
+
+
+
+
+
+
+                            <div id="div" class="col-md-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+
+                                <div class="col-md-12 col-lg-12">
+                                    <asp:Repeater ID="Repeater1" runat="server">
+                                        <HeaderTemplate>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+
+
+                                            <div class="col-md-12  col-lg-12">
+                                                <div class="well">
+
+                                                    <div class="col-sm-12 panel">
+
+                                                        <div class=" col-sm-12">
+
+                                                            <p>
+                                                                <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
+
+
+
+
+                                                                <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
+
+
+                                                                <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
+
+
+
+                                                                <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                                <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+
+
+
+
+
+                                                                <br>
+                                                            </p>
+
+
+
+
+
+
+
+                                                        </div>
+
+
+
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+
+                                                        <button type="button" class="btn btn-primary btn-xs" id="lbtnCancel" onclick="funCancel('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>')">Delete</button>
+                                                        <asp:LinkButton ID="lbtnFollowup" CssClass="btn btn-primary btn-xs d-none" runat="server" OnClick="lbtnFollowup_Click"> Followup</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnAddition" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnAddition_Click">Addition</asp:LinkButton>
+                                                        <button type="button" class="btn btn-primary btn-xs" runat="server" id="lbtnComments" data-toggle="collapse" data-target='<%# "#dcomments"+DataBinder.Eval(Container, "DataItem.rownum").ToString() %>'>Comments</button>
+
+
+
+
+
+
+
+
+
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </ItemTemplate>
+
+                                    </asp:Repeater>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
 
 
 

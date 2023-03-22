@@ -234,16 +234,19 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["tbladvloan"];
+            string type = this.ddlType.SelectedItem.Text.Trim();
+            string unit = this.ddlUnit.SelectedItem.Text.Trim();
+            DataTable dt = (DataTable)ViewState["tblassociation"];
 
             LocalReport Rpt1 = new LocalReport();
 
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptAdvancedAgainstLoan>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAdvancedAgainstLoan", lst, null, null);
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptAssosiationfee>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAdvancedAssosiationfee", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Advance Againts Loan"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", type + " Report"));
+            Rpt1.SetParameters(new ReportParameter("unit", "Unit :"+unit));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
