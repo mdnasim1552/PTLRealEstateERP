@@ -188,7 +188,7 @@ namespace RealERPWEB.F_23_CR
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)Session["tbllocollstatus"]; 
 
-            string RptTittle = "Monthly Collection Report(L/O)" ;
+            string RptTittle = "Collection Report(L/O)" ;
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_23_CR.EClassLand.RptLandownerColStatus>();
