@@ -1718,6 +1718,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3374":
+                case "3376":
                     this.PrintCashSalaryAngan();
                     break;
 
