@@ -99,74 +99,92 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="form-group">
-                               <asp:Label ID="Label2" runat="server">Company</asp:Label>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
-                                </asp:DropDownList>
+                        <asp:Label ID="Label2" runat="server">Company</asp:Label>
+                        <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                        </asp:DropDownList>
                     </div>
                 </div>
 
                 <div class="col-lg-3">
                     <div class="form-group">
-                                              <asp:Label ID="lblDept" runat="server" >Department</asp:Label>
+                        <asp:Label ID="lblDept" runat="server">Department</asp:Label>
 
-                                <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server" CssClass="form-control chzn-select" TabIndex="6">
-                                </asp:DropDownList>
+                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server" CssClass="form-control chzn-select" TabIndex="6">
+                        </asp:DropDownList>
                     </div>
                 </div>
 
                 <div class="col-lg-3">
                     <div class="form-group">
-                                                        <asp:Label ID="Label3" runat="server" >Section</asp:Label>
-       
-                                <asp:DropDownList ID="ddlSection" runat="server"  CssClass="form-control chzn-select" TabIndex="6">
-                                </asp:DropDownList>
-                    </div>
-                </div>
-                               <div class="col-lg-1">
-                    <div class="form-group">
-                                <asp:Label ID="lbllstVouno0" runat="server" Text="Interest "></asp:Label>
-                                <asp:TextBox ID="txtInterest" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                    </div>
-                </div>
+                        <asp:Label ID="Label3" runat="server">Section</asp:Label>
 
-                                <div class="col-lg-1">
+                        <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control chzn-select" TabIndex="6">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-lg-1">
                     <div class="form-group">
-                           <asp:Label ID="Label1" runat="server"  >Year</asp:Label>
-                                <asp:DropDownList ID="ddlyear" runat="server"  CssClass="form-control form-control-sm"></asp:DropDownList>
+                        <asp:Label ID="lbllstVouno0" runat="server" Text="Interest "></asp:Label>
+                        <asp:TextBox ID="txtInterest" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="col-lg-1">
-                                    <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkOk_Click">Ok</asp:LinkButton>
+                    <div class="form-group">
+                        <asp:Label ID="Label1" runat="server">Year</asp:Label>
+                        <asp:DropDownList ID="ddlyear" runat="server" CssClass="form-control form-control-sm"></asp:DropDownList>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkOk_Click">Ok</asp:LinkButton>
 
                 </div>
             </div>
-             <div class="row">
- 
+            <div class="row">
 
 
 
-                                  <div class="col-lg-2">
-                     <div class="form-group">
-                                     <asp:Label ID="Label5" runat="server" >ID Card</asp:Label>
-                         <input name="txtTerm" onkeyup="filter2(this, '<%=gvProFund.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
-                 </div>
-                           </div>
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <asp:Label ID="Label5" runat="server">ID Card</asp:Label>
+                        <input name="txtTerm" onkeyup="filter2(this, '<%=gvProFund.ClientID %>')" type="text" class="form-control form-control-sm" placeholder="Search here">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-1">
+                    <div cssclass="form-group">
+                        <asp:Label ID="lblFDate" runat="server" CssClass="smLbl_to "
+                            Text="From:"></asp:Label>
+                        <asp:TextBox ID="txtFDate" runat="server" CssClass="form-control form-control-sm " TabIndex="5"></asp:TextBox>
+                        <cc1:CalendarExtender runat="server"
+                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <asp:Label ID="lblToDate" runat="server" CssClass="smLbl_to "
+                        Text="To:"></asp:Label>
+                    <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" TabIndex="5"></asp:TextBox>
+                    <cc1:CalendarExtender runat="server"
+                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                </div>
 
                 <div class="col-lg-1">
                     <div class="form-group">
-                         <asp:Label ID="lblPage" runat="server" >Page Size</asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"  OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem>15</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                    <asp:ListItem>50</asp:ListItem>
-                                    <asp:ListItem>100</asp:ListItem>
-                                    <asp:ListItem>150</asp:ListItem>
-                                    <asp:ListItem>200</asp:ListItem>
-                                    <asp:ListItem>300</asp:ListItem>
-                                </asp:DropDownList>
+                        <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                            <asp:ListItem>10</asp:ListItem>
+                            <asp:ListItem>15</asp:ListItem>
+                            <asp:ListItem>20</asp:ListItem>
+                            <asp:ListItem>30</asp:ListItem>
+                            <asp:ListItem>50</asp:ListItem>
+                            <asp:ListItem>100</asp:ListItem>
+                            <asp:ListItem>150</asp:ListItem>
+                            <asp:ListItem>200</asp:ListItem>
+                            <asp:ListItem>300</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
 
@@ -291,7 +309,7 @@
         </div>
     </div>
 
-<%--    <fieldset class="scheduler-border fieldset_A">
+    <%--    <fieldset class="scheduler-border fieldset_A">
                     <div class="form-horizontal">
 
                         <div class="form-group">
