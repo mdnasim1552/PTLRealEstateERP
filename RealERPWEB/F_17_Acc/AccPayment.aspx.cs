@@ -949,6 +949,8 @@ namespace RealERPWEB.F_17_Acc
         {
 
             DataTable dt = (DataTable)Session["tblt01"];
+            string pbillno = "";
+            double netbalance = 0.00;
             for (int i = 0; i < this.dgv1.Rows.Count; i++)
             {
 
@@ -965,9 +967,14 @@ namespace RealERPWEB.F_17_Acc
 
                 if (this.ddlPrivousVou.Items.Count == 0)
                 {
+
+
                     if (billno.Length > 0)
                     {
-                        if (dram > billbal)
+
+                        netbalance = (billno == pbillno) ? netbalance - dram : billbal - dram;  //Multiple chequeno single Bill and Multiple bill Single Cheque no
+
+                        if (netbalance < 0)
                         {
 
 
@@ -975,21 +982,37 @@ namespace RealERPWEB.F_17_Acc
                             return;
                         }
 
-                        else
-                        {
-                        }
+
+
+                        //    if (billno.Length > 0)
+
+                        //{
+                        //    if (dram > billbal)
+                        //    {
+
+
+                        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        //        return;
+                        //    }
+
+                        //    else
+                        //    {
+                        //    }
 
 
 
+                        //}
                     }
 
                 }
 
+                    pbillno = billno;
 
 
 
 
-            }
+
+                }
             Session["tblt01"] = dt;
 
         }
@@ -1079,7 +1102,8 @@ namespace RealERPWEB.F_17_Acc
             bool dcon;
             Bdate = this.GetBackDate();
             DataTable dt = (DataTable)Session["tblt01"];
-
+            string pbillno = "";
+            double netbalance = 0.00;
             foreach (DataRow dr6 in dt.Rows)
             {
                 double trndram = Convert.ToDouble(dr6["trndram"].ToString().Trim());
@@ -1090,7 +1114,10 @@ namespace RealERPWEB.F_17_Acc
                 {
                     if (billno.Length > 0)
                     {
-                        if (trndram > balance)
+
+                        netbalance = (billno == pbillno) ? netbalance - trndram : balance - trndram;  //Multiple chequeno single Bill and Multiple bill Single Cheque no
+
+                        if (netbalance<0)
                         {
 
 
@@ -1099,7 +1126,20 @@ namespace RealERPWEB.F_17_Acc
                         }
 
 
+
+                        //if (trndram > balance)
+                        //{
+
+
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        //    return;
+                        //}
+
+
                     }
+
+
+                    pbillno = billno;
 
                 }
 
