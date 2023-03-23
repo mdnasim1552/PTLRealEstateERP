@@ -4151,7 +4151,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
                 string costdesc = _ReportDataSet.Tables[4].Rows[0]["rsirdesc"].ToString();
-                string pcperson = _ReportDataSet.Tables[1].Rows[0]["pperson"].ToString()+" - "+ _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
+                string pcperson = _ReportDataSet.Tables[1].Rows[0]["jperson"].ToString();
 
                 string cperson2 = "";
                 string contactperson = "";

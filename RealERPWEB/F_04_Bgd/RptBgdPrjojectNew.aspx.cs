@@ -84,10 +84,8 @@ namespace RealERPWEB.F_04_Bgd
             {
 
                 case "MasterBgdGrWise":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = true;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Income Statement-Summary";
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
@@ -99,10 +97,8 @@ namespace RealERPWEB.F_04_Bgd
                 //    break;
 
                 case "WrkVsResource":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Work Vs. Resource";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
@@ -110,10 +106,8 @@ namespace RealERPWEB.F_04_Bgd
 
 
                 case "BudgetBal":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance (Resource Basis)";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
@@ -125,20 +119,16 @@ namespace RealERPWEB.F_04_Bgd
                     DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
                     this.txtfromdate.Text = frmdate.ToString("dd-MMM-yyyy");
                     this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-                    this.lblfrmdate.Visible = true;
-                    this.txtfromdate.Visible = true;
-                    this.lbltodate.Visible = true;
-                    this.txttodate.Visible = true;
+                    this.frmdat.Visible = true;
+                    this.todat.Visible = true;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance Information";
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 case "BgdCostResBasis02":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Material Group Wise Cost";
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
@@ -150,10 +140,8 @@ namespace RealERPWEB.F_04_Bgd
                 //    break;
 
                 case "MasterBgdFlrDet":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Details(Catagory Wise)";
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
@@ -161,10 +149,8 @@ namespace RealERPWEB.F_04_Bgd
 
 
                 case "BgdAlocBal":
-                    this.lblfrmdate.Visible = false;
-                    this.txtfromdate.Visible = false;
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.frmdat.Visible = false;
+                    this.todat.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance Information";
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";

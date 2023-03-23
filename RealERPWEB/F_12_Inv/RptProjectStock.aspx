@@ -239,10 +239,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgcUnit" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptunit")) %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgcUnitF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"> Total :</asp:Label>
+                                        <asp:Label ID="lgcUnitF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"> Total :</asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
 
@@ -253,10 +253,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvbudgetqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFbudgetqty" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvFbudgetqty" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -267,10 +267,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvOp" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvOpF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvOpF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -280,10 +280,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvRecamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvRecamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvRecamtF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -293,10 +293,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTraninqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trninqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvTraninqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvTraninqtyF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -307,11 +307,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTranoutqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnoutqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
 
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvTranoutqtyF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvTranoutqtyF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
 
@@ -323,11 +323,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvDamage" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
 
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvDamageF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvDamageF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -337,10 +337,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvTamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvTamtF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle HorizontalAlign="Right" />
@@ -350,10 +350,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvIsuamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvIsuamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvIsuamtF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
 
@@ -364,10 +364,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvAcSamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acstock")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvAcSamtF" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvAcSamtF" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
 
@@ -379,10 +379,10 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvdiviation" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "diviation")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:Label ID="lgvFdiviation" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"></asp:Label>
+                                        <asp:Label ID="lgvFdiviation" runat="server" Width="80px" Style="text-align: right" Font-Bold="true"></asp:Label>
                                     </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -445,7 +445,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvOp" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -454,7 +454,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvRecamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -463,7 +463,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTraninqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trninqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -473,7 +473,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTranoutqty" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnoutqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -483,7 +483,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvDamage" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -492,7 +492,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvTamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -501,7 +501,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvIsuamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -510,7 +510,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvAcSamt" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acstock")).ToString("#,##0.0000;(#,##0.0000); ")%>'
-                                            Width="70px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
