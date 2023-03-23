@@ -1058,7 +1058,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!duration.Value,"#,##0.000;(#,##0.000); ")</Value>
+                                  <Value>=Format(Fields!duration.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2133,7 +2133,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.20486in</Height>
               <Width>8.96528in</Width>
               <Style>
@@ -2166,7 +2165,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Left>9.02084in</Left>
               <Height>0.17708in</Height>
               <Width>2.10292in</Width>

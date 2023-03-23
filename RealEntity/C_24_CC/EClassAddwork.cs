@@ -85,5 +85,19 @@ namespace RealEntity.C_24_CC
             public HandOverLetter() { }
         }
 
+        [Serializable]
+        public class CancellationAddWork
+        {
+            public string adno { get; set; }
+            public DateTime addate { get; set; }
+            public string actdesc { get; set; }
+            public string sirdesc { get; set; }
+            public string gdatat { get; set; }
+            public int qty { get; set; }
+            public string reason { get; set; }
+            public double amt { get; set; }
+            public CancellationAddWork() { }
+        }
+
     }
 }

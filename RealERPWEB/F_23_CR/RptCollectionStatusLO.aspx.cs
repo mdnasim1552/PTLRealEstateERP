@@ -88,10 +88,10 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComeCode();
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETBENEFNAME", prjcode, "", "", "", "", "", "", "", "");
-            this.ddlbenefname.DataTextField = "benefname";
-            this.ddlbenefname.DataValueField = "benefcode";
-            this.ddlbenefname.DataSource = ds1.Tables[0];
-            this.ddlbenefname.DataBind();
+            this.listben.DataTextField = "benefname";
+            this.listben.DataValueField = "benefcode";
+            this.listben.DataSource = ds1.Tables[0];
+            this.listben.DataBind();
         }
 
 
@@ -103,15 +103,33 @@ namespace RealERPWEB.F_23_CR
             string frmdate = (this.chkDate.Checked) ? "01-Jan-1990": this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();        
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
-            string benefname = this.ddlbenefname.SelectedValue.ToString() == "0000000" ? "%" : this.ddlbenefname.SelectedValue.ToString() + "%";
-           // string LomonColl = this.GetLoMonColl();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benefname, frmdate, "", "", "", "");
+            string gp = this.listben.SelectedValue.Trim();
+            string benficode = "";
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "0000000" || gp.Trim() == "")
+                    benficode = "";
+                else
+                    foreach (ListItem s1 in listben.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            benficode = benficode + s1.Value.Substring(0, 7);
+                        }
+                    }
+
+            }
+            //string benefname = this.ddlbenefname.SelectedValue.ToString() == "0000000" ? "%" : this.ddlbenefname.SelectedValue.ToString() + "%";
+            // string LomonColl = this.GetLoMonColl();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benficode, frmdate, "", "", "", "");
             if (ds1 == null)
                 return;
      
             Session["tbllocollstatus"] = this.HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
         }
+
+
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)

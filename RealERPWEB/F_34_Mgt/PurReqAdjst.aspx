@@ -149,7 +149,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvReqNo1" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="MRF No">
