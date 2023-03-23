@@ -1917,6 +1917,20 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
 
+
+
+            DataTable dt2 = (DataTable)ViewState["tblProject"];
+            string pactcode1 = "";
+            if (dt2 != null)
+            {
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    pactcode1 += dt2.Rows[i]["pactcode"].ToString();
+                }
+            }
+
+
+
             // todo for p2p terms and conditions in text box
             if (istxtTerms)
             {
@@ -1926,8 +1940,18 @@ namespace RealERPWEB.F_14_Pro
                     string mTERMSSUBJ = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvSubject")).Text.Trim();
                     string mTERMSDESC = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvDesc")).Text.Trim();
                     string mTERMSRMRK = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvRemarks")).Text.Trim();
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
+
+                    if(mTERMSID == "010")
+                    {
+                        result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
+                            mORDERNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, pactcode1, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    }
+                    else
+                    {
+                        result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
                             mORDERNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    }
+                    
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
