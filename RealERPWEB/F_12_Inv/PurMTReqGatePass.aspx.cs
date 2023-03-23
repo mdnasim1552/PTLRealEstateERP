@@ -39,7 +39,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     this.ImgbtnFindRes_Click();
                     this.lbtnOk_Click(null, null);
-                 
+
 
                     if (this.Request.QueryString["Type"].ToString() == "GpaEdit")
                     {
@@ -55,7 +55,7 @@ namespace RealERPWEB.F_12_Inv
                 }
 
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
-              
+
                 // ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["title"].ToString();
                 this.txtCurAprovDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurAprovDate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -88,7 +88,7 @@ namespace RealERPWEB.F_12_Inv
             this.txtGatemPassNo.ReadOnly = true;
 
         }
-       
+
 
         private void getProjectInfo()
         {
@@ -123,7 +123,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void Load_Project_To_Combo()
         {
-            string comcod = this.GetCompCode(); 
+            string comcod = this.GetCompCode();
 
             DataTable dt = (DataTable)Session["tblproject"];
 
@@ -233,10 +233,14 @@ namespace RealERPWEB.F_12_Inv
 
         protected string GetStdDate(string Date1)
         {
-            Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
-            string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-            Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
-            return Date1;
+           
+                Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
+                string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+                Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
+                return Date1;
+           
+           
+           
         }
 
 
@@ -313,7 +317,7 @@ namespace RealERPWEB.F_12_Inv
             //this.txtGatePassNo.Visible = false;
             this.ImgbtnFinGatePass.Visible = false;
             this.ddlPrevList.Visible = false;
-            this.txtGatePassNo2.ReadOnly = true;            
+            this.txtGatePassNo2.ReadOnly = true;
             this.lbtnOk.Text = "New";
             this.Get_Pass_Info();
             this.VisibleEntry();
@@ -331,7 +335,7 @@ namespace RealERPWEB.F_12_Inv
 
 
             string ProjectCode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-            string FindResDesc =  "%";
+            string FindResDesc = "%";
             string curdate = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "STOCKBALANCEGETPASS", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
@@ -342,7 +346,7 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-        
+
 
 
         private void VisibleEntry()
@@ -629,8 +633,8 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rate"] = dr3[0]["mtrfrat"];
                     dr1["getpamt"] = dr3[0]["mtrfamt"];
                     DataRow[] drs = dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'");
-                    
-                    double stock= drs.Length==0? 0 : Convert.ToDouble(drs[0]["balqty"].ToString());
+
+                    double stock = drs.Length == 0 ? 0 : Convert.ToDouble(drs[0]["balqty"].ToString());
                     // double stockbal = Convert.ToDouble("0" + stock);
 
 
@@ -659,10 +663,10 @@ namespace RealERPWEB.F_12_Inv
                     }
 
 
-                   
-                   
 
-                   
+
+
+
 
 
                     //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
@@ -675,7 +679,8 @@ namespace RealERPWEB.F_12_Inv
                 ViewState["tblgetPass"] = this.HiddenSameData(tbl1);
                 this.Data_Bind();
 
-            }catch(Exception exp)
+            }
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -800,225 +805,230 @@ namespace RealERPWEB.F_12_Inv
 
         private void saveGatePass()
         {
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string message = "";
-
-            this.Session_tblAprov_Update();
-
-            DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
-            DataRow[] dr = tbl1.Select("getpqty>0");
-            if (dr.Length == 0)
+            try
             {
-                message = "Please Input Order Qty";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                return;
-            }
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string message = "";
 
-            for (int i = 0; i < this.gvAprovInfo.Rows.Count; i++)
-            {
+                this.Session_tblAprov_Update();
 
-
-                double balqty = Convert.ToDouble("0" + tbl1.Rows[i]["balqty"].ToString());
-                double aproqty = Convert.ToDouble("0" + tbl1.Rows[i]["getpqty"].ToString());
-                if (balqty < aproqty)
+                DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
+                DataRow[] dr = tbl1.Select("getpqty>0");
+                if (dr.Length == 0)
                 {
-                    message = "Balance Qty can not Large Then Approved Qty ";
+                    message = "Please Input Order Qty";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                     return;
                 }
-            }
 
-
-           
-
-            DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
-            string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();                    
-            if(comcod=="3101" || comcod=="3367")
-            {               
-                if (ASTUtility.Left(frmprjcode, 2)=="11" && dr5.Length == 0)
+                for (int i = 0; i < this.gvAprovInfo.Rows.Count; i++)
                 {
-                    message = "Materials are not available for Store ";
-                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                     return;
-
-                }
-
-            }
 
 
-           
-            string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
-            string getpref = this.txtGatemPassNo.Text.ToString();
-            string mtrnar = this.txtgetpNarr.Text.ToString();
-            string PostedByid = userid;
-            string Posttrmid = Terminal;
-            string PostSession = Sessionid;
-            string PostedDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-            // duplicate check
-
-            switch (comcod)
-            {
-                case "3101":
-                case "3340":
-                case "3338":
-
-                case "1205":
-                case "3351":
-                case "3352":
-                case "3348":
-
-                    if (getpref.Length == 0)
+                    double balqty = Convert.ToDouble("0" + tbl1.Rows[i]["balqty"].ToString());
+                    double aproqty = Convert.ToDouble("0" + tbl1.Rows[i]["getpqty"].ToString());
+                    if (balqty < aproqty)
                     {
-
-                        message = "Gete Pass No.Should Not Be Empty";
+                        message = "Balance Qty can not Large Then Approved Qty ";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                         return;
                     }
+                }
 
 
-                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPGETPASSNO", getpref, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                        ;
 
 
-                    else
+                DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
+                string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+                if (comcod == "3101" || comcod == "3367")
+                {
+                    if (ASTUtility.Left(frmprjcode, 2) == "11" && dr5.Length == 0)
                     {
+                        message = "Materials are not available for Store ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                        return;
 
-                        DataView dv1 = ds2.Tables[0].DefaultView;
-                        dv1.RowFilter = ("refno ='" + getpref + "'");
+                    }
 
-                        DataTable dt1 = dv1.ToTable();
-                        if (dt1.Rows.Count == 0)
-                            ;
-                        else
+                }
+
+
+
+                string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
+                string getpref = this.txtGatemPassNo.Text.ToString();
+                string mtrnar = this.txtgetpNarr.Text.ToString();
+                string PostedByid = userid;
+                string Posttrmid = Terminal;
+                string PostSession = Sessionid;
+                string PostedDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+                // duplicate check
+
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3340":
+                    case "3338":
+
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                    case "3348":
+
+                        if (getpref.Length == 0)
                         {
-                            message = "Found Duplicate Gate Pass No!!!";
+
+                            message = "Gete Pass No.Should Not Be Empty";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                             return;
                         }
-                    }
-                    break;
-
-                default:
-                    break;
 
 
-
-            }
-
-
-
+                        DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPGETPASSNO", getpref, "", "", "", "", "", "", "", "");
+                        if (ds2.Tables[0].Rows.Count == 0)
+                            ;
 
 
-            //For Balace Req Qty
+                        else
+                        {
 
-            if (this.Request.QueryString["Type"].ToString().Trim() == "Entry")
-            {
+                            DataView dv1 = ds2.Tables[0].DefaultView;
+                            dv1.RowFilter = ("refno ='" + getpref + "'");
 
-                for (int i = 0; i < tbl1.Rows.Count; i++)
+                            DataTable dt1 = dv1.ToTable();
+                            if (dt1.Rows.Count == 0)
+                                ;
+                            else
+                            {
+                                message = "Found Duplicate Gate Pass No!!!";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                                return;
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+
+
+
+                }
+
+
+
+
+
+                //For Balace Req Qty
+
+                if (this.Request.QueryString["Type"].ToString().Trim() == "Entry")
                 {
-                    string mtREQNO = tbl1.Rows[i]["mtreqno"].ToString();
-                    string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                    string mspcfcod = tbl1.Rows[i]["spcfcod"].ToString();
-                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "BALMTREQQTY", mtREQNO, mRSIRCODE, mspcfcod, "", "", "", "", "", "");
-                    if (ds.Tables[0].Rows.Count == 0) continue;
-                    else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
+
+                    for (int i = 0; i < tbl1.Rows.Count; i++)
                     {
-                        message = "There is no balance qty in Requisition";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                        return;
+                        string mtREQNO = tbl1.Rows[i]["mtreqno"].ToString();
+                        string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
+                        string mspcfcod = tbl1.Rows[i]["spcfcod"].ToString();
+                        DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "BALMTREQQTY", mtREQNO, mRSIRCODE, mspcfcod, "", "", "", "", "", "");
+                        if (ds.Tables[0].Rows.Count == 0) continue;
+                        else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
+                        {
+                            message = "There is no balance qty in Requisition";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                            return;
+
+                        }
 
                     }
 
                 }
 
-            }
 
 
-
-            string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
-            bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
-            if (!dcon)
-            {
-                message = "Approved Date is equal or greater Requisition Date";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                return;
-            }
-            ////////privious
-
-            if (this.ddlPrevList.Items.Count == 0)
-                this.GetGetPassNo();
-
-            string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
-
-            bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
-                        PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
-            {
-                message = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                return;
-
-            }
-
-
-            foreach (DataRow dr1 in tbl1.Rows)
-            {
-
-                string mtREQNO = dr1["mtreqno"].ToString();
-                string mRSIRCODE = dr1["rsircode"].ToString();
-                string mSPCFCOD = dr1["spcfcod"].ToString();
-                double getpqty = Convert.ToDouble(dr1["getpqty"]);
-                string getpamt = Convert.ToDouble(dr1["getpamt"]).ToString();
-                double mtrfqty = Convert.ToDouble(dr1["mtrfqty"]);
-            
-
-                // comcod, getpno,mtreqno, rsircode, spcfcod,  qty, amt
-
-                if (mtrfqty >= getpqty)
+                string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
+                bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
+                if (!dcon)
                 {
-
-                    if (getpqty > 0)
-                        result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPA",
-                                    mGetpNo, mtREQNO, mRSIRCODE, mSPCFCOD, getpqty.ToString(), getpamt, "", "", "", "", "", "", "", "");
-                    if (!result)
-                    {
-                        message = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                        return;
-                    }
-
+                    message = "Approved Date is equal or greater Requisition Date";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
                 }
+                ////////privious
 
-                else
+                if (this.ddlPrevList.Items.Count == 0)
+                    this.GetGetPassNo();
+
+                string mGetpNo = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
+
+                bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
+                            PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
+                if (!result)
                 {
-                    message = "Order Qty Less then or Equal Balance Qty";
+                    message = purData.ErrorObject["Msg"].ToString();
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                     return;
 
                 }
 
-            }
-            this.txtCurAprovDate.Enabled = false;
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+                foreach (DataRow dr1 in tbl1.Rows)
+                {
 
-            if (ConstantInfo.LogStatus == true)
+                    string mtREQNO = dr1["mtreqno"].ToString();
+                    string mRSIRCODE = dr1["rsircode"].ToString();
+                    string mSPCFCOD = dr1["spcfcod"].ToString();
+                    double getpqty = Convert.ToDouble(dr1["getpqty"]);
+                    string getpamt = Convert.ToDouble(dr1["getpamt"]).ToString();
+                    double mtrfqty = Convert.ToDouble(dr1["mtrfqty"]);
+
+
+                    // comcod, getpno,mtreqno, rsircode, spcfcod,  qty, amt
+
+                    if (mtrfqty >= getpqty)
+                    {
+
+                        if (getpqty > 0)
+                            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPA",
+                                        mGetpNo, mtREQNO, mRSIRCODE, mSPCFCOD, getpqty.ToString(), getpamt, "", "", "", "", "", "", "", "");
+                        if (!result)
+                        {
+                            message = purData.ErrorObject["Msg"].ToString();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                            return;
+                        }
+
+                    }
+
+                    else
+                    {
+                        message = "Order Qty Less then or Equal Balance Qty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                        return;
+
+                    }
+
+                }
+                this.txtCurAprovDate.Enabled = false;
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Order Process";
+                    string eventdesc = "Update Process";
+                    string eventdesc2 = mGetpNo;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+            }catch(Exception exp)
             {
-                string eventtype = "Order Process";
-                string eventdesc = "Update Process";
-                string eventdesc2 = mGetpNo;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
             }
         }
 
@@ -1256,7 +1266,7 @@ namespace RealERPWEB.F_12_Inv
             string toproj = this.ddlprjlistto.SelectedValue.ToString();
             string frmproj = this.ddlprjlistfrom.SelectedValue.ToString();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETMTRREQUISITION", CurDate1,frmproj, toproj, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETMTRREQUISITION", CurDate1, frmproj, toproj, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 

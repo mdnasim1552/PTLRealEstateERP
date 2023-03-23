@@ -1092,6 +1092,9 @@ namespace RealERPWEB.F_14_Pro
             td1 = dv1.ToTable();
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
+            double amount = amt1 - amt2;
+
+            string totalamount = amount.ToString();
             //
             // rdlc start
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
@@ -1141,6 +1144,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("ftBillconf", billname));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
+            rpt.SetParameters(new ReportParameter("totalamount", totalamount));
 
             Session["Report1"] = rpt;
             if (isAccBill)

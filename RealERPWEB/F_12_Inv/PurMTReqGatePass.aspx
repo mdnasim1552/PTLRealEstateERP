@@ -55,9 +55,9 @@
                     <div class="row">
                         <div class="col-md-1">
                             <asp:Label ID="lCurAppdate" runat="server" CssClass="control-label" Text="Date"></asp:Label>
-                            <asp:TextBox ID="txtCurAprovDate" runat="server" CssClass="form-control form-control-sm" ToolTip="dd-MMM-yyyy"></asp:TextBox>
+                            <asp:TextBox ID="txtCurAprovDate" runat="server" CssClass="form-control form-control-sm" ToolTip="dd-MM-yyyy"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtCurAprovDate_CalendarExtender" runat="server"
-                                Format="dd-MMM-yyyy" TargetControlID="txtCurAprovDate"></cc1:CalendarExtender>
+                                Format="dd-MM-yyyy" TargetControlID="txtCurAprovDate"></cc1:CalendarExtender>
                         </div>
                         <div class="col-md-2">
                             <asp:Label ID="lcurGatePassNo" runat="server" CssClass="smLbl_to" Text="Gate Pass No"></asp:Label>
