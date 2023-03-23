@@ -1109,6 +1109,25 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
+            // Bill Amount check 
+
+            //double billbalamt = Convert.ToDouble("0" + ((Label)this.dgv1.Rows[0].FindControl("lblbillbalance")).Text.Trim());
+            //double ToDramt = Convert.ToDouble("0" + ((Label)this.dgv1.FooterRow.FindControl("lblTgvDrAmt")).Text.Trim());          
+
+            //if (ToDramt>billbalamt)
+            //{
+
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+            //    return;
+
+            //}
+
+            
+
+         
+          
+
+
             if ((this.Request.QueryString["Type"] == "Acc"))
             {
                 dcon = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(voudat));
