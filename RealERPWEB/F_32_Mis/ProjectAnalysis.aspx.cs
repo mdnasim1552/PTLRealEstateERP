@@ -389,8 +389,9 @@ namespace RealERPWEB.F_32_Mis
                     hlnkbgdamt.NavigateUrl = "~/F_22_Sal/RptSaleSoldunsoldUnit.aspx?Type=soldunsold&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2);
                     hlnktsal.NavigateUrl = "~/F_22_Sal/RptSaleSoldunsoldUnit.aspx?Type=soldunsold&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2);
                     hlnktcol.NavigateUrl = "~/F_22_Sal/RptTransactionSt.aspx?Type=TransDateWise&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2) + "&Date1=" + opndate + "&Date2=" + todate;
-
-                    hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMainRptALL&prjcode=" + pactcode + "&sircode=";   //&prjcode="+pactcode
+                    hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/RptBgdPrjojectNew.aspx?Type=Report&prjcode=" + pactcode + "&comcod=" +comcod;   //&prjcode="+pactcode
+                    //F_04_Bgd/?=&=&=
+                    //hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMainRptALL&prjcode=" + pactcode + "&sircode=";   //&prjcode="+pactcode
                     hlnkbgdtotal.NavigateUrl = "~/F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdGrWise&comcod=" + comcod + "&prjcode=" + pactcode;
                     hlnkcost.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal&prjcode=" + pactcode;
 
