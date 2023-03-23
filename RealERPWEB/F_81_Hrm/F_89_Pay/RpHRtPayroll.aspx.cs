@@ -426,6 +426,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "3101":
                 case "3374"://Angan
+                case "3376":
                     this.rbtSalSheet.SelectedIndex = 28;
                     break;
 
