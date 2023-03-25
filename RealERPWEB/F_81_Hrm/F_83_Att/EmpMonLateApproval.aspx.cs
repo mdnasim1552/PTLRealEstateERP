@@ -2856,6 +2856,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         return;
                     }
                 }
+
+
+                if (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == false)
+                {
+                    string latestatus = (((CheckBox)this.mgvbreakdown.Rows[j].FindControl("chkack")).Checked == true) ? "1" : "0";
+                    string empid = Convert.ToString(((Label)this.mgvbreakdown.Rows[j].FindControl("mlgvEmpIdAdj")).Text.Trim());
+                    string remarks = Convert.ToString(((TextBox)this.mgvbreakdown.Rows[j].FindControl("mTxtremarks")).Text.Trim());
+                    string idcard = Convert.ToString(((Label)this.mgvbreakdown.Rows[j].FindControl("mlblgvCardnoearn")).Text.Trim());
+                    string dayid = Convert.ToDateTime(((Label)this.mgvbreakdown.Rows[j].FindControl("mlblgvlateday")).Text).ToString("yyyyMMdd");
+                    string ltype = "LP";
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATEATTLATEAPPROVAL", dayid, empid, idcard, latestatus, remarks, userid, ltype, "", "", "", "");
+                }
             }
             int count = 0;
             foreach(GridViewRow  row in mgvbreakdown.Rows)
