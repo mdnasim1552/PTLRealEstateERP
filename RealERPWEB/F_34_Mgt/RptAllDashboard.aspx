@@ -625,7 +625,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Project(Month)',
+                        text: 'Top 5 Project Revenue(Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -637,7 +637,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Amount'
+                            text: 'Amount in Lacs'
                         }
 
                     },
