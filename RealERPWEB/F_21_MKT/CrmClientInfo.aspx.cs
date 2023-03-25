@@ -59,6 +59,7 @@ namespace RealERPWEB.F_21_MKT
                 this.ShowDiscussion();
                 this.IsTeamLeader();
                 this.GetIRComARefProspect();
+                //this.SoldInfo();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
@@ -5573,6 +5574,7 @@ namespace RealERPWEB.F_21_MKT
                 this.lblprelaststatus.InnerHtml = "Previous:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + ds1.Tables[1].Rows[0]["prestatus"].ToString() + "</span>";
 
                 ShowDiscussion();
+                this.SoldInfo();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
 
@@ -5627,6 +5629,30 @@ namespace RealERPWEB.F_21_MKT
 
 
 
+        }
+
+        private void SoldInfo()
+        {
+
+
+            string comcod = this.GetComeCode();         
+            //string YmonID = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("yyyyMM");
+            //string Empid = this.ddlEmpid.SelectedValue.ToString();
+           
+            string proscode = this.lblproscod.Value.ToString();
+            //string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
+            //string wrkdpt = "000000000000";
+            //DateTime time = System.DateTime.Now;
+            //string qcdate = this.Request.QueryString["followupdate"] ?? "";
+            //string cdate = qcdate.Length == 0 ? this.txtfrmdate.Text + " " + time.ToString("HH:mm") : qcdate;
+
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETSOLDINFO", proscode, "", "", "", "", "");
+
+            this.rpsold.DataSource = ds1.Tables[0];
+            this.rpsold.DataBind();
+            ds1.Dispose();
+        
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -5751,10 +5777,6 @@ namespace RealERPWEB.F_21_MKT
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
-
-
-
-
                         ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
@@ -5805,13 +5827,14 @@ namespace RealERPWEB.F_21_MKT
 
 
                     case "810100101002": // Today's Followup
-                    case "810100101019"://Next Followup
+                    
 
 
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
+                       // ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = false;
                         ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
 
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
@@ -5839,7 +5862,7 @@ namespace RealERPWEB.F_21_MKT
                         //ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
 
-                        ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = true;
+                      
                         CheckBoxList ChkBoxLstFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
                         ChkBoxLstFollow.DataTextField = "gdesc";
                         ChkBoxLstFollow.DataValueField = "gcod";
@@ -5851,6 +5874,38 @@ namespace RealERPWEB.F_21_MKT
 
 
 
+
+                    case "810100101019"://Next Followup
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                       // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false ;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = true;
+                      
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+
+
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;                       
+                        CheckBoxList ChkBoxLstnextFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstnextFollow"));
+                        ChkBoxLstnextFollow.DataTextField = "gdesc";
+                        ChkBoxLstnextFollow.DataValueField = "gcod";
+                        ChkBoxLstnextFollow.DataSource = dv1.ToTable();
+                        ChkBoxLstnextFollow.DataBind();
+                        //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+
+                        break;
 
 
 
@@ -6273,7 +6328,7 @@ namespace RealERPWEB.F_21_MKT
 
                     case "810100101018": //PARTICIPANTS  
 
-                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
+                       // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = true;
@@ -6758,8 +6813,8 @@ namespace RealERPWEB.F_21_MKT
                     else if (Gcode == "810100101019")
                     {
 
-                        Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
-                            : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).SelectedValue.ToString();
+                        Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstnextFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
+                            : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstnextFollow")).SelectedValue.ToString();
                     }
 
                     //Lead Reason
