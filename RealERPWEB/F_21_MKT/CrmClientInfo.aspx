@@ -746,6 +746,65 @@
 
                 }
 
+
+
+
+
+                $('#ChkBoxLstFollow input[type=checkbox]').click(function () {
+
+
+                    $('#ChkBoxLstFollow >input').each(function (index, item) {
+
+
+
+
+                        if ($(item).is(':checked')) {
+
+
+
+
+                            switch (comcod) {
+                                case 3101:
+                                //case 3354:// Edison   
+
+
+                                    if ($(item).val() == "9601050") {
+
+                                        $('#divsold').show();
+                                    }
+                                    else {
+                                        $('#divsold').hide();
+
+
+                                    }
+
+                                    break;
+
+                                default:
+                                    break;
+
+
+
+                            }
+
+
+                        }
+                        else {
+
+
+
+                        }
+
+
+
+
+
+
+                    });
+                });
+
+
+
              <%-- $('#ChkBoxLstStatus input[type=checkbox]').click(function ()
                 {
                  
@@ -855,7 +914,7 @@
 
             catch (e) {
 
-               
+
             }
 
         }
@@ -1845,7 +1904,7 @@
 
                         case "810100101019"://Follow
 
-                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstnextFollow_' + number;
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length = 7) {
 
@@ -4394,7 +4453,7 @@
 
                             <div class="row">
 
-                                <div class="col-md-12 col-lg-12">
+                                <div class="col-md-8 col-lg-8">
 
                                     <div id="followup" class="collapse">
 
@@ -4616,17 +4675,30 @@
                                                         </asp:Panel>
 
                                                         <asp:Panel ID="pnlFollow" runat="server" Visible="false">
-                                                            <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
-                                                        </asp:DropDownList>--%>
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
 
                                                         </asp:Panel>
+
+                                                        <asp:Panel ID="pnlnextFollow" runat="server" Visible="false">
+
+
+
+
+                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                                runat="server" CssClass="form-control checkbox">
+                                                            </asp:CheckBoxList>
+
+
+                                                        </asp:Panel>
+
+
                                                         <asp:Panel ID="pnlLostResion" runat="server" Visible="false">
                                                             <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
                                                         </asp:DropDownList>--%>
@@ -4657,6 +4729,144 @@
 
 
                                     </div>
+                                </div>
+
+
+                                <div class="col-md-4 col-lg-4">
+                                    <div id="divsold" style="display: none;">
+                                       <strong> Sold Information</strong>
+
+
+                                        <asp:Repeater ID="rpsold" runat="server">
+                                            <HeaderTemplate>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+
+
+                                                <div class="col-md-12  col-lg-12">
+                                                    <div class="well">
+
+                                                        <div class="col-md-12 panel">
+
+                                                            <div class=" col-md-12">
+
+                                                                <div class="row">
+                                                                     <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <asp:Label ID="lblProject" runat="server" Text="Project"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlsoldProject" runat="server" CssClass="form-control form-control-sm" >
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                         </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+
+                                                                    <div class="form-group">
+                                                                        <asp:Label ID="lblunit" runat="server" Text="Unit"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlsoldunit" runat="server" CssClass="form-control  form-control-sm  ">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                        </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblflatcost">Flat Cost</label>
+                                                                            <asp:TextBox ID="txtflatcost" runat="server" TabIndex="2" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblutility">Utility</label>
+                                                                            <asp:TextBox ID="txtUtility" runat="server" TabIndex="2" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblbookingmoney">Booking Money</label>
+                                                                            <asp:TextBox ID="txtbookingmoney" runat="server" TabIndex="2" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblsolddate">Solddate</label>
+                                                                            <asp:TextBox ID="txtsolddate" runat="server" TabIndex="2" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                                            <cc1:CalendarExtender ID="txtsolddate_CalendarExtender" runat="server" Enabled="True"
+                                                                                Format="dd-MMM-yyyy" TargetControlID="txtsolddate"></cc1:CalendarExtender>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                    <div class="row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblagreement">Agreement Status</label>
+                                                                            <asp:DropDownList ID="ddlaggst" runat="server" CssClass="form-control form-control-sm">
+                                                                                <asp:ListItem>Process</asp:ListItem>
+                                                                        </asp:DropDownList>
+                                                                           
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblgrandtotal">Grand Total</label>
+                                                                            <asp:TextBox ID="txtgrandTotal" runat="server" TabIndex="2" CssClass="form-control form-control-sm" ReadOnly="true"></asp:TextBox>
+
+                                                                           
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+
+                                        <button id="btnAddMore" class="btn btn-info btn-sm fa-pull-right">Add More</button>
+
+
+
+                                    </div>
+
                                 </div>
 
                             </div>

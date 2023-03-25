@@ -439,6 +439,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlresuorcecode.DataBind();
                 this.txtserchReCode.Text = "";
                 this.GetSpecification();
+                this.GetBillNo();
                 string seaRes = this.ddlresuorcecode.SelectedValue.ToString().Trim();
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
