@@ -1132,9 +1132,9 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 DateTime coffbookingdate, finalinsdate, benddate;
-                int noofemi, badins = 0;
+                int badins = 0;
 
-                double brate, intratio, usize, buamt, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam, disoexcesspsft, disoexamt;
+                double noofemi, brate, intratio, usize, buamt, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingam, coffdpaymentper, coffdpaymentwbookam, coffdpaymentam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, finalinsper, finalinsam, disoexcesspsft, disoexamt;
 
 
                 usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
@@ -1201,6 +1201,9 @@ namespace RealERPWEB.F_22_Sal
                 noofemi = ASTUtility.Datediff(benddate, coffbookingdate);
                 int conoofemi = Convert.ToInt16(txtcoffnooffemi.Text);
 
+                double baseFVsft = Convert.ToDouble(lblvalfvpsft.InnerText == "" ? "0.00" : lblvalfvpsft.InnerText);
+                double basePVsft = Convert.ToDouble(lblvalpvpersft.InnerText == "" ? "0.00" : lblvalpvpersft.InnerText);
+
 
 
                 cofffv = lstcoff.Sum(l => l.fv);
@@ -1210,17 +1213,16 @@ namespace RealERPWEB.F_22_Sal
                 //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
 
                 double roundvalue = Math.Round(cofffvpsft, 0);
-                double test = Math.Round(roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
-                coffpvpsft = Math.Round(roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
+                
+                //double test = Math.Round(roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
+                coffpvpsft = Math.Round((roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3)))), 0);
                 //bpvpsft = Math.Round(Math.Round(bfvpsft) / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
 
                 //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
                 this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
                 this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
 
-                double baseFVsft = Convert.ToDouble(lblvalfvpsft.InnerText == "" ? "0.00" : lblvalfvpsft.InnerText);
-                double basePVsft = Convert.ToDouble(lblvalpvpersft.InnerText == "" ? "0.00" : lblvalpvpersft.InnerText);
-
+               
 
                 lblDiffFV.InnerText = Math.Round(cofffvpsft - baseFVsft).ToString("#,##0;-#,##0; ");
                 lblDiffPV.InnerText = Math.Round(coffpvpsft - basePVsft).ToString("#,##0;-#,##0; ");
