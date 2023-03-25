@@ -2281,7 +2281,617 @@
 
         }
 
+        function ExecuteConstructorGraph(purdata, topdata) {
 
+            try {
+
+                var purdata = JSON.parse(purdata);
+
+                var topdata = JSON.parse(topdata)
+
+
+
+
+                Highcharts.setOptions({
+                    lang: {
+                        decimalPoint: '.',
+                        thousandsSep: ' '
+                    }
+                });
+
+                $('#Conchart').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Billing TK(Lakh)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Bill',
+                        data: [purdata[0]['ttlsalamtcore'], purdata[1]['ttlsalamtcore'], purdata[2]['ttlsalamtcore'], purdata[3]['ttlsalamtcore'], purdata[4]['ttlsalamtcore'], purdata[5]['ttlsalamtcore'], purdata[6]['ttlsalamtcore'], purdata[7]['ttlsalamtcore'], purdata[8]['ttlsalamtcore'], purdata[9]['ttlsalamtcore'], purdata[10]['ttlsalamtcore'], purdata[11]['ttlsalamtcore']],
+                        color: '#4286f4'
+
+                    }, {
+
+                        name: 'Payment',
+                        //color:red,
+                        data: [purdata[0]['tpayamtcore'], purdata[1]['tpayamtcore'], purdata[2]['tpayamtcore'], purdata[3]['tpayamtcore'], purdata[4]['tpayamtcore'], purdata[5]['tpayamtcore'], purdata[6]['tpayamtcore'], purdata[7]['tpayamtcore'], purdata[8]['tpayamtcore'], purdata[9]['tpayamtcore'], purdata[10]['tpayamtcore'], purdata[11]['tpayamtcore']],
+                        color: '#f44941'
+                    }]
+                });
+                $('#monthbill').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Monthly Bill & Payment (Lakh)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Amount in Lakh'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.2f}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Monthly Bill & Payment",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": "Bill",
+                                    "y": purdata[12]['ttlsalamtcore'],
+                                    "color": "#f45342",
+
+
+                                },
+                                {
+                                    "name": "Payment",
+                                    "y": purdata[12]['tpayamtcore'],
+                                    "color": "#448e33",
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#weekbill').highcharts({
+
+
+                    chart: {
+                        // type: 'line'
+                        type: 'area'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Last 7 Days Bill & Payment ',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        categories: [
+                            purdata[13]['yearmon'],
+                            purdata[14]['yearmon'],
+                            purdata[15]['yearmon'],
+                            purdata[16]['yearmon'],
+                            purdata[17]['yearmon'],
+                            purdata[18]['yearmon'],
+                            purdata[19]['yearmon']
+
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+                       
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Bill',
+                        data: [purdata[13]['ttlsalamt'], purdata[14]['ttlsalamt'], purdata[15]['ttlsalamt'], purdata[16]['ttlsalamt'], purdata[17]['ttlsalamt'], purdata[18]['ttlsalamt'], purdata[19]['ttlsalamt']],
+                        color: '#1581C1'
+
+                    }, {
+
+                        name: 'Payment',
+                        //color:red,
+                        data: [purdata[13]['tpayamt'], purdata[14]['tpayamt'], purdata[15]['tpayamt'], purdata[16]['tpayamt'], purdata[17]['tpayamt'], purdata[18]['tpayamt'], purdata[19]['tpayamt']],
+                        color: '#CA6621'
+                    }]
+                });
+                //console.log(topdata[0]['sirdesc']);
+                $('#Top5Con').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Constructor (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.1f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Constructor",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[0]['sirdesc'],
+                                    "y": topdata[0]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[1]['sirdesc'],
+                                    "y": topdata[1]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[2]['sirdesc'],
+                                    "y": topdata[2]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[3]['sirdesc'],
+                                    "y": topdata[3]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[4]['sirdesc'],
+                                    "y": topdata[4]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+
+                $('#top5Work').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Labours (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Labours",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[5]['sirdesc'],
+                                    "y": topdata[5]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[6]['sirdesc'],
+                                    "y": topdata[6]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[7]['sirdesc'],
+                                    "y": topdata[7]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[8]['sirdesc'],
+                                    "y": topdata[8]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[9]['sirdesc'],
+                                    "y": topdata[9]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#top5ConOut').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Constructor Outstanding (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Constructor Outstanding",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[10]['sirdesc'],
+                                    "y": topdata[10]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[11]['sirdesc'],
+                                    "y": topdata[11]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[12]['sirdesc'],
+                                    "y": topdata[12]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[13]['sirdesc'],
+                                    "y": topdata[13]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[14]['sirdesc'],
+                                    "y": topdata[14]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#top5ConPay').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Constructor Payment (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Constructor Payment",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[15]['sirdesc'],
+                                    "y": topdata[15]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[16]['sirdesc'],
+                                    "y": topdata[16]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[17]['sirdesc'],
+                                    "y": topdata[17]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[18]['sirdesc'],
+                                    "y": topdata[18]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[19]['sirdesc'],
+                                    "y": topdata[19]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#Billbal').highcharts({
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Yearly Billing (Balance)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        categories: [
+                            'Purchase',
+                            'Payment',
+                            'Balance'
+
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                  
+
+
+                    series: [{
+                        name: "Amount",
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Bill',
+                            y: purdata[0]['ttlsalamtcore'] + purdata[1]['ttlsalamtcore'] + purdata[2]['ttlsalamtcore'] + purdata[3]['ttlsalamtcore'] + purdata[4]['ttlsalamtcore'] + purdata[5]['ttlsalamtcore'] + purdata[6]['ttlsalamtcore'] + purdata[7]['ttlsalamtcore'] + purdata[8]['ttlsalamtcore'] + purdata[9]['ttlsalamtcore'] + purdata[10]['ttlsalamtcore'] + purdata[11]['ttlsalamtcore'],
+                            color: "#2E9ADA"
+                            //drilldown: 'Microsoft Internet Explorer'
+                        }, {
+                            name: 'Payment',
+                            y: purdata[0]['tpayamtcore'] + purdata[1]['tpayamtcore'] + purdata[2]['tpayamtcore'] + purdata[3]['tpayamtcore'] + purdata[4]['tpayamtcore'] + purdata[5]['tpayamtcore'] + purdata[6]['tpayamtcore'] + purdata[7]['tpayamtcore'] + purdata[8]['tpayamtcore'] + purdata[9]['tpayamtcore'] + purdata[10]['tpayamtcore'] + purdata[11]['tpayamtcore'],
+                            color: '#E37F3A'
+                            //drilldown: null
+                        },
+                        {
+                            name: 'Balance',
+                            y: ((purdata[0]['ttlsalamtcore'] + purdata[1]['ttlsalamtcore'] + purdata[2]['ttlsalamtcore'] + purdata[3]['ttlsalamtcore'] + purdata[4]['ttlsalamtcore'] + purdata[5]['ttlsalamtcore'] + purdata[6]['ttlsalamtcore'] + purdata[7]['ttlsalamtcore'] + purdata[8]['ttlsalamtcore'] + purdata[9]['ttlsalamtcore'] + purdata[10]['ttlsalamtcore'] + purdata[11]['ttlsalamtcore']) - (purdata[0]['tpayamtcore'] + purdata[1]['tpayamtcore'] + purdata[2]['tpayamtcore'] + purdata[3]['tpayamtcore'] + purdata[4]['tpayamtcore'] + purdata[5]['tpayamtcore'] + purdata[6]['tpayamtcore'] + purdata[7]['tpayamtcore'] + purdata[8]['tpayamtcore'] + purdata[9]['tpayamtcore'] + purdata[10]['tpayamtcore'] + purdata[11]['tpayamtcore'])),
+                            color: '#8C8453'
+                            //drilldown: null
+                        }]
+                    }],
+
+
+
+                });
+            }
+            catch (e) {
+
+
+                alert(e.message);
+            }
+        }
 
 
         function ExecuteBillGraph(billdata) {
@@ -2984,6 +3594,47 @@
                                 </div>
 
 
+                            </asp:View>
+                            <asp:View ID="Constructor" runat="server">
+                                <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="monthbill" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="weekbill" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="Conchart" style="width: 580px; height: 250px; margin: 0 auto"></div>
+
+                                       <%-- <a href="../F_14_Pro/PurInformation.aspx?Type=Report" target="_blank" class="btn btn-primary">Details</a>--%>
+
+
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="Top5Con" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5Work" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5ConOut" style="width: 580px; height: 250px; margin: 0 auto"></div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5ConPay" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="Billbal" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+
+                                </div>
                             </asp:View>
 
                         </asp:MultiView>
