@@ -1,254 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard03.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard03" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--<link href="../Content/crm-new-dashboard.css" rel="stylesheet" />--%>
-    <script>
-        function submitform() {
-            document.getElementById("form1").submit();
-        }
-        var skin = localStorage.getItem("skin") || "default";
-        var unusedLink = document.querySelector(
-            'link[data-skin]:not([data-skin="' + skin + '"])'
-        );
-        unusedLink.setAttribute("rel", "");
-        unusedLink.setAttribute("disabled", true);
-
-        // setTimeout(function () { manipulate(); }, 3000);
-        //  manipulate();
-        function manipulate() {
-            var itemname = localStorage.getItem("itemname");
-            // alert(itemname);
-            $("." + itemname).addClass("has-open");
-            if (itemname == "") {
-                return;
-            }
-        }
-        function SetItemStorage(itemname) {
-            var olitemname = localStorage.getItem("itemname");
-            console.log(olitemname);
-            if (olitemname == itemname) {
-                itemname = "";
-            }
-            localStorage.removeItem("itemname");
-            localStorage.setItem("itemname", itemname);
-        }
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            $(".menu-text").show();
-            $(".closebtn").show();
-            $("#the-basics").attr("placeholder", "Search");
-            //$(".stacked-menu-has-collapsible .has-child>.menu-link:after").addClass("addDownArrow");
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "75px";
-            document.getElementById("main").style.marginLeft = "75px";
-            console.log(document.querySelectorAll(".menu-item.has-child"));
-            var menulist = document.querySelectorAll(".menu-item.has-child");
-            menulist.forEach(function (item, index) {
-                if (item.classList.contains("has-open")) {
-                    var openclass = document.querySelector(".has-open");
-                    openclass.classList.remove("has-open");
-                }
-            });
-
-            $(".menu-text").css("display", "none");
-            console.log($(".menu-text"));
-            //$(".stacked-menu-has-collapsible .has-child>.menu-link:after").removeClass("removeDownArrow");
-
-            $("#the-basics").attr("placeholder", "");
-            //  $("li").removeClass("has-open");
-        }
-
-        function IsNumberWithOneDecimal(txt, evt) {
-            var charCode = evt.which ? evt.which : event.keyCode;
-            if (
-                charCode > 31 &&
-                (charCode < 48 || charCode > 57) &&
-                !(charCode == 46 || charCode == 8)
-            ) {
-                return false;
-            } else {
-                var len = txt.value.length;
-                var index = txt.value.indexOf(".");
-                if (index > 0 && charCode == 46) {
-                    return false;
-                }
-                if (index > 0) {
-                    if (len + 1 - index > 3) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        function GetEmployeeform() {
-            $("#EmployeeEntry").modal("toggle");
-        }
-        function CloseModal() {
-            $("#EmployeeEntry").modal("hide");
-        }
-    </script>
-    <!-- END THEME STYLES -->
-    <style>
-        .ajax__calendar_day {
-            font-weight: 100 !important;
-        }
-
-        .ajax__calendar_dayname {
-            font-weight: 100 !important;
-        }
-
-        .checkbox-menu li label {
-            display: block;
-            padding: 3px 10px;
-            clear: both;
-            font-weight: normal;
-            line-height: 1.42857143;
-            color: #333;
-            white-space: nowrap;
-            margin: 0;
-            transition: background-color 0.4s ease;
-        }
-
-        .checkbox-menu li input {
-            margin: 0px 5px;
-            top: 2px;
-            position: relative;
-        }
-
-        .checkbox-menu li.active label {
-            background-color: #cbcbff;
-            font-weight: bold;
-        }
-
-        .checkbox-menu li label:hover,
-        .checkbox-menu li label:focus {
-            background-color: #f5f5f5;
-        }
-
-        .checkbox-menu li.active label:hover,
-        .checkbox-menu li.active label:focus {
-            background-color: #b8b8ff;
-        }
-
-        .sidenav {
-            height: 100%;
-            width: 75px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-
-        #nav-bar {
-            z-index: 1000;
-        }
-
-        #nav-bar-open {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-
-        #main {
-            transition: margin-left 0.5s;
-            padding: 16px;
-        }
-
-        @media screen and (max-height: 450px) {
-            .sidenav {
-                padding-top: 15px;
-            }
-
-                .sidenav a {
-                    font-size: 18px;
-                }
-        }
-
-        .ajax__calendar_dayname {
-            padding: 0 !important;
-        }
-
-        .app-header-dark .btn-account.focus,
-        .app-header-dark .btn-account.show,
-        .app-header-dark .btn-account:active,
-        .app-header-dark .btn-account:focus,
-        .app-header-dark .top-bar-brand {
-            background-color: none;
-        }
-
-        .ps {
-            overflow-x: hidden !important;
-        }
-
-        .top-bar-brand {
-            margin-top: 8px !important;
-        }
-
-        .app-header-dark .top-bar-brand {
-            background: none;
-        }
-
-        .chzn-container-single .chzn-single {
-            height: 35px;
-            line-height: 35px;
-        }
-
-        .GridViewScrollHeader TH,
-        .GridViewScrollHeader TD {
-            font-weight: normal;
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #f4f4f4;
-            color: #999999;
-            text-align: left;
-            vertical-align: bottom;
-        }
-
-        .GridViewScrollItem TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #ffffff;
-            color: #444444;
-        }
-
-        .GridViewScrollItemFreeze TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #fafafa;
-            color: #444444;
-        }
-
-        .GridViewScrollFooterFreeze TD {
-            white-space: nowrap;
-            border-right: 1px solid #e6e6e6;
-            border-top: 1px solid #e6e6e6;
-            border-bottom: 1px solid #e6e6e6;
-            background-color: #f4f4f4;
-            color: #444444;
-        }
-
-        #pnlTopMenu .nav-link {
-            color: #fff !important;
-            font-size: 18px;
-        }
-
-        .card-header {
-            font-weight: normal !important;
-        }
-
-        .ajax__calendar {
-            font-weight: normal !important;
-        }
-    </style>
+    <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
+     <script type="text/javascript">
+         //Method using jQuery
+         $(document).ready(function () {
+             $("#btnInterface").click(function () {
+                 //specify your URL here..
+                 window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
+             });
+             $("#btnSalesFunnel").click(function () {
+                 window.location.href = '../F_21_Mkt/RptSalesFunnel';
+             });
+         });
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -294,15 +59,15 @@
                             </div>
                             <div class="col-md-5 align-self-end">
                                 <div class="d-flex justify-content-end">
-                                    <button class="mmbd-btn mmbd-btn-primary">
+                                    <button class="mmbd-btn mmbd-btn-primary" id="btnInterface">
                                         <img
                                             src="../assets/new-ui/images/equalizer.svg"
-                                            alt=""
+                                            alt="CRM Interface"
                                             class="img-responsive" />
                                         <strong>All Leads</strong>
                                         <span>(Interface)</span>
                                     </button>
-                                    <button class="mmbd-btn mmbd-btn-primary-outline ml-3">
+                                    <button class="mmbd-btn mmbd-btn-primary-outline ml-3" id="btnSalesFunnel">
                                         Sales Funnel
                                     </button>
                                 </div>
