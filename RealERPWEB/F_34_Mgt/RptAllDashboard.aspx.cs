@@ -159,7 +159,8 @@ namespace RealERPWEB.F_34_Mgt
             List<EclassSalCommon> custname = ds2.Tables[6].DataTableToList<EclassSalCommon>();
             List<EclassSalCommon> unitname = ds2.Tables[7].DataTableToList<EclassSalCommon>();
             List<EclassSalCommon> saleteam = ds2.Tables[8].DataTableToList<EclassSalCommon>();
-            var list = custname.Concat(unitname).Concat(saleteam).ToList();
+            List<EclassSalCommon> prjcoll = ds2.Tables[9].DataTableToList<EclassSalCommon>();
+            var list = custname.Concat(unitname).Concat(saleteam).ToList().Concat(prjcoll).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(list);
             var json2 = jsonSerialiser.Serialize(weeksal);
@@ -181,12 +182,14 @@ namespace RealERPWEB.F_34_Mgt
             List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
             List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
             List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();
+            List<data1> topprj = ds2.Tables[8].DataTableToList<data1>();
+            List<data1> topprjPay = ds2.Tables[9].DataTableToList<data1>();
             List<data1> topsupout = ds2.Tables[7].DataTableToList<data1>();
             List<data1> topsuppay = ds2.Tables[6].DataTableToList<data1>();
             List<data2> purmonth = ds2.Tables[3].DataTableToList<data2>();
             List<data2> curmonth = ds2.Tables[0].DataTableToList<data2>();
             var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
-            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList();
+            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList().Concat(topprj).ToList().Concat(topprjPay).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
 
             var pur_json = jsonSerialiser.Serialize(monthly);
@@ -273,12 +276,14 @@ namespace RealERPWEB.F_34_Mgt
             List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
             List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
             List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();
+            List<data1> topprj = ds2.Tables[8].DataTableToList<data1>();
+            List<data1> topprjPay = ds2.Tables[9].DataTableToList<data1>();
             List<data1> topsupout = ds2.Tables[7].DataTableToList<data1>();
             List<data1> topsuppay = ds2.Tables[6].DataTableToList<data1>();
             List<data2> purmonth = ds2.Tables[3].DataTableToList<data2>();
             List<data2> curmonth = ds2.Tables[0].DataTableToList<data2>();
             var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
-            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList();
+            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList().Concat(topprj).ToList().Concat(topprjPay).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
 
             var pur_json = jsonSerialiser.Serialize(monthly);
