@@ -248,9 +248,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2436,6 +2436,7 @@
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
+    <Content Include="F_21_MKT\CrmClientInfo02.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
@@ -4586,6 +4587,13 @@
     </Compile>
     <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
       <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\CrmClientInfo02.aspx.cs">
+      <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\CrmClientInfo02.aspx.designer.cs">
+      <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\CrmPolicy.aspx.cs">
       <DependentUpon>CrmPolicy.aspx</DependentUpon>

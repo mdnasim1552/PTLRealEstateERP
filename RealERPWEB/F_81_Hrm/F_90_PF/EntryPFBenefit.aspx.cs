@@ -143,8 +143,18 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             Session.Remove("tblprofund");
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
+
             string frmdate = "01-jan-" + ddlyear.SelectedValue.ToString();
             string todate = "31-Dec-" + ddlyear.SelectedValue.ToString();
+
+            string frmndate = this.txtFDate.Text;
+            string tondate = this.txttodate.Text;
+
+            if (frmndate != "" && tondate != "")
+            {
+                frmdate = this.txtFDate.Text;
+                todate = this.txttodate.Text;
+            }
 
             string CompanyName = ((this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string projectcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
