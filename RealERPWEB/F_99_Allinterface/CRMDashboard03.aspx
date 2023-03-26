@@ -3,16 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
      <script type="text/javascript">
-         //Method using jQuery
          $(document).ready(function () {
-             $("#btnInterface").click(function () {
-                 //specify your URL here..
-                 window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
-             });
-             $("#btnSalesFunnel").click(function () {
-                 window.location.href = '../F_21_Mkt/RptSalesFunnel';
-             });
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
          });
+         function pageLoaded() {
+             try {
+
+                 $("#btnInterface").click(function () {
+                     //specify your URL here..
+                     window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
+                 });
+                 $("#btnSalesFunnel").click(function () {
+                     window.location.href = '../F_21_Mkt/RptSalesFunnel';
+                 });
+
+             }
+             catch (e) {
+
+             }
+         };
      </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
