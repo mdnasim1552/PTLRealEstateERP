@@ -2067,7 +2067,7 @@
                                             <asp:TemplateField HeaderText="Done QTY">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvdelidoneqty" runat="server" Height="16px"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fdoneqty")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
