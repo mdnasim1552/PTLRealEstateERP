@@ -419,7 +419,7 @@
 
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
                                         <asp:GridView ID="gvActivities" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
-                                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvActivities_RowDataBound">
+                                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvActivities_RowDataBound" OnPageIndexChanging="gvActivities_PageIndexChanging">
 
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Job ID " Visible="false">

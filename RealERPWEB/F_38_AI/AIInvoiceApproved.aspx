@@ -109,7 +109,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="A/C Description">
                                         <ItemTemplate>
-
+                                             <asp:Label ID="lblactcode" runat="server" Width="400px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
                                             <asp:Label ID="lblactdesc" runat="server" Width="400px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Label>
                                         </ItemTemplate>
@@ -155,22 +156,22 @@
                         <div class="row p-1">
                             <div class="col-lg-2 col-md-2 col-sm-6">
                                 <asp:Label ID="Label4" runat="server">Ref./Cheq No/Slip No</asp:Label>
-                                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-6">
                                 <asp:Label ID="Label5" runat="server">Other ref.(if any)</asp:Label>
-                                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:TextBox ID="txtotherif" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                             <div class="col-lg-1 col-md-1 mt-3 p-1">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass=" btn btn-primary btn-sm mt20">Update</asp:LinkButton></li>
+                                    <asp:LinkButton ID="lnkbtnUpdate" OnClick="lnkbtnUpdate_Click" runat="server"  CssClass=" btn btn-primary btn-sm mt20">Update</asp:LinkButton></li>
                                 </div>
                             </div>
                         </div>
                         <div class="row  p-2">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <asp:Label ID="Label6" runat="server">Naration</asp:Label>
-                                <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtvounarr" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
                         </div>
                     </asp:Panel>

@@ -960,8 +960,8 @@ namespace RealERPWEB.F_22_Sal
 
                 bfvpsft = ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00);
                 bpowbpart = (12 + intratio) / 12;
-                double roundvalue = Math.Round(bfvpsft, 0);
-                bpvpsft = Math.Round(roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);                
+                //double roundvalue = Math.Round(bfvpsft, 0);
+                bpvpsft = Math.Round(bfvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);                
                 //bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
 
                 this.lblhiddenbpamt.Value = pamt.ToString("#,##0;(#,##0);");
@@ -1212,10 +1212,10 @@ namespace RealERPWEB.F_22_Sal
                 coffpowbpart = (12 + intratio) / 12;
                 //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
 
-                double roundvalue = Math.Round(cofffvpsft, 0);
+                //double roundvalue = Math.Round(cofffvpsft, 0);
                 
                 //double test = Math.Round(roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
-                coffpvpsft = Math.Round((roundvalue / (Math.Pow((1 + intratio / 4), (noofemi / 3)))), 0);
+                coffpvpsft = Math.Round((cofffvpsft / (Math.Pow((1 + intratio / 4), (noofemi / 3)))), 0);
                 //bpvpsft = Math.Round(Math.Round(bfvpsft) / (Math.Pow((1 + intratio / 4), (noofemi / 3))), 0);
 
                 //coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
