@@ -548,7 +548,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Customer(Month)',
+                        text: 'Top 5 Customer (Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -625,7 +625,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Project Revenue(Month)',
+                        text: 'Top 5 Project Revenue (Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -702,7 +702,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 SalesTeam(Month)',
+                        text: 'Top 5 SalesTeam (Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -763,6 +763,83 @@
                                 {
                                     "name": tdata[14]['sirdesc'],
                                     "y": tdata[14]['suamt'] / 100000,
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#Top5PrjColl').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Project Wise Collection (Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Amount in Lacs'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:0f}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:0f} Unit</b><br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Project Wise Collection",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": tdata[15]['sirdesc'],
+                                    "y": tdata[15]['suamt'],
+
+                                },
+                                {
+                                    "name": tdata[16]['sirdesc'],
+                                    "y": tdata[16]['suamt'],
+
+                                },
+                                {
+                                    "name": tdata[17]['sirdesc'],
+                                    "y": tdata[17]['suamt'],
+                                },
+                                {
+                                    "name": tdata[18]['sirdesc'],
+                                    "y": tdata[18]['suamt'],
+
+                                },
+                                {
+                                    "name": tdata[19]['sirdesc'],
+                                    "y": tdata[19]['suamt'],
 
                                 }
                             ]
@@ -1431,6 +1508,158 @@
 
 
 
+                });
+                $('#top5Prj').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Projects Materials (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Projects Materials",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[20]['sirdesc'],
+                                    "y": topdata[20]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[21]['sirdesc'],
+                                    "y": topdata[21]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[22]['sirdesc'],
+                                    "y": topdata[22]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[23]['sirdesc'],
+                                    "y": topdata[23]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[24]['sirdesc'],
+                                    "y": topdata[24]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#top5PrjPay').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Projects wise Payment (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Projects wise Payment",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[25]['sirdesc'],
+                                    "y": topdata[25]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[26]['sirdesc'],
+                                    "y": topdata[26]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[27]['sirdesc'],
+                                    "y": topdata[27]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[28]['sirdesc'],
+                                    "y": topdata[28]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[29]['sirdesc'],
+                                    "y": topdata[29]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
                 });
             }
             catch (e) {
@@ -2885,6 +3114,158 @@
 
 
                 });
+                $('#top5Prjcon').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Projects Labour (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Projects Labour",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[20]['sirdesc'],
+                                    "y": topdata[20]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[21]['sirdesc'],
+                                    "y": topdata[21]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[22]['sirdesc'],
+                                    "y": topdata[22]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[23]['sirdesc'],
+                                    "y": topdata[23]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[24]['sirdesc'],
+                                    "y": topdata[24]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
+                $('#top5PrjPaycon').highcharts({
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: 'Top 5 Projects wise Labour Payment (In Month)',
+                        style: {
+                            color: '#44994a',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'In Amount'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> <br/>'
+                    },
+
+                    "series": [
+                        {
+                            "name": "Top Projects Wise Labour Payment",
+                            "colorByPoint": true,
+                            "data": [
+                                {
+                                    "name": topdata[25]['sirdesc'],
+                                    "y": topdata[25]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[26]['sirdesc'],
+                                    "y": topdata[26]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[27]['sirdesc'],
+                                    "y": topdata[27]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[28]['sirdesc'],
+                                    "y": topdata[28]['itmamt'],
+
+                                },
+                                {
+                                    "name": topdata[29]['sirdesc'],
+                                    "y": topdata[29]['itmamt'],
+
+                                }
+                            ]
+                        }
+                    ]
+                });
             }
             catch (e) {
 
@@ -3461,7 +3842,7 @@
 
                                     <div class="col-md-6" style="border: 1px solid #D8D8D8">
 
-                                        <div id="Top5Teamweek" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                        <div id="Top5PrjColl" style="width: 580px; height: 250px; margin: 0 auto"></div>
                                     </div>
                                 </div>
 
@@ -3506,6 +3887,17 @@
                                     </div>
 
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5Prj" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5PrjPay" style="width: 580px; height: 250px; margin: 0 auto"></div>
+
+                                    </div>
+                                </div>
+
+                                
                             </asp:View>
                             <asp:View ID="Accounts" runat="server">
                                 <div class="row">
@@ -3634,6 +4026,15 @@
                                         <div id="Billbal" style="width: 580px; height: 250px; margin: 0 auto"></div>
                                     </div>
 
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5Prjcon" style="width: 580px; height: 250px; margin: 0 auto"></div>
+                                    </div>
+                                    <div class="col-md-6" style="border: 1px solid #D8D8D8">
+                                        <div id="top5PrjPaycon" style="width: 580px; height: 250px; margin: 0 auto"></div>
+
+                                    </div>
                                 </div>
                             </asp:View>
 
