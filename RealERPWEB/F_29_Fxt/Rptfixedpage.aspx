@@ -14,6 +14,15 @@
 
 
         $(document).ready(function () {
+
+            //document.getElementById('imgbtnFindProject').style.backgroundColor = 'yellow';
+           // $('#imgbtnFindProject').css('background-color', 'yellow');
+
+            if ($('#imgbtnFindProject').length > 0)
+            {
+                alert('I am in ');
+
+            }
             
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
            
@@ -34,14 +43,15 @@
             
         };
 
-        function onlyNumberKey(evt) {
 
-            // Only ASCII character in that range allowed
-            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-                return false;
-            return true;
-        }
+        //function onlyNumberKey(evt) {
+
+        //    // Only ASCII character in that range allowed
+        //    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        //    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        //        return false;
+        //    return true;
+        //}
 
 
   <%--      function Validate(e) {
@@ -123,7 +133,7 @@
                                    <span style="color:red;" id="lblErrorMsg"></span>
                                   <%--  <asp:Label ID="lblErrorMsg" runat="server" CssClass="lblTxt lblName">  <span style="color:red;"></span></asp:Label>--%>
                                             
-                                       <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn"  önclick="Myfunction()" value="Click">ok </asp:LinkButton>
+                                       <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn">ok </asp:LinkButton>
 
                               </div>
                               
