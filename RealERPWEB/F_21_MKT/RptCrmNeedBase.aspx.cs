@@ -23,8 +23,8 @@ namespace RealERPWEB.F_21_MKT
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
-
-                GridSummary();
+                SelectView();
+               
             }
 
 
@@ -33,6 +33,26 @@ namespace RealERPWEB.F_21_MKT
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+        private void SelectView()
+        {
+
+            string Type = this.Request.QueryString["Type"].ToString();
+
+            switch (Type)
+            {
+
+                case "Report":
+                    GridSummary();
+                    this.Multiview.ActiveViewIndex = 0;
+                    break;
+
+                case "RptStd":
+                    GetStdNeedBaseData();
+                    this.Multiview.ActiveViewIndex = 1;
+                    break;
+
+            }
         }
         private void GridSummary()
         {
@@ -72,15 +92,66 @@ namespace RealERPWEB.F_21_MKT
          
         }
 
+
+        private void GetStdNeedBaseData()
+        {
+            string comcod = this.GetComeCode();
+            string Empid = "%";
+            string Country = "%";
+            string Dist = "%";
+            string Zone = "%";
+            string PStat = "%";
+            string Area = "%";
+            string Block = "%";
+            string Pri = "%";
+            string Status = "%";
+            string Other = "9";
+            string TxtVal = "%";
+            string srchempid = "%";
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string mgt = "Management";
+
+
+
+
+            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE02", "GET_CLIENT_NEED_BASE_REPORT", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+                 Pri, Status, Other, TxtVal, todate, srchempid, mgt);
+
+
+            // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+            //Pri, Status, Other, TxtVal, todate, srchempid);
+
+
+            this.gvNedBseDetails.DataSource = null;
+            this.gvNedBseDetails.DataBind();
+
+
+            Session["tblsummData"] = ds3.Tables[0];
+            this.dataBindGV();
+
+        }
         private void dataBindGV()
         {
             DataTable dt = (DataTable)Session["tblsummData"];
             DataView dv1 = dt.Copy().DefaultView;
             dv1.RowFilter = ("active='True'");
 
-            this.gvSummary.DataSource = dv1.ToTable();
-            this.gvSummary.DataBind();
-            this.Excel_Bind();
+            string Type = this.Request.QueryString["Type"].ToString();
+
+            switch (Type)
+            {
+
+                case "Report":
+                    this.gvSummary.DataSource = dv1.ToTable();
+                    this.gvSummary.DataBind();
+                    this.Excel_Bind();
+                    break;
+                case "RptStd":
+                    this.gvNedBseDetails.DataSource = dv1.ToTable();
+                    this.gvNedBseDetails.DataBind();
+                    
+                    break;
+            }
 
         }
 
