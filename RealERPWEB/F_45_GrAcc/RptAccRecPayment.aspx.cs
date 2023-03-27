@@ -152,7 +152,10 @@ namespace RealERPWEB.F_45_GrAcc
                 case "PrjTrialBal":
                     this.GetProjectName();
                     this.lblGroup.Visible = false;
-                    this.chkListGroup.Visible = false;                    
+                    this.chkListGroup.Visible = false;
+                    this.txtDateFrom.Visible = false;
+                    this.lblDatefrom.Visible = false;
+
                     this.MultiView1.ActiveViewIndex = 9;
                     break;
             }
@@ -448,8 +451,8 @@ namespace RealERPWEB.F_45_GrAcc
             string comp1 = "";
             for (int i = 0; i < this.ddlComCode.Items.Count; i++)
                 comp1 += (this.ddlComCode.Items[i].Selected ? this.ddlComCode.Items[i].Value.ToString() : "");
-            string date1 = this.txtDateFrom.Text;
-           // string date2 = this.txtDateto.Text;
+            //string date1 = this.txtDateFrom.Text;
+            string date1 = this.txtDateto.Text;
             string grp1 = this.chkListGroup.SelectedValue;
            
             string grp1val = (grp1 == "1") ? "2" : (grp1 == "2") ? "4" : (grp1 == "3") ? "8" : "12";
@@ -1316,8 +1319,29 @@ namespace RealERPWEB.F_45_GrAcc
 
 
                 case "PrjTrialBal":
-                  
-                  
+
+                    //dv.RowFilter = ("grp1 like 'TD%' or grp1 like 'TC%'");
+                    //dt = dv.ToTable();
+                    //dt = dv.ToTable();
+
+                    //dv.RowFilter = ("grp1 <>'TD' and grp1 <>'TC'");
+                    //dt1 = dv.ToTable();
+                    //dt1 = dv.ToTable();
+
+                    //for (i = 3; i < this.gvPrjtrbal.Columns.Count; i++)
+                    //    this.gvPrjtrbal.Columns[i].Visible = false;
+                    //    j = 3;
+                    //for (i = 0; i < this.ddlComCode.Items.Count; i++)
+                    //{
+                    //    if (this.ddlComCode.Items[i].Selected)
+                    //    {
+                    //        this.gvPrjtrbal.Columns[j].Visible = true;
+                          
+                    //        j++;
+                    //    }
+                    //}
+
+
                     this.gvPrjtrbal.DataSource = dt1;
                     this.gvPrjtrbal.DataBind();
                     break;
@@ -2755,20 +2779,20 @@ namespace RealERPWEB.F_45_GrAcc
 
                 //if (e.Row.RowType != DataControlRowType.DataRow)
                 //    return;
-                string rescode1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode1")).ToString();
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
-                string Actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString(); ;
-                string Date1 = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyy");
-                string rescode = ((Label)e.Row.FindControl("lblgvCode")).Text;
-                if (ASTUtility.Left(rescode1, 2) == "51")
-                {
-                    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=PrjCol&pactcode=" + Actcode + "&Date1=" + Date1;
-                }
+                //string rescode1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode1")).ToString();
+                //HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
+                //string Actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString(); ;
+                //string Date1 = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyy");
+                //string rescode = ((Label)e.Row.FindControl("lblgvCode")).Text;
+                //if (ASTUtility.Left(rescode1, 2) == "51")
+                //{
+                //    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=PrjCol&pactcode=" + Actcode + "&Date1=" + Date1;
+                //}
 
-                else if (ASTUtility.Right((code), 3) != "000" && code != "000000000001" && code != "999999999999" && code != "000000000002")
-                {
-                    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=SpLedger&pactcode=" + Actcode + "&Date1=" + Date1 + "&rescode=" + rescode;
-                }
+                //else if (ASTUtility.Right((code), 3) != "000" && code != "000000000001" && code != "999999999999" && code != "000000000002")
+                //{
+                //    hlink1.NavigateUrl = "RptProjectCollBrkDown.aspx?Type=SpLedger&pactcode=" + Actcode + "&Date1=" + Date1 + "&rescode=" + rescode;
+                //}
 
 
 
@@ -2777,5 +2801,114 @@ namespace RealERPWEB.F_45_GrAcc
 
 
         }
+
+        protected void gvPrjtrbal_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+               
+                
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell1 = new TableCell();
+                cell1.Text = "";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell1.ColumnSpan = 1;
+                gvrow.Cells.Add(cell1);
+
+                TableCell cell8 = new TableCell();
+                cell8.Text = "";
+                cell8.HorizontalAlign = HorizontalAlign.Center;
+                cell8.ColumnSpan = 1;
+                gvrow.Cells.Add(cell8);
+
+                TableCell cell9 = new TableCell();
+                cell9.Text = "";
+                cell9.HorizontalAlign = HorizontalAlign.Center;
+                cell9.ColumnSpan = 1;
+                gvrow.Cells.Add(cell9);
+
+                
+
+                TableCell cell2 = new TableCell();
+
+                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                {
+                    if (this.ddlComCode.Items[i].Selected)
+                    {
+                        cell2.Text = this.ddlComCode.Items[0].Text.Trim();
+                        
+
+
+
+                        i++;
+                    }
+                }
+
+               
+
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 2;
+                gvrow.Cells.Add(cell2);
+
+
+
+                //TableCell cell3 = new TableCell();
+                //cell3.Text = "Dr.Amount";
+                //cell3.HorizontalAlign = HorizontalAlign.Center;
+                //cell3.ColumnSpan = 1;
+                //cell3.Font.Bold = true;
+                //gvrow.Cells.Add(cell3);
+
+
+                //TableCell cell4 = new TableCell();
+                //cell4.Text = "Cr. Amount";
+                //cell4.HorizontalAlign = HorizontalAlign.Center;
+                //cell4.ColumnSpan = 1;
+                //cell4.Font.Bold = true;
+                //gvrow.Cells.Add(cell4);
+
+
+
+
+                TableCell cell5 = new TableCell();
+
+                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                {
+                    if (this.ddlComCode.Items[i].Selected)
+                    {
+                        cell5.Text = this.ddlComCode.Items[1].Text.Trim();
+                        
+                       i++;
+                    }
+                }
+             
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
+
+                //TableCell cell6 = new TableCell();
+                //cell6.Text = "Dr.Amount";
+                //cell6.HorizontalAlign = HorizontalAlign.Center;
+                //cell6.ColumnSpan = 1;
+                //cell6.Font.Bold = true;
+                //gvrow.Cells.Add(cell6);
+
+                //TableCell cell7 = new TableCell();
+                //cell7.Text = "Cr.Amount";
+                //cell7.HorizontalAlign = HorizontalAlign.Center;
+                //cell7.ColumnSpan = 1;
+                //cell7.Font.Bold = true;
+                //gvrow.Cells.Add(cell7);
+
+
+
+
+                gvPrjtrbal.Controls[0].Controls.AddAt(0, gvrow);
+            }
+        }
+
     }
 }

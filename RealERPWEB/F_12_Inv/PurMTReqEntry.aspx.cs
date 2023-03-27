@@ -978,19 +978,21 @@ namespace RealERPWEB.F_12_Inv
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             string comcod = this.GetCompCode();
-            if (comcod == "3367")
-            {
-                this.grvacc.Columns[7].HeaderText = "Master Quantity";
-                this.grvacc.Columns[8].HeaderText = "Received Qty";
-                this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
-                this.grvacc.Columns[10].HeaderText = "Required Quantity";
-            }
+          
             switch (comcod)
             {
                 case "3370":
 
                     this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
+                    break;
+                case "3367":
+                    this.grvacc.Columns[7].HeaderText = "Master Quantity";
+                    this.grvacc.Columns[8].HeaderText = "Received Qty";
+                    this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
+                    this.grvacc.Columns[10].HeaderText = "Required Quantity";
+                    this.grvacc.Columns[11].Visible = true;
+                    this.grvacc.Columns[12].Visible = true;
                     break;
 
                 default:

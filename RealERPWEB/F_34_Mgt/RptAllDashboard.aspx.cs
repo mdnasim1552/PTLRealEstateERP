@@ -37,8 +37,9 @@ namespace RealERPWEB.F_34_Mgt
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 string type = this.Request.QueryString["Type"].ToString().Trim();
                 this.txtCurTransDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "ExRelz") ? "Export & Realization Dashboard" :
-                    (type == "Purchase") ? "Purchase Dashboard" : (type == "Accounts") ? "Accounts Dashboard" : (type == "Production" || type == "ProductionRMG") ? "Production Dashboard" : "";
+                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Sales") ? "Sales Dashboard" :
+                    (type == "Purchase") ? "Purchase Dashboard" : (type == "Accounts") ? "Accounts Dashboard" : (type == "Construction") ? "Construction Dashboard":
+                    (type == "SubConBillaPay") ? "Sub Constructor Pay Dashboard" : (type == "Constructor") ? "Constructor Dashboard" : "";
 
                 // this.hdntype.Value = this.Request.QueryString["Type"];
                 //this.SelectView();
@@ -116,6 +117,10 @@ namespace RealERPWEB.F_34_Mgt
                 case "SubConBillaPay":
                     GetConBillAndPay();
                     this.MultiView1.ActiveViewIndex = 4;
+                    break; 
+                case "Constructor":  //Shovon
+                    GetConstructorData();
+                    this.MultiView1.ActiveViewIndex = 5;
                     break;
 
             }
@@ -154,7 +159,8 @@ namespace RealERPWEB.F_34_Mgt
             List<EclassSalCommon> custname = ds2.Tables[6].DataTableToList<EclassSalCommon>();
             List<EclassSalCommon> unitname = ds2.Tables[7].DataTableToList<EclassSalCommon>();
             List<EclassSalCommon> saleteam = ds2.Tables[8].DataTableToList<EclassSalCommon>();
-            var list = custname.Concat(unitname).Concat(saleteam).ToList();
+            List<EclassSalCommon> prjcoll = ds2.Tables[9].DataTableToList<EclassSalCommon>();
+            var list = custname.Concat(unitname).Concat(saleteam).ToList().Concat(prjcoll).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
             var json = jsonSerialiser.Serialize(list);
             var json2 = jsonSerialiser.Serialize(weeksal);
@@ -176,12 +182,14 @@ namespace RealERPWEB.F_34_Mgt
             List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
             List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
             List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();
+            List<data1> topprj = ds2.Tables[8].DataTableToList<data1>();
+            List<data1> topprjPay = ds2.Tables[9].DataTableToList<data1>();
             List<data1> topsupout = ds2.Tables[7].DataTableToList<data1>();
             List<data1> topsuppay = ds2.Tables[6].DataTableToList<data1>();
             List<data2> purmonth = ds2.Tables[3].DataTableToList<data2>();
             List<data2> curmonth = ds2.Tables[0].DataTableToList<data2>();
             var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
-            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList();
+            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList().Concat(topprj).ToList().Concat(topprjPay).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
 
             var pur_json = jsonSerialiser.Serialize(monthly);
@@ -257,7 +265,33 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        public void GetConstructorData()
+        {
+            string comcod = this.GetCompCode();
+            string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
+                                                                                                        // string month = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("MMM");
+            DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "CONPAYANALYSISGRAPH", dates, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
+            List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
+            List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();
+            List<data1> topprj = ds2.Tables[8].DataTableToList<data1>();
+            List<data1> topprjPay = ds2.Tables[9].DataTableToList<data1>();
+            List<data1> topsupout = ds2.Tables[7].DataTableToList<data1>();
+            List<data1> topsuppay = ds2.Tables[6].DataTableToList<data1>();
+            List<data2> purmonth = ds2.Tables[3].DataTableToList<data2>();
+            List<data2> curmonth = ds2.Tables[0].DataTableToList<data2>();
+            var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
+            var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList().Concat(topprj).ToList().Concat(topprjPay).ToList();
+            var jsonSerialiser = new JavaScriptSerializer();
 
+            var pur_json = jsonSerialiser.Serialize(monthly);
+            var pur_json1 = jsonSerialiser.Serialize(top5data);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteConstructorGraph('" + pur_json + "','" + pur_json1 + "')", true);
+
+        }
         protected void OkBtn_Click(object sender, EventArgs e)
         {
             this.SelectView();

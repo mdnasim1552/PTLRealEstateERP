@@ -181,5 +181,29 @@ namespace RealEntity.C_21_Mkt
             public IPSetupInf() { }
         }
 
+        [Serializable]
+        public class EClassProjectUnit 
+        {
+
+            public string usircode { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public double uamt { get; set; }
+            public double pamt { get; set; }
+            public double othamt { get; set; }
+            public double tuamt { get; set; }
+            public EClassProjectUnit()
+            {
+
+
+
+            }
+
+        }
+      
+           
+
+
+
     }
 }

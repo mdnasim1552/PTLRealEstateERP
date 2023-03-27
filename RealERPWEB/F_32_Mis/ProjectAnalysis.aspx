@@ -239,7 +239,7 @@
                                 <asp:TemplateField HeaderText="Sales </br>(%)</br> from </br>S.Tar.">
                                     <ItemTemplate>
                                         <asp:Label ID="salperstg" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salperstg")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="30px"></asp:Label>
+                                            Width="45px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
