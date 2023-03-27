@@ -529,5 +529,11 @@ namespace RealERPWEB.F_38_AI
             }
 
         }
+
+        protected void gvActivities_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvActivities.PageIndex = e.NewPageIndex;
+            this.data_Bind();
+        }
     }
 }

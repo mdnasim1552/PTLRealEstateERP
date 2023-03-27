@@ -134,6 +134,8 @@ namespace RealERPWEB.F_02_Fea
                 this.GetAgeing();
 
                 this.GetData();
+                this.GetSalesAnalysis();
+
                 this.lblsaleprice.Visible = true;
                 this.lblsalecore.Visible = true;
                 //this.ProjectCDate();
@@ -147,12 +149,9 @@ namespace RealERPWEB.F_02_Fea
             this.gvProjectInfo.DataBind();
             this.gvAgeing.DataSource = null;
             this.gvAgeing.DataBind();
-            // this.gvFeaPrjC.DataSource = null;
-            //this.gvFeaPrjC.DataBind();
-            //this.gvFeaLOwner.DataSource = null;
-            // this.gvFeaLOwner.DataBind();
-            // this.gvFeaPrjRep.DataSource = null;
-            // this.gvFeaPrjRep.DataBind();
+
+            this.gvsalAnalysis.DataSource = null;
+            this.gvsalAnalysis.DataBind();          
             this.ddlProjectName.Visible = true;
             this.PanelSelName.Visible = false;
 
@@ -249,11 +248,34 @@ namespace RealERPWEB.F_02_Fea
             // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
             DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "FEAPRANDPRJCT05", pactcode, fdate, "", "", "", "", "", "", "");
             Session["tblfeaprj"] = ds3.Tables[0];
+           
+
             this.Data_Bind();
         }
 
+        private void GetSalesAnalysis()
+        {
+
+            Session.Remove("tblSalAnalysis");
+            string comcod = this.GetComCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string fdate = this.txtCurDate.Text;            
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "FEAPRANDPRJCT05", pactcode, fdate, "", "", "", "", "", "", "");
+          
+            ViewState["tblSalAnalysis"] = ds3.Tables[1];
+            this.Data_Bind2();
+        }
 
 
+        private void Data_Bind2()
+        {
+            DataTable dt = (DataTable)ViewState["tblSalAnalysis"];
+
+
+            this.gvsalAnalysis.DataSource = dt;
+            this.gvsalAnalysis.DataBind();
+
+        }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
@@ -1165,6 +1187,9 @@ namespace RealERPWEB.F_02_Fea
 
 
 
+
+
+
                     default:
 
                         break;
@@ -1428,6 +1453,268 @@ namespace RealERPWEB.F_02_Fea
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Verifies that the control is rendered */
+        }
+
+        protected void btnSalAnalysisCal_Click(object sender, EventArgs e)
+        {
+
+           // this.SaveValue();
+
+            DataTable dt = ((DataTable)Session["tblfeaprj"]);
+            DataTable dt2 = ((DataTable)Session["tblagin"]);
+            DataTable dt3 = ((DataTable)ViewState["tblSalAnalysis"]);
+
+
+
+
+            double vality = dt2.Select("grp='A'").Length > 0 ? Convert.ToDouble(dt2.Select("grp='A'")[0]["aginday"]) : 0.00;
+            double aging = dt2.Select("grp='B'").Length > 0 ? Convert.ToDouble(dt2.Select("grp='B'")[0]["aginday"]) : 0.00;
+
+            //        double mgc = dt.Select("prgcod='02004'").Length > 0 ? Convert.ToDouble(dt.Select("prgcod='02004'")[0]["prgdesc1"]) * .01 : 0.00;
+
+            //string agingday = dt2.Rows.Count == 0 ? "" : dt2.Rows[0]["aginday"].ToString();
+
+
+
+            DataTable dt1 = new DataTable();
+            DataView dv1 = new DataView();
+            double avgaptsize = 0.00, depshare = 0.00;
+            string prgcod = "";
+            double comitedval = 0.00, actualsalvalue = 0.00;
+            double tarpurAndB = 0.00, todaypurAndB = 0.00, targetfixed = 0.00, todayfixed = 0.00, targervariable = 0.00,
+
+                todayvariable = 0.00, tarbeftax1 = 0.00, todaybeftax1 = 0.00, tarbeftax = 0.00,
+             todaybeftax = 0.00, tartaxrat = 0.00, todaytaxrat = 0.00, tarnetprofit = 0.00, todaynetprofit=0.00,
+             tarpercntange=0.00, todaypercntange=0.00,  tartprofit=0.00,
+             todayprofit =0.00, tarnetprofitaftertax=0.00, todaynetprofitaftertax=0.00;
+
+
+          
+
+
+
+            //TimeSpan tday;
+            //double NrOfDays = 0.00;
+            //double cost = 0.00;
+            for (int i = 0; i < this.gvsalAnalysis.Rows.Count; i++)
+            {
+                string Gcode = ((Label)this.gvsalAnalysis.Rows[i].FindControl("lblgvItmCode1")).Text.Trim();
+
+                // double txtestcost = ASTUtility.StrPosOrNagative(((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtestcost")).Text.Trim());
+                double targetsales = ASTUtility.StrPosOrNagative(((Label)this.gvsalAnalysis.Rows[i].FindControl("lblTargetSales")).Text.Trim());
+                double targetpercnt = ASTUtility.StrPosOrNagative(((Label)this.gvsalAnalysis.Rows[i].FindControl("lblSalAnapercnt")).Text.Trim());
+
+                double todaysal = ASTUtility.StrPosOrNagative(((Label)this.gvsalAnalysis.Rows[i].FindControl("lbltodaysal")).Text.Trim());
+                //string paymentdate = Convert.ToDateTime(((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                // string paymentdate = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvDate")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvDate")).Text.Trim();
+
+
+
+
+
+                switch (Gcode)
+                {
+                    case "11002":
+
+                         tarpurAndB = dt.Select("estgcod='03000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='03000'")[0]["estcost"]) : 0.00;
+                         todaypurAndB = dt.Select("estgcod='03000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='03000'")[0]["actual"]) : 0.00;
+
+                        dt3.Select("estgcod='11002'")[0]["estcost"] = tarpurAndB;
+                        dt3.Select("estgcod='11002'")[0]["actual"] = todaypurAndB;
+
+                        break;
+
+
+
+                    case "11003":
+
+                        comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+
+                        actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                        dt3.Select("estgcod='11003'")[0]["estcost"] = comitedval - tarpurAndB;//02005 change
+                        dt3.Select("estgcod='11003'")[0]["tarpercntange"] = actualsalvalue - todaypurAndB;
+                        dt3.Select("estgcod='11003'")[0]["actual"] = actualsalvalue - todaypurAndB;
+
+
+                        // dt.Select("estgcod='02000'")[0]["balamt"] = cost - actual;
+
+                        break;
+
+
+
+                    case "11004":
+
+                        targetfixed = dt.Select("estgcod='04000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='04000'")[0]["estcost"]) : 0.00;
+                        todayfixed = dt.Select("estgcod='04000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='04000'")[0]["actual"]) : 0.00;
+
+                        targervariable = dt.Select("estgcod='05000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05000'")[0]["estcost"]) : 0.00;
+                        todayvariable = dt.Select("estgcod='05000'").Length > 0 ? Convert.ToDouble(dt.Select("estgcod='05000'")[0]["actual"]) : 0.00;
+
+
+                        dt3.Select("estgcod='11004'")[0]["estcost"] = targetfixed+ targervariable;//02005 change
+                       dt3.Select("estgcod='11003'")[0]["balance"] = targetfixed + targervariable-(todayfixed + todayvariable);
+                        dt3.Select("estgcod='11004'")[0]["actual"] = todayfixed+ todayvariable;
+
+                        //Percent findout 
+
+                        double tarpercntcogs = comitedval - tarpurAndB;
+                        double todaypercntcogs = actualsalvalue - todaypurAndB;
+
+
+                        tarpercntange = (tarpercntcogs / tarpurAndB) / .01;
+                        todaypercntange = (todaypercntcogs / todaypurAndB) / .01;
+
+
+
+
+                        dt3.Select("estgcod='11003'")[0]["tarpercntange"] = tarpercntange;
+                        dt3.Select("estgcod='11003'")[0]["tdaypercntange"] = todaypercntange;
+
+
+
+
+
+
+
+                        break;
+
+                    case "11005":
+
+                         tarbeftax = comitedval - tarpurAndB;
+                         todaybeftax = actualsalvalue - todaypurAndB;
+
+                         tarbeftax1 = targetfixed + targervariable;
+                         todaybeftax1 = todayfixed + todayvariable;
+
+
+
+                        dt3.Select("estgcod='11005'")[0]["estcost"] = tarbeftax - tarbeftax1;
+                        dt3.Select("estgcod='11005'")[0]["actual"] = todaybeftax - todaybeftax1;
+
+
+                        //Percent findout 
+
+                        double tarfixperct = targetfixed + targervariable;
+                        double todayfixperct = todayfixed + todayvariable;
+                        
+
+
+                        double tarfixperct1 = (tarfixperct / tarpurAndB) / .01;
+                        double todayfixperct1 = (todayfixperct / todaypurAndB) / .01;
+
+
+
+
+                        dt3.Select("estgcod='11004'")[0]["tarpercntange"] = tarfixperct1;
+                        dt3.Select("estgcod='11004'")[0]["tdaypercntange"] = todayfixperct1;
+
+
+
+                        break;
+
+
+                    case "11006":
+
+                         tartaxrat = ((tarbeftax - tarbeftax1) *30)*.01;
+                         todaytaxrat = ((todaybeftax - todaybeftax1)) *30 * .01;
+
+                        //double tarbeftax1 = targetfixed + targervariable;
+                        //double todaybeftax1 = todayfixed + todayvariable;
+
+                        dt3.Select("estgcod='11006'")[0]["estcost"] = tartaxrat;
+                        dt3.Select("estgcod='11006'")[0]["actual"] = todaytaxrat;
+
+
+                        //Percent findout 
+
+                        double tarnetprofitperct = tarbeftax - tarbeftax1;
+                        double todaynetprofitperct = todaybeftax - todaybeftax1;
+
+
+
+                        double tarnetprofitperct1 = (tarnetprofitperct / tarpurAndB) / .01;
+                        double todaynetprofitperct1 = (todaynetprofitperct / todaypurAndB) / .01;
+
+
+
+
+                        dt3.Select("estgcod='11005'")[0]["tarpercntange"] = tarnetprofitperct1;
+                        dt3.Select("estgcod='11005'")[0]["tdaypercntange"] = todaynetprofitperct1;
+
+                        break;
+
+                    case "11010":
+
+                         tartprofit = tarbeftax - tarbeftax1;
+                         todayprofit = todaybeftax - todaybeftax1;
+
+                      
+
+                        //tarnetprofit = (tarbeftax - tarbeftax1) * 30 * .01;
+                        //todaynetprofit = (todaybeftax - todaybeftax1) * 30 * .01;
+
+                        //double tarbeftax1 = targetfixed + targervariable;
+                        //double todaybeftax1 = todayfixed + todayvariable;
+
+                        dt3.Select("estgcod='11010'")[0]["estcost"] = tartprofit- tartaxrat;
+                        dt3.Select("estgcod='11010'")[0]["actual"] = todayprofit - todaytaxrat;
+
+                         tarnetprofitaftertax = ((tartprofit - tartaxrat) / tarpurAndB) / .01;
+                         todaynetprofitaftertax = ((todayprofit - todaytaxrat) / todaypurAndB) / .01;
+                       
+                        dt3.Select("estgcod='11010'")[0]["tarpercntange"] = tarnetprofitaftertax;
+                        dt3.Select("estgcod='11010'")[0]["tdaypercntange"] = todaynetprofitaftertax;
+
+
+                        break;
+            
+                    default:
+
+                        break;
+                }
+
+            }
+
+            //Session["tblprogeninfo"] = dt;
+
+           // DataTable dt3 = ((DataTable)ViewState["tblSalAnalysis"]);
+            ViewState["tblSalAnalysis"] = dt3;
+
+            this.Data_Bind2();
+        }
+
+        protected void BtnSalAnaUpdate_Click(object sender, EventArgs e)
+        {
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            DataTable dt3 = (DataTable)ViewState["tblSalAnalysis"];
+            string comcod = this.GetComCode();
+            string prjcode = this.ddlProjectName.SelectedValue.ToString();
+            for (int i = 0; i < dt3.Rows.Count; i++)
+            {
+                string gcod = dt3.Rows[i]["estgcod"].ToString();
+                string estcost = dt3.Rows[i]["estcost"].ToString();
+                string actual = dt3.Rows[i]["actual"].ToString();
+                string tarpercntange = dt3.Rows[i]["tarpercntange"].ToString();
+                string tdaypercntange = dt3.Rows[i]["tdaypercntange"].ToString();
+               
+               
+                 
+                bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATESALESANALYSIS",
+                    prjcode, gcod, estcost, actual, tarpercntange, tdaypercntange, "", "", "", "", "", "", "", "", "");
+
+
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
+                    return;
+                }
+            }
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+
         }
     }
 }

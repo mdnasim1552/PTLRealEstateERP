@@ -268,7 +268,8 @@ namespace RealERPWEB.F_17_Acc
             this.dgv2.DataBind();
             this.txtcurrentvou.Text = "";
             this.txtCurrntlast6.Text = "";
-            this.lnkFinalUpdate.Enabled = true;
+            //this.lnkFinalUpdate.Enabled = true;
+            ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = true;
             // this.Panel1.Visible = false;
         }
 
@@ -413,6 +414,22 @@ namespace RealERPWEB.F_17_Acc
 
             
         }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            // Create an event handler for the master page's contentCallEvent event
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
         protected void Session_tblacc_Update()
         {
 
@@ -508,12 +525,14 @@ namespace RealERPWEB.F_17_Acc
             bool dcon = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(voudat));
             if (!dcon)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Issue Date is equal or less Current Date');", true);
+               // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Issue Date is equal or less Current Date');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Issue Date is equal or less Current Date');", true);
                 return;
             }
             if (Math.Round(accData.ToDramt) != Math.Round(accData.ToCramt))
             {
-                this.lblmsg.Text = "Debit Amount must be Equal Credit Amount";
+               // this.lblmsg.Text = "Debit Amount must be Equal Credit Amount";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Debit Amount must be Equal Credit Amount');", true);
                 return;
             }
 
@@ -584,9 +603,11 @@ namespace RealERPWEB.F_17_Acc
                         memono2 = memono;
                     }
                 }
-                this.lblmsg.Text = "Update Successfully.";
+            
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successfully');", true);
                 //this.lblmsg.Text=@"<SCRIPT language= "JavaScript"  > window.open('RptViewer.aspx');</script>";
-                this.lnkFinalUpdate.Enabled = false;
+                //this.lnkFinalUpdate.Enabled = false;
+                ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = true;
                 this.txtcurrentvou.Enabled = false;
                 this.txtCurrntlast6.Enabled = false;
                 if (ConstantInfo.LogStatus == true)
@@ -600,13 +621,21 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                this.lblmsg.Text = "Error:" + ex.Message;
+                //this.lblmsg.Text = "Error:" + ex.Message;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+              
             }
 
         }
 
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
 
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
+        }
 
 
 

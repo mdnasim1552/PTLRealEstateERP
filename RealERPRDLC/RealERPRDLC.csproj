@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -45,15 +45,15 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>bin\Debug\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -164,6 +164,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+ChequeDepositPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+EClassRptIssueVsPaymentSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAdvancedAgainstLoan.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptAssosiationfee.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptConOverAllPSummaryDetails.datasource" />
@@ -265,6 +266,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassYearlyColletionDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+PaymentStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSales_03+ProjectWiseClientStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_24_CC.EClassAddwork+CancellationAddWork1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktMatIssue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />
@@ -394,6 +396,7 @@
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccCashbook1Intech.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAdvancedAssosiationfee.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeCityBankCPDL.rdlc" />
@@ -1129,6 +1132,7 @@
     <EmbeddedResource Include="R_23_CR\RptWeeklyCollection.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptYearlyCollectionDetails.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptYearlyCollectionForecasting.rdlc" />
+    <EmbeddedResource Include="R_24_CC\CancellationAddWork.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptAddTopSheet.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptAddWorkSuvastu.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptCastingLeltter.rdlc" />
@@ -1303,6 +1307,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlayExcel.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPayAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
@@ -1319,7 +1324,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusBridge1.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetAcme.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTIwithDiff.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetGreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetPebBank.rdlc" />
@@ -1514,9 +1519,6 @@
       <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
       <Name>RealERPLIB</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

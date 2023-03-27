@@ -132,6 +132,42 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
+        /// lblFDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFDate;
+
+        /// <summary>
+        /// txtFDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFDate;
+
+        /// <summary>
+        /// lblToDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblToDate;
+
+        /// <summary>
+        /// txttodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttodate;
+
+        /// <summary>
         /// lblPage control.
         /// </summary>
         /// <remarks>

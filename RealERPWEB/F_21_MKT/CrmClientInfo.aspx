@@ -535,7 +535,7 @@
 
 
                     gcod = $(arrgschcodl[i]).text();
-                    var number, numberlq, numbercom;
+                    var number, numberlq, numbercom, numberprj;
                     switch (gcod) {
 
 
@@ -543,6 +543,14 @@
                         case '810100101007':
                             numbercom = i;
                             break;
+
+                        //Project
+                        case '810100101003':
+                            numberprj = i;
+                            break;
+
+
+                            
 
                         //Last Followup
                         case '810100101020':
@@ -608,6 +616,22 @@
 
 
                 });
+
+
+                var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberprj;
+                $(ddlcompany).change(function () {
+
+                    var company = $('#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom).val();
+                    var pactcode = $(this).val();  
+                    funCompanyProjectUnit(company, pactcode);
+
+
+                });
+
+
+
+
+
 
                 //Lead Reason
 
@@ -697,7 +721,7 @@
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
-                    if (comcod == "3354") {
+                    if (comcod == "3354" ||comcod=="3364") {
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
@@ -746,23 +770,255 @@
 
                 }
 
-                $('#ChkBoxLstStatus input[type=checkbox]').click(function () {
 
-                   
 
-                    $('#ChkBoxLstStatus >input').each(function (index, item) {
 
-                    
-                        //alert("test");
+
+                $('#ChkBoxLstFollow input[type=checkbox]').click(function () {
+
+
+                    $('#ChkBoxLstFollow >input').each(function (index, item) {
+
+
+
+
                         if ($(item).is(':checked')) {
-                            alert($(item).val());
+
+
+                            $('#hdnwinstatus').text($(item).val())
+
+                            switch (comcod) {
+                                case 3101:
+                                    //case 3354:// Edison   
+
+
+                                    if ($(item).val() == "9601050") {
+
+                                        $('#divsold').show();
+                                    }
+                                    else {
+                                        $('#divsold').hide();
+
+
+                                    }
+
+                                    break;
+
+                                default:
+                                    break;
 
 
 
-                            <%--switch (comcod) {
+                            }
+
+
+                        }
+                        else {
+
+
+
+                        }
+
+
+
+
+
+
+                    });
+                });
+
+
+                //Sold Info
+                var ddlsoldProject01 = '#ContentPlaceHolder1_rpsold_ddlsoldProject_0';
+                var ddlsoldProject02 = '#ContentPlaceHolder1_rpsold_ddlsoldProject_1';
+                var ddlsoldProject03 = '#ContentPlaceHolder1_rpsold_ddlsoldProject_2';
+                var id;
+                $(ddlsoldProject01).change(function () {
+
+                    id = 0;
+                    var pactcode = $('' + ddlsoldProject01 + ' option:selected').val();
+
+                    //  var pactcode = $('#ddlsoldProject option:selected').val();                    
+                    funProjectUnit(comcod, pactcode, id);
+
+                });
+
+                $(ddlsoldProject02).change(function () {
+
+                    id = 1;
+                    var pactcode = $('' + ddlsoldProject02 + ' option:selected').val();
+
+                    //  var pactcode = $('#ddlsoldProject option:selected').val();                    
+                    funProjectUnit(comcod, pactcode, id);
+
+                });
+
+
+                $(ddlsoldProject03).change(function () {
+
+                    id = 2;
+                    var pactcode = $('' + ddlsoldProject03 + ' option:selected').val();
+
+                    //  var pactcode = $('#ddlsoldProject option:selected').val();                    
+                    funProjectUnit(comcod, pactcode, id);
+
+                });
+
+                var flatcost01 = '#ContentPlaceHolder1_rpsold_txtflatcost_0';
+                var utility01 = '#ContentPlaceHolder1_rpsold_txtUtility_0';
+                var pamt01 = '#ContentPlaceHolder1_rpsold_txtpamt_0';
+                var toamt01 = '#ContentPlaceHolder1_rpsold_txtgrandTotal_0';
+                
+                $(flatcost01).change(function () {
+
+                    var flatcost = $(flatcost01).val().length==0?0: parseFloat($(flatcost01).val());
+                    var utility = $(utility01).val().length == 0 ? 0 : parseFloat($(utility01).val());
+                    var pamt = $(pamt01).val().length == 0 ? 0 :parseFloat($(pamt01).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt01).val(tamt.toString());
+
+                });
+
+
+                $(utility01).change(function () {
+
+                    var flatcost = $(flatcost01).val().length == 0 ? 0 : parseFloat($(flatcost01).val());
+                    var utility = $(utility01).val().length == 0 ? 0 : parseFloat($(utility01).val());
+                    var pamt = $(pamt01).val().length == 0 ? 0 : parseFloat($(pamt01).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt01).val(tamt.toString());
+
+                });
+
+
+
+                $(pamt01).change(function () {
+
+                    var flatcost = $(flatcost01).val().length == 0 ? 0 : parseFloat($(flatcost01).val());
+                    var utility = $(utility01).val().length == 0 ? 0 : parseFloat($(utility01).val());
+                    var pamt = $(pamt01).val().length == 0 ? 0 : parseFloat($(pamt01).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt01).val(tamt.toString());
+
+                });
+
+
+
+                var flatcost02 = '#ContentPlaceHolder1_rpsold_txtflatcost_1';
+                var utility02 = '#ContentPlaceHolder1_rpsold_txtUtility_1';
+                var pamt02 = '#ContentPlaceHolder1_rpsold_txtpamt_1';
+                var toamt02 = '#ContentPlaceHolder1_rpsold_txtgrandTotal_1';
+
+                $(flatcost02).change(function () {
+
+                    var flatcost = $(flatcost02).val().length == 0 ? 0 : parseFloat($(flatcost02).val());
+                    var utility = $(utility02).val().length == 0 ? 0 : parseFloat($(utility02).val());
+                    var pamt = $(pamt02).val().length == 0 ? 0 : parseFloat($(pamt02).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt02).val(tamt.toString());
+
+                });
+
+
+                $(utility02).change(function () {
+
+                    var flatcost = $(flatcost02).val().length == 0 ? 0 : parseFloat($(flatcost02).val());
+                    var utility = $(utility02).val().length == 0 ? 0 : parseFloat($(utility02).val());
+                    var pamt = $(pamt02).val().length == 0 ? 0 : parseFloat($(pamt02).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt02).val(tamt.toString());
+
+                });
+
+
+
+                $(pamt02).change(function () {
+
+                    var flatcost = $(flatcost02).val().length == 0 ? 0 : parseFloat($(flatcost02).val());
+                    var utility = $(utility02).val().length == 0 ? 0 : parseFloat($(utility02).val());
+                    var pamt = $(pamt02).val().length == 0 ? 0 : parseFloat($(pamt02).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt02).val(tamt.toString());
+
+                });
+
+
+                var flatcost03 = '#ContentPlaceHolder1_rpsold_txtflatcost_2';
+                var utility03 = '#ContentPlaceHolder1_rpsold_txtUtility_2';
+                var pamt03 = '#ContentPlaceHolder1_rpsold_txtpamt_2';
+                var toamt03 = '#ContentPlaceHolder1_rpsold_txtgrandTotal_2';
+
+                $(flatcost03).change(function () {
+
+                    var flatcost = $(flatcost03).val().length == 0 ? 0 : parseFloat($(flatcost03).val());
+                    var utility = $(utility03).val().length == 0 ? 0 : parseFloat($(utility03).val());
+                    var pamt = $(pamt03).val().length == 0 ? 0 : parseFloat($(pamt03).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt03).val(tamt.toString());
+
+                });
+
+
+                $(utility03).change(function () {
+
+                    var flatcost = $(flatcost03).val().length == 0 ? 0 : parseFloat($(flatcost03).val());
+                    var utility = $(utility03).val().length == 0 ? 0 : parseFloat($(utility03).val());
+                    var pamt = $(pamt03).val().length == 0 ? 0 : parseFloat($(pamt03).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt03).val(tamt.toString());
+
+                });
+
+
+
+                $(pamt03).change(function () {
+
+                    var flatcost = $(flatcost03).val().length == 0 ? 0 : parseFloat($(flatcost03).val());
+                    var utility = $(utility03).val().length == 0 ? 0 : parseFloat($(utility03).val());
+                    var pamt = $(pamt03).val().length == 0 ? 0 : parseFloat($(pamt03).val());
+                    var tamt = flatcost + utility + pamt;
+                    $(toamt03).val(tamt.toString());
+
+                });
+
+
+
+
+                
+                
+
+
+
+
+
+
+                $('#lbtnAddMore').click(function () {
+
+                    alert("add More");
+
+
+                });
+
+
+             <%-- $('#ChkBoxLstStatus input[type=checkbox]').click(function ()
+                {
+                 
+
+                    $('#ChkBoxLstStatus >input').each(function (index, item)
+                    {
+
+                        alert("test");
+
+                       
+                        if ($(item).is(':checked')) {
+                           
+
+
+
+                            switch (comcod) {
                                 case 3101:
                                 case 3354:// Edison
-                                    alert("test");
+                                    alert($(item).val());
                                     var empid =<%=this.GetEmpID()%>;
                                     var proscod = $('#<%=this.lblproscod.ClientID%>').val();
 
@@ -797,7 +1053,7 @@
 
 
 
-                            }--%>
+                            }
 
 
                         }
@@ -813,7 +1069,7 @@
 
 
                     });
-                });
+                });--%>
 
 
 
@@ -853,7 +1109,7 @@
 
             catch (e) {
 
-                //  alert(e.message);
+
             }
 
         }
@@ -872,9 +1128,9 @@
                     case 3354://Edison Real Estate                 
 
                         $('#<%=this.lnkBtnDaypassed.ClientID%>').hide();
-                            $('#<%=this.lnkBtnComments.ClientID%>').hide();
-                            $('#<%=this.lnkBtnFreezing.ClientID%>').hide();
-                            $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
+                        $('#<%=this.lnkBtnComments.ClientID%>').hide();
+                        $('#<%=this.lnkBtnFreezing.ClientID%>').hide();
+                        $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
 
 
                         break;
@@ -1014,8 +1270,15 @@
 
         function openModaldis() {
 
-            $('#mdiscussion').modal('toggle');
+            //  $('#mdiscussion').modal('toggle');
             //  $('#lbtntfollowup').click();
+
+            $('#mdiscussion').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+
+
         }
 
 
@@ -1043,24 +1306,24 @@
                     type: "POST",
                     url: "CrmClientInfo.aspx/ShowNotifications",
                     data: '{comcod:"' + comcod + '",  empid: "' + empid + '", rtype:"' + rtype + '", fdate: "' + $('#<%=this.txtfrmdate.ClientID%>').val() + '", tdate: "' + $('#<%=this.txttodate.ClientID%>').val() + '"}',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
 
 
-                        success: function (response) {
-                            //console.log(JSON.parse(response.d));
-                            var data = response.d;
-                            CreateTable(data);
-                            //console.log(data['account']);
+                    success: function (response) {
+                        //console.log(JSON.parse(response.d));
+                        var data = response.d;
+                        CreateTable(data);
+                        //console.log(data['account']);
 
-                        },
+                    },
 
 
-                        failure: function (response) {
-                            //  alert(response);
-                            alert("failure");
-                        }
-                    });
+                    failure: function (response) {
+                        //  alert(response);
+                        alert("failure");
+                    }
+                });
 
             }
 
@@ -1360,7 +1623,7 @@
 
         }
 
-
+        // Company Project
         function funCompanyProject(comcod, company) {
             try {
                 $.ajax({
@@ -1438,7 +1701,180 @@
 
 
         }
+         // Company Project Unit
 
+        function funCompanyProjectUnit(company, pactcode) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetProjectUnit",
+                    data: '{comcod:"' + company + '", pactcode:"' + pactcode + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101004':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+                        console.log(data);
+
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlUnit = '#ContentPlaceHolder1_gvInfo_ddlUnit_' + numberrl;
+
+                        //var ddlProject = '#ddlProject';
+
+
+             
+                        $(ddlUnit).html('');
+
+                        // $(lstProject).empty();
+                        $.each(data, function (key, data) {
+
+
+
+                            // $('#Select1').append('<option value="5">item 5</option>')
+                            $(ddlUnit).append("<option value='" + data.usircode + "'>" + data.udesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+
+
+        function funProjectUnit(comcod, pactcode, id) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetProjectUnit",
+                    data: '{comcod:"' + comcod + '", pactcode:"' + pactcode + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                       <%-- var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101003':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }--%>
+
+                        console.log(data);
+
+                        var ddlunit = '#ContentPlaceHolder1_rpsold_ddlsoldunit_' + id;
+
+
+                        //console.log(ddlProject);
+                        $(ddlunit).html('');
+
+                        // $(lstProject).empty();
+                        $.each(data, function (key, data) {
+
+
+
+                            // $('#Select1').append('<option value="5">item 5</option>')
+                            $(ddlunit).append("<option value='" + data.usircode + "'>" + data.udesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+
+
+        function funDataToggle() {
+
+            $('#mdiscussion').modal('toggle');
+
+
+            //var winstatus = $('#hdnwinstatus').text();
+
+            //if (winstatus == "9601050") {
+            //    alert("show")
+            //    $('#divsold').show();
+            //}
+            //else {
+            //    $('#divsold').hide();
+
+            //}
+
+
+
+        }
 
 
         function funLeadReason(comcod, leadquality) {
@@ -1619,18 +2055,18 @@
 
 
                         $('#<%=this.lbllaststatus.ClientID%>').html("Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>"
-                                + $('#ddlmStatus option:selected').text() + "</span>");
+                            + $('#ddlmStatus option:selected').text() + "</span>");
 
-                            //console.log(data['account']);
+                        //console.log(data['account']);
 
-                        },
+                    },
 
 
-                        failure: function (response) {
+                    failure: function (response) {
 
-                            alert("failure");
-                        }
-                    });
+                        alert("failure");
+                    }
+                });
 
 
 
@@ -1843,7 +2279,7 @@
 
                         case "810100101019"://Follow
 
-                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstnextFollow_' + number;
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length = 7) {
 
@@ -4355,6 +4791,7 @@
                                     <asp:HiddenField ID="hiddenLedStatus" runat="server" />
                                     <asp:HiddenField ID="hdlpreleadst" runat="server" />
                                     <asp:HiddenField ID="hdncompany" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="hdnwinstatus" ClientIDMode="Static" runat="server" />
 
                                     <%--<asp:LinkButton ID="lbtntfollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtntfollowup_Click"><i  class="fa fa-handshake"></i> Followup</asp:LinkButton>--%>
                                     <%-- <asp:LinkButton ID="lbtnStatus" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnStatus_Click"> <i  class="fa  fa-star-and-crescent"></i> Status</asp:LinkButton>
@@ -4392,9 +4829,10 @@
 
                             <div class="row">
 
-                                <div class="col-md-12 col-lg-12">
+                                <div class="col-md-8 col-lg-8">
 
                                     <div id="followup" class="collapse">
+
 
                                         <asp:GridView ID="gvInfo" runat="server" AllowPaging="false"
                                             AutoGenerateColumns="False" ShowFooter="true"
@@ -4602,7 +5040,7 @@
                                                                 data-placeholder="Choose Project" multiple="true"></asp:ListBox>--%>
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">
-                                                            <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                            <asp:DropDownList ID="ddlUnit" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                         </asp:Panel>
@@ -4614,17 +5052,30 @@
                                                         </asp:Panel>
 
                                                         <asp:Panel ID="pnlFollow" runat="server" Visible="false">
-                                                            <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
-                                                        </asp:DropDownList>--%>
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
 
                                                         </asp:Panel>
+
+                                                        <asp:Panel ID="pnlnextFollow" runat="server" Visible="false">
+
+
+
+
+                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                                runat="server" CssClass="form-control checkbox">
+                                                            </asp:CheckBoxList>
+
+
+                                                        </asp:Panel>
+
+
                                                         <asp:Panel ID="pnlLostResion" runat="server" Visible="false">
                                                             <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
                                                         </asp:DropDownList>--%>
@@ -4655,7 +5106,165 @@
 
 
                                     </div>
+
                                 </div>
+
+                                <div class=" col-md-4 col-lg-4">
+                                    <div id="divsold" style="display: none;">
+                                        <strong>Sold Information</strong>
+
+
+                                        <asp:Repeater ID="rpsold" runat="server">
+                                            <HeaderTemplate>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+
+
+                                                <div class="col-md-12  col-lg-12">
+                                                    <div class="well">
+
+                                                        <div class="col-md-12 panel">
+
+                                                            <div class=" col-md-12">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <asp:Label ID="lblProject" runat="server" Text="Project"></asp:Label>
+                                                                            <asp:DropDownList ID="ddlsoldProject" runat="server" CssClass="form-control form-control-sm">
+                                                                            </asp:DropDownList>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+
+                                                                        <div class="form-group">
+                                                                            <asp:Label ID="lblunit" runat="server" Text="Unit"></asp:Label>
+                                                                            <asp:DropDownList ID="ddlsoldunit" runat="server" CssClass="form-control  form-control-sm  ">
+                                                                            </asp:DropDownList>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblflatcost">Flat Cost</label>
+                                                                            <asp:TextBox ID="txtflatcost" runat="server" TabIndex="2" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblutility">Utility</label>
+                                                                            <asp:TextBox ID="txtUtility" runat="server" TabIndex="2" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblparking">Parking</label>
+                                                                            <asp:TextBox ID="txtpamt" runat="server" TabIndex="2" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblbookingmoney">Booking Money</label>
+                                                                            <asp:TextBox ID="txtbookingmoney" runat="server" TabIndex="2" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+
+
+
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblagreement">Agreement Status</label>
+                                                                            <asp:DropDownList ID="ddlaggst" runat="server" CssClass="form-control form-control-sm">
+                                                                            </asp:DropDownList>
+
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+
+                                                                <div class="row">
+
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblsolddate">Solddate</label>
+                                                                            <asp:TextBox ID="txtrpsolddate" runat="server" TabIndex="2" CssClass="form-control form-control-sm"></asp:TextBox>
+
+                                                                            <cc1:CalendarExtender ID="txtrpsolddate_CalendarExtender" runat="server" Enabled="True"
+                                                                                Format="dd-MMM-yyyy" TargetControlID="txtrpsolddate"></cc1:CalendarExtender>
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+
+                                                                            <label id="lblgrandtotal">Grand Total</label>
+                                                                            <asp:TextBox ID="txtgrandTotal" runat="server" TabIndex="2" CssClass="form-control form-control-sm textalignright" ReadOnly="true"></asp:TextBox>
+
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                            </ItemTemplate>
+
+                                        </asp:Repeater>
+
+                                        <asp:LinkButton ID="lbtnAddMore" OnClientClick="funDataToggle();" CssClass="btn btn-info btn-sm fa-pull-right" runat="server" OnClick="lbtnAddMore_Click">Add More</asp:LinkButton>
+
+                                        <%--<asp:LinkButton ID="lbtnAddMore"  OnClientClick="funDataToggle();" CssClass="btn btn-info btn-sm fa-pull-right" runat="server"> Add More</asp:LinkButton>--%>
+                                    </div>
+
+                                </div>
+
 
                             </div>
                             <div class="row">
@@ -5138,6 +5747,134 @@
             </div>
 
 
+
+            <div id="msold" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-full-width  ">
+                    <div class="modal-content modal-content-full-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i>
+                                Discussion </h4>
+
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+
+                        </div>
+                        <div class="modal-body ">
+
+
+
+
+
+
+
+                            <div id="div" class="col-md-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+
+                                <div class="col-md-12 col-lg-12">
+                                    <asp:Repeater ID="Repeater1" runat="server">
+                                        <HeaderTemplate>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+
+
+                                            <div class="col-md-12  col-lg-12">
+                                                <div class="well">
+
+                                                    <div class="col-sm-12 panel">
+
+                                                        <div class=" col-sm-12">
+
+                                                            <p>
+                                                                <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
+
+
+
+
+                                                                <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
+
+
+                                                                <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
+
+
+
+                                                                <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                                <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+
+
+
+
+
+                                                                <br>
+                                                            </p>
+
+
+
+
+
+
+
+                                                        </div>
+
+
+
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+
+                                                        <button type="button" class="btn btn-primary btn-xs" id="lbtnCancel" onclick="funCancel('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>')">Delete</button>
+                                                        <asp:LinkButton ID="lbtnFollowup" CssClass="btn btn-primary btn-xs d-none" runat="server" OnClick="lbtnFollowup_Click"> Followup</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnAddition" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnAddition_Click">Addition</asp:LinkButton>
+                                                        <button type="button" class="btn btn-primary btn-xs" runat="server" id="lbtnComments" data-toggle="collapse" data-target='<%# "#dcomments"+DataBinder.Eval(Container, "DataItem.rownum").ToString() %>'>Comments</button>
+
+
+
+
+
+
+
+
+
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </ItemTemplate>
+
+                                    </asp:Repeater>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
 
 
 

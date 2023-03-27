@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptCollectionStatusLO.aspx.cs" Inherits="RealERPWEB.F_23_CR.RptCollectionStatusLO" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
 
     <style type="text/css">
         .modalcss {
@@ -15,11 +18,7 @@
             overflow: scroll;
         }
 
-        .multiselect {
-            width: 300px !important;
-            text-wrap: initial !important;
-            height: 27px !important;
-        }
+       
 
         .multiselect-text {
             width: 300px !important;
@@ -38,6 +37,51 @@
         .form-control {
             height: 34px;
         }
+        .mt22 {
+            margin-top: 36px;
+        }
+            .multiselect  {
+            width:300px !important;
+           border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+           
+        }
+        .multiselect-container{
+            overflow: scroll;
+            max-height: 300px !important;
+        }
+        /*.multiselect {
+            width: 270px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }*/
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        /*.multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }*/
+        .caret {
+            display: none !important;
+        }
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        #ContentPlaceHolder1_divgrp {
+            /*width: 395px !important;*/
+        }
+
+        .chzn-single{
+                border-radius: 3px!important;
+                height: 29px!important;
+            }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -45,7 +89,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
 
         function pageLoaded() {
@@ -56,6 +100,13 @@
             });
 
             $('.chzn-select').chosen({ search_contains: true });
+
+            $(function () {
+                $('[id*=listben]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
+                });
+            });
         }
 
 
@@ -96,32 +147,51 @@
                         </div>--%>
                         <div class="col-md-2">
                             
-                                <label class="control-label" for="ToDate"> Date :</label>
+                                <label class="control-label" for="frmDate"> From :</label>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                           
+                        </div>
+                        <div class="col-md-2">
+                            
+                                <label class="control-label" for="ToDate"> To :</label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
                            
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                           
                         </div>
 
-                         <div class="col-md-2">
+                        <%-- <div class="col-md-2">
                             
                                 <label class="control-label">Beneficiary</label>
                                 <asp:DropDownList ID="ddlbenefname" runat="server" CssClass="chzn-select form-control form-control-sm"  AutoPostBack="True"></asp:DropDownList>
                             
                            
-                        </div>
+                        </div>--%>
+                         <div class="col-md-3" >
+                                    <label class="control-label">Beneficiary Name</label>
+                                        
+                                        <asp:ListBox ID="listben" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Style="min-height: 200px !important;"></asp:ListBox>
+                                   
+                                      
+                                </div>
                         <div class="col-md-1 ">
                             
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" style="margin-top:30px;" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
                            
                         </div>
-
+                        <div class="col-md-1" runat="server">
+                            <div class="form-group mt22">
+                                <asp:CheckBox ID="chkDate" runat="server" CssClass="smLbl_to " Text="&nbsp; Till Date" />
+                            </div>
+                        </div>
 
 
 

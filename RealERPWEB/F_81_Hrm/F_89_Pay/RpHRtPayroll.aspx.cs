@@ -195,6 +195,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.lblfrmdate.Text = "Date:";
                     this.lbltodate.Visible = false;
                     this.txttodate.Visible = false;
+                    if (comcod == "3365")
+                    {
+                        chckdiff.Visible = true;
+                        this.lbltodate.Text = "Prev. Month";
+                        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        this.lbltodate.Visible = true;
+                        this.txttodate.Visible = true;
+                    }
                     break;
                 case "Payslip":
                     this.MultiView1.ActiveViewIndex = 2;
@@ -418,6 +426,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "3101":
                 case "3374"://Angan
+                case "3376":
                     this.rbtSalSheet.SelectedIndex = 28;
                     break;
 
@@ -990,8 +999,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string compBranch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName  : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? compBranch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
-
-
+            string prevmon = "";
+       
             string monthid = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyyMM").ToString();
             DataSet ds3;
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, compBranch, "", "", "", "", "", "", "");
@@ -1002,6 +1011,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
             string mantype = "";
+            if (comcod == "3365" && this.chckdiff.Checked)
+            {
+                Calltype = "EMPBONUSBTIWITHDIFF";
+                prevmon = Convert.ToDateTime(this.txttodate.Text).ToString("yyyMM");
+            }
             //mon = this.Datediffday1(Convert.ToDateTime(curdate), Convert.ToDateTime(dt1));
             switch (comcod)
             {
@@ -1036,7 +1050,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else
             {
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch);
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", Calltype, date, projectcode, section, afterdays, CompanyName, comgross, bonpaytype, mantype, compBranch, prevmon);
             }
             if (ds3 == null)
             {
@@ -1826,7 +1840,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             double tAmt = list.Select(p => p.bonamt).Sum();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+            if (chckdiff.Checked)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTIwithDiff", list, null, null);
+
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetBTI", list, null, null);
+
+            }
+     
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
@@ -5170,6 +5194,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     if (comcod == "3369" || comcod=="3365")
                     {
+                        subfee = dt.Rows[i]["subfee"].ToString();
                         extday = dt.Rows[i]["extday"].ToString();
                         extdayamt = dt.Rows[i]["extdayamt"].ToString();
                     }

@@ -72,6 +72,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.divchkPayment.Visible = true;
                     this.chkPayment.Visible = true;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.ShowDelayRate();
@@ -84,6 +85,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
@@ -94,6 +96,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
@@ -106,6 +109,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtinpermonth.Visible = false;
                     this.lblDate.Visible = false;
                     this.txtDate.Visible = false;
+                    this.divtoDate.Visible = false;
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
@@ -422,6 +426,7 @@ namespace RealERPWEB.F_22_Sal
             switch (comcod)
             {
                 case "3374"://Angan
+                case "3376":
                     CallType = "SHOWEARBENADELAY03";
                     break;
 
@@ -872,7 +877,7 @@ namespace RealERPWEB.F_22_Sal
                     {
                         this.RptEarlyBenADelayCPDL();
                     }
-                    else if (comcod == "3374" || comcod=="3101")
+                    else if (comcod == "3374" || comcod == "3376" || comcod=="3101")
                     {
                         this.RptEarlyBenADelayANGAN();
                     }
@@ -1800,7 +1805,7 @@ namespace RealERPWEB.F_22_Sal
                 string txtRemarks = this.txtregRemarks.Text.Trim();
                 string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
 
-                if (comcod == "3374")
+                if (comcod == "3374" || comcod == "3376")
                 {
                     DataView dv9 = dt1.DefaultView;
                     dv9.RowFilter = (" amt <> 0.000000 or [rescode]  = '20000' or [rescode] = '30000'");
@@ -1822,6 +1827,7 @@ namespace RealERPWEB.F_22_Sal
                         RptSalRegisClearence = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalRegisClearence02", lst, null, null);
                         break;
                     case "3374":
+                    case "3376":
                         RptSalRegisClearence = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalRegisClearenceANGAN", lst, null, null);
                         break;
                     default:
