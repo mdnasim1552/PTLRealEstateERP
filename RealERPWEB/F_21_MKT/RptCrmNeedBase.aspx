@@ -528,7 +528,7 @@
 
                                     <asp:TextBox ID="TxtLeadId" runat="server" class="form-control form-control-sm" placeholder="Lead Id"></asp:TextBox>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton10" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetLeadId" OnClick="LbtnResetLeadId_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -561,7 +561,7 @@
 
                                     <asp:TextBox ID="TxtMobile" runat="server" class="form-control form-control-sm" placeholder="Mobile"></asp:TextBox>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton8" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetMobile" OnClick="LbtnResetMobile_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -576,7 +576,7 @@
 
                                     <asp:TextBox ID="TxtEmail" runat="server" class="form-control form-control-sm" placeholder="Email"></asp:TextBox>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton7" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetEmail" OnClick="LbtnResetEmail_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -590,7 +590,7 @@
 
                                     <asp:DropDownList ID="DdlOccupation" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton6" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOccup" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -605,7 +605,7 @@
                                     <asp:TextBox ID="TxtOrg" runat="server" class="form-control form-control-sm " placeholder="Organization"></asp:TextBox>
 
                                     <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton3" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOrg" OnClick="LbtnResetOrg_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -620,7 +620,7 @@
 
                                     <asp:DropDownList ID="DdlCategory" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                     <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton5" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetCate" OnClick="LbtnResetCate_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -636,7 +636,7 @@
 
                                     <asp:DropDownList ID="DdlLocation" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton4" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnLocation" OnClick="LbtnLocation_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -651,7 +651,7 @@
 
                                     <asp:DropDownList ID="DdlProjec" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                      <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton2" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetPrj" OnClick="LbtnResetPrj_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -666,7 +666,7 @@
                                     <div class="input-group input-group-sm input-group-alt">
                                     <asp:DropDownList ID="DdlAptSize" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                      <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton1" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetAptsize" OnClick="LbtnResetAptsize_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -724,9 +724,9 @@
                                     </label>
                                     <div class="input-group input-group-sm input-group-alt">
 
-                                    <asp:DropDownList ID="DdlSource" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                    <asp:DropDownList ID="DdlSource" OnSelectedIndexChanged="DdlSource_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                      <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LinkButton11" OnClick="LbtnStageReset_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetSource" OnClick="LbtnResetSource_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -737,10 +737,14 @@
                            
                          
                                     </label>
-                                    <select class="form-control form-control-sm">
-                                        <option value="">Choose... </option>
-                                        <option>United States </option>
-                                    </select>
+                                  <div class="input-group input-group-sm input-group-alt">
+
+                                    <asp:DropDownList ID="DdlSubSource" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                     <div class="input-group-append">
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="lbtnresetsubsource" OnClick="lbtnresetsubsource_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-2 mb-0">
                                     <label for="validationTooltipCountry">
@@ -748,8 +752,14 @@
                            
                          
                                     </label>
-                                    <asp:DropDownList ID="DdlEmployee" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                    <div class="input-group input-group-sm input-group-alt">
 
+                                    <asp:DropDownList ID="DdlEmployee" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                        <div class="input-group-append">
+                                            <asp:LinkButton ID="LbtnResetEmployee" OnClick="LbtnResetEmployee_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="col-md-2 mb-0">
