@@ -303,11 +303,19 @@ namespace RealERPWEB.F_02_Fea
             DataTable dt = ds3.Tables[0];
             DataTable dt3= ds3.Tables[1];
             DataTable dt4= ds3.Tables[2];
+            DataTable dt5= ds3.Tables[3];
             DataTable dt2 = (DataTable)Session["tblagin"];
 
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
             var list2 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>();
-            var list3 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
+            var list3 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.SalesAnlysis>();
+            var list4 = dt5.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.MarkCost>();
+            var lstdummy = new RealEntity.C_02_Fea.EClasFeasibility.Eclassdummy();
+            lstdummy.Projectpropandloss = list;
+            lstdummy.AgeingDays = list2;
+            lstdummy.SalesAnlysis = list3;
+            lstdummy.MarkCost = list4;
+         
 
             string unit = lblUnitName.Text.ToString();
             string udesc = lblunitsizeval.Text.ToString();
@@ -333,7 +341,7 @@ namespace RealERPWEB.F_02_Fea
 
             LocalReport Rpt1 = new LocalReport();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, list2, list3);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, null, null);
             Rpt1.EnableExternalImages = true;
 
             Rpt1.SetParameters(new ReportParameter("unit", unit));
