@@ -78,13 +78,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.TextBox TxtLeadId;
 
         /// <summary>
-        /// LinkButton10 control.
+        /// LbtnResetLeadId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton10;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetLeadId;
 
         /// <summary>
         /// TxtCustName control.
@@ -114,13 +114,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.TextBox TxtMobile;
 
         /// <summary>
-        /// LinkButton8 control.
+        /// LbtnResetMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton8;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetMobile;
 
         /// <summary>
         /// TxtEmail control.
@@ -132,13 +132,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.TextBox TxtEmail;
 
         /// <summary>
-        /// LinkButton7 control.
+        /// LbtnResetEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetEmail;
 
         /// <summary>
         /// DdlOccupation control.
@@ -150,13 +150,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlOccupation;
 
         /// <summary>
-        /// LinkButton6 control.
+        /// LbtnResetOccup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetOccup;
 
         /// <summary>
         /// TxtOrg control.
@@ -168,13 +168,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.TextBox TxtOrg;
 
         /// <summary>
-        /// LinkButton3 control.
+        /// LbtnResetOrg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetOrg;
 
         /// <summary>
         /// DdlCategory control.
@@ -186,13 +186,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlCategory;
 
         /// <summary>
-        /// LinkButton5 control.
+        /// LbtnResetCate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetCate;
 
         /// <summary>
         /// DdlLocation control.
@@ -204,13 +204,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlLocation;
 
         /// <summary>
-        /// LinkButton4 control.
+        /// LbtnLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnLocation;
 
         /// <summary>
         /// DdlProjec control.
@@ -222,13 +222,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlProjec;
 
         /// <summary>
-        /// LinkButton2 control.
+        /// LbtnResetPrj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetPrj;
 
         /// <summary>
         /// DdlAptSize control.
@@ -240,13 +240,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlAptSize;
 
         /// <summary>
-        /// LinkButton1 control.
+        /// LbtnResetAptsize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetAptsize;
 
         /// <summary>
         /// txtFromdate control.
@@ -312,13 +312,31 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList DdlSource;
 
         /// <summary>
-        /// LinkButton11 control.
+        /// LbtnResetSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton11;
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetSource;
+
+        /// <summary>
+        /// DdlSubSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DdlSubSource;
+
+        /// <summary>
+        /// lbtnresetsubsource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnresetsubsource;
 
         /// <summary>
         /// DdlEmployee control.
@@ -328,6 +346,15 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlEmployee;
+
+        /// <summary>
+        /// LbtnResetEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetEmployee;
 
         /// <summary>
         /// DdlVisitSource control.
