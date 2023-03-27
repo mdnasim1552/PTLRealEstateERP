@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptCallCenterLead.aspx.cs" Inherits="RealERPWEB.F_21_MKT.RptCallCenterLead" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptCallCenterLead.aspx.cs" Inherits="RealERPWEB.F_21_MKT.RptCallCenterLead" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -43,34 +43,37 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class=" col-md-4  pading5px asitCol4">
-
-                                        <asp:Label ID="lblfrmDate" CssClass="lblTxt lblName" runat="server" Text="From Date"></asp:Label>
-                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+           <div class="card card-fluid container-data">
+                <div class="card-body" style="min-height: 600px;">
+                    <div class="row">  
+                                    <div class=" col-md-1 ">
+                                          <div class="form-group">
+                                        <asp:Label ID="lblfrmDate" CssClass="control-label" runat="server" Text="From Date"></asp:Label>
+                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtfromdate" TodaysDateFormat=""></cc1:CalendarExtender>
-
-                                        <asp:Label ID="lbltoDate" CssClass=" smLbl_to" runat="server" Text="To"></asp:Label>
-                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                          </div>
+                                        </div>
+                                              <div class=" col-md-1 ">
+                                          <div class="form-group">
+                                        <asp:Label ID="lbltoDate" CssClass="control-label" runat="server" Text="To"></asp:Label>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txttodate" TodaysDateFormat=""></cc1:CalendarExtender>
-                                        <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnShow_Click" Width="44px">Show</asp:LinkButton>
                                     </div>
 
                                     <div class="clearfix"></div>
                                 </div>
+                        <div class="col-md-1">
+                              <div class="form-group">
+                                        <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm " style="margin-top:20px" OnClick="lbtnShow_Click" >Show</asp:LinkButton>
+                                  </div>
+                        </div>
+                                    <div class="col-md-3  ">
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page size"></asp:Label>
+                                        <asp:Label ID="lblPage" runat="server" CssClass="control-label" Text="Page size"></asp:Label>
 
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                             OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem Value="15">15</asp:ListItem>
                                             <asp:ListItem Value="20">20</asp:ListItem>
@@ -84,8 +87,7 @@
                                     </div>
 
                                 </div>
-                            </div>
-                        </fieldset>
+                          
                     </div>
 
 
@@ -713,7 +715,8 @@
                               </asp:View>
                           </asp:MultiView>
 
-
+                    </div>
+               </div>
                   
         </ContentTemplate>
     </asp:UpdatePanel>
