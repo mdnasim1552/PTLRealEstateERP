@@ -69,7 +69,7 @@
                                         <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary btn-sm " style="margin-top:20px" OnClick="lbtnShow_Click" >Show</asp:LinkButton>
                                   </div>
                         </div>
-                                    <div class="col-md-3  ">
+                                    <div class="col-md-1  ">
                                 <div class="form-group">
                                         <asp:Label ID="lblPage" runat="server" CssClass="control-label" Text="Page size"></asp:Label>
 
