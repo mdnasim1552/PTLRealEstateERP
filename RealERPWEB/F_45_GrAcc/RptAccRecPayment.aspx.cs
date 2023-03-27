@@ -1542,6 +1542,9 @@ namespace RealERPWEB.F_45_GrAcc
                 case "IssueVsCollect":
                     this.RptIssueVsColl();
                     break;
+                case "PrjTrialBal":
+                    this.PrjTrialBalPrint_();
+                    break;
 
             }
         }
@@ -2238,6 +2241,50 @@ namespace RealERPWEB.F_45_GrAcc
 
 
         private void RptIssueVsColl()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt1 = (DataTable)Session["tblrecandpayment"];
+            if (dt1.Rows.Count == 0)
+                return;
+            ReportDocument rptstk = new RealERPRPT.R_45_GrAcc.RptAccIssuevsColl();
+            TextObject rptDate = rptstk.ReportDefinition.ReportObjects["date"] as TextObject;
+            rptDate.Text = "From  " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To  " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+
+            int j = 1;
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+            {
+
+                if (ddlComCode.Items[i].Selected)
+                {
+                    string header = this.ddlComCode.Items[i].Text.Trim();
+                    TextObject rpttxth = rptstk.ReportDefinition.ReportObjects["txtp" + j.ToString()] as TextObject;
+                    rpttxth.Text = header;
+                    j++;
+                    if (j == 7)
+                        break;
+                }
+
+            }
+
+            TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+            rptstk.SetDataSource(dt1);
+            string comcod = this.GetCompCode();
+            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            rptstk.SetParameterValue("ComLogo", ComLogo);
+            Session["Report1"] = rptstk;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        private void PrjTrialBalPrint_()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
