@@ -535,7 +535,7 @@
 
 
                     gcod = $(arrgschcodl[i]).text();
-                    var number, numberlq, numbercom;
+                    var number, numberlq, numbercom, numberprj;
                     switch (gcod) {
 
 
@@ -543,6 +543,14 @@
                         case '810100101007':
                             numbercom = i;
                             break;
+
+                        //Project
+                        case '810100101003':
+                            numberprj = i;
+                            break;
+
+
+                            
 
                         //Last Followup
                         case '810100101020':
@@ -608,6 +616,22 @@
 
 
                 });
+
+
+                var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberprj;
+                $(ddlcompany).change(function () {
+
+                    var company = $('#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom).val();
+                    var pactcode = $(this).val();  
+                    funCompanyProjectUnit(company, pactcode);
+
+
+                });
+
+
+
+
+
 
                 //Lead Reason
 
@@ -697,7 +721,7 @@
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
-                    if (comcod == "3354") {
+                    if (comcod == "3354" ||comcod=="3364") {
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
@@ -1599,7 +1623,7 @@
 
         }
 
-
+        // Company Project
         function funCompanyProject(comcod, company) {
             try {
                 $.ajax({
@@ -1677,7 +1701,85 @@
 
 
         }
+         // Company Project Unit
 
+        function funCompanyProjectUnit(company, pactcode) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetProjectUnit",
+                    data: '{comcod:"' + company + '", pactcode:"' + pactcode + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101004':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+                        console.log(data);
+
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlUnit = '#ContentPlaceHolder1_gvInfo_ddlUnit_' + numberrl;
+
+                        //var ddlProject = '#ddlProject';
+
+
+             
+                        $(ddlUnit).html('');
+
+                        // $(lstProject).empty();
+                        $.each(data, function (key, data) {
+
+
+
+                            // $('#Select1').append('<option value="5">item 5</option>')
+                            $(ddlUnit).append("<option value='" + data.usircode + "'>" + data.udesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
 
 
         function funProjectUnit(comcod, pactcode, id) {
@@ -4938,7 +5040,7 @@
                                                                 data-placeholder="Choose Project" multiple="true"></asp:ListBox>--%>
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">
-                                                            <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                            <asp:DropDownList ID="ddlUnit" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                         </asp:Panel>
