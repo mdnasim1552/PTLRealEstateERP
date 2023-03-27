@@ -23,6 +23,7 @@ namespace RealERPWEB.F_21_MKT
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                GetEmployee();
                 GetAllSubdata();
                 SelectView();
                
@@ -99,7 +100,7 @@ namespace RealERPWEB.F_21_MKT
             DdlSource.DataSource = dt;
             DdlSource.DataBind();
             DdlSource.SelectedValue = "0000000";
-
+            this.DdlSource_SelectedIndexChanged(null,null);
             // get Lead Stage list//
             Dv1 = ds2.Tables[0].DefaultView;
             Dv1.RowFilter = ("gcod like '95%'");
@@ -121,6 +122,32 @@ namespace RealERPWEB.F_21_MKT
             DdlProjec.DataSource = dt;
             DdlProjec.DataBind();
             DdlProjec.SelectedValue = "000000000000";
+
+
+        }
+        private void GetEmployee()
+        {
+            Session.Remove("tblircapro");
+            string comcod = this.GetComeCode();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GET_IR_EMPLOYEE", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            Session["tblircapro"] = ds1.Tables[0];
+            DataTable dt = ds1.Tables[0];
+            DataView dv = dt.DefaultView;
+            DataRow dr1 = dt.NewRow();
+            dr1["empid"] = "000000000000";
+            dr1["empname"] = "None";
+            dt.Rows.Add(dr1);
+            dv.Sort = ("empid");
+
+            DdlEmployee.DataTextField = "empname";
+            DdlEmployee.DataValueField = "empid";
+            DdlEmployee.DataSource = dv.ToTable();
+            DdlEmployee.DataBind();
+            DdlEmployee.SelectedValue = "000000000000";
+            ds1.Dispose();
 
 
         }
@@ -195,15 +222,20 @@ namespace RealERPWEB.F_21_MKT
         {
             string comcod = this.GetComeCode();
             string leadid = this.TxtLeadId.Text.ToString()+"%";
+            ((TextBox)this.TxtLeadId).BorderColor = (this.TxtLeadId.Text.Length > 0) ? System.Drawing.Color.OrangeRed : System.Drawing.Color.Empty;
+
             string custname = this.TxtCustName.Text.ToString() + "%";       
             ((TextBox)this.TxtCustName).BorderColor = (this.TxtCustName.Text.Length > 0)? System.Drawing.Color.OrangeRed: System.Drawing.Color.Empty;
             
             string mobile = this.TxtMobile.Text.ToString() + "%";
             ((TextBox)this.TxtMobile).BorderColor = (this.TxtMobile.Text.Length > 0) ? System.Drawing.Color.OrangeRed : System.Drawing.Color.Empty; 
 
-            string Email = this.TxtEmail.Text.ToString() + "%"; 
+            string Email = this.TxtEmail.Text.ToString() + "%";
+            ((TextBox)this.TxtEmail).BorderColor = (this.TxtEmail.Text.Length > 0) ? System.Drawing.Color.OrangeRed : System.Drawing.Color.Empty;
+
             string org = this.TxtOrg.Text.ToString() + "%"; 
-          
+            ((TextBox)this.TxtOrg).BorderColor = (this.TxtOrg.Text.Length > 0) ? System.Drawing.Color.OrangeRed : System.Drawing.Color.Empty;
+
             string Block = "%";
             string Pri = "%";
             string Status = "%";
@@ -231,6 +263,7 @@ namespace RealERPWEB.F_21_MKT
             string fromdate =(this.txtFromdate.Text.Length==0)?"01-Jan-1900": Convert.ToDateTime(this.txtFromdate.Text).ToString("dd-MMM-yyyy");
             string todate = (this.TxtToDate.Text.Length == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(this.TxtToDate.Text).ToString("dd-MMM-yyyy");
             string mgt = "Management";
+            string subsource = (this.DdlSubSource.SelectedValue.ToString() == "0000000") ? "%" : this.DdlSubSource.SelectedValue.ToString() + "%";
 
 
 
@@ -241,7 +274,7 @@ namespace RealERPWEB.F_21_MKT
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE02", 
                 "GET_CLIENT_NEED_BASE_REPORT", null, null, null, "8301%", leadid, custname, mobile, Email, org, profecode, areacode,
-                 category, LeadStatus, apptsize, projectcod, fromdate, todate, mgt);
+                 category, LeadStatus, apptsize, projectcod, fromdate, todate, subsource);
 
 
             // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
@@ -396,6 +429,95 @@ namespace RealERPWEB.F_21_MKT
         {
             this.TxtCustName.Text = "";
             ((TextBox)this.TxtCustName).BorderColor = System.Drawing.Color.Empty;
+
+        }
+
+        protected void DdlSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+                string source =(this.DdlSource.SelectedValue.ToString()=="0000000")?"%": this.DdlSource.SelectedValue.ToString();
+  
+                DataView dv5;
+                dv5 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
+                dv5.RowFilter = ("gcod like '31%' and code like '"+ source + "'");
+                DataTable dt = dv5.ToTable();
+                dt.Rows.Add("0000000", "--All--", "");
+                DdlSubSource.DataTextField = "gdesc";
+                DdlSubSource.DataValueField = "gcod";
+                DdlSubSource.DataSource = dt;
+                DdlSubSource.DataBind();
+                DdlSubSource.SelectedValue = "0000000";
+
+
+
+
+
+
+        }
+
+        protected void lbtnresetsubsource_Click(object sender, EventArgs e)
+        {
+            this.DdlSubSource.SelectedValue = "0000000";
+        }
+
+        protected void LbtnResetSource_Click(object sender, EventArgs e)
+        {
+            this.DdlSource.SelectedValue = "0000000";
+
+        }
+
+        protected void LbtnResetAptsize_Click(object sender, EventArgs e)
+        {
+            this.DdlAptSize.SelectedValue = "0000000";
+
+        }
+
+        protected void LbtnResetPrj_Click(object sender, EventArgs e)
+        {
+            this.DdlProjec.SelectedValue = "000000000000";
+
+        }
+
+        protected void LbtnLocation_Click(object sender, EventArgs e)
+        {
+            this.DdlLocation.SelectedValue = "000000000000";
+
+        }
+
+        protected void LbtnResetCate_Click(object sender, EventArgs e)
+        {
+            this.DdlCategory.SelectedValue = "000000000000";
+
+        }
+
+        protected void LbtnResetOrg_Click(object sender, EventArgs e)
+        {
+            this.TxtOrg.Text = "";
+            ((TextBox)this.TxtOrg).BorderColor = System.Drawing.Color.Empty;
+
+        }
+
+        protected void LbtnResetEmail_Click(object sender, EventArgs e)
+        {
+            this.TxtEmail.Text = "";
+            ((TextBox)this.TxtEmail).BorderColor = System.Drawing.Color.Empty;
+
+        }
+
+        protected void LbtnResetMobile_Click(object sender, EventArgs e)
+        {
+            this.TxtMobile.Text = "";
+            ((TextBox)this.TxtMobile).BorderColor = System.Drawing.Color.Empty;
+        }
+
+        protected void LbtnResetLeadId_Click(object sender, EventArgs e)
+        {
+            this.TxtLeadId.Text = "";
+            ((TextBox)this.TxtLeadId).BorderColor = System.Drawing.Color.Empty;
+        }
+
+        protected void LbtnResetEmployee_Click(object sender, EventArgs e)
+        {
 
         }
     }
