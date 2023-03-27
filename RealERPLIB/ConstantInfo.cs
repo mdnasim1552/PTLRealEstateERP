@@ -1147,7 +1147,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "RptPerDeleteProspect", "", "Permanent Delete Prospect", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102139", "F_21_MKT", "RptProspectWorking?", "Type=RptDayWise", "Associate Working Report (Day Wise)", "CRM", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2102000", "2102140", "F_21_MKT", "LostProspectTransfer", "", "CRM Lost Prospect Transfer", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102140", "F_21_MKT", "LostProspectTransfer?", "Type=Lost", "CRM Lost Prospect Transfer", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102141", "F_21_MKT", "LostProspect", "", "CRM Lost Prospect", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102142", "F_21_MKT", "CrmClientInfo02?", "Type=Entry", "Customer Relationship Management(New)", "CRM", "False", "False", "False", "False" }); ;
 
@@ -7338,7 +7338,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000008", "08. Land Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000009", "09. CRM Lost Prospect Transfer ", "F_21_MKT/LostProspectTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000009", "09. CRM Lost Prospect Transfer ", "F_21_MKT/LostProspectTransfer?Type=Lost", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000010", "10. CRM Lost Prospect ", "F_21_MKT/LostProspect", "", true, "" });
 
 
