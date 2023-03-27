@@ -1177,6 +1177,11 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2103000", "2103129", "F_21_MKT", "RptMissFollowup", "", "Missing Followup Status", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103130", "F_21_MKT", "CrmPolicy", "", "Policy Setup", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103131", "F_21_MKT", "RptCrmNeedBase?", "Type=RptStd", "Client Need Base Report(Standard)", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103132", "F_21_MKT", "RptCallCenterLead?", "Type=SPWiseActivity", "Sales Person Wise Activity", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103133", "F_21_MKT", "RptCallCenterLead?", "Type=Conversion", "Sales Person Wise Conversion", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103134", "F_21_MKT", "RptCallCenterLead?", "Type=RptTracking", "Sales Person Wise Tracking", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103135", "F_21_MKT", "RptCallCenterLead?", "Type=SopTimeLine", "SOP Timeline Report", "CRM", "False", "False", "False", "False" });
 
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
@@ -7492,8 +7497,11 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "21. Funnel Analysis - Month Wise", "F_21_MKT/FunnelAnalysis?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "22. Lead Status (Timestamp)", "F_21_MKT/RptLeadStatus?Type=Report", "", true, "" });
-
-
+            mnuTbl1.Rows.Add(new Object[] { "0401000010", "23. Client Need Base Report (Standard)", "F_21_MKT/RptCrmNeedBase?Type=RptStd", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000011", "24. Sales Person Wise Activity", "F_21_MKT/RptCallCenterLead?Type=SPWiseActivity", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000012", "25. Sales Person Wise Conversion", "F_21_MKT/RptCallCenterLead?Type=Conversion", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000013", "26. Sales Person Wise Tracking", "F_21_MKT/RptCallCenterLead?Type=RptTracking", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000014", "27. SOP Timeline Report", "F_21_MKT/RptCallCenterLead?Type=SopTimeLine", "", true, "" });
 
 
 
