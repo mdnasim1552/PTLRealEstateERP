@@ -700,7 +700,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <a class="fs-3" href="#">Schedules Work</a>
+                                                    <a class="fs-3" href="#" runat="server">Schedules Work</a>
                                                 </div>
                                             </div>
                                             <div class="badge badge-danger" id="lbldws" runat="server">0</div>
