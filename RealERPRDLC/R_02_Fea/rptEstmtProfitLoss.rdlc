@@ -2914,7 +2914,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -4168,7 +4167,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                 <DataSetName>DataSet1</DataSetName>
                 <Top>0.86979in</Top>
                 <Height>1.08125in</Height>
-                <Width>8.04777in</Width>
+                <Width>8.04778in</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -5412,7 +5411,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               <Top>0.55639in</Top>
               <Left>6.48257in</Left>
               <Height>0.19583in</Height>
-              <Width>1.575in</Width>
+              <Width>1.47083in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
