@@ -15,10 +15,13 @@
     <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <style>
-        .multiselect {
-            width: 270px !important;
-            text-wrap: initial !important;
-            height: 27px !important;
+       .multiselect  {
+            width:300px !important;
+           border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+           
         }
 
         .multiselect-text {
@@ -66,29 +69,29 @@
             var gvisu = $('#<%=this.grvissue.ClientID %>');
             $.keynavigation(gvisu);
             // gvisu.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
+          
 
             $(function () {
-                //$('[id*=lstfloor]').multiselect({
-                //    includeSelectAllOption: true,
-                //    enableCaseInsensitiveFiltering: true,
-                //});
-
-            });
-
-            $('.select2').each(function () {
-                var select = $(this);
-                select.select2({
-                    placeholder: 'Select an option',
-                    width: '100%',
-                    allowClear: !select.prop('required'),
-                    language: {
-                        noResults: function () {
-                            return "{{ __('No results found') }}";
-                        }
-                    }
+                $('[id*=lstfloor]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
                 });
+
             });
+            $('.chzn-select').chosen({ search_contains: true });
+            //$('.select2').each(function () {
+            //    var select = $(this);
+            //    select.select2({
+            //        placeholder: 'Select an option',
+            //        width: '100%',
+            //        allowClear: !select.prop('required'),
+            //        language: {
+            //            noResults: function () {
+            //                return "{{ __('No results found') }}";
+            //            }
+            //        }
+            //    });
+            //});
 
 
             //gvisu.gridviewScroll({
@@ -247,10 +250,12 @@
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
-                                        <asp:ListBox ID="lstfloor" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple"></asp:ListBox>
+<%--                                        <asp:ListBox ID="lstfloor" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple"></asp:ListBox>--%>
+                                      <asp:ListBox ID="lstfloor" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+
                                     </div>
 
                                 </div>
@@ -258,7 +263,7 @@
 
 
 
-                                <div class="col-md-2" style="margin-top: 22px;">
+                                <div class="col-md-2 ml-5" style="margin-top: 22px;">
                                     <div class="form-group">
                                         <asp:LinkButton ID="lbtnSelect" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-sm btn-primary">Select</asp:LinkButton>
                                     </div>

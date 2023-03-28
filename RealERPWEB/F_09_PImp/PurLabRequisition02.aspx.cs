@@ -790,6 +790,7 @@ namespace RealERPWEB.F_09_PImp
                 DataView dv = dt.DefaultView;
                 dv.RowFilter = ("rsircode= '" + Worklist + "'");
                 dt = dv.ToTable(true, "flrcod", "flrdes", "flrdes1");
+                //dt.Rows.Add("000", "ALL FLOOR", "ALL FLOOR");
                 this.lstfloor.DataTextField = "flrdes";
                 this.lstfloor.DataValueField = "flrcod";
                 this.lstfloor.DataSource = dt;
@@ -845,6 +846,8 @@ namespace RealERPWEB.F_09_PImp
 
             try
             {
+                
+
                 this.SaveValue();
 
                 string rsircode = this.ddlWorkList.SelectedValue.ToString();
@@ -858,12 +861,15 @@ namespace RealERPWEB.F_09_PImp
 
                         string flrcode = flr.Value;
                         string flrdesc = flr.Text;
-
-                        // string rsirdesc = lab1.Substring(13);
-
                         DataTable dt = (DataTable)ViewState["tblbillreq"];
-                        DataRow[] dr = dt.Select(" flrcod='" + flrcode + "' and rsircode='" + rsircode + "'");
+                        
                         DataTable dt1 = (DataTable)ViewState["itemlist"];
+                        // string rsirdesc = lab1.Substring(13);
+                      // DataRow dr = dt.NewRow();
+                       
+                       DataRow[] dr = dt.Select(" flrcod='" + flrcode + "' and rsircode='" + rsircode + "'");
+                        
+                     
                         double balqty = 0.00;
 
                         if (dr.Length == 0)
@@ -892,10 +898,14 @@ namespace RealERPWEB.F_09_PImp
                             dt.Rows.Add(dr1);
 
                         }
+
+
                         ViewState["tblbillreq"] = dt;
                         this.grvissue_DataBind();
+                        dt.Dispose();
                     }
                 }
+               
             }
 
             catch (Exception ed)
