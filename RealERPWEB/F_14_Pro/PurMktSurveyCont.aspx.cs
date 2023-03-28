@@ -1494,6 +1494,7 @@ namespace RealERPWEB.F_14_Pro
 
                         dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                         dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
+                        dr1["proposerate"] = 0;
                         dr1["resrate1"] = 0;
                         dr1["resrate2"] = 0;
                         dr1["resrate3"] = 0;

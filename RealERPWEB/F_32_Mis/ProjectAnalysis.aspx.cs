@@ -394,7 +394,10 @@ namespace RealERPWEB.F_32_Mis
                     //hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMainRptALL&prjcode=" + pactcode + "&sircode=";   //&prjcode="+pactcode
                     hlnkbgdtotal.NavigateUrl = "~/F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdGrWise&comcod=" + comcod + "&prjcode=" + pactcode;
                     hlnkcost.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal&prjcode=" + pactcode;
-
+                    
+                    
+                    
+                    
                 }
 
 

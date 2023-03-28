@@ -10804,7 +10804,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Employee Wise Task (MGT)", "F_38_AI/MyTasks.aspx?Type=MGT&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task", "F_38_AI/MyTasks.aspx?Type=IND&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task Edit", "F_38_AI/MyTasks.aspx?Type=Edit&EmpID=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. AI Invoice Aproved", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. AI Invoice Aproved", "F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "Project Information", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "", "", "", true, "" });
