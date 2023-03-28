@@ -39,7 +39,12 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 this.GetCompany();
                 this.GetYear();
 
+                int year = DateTime.Now.Year;
+                DateTime firstDay = new DateTime(year, 1, 1);
+                DateTime lastDay = new DateTime(year, 12, 31);
 
+                this.txtFDate.Text = firstDay.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = lastDay.ToString("dd-MMM-yyyy");
 
 
             }
@@ -258,7 +263,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             DataTable dt = (DataTable)Session["tblprofund"];
             string comcod = this.GetComeCode();
             string year = this.ddlyear.SelectedValue.ToString();
-
+            string month = (Convert.ToDateTime(this.txttodate.Text).ToString("yyyy")).ToString() + (Convert.ToDateTime(this.txttodate.Text).ToString("MM")).ToString();
             string insamt = this.txtInterest.Text;
             string msg = "";
 
@@ -271,7 +276,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 double pclamt = Convert.ToDouble(dt.Rows[i]["toam"].ToString());
 
                 bool resultb = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEBENEFIT", year, empid, benamt.ToString(), pclamt.ToString(), insamt,
-                            "", "", "", "", "", "", "", "", "", "");
+                            month, "", "", "", "", "", "", "", "", "");
 
                 if (!resultb)
                 {
