@@ -210,7 +210,7 @@ namespace RealEntity.C_02_Fea
             public string prgval { get; set; }
             public double estcost { get; set; }
             public double actual { get; set; }
-            public string todaypercnt { get; set; }
+            public double todaypercnt { get; set; }
             public double balamt { get; set; }
             public double fundamt { get; set; }
             public double percnt { get; set; }
@@ -218,6 +218,7 @@ namespace RealEntity.C_02_Fea
 
             public SalesAnlysis() { }
         }
+
         [Serializable]
 
         public class MarkCost
@@ -244,7 +245,7 @@ namespace RealEntity.C_02_Fea
             public string comcod { get; set; }
             public string grp { get; set; }
             public string gdesc { get; set; }
-            public string todaypercnt { get; set; }
+            public double todaypercnt { get; set; }
             public string aginday { get; set; }
             public DateTime efectivedate { get; set; }
             public AgeingDays() { }

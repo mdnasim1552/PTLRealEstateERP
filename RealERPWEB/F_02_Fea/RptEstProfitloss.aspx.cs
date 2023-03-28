@@ -309,7 +309,7 @@ namespace RealERPWEB.F_02_Fea
             var list = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>();
             var list2 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>();
             var list3 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.SalesAnlysis>();
-            var list4 = dt5.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.MarkCost>();
+            var list4 = dt4.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.MarkCost>();
             var lstdummy = new RealEntity.C_02_Fea.EClasFeasibility.Eclassdummy();
             lstdummy.Projectpropandloss = list;
             lstdummy.AgeingDays = list2;
@@ -333,15 +333,15 @@ namespace RealERPWEB.F_02_Fea
 
 
             string days1 = "", days2 = "", amt1 = "", amt2 = "";
-            days1 = dt4.Rows[0]["days1"].ToString();
-            amt1 = Convert.ToDouble(dt4.Rows[0]["breakest"]).ToString("#,##0.00;(#,##0.00); ");
-            days2 = dt4.Rows[0]["days2"].ToString();
-            amt2 = Convert.ToDouble(dt4.Rows[0]["breakactual"]).ToString("#,##0.00;(#,##0.00); ");
+            days1 = dt5.Rows[0]["days1"].ToString();
+            amt1 = Convert.ToDouble(dt5.Rows[0]["breakest"]).ToString("#,##0.00;(#,##0.00); ");
+            days2 = dt5.Rows[0]["days2"].ToString();
+            amt2 = Convert.ToDouble(dt5.Rows[0]["breakactual"]).ToString("#,##0.00;(#,##0.00); ");
 
 
             LocalReport Rpt1 = new LocalReport();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", list, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_02_Fea.rptEstmtProfitLoss", lstdummy, null, null);
             Rpt1.EnableExternalImages = true;
 
             Rpt1.SetParameters(new ReportParameter("unit", unit));
