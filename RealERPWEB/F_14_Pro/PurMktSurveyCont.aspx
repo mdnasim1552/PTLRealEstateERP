@@ -300,6 +300,15 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Propose Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvMSRproposerate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposerate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="50px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
 

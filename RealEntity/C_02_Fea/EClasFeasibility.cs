@@ -186,6 +186,7 @@ namespace RealEntity.C_02_Fea
             public string pactcode { get; set; }
             public string estgcod { get; set; }
             public string estgdesc { get; set; }
+            public string rmrks { get; set; }
             public string prgval { get; set; }
             public double estcost { get; set; }
             public double actual { get; set; }
@@ -197,11 +198,54 @@ namespace RealEntity.C_02_Fea
             public ProfitAndLoss() { }
         }
         [Serializable]
+
+        public class SalesAnlysis
+        {
+            public string grp { get; set; }
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string estgcod { get; set; }
+            public string estgdesc { get; set; }
+            public string rmrks { get; set; }
+            public string prgval { get; set; }
+            public double estcost { get; set; }
+            public double actual { get; set; }
+            public double todaypercnt { get; set; }
+            public double balamt { get; set; }
+            public double fundamt { get; set; }
+            public double percnt { get; set; }
+            public DateTime paymentdate { get; set; }
+
+            public SalesAnlysis() { }
+        }
+
+        [Serializable]
+
+        public class MarkCost
+        {
+            public string grp { get; set; }
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string estgcod { get; set; }
+            public string estgdesc { get; set; }
+            public string rmrks { get; set; }
+            public string prgval { get; set; }
+            public double estcost { get; set; }
+            public double actual { get; set; }
+            public double balamt { get; set; }
+            public double fundamt { get; set; }
+            public double percnt { get; set; }
+            public DateTime paymentdate { get; set; }
+
+            public MarkCost() { }
+        }
+        [Serializable]
         public class AgeingDays
         {
             public string comcod { get; set; }
             public string grp { get; set; }
             public string gdesc { get; set; }
+            public double todaypercnt { get; set; }
             public string aginday { get; set; }
             public DateTime efectivedate { get; set; }
             public AgeingDays() { }
@@ -238,7 +282,16 @@ namespace RealEntity.C_02_Fea
             public DateTime purdate { get; set; }
             public ProdCostAnalysis() { }
         }
-
+        [Serializable]
+        public class Eclassdummy
+        {
+            public List<C_02_Fea.EClasFeasibility.ProfitAndLoss> Projectpropandloss { get; set; }
+            public List<C_02_Fea.EClasFeasibility.AgeingDays> AgeingDays { get; set; }
+            public List<C_02_Fea.EClasFeasibility.SalesAnlysis> SalesAnlysis { get; set; }
+            public List<C_02_Fea.EClasFeasibility.MarkCost> MarkCost { get; set; }
+           
+            public Eclassdummy() { }
+        }
 
     }
 }

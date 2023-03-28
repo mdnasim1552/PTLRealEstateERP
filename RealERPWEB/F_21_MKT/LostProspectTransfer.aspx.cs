@@ -149,10 +149,10 @@ namespace RealERPWEB.F_21_MKT
         private void GetData()
         {
             ViewState.Remove("tblproswork");
-
+            string type = this.Request.QueryString["Type"].ToString();
             string comcod = this.GetComeCode();
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_PROSPECT_LIST", null, null, null, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_PROSPECT_LIST", null, null, null, type, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);
@@ -289,9 +289,10 @@ namespace RealERPWEB.F_21_MKT
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComeCode();
+            string type = this.Request.QueryString["Type"].ToString();
             string toemp = this.ddlEmpNameTo.SelectedValue == "000000000000" ? "%" : this.ddlEmpNameTo.SelectedValue.ToString();
             string srcval = "%" + txtVal.Text + "%";
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_TRANSFER_PROSPECT_SEARCH", null, null, null, toemp, srcval, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_TRANSFER_PROSPECT_SEARCH", null, null, null, toemp, srcval, type, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);
