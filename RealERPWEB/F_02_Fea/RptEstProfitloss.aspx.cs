@@ -135,6 +135,8 @@ namespace RealERPWEB.F_02_Fea
 
                 this.GetData();
                 this.GetSalesAnalysis();
+               
+
 
                 this.lblsaleprice.Visible = true;
                 this.lblsalecore.Visible = true;
@@ -157,6 +159,9 @@ namespace RealERPWEB.F_02_Fea
 
             this.lblsaleprice.Visible = false;
             this.lblsalecore.Visible = false;
+            this.lblNarr.Visible = false;
+            this.txtNarr.Visible = false;
+
 
 
 
@@ -164,6 +169,8 @@ namespace RealERPWEB.F_02_Fea
 
 
         }
+
+      
 
         private void GetAgeing()
         {
@@ -248,11 +255,46 @@ namespace RealERPWEB.F_02_Fea
             // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
             DataSet ds3 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "FEAPRANDPRJCT05", pactcode, fdate, "", "", "", "", "", "", "");
             Session["tblfeaprj"] = ds3.Tables[0];
-           
+            Session["tblNarr"] = ds3.Tables[2];
+
+
 
             this.Data_Bind();
+
+            this.GetNarr();
         }
 
+
+        private void GetNarr()
+        {
+
+            DataTable dt6 = (DataTable)Session["tblNarr"];
+
+
+            if (dt6.Rows.Count ==0)
+            {
+                this.txtNarr.Text = "1. All cost calculation made by based on purchases prices except sales incentive" +
+                              "\n2.Administration Overhead fixed 5 % on purchased value" +
+                              "\n3.Tax Calculated by 30 % on NPBT" +
+                              "\n4.All Percentage(%) calculation based on purchase value" +
+                              "\n5.Product Costing Format will be reviewed after each six months";
+
+            }
+
+            else
+            {
+                //this.txtNarr.Text = Convert.ToString( Rows[0]["narration"]);
+                this.txtNarr.Text = dt6.Rows[0]["narration"].ToString();
+
+            }
+
+
+
+          
+
+
+
+        }
         private void GetSalesAnalysis()
         {
 
@@ -387,6 +429,10 @@ namespace RealERPWEB.F_02_Fea
                 double percnt = ASTUtility.StrPosOrNagative(((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtpercnt")).Text.Trim());
                 double fundamt = ASTUtility.StrPosOrNagative(((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtcostoffund")).Text.Trim());
                 string paymentdate = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvDate")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvDate")).Text.Trim();
+                string txtrmks = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtrmks")).Text.Trim();
+
+
+                
                 double balamt = txtestcost - txtbuiactual;
 
                 //if (lblgvItmCode == "07001")
@@ -402,6 +448,8 @@ namespace RealERPWEB.F_02_Fea
                 dt.Rows[i]["fundamt"] = fundamt;
                 dt.Rows[i]["balamt"] = balamt;
                 dt.Rows[i]["paymentdate"] = paymentdate;
+                dt.Rows[i]["rmks"] = txtrmks;
+
 
 
                 Session["tblfeaprj"] = dt;
@@ -649,8 +697,13 @@ namespace RealERPWEB.F_02_Fea
                         else if (Gcode == "04002")
                         {
 
-                            spsalincest = txtestcost;
-                            spsalincacutal = txtactual;
+                            //spsalincest = txtestcost;
+                            //spsalincacutal = txtactual;
+
+                            spsalincest = comitedval * percnt * .01; ;
+                            spsalincacutal = actualsalvalue * percnt * .01;
+
+
                             dt.Select("estgcod='04002'")[0]["estcost"] = spsalincest;
                             dt.Select("estgcod='04002'")[0]["actual"] = spsalincacutal;
                             dt.Select("estgcod='04002'")[0]["balamt"] = spsalincest - spsalincacutal;
@@ -660,12 +713,14 @@ namespace RealERPWEB.F_02_Fea
 
                         else if (Gcode == "04003")
                         {
-                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+                            //comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            //actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+
+                            purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
 
                             //adminohest = 500000;
-                            adminohest = comitedval * percnt * .01;
-                            adminohactual = actualsalvalue * percnt * .01;
+                            adminohest = purvalue * percnt * .01;
+                            adminohactual = purvalue * percnt * .01;
                             //costofpuractual = actual + purincactual;
 
 
@@ -682,11 +737,18 @@ namespace RealERPWEB.F_02_Fea
 
                         else if(Gcode == "04004")
                         {
-                            grpcotributionest = txtestcost;
-                            grpcotributionactual = txtactual;
-                            dt.Select("estgcod='04002'")[0]["estcost"] = grpcotributionest;
-                            dt.Select("estgcod='04002'")[0]["actual"] = grpcotributionactual;
-                            dt.Select("estgcod='04002'")[0]["balamt"] = grpcotributionest - grpcotributionactual;
+                            purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
+
+                            //grpcotributionest = txtestcost;
+                            //grpcotributionactual = txtactual;
+
+                            grpcotributionest = purvalue * percnt * .01;
+                            grpcotributionactual = purvalue * percnt * .01;
+
+
+                            dt.Select("estgcod='04004'")[0]["estcost"] = grpcotributionest;
+                            dt.Select("estgcod='04004'")[0]["actual"] = grpcotributionactual;
+                            dt.Select("estgcod='04004'")[0]["balamt"] = grpcotributionest - grpcotributionactual;
 
                         }
 
@@ -794,12 +856,13 @@ namespace RealERPWEB.F_02_Fea
 
                         else if (Gcode == "05002")
                         {
-                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+                            purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
+                            //comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            //actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
 
                             //otherest = 500000;
-                            otherest = comitedval * percnt * .01;
-                            otheractual = actualsalvalue * percnt * .01;
+                            otherest = purvalue * percnt * .01;
+                            otheractual = purvalue * percnt * .01;
 
                             dt.Select("estgcod='05002'")[0]["estcost"] = otherest;
                             dt.Select("estgcod='05002'")[0]["actual"] = otheractual;
@@ -811,6 +874,8 @@ namespace RealERPWEB.F_02_Fea
                         {
                             costpest = txtestcost;
                             costpactual = txtactual;
+
+                            
                             dt.Select("estgcod='05003'")[0]["estcost"] = costpest;
                             dt.Select("estgcod='05003'")[0]["actual"] = costpactual;
                             dt.Select("estgcod='05003'")[0]["balamt"] = costpest - costpactual;
@@ -819,11 +884,16 @@ namespace RealERPWEB.F_02_Fea
 
                         else if (Gcode == "05004")
                         {
-                            comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
-                            actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
+                            //comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
+                            //actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
 
-                            riskest = comitedval * percnt * .01;
-                            riskactual = actualsalvalue * percnt * .01;
+                            purvalue = Convert.ToDouble("0" + (lblPurValuse1.Text));
+
+                            //riskest = comitedval * percnt * .01;
+                            //riskactual = actualsalvalue * percnt * .01;
+
+                            riskest = purvalue * percnt * .01;
+                            riskactual = purvalue * percnt * .01;
 
                             dt.Select("estgcod='05004'")[0]["estcost"] = riskest;
                             dt.Select("estgcod='05004'")[0]["actual"] = riskactual;
@@ -831,16 +901,23 @@ namespace RealERPWEB.F_02_Fea
 
                         }
 
-                        totherest = mktexpest + otherest + costpest + riskest;
-                        totheractual = mktexpactual + otheractual + costpactual + riskactual;
-                        dt.Select("estgcod='05000'")[0]["estcost"] = totherest;
-                        dt.Select("estgcod='05000'")[0]["actual"] = totheractual;
-                        dt.Select("estgcod='05000'")[0]["balamt"] = totherest - totheractual;
+                        
+                   
                        
                         break;
 
+                    //case "05008":
 
-                   
+                    //    totalcostest = totherest + texpendamtest;
+                    //    totalcostactual = totheractual + texpendamtactual;
+                    //    dt.Select("estgcod='05008'")[0]["estcost"] = totalcostest;
+                    //    dt.Select("estgcod='05008'")[0]["actual"] = totalcostactual;
+                    //    dt.Select("estgcod='05008'")[0]["balamt"] = totalcostest - totalcostactual;
+
+                    //    break;
+
+
+
 
                     //case "05002":
 
@@ -871,7 +948,7 @@ namespace RealERPWEB.F_02_Fea
 
                     //    comitedval = Convert.ToDouble("0" + (lblcommitedval.Text));
                     //    actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
-                  
+
                     //    riskest = comitedval * percnt * .01;
                     //    riskactual = actualsalvalue * percnt * .01;
 
@@ -898,17 +975,9 @@ namespace RealERPWEB.F_02_Fea
                     //    dt.Select("estgcod='05000'")[0]["balamt"] = totherest - totheractual;
                     //    break;
 
-                    case "05008":
 
-                        totalcostest = totherest + texpendamtest;
-                        totalcostactual = totheractual + texpendamtactual;
-                        dt.Select("estgcod='05008'")[0]["estcost"] = totalcostest;
-                        dt.Select("estgcod='05008'")[0]["actual"] = totalcostactual;
-                        dt.Select("estgcod='05008'")[0]["balamt"] = totalcostest - totalcostactual;
 
-                        break;
 
-                    
                     case "06001":
                     case "06002":
 
@@ -949,10 +1018,33 @@ namespace RealERPWEB.F_02_Fea
                         dt.Select("estgcod='06000'")[0]["actual"] = tmktexpenmonactaul;
                         dt.Select("estgcod='06000'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
 
+                        //Marketing Expense
+                        dt.Select("estgcod='05001'")[0]["estcost"] = tmktexpenmonest;
+                        dt.Select("estgcod='05001'")[0]["actual"] = tmktexpenmonactaul;
+                        dt.Select("estgcod='05001'")[0]["balamt"] = tmktexpenmonest - tmktexpenmonactaul;
+
+                       //Total Part
+                        
+                        totherest = tmktexpenmonest + otherest + costpest + riskest;
+                        totheractual = tmktexpenmonactaul + otheractual + costpactual + riskactual;
+
+                        dt.Select("estgcod='05000'")[0]["estcost"] = totherest;
+                        dt.Select("estgcod='05000'")[0]["actual"] = totheractual;
+                        dt.Select("estgcod='05000'")[0]["balamt"] = totherest - totheractual;
+
+
+                        totalcostest = totherest + texpendamtest;
+                        totalcostactual = totheractual + texpendamtactual;
+                        dt.Select("estgcod='05008'")[0]["estcost"] = totalcostest;
+                        dt.Select("estgcod='05008'")[0]["actual"] = totalcostactual;
+                        dt.Select("estgcod='05008'")[0]["balamt"] = totalcostest - totalcostactual;
+
 
 
 
                         break;
+
+
 
                     //case "06002":
 
@@ -1073,6 +1165,14 @@ namespace RealERPWEB.F_02_Fea
                         dt.Select("estgcod='07000'")[0]["estcost"] = costest2;
                         dt.Select("estgcod='07000'")[0]["actual"] = costacutal2;
                         dt.Select("estgcod='07000'")[0]["balamt"] = costest2 - costacutal2;
+                        
+                        //Annexer-2 Part
+                        dt.Select("estgcod='05003'")[0]["estcost"] = costest2;
+                        dt.Select("estgcod='05003'")[0]["actual"] = costacutal2;
+                        dt.Select("estgcod='05003'")[0]["balamt"] = costest2 - costacutal2;
+
+
+
 
                         break;
 
@@ -1223,9 +1323,11 @@ namespace RealERPWEB.F_02_Fea
                 string fundamt = dt.Rows[i]["fundamt"].ToString();
                 string percnt = dt.Rows[i]["percnt"].ToString();
                 string paymentdate = dt.Rows[i]["paymentdate"].ToString();
+                string rmks = dt.Rows[i]["rmks"].ToString();
+
 
                 bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATEPRODUCTCOSTING",
-                    prjcode, gcod, estcost, actual, percnt, fundamt, paymentdate, "", "", "", "", "", "", "", "");
+                    prjcode, gcod, estcost, actual, percnt, fundamt, paymentdate, rmks, "", "", "", "", "", "", "");
 
 
                 if (!result)
@@ -1691,6 +1793,8 @@ namespace RealERPWEB.F_02_Fea
             DataTable dt3 = (DataTable)ViewState["tblSalAnalysis"];
             string comcod = this.GetComCode();
             string prjcode = this.ddlProjectName.SelectedValue.ToString();
+            string txtnarr = this.txtNarr.Text; ;
+
             for (int i = 0; i < dt3.Rows.Count; i++)
             {
                 string gcod = dt3.Rows[i]["estgcod"].ToString();
@@ -1711,6 +1815,11 @@ namespace RealERPWEB.F_02_Fea
                     return;
                 }
             }
+
+
+
+            bool result1 = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY_03", "INSORUPDATENARRATION",
+                prjcode, txtnarr, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
