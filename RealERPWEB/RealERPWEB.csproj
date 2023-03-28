@@ -2447,6 +2447,7 @@
     <Content Include="F_21_MKT\RptLeadStatus.aspx" />
     <Content Include="F_21_MKT\RptMissFollowup.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_21_MKT\RptSalesEvaulation.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
     <Content Include="F_22_Sal\SaleUnitMapping.aspx" />
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
@@ -4664,6 +4665,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesEvaulation.aspx.cs">
+      <DependentUpon>RptSalesEvaulation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesEvaulation.aspx.designer.cs">
+      <DependentUpon>RptSalesEvaulation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\ClusterSetup.aspx.cs">
       <DependentUpon>ClusterSetup.aspx</DependentUpon>
