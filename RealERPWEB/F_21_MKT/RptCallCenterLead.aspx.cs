@@ -21,6 +21,7 @@ namespace RealERPWEB.F_21_MKT
     public partial class RptCallCenterLead : System.Web.UI.Page
     {
         ProcessAccess prjData = new ProcessAccess();
+        ProcessAccess instcrm = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -43,6 +44,7 @@ namespace RealERPWEB.F_21_MKT
 
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "SourceWise") ? "Source Wise Leads" : "Sales Person Wise Leads";
                 this.SelectView();
+                this.GetEmployeeList();
 
             }
 
@@ -59,6 +61,25 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        public string GetComeCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+        public void GetEmployeeList()
+        {
+            string comcod = GetComeCode();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_MODULE", "EMPLOYEELIST", "", "", "", "", "", "");
+
+            ddlEmp.DataTextField = "sirdesc";
+            ddlEmp.DataValueField = "sircode";
+            this.ddlEmp.DataSource = ds1.Tables[0];
+            this.ddlEmp.DataBind();
+        }
+        protected void ibtnFindProject_Click(object sender, EventArgs e)
+        {
+            this.GetEmployeeList();
+        }
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
@@ -226,12 +247,36 @@ namespace RealERPWEB.F_21_MKT
                 case "SalespWise":
                     this.ShowSalesPWiseLead();
                     break;
+                case "SPWiseActivity":
+                    this.SPWiseActivity();
+                    break;
 
             }
 
+        }
 
+        public void SPWiseActivity()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
 
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_EMP_KPI04", "SHOWTEAMACTIVITIES", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
 
+                this.gvSPWiseActivity.DataSource = null;
+                this.gvSPWiseActivity.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 2;
+            Session["SPWiseActivity"] = HiddenSameData(ds1.Tables[0]);
+            this.gvSPWiseActivity.DataSource = ds1.Tables[0];
+            this.gvSPWiseActivity.DataBind();
+            return;
         }
         private void ShowSourceWiseLead()
         {
