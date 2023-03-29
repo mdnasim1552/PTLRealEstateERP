@@ -149,17 +149,17 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
 
-            string frmdate = "01-jan-" + ddlyear.SelectedValue.ToString();
-            string todate = "31-Dec-" + ddlyear.SelectedValue.ToString();
+            //string frmdate = "01-jan-" + ddlyear.SelectedValue.ToString();
+            //string todate = "31-Dec-" + ddlyear.SelectedValue.ToString();
 
-            string frmndate = this.txtFDate.Text;
-            string tondate = this.txttodate.Text;
+            string frmdate = this.txtFDate.Text;
+            string todate = this.txttodate.Text;
 
-            if (frmndate != "" && tondate != "")
-            {
-                frmdate = this.txtFDate.Text;
-                todate = this.txttodate.Text;
-            }
+            //if (frmndate != "" && tondate != "")
+            //{
+            //    frmdate = this.txtFDate.Text;
+            //    todate = this.txttodate.Text;
+            //}
 
             string CompanyName = ((this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string projectcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
@@ -263,7 +263,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             DataTable dt = (DataTable)Session["tblprofund"];
             string comcod = this.GetComeCode();
             string year = this.ddlyear.SelectedValue.ToString();
-            string month = (Convert.ToDateTime(this.txttodate.Text).ToString("yyyy")).ToString() + (Convert.ToDateTime(this.txttodate.Text).ToString("MM")).ToString();
+            string month = (Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM")).ToString();
             string insamt = this.txtInterest.Text;
             string msg = "";
 
