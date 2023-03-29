@@ -2483,8 +2483,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox32">
@@ -2508,9 +2506,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox31</rd:DefaultName>
-              <Top>0.49583in</Top>
+              <Top>0.46805in</Top>
               <Left>1.49013in</Left>
-              <Height>0.23542in</Height>
+              <Height>0.31195in</Height>
               <Width>5.39737in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -2519,8 +2517,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox43">
@@ -2542,9 +2538,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox39</rd:DefaultName>
-              <Top>0.29167in</Top>
+              <Top>0.27778in</Top>
               <Left>1.49013in</Left>
-              <Height>0.19861in</Height>
+              <Height>0.19027in</Height>
               <Width>5.39737in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -2553,8 +2549,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Image Name="Image1">

@@ -361,6 +361,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoFinlay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoCPDL.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptBillInfoInnsANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
