@@ -2147,6 +2147,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4319,7 +4320,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
-              <Top>0.30417in</Top>
+              <Top>0.29514in</Top>
               <Left>0.0625in</Left>
               <Height>0.21875in</Height>
               <Width>1.17708in</Width>

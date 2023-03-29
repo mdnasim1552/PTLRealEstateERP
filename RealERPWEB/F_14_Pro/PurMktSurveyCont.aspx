@@ -300,7 +300,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Propose Rate">
+                                    <asp:TemplateField HeaderText="Company Rate" Visible="false">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvMSRproposerate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"

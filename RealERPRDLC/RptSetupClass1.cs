@@ -1009,6 +1009,8 @@ namespace RealERPRDLC
                 case "R_32_Mis.RptProjectAnalysis": Rpt1a = SetRptProjectAnalysis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_45_GrAcc.RptGrpMisRecPayment": Rpt1a = SetRptGrpMisRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_45_GrAcc.RptAccRecPayment": Rpt1a = SetRptAccRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
 
@@ -1028,6 +1030,7 @@ namespace RealERPRDLC
 
 
                 #endregion
+
 
                 #region R_38_AI
 
@@ -2728,7 +2731,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPaymentBank>)RptDataSet2));
             return Rpt1a;
         }
-
+        //SetRptAccRecPayment
+        private static LocalReport SetRptAccRecPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptAccRecPayment>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptCallCenterLead(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
