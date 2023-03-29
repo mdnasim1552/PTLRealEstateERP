@@ -21,8 +21,8 @@
                     k1.textBoxHandler(event);
                 });
 
-
-
+                var gv1 = $('#<%=this.gvprjanalysis.ClientID %>');
+                gv1.Scrollable();
 
                 <%--var gvprjanalysis = $('#<%=this.gvprjanalysis.ClientID %>');
 
@@ -183,6 +183,14 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Sales </br>(%)</br> from </br>S.Tar.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="salperstg" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salperstg")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="45px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Sales</br> Dues">
                                     <ItemTemplate>
                                         <asp:Label ID="tsaldue" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tsaldue")).ToString("#,##0;(#,##0); ")  %>'
@@ -206,6 +214,14 @@
                                     </FooterTemplate>
 
                                     <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Collec.</br>(%) </br>from</br> Sales">
+                                    <ItemTemplate>
+                                        <asp:Label ID="colpersal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colpersal")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="45px"></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -236,23 +252,9 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Sales </br>(%)</br> from </br>S.Tar.">
-                                    <ItemTemplate>
-                                        <asp:Label ID="salperstg" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salperstg")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="45px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
+                                
 
-                                <asp:TemplateField HeaderText="Collec.</br>(%) </br>from</br> Sales">
-                                    <ItemTemplate>
-                                        <asp:Label ID="colpersal" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "colpersal")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                            Width="45px"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
+                                
 
                                 <asp:TemplateField HeaderText="Collec.</br>(%) </br> from </br>S. tar.">
                                     <ItemTemplate>

@@ -1008,6 +1008,8 @@ namespace RealERPRDLC
                 case "R_32_Mis.RptProjectAnalysis": Rpt1a = SetRptProjectAnalysis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_45_GrAcc.RptGrpMisRecPayment": Rpt1a = SetRptGrpMisRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_45_GrAcc.RptAccRecPayment": Rpt1a = SetRptAccRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
 
@@ -1027,6 +1029,7 @@ namespace RealERPRDLC
 
 
                 #endregion
+
 
                 #region R_38_AI
 
@@ -2513,10 +2516,14 @@ namespace RealERPRDLC
 
         private static LocalReport SetrptEstmtProfitLoss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet2));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)UserDataset));
+       
+            var rptlist = (RealEntity.C_02_Fea.EClasFeasibility.Eclassdummy)RptDataSet;
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", rptlist.Projectpropandloss));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", rptlist.AgeingDays));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", rptlist.SalesAnlysis));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet4", rptlist.MarkCost));
             return Rpt1a;
+
         }
 
 
@@ -2723,7 +2730,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPaymentBank>)RptDataSet2));
             return Rpt1a;
         }
-
+        //SetRptAccRecPayment
+        private static LocalReport SetRptAccRecPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptAccRecPayment>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptCallCenterLead(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

@@ -40,6 +40,20 @@
             width: 300px !important;
             overflow-y: scroll !important;
         }*/
+           .multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        #ContentPlaceHolder1_divgrp {
+            width: 395px !important;
+        }
+
         .caret {
             display: none !important;
         }
@@ -47,10 +61,7 @@
             width: 200px !important;
         }
 
-        #ContentPlaceHolder1_divgrp {
-            /*width: 395px !important;*/
-        }
-
+      
         .form-control {
             height: 34px;
         }

@@ -137,7 +137,7 @@
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
                                 <RowStyle Font-Size="11px" />
@@ -146,7 +146,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0"
                                                 runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="25px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle
                                             HorizontalAlign="Center" VerticalAlign="Top" />
@@ -308,6 +308,23 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
+
+                                      <asp:TemplateField HeaderText="Remarks">
+
+                                        <ItemTemplate>
+                                            <asp:TextBox
+                                                ID="txtrmks" runat="server" BackColor="Transparent" BorderStyle="none" CssClass="txtAlgRight"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
+                                                Width="120px"></asp:TextBox>
+
+
+                                        </ItemTemplate>
+
+                                        <HeaderStyle
+                                            HorizontalAlign="Center" VerticalAlign="Top" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
@@ -317,7 +334,7 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
 
                             <asp:GridView ID="gvAgeing" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False">
@@ -540,6 +557,13 @@
 
                    </div>
 
+                    <div class="row">
+                                <div class="col-md-8">
+                                    <asp:Label ID="lblNarr" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
+                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine"></asp:TextBox>
+                                </div>
+                 </div>
+
                 <%--    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -562,6 +586,8 @@
 
 
             </div>
+
+             
 
         </ContentTemplate>
     </asp:UpdatePanel>

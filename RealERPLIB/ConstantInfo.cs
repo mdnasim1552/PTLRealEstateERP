@@ -1183,7 +1183,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103133", "F_21_MKT", "RptCallCenterLead?", "Type=Conversion", "Sales Person Wise Conversion", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103134", "F_21_MKT", "RptCallCenterLead?", "Type=RptTracking", "Sales Person Wise Tracking", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103135", "F_21_MKT", "RptCallCenterLead?", "Type=SopTimeLine", "SOP Timeline Report", "CRM", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2103000", "2103136", "F_21_MKT", "RptSalesEvaulation?", "Type=TeamMember", "Sales Evaulation Report", "CRM", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -7504,6 +7504,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000012", "25. Sales Person Wise Conversion", "F_21_MKT/RptCallCenterLead?Type=Conversion", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "26. Sales Person Wise Tracking", "F_21_MKT/RptCallCenterLead?Type=RptTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "27. SOP Timeline Report", "F_21_MKT/RptCallCenterLead?Type=SopTimeLine", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000015", "28. Sales Evaulation Report", "F_21_MKT/RptSalesEvaulation?Type=TeamMember", "", true, "" });
 
 
 
@@ -10803,7 +10804,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Employee Wise Task (MGT)", "F_38_AI/MyTasks.aspx?Type=MGT&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task", "F_38_AI/MyTasks.aspx?Type=IND&EmpID=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task Edit", "F_38_AI/MyTasks.aspx?Type=Edit&EmpID=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. AI Invoice Aproved", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. AI Invoice Aproved", "F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "Project Information", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "", "", "", true, "" });
