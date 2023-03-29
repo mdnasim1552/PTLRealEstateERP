@@ -95,7 +95,8 @@
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
-                                <asp:CommandField ShowDeleteButton="True" DeleteText="Cancel" />
+                                <asp:CommandField ShowDeleteButton="True" DeleteText="Cancel"/>
+
 
                                 <asp:TemplateField HeaderText="Bill No">
                                     <ItemTemplate>
@@ -215,9 +216,9 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Payment Date">
 
-                                    <FooterTemplate>
+                                    <%--<FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-sm  btn-success primaryBtn" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
 
 
 
@@ -255,10 +256,10 @@
 
                                     </HeaderTemplate>
 
-                                    <FooterTemplate>
+                                   <%-- <FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lbtnUpdate_Click">Approved</asp:LinkButton>
 
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
                                     <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
