@@ -1543,7 +1543,7 @@ namespace RealERPWEB.F_45_GrAcc
                     this.RptIssueVsColl();
                     break;
                 case "PrjTrialBal":
-                    this.PrjTrialBalPrint_();
+                    this.PrjTrialBalPrint();
                     break;
 
             }
@@ -2284,7 +2284,7 @@ namespace RealERPWEB.F_45_GrAcc
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-        private void PrjTrialBalPrint_()
+        private void PrjTrialBalPrint()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
