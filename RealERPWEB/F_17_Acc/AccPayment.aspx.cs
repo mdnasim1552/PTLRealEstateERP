@@ -439,6 +439,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlresuorcecode.DataBind();
                 this.txtserchReCode.Text = "";
                 this.GetSpecification();
+                this.GetBillNo();
                 string seaRes = this.ddlresuorcecode.SelectedValue.ToString().Trim();
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
@@ -1148,6 +1149,25 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+
+            // Bill Amount check 
+
+            //double billbalamt = Convert.ToDouble("0" + ((Label)this.dgv1.Rows[0].FindControl("lblbillbalance")).Text.Trim());
+            //double ToDramt = Convert.ToDouble("0" + ((Label)this.dgv1.FooterRow.FindControl("lblTgvDrAmt")).Text.Trim());          
+
+            //if (ToDramt>billbalamt)
+            //{
+
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+            //    return;
+
+            //}
+
+            
+
+         
+          
+
 
             if ((this.Request.QueryString["Type"] == "Acc"))
             {

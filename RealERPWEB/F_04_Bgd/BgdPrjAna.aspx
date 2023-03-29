@@ -222,9 +222,15 @@
                             <asp:LinkButton ID="lbtnCopyProject" runat="server" CssClass="btn btn-sm btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnCopyProject_Click">Copy</asp:LinkButton>
                         </div>
 
-                        <div class="col-md-2" style="margin-top: 20px;">
-                            <asp:CheckBox ID="chkwithoutqty" runat="server" Text="Without Qty" />
+                        <div class="col-lg-6  col-md-6" style="margin-top: 20px;">
+                            <div class="form-group">
+                                <asp:CheckBoxList ID="CheckBoxList1" runat="server" AutoPostBack="True">
+                                    <asp:ListItem Value="0">WithOut QTY</asp:ListItem>
+                                    <asp:ListItem Value="1">Withoutqty & with Rate</asp:ListItem>
+                                </asp:CheckBoxList>
+                            </div>
                         </div>
+
                     </div>
                     <div class="row" runat="server" id="PnlCopyTender" visible="false">
                         <div class="col-md-3 col-sm-3 col-lg-3">
@@ -338,11 +344,7 @@
                                     <div class="form-group">
                                         <asp:Label ID="lblFloor1" runat="server" CssClass="control-label" Text="Page Size"></asp:Label>
                                         <asp:DropDownList ID="ddlpagesizeen" runat="server" CssClass=" form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizeen_SelectedIndexChanged">
-                                            <asp:ListItem Value="10">10</asp:ListItem>
-                                            <asp:ListItem Value="15">15</asp:ListItem>
-                                            <asp:ListItem Value="20">20</asp:ListItem>
-                                            <asp:ListItem Value="30">30</asp:ListItem>
-                                            <asp:ListItem Value="50">50</asp:ListItem>
+
                                             <asp:ListItem Value="100">100</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
@@ -409,7 +411,7 @@
                                                 <asp:TextBox ID="txtSearchItmDesc" BackColor="Transparent" CssClass="form-control form-control-sm" BorderStyle="None" runat="server" placeholder="Description of Item" onkeyup="Search_Gridview(this,2, 'gvAnalysis')"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmDesc" runat="server" Font-Size="X-Small"
+                                                <asp:Label ID="lblgvItmDesc" runat="server" Font-Size="16px"
                                                     Text='<%# "<span class=grditem>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "misirdesc")) + "</span>"+
                                                                          (DataBinder.Eval(Container.DataItem, "isirdesc1").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "misirdesc")).Trim().Length>0 ? "<br>" : "") +                                                                           
@@ -527,7 +529,7 @@
                                                 </table>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmUnit" runat="server" Font-Size="X-Small"
+                                                <asp:Label ID="lblgvItmUnit" runat="server" Font-Size="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isirunit")) %>'
                                                     Width="35px"></asp:Label>
                                             </ItemTemplate>
@@ -542,7 +544,7 @@
 
                                         <asp:TemplateField HeaderText="Budgeted Qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvQty" runat="server" Font-Size="X-Small"
+                                                <asp:Label ID="lblgvQty" runat="server" Font-Size="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdwqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                     Width="100px" CssClass="style101"></asp:Label>
                                             </ItemTemplate>
@@ -551,7 +553,7 @@
 
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvEdited" runat="server"
+                                                <asp:Label ID="lblgvEdited" runat="server" Font-Size="14px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "edited")) %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
@@ -560,8 +562,8 @@
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblpostdat" runat="server" Font-Size="X-Small"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "postdat")).Length==0?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "postdat")).ToString("dd-MMM-yyyy hh:mm tt")%>'
+                                                <asp:Label ID="lblpostdat" runat="server" Font-Size="14px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "postdat")).Length==0?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "postdat")).ToString("dd-MMM-yyyy")%>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
@@ -569,7 +571,7 @@
 
                                         <asp:TemplateField HeaderText="User">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblpostid" runat="server" Font-Size="X-Small"
+                                                <asp:Label ID="lblpostid" runat="server" Font-Size="14px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrname")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -968,9 +970,10 @@
                                                 <asp:LinkButton ID="lbtnSameValue" runat="server" Font-Size="12px" OnClick="lbtnSameValue_Click" CssClass="btn btn-primary btn-sm okBtn ">Put Same Val</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvResQty" runat="server"
+                                                <asp:Label ID="lblgvResQty" runat="server" 
+                                                      Style="text-align: right;"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tresqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="85px" Style="text-align: right"></asp:Label>
+                                                    Width="85px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />

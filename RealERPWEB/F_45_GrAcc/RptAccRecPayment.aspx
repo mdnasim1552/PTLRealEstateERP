@@ -2331,7 +2331,7 @@
 
                                 <div class="col-md-12">
                                     <asp:GridView ID="gvPrjtrbal" runat="server" AutoGenerateColumns="False" CssClass=" table-striped  table-bordered grvContentarea"
-                                    OnRowDataBound="gvPrjtrbal_RowDataBound" ShowFooter="True" Width="658px">
+                                    OnRowDataBound="gvPrjtrbal_RowDataBound" ShowFooter="True" Width="658px" OnRowCreated="gvPrjtrbal_RowCreated">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -2396,7 +2396,7 @@
                                         <asp:TemplateField HeaderText="Debit(in Tk.)">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvAmt" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dramt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
@@ -2408,6 +2408,28 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvCre" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Debit(in Tk.)">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgv1Amt" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dramt1")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Credit(in Tk.)">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvCre1" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cramt1")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />

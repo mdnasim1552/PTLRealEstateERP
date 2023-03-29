@@ -7,9 +7,28 @@
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
-
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+            $('.ass_radio').change(function () {
+               // alert("hi");
+                $row = $(this).closest("tr");
+                $tds = $row.find("td");             // Finds all children <td> elements
+
+                $.each($tds, function () {               // Visits every single <td> element
+                    console.log($(this).text());        // Prints out the text within the <td>
+                    $(this).find(".ass_radio input[type=checkbox]").prop('checked', true);
+
+
+                });
+                $.each($tds, function () {               // Visits every single <td> element
+                    $(this).find(".ass_radio input[type=checkbox]").prop('checked', false);
+
+                });
+
+                $(this).find("input[type=checkbox]").prop('checked', true);
+                ////console.log($row);
+             //   $(this).closest("tr").find("td span.ass_radio").removeAttr('checked');
+            });
         });
 
         function pageLoaded() {
@@ -106,7 +125,14 @@
                                         </div>
                                     </div>
                                 </div>
+                               
+                            </div>
+                            <div class="row">
                                 <div class="row" style="width: 100%">
+                                    <h5>Contact</h5>
+                                    <hr width="90%" align="right" />
+                                </div>
+                                 <div class="row" style="width: 100%">
                                     <div class="col-7">
                                         <div class="form-group">
                                             <label class="form-label">Concern Name</label>
@@ -120,12 +146,6 @@
 
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row" style="width: 100%">
-                                    <h5>Contact</h5>
-                                    <hr width="90%" align="right" />
                                 </div>
                                 <div class="row" style="width: 100%">
                                     <div class="col-4">
@@ -144,7 +164,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <asp:Label runat="server" ID="lblEmail" CssClass="form-control form-control-sm"></asp:Label>
+                                            <asp:Label runat="server" ID="lblEmail" CssClass="form-control form-control-sm bg-twitter"></asp:Label>
 
                                         </div>
                                     </div>
@@ -227,6 +247,15 @@
                                     <asp:TextBox runat="server" ID="lblcomoverview" Wrap="true" Width="100%" Rows="5" ReadOnly="true" TextMode="MultiLine" BorderStyle="None" BorderWidth="0"></asp:TextBox>
                                 </div>
                             </div>
+                             <div class="row">
+                                <div class="row" style="width: 100%">
+                                    <h5>Terms & Conditions</h5>
+                                    <hr width="88.5%" align="right" />
+                                </div>
+                                <div class="row" style="width: 100%">
+                                    <asp:TextBox runat="server" ID="TxtTermrsConditions" Wrap="true" Width="100%" Rows="5" ReadOnly="true" TextMode="MultiLine" BorderStyle="None" BorderWidth="0"></asp:TextBox>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,7 +275,7 @@
                                     <div class="card">
                                         <div class="card-body" style="padding-bottom: 16px;">
                                             <div class="d-flex justify-content-md-center">
-                                                <asp:Label runat="server" ID="lblVendorId" Font-Bold="true" Font-Size="Large">10</asp:Label>
+                                                <asp:Label runat="server" ID="lblVendorId" CssClass="text-muted" >10</asp:Label>
 
                                             </div>
                                             <div class="d-flex justify-content-md-center">
@@ -257,14 +286,125 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="padding-bottom: 16px;">
+                                              <div class="d-flex justify-content-md-center">
+                                <asp:Label runat="server" ID="lblExperienced" CssClass="text-muted"></asp:Label>
+                                                </div>
+                                               <div class="d-flex justify-content-md-center">
+                                                <asp:Label runat="server" Font-Bold="true" Font-Size="Large">Experience</asp:Label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body" style="min-height: 500px">
-                            <div class="row">
+                           
+                            <div class="row">                                 
+                                    <h5>Assessment</h5>                                
+                                
+                                <asp:GridView ID="gvAssessment" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                        ShowFooter="True">
+                        <RowStyle />
+                        <Columns>
+                            <asp:TemplateField HeaderText="#">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                        Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtasscod" runat="server" Style="text-align: left; font-size: 11px;"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "asscode")) %>'
+                                        Width="40px" BackColor="Transparent" BorderStyle="None"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Description ">
+                                <ItemTemplate>
+                                    <asp:Label ID="txtDescription" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assdesc"))%>'
+                                        Width="200px" />
+                                </ItemTemplate>
+
+                                <FooterTemplate>
+                                      <asp:LinkButton ID="LbtnRecalculate" runat="server" Font-Bold="True"
+                                        CssClass="btn btn-info btn-sm" OnClick="LbtnRecalculate_Click"><span class="fa fa-recycle"></span></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnUpPerAppraisal" OnClientClick="return confirm('Do you save this assessment?')" runat="server" Font-Bold="True"
+                                        CssClass="btn btn-success btn-sm" OnClick="lbtnUpPerAppraisal_OnClick"><span class="fa fa-save"></span></asp:LinkButton>
+                                     <asp:Label ID="LblFGain" CssClass="text-facebook" runat="server"></asp:Label>
+
+                                </FooterTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Base">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblbase" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "baseval")).ToString("#,##0.00") %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                 <FooterTemplate>
+                                     <asp:Label ID="LblFBase"  CssClass="text-youtube"  runat="server"></asp:Label>
+                                 </FooterTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                           
+                            <asp:TemplateField HeaderText="05">
+                                <ItemTemplate>
+                                    <asp:CheckBox ClientIDMode="Static" CssClass="ass_radio"  name="Assessment" ID="lblexec" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "exc"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="04">
+                                <ItemTemplate>
+                                    <asp:CheckBox ClientIDMode="Static" CssClass="ass_radio" name="Assessment" ID="lblgood" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "good"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="03">
+                                <ItemTemplate>
+                                    <asp:CheckBox ClientIDMode="Static" CssClass="ass_radio" ID="lblavrg" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "avrg"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="02">
+                                <ItemTemplate>
+                                    <asp:CheckBox ClientIDMode="Static" CssClass="ass_radio" ID="lblpoor" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "poor"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="01">
+                                <ItemTemplate>
+                                    <asp:CheckBox ClientIDMode="Static" CssClass="ass_radio" ID="lblnill" runat="server"
+                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nill"))=="True" %>'
+                                        Width="30px" />
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
                             </div>
                         </div>
                     </div>
