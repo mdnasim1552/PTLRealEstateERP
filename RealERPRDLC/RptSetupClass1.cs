@@ -2516,10 +2516,14 @@ namespace RealERPRDLC
 
         private static LocalReport SetrptEstmtProfitLoss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet2));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)UserDataset));
+       
+            var rptlist = (RealEntity.C_02_Fea.EClasFeasibility.Eclassdummy)RptDataSet;
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", rptlist.Projectpropandloss));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", rptlist.AgeingDays));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", rptlist.SalesAnlysis));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet4", rptlist.MarkCost));
             return Rpt1a;
+
         }
 
 

@@ -2286,6 +2286,8 @@ namespace RealERPWEB.F_45_GrAcc
 
         private void PrjTrialBalPrint()
         {
+            
+               
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -2308,7 +2310,13 @@ namespace RealERPWEB.F_45_GrAcc
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+            {
+                if (this.ddlComCode.Items[i].Selected)
+                {   
+                    Rpt1.SetParameters(new ReportParameter("txtcom"+i,this.ddlComCode.Items[i].Text));
+                }
+            }
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

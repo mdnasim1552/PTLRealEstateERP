@@ -332,7 +332,7 @@
                         </div>
                         <div class="col-md-1">
                             <asp:Label ID="lblAdvanced" runat="server" CssClass="control-label" Text="Advanced"></asp:Label>
-                            <asp:TextBox ID="txtAdvanced" runat="server" CssClass="form-control form-control-sm" AutoCompleteType="Disabled"></asp:TextBox>
+                            <asp:TextBox ID="txtAdvanced" runat="server" CssClass="form-control form-control-sm textalignright" AutoCompleteType="Disabled"></asp:TextBox>
 
                         </div>
                         <div class="col-md-3">

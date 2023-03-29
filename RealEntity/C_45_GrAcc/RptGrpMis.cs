@@ -68,10 +68,10 @@ namespace RealEntity.C_45_GrAcc
             public string rescode { get; set; }
             public string rescode1 { get; set; }
             public string resdesc { get; set; }
-            public string dramt { get; set; }
-            public string cramt { get; set; }
-            public string dramt1 { get; set; }
-            public string cramt1 { get; set; }
+            public double dramt { get; set; }
+            public double cramt { get; set; }
+            public double dramt1 { get; set; }
+            public double cramt1 { get; set; }
 
             public RptAccRecPayment()
             {
