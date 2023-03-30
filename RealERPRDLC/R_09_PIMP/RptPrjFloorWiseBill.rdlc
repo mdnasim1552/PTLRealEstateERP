@@ -16,11 +16,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>96fe5ec0-0136-4a76-8352-3a9d2ed401f8</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="RealEntityC_09_PIMP">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>04cc0f98-976d-49cb-971a-3fcbec37d21d</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>RealEntityC_04_Bgd1</DataSourceName>
+        <DataSourceName>RealEntityC_09_PIMP</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -78,9 +85,9 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>RealEntity.C_04_Bgd</rd:DataSetName>
+        <rd:DataSetName>RealEntity.C_09_PIMP</rd:DataSetName>
         <rd:TableName>RptPrjFloorWiseBill</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_04_Bgd.RptPrjFloorWiseBill, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_09_PIMP.SubConBill+RptPrjFloorWiseBill, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -788,8 +795,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.23333in</Top>
             <Left>0.1in</Left>
-            <Height>0.50833in</Height>
-            <Width>8.03333in</Width>
+            <Height>0.50834in</Height>
+            <Width>8.03336in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
