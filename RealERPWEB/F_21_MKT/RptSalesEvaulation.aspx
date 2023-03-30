@@ -54,8 +54,8 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
-    <div class="card card-fluid">
-        <div class="card-body mt-1 mb-0">
+    <div class="card card-fluid mt-1 mb-1">
+        <div class="card-body">
             <div class="row">
                 <div class="col-sm-1.5 col-md-1.5  col-lg-1.5">
                     <div class="form-group">
@@ -73,11 +73,11 @@
                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
+                <div class="col-md-3 col-sm-3 col-lg-3 ml-2">
                     <div class="form-group">
                         <asp:Label ID="lblEmpName" runat="server" CssClass="control-label" Text="Employee "></asp:Label>
                         <asp:LinkButton ID="ibtnFindEmp" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><i class="fas fa-search"></i></asp:LinkButton>
-                        <asp:DropDownList ID="ddlEmp" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" Style="width: 290px;" TabIndex="3">
+                        <asp:DropDownList ID="ddlEmp" runat="server" CssClass="chzn-select form-control form-control-sm chzn-select" Style="width: 300px;" TabIndex="3">
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -104,8 +104,8 @@
             </div>
         </div>
     </div>
-    <div class="card card-fluid ">
-        <div class="card-body mt-1 mb-0 pb-0" style="min-height: 500px">
+    <div class="card card-fluid  mt-0">
+        <div class="card-body" style="min-height: 500px;">
             <div class="row">
             </div>
         </div>

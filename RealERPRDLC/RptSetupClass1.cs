@@ -260,6 +260,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptWorkOrderStatus3": Rpt1a = SetRptWorkOrderStatus3(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_14_Pro.RptBillInfoInns": Rpt1a = SetRptBillInfoInns(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptBillInfoInnsANGAN": Rpt1a = SetRptBillInfoInnsANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoManama": Rpt1a = SetRptBillInfoManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoLanco": Rpt1a = SetRptBillInfoLanco(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoJbs": Rpt1a = SetRptBillInfoJbs(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1008,6 +1009,8 @@ namespace RealERPRDLC
                 case "R_32_Mis.RptProjectAnalysis": Rpt1a = SetRptProjectAnalysis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_45_GrAcc.RptGrpMisRecPayment": Rpt1a = SetRptGrpMisRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_45_GrAcc.RptAccRecPayment": Rpt1a = SetRptAccRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
 
@@ -1027,6 +1030,7 @@ namespace RealERPRDLC
 
 
                 #endregion
+
 
                 #region R_38_AI
 
@@ -2727,7 +2731,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPaymentBank>)RptDataSet2));
             return Rpt1a;
         }
-
+        //SetRptAccRecPayment
+        private static LocalReport SetRptAccRecPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptAccRecPayment>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptCallCenterLead(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -7049,6 +7058,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptBillInfoInns(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptBillInfoInnsANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
             return Rpt1a;

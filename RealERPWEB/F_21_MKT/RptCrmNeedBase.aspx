@@ -13,9 +13,11 @@
             border-radius: 3px !important;
             height: 29px !important;
         }
-
+       .needbasereport label {   
+    margin-bottom: 1px;
+}
         .chzn-container {
-            max-width: 181px !important;
+            max-width: 210px !important;
         }
 
         .tblborder {
@@ -175,7 +177,10 @@
         }
 
 
+        function OpenExcelDownload() {
 
+            window.open("../RptViewer.aspx?PrintOpt=GRIDTOEXCEL");
+        }
 
         function OpenGvModal() {
 
@@ -517,7 +522,7 @@
 
 
                             <!-- .form-row -->
-                            <div class="row">
+                            <div class="row needbasereport">
                                 <!-- form grid -->
                                 <div class="col-md-2 mb-0">
                                     <label for="validationTooltip01">
@@ -590,7 +595,7 @@
 
                                     <asp:DropDownList ID="DdlOccupation" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOccup" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOccup" OnClick="LbtnResetOccup_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -773,24 +778,30 @@
                                         <option>United States </option>
                                     </select>
                                 </div>
-                                <div class="col-md-2 mb-0">
+                                <div class="col-md-1 mb-0">
                                     <label for="validationTooltipCountry">
-                                        Project Visit Source
+                                        Project Visit
                            
                          
                                     </label>
                                     <div class="input-group input-group-sm input-group-alt">
-                                        <asp:DropDownList ID="DdlVisitSource" CssClass="form-control from-control-sm chzn-select" runat="server">
+                                        <asp:DropDownList ID="DdlVisitSource" CssClass="form-control from-control-sm " runat="server">
                                             <asp:ListItem Value="">Select</asp:ListItem>
                                             <asp:ListItem Value="1">Yes</asp:ListItem>
                                             <asp:ListItem Value="0">No</asp:ListItem>
                                         </asp:DropDownList>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="LbtnSearch" OnClick="LbtnSearch_Click" runat="server" CssClass="input-group-text text-success"><span class="fa fa-search"></span></asp:LinkButton>
+                                            <asp:LinkButton ID="LbtnSearch" OnClick="LbtnSearch_Click" runat="server" CssClass="bg-primary input-group-text text-white"><span class="fa fa-search"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
                                 </div>
+                                  <div class="col-md-1 mb-0">
+                                        <asp:LinkButton ID="LbtnResetAll" OnClick="LbtnResetAll_Click" runat="server" CssClass="btn btn-sm btn-warning" style="margin-top:22px"><span class="fa fa-recycle"></span>  Reset All</asp:LinkButton>
+                                        <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModalDrawerRight" style="margin-top:22px"><i class="fa fa-info"></i>
+
+                                </a>
+                                  </div>
                                 <!-- /form grid -->
                             </div>
                             <!-- /.form-row -->
@@ -810,9 +821,8 @@
                                             <asp:TemplateField>
                                                 <HeaderTemplate>
 
-                                                    <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" OnClick="lnkgvHeader_Click"><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
-                                                    <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                                            </asp:HyperLink>--%>
+                                                    <asp:LinkButton ID="lnkgvHeader" OnClick="lnkgvHeader_Click1" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Download Excel" ><i class="fa fa-file-excel" aria-hidden="true"></i></asp:LinkButton>
+
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="serialno" runat="server" Style="text-align: left" CssClass="table-data"
@@ -1196,6 +1206,50 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal modal-drawer fade has-shown" id="exampleModalDrawerRight" tabindex="-1" role="dialog" aria-labelledby="exampleModalDrawerRightLabel" style="display: none;" aria-hidden="true">
+                            <!-- .modal-dialog -->
+                            <div class="modal-dialog modal-drawer-right" role="document" style="max-width: 1000px !important;">
+                                <!-- .modal-content -->
+                                <div class="modal-content">
+                                    <!-- .modal-header -->
+                                    <div class="modal-header modal-body-scrolled">
+                                        <h5 id="exampleModalDrawerRightLabel" class="modal-title">Search Engine Helper</h5>
+                                    </div>
+                                    <!-- /.modal-header -->
+                                    <!-- .modal-body -->
+                                    <div class="modal-body">
+                                       <div class="col-lg-12">
+                      <!-- .list-group -->
+                      <div class="list-group list-group-bordered mb-3">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">** Default All Data Retrive from Databank in Client Need base Report</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">The Report can download from First column header Excel Icon</a>
+                        <div class="list-group-header"> Searching </div>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Every Field You can use individually for required Data </a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Intially Date set Opening date as a From date and Current date as a To-date for data retrieval </a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">When you put From date in Date range boxes its retrive data your given date to current date</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">on the other hand when you put To-date in Date range boxes its retrive data from opening data to your given date</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Or you can Put both of date here for getting your desire data </a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">If need clear any searching parameter  you can use cross button with associate parameter</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">On the other hand you you click reset All button for reset all searching parameter </a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">When searching data using specific parameter after data appear associate searching box will marked</a>
+
+
+
+                      </div>
+                      <!-- /.list-group -->
+                    </div>
+                                    </div>
+                                    <!-- /.modal-body -->
+                                    <!-- .modal-footer -->
+                                    <div class="modal-footer modal-body-scrolled">
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                                    </div>
+                                    <!-- /.modal-footer -->
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                 </div>
             </div>
         </ContentTemplate>
