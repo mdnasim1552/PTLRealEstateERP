@@ -6385,6 +6385,8 @@ namespace RealERPWEB.F_99_Allinterface
             string sign2 = _dtuser.Rows[0]["bpostuser"].ToString() + "\n" + _dtuser.Rows[0]["bpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["bposteddat"]).ToString("dd-MMM-yyyy");
             string sign3 = _dtuser.Rows[0]["baprvuser"].ToString() + "\n" + _dtuser.Rows[0]["baprvdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
             string sign4 = "";
+            string sign5 = _dtuser.Rows[0]["lpostuser"].ToString() + "\n" + _dtuser.Rows[0]["lpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["lposteddat"]).ToString("dd-MMM-yyyy");
+
 
 
 
@@ -6429,6 +6431,7 @@ namespace RealERPWEB.F_99_Allinterface
             rptbill.SetParameters(new ReportParameter("sign2", sign2));
             rptbill.SetParameters(new ReportParameter("sign3", sign3));
             rptbill.SetParameters(new ReportParameter("sign4", sign4));
+            rptbill.SetParameters(new ReportParameter("sign5", sign5));
             //  Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(TAmt), 2)));
             Session["Report1"] = rptbill;
 
