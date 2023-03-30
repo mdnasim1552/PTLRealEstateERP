@@ -573,7 +573,7 @@
                     <div class="row" id="pnlreqchkmgt" runat="server" visible="false">
                         <div class="col-md-12 col-sm-12 col-lg-12">
                             <asp:GridView ID="gvreqchkmgt" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="501px"
+                                AutoGenerateColumns="False" ShowFooter="True" Width="501px" OnPageIndexChanging="gvreqchkmgt_PageIndexChanging"
                                 OnRowDeleting="gvreqchkmgt_RowDeleting">
                                 <RowStyle />
                                 <Columns>
