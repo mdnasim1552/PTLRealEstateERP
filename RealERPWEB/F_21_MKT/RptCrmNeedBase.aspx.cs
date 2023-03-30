@@ -116,12 +116,12 @@ namespace RealERPWEB.F_21_MKT
             Dv1 = ds2.Tables[2].DefaultView;
             Dv1.RowFilter = ("comcod='" + comcod + "'");
             dt = Dv1.ToTable();           
-            dt.Rows.Add("000000000000", "--All--", "");
+         //   dt.Rows.Add("000000000000", "--All--", "");
             DdlProjec.DataTextField = "pactdesc";
             DdlProjec.DataValueField = "pactcode";
             DdlProjec.DataSource = dt;
             DdlProjec.DataBind();
-            DdlProjec.SelectedValue = "000000000000";
+            DdlProjec.SelectedValue = "";
 
 
         }
@@ -136,15 +136,18 @@ namespace RealERPWEB.F_21_MKT
             Session["tblircapro"] = ds1.Tables[0];
             DataTable dt = ds1.Tables[0];
             DataView dv = dt.DefaultView;
+            dv.RowFilter= "empid like '93%'";
+            dv.Sort = ("empid");
+
+            dt = dv.ToTable();
             DataRow dr1 = dt.NewRow();
             dr1["empid"] = "000000000000";
             dr1["empname"] = "None";
             dt.Rows.Add(dr1);
-            dv.Sort = ("empid");
 
             DdlEmployee.DataTextField = "empname";
             DdlEmployee.DataValueField = "empid";
-            DdlEmployee.DataSource = dv.ToTable();
+            DdlEmployee.DataSource = dt;
             DdlEmployee.DataBind();
             DdlEmployee.SelectedValue = "000000000000";
             ds1.Dispose();
@@ -264,7 +267,8 @@ namespace RealERPWEB.F_21_MKT
             string todate = (this.TxtToDate.Text.Length == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(this.TxtToDate.Text).ToString("dd-MMM-yyyy");
             string mgt = "Management";
             string subsource = (this.DdlSubSource.SelectedValue.ToString() == "0000000") ? "%" : this.DdlSubSource.SelectedValue.ToString() + "%";
-
+            string employee = (this.DdlEmployee.SelectedValue.ToString() == "000000000000") ? "%" : this.DdlEmployee.SelectedValue.ToString() + "%";
+            string visitstatus = (this.DdlVisitSource.SelectedValue.ToString().Length == 0) ? "%" : this.DdlVisitSource.SelectedValue.ToString();
 
 
 
@@ -274,7 +278,7 @@ namespace RealERPWEB.F_21_MKT
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE02", 
                 "GET_CLIENT_NEED_BASE_REPORT", null, null, null, "8301%", leadid, custname, mobile, Email, org, profecode, areacode,
-                 category, LeadStatus, apptsize, projectcod, fromdate, todate, subsource);
+                 category, LeadStatus, apptsize, projectcod, fromdate, todate, subsource, employee, visitstatus);
 
 
             // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
@@ -474,19 +478,19 @@ namespace RealERPWEB.F_21_MKT
 
         protected void LbtnResetPrj_Click(object sender, EventArgs e)
         {
-            this.DdlProjec.SelectedValue = "000000000000";
+            this.DdlProjec.SelectedValue = "";
 
         }
 
         protected void LbtnLocation_Click(object sender, EventArgs e)
         {
-            this.DdlLocation.SelectedValue = "000000000000";
+            this.DdlLocation.SelectedValue = "0000000";
 
         }
 
         protected void LbtnResetCate_Click(object sender, EventArgs e)
         {
-            this.DdlCategory.SelectedValue = "000000000000";
+            this.DdlCategory.SelectedValue = "0000000";
 
         }
 
@@ -518,7 +522,44 @@ namespace RealERPWEB.F_21_MKT
 
         protected void LbtnResetEmployee_Click(object sender, EventArgs e)
         {
+            this.DdlEmployee.SelectedValue = "000000000000";
 
+        }
+
+        protected void LbtnResetAll_Click(object sender, EventArgs e)
+        {
+            this.DdlSubSource.SelectedValue = "0000000";     
+            this.DdlSource.SelectedValue = "0000000";        
+            this.DdlAptSize.SelectedValue = "0000000";    
+            this.DdlProjec.SelectedValue = "";
+            this.DdlLocation.SelectedValue = "0000000";
+            this.DdlCategory.SelectedValue = "0000000";         
+            this.TxtOrg.Text = "";
+            ((TextBox)this.TxtOrg).BorderColor = System.Drawing.Color.Empty;         
+            this.TxtEmail.Text = "";
+            ((TextBox)this.TxtEmail).BorderColor = System.Drawing.Color.Empty;        
+            this.TxtMobile.Text = "";
+            ((TextBox)this.TxtMobile).BorderColor = System.Drawing.Color.Empty;  
+            this.TxtLeadId.Text = "";
+            ((TextBox)this.TxtLeadId).BorderColor = System.Drawing.Color.Empty;       
+            this.DdlEmployee.SelectedValue = "000000000000";
+            this.DdlVisitSource.SelectedValue = "";
+            this.DdlOccupation.SelectedValue = "0000000";
+
+        }
+
+        protected void LbtnResetOccup_Click(object sender, EventArgs e)
+        {
+            this.DdlOccupation.SelectedValue = "0000000";
+
+        }
+
+        protected void lnkgvHeader_Click1(object sender, EventArgs e)
+        {
+            Session["Report1"] = gvNedBseDetails;
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "OpenExcelDownload();", true);
+
+       
         }
     }
 }

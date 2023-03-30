@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -202,6 +199,7 @@
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassLeadReason.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseActivity.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptMissFollowup.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
@@ -280,6 +278,7 @@
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+RptOngoingProject.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptAccRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
@@ -367,6 +366,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoFinlay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoCPDL.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptBillInfoInnsANGAN.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoJbs.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
@@ -944,6 +944,7 @@
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptMissFollowup.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptPersonWiseActivity.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
@@ -1224,6 +1225,7 @@
     <EmbeddedResource Include="R_38_AI\RptAIInvoicePrint.rdlc" />
     <EmbeddedResource Include="R_38_AI\RptOngoingProjectPrint.rdlc" />
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
+    <EmbeddedResource Include="R_45_GrAcc\RptAccRecPayment.rdlc" />
     <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
     <EmbeddedResource Include="R_70_Services\RptInvoicePrint.rdlc" />

@@ -112,6 +112,25 @@ namespace RealEntity.C_21_Mkt
             public RptProspectTransfer() { }
         }
 
+
+        [Serializable]
+        public class PersonWiseActivity
+        {
+            //comcod, grp, grpdesc,teamcode, proscod, createdate, assocname, prospectname, phone, email, profession, preaddress, interestproj, leadsrc, chkper
+            public string empid { get; set; }
+            public double call { get; set; }
+            public double firstmeeting { get; set; }
+            public double followupmeeting { get; set; }
+            public double firstvisit { get; set; }
+            public double followupvisit { get; set; }
+            public double total { get; set; }
+            public string empname { get; set; }
+            public PersonWiseActivity() { }
+        }
+
+
+
+
         [Serializable]
         public class RptLeadStatusTimestamp
         {
@@ -173,6 +192,7 @@ namespace RealEntity.C_21_Mkt
         [Serializable]
         public class IPSetupInf
         {
+            public int id { get; set; }
             public string machno { get; set; }
             public string ipaddress { get; set; }
             public string machinealias { get; set; }

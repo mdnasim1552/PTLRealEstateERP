@@ -55,6 +55,9 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Antlr3.Runtime.Fakes">
+      <HintPath>FakesAssemblies\Antlr3.Runtime.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
@@ -67,6 +70,9 @@
     <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design.Fakes">
+      <HintPath>FakesAssemblies\CrystalDecisions.CrystalReports.Design.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -166,9 +172,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
@@ -2352,6 +2359,7 @@
     <Content Include="F_09_LCM\LcReceive.aspx" />
     <Content Include="F_09_PImp\BillingMBEntry.aspx" />
     <Content Include="F_09_PImp\ConBillTracking.aspx" />
+    <Content Include="F_09_PImp\FloorWiseSubcontractorbill.aspx" />
     <Content Include="F_09_PImp\ImplementPlan.aspx" />
     <Content Include="F_09_PImp\InvResourceRequirement.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd.aspx" />
@@ -3322,6 +3330,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
@@ -4169,6 +4178,7 @@
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
     <Fakes Include="Fakes\CrystalDecisions.CrystalReports.Design.fakes" />
+    <Fakes Include="Fakes\Microsoft.ReportViewer.WinForms.fakes" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -4336,6 +4346,13 @@
     </Compile>
     <Compile Include="F_09_PImp\BillingMBEntry.aspx.designer.cs">
       <DependentUpon>BillingMBEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\FloorWiseSubcontractorbill.aspx.cs">
+      <DependentUpon>FloorWiseSubcontractorbill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\FloorWiseSubcontractorbill.aspx.designer.cs">
+      <DependentUpon>FloorWiseSubcontractorbill.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\PurLabRequisition02.aspx.cs">
       <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
@@ -5862,6 +5879,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx.designer.cs">
       <DependentUpon>RptSalaryEncashment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx.cs">
+      <DependentUpon>RptSalaryReconBonus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconBonus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
