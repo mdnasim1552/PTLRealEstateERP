@@ -99,9 +99,9 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             }
 
-            DataSet check = this.MktData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "CHECKIP", machno, ipaddress);
+            DataSet duplicacycheck = this.MktData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "CHECKADDIP", machno, ipaddress);
 
-            if(check.Tables[0].Rows.Count == 0)
+            if(duplicacycheck.Tables[0].Rows.Count == 0)
             {
                 bool addDone = this.MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "ADD_COMWISE_MACH_IP", machno, ipaddress, alias, port);
                 if (addDone)
