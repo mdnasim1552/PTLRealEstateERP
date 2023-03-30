@@ -2604,7 +2604,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!othded.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!othded.Value+Fields!mbillded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3477,7 +3477,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!othded.Value+Fields!mbillded.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4374,7 +4374,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!othded.Value+Fields!mbillded.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5271,7 +5271,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!othded.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!othded.Value+Fields!mbillded.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -6191,7 +6191,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>11.66792in</Width>
               <Style>
@@ -6224,7 +6223,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0in</Top>
               <Left>12.32709in</Left>
               <Height>0.25in</Height>
               <Width>2.92708in</Width>

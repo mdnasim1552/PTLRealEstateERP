@@ -65,7 +65,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid mt-4 mb-1">
+            <div class="card card-fluid mt-1 mb-1">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
