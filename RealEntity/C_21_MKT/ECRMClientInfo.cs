@@ -173,6 +173,7 @@ namespace RealEntity.C_21_Mkt
         [Serializable]
         public class IPSetupInf
         {
+            public int id { get; set; }
             public string machno { get; set; }
             public string ipaddress { get; set; }
             public string machinealias { get; set; }

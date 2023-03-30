@@ -2872,28 +2872,63 @@ namespace RealERPWEB.F_45_GrAcc
                 cell9.ColumnSpan = 1;
                 gvrow.Cells.Add(cell9);
 
-                
+                List<String> comp = new List<string>();
+                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                {
+                    comp.Add(this.ddlComCode.Items[i].Text.Trim());
+                }
 
                 TableCell cell2 = new TableCell();
+                //cell2.Text = "";
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 2;
+                cell2.Font.Bold = true;
+                gvrow.Cells.Add(cell2);
 
+
+                TableCell cell5 = new TableCell();
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
+
+                int selectedCount = 0;
                 for (int i = 0; i < this.ddlComCode.Items.Count; i++)
                 {
                     if (this.ddlComCode.Items[i].Selected)
                     {
-                        cell2.Text = this.ddlComCode.Items[0].Text.Trim();
-                        
+                        string selectedText = this.ddlComCode.Items[i].Text.Trim();
 
+                        if (selectedCount == 0)
+                        {
+                            cell2.Text = selectedText;
+                        }
+                        else if (selectedCount == 1)
+                        {
+                            cell5.Text = selectedText;
+                            break; // no need to iterate further
+                        }
 
-
-                        i++;
+                        selectedCount++;
                     }
                 }
 
-               
+                //for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                //{
+                //    if (this.ddlComCode.Items[i].Text!="")
+                //    {
+                //        if (i == 0)
+                //        {
+                //            cell2.Text = this.ddlComCode.Items[i].Text.Trim();
+                //        }
+                //        if (i == 1)
+                //        {
+                //            cell5.Text = this.ddlComCode.Items[i].Text.Trim();
+                //        }
 
-                cell2.HorizontalAlign = HorizontalAlign.Center;
-                cell2.ColumnSpan = 2;
-                gvrow.Cells.Add(cell2);
+                //        i++;
+                //    }
+                //}
 
 
 
@@ -2915,22 +2950,19 @@ namespace RealERPWEB.F_45_GrAcc
 
 
 
-                TableCell cell5 = new TableCell();
 
-                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
-                {
-                    if (this.ddlComCode.Items[i].Selected)
-                    {
-                        cell5.Text = this.ddlComCode.Items[1].Text.Trim();
-                        
-                       i++;
-                    }
-                }
-             
-                cell5.HorizontalAlign = HorizontalAlign.Center;
-                cell5.ColumnSpan = 2;
-                cell5.Font.Bold = true;
-                gvrow.Cells.Add(cell5);
+
+                //for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                //{
+                //    if (this.ddlComCode.Items[i].Selected)
+                //    {
+                //        cell5.Text = this.ddlComCode.Items[i].Text.Trim();
+
+                //       i++;
+                //    }
+                //}
+
+
 
                 //TableCell cell6 = new TableCell();
                 //cell6.Text = "Dr.Amount";

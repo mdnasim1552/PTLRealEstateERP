@@ -166,6 +166,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3309":
                 case "3310":
                 case "3311":
+                case "3101":
 
                     PrintReq = "PrintBill02";
                     break;
@@ -211,7 +212,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBillLanco";
 
@@ -1121,7 +1122,15 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            if(comcod=="3374" || comcod == "3374")
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
+            }
+            else
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            }
+              
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
