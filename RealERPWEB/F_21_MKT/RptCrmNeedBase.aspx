@@ -177,7 +177,10 @@
         }
 
 
+        function OpenExcelDownload() {
 
+            window.open("../RptViewer.aspx?PrintOpt=GRIDTOEXCEL");
+        }
 
         function OpenGvModal() {
 
@@ -592,7 +595,7 @@
 
                                     <asp:DropDownList ID="DdlOccupation" runat="server" CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
                                           <div class="input-group-append">
-                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOccup" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
+                                            <asp:LinkButton ToolTip="Remove-Selection" ID="LbtnResetOccup" OnClick="LbtnResetOccup_Click" runat="server" CssClass="input-group-text text-youtube"><span class="fa fa-times-circle"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -788,7 +791,7 @@
                                             <asp:ListItem Value="0">No</asp:ListItem>
                                         </asp:DropDownList>
                                         <div class="input-group-append">
-                                            <asp:LinkButton ID="LbtnSearch" OnClick="LbtnSearch_Click" runat="server" CssClass="input-group-text text-success"><span class="fa fa-search"></span></asp:LinkButton>
+                                            <asp:LinkButton ID="LbtnSearch" OnClick="LbtnSearch_Click" runat="server" CssClass="bg-primary input-group-text text-white"><span class="fa fa-search"></span></asp:LinkButton>
 
                                         </div>
                                     </div>
@@ -818,9 +821,8 @@
                                             <asp:TemplateField>
                                                 <HeaderTemplate>
 
-                                                    <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" ><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
-                                                    <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                                            </asp:HyperLink>--%>
+                                                    <asp:LinkButton ID="lnkgvHeader" OnClick="lnkgvHeader_Click1" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Download Excel" ><i class="fa fa-file-excel" aria-hidden="true"></i></asp:LinkButton>
+
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="serialno" runat="server" Style="text-align: left" CssClass="table-data"
@@ -1220,7 +1222,7 @@
                       <!-- .list-group -->
                       <div class="list-group list-group-bordered mb-3">
                         <a href="#" class="list-group-item list-group-item-action list-group-item-primary">** Default All Data Retrive from Databank in Client Need base Report</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">The Report can download from First column header Excel Icon</a>
                         <div class="list-group-header"> Searching </div>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Every Field You can use individually for required Data </a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Intially Date set Opening date as a From date and Current date as a To-date for data retrieval </a>
