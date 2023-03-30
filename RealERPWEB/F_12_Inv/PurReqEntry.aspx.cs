@@ -1436,6 +1436,8 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
+        //End update
+
         private bool isIndentDepReq(string _deptcode)
         {
             bool isReq = false;
@@ -2225,12 +2227,23 @@ namespace RealERPWEB.F_12_Inv
 
         protected void gvResInfo_DataBind()
         {
+            
             string comcod = this.GetCompCode();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             this.gvReqInfo.DataSource = tbl1;
             this.gvReqInfo.Columns[22].Visible = true && (comcod == "3325" || comcod == "2325");
             this.gvReqInfo.Columns[23].Visible = true && (comcod == "3325" || comcod == "2325");
             this.gvReqInfo.DataBind();
+
+            if (comcod == "3354")
+            {
+                for (int i = 0; i < this.gvReqInfo.Rows.Count; i++)
+                {
+                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDat")).Visible = false;
+                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDatCal")).Visible = true;
+                }
+            }
+
             if (Request.QueryString["InputType"].ToString() == "Approval") // "Entry"
             {
                 for (int i = 0; i < this.gvReqInfo.Rows.Count; i++)
@@ -2441,7 +2454,7 @@ namespace RealERPWEB.F_12_Inv
                 double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
                 double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
                 double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
-                string dgvUseDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
+                string dgvUseDat = this.GetCompCode() == "3101" ? ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDatCal")).Text.Trim() :  ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
                 string dgvSupDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvpursupDat")).Text.Trim();
                 string dgvReqNote = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
                 double dgvReqAmt = dgvReqQty * dgvReqRat;
