@@ -86,7 +86,8 @@ namespace RealERPWEB.F_14_Pro
                     //}
                 }
 
-
+                if (this.GetCompCode() == "3101")
+                    this.divchkBillStkrPrnt.Visible = true;
             }
         }
 
@@ -241,8 +242,14 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
+            string CurDate = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+            string BillNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            if (this.chkBillStkrPrnt.Checked)
+                Response.Write(@"<script>window.open('../F_99_Allinterface/PurchasePrint?Type=BillSticker&genno=" + BillNo + "&date=" + CurDate + "', target='_blank');</script>");
+            else
+                this.PrintBillConfimation();
 
-            this.PrintBillConfimation();
+
 
         }
 
@@ -281,7 +288,7 @@ namespace RealERPWEB.F_14_Pro
                 this.PrintBillCPDL();
 
             else if (printcomreq == "PrintBillCPDL")
-                this.PrintBillCPDL(); 
+                this.PrintBillCPDL();
             //else if (printcomreq == "PrintBillANGAN")
             //    this.PrintBillANGAN();
             else
@@ -2282,7 +2289,7 @@ namespace RealERPWEB.F_14_Pro
 
 
                 //For Visible Item Serial Manama
-                
+
                 if (comcod == "3353" || comcod == "3101")
                 {
                     this.gvBillInfo.Columns[1].Visible = true;
@@ -2782,7 +2789,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-               
+
 
             }
 
@@ -3700,7 +3707,7 @@ namespace RealERPWEB.F_14_Pro
 
                 }
 
-                    
+
 
             }
         }

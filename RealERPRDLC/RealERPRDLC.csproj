@@ -51,11 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Reference\bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
+      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -158,6 +156,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+OtherCollHistory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+PurOrderTopSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptBillConfirmation01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptPurchasePrjwise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSummaryProject.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSupAdvanceDetails.datasource" />
@@ -1490,6 +1489,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_97_MIS\RptPromotionEnvelop.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptAllDuesInfo.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptBillCon.rdlc" />
+    <EmbeddedResource Include="R_99_AllInterface\RptBillSticker.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCashRcv.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptCkhDeposit.rdlc" />
     <EmbeddedResource Include="R_99_AllInterface\RptConBillUp.rdlc" />
