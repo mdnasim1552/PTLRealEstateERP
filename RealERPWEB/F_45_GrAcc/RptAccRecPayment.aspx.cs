@@ -1542,6 +1542,9 @@ namespace RealERPWEB.F_45_GrAcc
                 case "IssueVsCollect":
                     this.RptIssueVsColl();
                     break;
+                case "PrjTrialBal":
+                    this.PrjTrialBalPrint();
+                    break;
 
             }
         }
@@ -2281,6 +2284,46 @@ namespace RealERPWEB.F_45_GrAcc
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private void PrjTrialBalPrint()
+        {
+            
+               
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt1 = (DataTable)Session["tblrecandpayment"];
+            if (dt1.Rows.Count == 0)
+                return;
+            var lst = dt1.DataTableToList<RealEntity.C_45_GrAcc.RptGrpMis.RptAccRecPayment>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_45_GrAcc.RptAccRecPayment", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+            {
+                if (this.ddlComCode.Items[i].Selected)
+                {   
+                    Rpt1.SetParameters(new ReportParameter("txtcom"+i,this.ddlComCode.Items[i].Text));
+                }
+            }
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
         protected void gvGrpRP_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -2829,28 +2872,63 @@ namespace RealERPWEB.F_45_GrAcc
                 cell9.ColumnSpan = 1;
                 gvrow.Cells.Add(cell9);
 
-                
+                List<String> comp = new List<string>();
+                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                {
+                    comp.Add(this.ddlComCode.Items[i].Text.Trim());
+                }
 
                 TableCell cell2 = new TableCell();
+                //cell2.Text = "";
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 2;
+                cell2.Font.Bold = true;
+                gvrow.Cells.Add(cell2);
 
+
+                TableCell cell5 = new TableCell();
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
+
+                int selectedCount = 0;
                 for (int i = 0; i < this.ddlComCode.Items.Count; i++)
                 {
                     if (this.ddlComCode.Items[i].Selected)
                     {
-                        cell2.Text = this.ddlComCode.Items[0].Text.Trim();
-                        
+                        string selectedText = this.ddlComCode.Items[i].Text.Trim();
 
+                        if (selectedCount == 0)
+                        {
+                            cell2.Text = selectedText;
+                        }
+                        else if (selectedCount == 1)
+                        {
+                            cell5.Text = selectedText;
+                            break; // no need to iterate further
+                        }
 
-
-                        i++;
+                        selectedCount++;
                     }
                 }
 
-               
+                //for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                //{
+                //    if (this.ddlComCode.Items[i].Text!="")
+                //    {
+                //        if (i == 0)
+                //        {
+                //            cell2.Text = this.ddlComCode.Items[i].Text.Trim();
+                //        }
+                //        if (i == 1)
+                //        {
+                //            cell5.Text = this.ddlComCode.Items[i].Text.Trim();
+                //        }
 
-                cell2.HorizontalAlign = HorizontalAlign.Center;
-                cell2.ColumnSpan = 2;
-                gvrow.Cells.Add(cell2);
+                //        i++;
+                //    }
+                //}
 
 
 
@@ -2872,22 +2950,19 @@ namespace RealERPWEB.F_45_GrAcc
 
 
 
-                TableCell cell5 = new TableCell();
 
-                for (int i = 0; i < this.ddlComCode.Items.Count; i++)
-                {
-                    if (this.ddlComCode.Items[i].Selected)
-                    {
-                        cell5.Text = this.ddlComCode.Items[1].Text.Trim();
-                        
-                       i++;
-                    }
-                }
-             
-                cell5.HorizontalAlign = HorizontalAlign.Center;
-                cell5.ColumnSpan = 2;
-                cell5.Font.Bold = true;
-                gvrow.Cells.Add(cell5);
+
+                //for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+                //{
+                //    if (this.ddlComCode.Items[i].Selected)
+                //    {
+                //        cell5.Text = this.ddlComCode.Items[i].Text.Trim();
+
+                //       i++;
+                //    }
+                //}
+
+
 
                 //TableCell cell6 = new TableCell();
                 //cell6.Text = "Dr.Amount";

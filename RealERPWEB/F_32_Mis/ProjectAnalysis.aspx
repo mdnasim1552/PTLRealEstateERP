@@ -4,6 +4,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <style>
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .ml2 {
+            margin-left: 3px;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 29px !important;
+        }
+
+       /* td {
+        }
+
+        .hover_row {
+            background-color: red;
+        }
+
+        .selected_row {
+            background-color: #A1DCF2;
+        }*/
+    </style>
+  
+
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
 
     <script language="javascript" type="text/javascript">
@@ -11,6 +39,14 @@
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('.chzn-select').chosen({ search_contains: true });
+
+            //$("[id*=gvprjanalysis] td").hover(function () {
+            //    $("td", $(this).closest("tr")).addClass("hover_row");
+            //}, function () {
+            //    $("td", $(this).closest("tr")).removeClass("hover_row");
+            //});
+
+
         });
         function pageLoaded() {
 
@@ -50,20 +86,7 @@
         };
     </script>
 
-    <style>
-        .mt20 {
-            margin-top: 20px;
-        }
 
-        .ml2 {
-            margin-left: 3px;
-        }
-
-        .chzn-container-single .chzn-single {
-            height: 28px !important;
-            line-height: 29px !important;
-        }
-    </style>
 
 
 
@@ -148,13 +171,13 @@
 
                                         <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
                                             CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
-                                        <asp:Label runat="server" Font-Bold="true" Font-Size="13px" >Total Amount</asp:Label>
+                                        <asp:Label runat="server" Font-Bold="true" Font-Size="13px">Total Amount</asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="Left" Height="28px" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                
+
 
                                 <asp:TemplateField HeaderText="Total Sales </br>Target">
                                     <ItemTemplate>
@@ -252,9 +275,9 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                
 
-                                
+
+
 
                                 <asp:TemplateField HeaderText="Collec.</br>(%) </br> from </br>S. tar.">
                                     <ItemTemplate>
@@ -366,10 +389,10 @@
                             </Columns>
 
                             <FooterStyle CssClass="grvFooter" />
-                                                                <EditRowStyle />
-                                                                <AlternatingRowStyle />
-                                                                <PagerStyle CssClass="gvPagination" />
-                                                                <HeaderStyle CssClass="grvHeader" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
                             <RowStyle CssClass="grvRowsNew" />
 
                         </asp:GridView>

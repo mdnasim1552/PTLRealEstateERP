@@ -714,12 +714,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string delegationEMPID = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDutyEmp.SelectedValue.ToString();
                     string APRdate = (qtype == "MGT" ? applydat : "");
 
-                    if (comcod == "3330" && reason == "")
-                    {
-                        string Messaged = "Reason can't be empty!";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                        return;
-                    }
+                    //if (comcod == "3330" && reason == "")
+                    //{
+                    //    string Messaged = "Reason can't be empty!";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    //    return;
+                    //}
 
                     if (gcod == "51999" && frmdate == todate)
                     {
