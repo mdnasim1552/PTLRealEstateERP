@@ -6390,10 +6390,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ad6b7b7e8277c421473f9b8c4fdba2d083effe3
             LocalReport rptbill = new LocalReport();
 
             string IssueRefNo = (dtd.Rows[0]["lisurefno"].ToString().Length > 0) ? "Issue Ref No: " + dtd.Rows[0]["lisurefno"].ToString() : "Issue Ref No:";
