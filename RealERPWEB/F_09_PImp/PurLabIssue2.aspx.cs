@@ -139,8 +139,8 @@ namespace RealERPWEB.F_09_PImp
 
                     this.grvissue.Columns[19].Visible = true;
                     this.grvissue.Columns[20].Visible = true;
-                    this.ddlgroup.Visible = true;
-                    this.lblgrp.Visible = true;
+                    //this.ddlgroup.Visible = true;
+                    this.plngrp.Visible = true;
 
                     //this.ddlgroup.Visible = true;
                     //this.lblgrp.Visible = true;
