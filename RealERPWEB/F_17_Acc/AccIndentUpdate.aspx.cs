@@ -231,15 +231,15 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
-        private void calculation()
+        private void calculation(DataTable d2)
         {
-            DataTable dt2 = (DataTable)Session["tblt01"];
-            if (dt2.Rows.Count == 0)
+            //DataTable dt2 = (DataTable)Session["tblt01"];
+            if (d2.Rows.Count == 0)
                 return;
-            accData.ToDramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(trndram)", "")) ?
-                          0.00 : dt2.Compute("Sum(trndram)", ""))));
-            accData.ToCramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(trncram)", "")) ?
-                          0.00 : dt2.Compute("Sum(trncram)", ""))));
+            accData.ToDramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(d2.Compute("Sum(trndram)", "")) ?
+                          0.00 : d2.Compute("Sum(trndram)", ""))));
+            accData.ToCramt = Math.Ceiling(Convert.ToDouble((Convert.IsDBNull(d2.Compute("Sum(trncram)", "")) ?
+                          0.00 : d2.Compute("Sum(trncram)", ""))));
             ((Label)this.dgv2.FooterRow.FindControl("lblgvFDrAmt")).Text = (accData.ToDramt).ToString("#,##0.00;(#,##0.00); - ");
             ((Label)this.dgv2.FooterRow.FindControl("lblgvFCrAmt")).Text = (accData.ToCramt).ToString("#,##0.00;(#,##0.00); - ");
 
@@ -268,7 +268,8 @@ namespace RealERPWEB.F_17_Acc
             this.dgv2.DataBind();
             this.txtcurrentvou.Text = "";
             this.txtCurrntlast6.Text = "";
-            this.lnkFinalUpdate.Enabled = true;
+            //this.lnkFinalUpdate.Enabled = true;
+            ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = true;
             // this.Panel1.Visible = false;
         }
 
@@ -284,69 +285,99 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lbtnSelectTrns_Click(object sender, EventArgs e)
         {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
+            //Session.Remove("tblt01");
+            DataTable tblt01 = (DataTable)Session["tblt01"];
             string actcode = this.ddlActCode.SelectedValue.ToString();
             string mrslid = this.ddlBillList.SelectedValue.ToString();
             string rescode = (this.ddlresuorcecode.SelectedValue.Length == 0) ? "000000000000" : this.ddlresuorcecode.SelectedValue.ToString();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETINDENTISSUE", mrslid,
-                          actcode, rescode, "", "", "", "", "", "");
-            DataTable dt1 = ds1.Tables[0];
-            DataTable tblt01 = (DataTable)Session["tblt01"];
 
-            for (int i = 0; i < dt1.Rows.Count; i++)
+            if (this.chkCharging.Checked == false)
             {
-                string dgAccCode = dt1.Rows[i]["actcode"].ToString();
-                string dgResdesc = dt1.Rows[i]["rsirdesc"].ToString();
-                string dgResCode = dt1.Rows[i]["rsircode"].ToString();
-                string dgAccDesc = dt1.Rows[i]["actdesc"].ToString();
-                string dgSpclCode = dt1.Rows[i]["spclcode"].ToString();
-                string dgSpclDesc = dt1.Rows[i]["spcldesc"].ToString();
-                double dgTrnQty = Convert.ToDouble(dt1.Rows[i]["trnqty"]);
-                //if (Convert.ToDouble(dt1.Rows[i]["trnqty"]) > 0)
-                //{
-                //    dgTrnrate = Convert.ToDouble(dt1.Rows[i]["trndram"]) / Convert.ToDouble(dt1.Rows[i]["trnqty"]);
-                //}
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();               
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETINDENTISSUE", mrslid,
+                              actcode, rescode, "", "", "", "", "", "");
+                DataTable dt1 = ds1.Tables[0];
+               
 
-                double dgTrnDrAmt = Convert.ToDouble(dt1.Rows[i]["trndram"]);
-                double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
-                string dgMemono = dt1.Rows[i]["memono"].ToString();
-                string dgmrnar = dt1.Rows[i]["mrnar"].ToString();
 
-                DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
-                if (dr2.Length > 0)
+                for (int i = 0; i < dt1.Rows.Count; i++)
                 {
+                    string dgAccCode = dt1.Rows[i]["actcode"].ToString();
+                    string dgResdesc = dt1.Rows[i]["rsirdesc"].ToString();
+                    string dgResCode = dt1.Rows[i]["rsircode"].ToString();
+                    string dgAccDesc = dt1.Rows[i]["actdesc"].ToString();
+                    string dgSpclCode = dt1.Rows[i]["spclcode"].ToString();
+                    string dgSpclDesc = dt1.Rows[i]["spcldesc"].ToString();
+                    double dgTrnQty = Convert.ToDouble(dt1.Rows[i]["trnqty"]);
+                   
 
-                    return;
+                    double dgTrnDrAmt = Convert.ToDouble(dt1.Rows[i]["trndram"]);
+                    double dgTrnCrAmt = Convert.ToDouble(dt1.Rows[i]["trncram"]);
+                    string dgMemono = dt1.Rows[i]["memono"].ToString();
+                    string dgmrnar = dt1.Rows[i]["mrnar"].ToString();
 
+                    DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and rsircode='" + dgResCode + "'");
+                    if (dr2.Length > 0)
+                    {
+                        return;
+                    }
+
+                    DataRow dr1 = tblt01.NewRow();
+                    dr1["actcode"] = dgAccCode;
+                    dr1["rsircode"] = dgResCode;
+                    dr1["actdesc"] = dgAccDesc;
+                    dr1["rsirdesc"] = dgResdesc;
+                    dr1["spclcode"] = dgSpclCode;
+                    dr1["spcldesc"] = dgSpclDesc;
+                    dr1["trnqty"] = dgTrnQty;
+                    dr1["trndram"] = dgTrnDrAmt;
+                    dr1["trncram"] = dgTrnCrAmt;
+                    dr1["memono"] = dgMemono;
+                    dr1["mrnar"] = dgmrnar;
+                    tblt01.Rows.Add(dr1);
                 }
 
-                DataRow dr1 = tblt01.NewRow();
-                dr1["actcode"] = dgAccCode;
-                dr1["rsircode"] = dgResCode;
-                dr1["actdesc"] = dgAccDesc;
-                dr1["rsirdesc"] = dgResdesc;
-                dr1["spclcode"] = dgSpclCode;
-                dr1["spcldesc"] = dgSpclDesc;
-                dr1["trnqty"] = dgTrnQty;
-                dr1["trndram"] = dgTrnDrAmt;
-                dr1["trncram"] = dgTrnCrAmt;
-                dr1["memono"] = dgMemono;
-                dr1["mrnar"] = dgmrnar;
-                tblt01.Rows.Add(dr1);
-            }
-            //if (tblt01.Rows.Count == 0)
-            //    return;
-            Session["tblt01"] = HiddenSameData(tblt01);
-            dgv2.DataSource = (DataTable)Session["tblt01"];
-            dgv2.DataBind();
-            calculation();
 
+
+                this.txtRefNum.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
+                this.txtNarration.Text = ds1.Tables[1].Rows[0]["remarks"].ToString();
+            }
+            else
+            {
+
+
+                DataRow[] dr2 = tblt01.Select("actcode='" + actcode + "'  and rsircode='" + rescode + "'");
+                if (dr2.Length == 0)
+                {
+
+                    DataRow dr1 = tblt01.NewRow();
+                    dr1["actcode"] = actcode;
+                    dr1["rsircode"] = rescode;
+                    dr1["actdesc"] = this.ddlActCode.SelectedItem.Text.Trim(); 
+                    dr1["rsirdesc"] = (this.ddlresuorcecode.SelectedValue.Length == 0)?"": this.ddlresuorcecode.SelectedItem.Text.Trim();
+                    dr1["spclcode"] = "000000000000";
+                    dr1["spcldesc"] = "";
+                    dr1["trnqty"] = 0;
+                    dr1["trndram"] = 0;
+                    dr1["trncram"] = 0;
+                    dr1["memono"] = mrslid;
+                    dr1["mrnar"] = tblt01.Rows[0]["mrnar"].ToString();
+                    tblt01.Rows.Add(dr1);
+                }
+
+
+
+            }
+
+            DataTable dt2 = (DataTable)Session["tblt01"];
+            DataTable d2 = HiddenSameData(dt2);
+            dgv2.DataSource = d2;
+            dgv2.DataBind();
+            calculation(d2);
+           
             this.txtCurrntlast6.ReadOnly = false;
-            //this.Panel1.Visible = true;
-            this.txtRefNum.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            this.txtNarration.Text = ds1.Tables[1].Rows[0]["remarks"].ToString();
+          
         }
 
 
@@ -377,8 +408,51 @@ namespace RealERPWEB.F_17_Acc
             return dt1;
         }
 
+        protected void lbtnTotal_Click(object sender, EventArgs e)
+        {
+            this.Session_tblacc_Update();
+
+            
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ViewState["PreviousPageUrl"] = this.Request.UrlReferrer.ToString();
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            // Create an event handler for the master page's contentCallEvent event
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFinalUpdate_Click);
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        protected void Session_tblacc_Update()
+        {
+
+            DataTable dt1 = (DataTable)Session["tblt01"];
+            //DataTable dt1 = (DataTable)Session["tblt01"];
+            
 
 
+            for (int i = 0; i < this.dgv2.Rows.Count; i++)
+            {
+             
+
+                dt1.Rows[i]["trndram"] = Convert.ToDouble("0" + ((TextBox)this.dgv2.Rows[i].FindControl("lblgvDrAmt")).Text.Trim()); ;
+                dt1.Rows[i]["trncram"]= Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvCrAmt")).Text.Trim());;
+              
+            }
+            DataTable dt2 = (DataTable)Session["tblt01"];
+            DataTable d2 = HiddenSameData(dt2);
+            dgv2.DataSource = d2;
+            dgv2.DataBind();
+            calculation(d2);
+
+        }
 
 
         private void GetVouCherNumber()
@@ -451,12 +525,14 @@ namespace RealERPWEB.F_17_Acc
             bool dcon = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(voudat));
             if (!dcon)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Issue Date is equal or less Current Date');", true);
+               // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Issue Date is equal or less Current Date');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Issue Date is equal or less Current Date');", true);
                 return;
             }
             if (Math.Round(accData.ToDramt) != Math.Round(accData.ToCramt))
             {
-                this.lblmsg.Text = "Debit Amount must be Equal Credit Amount";
+               // this.lblmsg.Text = "Debit Amount must be Equal Credit Amount";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Debit Amount must be Equal Credit Amount');", true);
                 return;
             }
 
@@ -503,7 +579,7 @@ namespace RealERPWEB.F_17_Acc
                     string rescode = ((Label)this.dgv2.Rows[i].FindControl("lblResCod")).Text.Trim();
                     string spclcode = ((Label)this.dgv2.Rows[i].FindControl("lblSpclCod")).Text.Trim();
                     string trnqty = Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvQty")).Text.Trim()).ToString();
-                    double Dramt = Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvDrAmt")).Text.Trim());
+                    double Dramt = Convert.ToDouble("0" + ((TextBox)this.dgv2.Rows[i].FindControl("lblgvDrAmt")).Text.Trim());
                     double Cramt = Convert.ToDouble("0" + ((Label)this.dgv2.Rows[i].FindControl("lblgvCrAmt")).Text.Trim());
                     string trnamt = Convert.ToString(Dramt - Cramt);
 
@@ -527,9 +603,11 @@ namespace RealERPWEB.F_17_Acc
                         memono2 = memono;
                     }
                 }
-                this.lblmsg.Text = "Update Successfully.";
+            
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successfully');", true);
                 //this.lblmsg.Text=@"<SCRIPT language= "JavaScript"  > window.open('RptViewer.aspx');</script>";
-                this.lnkFinalUpdate.Enabled = false;
+                //this.lnkFinalUpdate.Enabled = false;
+                ((LinkButton)Master.FindControl("lnkbtnRecalculate")).Visible = true;
                 this.txtcurrentvou.Enabled = false;
                 this.txtCurrntlast6.Enabled = false;
                 if (ConstantInfo.LogStatus == true)
@@ -543,13 +621,21 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                this.lblmsg.Text = "Error:" + ex.Message;
+                //this.lblmsg.Text = "Error:" + ex.Message;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+              
             }
 
         }
 
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
 
+            Response.Redirect((string)ViewState["PreviousPageUrl"]);
+
+        }
 
 
 

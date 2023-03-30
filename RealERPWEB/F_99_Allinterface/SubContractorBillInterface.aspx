@@ -3617,7 +3617,17 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                               <asp:TemplateField HeaderText="MB Date">
 
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvmbdat" runat="server"
+                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "mbdat")).ToString("dd-MMM-yyyy") %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>

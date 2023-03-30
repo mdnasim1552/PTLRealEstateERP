@@ -111,6 +111,7 @@ namespace RealERPWEB.F_17_Acc
 
                 case "3101":
                 case "3374":
+                case "3376":
                     mrprint = "MRPrintAngan";
                     break;
 
@@ -189,40 +190,47 @@ namespace RealERPWEB.F_17_Acc
                         {
                             if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
                             {
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                                }
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                //}
 
                             }
 
                             else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
                             {
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + "REFUNDABLE COLLECTION, ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + "REFUNDABLE COLLECTION, ";
-                                }
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + "REFUNDABLE COLLECTION, ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + "REFUNDABLE COLLECTION, ";
+                                //}
 
                             }
 
                             else
                             {
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                                }
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                //}
 
                             }
 
@@ -233,42 +241,52 @@ namespace RealERPWEB.F_17_Acc
                         {
                             if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
                             {
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                                    isMoneyRecpt = true;
-                                }
+
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                isMoneyRecpt = true;
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                //    isMoneyRecpt = true;
+                                //}
 
                             }
 
                             else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
                             {
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + "REFUNDABLE COLLECTION, ";
 
-                                }
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + "REFUNDABLE COLLECTION, ";
+
+                                //}
                             }
                             else
                             {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                isPartial = true;
 
-                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
-                                {
-                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                                }
-                                else
-                                {
-                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                                    isPartial = true;
-                                }
+
+                                //if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                //{
+                                //    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                //}
+                                //else
+                                //{
+                                //    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                //    isPartial = true;
+                               // }
 
 
                             }

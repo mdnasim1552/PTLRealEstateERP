@@ -950,7 +950,11 @@ namespace RealERPWEB.F_22_Sal
             ds1.Tables[2].TableName = "tbl3";
             ds1.Tables[3].TableName = "tbl4";
             ds1.Tables[4].TableName = "tbl5";
-            ds1.Tables[5].TableName = "tbl6";           
+            ds1.Tables[5].TableName = "tbl6";
+
+
+
+
 
             bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam, InstallmentDate);
             if (!result)

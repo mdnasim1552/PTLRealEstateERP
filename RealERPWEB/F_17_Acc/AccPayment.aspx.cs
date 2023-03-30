@@ -439,6 +439,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlresuorcecode.DataBind();
                 this.txtserchReCode.Text = "";
                 this.GetSpecification();
+                this.GetBillNo();
                 string seaRes = this.ddlresuorcecode.SelectedValue.ToString().Trim();
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
@@ -949,6 +950,8 @@ namespace RealERPWEB.F_17_Acc
         {
 
             DataTable dt = (DataTable)Session["tblt01"];
+            string pbillno = "";
+            double netbalance = 0.00;
             for (int i = 0; i < this.dgv1.Rows.Count; i++)
             {
 
@@ -965,9 +968,14 @@ namespace RealERPWEB.F_17_Acc
 
                 if (this.ddlPrivousVou.Items.Count == 0)
                 {
+
+
                     if (billno.Length > 0)
                     {
-                        if (dram > billbal)
+
+                        netbalance = (billno == pbillno) ? netbalance - dram : billbal - dram;  //Multiple chequeno single Bill and Multiple bill Single Cheque no
+
+                        if (netbalance < 0)
                         {
 
 
@@ -975,21 +983,37 @@ namespace RealERPWEB.F_17_Acc
                             return;
                         }
 
-                        else
-                        {
-                        }
+
+
+                        //    if (billno.Length > 0)
+
+                        //{
+                        //    if (dram > billbal)
+                        //    {
+
+
+                        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        //        return;
+                        //    }
+
+                        //    else
+                        //    {
+                        //    }
 
 
 
+                        //}
                     }
 
                 }
 
+                    pbillno = billno;
 
 
 
 
-            }
+
+                }
             Session["tblt01"] = dt;
 
         }
@@ -1079,7 +1103,8 @@ namespace RealERPWEB.F_17_Acc
             bool dcon;
             Bdate = this.GetBackDate();
             DataTable dt = (DataTable)Session["tblt01"];
-
+            string pbillno = "";
+            double netbalance = 0.00;
             foreach (DataRow dr6 in dt.Rows)
             {
                 double trndram = Convert.ToDouble(dr6["trndram"].ToString().Trim());
@@ -1090,7 +1115,10 @@ namespace RealERPWEB.F_17_Acc
                 {
                     if (billno.Length > 0)
                     {
-                        if (trndram > balance)
+
+                        netbalance = (billno == pbillno) ? netbalance - trndram : balance - trndram;  //Multiple chequeno single Bill and Multiple bill Single Cheque no
+
+                        if (netbalance<0)
                         {
 
 
@@ -1099,7 +1127,20 @@ namespace RealERPWEB.F_17_Acc
                         }
 
 
+
+                        //if (trndram > balance)
+                        //{
+
+
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        //    return;
+                        //}
+
+
                     }
+
+
+                    pbillno = billno;
 
                 }
 
@@ -1108,6 +1149,25 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+
+            // Bill Amount check 
+
+            //double billbalamt = Convert.ToDouble("0" + ((Label)this.dgv1.Rows[0].FindControl("lblbillbalance")).Text.Trim());
+            //double ToDramt = Convert.ToDouble("0" + ((Label)this.dgv1.FooterRow.FindControl("lblTgvDrAmt")).Text.Trim());          
+
+            //if (ToDramt>billbalamt)
+            //{
+
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+            //    return;
+
+            //}
+
+            
+
+         
+          
+
 
             if ((this.Request.QueryString["Type"] == "Acc"))
             {

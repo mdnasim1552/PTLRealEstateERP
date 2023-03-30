@@ -267,9 +267,9 @@
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Received Date">
-                                    <FooterTemplate>
+                                   <%-- <FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn btn-sm btn-success" OnClick="lbtnTotal_Click">Total</asp:LinkButton>
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
 
                                     <ItemTemplate>
                                         <asp:Label ID="lbgvrcvdate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -295,10 +295,10 @@
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
 
-                                    <FooterTemplate>
+                                    <%--<FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn" OnClick="lbtnUpdate_Click">Approved</asp:LinkButton>
 
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Bill Nature" Visible="false">

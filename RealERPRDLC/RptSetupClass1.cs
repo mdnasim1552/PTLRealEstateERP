@@ -26,7 +26,7 @@ namespace RealERPRDLC
             var assamblyPath = Assembly.GetExecutingAssembly().CodeBase;
             Assembly assembly1 = Assembly.LoadFrom(assamblyPath);
             //Assembly assembly1 = Assembly.LoadFrom("ASITHmsRpt2Inventory.dll");
-            Stream stream1 = assembly1.GetManifestResourceStream("RealERPRDLC." + RptName + ".rdlc");
+            Stream stream1 = assembly1.GetManifestResourceStream("RealERPRDLC." + RptName + ".rdlc");//R_24_CC.CancellationAddWork
             LocalReport Rpt1a = new LocalReport();
             Rpt1a.DisplayName = RptName;
             Rpt1a.LoadReportDefinition(stream1);
@@ -260,6 +260,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptWorkOrderStatus3": Rpt1a = SetRptWorkOrderStatus3(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_14_Pro.RptBillInfoInns": Rpt1a = SetRptBillInfoInns(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptBillInfoInnsANGAN": Rpt1a = SetRptBillInfoInnsANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoManama": Rpt1a = SetRptBillInfoManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoLanco": Rpt1a = SetRptBillInfoLanco(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillInfoJbs": Rpt1a = SetRptBillInfoJbs(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -426,6 +427,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_93_AnnInc.RptAnnInctrment": Rpt1a = SetRptAnnInctrment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_21_MKT.RptMissFollowup": Rpt1a = SetRptMissFollowup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                
+                case "R_24_CC.CancellationAddWork": Rpt1a = SetCancellationAddWork(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -1006,6 +1009,8 @@ namespace RealERPRDLC
                 case "R_32_Mis.RptProjectAnalysis": Rpt1a = SetRptProjectAnalysis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_45_GrAcc.RptGrpMisRecPayment": Rpt1a = SetRptGrpMisRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_45_GrAcc.RptAccRecPayment": Rpt1a = SetRptAccRecPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
 
@@ -1020,10 +1025,12 @@ namespace RealERPRDLC
                 case "R_34_Mgt.rptActiveSimUser": Rpt1a = SetrptActiveSimUser(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqPrintFinlay": Rpt1a = SetRptOtherReqPrintFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAdvancedAgainstLoan": Rpt1a = SetRptAdvancedAgainstLoan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAdvancedAssosiationfee": Rpt1a = SetRptAdvancedAssosiationfee(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
                 #endregion
+
 
                 #region R_38_AI
 
@@ -1058,6 +1065,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptEmpBonusAssure": Rpt1a = SetRptEmpBonusAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetAcme": Rpt1a = SetRptBonusSheetAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetBTI": Rpt1a = SetRptBonusSheetBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetBTIwithDiff": Rpt1a = SetRptBonusSheetBTIwithDiff(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetEdison": Rpt1a = SetRptBonusSheetEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetFinlay": Rpt1a = SetRptBonusSheetFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -1617,6 +1626,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetCancellationAddWork(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.CancellationAddWork>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -2504,10 +2518,14 @@ namespace RealERPRDLC
 
         private static LocalReport SetrptEstmtProfitLoss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.AgeingDays>)RptDataSet2));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_02_Fea.EClasFeasibility.ProfitAndLoss>)UserDataset));
+       
+            var rptlist = (RealEntity.C_02_Fea.EClasFeasibility.Eclassdummy)RptDataSet;
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", rptlist.Projectpropandloss));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", rptlist.AgeingDays));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", rptlist.SalesAnlysis));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet4", rptlist.MarkCost));
             return Rpt1a;
+
         }
 
 
@@ -2714,7 +2732,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPaymentBank>)RptDataSet2));
             return Rpt1a;
         }
-
+        //SetRptAccRecPayment
+        private static LocalReport SetRptAccRecPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_45_GrAcc.RptGrpMis.RptAccRecPayment>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptCallCenterLead(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -4663,6 +4686,12 @@ namespace RealERPRDLC
 
             return Rpt1a;
         }
+        private static LocalReport SetRptAdvancedAssosiationfee(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptAssosiationfee>)RptDataSet));
+
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptBillRateEntry(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6199,6 +6228,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptBonusSheetBTIwithDiff(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptBonusSheetEdison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
@@ -7024,6 +7059,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptBillInfoInns(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptBillInfoInnsANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
             return Rpt1a;

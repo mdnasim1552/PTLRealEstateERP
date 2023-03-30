@@ -223,6 +223,10 @@
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
 
                         </div>
+                        <div class="col-lg-2" style="margin-top:20px;">
+                           <asp:CheckBox ID="chckdiff" runat="server" Visible="false" Text="Print with bonus diffrence " />  
+
+                        </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="Label14" runat="server">Page Size</asp:Label>
                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">

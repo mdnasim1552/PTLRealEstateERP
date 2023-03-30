@@ -309,7 +309,8 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3370"://CPDL
-                case "3374"://CPDL
+                case "3374"://ANGAN
+                case "3376":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryCPDL", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -2833,6 +2834,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3370": // cpdl 
                 case "3348": //credence
                 case "3374": //angan
+                case "3376":
 
 
                     this.OrderPrintRDLC();
@@ -4591,7 +4593,8 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno = ASTUtility.CustomReqFormat(wrkid);
                         break;
-                    case "3374": // Angan                        
+                    case "3374": // Angan  
+                    case "3376": 
 
                         Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
                         porderno = ASTUtility.CustomReqFormat(wrkid);
@@ -4702,7 +4705,8 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3101": // cpdl  
 
                     case "3370": // cpdl
-                    case "3374": // cpdl
+                    case "3374": // ANGAN
+                    case "3376":
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
                         Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));

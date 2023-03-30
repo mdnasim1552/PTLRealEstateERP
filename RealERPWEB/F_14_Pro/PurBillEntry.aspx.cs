@@ -1099,6 +1099,9 @@ namespace RealERPWEB.F_14_Pro
             td1 = dv1.ToTable();
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
+            double amount = amt1 - amt2;
+
+            string totalamount = amount.ToString();
             //
             // rdlc start
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
@@ -1125,7 +1128,15 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            if(comcod=="3374" || comcod == "3374")
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
+            }
+            else
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            }
+              
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
@@ -1148,6 +1159,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("ftBillconf", billname));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
+            rpt.SetParameters(new ReportParameter("totalamount", totalamount));
 
             Session["Report1"] = rpt;
             if (isAccBill)
