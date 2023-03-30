@@ -39,7 +39,12 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 this.GetCompany();
                 this.GetYear();
 
+                int year = DateTime.Now.Year;
+                DateTime firstDay = new DateTime(year, 1, 1);
+                DateTime lastDay = new DateTime(year, 12, 31);
 
+                this.txtFDate.Text = firstDay.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = lastDay.ToString("dd-MMM-yyyy");
 
 
             }
@@ -144,17 +149,17 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
 
-            string frmdate = "01-jan-" + ddlyear.SelectedValue.ToString();
-            string todate = "31-Dec-" + ddlyear.SelectedValue.ToString();
+            //string frmdate = "01-jan-" + ddlyear.SelectedValue.ToString();
+            //string todate = "31-Dec-" + ddlyear.SelectedValue.ToString();
 
-            string frmndate = this.txtFDate.Text;
-            string tondate = this.txttodate.Text;
+            string frmdate = this.txtFDate.Text;
+            string todate = this.txttodate.Text;
 
-            if (frmndate != "" && tondate != "")
-            {
-                frmdate = this.txtFDate.Text;
-                todate = this.txttodate.Text;
-            }
+            //if (frmndate != "" && tondate != "")
+            //{
+            //    frmdate = this.txtFDate.Text;
+            //    todate = this.txttodate.Text;
+            //}
 
             string CompanyName = ((this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string projectcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
@@ -258,7 +263,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             DataTable dt = (DataTable)Session["tblprofund"];
             string comcod = this.GetComeCode();
             string year = this.ddlyear.SelectedValue.ToString();
-
+            string month = (Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM")).ToString();
             string insamt = this.txtInterest.Text;
             string msg = "";
 
@@ -271,7 +276,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 double pclamt = Convert.ToDouble(dt.Rows[i]["toam"].ToString());
 
                 bool resultb = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEBENEFIT", year, empid, benamt.ToString(), pclamt.ToString(), insamt,
-                            "", "", "", "", "", "", "", "", "", "");
+                            month, "", "", "", "", "", "", "", "", "");
 
                 if (!resultb)
                 {
