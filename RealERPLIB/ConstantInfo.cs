@@ -339,6 +339,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902005", "F_09_PImp", "ImplementPlan", "", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902056", "F_09_PImp", "PurLabIssue?", "Type=Current", "Sub-Contractor Bill -Category Wise", "Project Implementation", "False", "False", "False", "False" });
@@ -5104,6 +5106,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Execution 360", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000017", "15. Monthly Implementation Plan - 360", "F_09_PImp/ImplementPlanWithMaterials", "", true, "" });
+
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });
