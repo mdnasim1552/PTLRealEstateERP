@@ -415,6 +415,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902078", "F_09_PImp", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementation", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902080", "InvResourceRequirement", "", "Resource Requirement-All Project", "Project Implementaion", "False", "False", "False", "False" }); ;//rihan
             tblObj.Rows.Add(new Object[] { "0902000", "0902082", "F_09_PImp", "WorkExecutionWithIssue?", "Type=Entry", "Execution 360", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0902083", "F_09_PImp", "FloorWiseSubcontractorbill", "", "Floor Wise Subcontractor bill", "Project Implementation", "False", "False", "False", "False" }); ;
 
 
 
@@ -5222,6 +5223,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000019", "31. Sub-Contractor Bill (All Project)", "F_09_PImp/SubConBillAllPrj?Type=AllPrj", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000020", "31. Sub-Contractor Bill(All in One)", "F_09_PImp/RptConsConBillStatus?Type=ConBillSummary&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000021", "12. Contractor Monthly Assessment", "F_22_Sal/RptMonthConAss?Type=MnthAss", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000022", "25. Sub-Contractor Bill Status ", "F_09_PImp/FloorWiseSubcontractorbill", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
 
