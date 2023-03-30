@@ -13,9 +13,11 @@
             border-radius: 3px !important;
             height: 29px !important;
         }
-
+       .needbasereport label {   
+    margin-bottom: 1px;
+}
         .chzn-container {
-            max-width: 181px !important;
+            max-width: 210px !important;
         }
 
         .tblborder {
@@ -517,7 +519,7 @@
 
 
                             <!-- .form-row -->
-                            <div class="row">
+                            <div class="row needbasereport">
                                 <!-- form grid -->
                                 <div class="col-md-2 mb-0">
                                     <label for="validationTooltip01">
@@ -773,14 +775,14 @@
                                         <option>United States </option>
                                     </select>
                                 </div>
-                                <div class="col-md-2 mb-0">
+                                <div class="col-md-1 mb-0">
                                     <label for="validationTooltipCountry">
-                                        Project Visit Source
+                                        Project Visit
                            
                          
                                     </label>
                                     <div class="input-group input-group-sm input-group-alt">
-                                        <asp:DropDownList ID="DdlVisitSource" CssClass="form-control from-control-sm chzn-select" runat="server">
+                                        <asp:DropDownList ID="DdlVisitSource" CssClass="form-control from-control-sm " runat="server">
                                             <asp:ListItem Value="">Select</asp:ListItem>
                                             <asp:ListItem Value="1">Yes</asp:ListItem>
                                             <asp:ListItem Value="0">No</asp:ListItem>
@@ -791,6 +793,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                  <div class="col-md-1 mb-0">
+                                        <asp:LinkButton ID="LbtnResetAll" OnClick="LbtnResetAll_Click" runat="server" CssClass="btn btn-sm btn-warning" style="margin-top:22px"><span class="fa fa-recycle"></span>  Reset All</asp:LinkButton>
+                                  </div>
                                 <!-- /form grid -->
                             </div>
                             <!-- /.form-row -->
@@ -810,7 +815,7 @@
                                             <asp:TemplateField>
                                                 <HeaderTemplate>
 
-                                                    <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" OnClick="lnkgvHeader_Click"><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" ><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
                                                     <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                             </asp:HyperLink>--%>
                                                 </HeaderTemplate>

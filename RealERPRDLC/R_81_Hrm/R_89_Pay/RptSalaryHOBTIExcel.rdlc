@@ -5748,7 +5748,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDec((Fields!fine.Value))</Value>
+                                  <Value>=CDec((Fields!fine.Value+Fields!othded.Value))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -7049,7 +7049,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDec(Sum(Fields!fine.Value))</Value>
+                                  <Value>=CDec(Sum(Fields!fine.Value+Fields!othded.Value))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -8387,7 +8387,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDec(Sum(Fields!fine.Value))</Value>
+                                  <Value>=CDec(Sum(Fields!fine.Value+Fields!othded.Value))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -9724,7 +9724,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDec(Sum(Fields!fine.Value))</Value>
+                                  <Value>=CDec(Sum(Fields!fine.Value+Fields!othded.Value))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>

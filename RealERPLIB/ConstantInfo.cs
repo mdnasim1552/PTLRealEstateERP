@@ -413,7 +413,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902078", "F_09_PImp", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementation", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902080", "InvResourceRequirement", "", "Resource Requirement-All Project", "Project Implementaion", "False", "False", "False", "False" }); ;//rihan
             tblObj.Rows.Add(new Object[] { "0902000", "0902082", "F_09_PImp", "WorkExecutionWithIssue?", "Type=Entry", "Execution 360", "Project Implementation", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902083", "F_09_PImp", "FloorWiseSubcontractorbill", "", "Floor Wise Subcontractor bill", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0902083", "F_09_PImp", "FloorWiseSubcontractorbill", "", "Floor Wise Subcontractor bill", "Project Implementation", "False", "False", "False", "False" }); ;
 
 
 
@@ -1184,7 +1184,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103133", "F_21_MKT", "RptCallCenterLead?", "Type=Conversion", "Sales Person Wise Conversion", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103134", "F_21_MKT", "RptCallCenterLead?", "Type=RptTracking", "Sales Person Wise Tracking", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103135", "F_21_MKT", "RptCallCenterLead?", "Type=SopTimeLine", "SOP Timeline Report", "CRM", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2103000", "2103136", "F_21_MKT", "RptSalesEvaulation?", "Type=TeamMember", "Sales Evaulation Report", "CRM", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -7506,6 +7506,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000012", "25. Sales Person Wise Conversion", "F_21_MKT/RptCallCenterLead?Type=Conversion", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "26. Sales Person Wise Tracking", "F_21_MKT/RptCallCenterLead?Type=RptTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "27. SOP Timeline Report", "F_21_MKT/RptCallCenterLead?Type=SopTimeLine", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000015", "28. Sales Evaulation Report", "F_21_MKT/RptSalesEvaulation?Type=TeamMember", "", true, "" });
 
 
 

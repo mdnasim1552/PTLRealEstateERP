@@ -540,7 +540,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                            string advAmount = Convert.ToDouble("0" + this.txtAdvanced.Text).ToString();
+                            string advAmount = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim()).ToString();
                             resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPURBILL",
                                     billno, vounum, advAmount, "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)

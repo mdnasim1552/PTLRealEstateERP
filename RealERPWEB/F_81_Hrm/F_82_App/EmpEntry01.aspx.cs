@@ -1106,7 +1106,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
-                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat && comcod!="3354")
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat && comcod=="3365")
                     {
                         Gvalue = retdat;
                         islocksal = true;
@@ -2000,7 +2000,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 TextBox txtjoindat = (TextBox)e.Row.FindControl("txtgvdVal");
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
      
-                if (code == "01999" && GetCompCode()!="3354")
+                if (code == "01999" && GetCompCode()=="3365")
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
