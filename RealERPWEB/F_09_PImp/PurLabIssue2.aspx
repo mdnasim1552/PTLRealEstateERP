@@ -5,10 +5,48 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-        <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <style>
         .multiselect {
+            width: 300px !important;
+            border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+        }
+
+        .multiselect-container {
+            overflow: scroll;
+            max-height: 300px !important;
+        }
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        .multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        #ContentPlaceHolder1_divgrp {
+            width: 395px !important;
+        }
+
+        .caret {
+            display: none !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+        /*.multiselect {
             width: 150px !important;
             text-wrap: initial !important;
             height: 27px !important;
@@ -27,7 +65,9 @@
         span.multiselect-selected-text {
             width: 200px !important;
         }
-
+         .caret {
+            display: none !important;
+        }*/
         .chzn-single {
             border-radius: 3px !important;
             height: 29px !important;
@@ -86,7 +126,7 @@
                 });
             });
 
-          
+
 
 
         }
@@ -215,7 +255,7 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:Label ID="lbtnPrevISSList" runat="server" >Prev. List:</asp:Label>
+                                <asp:Label ID="lbtnPrevISSList" runat="server">Prev. List:</asp:Label>
 
                                 <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnPreBillList" runat="server" OnClick="ibtnPreBillList_Click" TabIndex="2"><i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
@@ -240,10 +280,10 @@
                             <div class="row">
 
 
-                                <div class="col-md-2">
+                                <div class="col-md-2" id="plngrp" runat="server" visible="false">
                                     <div class="from-group">
-                                        <asp:Label ID="lblgrp" runat="server" Text="Group" Visible="false"></asp:Label>
-                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  form-control-sm" Visible="false">
+                                        <asp:Label ID="lblgrp" runat="server" Text="Group" ></asp:Label>
+                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  form-control-sm" >
                                         </asp:DropDownList>
                                     </div>
 
@@ -269,27 +309,20 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                
+
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                    <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
-                                          <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control"  SelectionMode="Multiple"></asp:ListBox>
+                                        <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
+                                        <div class="col-md-4 pl-0">
 
+                                            <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+
+                                        </div>
+                                        <%--<asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control"  SelectionMode="Multiple"></asp:ListBox>--%>
+                                    </div>
                                 </div>
-                                </div>
 
-<%--                                <div class="col-md-4">
-                                    <asp:Label ID="lblfloorno" runat="server" Text="Floor No"></asp:Label>
-                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control form-control-sm select2" SelectionMode="Multiple"></asp:ListBox>
-
-                                </div>--%>
-
-                     <%--                  <div class="col-md-3 pl-0">
-
-                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
-
-                                </div>--%>
-
+                                
 
                                 <div class="col-md-1" style="margin-top: 22px">
                                     <asp:LinkButton ID="lbtnSelect" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-sm btn-primary"
@@ -342,16 +375,16 @@
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                   <asp:TemplateField HeaderText="">
-                                <ItemTemplate>
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
 
-                                    <asp:LinkButton ID="lbtnDelItem" OnClick="lbtnDelItem_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnDelItem" OnClick="lbtnDelItem_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
 
 
-                                </ItemTemplate>
-                                <ItemStyle Width="30px" HorizontalAlign="Center" />
-                                <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="30px" HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item Code" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemcode" runat="server"
@@ -395,7 +428,7 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Unit">
-                                          <FooterTemplate>
+                                        <FooterTemplate>
                                             <asp:Label ID="lblgvTotal" runat="server" Font-Bold="True">Total</asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
@@ -513,7 +546,7 @@
 
 
                                     <asp:TemplateField HeaderText="Qty">
-                                       
+
 
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtisuqty" runat="server" Font-Size="11px"
@@ -560,7 +593,7 @@
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ></asp:Label>
+                                                Width="70px" Font-Size="12px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
@@ -581,7 +614,7 @@
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lblFissueamt" runat="server" Style="text-align: right"
-                                                Width="70px" Font-Size="12px" ></asp:Label>
+                                                Width="70px" Font-Size="12px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtissueamt" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -594,12 +627,12 @@
 
 
                                 </Columns>
-                                 <FooterStyle CssClass="grvFooterNew" />
+                                <FooterStyle CssClass="grvFooterNew" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                 <RowStyle CssClass="grvRowsNew" />
+                                <RowStyle CssClass="grvRowsNew" />
                                 <PagerStyle CssClass="" />
-                                 <HeaderStyle CssClass="grvHeaderNew" />
+                                <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
                         </div>
                     </div>
@@ -614,7 +647,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <asp:Label ID="lblsecurity" runat="server" Text="Security Deposit:"></asp:Label>
-                                                <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm"  Text=""></asp:TextBox>
+                                                <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm" Text=""></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -660,7 +693,7 @@
                                             <div class="form-group">
 
                                                 <asp:Label ID="lblnettotal" runat="server"
-                                                    Text="Net Total:" ></asp:Label>
+                                                    Text="Net Total:"></asp:Label>
 
                                                 <asp:Label ID="lblvalnettotal" runat="server" CssClass="form-control form-control-sm" Style="text-align: right; color: blue;"></asp:Label>
                                             </div>
@@ -685,36 +718,36 @@
                     <div class="card-body">
                         <asp:Panel ID="PnlNarration" runat="server">
 
-                                    <div class="row">
+                            <div class="row">
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <asp:Label ID="lblNaration" runat="server" Text="Narration:"></asp:Label>
-                                                <asp:TextBox ID="txtISSNarr" runat="server" CssClass="form-control from-control-sm" TextMode="MultiLine"></asp:TextBox>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <asp:Label ID="lblTrade" runat="server" Text="Trade"></asp:Label>
-                                                <asp:DropDownList ID="ddltrade" runat="server" CssClass="form-control from-control-sm">
-                                                </asp:DropDownList>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <asp:Label ID="lblPreparedBy" runat="server" Text="Prepared By:" Visible="False"></asp:Label>
-                                                <asp:TextBox ID="txtPreparedBy" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
-
-                                                <asp:Label ID="lblApprovedBy" runat="server" Text="Approved By:" Visible="False"></asp:Label>
-                                                <asp:TextBox ID="txtApprovedBy" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
-
-                                                <asp:Label ID="lblApprovalDate" runat="server" Text="Approv.Date:" Visible="False"></asp:Label>
-                                                <asp:TextBox ID="txtApprovalDate" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
-                                            </div>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblNaration" runat="server" Text="Narration:"></asp:Label>
+                                        <asp:TextBox ID="txtISSNarr" runat="server" CssClass="form-control from-control-sm" TextMode="MultiLine"></asp:TextBox>
                                     </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblTrade" runat="server" Text="Trade"></asp:Label>
+                                        <asp:DropDownList ID="ddltrade" runat="server" CssClass="form-control from-control-sm">
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblPreparedBy" runat="server" Text="Prepared By:" Visible="False"></asp:Label>
+                                        <asp:TextBox ID="txtPreparedBy" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
+
+                                        <asp:Label ID="lblApprovedBy" runat="server" Text="Approved By:" Visible="False"></asp:Label>
+                                        <asp:TextBox ID="txtApprovedBy" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
+
+                                        <asp:Label ID="lblApprovalDate" runat="server" Text="Approv.Date:" Visible="False"></asp:Label>
+                                        <asp:TextBox ID="txtApprovalDate" runat="server" Visible="False" CssClass="form-control from-control-sm"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -723,7 +756,7 @@
 
 
 
-                                </asp:Panel>
+                        </asp:Panel>
                     </div>
                 </div>
             </asp:Panel>
