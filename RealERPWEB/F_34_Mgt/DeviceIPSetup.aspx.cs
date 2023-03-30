@@ -45,7 +45,7 @@ namespace RealERPWEB.F_34_Mgt
         private void Data_Bind()
         {
             var IpSetupInf = Session["IpSetup"];
-            this.grvIpSetup.PageSize = 10;
+            this.grvIpSetup.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvIpSetup.DataSource = IpSetupInf;
             this.grvIpSetup.DataBind();
         }
@@ -99,15 +99,36 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             }
 
-            bool addDone = this.MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "ADD_COMWISE_MACH_IP", machno, ipaddress, alias, port);
+            DataSet check = this.MktData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "CHECKIP", machno, ipaddress);
 
-            if (addDone)
+            if(check.Tables[0].Rows.Count == 0)
             {
-                string msg = "New IP Address Added Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                bool addDone = this.MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "ADD_COMWISE_MACH_IP", machno, ipaddress, alias, port);
+                if (addDone)
+                {
+                    string msg = "New IP Address Added Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    this.clearDataField();
+                    this.GetIpSetup();
+                }
+                else
+                {
+                    string msg = "Server Error";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentfail('" + msg + "');", true);
+                    this.clearDataField();
+                    this.GetIpSetup();
+                }
+            }
+            else
+            {
+                string msg = "Duplicate value is not allowed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 this.clearDataField();
                 this.GetIpSetup();
             }
+
+
+            
         }
         private void clearDataField()
         {
@@ -138,10 +159,21 @@ namespace RealERPWEB.F_34_Mgt
                     string port = lst1.port.ToString();
                     string id = lst1.id.ToString();
 
-                    bool result = MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATE_COMWISE_MACH_IP", machno, ipaddress, machinealias, port, id);
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+                    MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATE_COMWISE_MACH_IP", machno, ipaddress, machinealias, port, id);
                     this.GetIpSetup();
+
+                    //bool result = MktData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "UPDATE_COMWISE_MACH_IP", machno, ipaddress, machinealias, port, id);
+
+                    //if (!result)
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Failed');", true);
+                    //}
+                    //else
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+                    //    this.GetIpSetup();
+                    //}
+
 
                 }
             }catch(Exception ex)
@@ -190,6 +222,11 @@ namespace RealERPWEB.F_34_Mgt
             {
                 this.GetIpSetup();
             }
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Data_Bind();
         }
     }
 }
