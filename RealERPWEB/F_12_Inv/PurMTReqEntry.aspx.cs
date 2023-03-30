@@ -525,6 +525,24 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
+
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+                
+                double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
+                if (rat ==0)
+                {
+                    msg1 = "Not Save Without Rate";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                    return;
+
+                }
+            }
+
+
+
+
+
             string mtreqdat = this.txtCurTransDate.Text.ToString().Trim();
             if (ddlPrevISSList.Items.Count == 0)
                 this.GetMatTrns();
@@ -978,7 +996,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             string comcod = this.GetCompCode();
-          
+
             switch (comcod)
             {
                 case "3370":
@@ -1751,6 +1769,15 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+        }
+
+
+        protected void gvreqchkmgt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvreqchkmgt.PageIndex = e.NewPageIndex;
+            this.Data_Bind_MgtChecked();
+
+
         }
     }
 }

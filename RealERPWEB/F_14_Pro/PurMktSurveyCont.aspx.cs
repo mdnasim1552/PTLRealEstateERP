@@ -192,11 +192,15 @@ namespace RealERPWEB.F_14_Pro
             this.lbtnMSROk.Text = "New";
             this.ImgbtnFindSup_Click(null, null);
             this.ImgbtnFindMat_Click(null, null);
-
-            this.Get_Survey_Info();
+            this.PrevoiusBillCs();
+           
+                this.Get_Survey_Info();
+            
 
 
         }
+
+       
 
         protected void Get_Survey_Info()
         {
@@ -241,6 +245,20 @@ namespace RealERPWEB.F_14_Pro
             this.gvMSRInfo_DataBind();
 
             this.Payterm_DataBind();
+        }
+
+        private void PrevoiusBillCs()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETBILLCSCOPY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlboxprecopy.DataValueField = "msrno";
+            this.ddlboxprecopy.DataTextField = "msrno1";
+            this.ddlboxprecopy.DataSource = ds1.Tables[0];
+            this.ddlboxprecopy.DataBind();
+
+
         }
 
         protected void gvMSRInfo_DataBind()
@@ -372,7 +390,7 @@ namespace RealERPWEB.F_14_Pro
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyManama03", lst, lst1, null);
                 }
-                else if(comcod == "3374")
+                else if (comcod == "3374")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyANGAN03", lst, lst1, null);
                 }
@@ -1024,10 +1042,10 @@ namespace RealERPWEB.F_14_Pro
                     i++;
                 }
             }
-         
+
             else
             {
-                if (comcod == "3374" || comcod=="3101")
+                if (comcod == "3374" || comcod == "3101")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03CANGAN", lst, lst1, null);
 
@@ -1469,6 +1487,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable tblreq = (DataTable)Session["tblreq01"];
 
             string comcod = this.GetCompCode();
+
 
             foreach (ListItem s1 in chkMSRRes.Items)
             {
@@ -2064,6 +2083,30 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+        protected void chkbillcscopy_CheckedChanged(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
+            // string date = Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+           
+              string   mMSRNo = this.ddlboxprecopy.SelectedValue.ToString();          
 
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURMSRINFO1CON", mMSRNo, CurDate1,
+                          "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            Session["tblt01"] = ds1.Tables[1];
+            Session["tblt02"] = this.HiddenSameData(ds1.Tables[2]);
+            Session["tblterm"] = ds1.Tables[3];           
+            this.lblCurMSRNo1.Text = ds1.Tables[0].Rows[0]["msrno1"].ToString().Substring(0, 6);
+            this.txtCurMSRNo2.Text = ds1.Tables[0].Rows[0]["msrno1"].ToString().Substring(6, 5);
+            this.txtCurMSRDate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+
+            this.txtMSRNarr.Text = ds1.Tables[4].Rows[0]["remarks"].ToString();
+            this.gvMSRInfo_DataBind();
+
+            this.Payterm_DataBind();
+        }
     }
 }
