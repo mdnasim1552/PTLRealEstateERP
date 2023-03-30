@@ -544,7 +544,22 @@ namespace RealERPWEB.F_21_MKT
             ((TextBox)this.TxtLeadId).BorderColor = System.Drawing.Color.Empty;       
             this.DdlEmployee.SelectedValue = "000000000000";
             this.DdlVisitSource.SelectedValue = "";
+            this.DdlOccupation.SelectedValue = "0000000";
 
+        }
+
+        protected void LbtnResetOccup_Click(object sender, EventArgs e)
+        {
+            this.DdlOccupation.SelectedValue = "0000000";
+
+        }
+
+        protected void lnkgvHeader_Click1(object sender, EventArgs e)
+        {
+            Session["Report1"] = gvNedBseDetails;
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "OpenExcelDownload();", true);
+
+       
         }
     }
 }
