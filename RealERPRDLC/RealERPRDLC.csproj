@@ -200,6 +200,7 @@
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassDailyWorkStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassLeadReason.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseActivity.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptMissFollowup.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
@@ -944,6 +945,7 @@
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptMissFollowup.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptPersonWiseActivity.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
