@@ -96,15 +96,50 @@ namespace RealERPWEB.F_21_MKT
                 case "SalespWise":
                     this.PrintCallCenterLeadSalesWise();
                     break;
-
+                case "SPWiseActivity":
+                    this.PersonWiseActivity();
+                    break;
             }
-
-
-
-
 
         }
 
+        public void PersonWiseActivity()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();           
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string Rptname = "Sales Person Wise Activity Report";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["SPWiseActivity"];
+
+
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseActivity>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseActivity", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", toDate));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));           
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Rptname", Rptname));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            
+        }
 
         protected void PrintCallCenterLeadSalesWise()
         {
@@ -250,12 +285,39 @@ namespace RealERPWEB.F_21_MKT
                 case "SPWiseActivity":
                     this.SPWiseActivity();
                     break;
-
+                case "RptTracking":
+                    this.RptTracking();
+                    break;
             }
 
         }
 
-        public void SPWiseActivity()
+        public void RptTracking()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_EMP_KPI04", "SHOWTEAMTRACKING", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvRptTracking.DataSource = null;
+                this.gvRptTracking.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 3;
+            Session["RptTracking"] = ds1.Tables[0];
+
+            this.gvRptTracking.DataSource = ds1.Tables[0];
+            this.gvRptTracking.DataBind();
+            FooterCalculationRptTracking();
+            return;
+        }
+            public void SPWiseActivity()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -273,10 +335,56 @@ namespace RealERPWEB.F_21_MKT
 
             }
             this.MultiView1.ActiveViewIndex = 2;
-            Session["SPWiseActivity"] = HiddenSameData(ds1.Tables[0]);
+            Session["SPWiseActivity"] = ds1.Tables[0];
+            
             this.gvSPWiseActivity.DataSource = ds1.Tables[0];
             this.gvSPWiseActivity.DataBind();
+            FooterCalculationSPWiseActivity();
             return;
+        }
+
+        private void FooterCalculationRptTracking()
+        {
+
+            DataTable dt = (DataTable)Session["RptTracking"];
+
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalsold")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(sold)", "")) ? 0 : dt.Compute("sum(sold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalsoldamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(soldamt)", "")) ? 0 : dt.Compute("sum(soldamt)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalleads")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leads)", "")) ? 0 : dt.Compute("sum(leads)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalnoofcusoverpay")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(noofcusoverpay)", "")) ? 0 : dt.Compute("sum(noofcusoverpay)", ""))).ToString("#,##0;(#,##0); ");
+
+            }
+
+            else
+            {
+                return;
+            }
+
+        }
+        private void FooterCalculationSPWiseActivity()
+        {
+
+            DataTable dt = (DataTable)Session["SPWiseActivity"];
+
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalcall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(call)", "")) ? 0 : dt.Compute("sum(call)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalfirstmeet")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(firstmeeting)", "")) ? 0 : dt.Compute("sum(firstmeeting)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalflowmeet")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(followupmeeting)", "")) ? 0 : dt.Compute("sum(followupmeeting)", ""))).ToString("#,##0;(#,##0); ");
+
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalvisit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(firstvisit)", "")) ? 0 : dt.Compute("sum(firstvisit)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalflowupvisit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(followupvisit)", "")) ? 0 : dt.Compute("sum(followupvisit)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalfooter")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(total)", "")) ? 0 : dt.Compute("sum(total)", ""))).ToString("#,##0;(#,##0); ");
+
+            }
+
+            else
+            {
+                return;
+            }
+
         }
         private void ShowSourceWiseLead()
         {
@@ -298,12 +406,14 @@ namespace RealERPWEB.F_21_MKT
 
             }
 
+
             Session["tblCallCenter"] = HiddenSameData(ds1.Tables[0]);
             ViewState["tblCalldesc"] = ds1.Tables[1];
             this.Data_Bind();
 
 
         }
+        
 
         private void ShowSalesPWiseLead()
         {
