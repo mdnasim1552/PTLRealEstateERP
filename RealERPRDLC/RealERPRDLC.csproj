@@ -111,6 +111,9 @@
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudgetInmStaSum.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassEmployee.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_04_Bgd.PrjFoorWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_04_Bgd.RptPrjFloorWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_07_Ten.RptCivilConBOQ.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+BillFinalization.datasource" />
@@ -319,6 +322,7 @@
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss - Copy.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
+    <EmbeddedResource Include="R_04_Bgd\RptPrjFloorWiseBill.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdCostDet.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueCPDL.rdlc" />
