@@ -251,7 +251,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -13508,6 +13508,10 @@
     <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
       <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
       <Name>RealERPLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

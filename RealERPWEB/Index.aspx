@@ -325,9 +325,8 @@
                 //End of Sales Chart
                 //Start of Sales Chart
 
+               
                 var chartpur = Highcharts.chart('purchart', {
-
-
                     chart: {
                         type: gtype
                     },
@@ -366,21 +365,10 @@
                     tooltip: {
                         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
                         footerFormat: '</table>',
                         shared: true,
                         useHTML: true,
-
-                        //pointFormat: "{point.y:, .5f} Lac <br>"
-                        //pointFormat: '{point.percentage:.0f}%'
-
-
-
-                        //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
-
-
-                        //<b>{point.y:.1f} mm</b>
-
 
                     },
                     plotOptions: {
@@ -394,17 +382,19 @@
                     series: [{
                         name: 'Purchase',
                         data: [purdata[0].ttlsalamtcore,
-                        purdata[1].ttlsalamtcore,
-                        purdata[2].ttlsalamtcore,
-                        purdata[3].ttlsalamtcore,
-                        purdata[4].ttlsalamtcore,
-                        purdata[5].ttlsalamtcore,
-                        purdata[6].ttlsalamtcore,
-                        purdata[7].ttlsalamtcore,
-                        purdata[8].ttlsalamtcore,
-                        purdata[9].ttlsalamtcore,
-                        purdata[10].ttlsalamtcore,
-                        purdata[11].ttlsalamtcore
+                            purdata[1].ttlsalamtcore,
+                            purdata[2].ttlsalamtcore,
+                            purdata[3].ttlsalamtcore,
+                            purdata[4].ttlsalamtcore,
+                            purdata[5].ttlsalamtcore,
+                            purdata[6].ttlsalamtcore,
+                            purdata[7].ttlsalamtcore,
+                            purdata[8].ttlsalamtcore,
+                            purdata[9].ttlsalamtcore,
+                            purdata[10].ttlsalamtcore,
+                            purdata[11].ttlsalamtcore
+
+
                         ],
                         color: '#759ABE'
 
@@ -413,21 +403,22 @@
                         name: 'Payment',
                         //color:red,
                         data: [purdata[0].tpayamtcore,
-                        purdata[1].tpayamtcore,
-                        purdata[2].tpayamtcore,
-                        purdata[3].tpayamtcore,
-                        purdata[4].tpayamtcore,
-                        purdata[5].tpayamtcore,
-                        purdata[6].tpayamtcore,
-                        purdata[7].tpayamtcore,
-                        purdata[8].tpayamtcore,
-                        purdata[9].tpayamtcore,
-                        purdata[10].tpayamtcore,
-                        purdata[11].tpayamtcore
+                            purdata[1].tpayamtcore,
+                            purdata[2].tpayamtcore,
+                            purdata[3].tpayamtcore,
+                            purdata[4].tpayamtcore,
+                            purdata[5].tpayamtcore,
+                            purdata[6].tpayamtcore,
+                            purdata[7].tpayamtcore,
+                            purdata[8].tpayamtcore,
+                            purdata[9].tpayamtcore,
+                            purdata[10].tpayamtcore,
+                            purdata[11].tpayamtcore
                         ],
                         color: 'black'
                     }]
                 });
+
                 //End of Purchase
                 //Start of Accounts Chart
                 var chartacc = Highcharts.chart('accchart', {
@@ -1101,7 +1092,7 @@
 
 
                 let w = $(".graph-main").width();
-                let h = 325;
+                let h = 325; 
                 chartsal.setSize(w, h);
                 chartpur.setSize(w, h);
                 chartacc.setSize(w, h);
@@ -2791,7 +2782,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade show graph-main" id="tab_1232" runat="server">
+                                            <%--<div class="tab-pane fade show graph-main" id="tab_1232" runat="server">
 
                                                 <div class="row ">
 
@@ -2823,6 +2814,42 @@
                                                     <div id="purchart" style="width: 90%; max-height: 280px;"></div>
                                                 </asp:Panel>
 
+
+
+
+
+                                            </div>--%>
+                                            <div class="tab-pane fade show graph-main" id="tab_1232" runat="server">
+                                                <div class="row ">
+                                                    <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                        <h5><small class="float-right">
+                                                            <div class="btn-group show-on-hover grMoreMenu">
+                                                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                    More Reports 
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase"  target="_blank">Procurement All Graph</a></li>
+                                                                    <li>
+
+                                                                        <asp:HyperLink runat="server" Target="_blank" ID="HyperProcurement" ClientIDMode="Static">Procurement Details</asp:HyperLink>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </small></h5>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                                <asp:Panel ID="Panel1" runat="server">
+                                                    <div id="MonthlyPurchase" style="height: 280px; margin: 0 auto"></div>
+                                                </asp:Panel>
+
+                                                <asp:Panel ID="Panel2" runat="server">
+                                                    <div id="purchart" style="width: 90%; max-height: 280px;"></div>
+                                                </asp:Panel>
 
 
 
