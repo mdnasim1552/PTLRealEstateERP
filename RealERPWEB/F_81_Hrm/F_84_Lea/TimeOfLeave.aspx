@@ -162,7 +162,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="Reason">Reason/Remarks</label>
+                                <label for="Reason">Reason/Remarks *</label>
                                 <asp:TextBox ID="txtLeavLreasons" runat="server" placeholder="Reason" TextMode="MultiLine" class="form-control"></asp:TextBox>
                             </div>
 

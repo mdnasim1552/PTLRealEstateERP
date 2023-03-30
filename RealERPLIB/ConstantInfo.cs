@@ -339,6 +339,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902005", "F_09_PImp", "ImplementPlan", "", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902056", "F_09_PImp", "PurLabIssue?", "Type=Current", "Sub-Contractor Bill -Category Wise", "Project Implementation", "False", "False", "False", "False" });
@@ -413,6 +415,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902078", "F_09_PImp", "PurSubConBillFinal?", "Type=BillConfirmed", "Bill Finalization(Confirmed)", "Project Implementation", "False", "False", "False", "False" }); ;
             //tblObj.Rows.Add(new Object[] { "0902000", "0902080", "InvResourceRequirement", "", "Resource Requirement-All Project", "Project Implementaion", "False", "False", "False", "False" }); ;//rihan
             tblObj.Rows.Add(new Object[] { "0902000", "0902082", "F_09_PImp", "WorkExecutionWithIssue?", "Type=Entry", "Execution 360", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0902083", "F_09_PImp", "FloorWiseSubcontractorbill", "", "Floor Wise Subcontractor bill", "Project Implementation", "False", "False", "False", "False" }); ;
 
 
 
@@ -5104,6 +5107,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Execution 360", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000017", "15. Monthly Implementation Plan - 360", "F_09_PImp/ImplementPlanWithMaterials", "", true, "" });
+
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });
@@ -5218,6 +5223,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000019", "31. Sub-Contractor Bill (All Project)", "F_09_PImp/SubConBillAllPrj?Type=AllPrj", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000020", "31. Sub-Contractor Bill(All in One)", "F_09_PImp/RptConsConBillStatus?Type=ConBillSummary&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000021", "12. Contractor Monthly Assessment", "F_22_Sal/RptMonthConAss?Type=MnthAss", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000022", "25. Sub-Contractor Bill Status ", "F_09_PImp/FloorWiseSubcontractorbill", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
 

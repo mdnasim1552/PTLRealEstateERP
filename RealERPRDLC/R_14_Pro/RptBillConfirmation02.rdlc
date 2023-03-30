@@ -319,7 +319,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MRR No</Value>
+                                  <Value>Chalan No</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2037,7 +2037,7 @@
               <rd:DefaultName>txtProjName</rd:DefaultName>
               <Top>1.02223in</Top>
               <Left>10.68209in</Left>
-              <Height>0.50973in</Height>
+              <Height>0.31181in</Height>
               <Width>2.65917in</Width>
               <ZIndex>11</ZIndex>
               <Style>
