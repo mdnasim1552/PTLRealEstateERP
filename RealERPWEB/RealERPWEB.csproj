@@ -259,9 +259,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms.15.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\Microsoft.ReportViewer.WinForms.15.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
