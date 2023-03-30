@@ -79,17 +79,30 @@
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Machine No">
+
                                         <ItemTemplate>
-                                            <asp:Label runat="server" ID="lblMachNo" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machno")) %>'>></asp:Label>
+            
+                                            <asp:Label runat="server" Visible="false" ID="lblMachNo" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ID")) %>'>></asp:Label>
+
+
+                                            <asp:TextBox ID="txtMachNo" runat="server" CssClass="border-0" Wrap="true"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machno")) %>'>
+                                            </asp:TextBox>
+
                                         </ItemTemplate>
+
+
+
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Width="40px" />
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Ip Address">
                                         <ItemTemplate>
+
                                             <asp:TextBox ID="txtIpAddress" runat="server" CssClass="border-0" Wrap="true"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ipaddress")) %>'>
                                             </asp:TextBox>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Alias">
