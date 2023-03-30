@@ -100,8 +100,8 @@ namespace RealERPWEB.F_12_Inv
             {
                 return;
             }
-            Session["tblproject"] = ds1.Tables[0];
-            Session["tblreqinfo"] = ds1.Tables[1];
+            ViewState["tblproject"] = ds1.Tables[0];
+            ViewState["tblreqinfo"] = ds1.Tables[1];
             this.Load_Project_From_Combo();
         }
 
@@ -109,7 +109,7 @@ namespace RealERPWEB.F_12_Inv
         protected void Load_Project_From_Combo()
         {
 
-            DataTable dt = (DataTable)Session["tblproject"];
+            DataTable dt = (DataTable)ViewState["tblproject"];
             this.ddlprjlistfrom.DataTextField = "tfdesc";
             this.ddlprjlistfrom.DataValueField = "tfpactcode";
             DataView dv1 = dt.DefaultView;
@@ -125,7 +125,7 @@ namespace RealERPWEB.F_12_Inv
         {
             string comcod = this.GetCompCode();
 
-            DataTable dt = (DataTable)Session["tblproject"];
+            DataTable dt = (DataTable)ViewState["tblproject"];
 
             string actcode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             DataView dv1 = dt.DefaultView;
@@ -339,7 +339,7 @@ namespace RealERPWEB.F_12_Inv
             string curdate = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "STOCKBALANCEGETPASS", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
-            Session["tblStockbal"] = ds1.Tables[0];
+            ViewState["tblStockbal"] = ds1.Tables[0];
             if (ds1 == null)
                 return;
 
@@ -438,7 +438,7 @@ namespace RealERPWEB.F_12_Inv
 
             ViewState["tblgetPass"] = this.HiddenSameData(ds1.Tables[0]);
 
-            Session["tblgetPassSInfo"] = ds1.Tables[1];
+            ViewState["tblgetPassSInfo"] = ds1.Tables[1];
             //this.lbtnResFooterTotal_Click(null, null);
 
 
@@ -599,7 +599,7 @@ namespace RealERPWEB.F_12_Inv
                 string mSpcfCod = this.ddlSpecification.SelectedValue.ToString().Substring(26, 12);
 
                 string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-                DataTable dt5 = (DataTable)Session["tblStockbal"];
+                DataTable dt5 = (DataTable)ViewState["tblStockbal"];
 
                 DataRow[] dr2 = tbl1.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
                                             "' and spcfcod = '" + mSpcfCod + "'");
@@ -707,7 +707,7 @@ namespace RealERPWEB.F_12_Inv
             string rsircode1 = "", spcfcod1 = "";
 
 
-            DataTable dt5 = (DataTable)Session["tblStockbal"];
+            DataTable dt5 = (DataTable)ViewState["tblStockbal"];
             string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
 
             DataTable tbl2 = (DataTable)ViewState["tblsp"];

@@ -51,13 +51,40 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-4" style="min-height: 500px">
+            <div class="card mt-3">
                 <div class="card-body">
                     <div class="row">
-                        <div class="mb-2" style="margin-left: 342px">
-                            <asp:LinkButton ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" CssClass="btn btn-primary btn-sm" AutoPostBack="True"><i class="fa fa-plus" aria-hidden="true"></i> Add New IP</asp:LinkButton>
+                        <div>
+                            <div class="col-md-11" style="margin-right:280px">
+                                <asp:LinkButton ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" CssClass="btn btn-primary btn-sm" AutoPostBack="True"><i class="fa fa-plus" aria-hidden="true"></i> Add New IP</asp:LinkButton>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group" style="display: flex">
+                                <asp:Label ID="lblPage" runat="server" CssClass="control-label mr-2 mt-1" Text="Size:"></asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" CssClass="form-control form-control-sm" runat="server" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" AutoPostBack="True" Width="71px">
+                                    <asp:ListItem Value="10">10</asp:ListItem>
+                                    <asp:ListItem Value="20">20</asp:ListItem>
+                                    <asp:ListItem Value="30">30</asp:ListItem>
+                                    <asp:ListItem Value="50">50</asp:ListItem>
+                                    <asp:ListItem Value="100">100</asp:ListItem>
+                                    <asp:ListItem Value="150">150</asp:ListItem>
+                                    <asp:ListItem Value="200">200</asp:ListItem>
+                                    <asp:ListItem Value="300">300</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="card" style="min-height: 500px; margin-top:-20px">
+                <div class="card-body">
+                    <%--<div class="row">
+                        <div class="mb-2" style="margin-left: 412px">
+                            <asp:LinkButton ID="BtnAdd" runat="server" OnClick="BtnAdd_Click" CssClass="btn btn-primary btn-sm" AutoPostBack="True"><i class="fa fa-plus" aria-hidden="true"></i> Add New IP</asp:LinkButton>
+                        </div>
+                    </div>--%>
                     <div class="row">
                         <div class="table-responsive">
                             <asp:GridView runat="server" ID="grvIpSetup" AllowPaging="True" CssClass="table-striped  table-bordered grvContentarea"
@@ -79,17 +106,30 @@
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Machine No">
+
                                         <ItemTemplate>
-                                            <asp:Label runat="server" ID="lblMachNo" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machno")) %>'>></asp:Label>
+            
+                                            <asp:Label runat="server" Visible="false" ID="lblMachNo" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ID")) %>'>></asp:Label>
+
+
+                                            <asp:TextBox ID="txtMachNo" runat="server" CssClass="border-0" Wrap="true"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "machno")) %>'>
+                                            </asp:TextBox>
+
                                         </ItemTemplate>
+
+
+
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Width="40px" />
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Ip Address">
                                         <ItemTemplate>
+
                                             <asp:TextBox ID="txtIpAddress" runat="server" CssClass="border-0" Wrap="true"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ipaddress")) %>'>
                                             </asp:TextBox>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Alias">
@@ -133,7 +173,7 @@
                             <div class="row mb-1">
                                 <label class="col-md-3">Machine No</label>
                                 <div class="col-md-9">
-                                    <asp:TextBox ID="txtMachineNo" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtMachineNo" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row mb-1">
