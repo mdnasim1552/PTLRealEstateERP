@@ -3661,6 +3661,10 @@ namespace RealERPWEB.F_17_Acc
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+
                 string vounum = this.Request.QueryString["vounum"].ToString().Substring(0, 14);
                 string chqno = this.Request.QueryString["vounum"].ToString().Substring(14);
                 string chqwodat = this.Request.QueryString["chqwodat"] == "1" ? "Chequewoutdat" : "";
@@ -3673,6 +3677,27 @@ namespace RealERPWEB.F_17_Acc
                 DataTable dt1 = _ReportDataSet.Tables[0];
                 DataTable dt2 = _ReportDataSet.Tables[1];
                 //  voudat = voudat.Substring(0, 1) + "   " + voudat.Substring(1, 1) + "   " + voudat.Substring(2, 1) + "   " + voudat.Substring(3, 1) + "   " + voudat.Substring(4, 1) + "   " + voudat.Substring(5, 1) + "   " + voudat.Substring(6, 1) + "   " + voudat.Substring(7, 1);
+
+                // print cheque single time 
+
+                DataSet _ReportDataSet2 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "PRINTCHEQUESTATUS", chqno,"", "", "", "", "", "", "", "");
+
+                if(_ReportDataSet2.Tables[0].Rows.Count>0)
+
+                {
+                    
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('This cheque has already been printed. " +
+                        "Again you want to print please contact system admin !!!');", true);
+                    return;
+
+                }
+
+                string today = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+                bool result = AccData.UpdateTransInfo3(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INSERTPRINTCHEQUESTATUS", chqno, userid, today, Terminal, Sessionid,
+                               "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
 
                 string chequedat = "";
                 if (chqwodat.Length > 0)

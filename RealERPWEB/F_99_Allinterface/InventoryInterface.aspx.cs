@@ -802,7 +802,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string mtreqno = ((Label)this.gvreqchk.Rows[Rowindex].FindControl("lblmtreqnochk")).Text.Trim();
+            string mtreqno = ((Label)this.gvmgchecked.Rows[Rowindex].FindControl("lblgvmgmtreqno")).Text.Trim();
 
             DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
             if (ds1 == null)

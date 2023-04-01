@@ -1154,6 +1154,7 @@ namespace RealEntity.C_14_Pro
             public string mrrnote { set; get; }
             public double var1 { set; get; }
             public string oissueno { set; get; }
+            public string challandat { set; get; }
 
             public RptBillConfirmation01() { }
         }
