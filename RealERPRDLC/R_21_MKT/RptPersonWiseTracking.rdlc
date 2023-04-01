@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c3ac6431-2fa4-4b61-b955-b6acc6deceaf</rd:DataSourceID>
+      <rd:DataSourceID>fcf309dc-1776-4ff9-8ed5-f963b9bb2337</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -17,10 +17,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="call">
-          <DataField>call</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="empid">
           <DataField>empid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -29,31 +25,27 @@
           <DataField>empname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="firstmeeting">
-          <DataField>firstmeeting</DataField>
+        <Field Name="leads">
+          <DataField>leads</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="firstvisit">
-          <DataField>firstvisit</DataField>
+        <Field Name="noofcusoverpay">
+          <DataField>noofcusoverpay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="followupmeeting">
-          <DataField>followupmeeting</DataField>
+        <Field Name="sold">
+          <DataField>sold</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="followupvisit">
-          <DataField>followupvisit</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="total">
-          <DataField>total</DataField>
+        <Field Name="soldamt">
+          <DataField>soldamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_21_Mkt</rd:DataSetName>
-        <rd:TableName>PersonWiseActivity</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseActivity, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>PersonWiseTracking</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseTracking, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -71,22 +63,16 @@
                   <Width>1.55208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.77083in</Width>
+                  <Width>1.48959in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.97917in</Width>
+                  <Width>1.53611in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.43194in</Width>
+                  <Width>1.44597in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.32097in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.22917in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.45833in</Width>
+                  <Width>1.4375in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -171,44 +157,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>No. of calls per month</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox13">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -216,7 +164,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>No. of meetings with customers</Value>
+                                  <Value>No. of Apartments sold</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -254,7 +202,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>No. of follow-up meeting with the prospects</Value>
+                                  <Value>Total turnover in amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -292,7 +240,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>No. of customer visits to the project New</Value>
+                                  <Value>No. of leads generated (Self)</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -330,7 +278,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>No. of project visit of prospect customer</Value>
+                                  <Value>No. of customers with over due payment</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -344,44 +292,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox6">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Total</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -474,14 +384,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="call">
+                        <Textbox Name="sold">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!call.Value</Value>
+                                  <Value>=Fields!sold.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -493,7 +403,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>call</rd:DefaultName>
+                          <rd:DefaultName>sold</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -509,14 +419,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="firstmeeting">
+                        <Textbox Name="soldamt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!firstmeeting.Value</Value>
+                                  <Value>=Fields!soldamt.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -528,7 +438,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>firstmeeting</rd:DefaultName>
+                          <rd:DefaultName>soldamt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -544,14 +454,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="followupmeeting">
+                        <Textbox Name="leads">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!followupmeeting.Value</Value>
+                                  <Value>=Fields!leads.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -563,7 +473,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>followupmeeting</rd:DefaultName>
+                          <rd:DefaultName>leads</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -579,14 +489,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="firstvisit">
+                        <Textbox Name="noofcusoverpay">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!firstvisit.Value</Value>
+                                  <Value>=Fields!noofcusoverpay.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -598,77 +508,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>firstvisit</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="followupvisit">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!followupvisit.Value</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>followupvisit</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="total">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!total.Value</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>total</rd:DefaultName>
+                          <rd:DefaultName>noofcusoverpay</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -761,42 +601,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="call1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=sum(Fields!call.Value)</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>call1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="firstmeeting2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -804,7 +608,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(Fields!firstmeeting.Value)</Value>
+                                  <Value>=Sum(Fields!sold.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -840,7 +644,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(Fields!followupmeeting.Value)</Value>
+                                  <Value>=Sum(Fields!soldamt.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -876,7 +680,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(Fields!firstvisit.Value)</Value>
+                                  <Value>=Sum(Fields!leads.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -912,7 +716,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(Fields!followupvisit.Value)</Value>
+                                  <Value>=Sum(Fields!noofcusoverpay.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -939,50 +743,12 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox39">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=sum(Fields!total.Value)</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox39</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
-                <TablixMember />
-                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1009,7 +775,7 @@
             <Top>0.51958in</Top>
             <Left>0.0125in</Left>
             <Height>0.87625in</Height>
-            <Width>8.03416in</Width>
+            <Width>7.75291in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1020,7 +786,7 @@
         <Height>1.39583in</Height>
         <Style />
       </Body>
-      <Width>8.08125in</Width>
+      <Width>7.8in</Width>
       <Page>
         <PageHeader>
           <Height>1.02347in</Height>
@@ -1233,7 +999,7 @@
               <rd:DefaultName>printFooter</rd:DefaultName>
               <Top>0.06354in</Top>
               <Height>0.1875in</Height>
-              <Width>6.09569in</Width>
+              <Width>5.01236in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1265,9 +1031,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
               <Top>0.06354in</Top>
-              <Left>6.37347in</Left>
+              <Left>5.99847in</Left>
               <Height>0.1875in</Height>
-              <Width>1.67319in</Width>
+              <Width>1.76694in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1288,10 +1054,10 @@
         </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
-        <LeftMargin>0.08in</LeftMargin>
-        <RightMargin>0.08in</RightMargin>
-        <TopMargin>0.2in</TopMargin>
-        <BottomMargin>0.2in</BottomMargin>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
