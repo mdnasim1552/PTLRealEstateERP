@@ -640,6 +640,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.rbtGross.SelectedIndex = 7;
                     break;
                 case "3101":
+                case "3376": //Angan Development
                 case "3374": //Angan
                     this.rbtGross.SelectedIndex = 8;
                     break;
