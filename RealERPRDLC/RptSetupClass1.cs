@@ -171,6 +171,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptMRbook": Rpt1a = SetRptMRbook(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptLabIssueCPDL": Rpt1a = SetRptLabIssueCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptSubprjConBill": Rpt1a = SetRptSubprjConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptPrjFloorWiseBill": Rpt1a = SetRptPrjFloorWiseBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -4544,7 +4545,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.PrjFoorWise>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptPrjFloorWiseBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.RptPrjFloorWiseBill>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptAccFinalReports(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.bugdvExpensis>)RptDataSet));

@@ -241,11 +241,15 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+=======
+      <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+>>>>>>> f42d767c0b20cf4f88635434347859cd6dfe8022
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -257,7 +261,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> f42d767c0b20cf4f88635434347859cd6dfe8022
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2361,6 +2369,7 @@
     <Content Include="F_09_PImp\ConBillTracking.aspx" />
     <Content Include="F_09_PImp\FloorWiseSubcontractorbill.aspx" />
     <Content Include="F_09_PImp\ImplementPlan.aspx" />
+    <Content Include="F_09_PImp\ImplementPlanWithMaterials.aspx" />
     <Content Include="F_09_PImp\InvResourceRequirement.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd02.aspx" />
@@ -4353,6 +4362,13 @@
     </Compile>
     <Compile Include="F_09_PImp\FloorWiseSubcontractorbill.aspx.designer.cs">
       <DependentUpon>FloorWiseSubcontractorbill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\ImplementPlanWithMaterials.aspx.cs">
+      <DependentUpon>ImplementPlanWithMaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\ImplementPlanWithMaterials.aspx.designer.cs">
+      <DependentUpon>ImplementPlanWithMaterials.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\PurLabRequisition02.aspx.cs">
       <DependentUpon>PurLabRequisition02.aspx</DependentUpon>
