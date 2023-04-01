@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using Microsoft.Reporting.WinForms;
 using RealERPLIB;
 using RealERPRPT;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_09_PImp
 {
     public partial class ImplementPlanWithMaterials : System.Web.UI.Page
@@ -38,18 +40,21 @@ namespace RealERPWEB.F_09_PImp
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Implementation Plan";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
+                lbtnBack.Visible = false;
             }
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkfinalup_Click);
         }
+
+
 
         private string GetCompCode()
         {
@@ -94,7 +99,10 @@ namespace RealERPWEB.F_09_PImp
                 this.gvRptResBasis.DataBind();
 
                 this.Panel3.Visible = false;
-
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+                WorkPanel.Visible = true;
+                MaterialPanel.Visible = false;
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
                 return;
             }
             this.lbtnOk1.Text = "New";
@@ -113,8 +121,11 @@ namespace RealERPWEB.F_09_PImp
             this.GetImpPlanNo();
             this.GetFloorCode();
             this.ShowImplementationPlan();
-
-
+            Panel3.Visible = true;
+            WorkPanel.Visible = true;
+            MaterialPanel.Visible = false;
+            lbtnBack.Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
         }
 
 
@@ -277,7 +288,7 @@ namespace RealERPWEB.F_09_PImp
 
             this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
         }
-        
+
         protected void lnktotal_Click(object sender, EventArgs e)
         {
             DataTable dt1 = (DataTable)Session["tblImplemt"];
@@ -326,63 +337,90 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
-
         protected void lnkfinalup_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            this.lnktotal_Click(null, null);
-            DataTable dt1 = (DataTable)Session["tblImplemt"];
-            if (this.ddlPrevVOUList.Items.Count == 0)
-                this.GetPlanNo();
-            string comcod = this.GetCompCode();
-            string vouno = this.lblCurVOUNo1.Text.ToString().Trim() + this.txtCurVOUNo2.Text.ToString().Trim();
-            string pactcode1 = this.ddlProject.SelectedValue.ToString();
-            //bool result1 = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEIMPPLAN", vouno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-            string impdate = this.txtDate.Text.ToString().Trim().Substring(0, 11);
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-
-                string flrcod = dt1.Rows[i]["flrcod"].ToString().Trim();
-                string pactcode = dt1.Rows[i]["bldcod"].ToString().Trim();
-                string isircode = dt1.Rows[i]["rptcod"].ToString().Trim();
-                string unit = dt1.Rows[i]["rptunit"].ToString().Trim();
-                string tolqty = dt1.Rows[i]["rptqty"].ToString().Trim();
-                string rate = dt1.Rows[i]["rptrat"].ToString().Trim();
-                string balqty = dt1.Rows[i]["balqty"].ToString();
-                double rptWrkQty = Convert.ToDouble((dt1.Rows[i]["qty"].ToString().Trim()).Trim());
-                string wrkqty = (dt1.Rows[i]["qty"].ToString().Trim()).Trim();
-                string wrkamt = (dt1.Rows[i]["rptamt"].ToString().Trim()).Trim();
-
-                if (rptWrkQty > 0)
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (!Convert.ToBoolean(dr1[0]["entry"]))
                 {
-                    bool result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEIMPLEMT", vouno, flrcod, pactcode1, isircode,
-                       unit, tolqty, rate, balqty, wrkqty, wrkamt, impdate, "", "", "", "");
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
                 }
 
+                this.lnktotal_Click(null, null);
+                DataTable dt1 = (DataTable)Session["tblImplemt"];
+                if (this.ddlPrevVOUList.Items.Count == 0)
+                    this.GetPlanNo();
+                string comcod = this.GetCompCode();
+                string vouno = this.lblCurVOUNo1.Text.ToString().Trim() + this.txtCurVOUNo2.Text.ToString().Trim();
+                string pactcode1 = this.ddlProject.SelectedValue.ToString();
+                //bool result1 = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEIMPPLAN", vouno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
+                string impdate = this.txtDate.Text.ToString().Trim().Substring(0, 11);
+                bool result = false;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+
+                    string flrcod = dt1.Rows[i]["flrcod"].ToString().Trim();
+                    string pactcode = dt1.Rows[i]["bldcod"].ToString().Trim();
+                    string isircode = dt1.Rows[i]["rptcod"].ToString().Trim();
+                    string unit = dt1.Rows[i]["rptunit"].ToString().Trim();
+                    string tolqty = dt1.Rows[i]["rptqty"].ToString().Trim();
+                    string rate = dt1.Rows[i]["rptrat"].ToString().Trim();
+                    string balqty = dt1.Rows[i]["balqty"].ToString();
+                    double rptWrkQty = Convert.ToDouble((dt1.Rows[i]["qty"].ToString().Trim()).Trim());
+                    string wrkqty = (dt1.Rows[i]["qty"].ToString().Trim()).Trim();
+                    string wrkamt = (dt1.Rows[i]["rptamt"].ToString().Trim()).Trim();
+
+                    if (rptWrkQty > 0)
+                    {
+                        result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEIMPLEMT", vouno, flrcod, pactcode1, isircode,
+                           unit, tolqty, rate, balqty, wrkqty, wrkamt, impdate, "", "", "", "");
+                    }
+
+
+                }
+                CalculationTableTwo();
+                DataTable dt = (DataTable)ViewState["materialexefinal"];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string flrcod = dt.Rows[i]["flrcod"].ToString().Trim();
+                    string isircode = dt.Rows[i]["isircode"].ToString().Trim();
+                    string rsircode = dt.Rows[i]["rsircode"].ToString().Trim();
+                    string unit = dt.Rows[i]["rsirunit"].ToString().Trim();
+                    string wrkqty = dt.Rows[i]["wrkqty"].ToString();
+                    double qty = Convert.ToDouble(dt.Rows[i]["isuqty"].ToString());
+                    string amt = dt.Rows[i]["trnam"].ToString();
+                    string date = dt.Rows[i]["sitesupplydate"].ToString();
+
+                    if (qty > 0)
+                    {
+                        result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPSERTIMPLEMENTDES_MAT", vouno, flrcod, pactcode1, isircode,
+                           rsircode, unit, wrkqty, qty.ToString(), amt, date, "", "", "", "", "");
+                    }
+                }
+
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Date Updated Successfully";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                this.txtDate.Enabled = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Date Updated Successfully" + "');", true);
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Implement Plan";
+                    string eventdesc = "Update Resource";
+                    string eventdesc2 = vouno;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
-
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Date Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            this.txtDate.Enabled = false;
-
-            if (ConstantInfo.LogStatus == true)
+            catch (Exception ex)
             {
-                string eventtype = "Implement Plan";
-                string eventdesc = "Update Resource";
-                string eventdesc2 = vouno;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
             }
+
+
 
         }
         protected void lbtnPrevVOUList_Click(object sender, EventArgs e)
@@ -400,87 +438,87 @@ namespace RealERPWEB.F_09_PImp
             this.ddlPrevVOUList.DataSource = ds1.Tables[0];
             this.ddlPrevVOUList.DataBind();
         }
-        protected void lnkPrint_Click(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)Session["tblImplemt"];
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+        //protected void lnkPrint_Click(object sender, EventArgs e)
+        //{
+        //    DataTable dt = (DataTable)Session["tblImplemt"];
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string comnam = hst["comnam"].ToString();
+        //    string compname = hst["compname"].ToString();
+        //    string comsnam = hst["comsnam"].ToString();
+        //    string comadd = hst["comadd1"].ToString();
+        //    string session = hst["session"].ToString();
+        //    string username = hst["username"].ToString();
+        //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+        //    string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "qty>0";
-            DataTable dt1 = dv1.ToTable();
+        //    DataView dv1 = dt.DefaultView;
+        //    dv1.RowFilter = "qty>0";
+        //    DataTable dt1 = dv1.ToTable();
 
-            LocalReport Rpt1 = new LocalReport();
-            var lst = dt1.DataTableToList<RealEntity.C_09_PIMP.EClassExecution.MonthlyPlan>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptImplemenPlan", lst, null, null);
+        //    LocalReport Rpt1 = new LocalReport();
+        //    var lst = dt1.DataTableToList<RealEntity.C_09_PIMP.EClassExecution.MonthlyPlan>();
+        //    Rpt1 = RptSetupClass1.GetLocalReport("R_09_PIMP.RptImplemenPlan", lst, null, null);
 
-            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtPrjName", "Project Name : " + this.ddlProject.SelectedItem.Text.Substring(14)));
-            Rpt1.SetParameters(new ReportParameter("txtdate", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("ImplementNo", "Implement No : " + this.lblCurVOUNo1.Text.Trim() + "-" + this.txtCurVOUNo2.Text.Trim().Substring(4, 2) + "-" + this.txtCurVOUNo2.Text.Trim().Substring(6, 5)));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Implementation Plan"));
-            Rpt1.SetParameters(new ReportParameter("RptFooter", printFooter));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-
-            //ReportDocument rptstk = new RealERPRPT.R_09_PImp.RptImplementPlan();
-            //DataTable dt1 = new DataTable();
-            //dt1 = (DataTable)Session["tblImplemt"];
-            ////DataTable dt2 = new DataTable();
-            ////dt2 = (DataTable)Session["tblImplemtn"];
-            //DataView dv1 = dt1.DefaultView;
-            //dv1.RowFilter = "qty>0";
-
-            //rptstk.SetDataSource(dv1);
-            //TextObject txtCompanyName = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompanyName.Text = comnam;
-            ////TextObject txtCompanyAddress = rptstk.ReportDefinition.ReportObjects["txtaddress"] as TextObject;
-            ////txtCompanyAddress.Text = comadd;
-            //TextObject txtprojectname = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //txtprojectname.Text ="Project Name : "+ this.ddlProject.SelectedItem.Text.Substring(14);
-            //TextObject rpttxtDate = rptstk.ReportDefinition.ReportObjects["txtDate"] as TextObject;
-            //rpttxtDate.Text = "Date : " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            //TextObject rpttxtVou = rptstk.ReportDefinition.ReportObjects["txtVou"] as TextObject;
-            //rpttxtVou.Text = "Voucher : " + this.lblCurVOUNo1.Text.Trim() + "-" + this.txtCurVOUNo2.Text.Trim().Substring(4, 2) + "-" + this.txtCurVOUNo2.Text.Trim().Substring(6, 5);
-
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    string eventtype = "Implement Plan";
-            //    string eventdesc = "Print Plan Report";
-            //    string eventdesc2 = "Voucher: " + this.lblCurVOUNo1.Text.Trim() + this.txtCurVOUNo2.Text.Trim();
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            ////string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            ////rptstk.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptstk;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-            //dv1.RowFilter = "";
+        //    Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+        //    Rpt1.SetParameters(new ReportParameter("txtPrjName", "Project Name : " + this.ddlProject.SelectedItem.Text.Substring(14)));
+        //    Rpt1.SetParameters(new ReportParameter("txtdate", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+        //    Rpt1.SetParameters(new ReportParameter("ImplementNo", "Implement No : " + this.lblCurVOUNo1.Text.Trim() + "-" + this.txtCurVOUNo2.Text.Trim().Substring(4, 2) + "-" + this.txtCurVOUNo2.Text.Trim().Substring(6, 5)));
+        //    Rpt1.SetParameters(new ReportParameter("RptTitle", "Implementation Plan"));
+        //    Rpt1.SetParameters(new ReportParameter("RptFooter", printFooter));
+        //    Session["Report1"] = Rpt1;
+        //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+        //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
 
+        //    //Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    //string comcod = hst["comcod"].ToString();
+        //    //string comnam = hst["comnam"].ToString();
+        //    //string comadd = hst["comadd1"].ToString();
+        //    //string compname = hst["compname"].ToString();
+        //    //string username = hst["username"].ToString();
+        //    //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+
+        //    //ReportDocument rptstk = new RealERPRPT.R_09_PImp.RptImplementPlan();
+        //    //DataTable dt1 = new DataTable();
+        //    //dt1 = (DataTable)Session["tblImplemt"];
+        //    ////DataTable dt2 = new DataTable();
+        //    ////dt2 = (DataTable)Session["tblImplemtn"];
+        //    //DataView dv1 = dt1.DefaultView;
+        //    //dv1.RowFilter = "qty>0";
+
+        //    //rptstk.SetDataSource(dv1);
+        //    //TextObject txtCompanyName = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
+        //    //txtCompanyName.Text = comnam;
+        //    ////TextObject txtCompanyAddress = rptstk.ReportDefinition.ReportObjects["txtaddress"] as TextObject;
+        //    ////txtCompanyAddress.Text = comadd;
+        //    //TextObject txtprojectname = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
+        //    //txtprojectname.Text ="Project Name : "+ this.ddlProject.SelectedItem.Text.Substring(14);
+        //    //TextObject rpttxtDate = rptstk.ReportDefinition.ReportObjects["txtDate"] as TextObject;
+        //    //rpttxtDate.Text = "Date : " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+        //    //TextObject rpttxtVou = rptstk.ReportDefinition.ReportObjects["txtVou"] as TextObject;
+        //    //rpttxtVou.Text = "Voucher : " + this.lblCurVOUNo1.Text.Trim() + "-" + this.txtCurVOUNo2.Text.Trim().Substring(4, 2) + "-" + this.txtCurVOUNo2.Text.Trim().Substring(6, 5);
+
+        //    //if (ConstantInfo.LogStatus == true)
+        //    //{
+        //    //    string eventtype = "Implement Plan";
+        //    //    string eventdesc = "Print Plan Report";
+        //    //    string eventdesc2 = "Voucher: " + this.lblCurVOUNo1.Text.Trim() + this.txtCurVOUNo2.Text.Trim();
+        //    //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+        //    //}
+        //    ////string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+        //    ////rptstk.SetParameterValue("ComLogo", ComLogo);
+        //    //Session["Report1"] = rptstk;
+
+        //    //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+        //    //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        //    //dv1.RowFilter = "";
 
 
-        }
+
+
+        //}
 
         protected void gvRptResBasis_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -618,9 +656,11 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isustdqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("spcfcod", Type.GetType("System.String"));
-
-            tblt01.Columns.Add("useoflocation", Type.GetType("System.String"));
+            tblt01.Columns.Add("trnrat", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("trnam", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("sitesupplydate", Type.GetType("System.DateTime"));
             tblt01.Columns.Add("remarks", Type.GetType("System.String"));
             ViewState["materialexefinal"] = tblt01;
         }
@@ -646,13 +686,11 @@ namespace RealERPWEB.F_09_PImp
         }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
         {
-            string comcod = GetComCode();
+            string comcod = this.GetCompCode();
             CreateTable();
             CreateTableLabour();
             this.lnktotal_Click(null, null);
-
             DataTable tempforgrid = (DataTable)Session["tblImplemt"]; // Work Execution grid with Session
-
             DataTable dt1 = (DataTable)ViewState["materialexefinal"];
             DataTable dtlabour1 = (DataTable)ViewState["labourexefinal"];
             string flag = "1";
@@ -669,7 +707,7 @@ namespace RealERPWEB.F_09_PImp
                     string isircode = tempforgrid.Rows[i]["rptcod"].ToString();
                     string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
                     double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["qty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["qty"].ToString());
-                    string EntryDate = this.txtEntryDate.Text;
+                    string EntryDate = this.txtDate.Text;
                     if (wrkqty <= 0)
                     {
                         dt1.Rows.Clear();
@@ -678,7 +716,7 @@ namespace RealERPWEB.F_09_PImp
                     else
                     {
 
-                        DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMONTHLYISSUEINFOFROMWORKDETAILS", isircode, flrcode,
+                        DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMONTHLYISSUEINFOFROMWORKDETAILS", isircode, flrcode,
                             wrkqty.ToString(), pactcode, EntryDate, "", "", "", "");
 
                         dt1.Merge(ds1.Tables[0]);
@@ -692,18 +730,22 @@ namespace RealERPWEB.F_09_PImp
                     ViewState["labourexefinal"] = dtlabour1;
                     GridTwo_DataBind();
                     //GridThree_DataBind();
-                    Panel3.Visible = false;
-                    WorkPanel.Visible = false;
-                    MaterialPanel.Visible = true;
+
                     //pnlLab.Visible = true;
                     if (dt1.Rows.Count == 0)
                     {
-                        pnlMat.Visible = false;
+                        MaterialPanel.Visible = false;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "No Materials found." + "');", true);
                     }
-                    if (dtlabour1.Rows.Count == 0)
+                    else
                     {
-                        pnlLab.Visible = false;
+                        Panel3.Visible = false;
+                        WorkPanel.Visible = false;
+                        MaterialPanel.Visible = true;
+                        lbtnBack.Visible = true;
+                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     }
+
                 }
                 else
                 {
@@ -718,13 +760,17 @@ namespace RealERPWEB.F_09_PImp
         {
             try
             {
-
                 DataTable dt1 = (DataTable)ViewState["materialexefinal"];
                 DataView dv = new DataView(dt1);
                 dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
                 ViewState["materialexefinal"] = dv.ToTable();
                 DataGridTwo.DataSource = HiddenTableTwo(dv.ToTable());
                 DataGridTwo.DataBind();
+                if (dt1.Rows.Count == 0)
+                    return;
+                double mSUMAM = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(trnam)", "")) ?
+                0.00 : dt1.Compute("sum(trnam)", "")));
+                ((Label)this.DataGridTwo.FooterRow.FindControl("lgvFAmt")).Text = mSUMAM.ToString("#,##0.00;(#,##0.00); ");
             }
             catch (Exception ex)
             {
@@ -739,7 +785,7 @@ namespace RealERPWEB.F_09_PImp
                 return dt;
             string flrcod = dt.Rows[0]["flrcod"].ToString();
             string Itemcode = dt.Rows[0]["isircode"].ToString();
-           
+
             for (int i = 1; i < dt.Rows.Count; i++)
             {
                 if ((dt.Rows[i]["flrcod"].ToString() == flrcod) && (dt.Rows[i]["isircode"].ToString() == Itemcode))
@@ -758,6 +804,45 @@ namespace RealERPWEB.F_09_PImp
                 }
             }
             return dt;
+        }
+
+
+        private void CalculationTableTwo()
+        {
+            DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+            double dtotalamt = 0;
+            //this.gvRptResBasis.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            int TblRowIndex;
+            for (int i = 0; i < DataGridTwo.Rows.Count; i++)
+            {
+                TblRowIndex = i;
+                DateTime date =  Convert.ToDateTime(((TextBox)this.DataGridTwo.Rows[i].FindControl("txtSiteSupply")).Text.Trim());
+                dt1.Rows[TblRowIndex]["sitesupplydate"] = date;
+                //TblRowIndex = (gvRptResBasis.PageIndex) * gvRptResBasis.PageSize + i;
+                double totalqty = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaQty")).Text.Trim());
+                dt1.Rows[TblRowIndex]["isuqty"] = totalqty;
+                double totalrat = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaRate")).Text.Trim());
+                dt1.Rows[TblRowIndex]["trnrat"] = totalrat;
+                dtotalamt = totalqty * totalrat;
+                dt1.Rows[TblRowIndex]["trnam"] = dtotalamt;
+
+            }
+            ViewState["materialexefinal"] = dt1;
+        }
+
+        protected void lnktotalRate_Click(object sender, EventArgs e)
+        {
+            CalculationTableTwo();
+            GridTwo_DataBind();
+        }
+
+        protected void lbtnBack_Click(object sender, EventArgs e)
+        {
+            Panel3.Visible = true;
+            WorkPanel.Visible = true;
+            MaterialPanel.Visible = false;
+            lbtnBack.Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
         }
     }
 }

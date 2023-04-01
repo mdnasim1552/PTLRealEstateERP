@@ -588,6 +588,28 @@ namespace RealEntity.C_09_PIMP
 
         }
 
+        [Serializable]
+        public class RptPrjFloorWiseBill
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string actdesc { get; set; }
+            public string csircode { get; set; }
+            public string conname { get; set; }
+            public string billtcode { get; set; }
+            public string category { get; set; }
+            public string flrcod { get; set; }
+            public string flrdesc { get; set; }
+            public double billamt { get; set; }
+            public string sdper { get; set; }
+            public double sdamt { get; set; }
+            public double netbillamt { get; set; }
+            public RptPrjFloorWiseBill()
+            {
+
+            }
+        }
+
     }
 
 }
