@@ -171,7 +171,11 @@
 
 
                                     </div>
+                                     <div class="col-lg-1">
+                                        <asp:LinkButton ID="lbtnBack" runat="server" CssClass="btn btn-warning btn-sm mt20" OnClick="lbtnBack_Click">Back</asp:LinkButton>
 
+
+                                    </div>
                                 </div>
                             </div>
 
@@ -202,7 +206,7 @@
                                             <asp:LinkButton ID="lbtnAllLab" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnAllLab_Click">Select</asp:LinkButton>
 
                                         </div>
-                                         <div class="col-lg-1 fa-align-right">
+                                         <div class="col-lg-1 offset-lg-6 d-flex justify-content-end">
                                             <asp:LinkButton ID="lbtngenerate" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="btnGenerateIssue_Click">Generate</asp:LinkButton>
 
                                         </div>
@@ -262,9 +266,9 @@
                                         <FooterTemplate>
                                             <table>
                                                 <tr>
-                                                    <td>
+                                                   <%-- <td>
                                                         <asp:LinkButton ID="lnkfinalup" runat="server" OnClick="lnkfinalup_Click" CssClass="btn btn-danger btn-sm">Final Update</asp:LinkButton>
-                                                    </td>
+                                                    </td>--%>
                                                     <td>
                                                         <asp:LinkButton ID="lnkDelete" runat="server" CssClass="btn btn-primary btn-sm"
                                                             OnClick="lnkDelete_Click">Delete All</asp:LinkButton>
@@ -359,7 +363,7 @@
                                             <asp:Label ID="lblgvRptAmt1" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rptamt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="60px"></asp:Label>
+                                                Width="100px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                         <FooterStyle Font-Bold="true" HorizontalAlign="Right" />
@@ -449,6 +453,9 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Material">
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnktotalRate" runat="server" OnClick="lnktotalRate_Click" CssClass="btn btn-primary btn-sm">Total</asp:LinkButton>
+                                        </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblrsirdesc" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
@@ -469,7 +476,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblAnaQty" runat="server" BackColor="Transparent"
                                                 BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuqty")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isustdqty")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
@@ -488,6 +495,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                    <asp:TemplateField HeaderText="Rate">
+                                       
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtAnaRate" runat="server" BackColor="Transparent"
                                                 BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
@@ -499,11 +507,29 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="80px"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblAmount" runat="server" BackColor="Transparent"
                                                 BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <FooterStyle ForeColor="Black" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Site Supply">
+                                       
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtSiteSupply" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "sitesupplydate")).ToString("dd-MMM-yyyy") %>'
+                                                Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:TextBox>
+                                             <cc1:CalendarExtender ID="txtSiteSupply_CalendarExtender" runat="server"
+                                            Format="dd-MMM-yyyy " TargetControlID="txtSiteSupply"></cc1:CalendarExtender>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                         <FooterStyle ForeColor="Black" />
