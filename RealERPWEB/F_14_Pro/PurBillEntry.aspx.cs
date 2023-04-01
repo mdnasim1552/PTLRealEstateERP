@@ -166,6 +166,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3309":
                 case "3310":
                 case "3311":
+                case "3101":
 
                     PrintReq = "PrintBill02";
                     break;
@@ -211,7 +212,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBillLanco";
 
