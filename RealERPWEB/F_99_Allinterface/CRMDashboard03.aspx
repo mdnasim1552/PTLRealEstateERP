@@ -1,10 +1,48 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard03.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard03" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
      <script type="text/javascript">
          $(document).ready(function () {
              Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+             //var date = new Date();
+
+             //var day = ("0" + date.getDate()).slice(-2);
+             //var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+             //var today = date.getFullYear() + "-" + (month) + "-" + (day);
+          
+             //$('#TxtFdate').val(today);
+             //$('#TxtTdate').val(today);
+
+             $("#DdlDateType").change(function () {
+                 var status = this.value;
+                // alert(status);
+                 if (status == "7") {
+                     $(".po-link").trigger("click");
+                 }
+                
+             });
+             $('.po-markup > .po-link').popover({
+                 sanitize: false,
+                 html: true,
+                 trigger: 'click',
+                  // must have if HTML is contained in popover
+
+                 // get the title and conent
+                 title: function () {
+                     return $(this).parent().find('.po-title').html();
+                 },
+                 content: function () {
+                     return $(this).parent().find('.po-body').html();
+                 },
+
+                 container: 'body',
+                 placement: 'bottom'
+
+             });
          });
          function pageLoaded() {
              try {
@@ -23,6 +61,10 @@
              }
          };
      </script>
+    <style>    
+          .popover {min-width: 27%;}
+          
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -34,10 +76,54 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="form-group mb-0 mw-170px">
+                                                
+                                       
+                
+
+                                            <div class="form-group mb-0 mw-170px  po-markup">
                                             <label for="form-date-range" class="form-label">
-                                                Date</label>
-                                            <select class="form-select" id="form-date-range">
+                                                Date
+                                            </label>
+                                                
+                                            <asp:DropDownList ID="DdlDateType" runat="server" ClientIDMode="Static" class="form-select">
+                                                <asp:ListItem Value="0">Today</asp:ListItem>
+                                                <asp:ListItem Value="1">Yesterday</asp:ListItem>
+                                                <asp:ListItem Value="2">Last 7 Days</asp:ListItem>
+                                                <asp:ListItem Value="3">This Month</asp:ListItem>
+                                                <asp:ListItem Value="4">Last Month</asp:ListItem>
+                                                <asp:ListItem Value="5">This Year</asp:ListItem>
+                                                <asp:ListItem Value="6">last Year</asp:ListItem>
+                                                <asp:ListItem Value="7">Custom</asp:ListItem>
+
+                                            </asp:DropDownList>
+
+                                                <a href="#"  class="po-link pull-right"></a>
+                <div class="po-content d-none">
+                    <div class="po-title">        
+                       Select Date 
+                    </div> <!-- ./po-title -->
+            
+                    <div class="po-body">
+                <div class="form-group row">
+                   <div class="col-md-6">
+                       <asp:Label ID="Label1" runat="server">From</asp:Label>
+                   <input type="date" id="TxtFdate" runat="server" class="form-control" >
+                   </div>
+                        <div class="col-md-6">
+                       <asp:Label ID="Label2" runat="server">To</asp:Label>
+                   <input type="date" id="TxtTdate" runat="server" class="form-control" >
+                   </div>      
+                   
+                      <div class="col-md-12">
+                          <br /> 
+                        <button type="button" onclick='$(".po-link").trigger("click")' style="float:right;" class="btn btn-primary btn-sm">SET</button>
+                    </div>
+                    
+                </div>
+                    </div><!-- ./po-body -->
+                 </div>  <!-- ./po-content -->
+               
+                                               <%-- <select class="form-select" id="form-date-range">
                                                 <option>Today</option>
                                                 <option>Yesterday</option>
                                                 <option>Last 7 Days</option>
@@ -46,7 +132,7 @@
                                                 <option>This Year</option>
                                                 <option>last Year</option>
                                                 <option>Custom</option>
-                                            </select>
+                                            </select>--%>
                                         </div>
                                     </div>
                                     <div class="col-8">
@@ -58,10 +144,10 @@
                                                 <option>Nayem</option>
                                                 <option>Forid</option>
                                             </select>
-                                            <button
-                                                class="form-select-group-prepend btn btn-primary">
+                                            <asp:LinkButton ID="LbtnOk" OnClick="LbtnOk_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
                                                 Apply
-                                            </button>
+                                            </asp:LinkButton>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +174,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-warning">
-                                            <div class="card-title">100</div>
+                                            <div class="card-title" id="Widget_Query" runat="server"></div>
                                             <div class="card-subtitle">Query</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -104,7 +190,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-purple">
-                                            <div class="card-title">50</div>
+                                            <div class="card-title" id="Widget_Lead" runat="server"></div>
                                             <div class="card-subtitle">Lead</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -125,7 +211,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-primary">
-                                            <div class="card-title">40</div>
+                                            <div class="card-title" id="Widget_QLead" runat="server"></div>
                                             <div class="card-subtitle">Qualified Lead</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -146,7 +232,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-success">
-                                            <div class="card-title">30</div>
+                                            <div class="card-title" id="Widget_Nego" runat="server"></div>
                                             <div class="card-subtitle">Negotiation</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -167,7 +253,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-success">
-                                            <div class="card-title">30</div>
+                                            <div class="card-title" id="Widget_Sold" runat="server"></div>
                                             <div class="card-subtitle">Sold</div>
                                         </div>
                                     </div>
@@ -176,7 +262,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-primary">
-                                            <div class="card-title">20</div>
+                                            <div class="card-title" id="Widget_Hold" runat="server"></div>
                                             <div class="card-subtitle">Hold</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -197,7 +283,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-purple">
-                                            <div class="card-title">20</div>
+                                            <div class="card-title" id="Widget_close" runat="server"></div>
                                             <div class="card-subtitle">Close</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -218,7 +304,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-danger">
-                                            <div class="card-title">10</div>
+                                            <div class="card-title" id="Widget_lost" runat="server">10</div>
                                             <div class="card-subtitle">Lost</div>
                                         </div>
                                     </div>
