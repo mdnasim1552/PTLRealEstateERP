@@ -64,13 +64,13 @@ namespace RealERPWEB.F_99_Allinterface
                     todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     break;
                 case "3": // this Month
-                    fromdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    fromdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     fromdate = "01" + fromdate.Substring(2);
                     todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                     break;
                 case "4": // Last month
-                    fromdate = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
+                    fromdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     fromdate = "01" + fromdate.Substring(2);
                     todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
