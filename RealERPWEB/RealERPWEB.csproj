@@ -239,13 +239,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -255,9 +255,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3330,7 +3330,6 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx" />
-    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
@@ -5879,13 +5878,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx.designer.cs">
       <DependentUpon>RptSalaryEncashment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx.cs">
-      <DependentUpon>RptSalaryReconBonus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconBonus.aspx.designer.cs">
-      <DependentUpon>RptSalaryReconBonus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
