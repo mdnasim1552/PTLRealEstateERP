@@ -16,12 +16,12 @@
           
              //$('#TxtFdate').val(today);
              //$('#TxtTdate').val(today);
-
-             $("#DdlDateType").change(function () {
+             $(document).on("change", "#DdlDateType", function () {
+            // $("#DdlDateType").change(function () {
                  var status = this.value;
                 // alert(status);
                  if (status == "7") {
-                     $(".po-link").trigger("click");
+                     $("#exampleModalSm").modal("toggle");
                  }
                 
              });
@@ -1651,6 +1651,46 @@
                 </div>
                 <!-- /.wrapper -->
             </div>
+               <div id="exampleModalSm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <!-- .modal-dialog -->
+                        <div class="modal-dialog modal-sm" role="document">
+                          <!-- .modal-content -->
+                          <div class="modal-content">
+                            <!-- .modal-header -->
+                            <div class="modal-header">
+                              <h5 class="modal-title"> Chose Date Range </h5>
+                            </div>
+                            <!-- /.modal-header -->
+                            <!-- .modal-body -->
+                            <div class="modal-body">
+                                <div class="row">
+                                 <div class="col-md-6">
+                             <div class="form-group">
+                                <asp:Label ID="Label3" runat="server">From</asp:Label>
+                                <asp:TextBox ID="txtfrmdate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                            </div>
+                                     </div>
+                                 <div class="col-md-6">
+                                 <div class="form-group">
+                                <asp:Label ID="Label4" runat="server">To</asp:Label>
+                                <asp:TextBox ID="txttodate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                            </div>
+                                     </div>
+                                    </div>
+                            </div>
+                            <!-- /.modal-body -->
+                            <!-- .modal-footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-warning" data-dismiss="modal">Set & Close</button>
+                            </div>
+                            <!-- /.modal-footer -->
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

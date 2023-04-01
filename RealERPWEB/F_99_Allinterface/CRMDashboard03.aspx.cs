@@ -88,11 +88,9 @@ namespace RealERPWEB.F_99_Allinterface
                     fromdate = firstDaylastyear.ToString("dd-MMM-yyyy");
                     todate = lastDaylastyear.ToString("dd-MMM-yyyy");
                     break;
-                case "7": // Custom
-                    string txtfromdate = this.TxtFdate.Value.ToString();
-                    string txttodate = this.TxtTdate.Value.ToString();
-                    //fromdate = firstDaylastyear.ToString("dd-MMM-yyyy");
-                    //todate = lastDaylastyear.ToString("dd-MMM-yyyy");
+                case "7": // Custom                  
+                    fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                    todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
                     break;
             }
             string condate = todate;
