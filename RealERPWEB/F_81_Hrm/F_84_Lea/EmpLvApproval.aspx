@@ -17,6 +17,9 @@
         };
 
 
+        function closeCurrentTab() {
+            window.close();
+        }
     </script>
 
     <style>
