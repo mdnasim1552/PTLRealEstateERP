@@ -38,7 +38,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+=======
       <HintPath>..\..\Reference\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+>>>>>>> f42d767c0b20cf4f88635434347859cd6dfe8022
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -50,7 +54,12 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
       <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> f42d767c0b20cf4f88635434347859cd6dfe8022
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -205,6 +214,7 @@
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassLeadReason.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseActivity.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+PersonWiseTracking.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptLeadStatusTimestamp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptMissFollowup.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
@@ -950,6 +960,7 @@
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptMissFollowup.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptPersonWiseTracking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptPersonWiseActivity.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
