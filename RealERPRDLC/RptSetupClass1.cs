@@ -1311,6 +1311,7 @@ namespace RealERPRDLC
 
                 #region InterfaceArea
                 case "R_99_AllInterface.RptGbFinalApproval": Rpt1a = SetRptGbFinalApproval(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_99_AllInterface.RptBillSticker": Rpt1a = SetRptBillSticker(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
 
@@ -7285,6 +7286,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptGbFinalApproval(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_99_AllInterface.GbFinalApproval>)RptDataSet));
+            return Rpt1a;
+        } 
+        
+        private static LocalReport SetRptBillSticker(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
             return Rpt1a;
         }
 
