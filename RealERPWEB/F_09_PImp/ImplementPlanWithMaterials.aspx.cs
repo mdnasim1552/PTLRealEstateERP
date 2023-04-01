@@ -277,7 +277,7 @@ namespace RealERPWEB.F_09_PImp
 
             this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
         }
-
+        
         protected void lnktotal_Click(object sender, EventArgs e)
         {
             DataTable dt1 = (DataTable)Session["tblImplemt"];
@@ -600,20 +600,164 @@ namespace RealERPWEB.F_09_PImp
             this.Data_Bind();
 
         }
+        private void CreateTable()
+        {
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("comcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("isircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("isirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("wrkunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("rstdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("stdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("spcfcod", Type.GetType("System.String"));
 
-        //private void LoopForSession()
-        //{
-        //    DataTable dt = (DataTable)Session["tblImplemt"];
-        //    int TblRowIndex;
-        //    for (int i = 0; i < this.gvRptResBasis.Rows.Count; i++)
-        //    {
-        //        double txtwrkqty = Convert.ToDouble("0" + ((TextBox)this.gvRptResBasis.Rows[i].FindControl("txtcurqty")).Text.Trim());
-        //        TblRowIndex = (gvRptResBasis.PageIndex) * gvRptResBasis.PageSize + i;
-        //        dt.Rows[TblRowIndex]["qty"] = txtwrkqty;
-        //    }
-        //    Session["tblImplemt"] = dt;
-        //}
+            tblt01.Columns.Add("useoflocation", Type.GetType("System.String"));
+            tblt01.Columns.Add("remarks", Type.GetType("System.String"));
+            ViewState["materialexefinal"] = tblt01;
+        }
+        private void CreateTableLabour()
+        {
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("comcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("isircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("isirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("wrkunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("rstdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("stdqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
+            ViewState["labourexefinal"] = tblt01;
+        }
+        protected void btnGenerateIssue_Click(object sender, EventArgs e)
+        {
+            string comcod = GetComCode();
+            CreateTable();
+            CreateTableLabour();
+            this.lnktotal_Click(null, null);
+
+            DataTable tempforgrid = (DataTable)Session["tblImplemt"]; // Work Execution grid with Session
+
+            DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+            DataTable dtlabour1 = (DataTable)ViewState["labourexefinal"];
+            string flag = "1";
+            if (tempforgrid.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Nothing was selected." + "');", true);
+
+            }
+            else
+            {
+                for (int i = 0; i < tempforgrid.Rows.Count; i++)
+                {
+                    string pactcode = ddlProject.SelectedValue.ToString();
+                    string isircode = tempforgrid.Rows[i]["rptcod"].ToString();
+                    string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
+                    double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["qty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["qty"].ToString());
+                    string EntryDate = this.txtEntryDate.Text;
+                    if (wrkqty <= 0)
+                    {
+                        dt1.Rows.Clear();
+                        flag = "0";
+                    }
+                    else
+                    {
+
+                        DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMONTHLYISSUEINFOFROMWORKDETAILS", isircode, flrcode,
+                            wrkqty.ToString(), pactcode, EntryDate, "", "", "", "");
+
+                        dt1.Merge(ds1.Tables[0]);
+
+                        dtlabour1.Merge(ds1.Tables[1]);
+                    }
+                }
+                if (flag != "0")
+                {
+                    ViewState["materialexefinal"] = dt1;
+                    ViewState["labourexefinal"] = dtlabour1;
+                    GridTwo_DataBind();
+                    //GridThree_DataBind();
+                    Panel3.Visible = false;
+                    WorkPanel.Visible = false;
+                    MaterialPanel.Visible = true;
+                    //pnlLab.Visible = true;
+                    if (dt1.Rows.Count == 0)
+                    {
+                        pnlMat.Visible = false;
+                    }
+                    if (dtlabour1.Rows.Count == 0)
+                    {
+                        pnlLab.Visible = false;
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Quantity must be provided" + "');", true);
+
+                }
+            }
+        }
 
 
+        private void GridTwo_DataBind()
+        {
+            try
+            {
+
+                DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+                DataView dv = new DataView(dt1);
+                dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
+                ViewState["materialexefinal"] = dv.ToTable();
+                DataGridTwo.DataSource = HiddenTableTwo(dv.ToTable());
+                DataGridTwo.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+
+            }
+        }
+
+        private DataTable HiddenTableTwo(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return dt;
+            string flrcod = dt.Rows[0]["flrcod"].ToString();
+            string Itemcode = dt.Rows[0]["isircode"].ToString();
+           
+            for (int i = 1; i < dt.Rows.Count; i++)
+            {
+                if ((dt.Rows[i]["flrcod"].ToString() == flrcod) && (dt.Rows[i]["isircode"].ToString() == Itemcode))
+                {
+
+                    flrcod = dt.Rows[i]["flrcod"].ToString();
+                    Itemcode = dt.Rows[i]["isircode"].ToString();
+                    dt.Rows[i]["flrdesc"] = "";
+                    dt.Rows[i]["isirdesc"] = "";
+                    dt.Rows[i]["WrkQty"] = 0.00;
+                }
+                else
+                {
+                    flrcod = dt.Rows[i]["flrcod"].ToString();
+                    Itemcode = dt.Rows[i]["isircode"].ToString();
+                }
+            }
+            return dt;
+        }
     }
 }
