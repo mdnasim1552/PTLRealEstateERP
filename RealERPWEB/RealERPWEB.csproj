@@ -2361,6 +2361,7 @@
     <Content Include="F_09_PImp\ConBillTracking.aspx" />
     <Content Include="F_09_PImp\FloorWiseSubcontractorbill.aspx" />
     <Content Include="F_09_PImp\ImplementPlan.aspx" />
+    <Content Include="F_09_PImp\ImplementPlanWithMaterials.aspx" />
     <Content Include="F_09_PImp\InvResourceRequirement.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd02.aspx" />
@@ -4353,6 +4354,13 @@
     </Compile>
     <Compile Include="F_09_PImp\FloorWiseSubcontractorbill.aspx.designer.cs">
       <DependentUpon>FloorWiseSubcontractorbill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\ImplementPlanWithMaterials.aspx.cs">
+      <DependentUpon>ImplementPlanWithMaterials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\ImplementPlanWithMaterials.aspx.designer.cs">
+      <DependentUpon>ImplementPlanWithMaterials.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\PurLabRequisition02.aspx.cs">
       <DependentUpon>PurLabRequisition02.aspx</DependentUpon>

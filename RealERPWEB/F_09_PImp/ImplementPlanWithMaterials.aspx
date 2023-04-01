@@ -202,6 +202,10 @@
                                             <asp:LinkButton ID="lbtnAllLab" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnAllLab_Click">Select</asp:LinkButton>
 
                                         </div>
+                                         <div class="col-lg-1 fa-align-right">
+                                            <asp:LinkButton ID="lbtngenerate" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="btnGenerateIssue_Click">Generate</asp:LinkButton>
+
+                                        </div>
                                     </div>
                                 </asp:Panel>
                             </div>
@@ -460,18 +464,7 @@
                                                 Width="40px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Bal. Qty">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblrstdqty" runat="server" BackColor="Transparent"
-                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;-#,##0.00; ") %>'
-                                                Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Left" />
-                                        <FooterStyle ForeColor="Black" />
-                                        <FooterStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>                                    
                                     <asp:TemplateField HeaderText="Actual Quantity">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAnaQty" runat="server" BackColor="Transparent"
@@ -494,7 +487,28 @@
                                         <FooterStyle ForeColor="Black" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                   
+                                   <asp:TemplateField HeaderText="Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtAnaRate" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrat")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <FooterStyle ForeColor="Black" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAmount" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                        <FooterStyle ForeColor="Black" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
                                 </Columns>
 
 
