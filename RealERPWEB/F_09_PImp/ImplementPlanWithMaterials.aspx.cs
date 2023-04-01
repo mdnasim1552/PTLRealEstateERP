@@ -40,7 +40,7 @@ namespace RealERPWEB.F_09_PImp
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Implementation Plan";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
+                lbtnBack.Visible = false;
             }
         }
 
@@ -51,7 +51,10 @@ namespace RealERPWEB.F_09_PImp
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkfinalup_Click);
         }
+
+
 
         private string GetCompCode()
         {
@@ -96,7 +99,10 @@ namespace RealERPWEB.F_09_PImp
                 this.gvRptResBasis.DataBind();
 
                 this.Panel3.Visible = false;
-
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+                WorkPanel.Visible = true;
+                MaterialPanel.Visible = false;
+                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
                 return;
             }
             this.lbtnOk1.Text = "New";
@@ -115,8 +121,11 @@ namespace RealERPWEB.F_09_PImp
             this.GetImpPlanNo();
             this.GetFloorCode();
             this.ShowImplementationPlan();
-
-
+            Panel3.Visible = true;
+            WorkPanel.Visible = true;
+            MaterialPanel.Visible = false;
+            lbtnBack.Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
         }
 
 
@@ -328,63 +337,90 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
-
         protected void lnkfinalup_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            this.lnktotal_Click(null, null);
-            DataTable dt1 = (DataTable)Session["tblImplemt"];
-            if (this.ddlPrevVOUList.Items.Count == 0)
-                this.GetPlanNo();
-            string comcod = this.GetCompCode();
-            string vouno = this.lblCurVOUNo1.Text.ToString().Trim() + this.txtCurVOUNo2.Text.ToString().Trim();
-            string pactcode1 = this.ddlProject.SelectedValue.ToString();
-            //bool result1 = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEIMPPLAN", vouno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-            string impdate = this.txtDate.Text.ToString().Trim().Substring(0, 11);
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-
-                string flrcod = dt1.Rows[i]["flrcod"].ToString().Trim();
-                string pactcode = dt1.Rows[i]["bldcod"].ToString().Trim();
-                string isircode = dt1.Rows[i]["rptcod"].ToString().Trim();
-                string unit = dt1.Rows[i]["rptunit"].ToString().Trim();
-                string tolqty = dt1.Rows[i]["rptqty"].ToString().Trim();
-                string rate = dt1.Rows[i]["rptrat"].ToString().Trim();
-                string balqty = dt1.Rows[i]["balqty"].ToString();
-                double rptWrkQty = Convert.ToDouble((dt1.Rows[i]["qty"].ToString().Trim()).Trim());
-                string wrkqty = (dt1.Rows[i]["qty"].ToString().Trim()).Trim();
-                string wrkamt = (dt1.Rows[i]["rptamt"].ToString().Trim()).Trim();
-
-                if (rptWrkQty > 0)
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (!Convert.ToBoolean(dr1[0]["entry"]))
                 {
-                    bool result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEIMPLEMT", vouno, flrcod, pactcode1, isircode,
-                       unit, tolqty, rate, balqty, wrkqty, wrkamt, impdate, "", "", "", "");
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
                 }
 
+                this.lnktotal_Click(null, null);
+                DataTable dt1 = (DataTable)Session["tblImplemt"];
+                if (this.ddlPrevVOUList.Items.Count == 0)
+                    this.GetPlanNo();
+                string comcod = this.GetCompCode();
+                string vouno = this.lblCurVOUNo1.Text.ToString().Trim() + this.txtCurVOUNo2.Text.ToString().Trim();
+                string pactcode1 = this.ddlProject.SelectedValue.ToString();
+                //bool result1 = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEIMPPLAN", vouno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
+                string impdate = this.txtDate.Text.ToString().Trim().Substring(0, 11);
+                bool result = false;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+
+                    string flrcod = dt1.Rows[i]["flrcod"].ToString().Trim();
+                    string pactcode = dt1.Rows[i]["bldcod"].ToString().Trim();
+                    string isircode = dt1.Rows[i]["rptcod"].ToString().Trim();
+                    string unit = dt1.Rows[i]["rptunit"].ToString().Trim();
+                    string tolqty = dt1.Rows[i]["rptqty"].ToString().Trim();
+                    string rate = dt1.Rows[i]["rptrat"].ToString().Trim();
+                    string balqty = dt1.Rows[i]["balqty"].ToString();
+                    double rptWrkQty = Convert.ToDouble((dt1.Rows[i]["qty"].ToString().Trim()).Trim());
+                    string wrkqty = (dt1.Rows[i]["qty"].ToString().Trim()).Trim();
+                    string wrkamt = (dt1.Rows[i]["rptamt"].ToString().Trim()).Trim();
+
+                    if (rptWrkQty > 0)
+                    {
+                        result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEIMPLEMT", vouno, flrcod, pactcode1, isircode,
+                           unit, tolqty, rate, balqty, wrkqty, wrkamt, impdate, "", "", "", "");
+                    }
+
+
+                }
+                CalculationTableTwo();
+                DataTable dt = (DataTable)ViewState["materialexefinal"];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string flrcod = dt.Rows[i]["flrcod"].ToString().Trim();
+                    string isircode = dt.Rows[i]["isircode"].ToString().Trim();
+                    string rsircode = dt.Rows[i]["rsircode"].ToString().Trim();
+                    string unit = dt.Rows[i]["rsirunit"].ToString().Trim();
+                    string wrkqty = dt.Rows[i]["wrkqty"].ToString();
+                    double qty = Convert.ToDouble(dt.Rows[i]["isuqty"].ToString());
+                    string amt = dt.Rows[i]["trnam"].ToString();
+                    string date = dt.Rows[i]["sitesupplydate"].ToString();
+
+                    if (qty > 0)
+                    {
+                        result = ImpleData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPSERTIMPLEMENTDES_MAT", vouno, flrcod, pactcode1, isircode,
+                           rsircode, unit, wrkqty, qty.ToString(), amt, date, "", "", "", "", "");
+                    }
+                }
+
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Date Updated Successfully";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                this.txtDate.Enabled = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Date Updated Successfully" + "');", true);
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Implement Plan";
+                    string eventdesc = "Update Resource";
+                    string eventdesc2 = vouno;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
-
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Date Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            this.txtDate.Enabled = false;
-
-            if (ConstantInfo.LogStatus == true)
+            catch (Exception ex)
             {
-                string eventtype = "Implement Plan";
-                string eventdesc = "Update Resource";
-                string eventdesc2 = vouno;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
             }
+
+
 
         }
         protected void lbtnPrevVOUList_Click(object sender, EventArgs e)
@@ -620,10 +656,11 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
+            tblt01.Columns.Add("isustdqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("spcfcod", Type.GetType("System.String"));
             tblt01.Columns.Add("trnrat", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("trnam", Type.GetType("System.Decimal"));
-            tblt01.Columns.Add("useoflocation", Type.GetType("System.String"));
+            tblt01.Columns.Add("sitesupplydate", Type.GetType("System.DateTime"));
             tblt01.Columns.Add("remarks", Type.GetType("System.String"));
             ViewState["materialexefinal"] = tblt01;
         }
@@ -644,7 +681,7 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
-            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));            
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
             ViewState["labourexefinal"] = tblt01;
         }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
@@ -693,7 +730,7 @@ namespace RealERPWEB.F_09_PImp
                     ViewState["labourexefinal"] = dtlabour1;
                     GridTwo_DataBind();
                     //GridThree_DataBind();
-                    
+
                     //pnlLab.Visible = true;
                     if (dt1.Rows.Count == 0)
                     {
@@ -705,6 +742,8 @@ namespace RealERPWEB.F_09_PImp
                         Panel3.Visible = false;
                         WorkPanel.Visible = false;
                         MaterialPanel.Visible = true;
+                        lbtnBack.Visible = true;
+                        ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     }
 
                 }
@@ -721,13 +760,17 @@ namespace RealERPWEB.F_09_PImp
         {
             try
             {
-
                 DataTable dt1 = (DataTable)ViewState["materialexefinal"];
                 DataView dv = new DataView(dt1);
                 dv.Sort = "isircode ASC,flrcod ASC, rsircode ASC";
                 ViewState["materialexefinal"] = dv.ToTable();
                 DataGridTwo.DataSource = HiddenTableTwo(dv.ToTable());
                 DataGridTwo.DataBind();
+                if (dt1.Rows.Count == 0)
+                    return;
+                double mSUMAM = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(trnam)", "")) ?
+                0.00 : dt1.Compute("sum(trnam)", "")));
+                ((Label)this.DataGridTwo.FooterRow.FindControl("lgvFAmt")).Text = mSUMAM.ToString("#,##0.00;(#,##0.00); ");
             }
             catch (Exception ex)
             {
@@ -763,6 +806,43 @@ namespace RealERPWEB.F_09_PImp
             return dt;
         }
 
-      
+
+        private void CalculationTableTwo()
+        {
+            DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+            double dtotalamt = 0;
+            //this.gvRptResBasis.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            int TblRowIndex;
+            for (int i = 0; i < DataGridTwo.Rows.Count; i++)
+            {
+                TblRowIndex = i;
+                DateTime date =  Convert.ToDateTime(((TextBox)this.DataGridTwo.Rows[i].FindControl("txtSiteSupply")).Text.Trim());
+                dt1.Rows[TblRowIndex]["sitesupplydate"] = date;
+                //TblRowIndex = (gvRptResBasis.PageIndex) * gvRptResBasis.PageSize + i;
+                double totalqty = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaQty")).Text.Trim());
+                dt1.Rows[TblRowIndex]["isuqty"] = totalqty;
+                double totalrat = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaRate")).Text.Trim());
+                dt1.Rows[TblRowIndex]["trnrat"] = totalrat;
+                dtotalamt = totalqty * totalrat;
+                dt1.Rows[TblRowIndex]["trnam"] = dtotalamt;
+
+            }
+            ViewState["materialexefinal"] = dt1;
+        }
+
+        protected void lnktotalRate_Click(object sender, EventArgs e)
+        {
+            CalculationTableTwo();
+            GridTwo_DataBind();
+        }
+
+        protected void lbtnBack_Click(object sender, EventArgs e)
+        {
+            Panel3.Visible = true;
+            WorkPanel.Visible = true;
+            MaterialPanel.Visible = false;
+            lbtnBack.Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+        }
     }
 }
