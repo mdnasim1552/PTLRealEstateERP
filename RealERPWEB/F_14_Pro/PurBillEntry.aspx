@@ -244,6 +244,9 @@
                                         <asp:TextBox ID="txtBillRef" runat="server" CssClass=" inputtextbox" Style="width: 100px;"></asp:TextBox>
 
                                     </div>
+                                    <div class="col-md-1 pading5px" runat="server" id="divchkBillStkrPrnt" visible="false">
+                                        <asp:CheckBox runat="server" ID="chkBillStkrPrnt" Text="Print Bill Sticker" />
+                                    </div>
 
                                     <div class="col-md-3 pading5px">
                                         <asp:Label ID="lblmsg1" CssClass="btn-danger btn  primaryBtn" runat="server" Visible="false"></asp:Label>

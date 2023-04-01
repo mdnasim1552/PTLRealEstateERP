@@ -1079,6 +1079,55 @@ namespace RealERPWEB.F_17_Acc
             }
             return limit;
         }
+
+        private bool  Getbillbal()
+        {
+
+
+            DataTable dt = (DataTable)Session["tblt01"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string vounum = this.ddlPrivousVou.SelectedValue.ToString();
+
+            DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "GETSUPPLIERBILLBALANCE", vounum, "", "", "", "", "", "", "", "");
+            Session["tblbillbal"] = ds3.Tables[0];
+
+            string pbillno = "";
+            double netbalance = 0.00;
+
+  
+            foreach (DataRow dr6 in dt.Rows)
+            {
+                //double balance = Convert.ToDouble(dr6["balance"].ToString().Trim());
+
+                double trndram = Convert.ToDouble(dr6["trndram"].ToString().Trim());
+                string billno = dr6["billno"].ToString().Trim();
+                double balance = (((DataTable)Session["tblbillbal"]).Select("billno='" + billno + "'")).Length==0 ? 0.00:
+                    Convert.ToDouble((((DataTable)Session["tblbillbal"]).Select("billno='" + billno + "'"))[0]["billbal"]);
+                if (billno.Length > 0)
+                {
+
+                    netbalance = (billno == pbillno) ? netbalance - trndram : balance - trndram;  // Bill amount check
+
+                    if (netbalance < 0)
+                    {
+
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        return false;
+                    }
+
+
+                }
+
+                pbillno = billno;      
+
+            }
+
+            return true;
+
+
+        }
         protected void lnkFinalUpdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1102,9 +1151,25 @@ namespace RealERPWEB.F_17_Acc
             DateTime Bdate;
             bool dcon;
             Bdate = this.GetBackDate();
+
             DataTable dt = (DataTable)Session["tblt01"];
+
+
+            //if ((this.Request.QueryString["Type"] == "Mgt"))
+            //{
+            //    if (!this.Getbillbal())
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+            //        return;
+
+            //    }
+            //}
+
+           
+
             string pbillno = "";
             double netbalance = 0.00;
+              
             foreach (DataRow dr6 in dt.Rows)
             {
                 double trndram = Convert.ToDouble(dr6["trndram"].ToString().Trim());

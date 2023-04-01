@@ -736,6 +736,7 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptYearlySales": SetRptYearlySales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptProspectWorking": SetRptProspectWorking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptProspectTransfer": SetRptProspectTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptPersonWiseActivity": SetRptPersonWiseActivity(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.ClientLetter": SetRptClientLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptDailyWorkStatus": SetRptDailyWorkStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptLeadStatusTimestamp": SetRptLeadStatusTimestamp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1310,6 +1311,7 @@ namespace RealERPRDLC
 
                 #region InterfaceArea
                 case "R_99_AllInterface.RptGbFinalApproval": Rpt1a = SetRptGbFinalApproval(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_99_AllInterface.RptBillSticker": Rpt1a = SetRptBillSticker(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
 
@@ -7285,6 +7287,12 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_99_AllInterface.GbFinalApproval>)RptDataSet));
             return Rpt1a;
+        } 
+        
+        private static LocalReport SetRptBillSticker(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>)RptDataSet));
+            return Rpt1a;
         }
 
         private static LocalReport SetRptEmpSattelment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -7325,6 +7333,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptProspectTransfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPersonWiseActivity(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseActivity>)RptDataSet));
             return Rpt1a;
         }
 
