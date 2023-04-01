@@ -644,8 +644,7 @@ namespace RealERPWEB.F_09_PImp
             tblt01.Columns.Add("wrkqty", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("ratio", Type.GetType("System.Decimal"));
             tblt01.Columns.Add("balqty", Type.GetType("System.Decimal"));
-            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));
-            
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Decimal"));            
             ViewState["labourexefinal"] = tblt01;
         }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
@@ -654,9 +653,7 @@ namespace RealERPWEB.F_09_PImp
             CreateTable();
             CreateTableLabour();
             this.lnktotal_Click(null, null);
-
             DataTable tempforgrid = (DataTable)Session["tblImplemt"]; // Work Execution grid with Session
-
             DataTable dt1 = (DataTable)ViewState["materialexefinal"];
             DataTable dtlabour1 = (DataTable)ViewState["labourexefinal"];
             string flag = "1";
