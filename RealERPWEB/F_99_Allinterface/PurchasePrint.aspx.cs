@@ -1801,7 +1801,7 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign4 = "Procurement";
             string txtSign5 = "Head Of Construction";
             string txtSign6 = "Cost & Budget";
-            string txtSign7 = "DMD";
+            string txtSign7 = "DMD/CEO";
             string txtSign8 = "Chairman";
 
             var list = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
