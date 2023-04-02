@@ -204,6 +204,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk1;
 
         /// <summary>
+        /// lbtnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnBack;
+
+        /// <summary>
         /// Panel3 control.
         /// </summary>
         /// <remarks>
@@ -265,6 +274,15 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnAllLab;
+
+        /// <summary>
+        /// lbtngenerate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtngenerate;
 
         /// <summary>
         /// WorkPanel control.

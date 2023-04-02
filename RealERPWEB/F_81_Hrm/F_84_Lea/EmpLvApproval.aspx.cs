@@ -1490,8 +1490,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
                         if (comcod == "3365")
                         {
-                            //Response.Redirect(Request.UrlReferrer.ToString());
-                            Response.Redirect("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind");
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeCurrentTab();", true);
+
                         }
 
                     }
