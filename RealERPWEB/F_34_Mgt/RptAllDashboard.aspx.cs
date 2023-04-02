@@ -39,7 +39,7 @@ namespace RealERPWEB.F_34_Mgt
                 this.txtCurTransDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Sales") ? "Sales Dashboard" :
                     (type == "Purchase") ? "Purchase Dashboard" : (type == "Accounts") ? "Accounts Dashboard" : (type == "Construction") ? "Construction Dashboard":
-                    (type == "SubConBillaPay") ? "Sub Constructor Pay Dashboard" : (type == "Constructor") ? "Constructor Dashboard" : "";
+                    (type == "SubConBillaPay") ? "Sub Constructor Pay Dashboard" : (type == "Contractor") ? "Sub-Contractor Dashboard" : "";
 
                 // this.hdntype.Value = this.Request.QueryString["Type"];
                 //this.SelectView();

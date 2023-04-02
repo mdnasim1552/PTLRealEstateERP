@@ -2,19 +2,19 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
- 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <style>
-                .chzn-drop {
-            width: 100% !important;
-        }
-        .chzn-container{
+        .chzn-drop {
             width: 100% !important;
         }
 
+        .chzn-container {
+            width: 100% !important;
+        }
     </style>
-        <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
@@ -29,18 +29,18 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         }
-            function TimeOffModal() {
-                $('#TimeOffModal').modal('toggle');
-            }
+        function TimeOffModal() {
+            $('#TimeOffModal').modal('toggle');
+        }
 
-            function CloseModal() {
-                $('#TimeOffModal').modal('hide')
-            }
-        </script>
-  
+        function CloseModal() {
+            $('#TimeOffModal').modal('hide')
+        }
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
- 
+
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -70,7 +70,7 @@
                                 <div class="alert-icon">
                                     <span class="fa fa-bullhorn"></span>
                                 </div>
-                               <span id="spnErrorTxt" runat="server"></span>
+                                <span id="spnErrorTxt" runat="server"></span>
 
                             </div>
 
@@ -106,20 +106,20 @@
 
             </div>
 
-            <div class="row" id="Lvform" runat="server"  >
+            <div class="row" id="Lvform" runat="server">
                 <div class="col-12 col-lg-12 col-xl-3">
                     <section class="card card-fluid" style="min-height: 650px">
                         <header class="card-header">Application for Time Of Leave</header>
                         <div class="card-body" id="ApplicFrm" runat="server">
 
 
-                                      <div class="form-group" id="empMgt" runat="server" visible="false">
-                                    <label for="Employee">Employee </label> 
-                                    <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
-                                        CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
-                                    </asp:DropDownList>
+                            <div class="form-group" id="empMgt" runat="server" visible="false">
+                                <label for="Employee">Employee </label>
+                                <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
+                                    CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                </asp:DropDownList>
 
-                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="ddlLvType">
                                     Date   
@@ -139,16 +139,16 @@
                                 <div class="col-md-6 pl-0">
                                     <div class="form-group">
                                         <label for="sel1" id="frmdate" runat="server">From Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="txtFromTime" runat="server" TextMode="Time"  OnTextChanged="txtFromTime_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtFromTime" runat="server" TextMode="Time" OnTextChanged="txtFromTime_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
 
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-0">
                                     <div class="form-group">
                                         <label for="sel1" id="Label1" runat="server">To Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="txtToTime" runat="server" TextMode="Time"    AutoPostBack="true" OnTextChanged="txtToTime_TextChanged" class="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtToTime" runat="server" TextMode="Time" AutoPostBack="true" OnTextChanged="txtToTime_TextChanged" class="form-control"></asp:TextBox>
 
-                                       
+
 
                                     </div>
                                 </div>
@@ -180,350 +180,347 @@
 
                         <div class="card-body">
                             <strong>Current month history</strong>
-                         <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
-                                                        ShowFooter="True" OnRowDataBound="gvLvReq_RowDataBound">
-                                                        <RowStyle />
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sl">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
-                                                                        Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
+                            <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                                ShowFooter="True" OnRowDataBound="gvLvReq_RowDataBound">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
+                                                Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="leaveIdd" Visible="False">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbllevid" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
-                                                                        Width="49px"></asp:Label>
-                                                                </ItemTemplate>
-                                                              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <asp:TemplateField HeaderText="leaveIdd" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllevid" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                                Width="49px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Code" Visible="False">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvempid" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                                                        Width="49px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                                                                               <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Code" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvempid" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                                Width="49px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            </asp:TemplateField>                                                             
-                                                           
-                                                            <asp:TemplateField HeaderText="Apply Date">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdate")).ToString("dd-MMM-yyyy") %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
 
-                                                            </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apply Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvaplydat" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdate")).ToString("dd-MMM-yyyy") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            <asp:TemplateField HeaderText="Out Time">
+                                    </asp:TemplateField>
 
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                   
+                                    <asp:TemplateField HeaderText="Out Time">
 
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvstrtdat" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'
+                                                Width="80px"></asp:Label>
 
 
-                                                                </ItemTemplate>
-                                                                 <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="In Time">
 
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
-                                                                        Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                 <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <FooterTemplate>
-                                                                    Total
-                                                                </FooterTemplate>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
 
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Use Time">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvDuration" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "USETIME")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
+                                    <asp:TemplateField HeaderText="In Time">
 
-                                                                   
-                                                                </FooterTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvenddat" runat="server" BackColor="Transparent"
+                                                Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <FooterTemplate>
+                                            Total
+                                        </FooterTemplate>
 
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Remaning Time" ControlStyle-BackColor="#ccffcc">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvremtime" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remaintime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                </FooterTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Use Time">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvDuration" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "USETIME")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
 
-                                                            </asp:TemplateField>
-                                                             <asp:TemplateField HeaderText="Reason/Remarks">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblReason"  ToolTip='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>' runat="server" 
-                                                                        Height="20px" Text='<%# Eval("remarks").ToString().Length>50 ? (Eval("remarks") as string).Substring(0,25)+ "....."
+
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Remaning Time" ControlStyle-BackColor="#ccffcc">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvremtime" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remaintime")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Reason/Remarks">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblReason" ToolTip='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>' runat="server"
+                                                Height="20px" Text='<%# Eval("remarks").ToString().Length>50 ? (Eval("remarks") as string).Substring(0,25)+ "....."
                                                                              : Eval("remarks")  %>'></asp:Label>
 
-                                                                                                                                
-                                                                </ItemTemplate>
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
 
 
-                                                            <asp:TemplateField HeaderText="Current Status">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")) %>'
-                                                                        ></asp:Label>                                                                    
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
+                                    <asp:TemplateField HeaderText="Current Status">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
 
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>                                                                    
-                                                                  
-                                                                    
-                                                                    <asp:LinkButton ID="lkDelete" runat="server" ForeColor="Red"  
-                                                                        OnClientClick="retun confirm();"
-                                                                       OnClick="lkDelete_Click"
-                                                                          Visible='<%# Eval("isApprve").ToString() == "True" ? false : true %>'
-                                                                         
-                                                                         CssClass="btn btn-xs btn-default" ><span class="fa fa-trash"></span></asp:LinkButton>
-                                                                    
-                                                                </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
 
-                                                                <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
 
-                                                            
-                                                            <asp:TemplateField HeaderText="Action">
-                                                                <ItemTemplate>
-                                          <asp:LinkButton ID="lnkTimeEdit" OnClick="lnkTimeEdit_Click" CssClass="text-info" runat="server" ToolTip="Edit Time"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                  
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
+                                            <asp:LinkButton ID="lkDelete" runat="server" ForeColor="Red"
+                                                OnClientClick="retun confirm();"
+                                                OnClick="lkDelete_Click"
+                                                Visible='<%# Eval("isApprve").ToString() == "True" ? false : true %>'
+                                                CssClass="btn btn-xs btn-default"><span class="fa fa-trash"></span></asp:LinkButton>
 
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        
-                                                        <EditRowStyle />
-                                                        <AlternatingRowStyle />
-                                                        
-                                                    </asp:GridView>
-                           <hr />
+                                        </ItemTemplate>
+                                        <ItemStyle Width="50px" HorizontalAlign="left" />
+
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Action">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkTimeEdit" OnClick="lnkTimeEdit_Click" Visible='<%# Eval("isApprve").ToString() == "True" ? false : true %>'
+                                                CssClass="text-info" runat="server" ToolTip="Edit Time"><i class="fa fa-edit"></i></asp:LinkButton>
+
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                </Columns>
+
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+
+                            </asp:GridView>
+                            <hr />
                             <strong>All  history</strong>
-                            <asp:GridView ID="gvLvReqAll" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
-                                                        ShowFooter="True" >
-                                                        <RowStyle />
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sl">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgv2SlNo0" runat="server" Font-Bold="True"
-                                                                        Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
+                            <asp:GridView ID="gvLvReqAll" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered" ShowFooter="True" >
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgv2SlNo0" runat="server" Font-Bold="True"
+                                                Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="15px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="leaveIdd" Visible="False">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgv2id" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
-                                                                        Width="49px"></asp:Label>
-                                                                </ItemTemplate>
-                                                              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <asp:TemplateField HeaderText="leaveIdd" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgv2id" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                                Width="49px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Code" Visible="False">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgv2empid" runat="server"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                                                        Width="49px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                                                                               <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Code" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgv2empid" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                                Width="49px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            </asp:TemplateField>                                                             
-                                                           
-                                                            <asp:TemplateField HeaderText="Apply Date">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvapplydat" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdate")).ToString("dd-MMM-yyyy") %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
 
-                                                            </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apply Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvapplydat" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdate")).ToString("dd-MMM-yyyy") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            <asp:TemplateField HeaderText="Out Time">
+                                    </asp:TemplateField>
 
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgv2intime" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                   
+                                    <asp:TemplateField HeaderText="Out Time">
+
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgv2intime" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'
+                                                Width="80px"></asp:Label>
 
 
 
-                                                                </ItemTemplate>
-                                                                 <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="In Time">
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
 
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvouttime" runat="server" BackColor="Transparent"
-                                                                        Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                 <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                                <FooterTemplate>
-                                                                    Total
-                                                                </FooterTemplate>
+                                    <asp:TemplateField HeaderText="In Time">
 
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Use Time">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgv2duration" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "USETIME")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvouttime" runat="server" BackColor="Transparent"
+                                                Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <FooterTemplate>
+                                            Total
+                                        </FooterTemplate>
 
-                                                                   
-                                                                </FooterTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Use Time">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgv2duration" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "USETIME")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblAmtTotalremtime" runat="server" CssClass="badge bg-danger text-white"></asp:Label>
 
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Remaning Time" ControlStyle-BackColor="#ccffcc">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblgvremtime" runat="server" BackColor="Transparent"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remaintime")) %>'
-                                                                        Width="80px"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                </FooterTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                                <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                            </asp:TemplateField>
-                                                             <asp:TemplateField HeaderText="Reason/Remarks">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblReason"  ToolTip='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>' runat="server" 
-                                                                        Height="20px" Text='<%# Eval("remarks").ToString().Length>50 ? (Eval("remarks") as string).Substring(0,25)+ "....."
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Remaning Time" ControlStyle-BackColor="#ccffcc">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvremtime" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remaintime")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center" Font-Bold="true" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Reason/Remarks">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblReason" ToolTip='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>' runat="server"
+                                                Height="20px" Text='<%# Eval("remarks").ToString().Length>50 ? (Eval("remarks") as string).Substring(0,25)+ "....."
                                                                              : Eval("remarks")  %>'></asp:Label>
 
-                                                                                                                                
-                                                                </ItemTemplate>
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
 
 
-                                                            <asp:TemplateField HeaderText="Current Status">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"  
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")) %>'
-                                                                        ></asp:Label>                                                                    
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
+                                    <asp:TemplateField HeaderText="Current Status">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqstatus")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
 
-                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                            </asp:TemplateField>
-                                     
-                                                        </Columns>
-                                                        
-                                                        <EditRowStyle />
-                                                        <AlternatingRowStyle />
-                                                        
-                                                    </asp:GridView>  
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                </Columns>
+
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+
+                            </asp:GridView>
                         </div>
                     </section>
                 </div>
             </div>
 
-                   <!-- Modal -->
-        <div class="modal fade" id="TimeOffModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header order-bottom bg-info mb-3">
-                         <p class="modal-title font-weight-bold text-white" id="">Edit Time Off</p>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            x
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card">
-                       <%--     <div class="card-header bg-info ">
+            <!-- Modal -->
+            <div class="modal fade" id="TimeOffModal" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static" oncontextmenu="return false;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header order-bottom bg-info mb-3">
+                            <p class="modal-title font-weight-bold text-white" id="">Edit Time Off</p>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                x
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <%--     <div class="card-header bg-info ">
                                <h6 class="modal-title font-weight-bold text-white p-0 m-0" id="">Edit Time Off</h6>
                             </div>--%>
-                            <div class="card-body bg-light">
-                                <span runat="server" id="useTime" visible="false"></span>
+                                <div class="card-body bg-light">
+                                    <span runat="server" id="useTime" visible="false"></span>
 
-                                <span runat="server" id="timeOfId" visible="false"></span>
-                                   <span runat="server" id="applydatmodal" visible="false"></span>
-                           
-                                             <div class="form-group">
+                                    <span runat="server" id="timeOfId" visible="false"></span>
+                                    <span runat="server" id="applydatmodal" visible="false"></span>
+
+                                    <div class="form-group">
                                         <label for="txtmodalouttime" id="lblmodalouttime" runat="server">Out Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="txtmodalouttime" runat="server" TextMode="Time"  class="form-control" ></asp:TextBox>
+                                        <asp:TextBox ID="txtmodalouttime" runat="server" TextMode="Time" class="form-control"></asp:TextBox>
                                     </div>
 
-                                      <div class="form-group">
+                                    <div class="form-group">
                                         <label for="txtmodalintime" id="lblmodalintime" runat="server">In Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="txtmodalintime" runat="server" TextMode="Time"  class="form-control" ></asp:TextBox>
+                                        <asp:TextBox ID="txtmodalintime" runat="server" TextMode="Time" class="form-control"></asp:TextBox>
                                     </div>
 
-                                <asp:LinkButton runat="server" ID="lnkTimeUpdate_Click" OnClick="lnkTimeUpdate_Click_Click" CssClass="btn btn-primary btn-sm mb-2">Update</asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="lnkTimeUpdate_Click" OnClick="lnkTimeUpdate_Click_Click" CssClass="btn btn-primary btn-sm mb-2">Update</asp:LinkButton>
+                                </div>
                             </div>
+
+
+
+
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
-        </div>
 
         </ContentTemplate>
 
-        
+
     </asp:UpdatePanel>
 </asp:Content>
