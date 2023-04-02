@@ -128,6 +128,18 @@ namespace RealEntity.C_21_Mkt
             public PersonWiseActivity() { }
         }
 
+        [Serializable]
+        public class PersonWiseTracking
+        {
+            //comcod, grp, grpdesc,teamcode, proscod, createdate, assocname, prospectname, phone, email, profession, preaddress, interestproj, leadsrc, chkper
+            public string empid { get; set; }
+            public double sold { get; set; }
+            public double soldamt { get; set; }
+            public double leads { get; set; }
+            public double noofcusoverpay { get; set; }
+            public string empname { get; set; }
+            public PersonWiseTracking() { }
+        }
 
 
 

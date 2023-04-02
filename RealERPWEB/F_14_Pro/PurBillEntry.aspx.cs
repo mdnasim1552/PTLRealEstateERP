@@ -597,6 +597,8 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
+
+
             for (int i = 1; i < dtmrrno.Rows.Count; i++)
             {
 
@@ -689,7 +691,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBilldate", (this.ddlPayType.SelectedValue == "003") ? "Adjustment" : " : " + billrefdate));
             rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillno));
             rpt.SetParameters(new ReportParameter("mprno", "MPR NO  :  " + mrfno1));
-            rpt.SetParameters(new ReportParameter("mrrno", "MRR NO  :  " + mrrno1));
+            rpt.SetParameters(new ReportParameter("mrrno", "MRR Ref NO  :  " + mrrno1));
             rpt.SetParameters(new ReportParameter("date", " : " + CurDate1));
             rpt.SetParameters(new ReportParameter("chqdate", (this.ddlPayType.SelectedValue == "003") ? "" : " : " + chqdate));
             rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));

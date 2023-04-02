@@ -99,11 +99,50 @@ namespace RealERPWEB.F_21_MKT
                 case "SPWiseActivity":
                     this.PersonWiseActivity();
                     break;
+                case "RptTracking":
+                    this.PersonWiseTracking();
+                    break;
             }
 
         }
 
-        public void PersonWiseActivity()
+        public void PersonWiseTracking()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string Rptname = "Sales Person Wise Tracking Report";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["RptTracking"];
+
+
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseTracking>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseTracking", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", toDate));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Rptname", Rptname));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+            public void PersonWiseActivity()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -288,9 +327,39 @@ namespace RealERPWEB.F_21_MKT
                 case "RptTracking":
                     this.RptTracking();
                     break;
+                case "ConversionDetails":
+                    this.ConversionDetails();
+                    break;
             }
 
         }
+
+        public void ConversionDetails()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_KPICONVERSION", "SHOWKPICONVERSION", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvRptTracking.DataSource = null;
+                this.gvRptTracking.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 4;
+            Session["ConversionDetails"] = ds1.Tables[0];
+
+            this.gvConversionDetails.DataSource = ds1.Tables[0];
+            this.gvConversionDetails.DataBind();
+            //FooterCalculationConversionDetails();
+            return;
+        }
+
 
         public void RptTracking()
         {
@@ -317,7 +386,7 @@ namespace RealERPWEB.F_21_MKT
             FooterCalculationRptTracking();
             return;
         }
-            public void SPWiseActivity()
+        public void SPWiseActivity()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
