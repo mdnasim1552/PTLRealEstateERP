@@ -919,7 +919,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string bankAddress = dt.Rows[0]["bankaddr"].ToString();
             string curdate = DateTime.Now.ToString("MMMM dd,yyyy");
             string desc = "Salary For The Month Of " + month + "/" + year;
-
+            string comref = (comcod == "3374" ? "APL" : "ADL");
+        
 
             string valueDate = lastDayOfMonth.ToString() + "/" + month2 + "/" + year;
 
@@ -954,6 +955,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("combankbranch", combankbranch));
             Rpt1.SetParameters(new ReportParameter("combankacc", combankacc));
             Rpt1.SetParameters(new ReportParameter("combankmail", combankmail));
+            Rpt1.SetParameters(new ReportParameter("comref", comref));
+
 
 
             //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));

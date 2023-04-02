@@ -767,6 +767,12 @@ namespace RealERPWEB
                 {
                     case "3367":
                     case "3369":
+                    case "1206":
+                    case "1207":
+                    case "3338":
+
+
+
                     case "3365":
                   
 
