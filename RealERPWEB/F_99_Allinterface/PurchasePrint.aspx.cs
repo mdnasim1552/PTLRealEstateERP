@@ -4509,6 +4509,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3311": //Rupayan group
                     case "2305": //Rupayan group
                     case "2306": //Rupayan group
+                    case "3101":
                         Reportpath = "~/Report/RptPurchaseOrderRupayon.rdlc";
                         break;
 
@@ -4589,7 +4590,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3370": // cpdl
-                    case "3101": // cpdl                        
+                     // cpdl                        
 
 
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
