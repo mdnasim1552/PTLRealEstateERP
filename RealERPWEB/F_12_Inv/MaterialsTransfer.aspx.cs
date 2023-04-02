@@ -934,7 +934,8 @@ namespace RealERPWEB.F_12_Inv
                 this.pnlGatePass.Visible = false;
                 this.ddlGatePass.Enabled = true;
                 this.txtrefno.Text = "";
-                this.txtNarr.Text = "";
+                //this.txtNarr.Visible = true;
+                //this.lblReqNarr.Visible = true;
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 this.lblVoucherNo.Text = "";
                 lbtnOk.Text = "Ok";
@@ -1003,7 +1004,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.txtCurTransDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["date"]).ToString("dd-MMM-yyyy");
             this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            this.txtNarr.Text = ds1.Tables[1].Rows[0]["narration"].ToString();
+            this.txtNarr.Text = ds1.Tables[0].Rows[0]["mtrnrr"].ToString();
             this.lblCurTransNo1.Text = ds1.Tables[1].Rows[0]["trnno1"].ToString().Trim().Substring(0, 6);
             this.txtCurTransNo2.Text = ds1.Tables[1].Rows[0]["trnno1"].ToString().Trim().Substring(6);
             this.lblVoucherNo.Text = ds1.Tables[1].Rows[0]["vounum"].ToString().Trim();
