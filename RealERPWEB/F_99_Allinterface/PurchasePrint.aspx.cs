@@ -4560,6 +4560,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     //case "3101": //pintech                    
                     case "3354": //Edison Real Estate                        
+                        //Reportpath = "~/Report/RptPurchaseOrderEDRold.rdlc";
                         Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
 
