@@ -570,7 +570,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 outTimeV.Visible = true;
             }
 
-            if (comcod == "3365" && (attstatus== "LP" || attstatus == "TC"))
+            if (comcod == "3365" && attstatus!= "A")
             {
                 ddlReqType.Items.Remove(ddlReqType.Items.FindByValue("AB"));
             }
