@@ -13501,6 +13501,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDRold.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
