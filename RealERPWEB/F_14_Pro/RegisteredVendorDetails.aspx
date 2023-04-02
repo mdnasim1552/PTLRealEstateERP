@@ -342,7 +342,7 @@
                              <asp:TemplateField HeaderText="Base">
                                 <ItemTemplate>
                                     <asp:Label ID="lblbase" runat="server"
-                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "baseval")).ToString("#,##0.00") %>'
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "baseval")).ToString("#,##0.0") %>'
                                         Width="30px" />
                                 </ItemTemplate>
                                  <FooterTemplate>
