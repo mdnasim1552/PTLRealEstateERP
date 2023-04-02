@@ -186,16 +186,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1">
-                                            
-                                                 <asp:CheckBox ID="chkbillcscopy" OnCheckedChanged="chkbillcscopy_CheckedChanged" AutoPostBack="True" runat="server" Text="COPY CS" />
 
-                                            
+                                            <asp:CheckBox ID="chkbillcscopy" OnCheckedChanged="chkbillcscopy_CheckedChanged" AutoPostBack="True" runat="server" Text="COPY CS" />
+
+
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <asp:DropDownList runat="server" ID="ddlboxprecopy" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
-                                            </div>
+                                        <div runat="server" id="billcopy" visible="false">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <asp:DropDownList runat="server" ID="ddlboxprecopy" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
+                                                </div>
 
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <asp:LinkButton runat="server" ID="btncopy" OnClick="btncopy_Click" CssClass="btn btn-success btn-sm">Copy</asp:LinkButton>
+                                                </div>
+
+                                            </div>
                                         </div>
 
                                     </div>

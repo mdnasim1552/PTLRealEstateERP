@@ -4312,6 +4312,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3351": //P2P
                     case "3352": //P2P 
                     case "3374": //Angan 
+                    case "3376": //Angan 
                         terms1 = terms.ToString();
                         break;
 

@@ -696,7 +696,11 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1603000", "1603030", "F_16_Bill", "RptProBillStatus?", "Type=Billstatus", "Progress Bill Status", "Billing", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1603000", "1603040", "F_16_Bill", "RptUpconVsSobCon?", "Type=Report", "Upcon Vs Sub-Contractor", "Billing", "False", "False", "False", "False" });
-            //tblObj.Rows.Add(new Object[] { "1603000", "160201502", "RptProBillStatus", "", "Progress Bill Status", "Billing", "False", "False", "False", "False" });;
+
+            tblObj.Rows.Add(new Object[] { "1651000", "1651001", "F_99_Allinterface", "BillingInterface?", "Type=Billing", "Billing", "Billing-Interface", "False", "False", "False", "False" });
+
+
+
             #endregion
 
             // 17. General Account
@@ -2017,6 +2021,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "7051000", "7051001", "F_99_Allinterface", "RptServiceInterface", "", "Service Interface", "Service Management", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "7051000", "7051002", "F_99_Allinterface", "BillingInterface?", "Type=SBilling", "Service Billing Interface", "Service Management", "False", "False", "False", "False" });
+
 
             #endregion
 
@@ -2033,6 +2039,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3802000", "3802006", "F_38_AI", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "AI Invoice Aproved", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3802000", "3802004", "F_38_AI", "RptOngoingProjects.aspx?", "Type=Report", "Month Wise Ongoing Projects", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "AI -Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3851000", "3851002", "F_99_Allinterface", "BillingInterface?", "Type=AiBilling", "AI Billing Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
 
             #endregion
 
@@ -6303,6 +6310,7 @@ namespace RealERPLIB
 
 
 
+            //tblObj.Rows.Add(new Object[] { "1651000", "1651001", "", "", "", "Billing", "", "False", "False", "False", "False" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0401000000", "General Reports", "", "", false, "mb" });
@@ -6315,7 +6323,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "05. Progress Bill Status", "F_41_GAcc/RptProBillStatus?Type=Billstatus&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "05. Upcon Vs Sub-Contractor", "F_16_Bill/RptUpconVsSobCon?Type=Report&prjcode=&Date1=&Date2=", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "05. Billing-Interface", "F_99_Allinterface/BillingInterface?Type=Billing", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0410000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "", "", "", true, "" });
