@@ -239,14 +239,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
 
+
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.Design.dll</HintPath>
+
 
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -260,7 +264,9 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
 
+
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
 
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
@@ -3447,6 +3453,7 @@
     <Content Include="F_99_Allinterface\RptLCInterface.aspx" />
     <Content Include="F_99_Allinterface\RptMarketingInterface.aspx" />
     <Content Include="F_99_Allinterface\RptPurInterface.aspx" />
+    <Content Include="F_99_Allinterface\BillingInterface.aspx" />
     <Content Include="F_99_Allinterface\SalesInterface.aspx" />
     <Content Include="F_99_Allinterface\SMSInterface.aspx" />
     <Content Include="F_99_Allinterface\SubContractorBillInterface.aspx" />
@@ -6102,6 +6109,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\RptIndentPurInterface.aspx.designer.cs">
       <DependentUpon>RptIndentPurInterface.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\BillingInterface.aspx.cs">
+      <DependentUpon>BillingInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\BillingInterface.aspx.designer.cs">
+      <DependentUpon>BillingInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
@@ -13513,6 +13527,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDRold.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />

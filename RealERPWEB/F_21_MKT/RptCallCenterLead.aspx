@@ -932,16 +932,19 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Sales Person Name">  
+                                        <asp:TemplateField HeaderText="">  
                                             <FooterTemplate>
                                                 <asp:Label ID="lblftrtotalCD" runat="server" Font-Bold="True" Font-Size="12px" 
                                                     Style="text-align: right"> Total :</asp:Label>
                                             </FooterTemplate>
+                                            <HeaderTemplate>
+                                                 <asp:Label ID="lblheaderEmpname" runat="server" Text="Sales Person Name"></asp:Label>
+                                                 <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn btn-danger btn-xs" ToolTip="Export to Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                            </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblempnameCD" runat="server" Style="text-align: left"  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc"))%>'
-                                                    ></asp:Label>
+                                                <asp:Label ID="lblempnameCD" runat="server" Style="text-align: left"  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc"))%>' ></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
@@ -1008,7 +1011,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Query To Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQryToleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblQryToleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalQryToleadperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1083,7 +1086,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Lead To Qualified Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLeadToqleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblLeadToqleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalLeadToqleadperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1092,10 +1095,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <FooterStyle HorizontalAlign="Right"/>
-                                        </asp:TemplateField>
-
-
-                                        
+                                        </asp:TemplateField>                                        
 
 
                                          <%-- Qualified lead--%>
@@ -1161,7 +1161,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qualified Lead To  Nego %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqLeadToNegoperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblqLeadToNegoperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalqLeadToNegoperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1171,9 +1171,6 @@
                                             <HeaderStyle HorizontalAlign="Center"/>
                                             <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
-
-
-
 
                                         
                                          <%-- Nego--%>
@@ -1225,21 +1222,9 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Nego To Win">                                            
+                                        <asp:TemplateField HeaderText="Win">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnegoToqleadCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowin")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label ID="lbltotalnegoToqleadCD" runat="server" Font-Bold="True" Font-Size="13px"
-                                                   Style="text-align: right;"></asp:Label>
-                                            </FooterTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                            <FooterStyle HorizontalAlign="Right"/>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Nego To Win %">                                            
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblnegoTowinCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblnegoToWinCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowin")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalnegoToWinCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1249,9 +1234,21 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <FooterStyle HorizontalAlign="Right"/>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Nego To Win %">                                            
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnegoTowinperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotalnegoToWinperCD" runat="server" Font-Bold="True" Font-Size="13px"
+                                                   Style="text-align: right;"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right"/>
+                                        </asp:TemplateField>
 
                                     </Columns>
-                                      <FooterStyle CssClass="grvFooterNew" />
+                                    <FooterStyle CssClass="grvFooterNew" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
@@ -1260,6 +1257,91 @@
                                 </div>
                                 
                             </asp:View>
+
+                            <asp:View ID="vRptConversion" runat="server">
+                                <div class="row table-responsive">
+                                    <asp:GridView ID="gvConversion" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Sl.">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblserialno4" runat="server" Style="text-align: center" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'
+                                                   ></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="">  
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblftrtotalC" runat="server" Font-Bold="True" Font-Size="12px" Visible="false"
+                                                    Style="text-align: right"> Total :</asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderTemplate>
+                                                 <asp:Label ID="lblheaderEmpnameC" runat="server" Text="Sales Person Name"></asp:Label>
+                                                 <asp:HyperLink ID="hlbtntbCdataExelC" runat="server" CssClass="btn btn-danger btn-xs" ToolTip="Export to Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblempnameC" runat="server" Style="text-align: left"  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc"))%>' ></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Query To Lead %">                                            
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQryToleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotalQryToleadperC" runat="server" Font-Bold="True" Font-Size="13px"
+                                                   Style="text-align: right;"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right"/>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Lead To Qualified Lead %">                                            
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLeadToqleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotalLeadToqleadperC" runat="server" Font-Bold="True" Font-Size="13px"
+                                                   Style="text-align: right;"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right"/>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Qualified Lead To  Nego %">                                            
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblqLeadToNegoperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotalqLeadToNegoperC" runat="server" Font-Bold="True" Font-Size="13px"
+                                                   Style="text-align: right;"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center"/>
+                                            <FooterStyle HorizontalAlign="Right"/>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Nego To Win %">                                            
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnegoTowinperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lbltotalnegoToWinperC" runat="server" Font-Bold="True" Font-Size="13px"
+                                                   Style="text-align: right;"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right"/>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <FooterStyle CssClass="grvFooterNew" />
+                                    <EditRowStyle />
+                                    <AlternatingRowStyle />
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeaderNew" />
+                                </asp:GridView>
+                             </div>
+                        </asp:View>
+
 
                         </asp:MultiView>
                     </div>
