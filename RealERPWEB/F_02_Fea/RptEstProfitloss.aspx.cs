@@ -333,7 +333,7 @@ namespace RealERPWEB.F_02_Fea
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
+            string narr = this.txtNarr.Text.Trim();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string fdate = this.txtCurDate.Text;
             // string Code = (this.rbtnList1.SelectedIndex == 1) ? "infcod like '51%'" : (this.rbtnList1.SelectedIndex == 2) ? "infcod like '5[2-5]%'" : "infcod like '5[67]%'";
@@ -395,6 +395,7 @@ namespace RealERPWEB.F_02_Fea
             Rpt1.SetParameters(new ReportParameter("commitedval", commitedval));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("actualsal", actualsal));
+            Rpt1.SetParameters(new ReportParameter("narr", narr));
 
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));

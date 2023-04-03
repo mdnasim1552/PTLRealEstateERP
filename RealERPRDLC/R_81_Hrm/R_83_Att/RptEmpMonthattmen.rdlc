@@ -795,6 +795,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(Fields!hday.Value="H" or Fields!leav.Value="L" or Fields!absnt.Value="A",True,False)</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -830,6 +833,9 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(Fields!hday.Value="H" or Fields!leav.Value="L" or Fields!absnt.Value="A",True,False)</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1372,6 +1378,42 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="RptTitle2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!printdate.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>RptTitle</rd:DefaultName>
+            <Top>0.5757in</Top>
+            <Left>5.20624in</Left>
+            <Height>0.1875in</Height>
+            <Width>2.25in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>1.76389in</Height>
         <Style />
@@ -1379,7 +1421,7 @@
       <Width>7.49998in</Width>
       <Page>
         <PageHeader>
-          <Height>1.03in</Height>
+          <Height>0.905in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1495,7 +1537,7 @@
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.03062in</Top>
-              <Height>0.90313in</Height>
+              <Height>0.80938in</Height>
               <Width>1.2368in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -1504,42 +1546,6 @@
                 </Border>
               </Style>
             </Image>
-            <Textbox Name="RptTitle2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!printdate.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>RptTitle</rd:DefaultName>
-              <Top>0.74625in</Top>
-              <Left>1.28124in</Left>
-              <Height>0.1875in</Height>
-              <Width>5.46875in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
           </ReportItems>
           <Style>
             <Border>

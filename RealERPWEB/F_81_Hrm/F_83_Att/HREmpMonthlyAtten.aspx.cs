@@ -247,7 +247,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Attendance - Manually Month of "+ mon));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("printdate","Date :"+printdate));
+            Rpt1.SetParameters(new ReportParameter("printdate","Print Date : "+printdate));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
