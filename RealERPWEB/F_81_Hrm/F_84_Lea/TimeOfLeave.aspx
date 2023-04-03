@@ -305,7 +305,7 @@
 
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="">
+                   <%--                 <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
 
 
@@ -319,13 +319,20 @@
                                         <ItemStyle Width="50px" HorizontalAlign="left" />
 
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
 
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkTimeEdit" OnClick="lnkTimeEdit_Click" Visible='<%# Eval("isApprve").ToString() == "True" ? false : true %>'
                                                 CssClass="text-info" runat="server" ToolTip="Edit Time"><i class="fa fa-edit"></i></asp:LinkButton>
+
+                                                        <asp:LinkButton ID="lkDelete" runat="server" ForeColor="Red"
+                                                OnClientClick="retun confirm();"
+                                                OnClick="lkDelete_Click"
+                                                Visible='<%# Eval("isApprve").ToString() == "True" ? false : true %>'
+                                                CssClass="btn btn-xs btn-default"><span class="fa fa-trash"></span></asp:LinkButton>
+
 
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />

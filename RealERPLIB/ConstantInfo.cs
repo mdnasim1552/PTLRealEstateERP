@@ -339,7 +339,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902005", "F_09_PImp", "ImplementPlan", "", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan with Materials", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902008", "F_09_PImp", "InpPlanTopSheet", "", "Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
@@ -1452,6 +1453,8 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "2303000", "2303250", "RptReceivedList04?", "Type=AllProDuesCollect", "Revenue Status", "Credit Realization", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "2303000", "2303251", "F_23_CR", "RptPrjWiseClientStatus02", "", "Project Wise Clieint Status 02", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303252", "F_23_CR", "RptCustomerInvoice", "", "Customer Invoice", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303262", "F_23_CR", "RptReconcilationLetter", "", "Reconcilation Letter", "Credit Realization", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2302000", "2303253", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonAR", "Month Wise Collection", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303254", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollBuyer", "Month Wise Collection(Buyer & Project)", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303255", "F_23_CR", "RptProjectWiseCollection?", "Type=CollectionStatus", "Project Wise Status(Collection Status)", "Credit Realization", "False", "False", "False", "False" });
@@ -5115,7 +5118,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Execution 360", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000017", "15. Monthly Implementation Plan - 360", "F_09_PImp/ImplementPlanWithMaterials", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000018", "15. Implementation Plan - 360", "F_09_PImp/InpPlanTopSheet", "", true, "" });
+
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
@@ -7979,6 +7983,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000005", "14. All Letter", "F_23_CR/RptAllLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "31. Monthly Collection(Receipt Type Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollMerge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "32. Monthly Collection Schedule(Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollSchMerge", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000008", "33. Reconcilation Letter", "F_23_CR/RptReconcilationLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0340000000", "", "", "", true, "" });
