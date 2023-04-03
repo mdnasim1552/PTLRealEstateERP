@@ -42,6 +42,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
+                DataSet ds = (DataSet)Session["tblusrlog"];
+                if (ds == null)
+                {
+                    Response.Redirect("../../Login.aspx");
+                    return;
+                }
                 Hashtable hst = (Hashtable)Session["tblLogin"];
 
                 string qusrid = this.Request.QueryString["usrid"] ?? "";
@@ -66,8 +72,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                    (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                         Response.Redirect("~/AcceessError.aspx");
                 }
+                  ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";//
+                  this.Master.Page.Title = "Leave Approval";//
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";
+
                 string Type = this.Request.QueryString["Type"].ToString();
                 string Date = (Type == "Ind") ? this.Request.QueryString["Date"].ToString() : System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
                 this.txtdate.Text = Date;
@@ -1490,8 +1498,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
                         if (comcod == "3365")
                         {
-                            //Response.Redirect(Request.UrlReferrer.ToString());
-                            Response.Redirect("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind");
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeCurrentTab();", true);
+
                         }
 
                     }

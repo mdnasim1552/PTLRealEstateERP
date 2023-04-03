@@ -151,34 +151,62 @@
 
                                 </asp:Panel>
                                 <asp:Panel ID="pnlSupMat" runat="server" Visible="False">
-                                    <div class="form-group">
-                                        <div class="col-md-1  pading5px">
-                                            <asp:Label ID="Label10" runat="server" CssClass=" lblName lblTxt" Text="Supplier List:"></asp:Label>
-                                            <asp:TextBox ID="txtMSRSupSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
-                                            <asp:LinkButton ID="ImgbtnFindSup" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindSup_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-                                        </div>
-                                        <div class="col-md-4 pading5px asitCol4">
-                                            <asp:DropDownList ID="ddlMSRSupl" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
-                                        </div>
-                                        <div class="col-md-2 pading5px">
-                                            <asp:LinkButton ID="lbtnMSRSup" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSup_Click">Select Suppliers</asp:LinkButton>
-                                        </div>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <div class="col-md-2  pading5px">
+                                                    <asp:Label ID="Label10" runat="server" CssClass=" lblName lblTxt" Text="Supplier List:"></asp:Label>
+                                                    <asp:TextBox ID="txtMSRSupSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
+                                                    <asp:LinkButton ID="ImgbtnFindSup" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindSup_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+                                                </div>
+                                                <div class="col-md-4 pading5px asitCol4">
+                                                    <asp:DropDownList ID="ddlMSRSupl" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
+                                                </div>
+                                                <div class="col-md-3 pading5px">
+                                                    <asp:LinkButton ID="lbtnMSRSup" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSup_Click">Select Suppliers</asp:LinkButton>
+                                                </div>
+                                            </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-1 pading5px">
-                                            <asp:Label ID="Label9" runat="server" CssClass=" lblName lblTxt" Text="Materials List:"></asp:Label>
-                                            <asp:TextBox ID="txtMSRResSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
-                                            <asp:LinkButton ID="ImgbtnFindMat" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindMat_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-                                        </div>
-                                        <div class="col-md-4 pading5px asitCol4">
-                                            <asp:ListBox ID="chkMSRRes" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
 
-                                            <%--<asp:DropDownList ID="ddlMSRRes" runat="server" AutoPostBack="True" Width="322px" OnSelectedIndexChanged="ddlMSRRes_SelectedIndexChanged" CssClass="ddlPage chzn-select" Visible="false"></asp:DropDownList>--%>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2 pading5px">
+                                                    <asp:Label ID="Label9" runat="server" CssClass=" lblName lblTxt" Text="Materials List:"></asp:Label>
+                                                    <asp:TextBox ID="txtMSRResSearch" runat="server" CssClass="inputtextbox hidden" Style="width: 63px;"></asp:TextBox>
+                                                    <asp:LinkButton ID="ImgbtnFindMat" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindMat_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+                                                </div>
+                                                <div class="col-md-4 pading5px asitCol4">
+                                                    <asp:ListBox ID="chkMSRRes" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
+
+                                                    <%--<asp:DropDownList ID="ddlMSRRes" runat="server" AutoPostBack="True" Width="322px" OnSelectedIndexChanged="ddlMSRRes_SelectedIndexChanged" CssClass="ddlPage chzn-select" Visible="false"></asp:DropDownList>--%>
+                                                </div>
+                                                <div class="col-md-2 pading5px">
+                                                    <asp:LinkButton ID="lbtnMSRSelect" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSelect_Click">Select Materials</asp:LinkButton>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2 pading5px">
-                                            <asp:LinkButton ID="lbtnMSRSelect" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnMSRSelect_Click">Select Materials</asp:LinkButton>
+                                        <div class="col-md-1">
+
+                                            <asp:CheckBox ID="chkbillcscopy" OnCheckedChanged="chkbillcscopy_CheckedChanged" AutoPostBack="True" runat="server" Text="COPY CS" />
+
+
                                         </div>
+                                        <div runat="server" id="billcopy" visible="false">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <asp:DropDownList runat="server" ID="ddlboxprecopy" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <asp:LinkButton runat="server" ID="btncopy" OnClick="btncopy_Click" CssClass="btn btn-success btn-sm">Copy</asp:LinkButton>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
                                     </div>
 
 
@@ -203,7 +231,7 @@
                         <div class="table table-responsive" style="min-height: 360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True"  
+                                AutoGenerateColumns="False" ShowFooter="True"
                                 OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated">
                                 <PagerSettings Visible="False" />
                                 <Columns>
@@ -223,7 +251,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="rsircode"  >
+                                    <asp:TemplateField HeaderText="rsircode">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvrsircode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
@@ -300,6 +328,15 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Company Rate" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvMSRproposerate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposerate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="50px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
 
@@ -347,7 +384,7 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
-                                         <HeaderTemplate>
+                                        <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueB" runat="server" OnClick="lbtnSameValueB_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -380,7 +417,7 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
-                                         <HeaderTemplate>
+                                        <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueC" runat="server" OnClick="lbtnSameValueC_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -448,7 +485,7 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
-                                         <HeaderTemplate>
+                                        <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueE" runat="server" OnClick="lbtnSameValueE_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>

@@ -112,6 +112,72 @@ namespace RealEntity.C_21_Mkt
             public RptProspectTransfer() { }
         }
 
+
+        [Serializable]
+        public class PersonWiseActivity
+        {
+            //comcod, grp, grpdesc,teamcode, proscod, createdate, assocname, prospectname, phone, email, profession, preaddress, interestproj, leadsrc, chkper
+            public string empid { get; set; }
+            public double call { get; set; }
+            public double firstmeeting { get; set; }
+            public double followupmeeting { get; set; }
+            public double firstvisit { get; set; }
+            public double followupvisit { get; set; }
+            public double total { get; set; }
+            public string empname { get; set; }
+            public PersonWiseActivity() { }
+        }
+
+        [Serializable]
+        public class PersonWiseTracking
+        {
+            public string empid { get; set; }
+            public double sold { get; set; }
+            public double soldamt { get; set; }
+            public double leads { get; set; }
+            public double noofcusoverpay { get; set; }
+            public string empname { get; set; }
+            public PersonWiseTracking() { }
+        }
+
+        public class PersonWiseConversionDetails
+        {           
+            public string teamcode { get; set; }
+            public string teamdesc { get; set; }
+
+            public double qry { get; set; }
+            public double lead { get; set; }
+            public double qlead { get; set; }
+            public double nego { get; set; }
+            public double qrytohold { get; set; }
+            public double qrytolost { get; set; }
+            public double qrytoclose { get; set; }
+            public double qrytolead { get; set; }
+            public double leadtohold { get; set; }
+            public double leadtolost { get; set; }
+            public double leadtoclose { get; set; }
+            public double leadtoqlead { get; set; }
+            public double qleadtohold { get; set; }
+            public double qleadtolost { get; set; }
+            public double qleadtoclose { get; set; }
+            public double qleadtonego { get; set; }
+            public double negotohold { get; set; }
+            public double negotolost { get; set; }
+            public double negotoclose { get; set; }
+            public double negotowin { get; set; }
+            public double qrytoleadper { get; set; }
+            public double leadtoqleadper { get; set; }
+            public double qleadtonegoper { get; set; }
+            public double negotowinper { get; set; }
+            public double curqry { get; set; }
+            public double curlead { get; set; }
+            public double curqlead { get; set; }
+            public double curnego { get; set; }
+
+            public PersonWiseConversionDetails() { }
+        }
+
+
         [Serializable]
         public class RptLeadStatusTimestamp
         {
@@ -173,6 +239,7 @@ namespace RealEntity.C_21_Mkt
         [Serializable]
         public class IPSetupInf
         {
+            public int id { get; set; }
             public string machno { get; set; }
             public string ipaddress { get; set; }
             public string machinealias { get; set; }

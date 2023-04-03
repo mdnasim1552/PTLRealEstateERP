@@ -52,13 +52,14 @@ namespace RealERPWEB.F_32_Mis
                     this.gvprjanalysis.Columns[14].Visible = true;
                     break;
                 default:
+                    this.gvprjanalysis.Columns[10].Visible = false;
                     this.gvprjanalysis.Columns[14].Visible = false;
                     break;
 
-            
-            
+
+
             }
-        
+
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -72,7 +73,7 @@ namespace RealERPWEB.F_32_Mis
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string qcomcod=this.Request.QueryString["comcod"] ?? "";
+            string qcomcod = this.Request.QueryString["comcod"] ?? "";
             comcod = qcomcod.Length > 0 ? qcomcod.ToString() : comcod;
             return comcod;
         }
@@ -115,10 +116,10 @@ namespace RealERPWEB.F_32_Mis
                 default:
                     reconormr = "Reconcile";
                     break;
-            
-            
-            
-            
+
+
+
+
             }
             return reconormr;
 
@@ -202,9 +203,9 @@ namespace RealERPWEB.F_32_Mis
              Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdprofit)", "")) ?
              0.00 : dt.Compute("Sum(bgdprofit)", ""))).ToString("#,##0;(#,##0); ");
 
-          ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFprojectedprofit")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(pronetprofit)", "")) ? 0.00 : dt.Compute("Sum(pronetprofit)", ""))).ToString("#,##0;(#,##0); ");
-          ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFcashflow")).Text =Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cashflow)", "")) ? 0.00 : dt.Compute("Sum(cashflow)", ""))).ToString("#,##0;(#,##0); ");
-       
+            ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFprojectedprofit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(pronetprofit)", "")) ? 0.00 : dt.Compute("Sum(pronetprofit)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.gvprjanalysis.FooterRow.FindControl("lblgvFcashflow")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cashflow)", "")) ? 0.00 : dt.Compute("Sum(cashflow)", ""))).ToString("#,##0;(#,##0); ");
+
 
 
 
@@ -389,16 +390,24 @@ namespace RealERPWEB.F_32_Mis
                     hlnkbgdamt.NavigateUrl = "~/F_22_Sal/RptSaleSoldunsoldUnit.aspx?Type=soldunsold&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2);
                     hlnktsal.NavigateUrl = "~/F_22_Sal/RptSaleSoldunsoldUnit.aspx?Type=soldunsold&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2);
                     hlnktcol.NavigateUrl = "~/F_22_Sal/RptTransactionSt.aspx?Type=TransDateWise&comcod=" + comcod + "&prjcode=" + "18" + pactcode.Substring(2) + "&Date1=" + opndate + "&Date2=" + todate;
-                    hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/RptBgdPrjojectNew.aspx?Type=Report&prjcode=" + pactcode + "&comcod=" +comcod;   //&prjcode="+pactcode
+                    hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/RptBgdPrjojectNew.aspx?Type=Report&prjcode=" + pactcode + "&comcod=" + comcod;   //&prjcode="+pactcode
                     //F_04_Bgd/?=&=&=
                     //hlnkconsbgd.NavigateUrl = "~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMainRptALL&prjcode=" + pactcode + "&sircode=";   //&prjcode="+pactcode
                     hlnkbgdtotal.NavigateUrl = "~/F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdGrWise&comcod=" + comcod + "&prjcode=" + pactcode;
                     hlnkcost.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal&prjcode=" + pactcode;
 
+                    e.Row.Attributes.Add("onmouseover", "this.originalstyle = this.style.backgroundColor; this.style.backgroundColor = '#c9c6c5';this.style.color = 'Black';  ");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalstyle;this.style.color=this.originalstyle;");
+
+
+                    //e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(ui_grdVw_EmployeeDetail, "Select$" + e.Row.RowIndex); : bold
+                    //e.Row.Attributes["style"] = "cursor:pointer";
+
+
                 }
 
 
-                if(perpercnt<0)
+                if (perpercnt < 0)
                     lblgvproprofitpercnt.Attributes["style"] = " color:red;";
 
 
@@ -420,8 +429,8 @@ namespace RealERPWEB.F_32_Mis
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string txtDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
-            
-            string tosalval, salamt, tsaldue, collamt, tcoldue, tsalcoldue,cbgdamt, acbgdamt, bgdamt, bgdprofit;
+
+            string tosalval, salamt, tsaldue, collamt, tcoldue, tsalcoldue, cbgdamt, acbgdamt, bgdamt, bgdprofit;
             tosalval = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsaltg")).Text.ToString();
             salamt = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsal")).Text.ToString();
             tsaldue = ((Label)this.gvprjanalysis.FooterRow.FindControl("lgvFtsaldue")).Text.ToString();
@@ -444,7 +453,7 @@ namespace RealERPWEB.F_32_Mis
             Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Analysis"));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "As On Date: "+txtDate));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "As On Date: " + txtDate));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("tosalval", tosalval));
             Rpt1.SetParameters(new ReportParameter("salamt", salamt));

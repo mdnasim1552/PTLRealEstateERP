@@ -217,7 +217,7 @@ namespace RealERPWEB.F_12_Inv
             dttemp.Columns.Add("amt", Type.GetType("System.Double"));
             dttemp.Columns.Add("reqno", Type.GetType("System.String"));
 
-            Session["sessionforgrid"] = dttemp;
+            ViewState["sessionforgrid"] = dttemp;
 
         }
 
@@ -229,13 +229,13 @@ namespace RealERPWEB.F_12_Inv
 
             if (ds1 == null)
                 return;
-            Session["projectlist"] = ds1.Tables[0];
+            ViewState["projectlist"] = ds1.Tables[0];
 
         }
         protected void Load_Project_From_Combo()
         {
 
-            DataTable dt = (DataTable)Session["projectlist"];
+            DataTable dt = (DataTable)ViewState["projectlist"];
 
             string srchfrmproject = this.txtSearchRes.Text.Trim();
             //string srchfrmproject = this.txtSrcfrmprojet.Text.Trim();
@@ -268,7 +268,7 @@ namespace RealERPWEB.F_12_Inv
             //if (ds1 == null)
             //    return;
 
-            DataTable dt = (DataTable)Session["projectlist"];
+            DataTable dt = (DataTable)ViewState["projectlist"];
 
             string actcode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             DataView dv1 = dt.DefaultView;
@@ -313,8 +313,8 @@ namespace RealERPWEB.F_12_Inv
         protected void Load_Project_Res_Combo()
         {
             string comcod = this.GetCompCode();
-            Session.Remove("projectreslist");
-            Session.Remove("tblspcf");
+            ViewState.Remove("projectreslist");
+            ViewState.Remove("tblspcf");
 
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
@@ -326,8 +326,8 @@ namespace RealERPWEB.F_12_Inv
             }
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
-            Session["projectreslist"] = ds1.Tables[0];
-            Session["tblspcf"] = ds1.Tables[1];
+            ViewState["projectreslist"] = ds1.Tables[0];
+            ViewState["tblspcf"] = ds1.Tables[1];
 
             if (ds1 == null)
                 return;
@@ -358,7 +358,7 @@ namespace RealERPWEB.F_12_Inv
                 string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
                 //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
                 this.ddlResSpcf.Items.Clear();
-                DataTable tbl1 = (DataTable)Session["tblspcf"];
+                DataTable tbl1 = (DataTable)ViewState["tblspcf"];
                 DataView dv1 = tbl1.DefaultView;
                 //dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
                 dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
@@ -384,7 +384,7 @@ namespace RealERPWEB.F_12_Inv
                 string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
                 string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
                 DataTable dt = (DataTable)ViewState["tblmattrns"];
-                DataTable dt1 = (DataTable)Session["projectreslist"];
+                DataTable dt1 = (DataTable)ViewState["projectreslist"];
                 DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
                 DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
 
@@ -419,13 +419,36 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+        private bool IscheckDuplicateMTRF()
+        {
+            string mMtRFNO = this.txtrefno.Text.Trim().ToString();
+            string comcod = this.GetCompCode();
 
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPMATREQREF", mMtRFNO, "",
+                         "", "", "", "", "", "", "");
+
+
+            DataView dv1 = ds1.Tables[0].DefaultView;
+                    dv1.RowFilter = ("mtrref ='" + mMtRFNO + "'");
+                    DataTable dt = dv1.ToTable();
+                    if (dt.Rows.Count == 0)
+                        return false;
+                    else
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate M.T.R.F No";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return true;
+                    }
+                
+            
+           
+        }
 
         private void SaveValue()
         {
 
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
-            DataTable dt2 = (DataTable)Session["projectreslist"];
+            DataTable dt2 = (DataTable)ViewState["projectreslist"];
             switch (GetCompCode())
             {
                 case "3370":
@@ -525,6 +548,24 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
+
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+                
+                double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
+                if (rat ==0)
+                {
+                    msg1 = "Not Save Without Rate";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                    return;
+
+                }
+            }
+
+
+
+
+
             string mtreqdat = this.txtCurTransDate.Text.ToString().Trim();
             if (ddlPrevISSList.Items.Count == 0)
                 this.GetMatTrns();
@@ -808,8 +849,18 @@ namespace RealERPWEB.F_12_Inv
 
             if (this.grvacc.Columns[6].FooterText.Length > 0)
                 this.grvacc.Columns[6].FooterText = "";
+
             if (lbtnOk.Text.Trim() == "Ok")
             {
+
+
+                if (IscheckDuplicateMTRF())
+                {
+                    this.lbtnOk.Text = "Ok";
+                    return;
+                }
+
+
                 lbtnOk.Text = "New";
                 this.pnlreq.Visible = true;
                 this.lblddlProjectFrom.Visible = true;
@@ -823,12 +874,17 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlPrevISSList.Visible = false;
                 this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text;
                 this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text;
+
+
+
                 if (this.Request.QueryString["Type"].ToString() == "ReqEdit")
                 {
                     this.GetMatTransferReq();
                 }
                 else
-                {
+
+               {
+                  
                     this.GetMatTransfer();
                 }
 
@@ -871,12 +927,15 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             string CurDate1 = this.txtCurTransDate.Text.Trim();
             string mTRNNo = "NEWTRNS";
+
+          
             if (this.ddlPrevISSList.Items.Count > 0)
             {
                 this.txtCurTransDate.Enabled = false;
                 mTRNNo = this.ddlPrevISSList.SelectedValue.ToString();
 
             }
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mTRNNo, CurDate1,
                           "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -978,7 +1037,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             string comcod = this.GetCompCode();
-          
+
             switch (comcod)
             {
                 case "3370":
@@ -1751,6 +1810,15 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+        }
+
+
+        protected void gvreqchkmgt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvreqchkmgt.PageIndex = e.NewPageIndex;
+            this.Data_Bind_MgtChecked();
+
+
         }
     }
 }

@@ -200,7 +200,7 @@ namespace RealERPWEB.F_12_Inv
             dttemp.Columns.Add("amt", Type.GetType("System.Double"));
             dttemp.Columns.Add("reqno", Type.GetType("System.String"));
 
-            Session["sessionforgrid"] = dttemp;
+            ViewState["sessionforgrid"] = dttemp;
 
         }
 
@@ -209,7 +209,7 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GetProjectFromList", "%%", "", "", "", "", "", "", "", "");
-            Session["projectlist"] = ds1.Tables[0];
+            ViewState["projectlist"] = ds1.Tables[0];
             if (ds1 == null)
                 return;
 
@@ -229,7 +229,7 @@ namespace RealERPWEB.F_12_Inv
             //if (ds1 == null)
             //    return;
 
-            DataTable dt = (DataTable)Session["projectlist"];
+            DataTable dt = (DataTable)ViewState["projectlist"];
             DataRow[] projectrow = dt.Select("actcode <> '" + this.ddlprjlistfrom.SelectedValue.ToString().Trim() + "'");
             string actcode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             DataView dv1 = dt.DefaultView;
@@ -294,10 +294,10 @@ namespace RealERPWEB.F_12_Inv
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
             string balcon = this.CompBalConMat();
             string bgdres = this.CompanyBGDRes();
-            Session.Remove("projectreslist");
+            ViewState.Remove("projectreslist");
             ViewState.Remove("tblspcf");
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GetProjResList", ProjectCode, curdate, FindResDesc, balcon, bgdres, "", "", "", "");
-            Session["projectreslist"] = ds1.Tables[0];
+            ViewState["projectreslist"] = ds1.Tables[0];
             ViewState["tblspcf"] = ds1.Tables[1];
 
             if (ds1 == null)
@@ -379,7 +379,7 @@ namespace RealERPWEB.F_12_Inv
             string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
-            DataTable dt1 = (DataTable)Session["projectreslist"];
+            DataTable dt1 = (DataTable)ViewState["projectreslist"];
             DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
             DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
 
@@ -934,7 +934,8 @@ namespace RealERPWEB.F_12_Inv
                 this.pnlGatePass.Visible = false;
                 this.ddlGatePass.Enabled = true;
                 this.txtrefno.Text = "";
-                this.txtNarr.Text = "";
+                //this.txtNarr.Visible = true;
+                //this.lblReqNarr.Visible = true;
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 this.lblVoucherNo.Text = "";
                 lbtnOk.Text = "Ok";
@@ -1003,7 +1004,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.txtCurTransDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["date"]).ToString("dd-MMM-yyyy");
             this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
-            this.txtNarr.Text = ds1.Tables[1].Rows[0]["narration"].ToString();
+            this.txtNarr.Text = ds1.Tables[0].Rows[0]["mtrnrr"].ToString();
             this.lblCurTransNo1.Text = ds1.Tables[1].Rows[0]["trnno1"].ToString().Trim().Substring(0, 6);
             this.txtCurTransNo2.Text = ds1.Tables[1].Rows[0]["trnno1"].ToString().Trim().Substring(6);
             this.lblVoucherNo.Text = ds1.Tables[1].Rows[0]["vounum"].ToString().Trim();

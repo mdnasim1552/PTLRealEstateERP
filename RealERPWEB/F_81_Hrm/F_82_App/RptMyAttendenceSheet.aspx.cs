@@ -84,6 +84,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     break;
                 case "3365":
                 case "3102":
+
                     ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger missed but present)", "AB"));
                     break;
@@ -548,13 +549,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblIntime = (Label)Rptitem.FindControl("lblIntime");
             Label issuedate = (Label)Rptitem.FindControl("lblacintime");
             Label actualin = (Label)Rptitem.FindControl("lblactualin");
-            Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
             Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
             Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
             Label actualout = (Label)Rptitem.FindControl("lblactualout");
 
-            
+            Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
+
 
 
 
@@ -569,9 +570,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 outTimeV.Visible = true;
             }
 
+            if (comcod == "3365" && attstatus!= "A")
+            {
+                ddlReqType.Items.Remove(ddlReqType.Items.FindByValue("AB"));
+            }
+
             if (attstatus == "A")
             {
-
+               
                 this.InfoApply.Visible = true;
             }
 

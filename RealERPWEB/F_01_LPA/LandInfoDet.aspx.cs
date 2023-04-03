@@ -2221,7 +2221,7 @@ namespace RealERPWEB.F_01_LPA
                     landplotinfo += ((DropDownList)this.gvplot.Rows[i].FindControl("ddlvalz")).SelectedItem.Text + ", ";
 
                 }
-                else if (Gcode == "0302007")
+                else if (Gcode == "0302007" && comcod !="3374" && comcod != "3376")
                 {
                     Gvalue = ((DropDownList)this.gvplot.Rows[i].FindControl("ddlvalp")).SelectedValue.ToString();
                     landplotinfo += ((DropDownList)this.gvplot.Rows[i].FindControl("ddlvalp")).SelectedItem.Text + ", ";
@@ -2233,7 +2233,7 @@ namespace RealERPWEB.F_01_LPA
                     landplotinfo += ((DropDownList)this.gvplot.Rows[i].FindControl("ddlvala")).SelectedItem.Text + ", ";
 
                 }
-                else if (Gcode == "0302011")
+                else if (Gcode == "0302011" && comcod != "3374" && comcod != "3376")
                 {
                     Gvalue = ((DropDownList)this.gvplot.Rows[i].FindControl("ddlblockplot")).SelectedValue.ToString();
                     landplotinfo += ((DropDownList)this.gvplot.Rows[i].FindControl("ddlblockplot")).SelectedItem.Text + ", ";

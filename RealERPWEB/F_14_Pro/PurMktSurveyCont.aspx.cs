@@ -192,11 +192,14 @@ namespace RealERPWEB.F_14_Pro
             this.lbtnMSROk.Text = "New";
             this.ImgbtnFindSup_Click(null, null);
             this.ImgbtnFindMat_Click(null, null);
-
+            this.PrevoiusBillCs();
             this.Get_Survey_Info();
 
 
+
         }
+
+
 
         protected void Get_Survey_Info()
         {
@@ -241,6 +244,20 @@ namespace RealERPWEB.F_14_Pro
             this.gvMSRInfo_DataBind();
 
             this.Payterm_DataBind();
+        }
+
+        private void PrevoiusBillCs()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETBILLCSCOPY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlboxprecopy.DataValueField = "msrno";
+            this.ddlboxprecopy.DataTextField = "msrno1";
+            this.ddlboxprecopy.DataSource = ds1.Tables[0];
+            this.ddlboxprecopy.DataBind();
+
+
         }
 
         protected void gvMSRInfo_DataBind()
@@ -372,7 +389,7 @@ namespace RealERPWEB.F_14_Pro
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyManama03", lst, lst1, null);
                 }
-                else if(comcod == "3374")
+                else if (comcod == "3374")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyANGAN03", lst, lst1, null);
                 }
@@ -1024,10 +1041,10 @@ namespace RealERPWEB.F_14_Pro
                     i++;
                 }
             }
-         
+
             else
             {
-                if (comcod == "3374" || comcod=="3101")
+                if (comcod == "3374" || comcod == "3101")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03CANGAN", lst, lst1, null);
 
@@ -1465,10 +1482,13 @@ namespace RealERPWEB.F_14_Pro
         protected void lbtnMSRSelect_Click(object sender, EventArgs e)
         {
             this.Session_tblMSR_Update();
+            this.GetPreviousCS();
             DataTable tbl1 = (DataTable)Session["tblt02"];
             DataTable tblreq = (DataTable)Session["tblreq01"];
-
+            DataTable tbl02 = (DataTable)Session["CopyBillCS"];
+           
             string comcod = this.GetCompCode();
+
 
             foreach (ListItem s1 in chkMSRRes.Items)
             {
@@ -1477,7 +1497,9 @@ namespace RealERPWEB.F_14_Pro
                     string mResCode1 = s1.Value.ToString();
                     //string mResCode1 = "000000000000";//this.ddlMSRRes.SelectedValue.ToString();
                     //string spcfcod1 = "000000000000";// this.ddlSpecificationms.SelectedValue.ToString();
-
+                    string rate = "";
+                    string rate1 = "";
+                    string rate2 = "";
                     string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
                     string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
 
@@ -1494,9 +1516,24 @@ namespace RealERPWEB.F_14_Pro
 
                         dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                         dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
-                        dr1["resrate1"] = 0;
-                        dr1["resrate2"] = 0;
-                        dr1["resrate3"] = 0;
+                        dr1["proposerate"] = 0;
+                        for (int j = 1; j < tbl02.Rows.Count; j++)
+                        {
+                           
+                            string rsircode = tbl02.Rows[j]["rsircode"].ToString();
+                            string flrcode = tbl02.Rows[j]["flrcod"].ToString();                           
+                            if(rsircode== mResCode2 && flrcode== flrcod )
+                            {
+                                 rate = tbl02.Rows[j]["resrate1"].ToString();
+                                 rate1 = tbl02.Rows[j]["resrate2"].ToString();
+                                 rate2 = tbl02.Rows[j]["resrate3"].ToString();
+                            }
+
+
+                        }
+                        dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
+                        dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
+                        dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
                         dr1["resrate4"] = 0;
                         dr1["resrate5"] = 0;
                         dr1["amt1"] = 0;
@@ -1518,6 +1555,16 @@ namespace RealERPWEB.F_14_Pro
             this.gvMSRInfo_DataBind();
         }
 
+        //private void GetCsRate(string rate="")
+        //{
+        //    string comcod = this.GetCompCode();
+
+        //    DataTable tbl02 = (DataTable)ViewState["PreviousCss"];
+        //    for (int j = 1; j < tbl02.Rows.Count; j++)
+        //    {
+        //        rate =
+        //    }
+        //}
 
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -2063,6 +2110,44 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+        private void GetPreviousCS()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string msrno = this.ddlboxprecopy.SelectedValue;
+                DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETBILLCSCOPYDETAILS", msrno, "", "", "", "", "", "", "", "");
+                if (ds == null)
+                    return;
+                ViewState["PreviousCss"] = ds.Tables[0];
 
+            }
+            catch (Exception exp)
+            {
+
+            }
+        }
+
+        protected void chkbillcscopy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkbillcscopy.Checked == true)
+            {
+                this.billcopy.Visible = true;
+            }
+        }
+
+        protected void btncopy_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
+            // string date = Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+            string mMSRNo = this.ddlboxprecopy.SelectedValue.Trim();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURMSRINFO1CON", mMSRNo, CurDate1,
+                          "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["CopyBillCS"] = ds1.Tables[2];
+        }
     }
 }

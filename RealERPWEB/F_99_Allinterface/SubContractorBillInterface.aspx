@@ -1491,7 +1491,7 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Nature Of Work">
+                                            <asp:TemplateField HeaderText="Nature Of Work" >
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"

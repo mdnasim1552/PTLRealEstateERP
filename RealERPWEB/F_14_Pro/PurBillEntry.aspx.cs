@@ -86,7 +86,8 @@ namespace RealERPWEB.F_14_Pro
                     //}
                 }
 
-
+                if (this.GetCompCode() == "3101")
+                    this.divchkBillStkrPrnt.Visible = true;
             }
         }
 
@@ -166,6 +167,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3309":
                 case "3310":
                 case "3311":
+                case "3101":
 
                     PrintReq = "PrintBill02";
                     break;
@@ -211,7 +213,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBillLanco";
 
@@ -241,8 +243,14 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
+            string CurDate = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+            string BillNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            if (this.chkBillStkrPrnt.Checked)
+                Response.Write(@"<script>window.open('../F_99_Allinterface/PurchasePrint?Type=BillSticker&genno=" + BillNo + "&date=" + CurDate + "', target='_blank');</script>");
+            else
+                this.PrintBillConfimation();
 
-            this.PrintBillConfimation();
+
 
         }
 
@@ -281,7 +289,7 @@ namespace RealERPWEB.F_14_Pro
                 this.PrintBillCPDL();
 
             else if (printcomreq == "PrintBillCPDL")
-                this.PrintBillCPDL(); 
+                this.PrintBillCPDL();
             //else if (printcomreq == "PrintBillANGAN")
             //    this.PrintBillANGAN();
             else
@@ -568,8 +576,11 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt1 = ds1.Tables[2];
             DataTable dtmrref = ds1.Tables[1];
+            DataTable dtmrrno = ds1.Tables[0];
             string mrfno = dtmrref.Rows[0]["mrfno"].ToString();
             string mrfno1 = dtmrref.Rows[0]["mrfno"].ToString();
+            string mrrno = dtmrrno.Rows[0]["mrrref"].ToString();
+            string mrrno1 = dtmrrno.Rows[0]["mrrref"].ToString();
 
             for (int i = 1; i < dtmrref.Rows.Count; i++)
             {
@@ -583,6 +594,23 @@ namespace RealERPWEB.F_14_Pro
                 }
 
                 mrfno = dtmrref.Rows[i]["mrfno"].ToString();
+
+            }
+
+
+
+            for (int i = 1; i < dtmrrno.Rows.Count; i++)
+            {
+
+                if (dtmrrno.Rows[i]["mrrref"].ToString() == mrrno)
+                    ;
+                else
+                {
+                    mrrno1 = mrrno1 + ", " + dtmrrno.Rows[i]["mrrref"].ToString();
+
+                }
+
+                mrrno = dtmrrno.Rows[i]["mrrref"].ToString();
 
 
 
@@ -663,6 +691,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBilldate", (this.ddlPayType.SelectedValue == "003") ? "Adjustment" : " : " + billrefdate));
             rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillno));
             rpt.SetParameters(new ReportParameter("mprno", "MPR NO  :  " + mrfno1));
+            rpt.SetParameters(new ReportParameter("mrrno", "MRR Ref NO  :  " + mrrno1));
             rpt.SetParameters(new ReportParameter("date", " : " + CurDate1));
             rpt.SetParameters(new ReportParameter("chqdate", (this.ddlPayType.SelectedValue == "003") ? "" : " : " + chqdate));
             rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
@@ -1121,7 +1150,15 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            if(comcod=="3374" || comcod == "3376")
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
+            }
+            else
+            {
+                rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInns", list, null, null);
+            }
+              
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
@@ -2286,7 +2323,7 @@ namespace RealERPWEB.F_14_Pro
 
 
                 //For Visible Item Serial Manama
-                
+
                 if (comcod == "3353" || comcod == "3101")
                 {
                     this.gvBillInfo.Columns[1].Visible = true;
@@ -2786,7 +2823,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-               
+
 
             }
 
@@ -3704,7 +3741,7 @@ namespace RealERPWEB.F_14_Pro
 
                 }
 
-                    
+
 
             }
         }

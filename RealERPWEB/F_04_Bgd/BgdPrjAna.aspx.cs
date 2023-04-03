@@ -547,7 +547,8 @@ namespace RealERPWEB.F_04_Bgd
             string comcod = this.GetComeCode();
             string srchTxt = "%";
             DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "ITMCODELIST", srchTxt, userid, "", "", "", "", "", "", "");
-
+            if (ds1 == null)
+                return;
             ViewState["tblItmCod"] = ds1.Tables[0];
 
             this.ddlgroupwrk.DataTextField = "isirdesc1";
@@ -2361,9 +2362,10 @@ namespace RealERPWEB.F_04_Bgd
             string comcod = hst["comcod"].ToString();
             string Copypactcode = this.ddlCopyProjectName.SelectedValue.ToString();
             string pactcode = this.ddlProject.SelectedValue.ToString();
-            string withoutqty = this.chkwithoutqty.Checked ? "withoutqty" : "";
+            //string withoutqty = this.chkwithoutqty.Checked ? "withoutqty" : "";
+            string check = this.CheckBoxList1.SelectedValue=="0"?"0": this.CheckBoxList1.SelectedValue=="1"?"1":"";
             string approval = GetReqApproval();
-            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "INSORUPBGTPROCOPY", Copypactcode, pactcode, withoutqty, approval, "", "", "", "", "", "", "", "", "", "", "");
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "INSORUPBGTPROCOPY", Copypactcode, pactcode, check, approval, "", "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
             {

@@ -427,7 +427,7 @@ namespace RealERPWEB.F_17_Acc
             }
             if (tblt01.Rows.Count == 0)
                 return;
-
+            this.PnlNarration.Visible = true;
             this.txtNarration.Text = dt2.Rows[0]["narration"].ToString();
             Session["tblt01"] = this.HiddenSameData(tblt01);
             dgv2.DataSource = (DataTable)Session["tblt01"];
@@ -475,7 +475,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 this.lbtnOk.Text = "New";
                 this.pnlTrans.Visible = true;
-                this.PnlNarration.Visible = true;
+                this.PnlNarration.Visible = false;
                 return;
             }
             this.lbtnOk.Text = "Ok";

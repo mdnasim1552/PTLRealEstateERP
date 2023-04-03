@@ -21,6 +21,7 @@ namespace RealERPWEB.F_21_MKT
     public partial class RptCallCenterLead : System.Web.UI.Page
     {
         ProcessAccess prjData = new ProcessAccess();
+        ProcessAccess instcrm = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -43,6 +44,7 @@ namespace RealERPWEB.F_21_MKT
 
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "SourceWise") ? "Source Wise Leads" : "Sales Person Wise Leads";
                 this.SelectView();
+                this.GetEmployeeList();
 
             }
 
@@ -59,6 +61,25 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        public string GetComeCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+        public void GetEmployeeList()
+        {
+            string comcod = GetComeCode();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_MODULE", "EMPLOYEELIST", "", "", "", "", "", "");
+
+            ddlEmp.DataTextField = "sirdesc";
+            ddlEmp.DataValueField = "sircode";
+            this.ddlEmp.DataSource = ds1.Tables[0];
+            this.ddlEmp.DataBind();
+        }
+        protected void ibtnFindProject_Click(object sender, EventArgs e)
+        {
+            this.GetEmployeeList();
+        }
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
@@ -75,15 +96,146 @@ namespace RealERPWEB.F_21_MKT
                 case "SalespWise":
                     this.PrintCallCenterLeadSalesWise();
                     break;
-
+                case "SPWiseActivity":
+                    this.PersonWiseActivity();
+                    break;
+                case "RptTracking":
+                    this.PersonWiseTracking();
+                    break;
+                case "Conversion":
+                case "ConversionDetails":
+                    this.PersonWiseConversion();
+                    break;
             }
-
-
-
-
 
         }
 
+
+        public void PersonWiseConversion()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string Rptname;
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string Type = this.Request.QueryString["Type"].ToString();
+
+            DataTable dt = new DataTable();
+            if (Type== "Conversion")
+            {
+                dt = (DataTable)Session["Conversion"];
+            }
+            else
+            {
+                dt = (DataTable)Session["ConversionDetails"];
+            }
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseConversionDetails>();
+            LocalReport Rpt1 = new LocalReport();
+            if (Type == "Conversion")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseConversion", lst, null, null);
+                Rptname = "Sales Person Wise Conversion";
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseConversionDetails", lst, null, null);
+                Rptname = "Sales Person Wise Conversion Details";
+            }           
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", toDate));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Rptname", Rptname));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        public void PersonWiseTracking()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string Rptname = "Sales Person Wise Tracking Report";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["RptTracking"];
+
+
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseTracking>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseTracking", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", toDate));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Rptname", Rptname));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+            public void PersonWiseActivity()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();           
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string Rptname = "Sales Person Wise Activity Report";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["SPWiseActivity"];
+
+
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseActivity>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseActivity", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", toDate));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));           
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Rptname", Rptname));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            
+        }
 
         protected void PrintCallCenterLeadSalesWise()
         {
@@ -226,11 +378,215 @@ namespace RealERPWEB.F_21_MKT
                 case "SalespWise":
                     this.ShowSalesPWiseLead();
                     break;
+                case "SPWiseActivity":
+                    this.SPWiseActivity();
+                    break;
+                case "RptTracking":
+                    this.RptTracking();
+                    break;
+                case "Conversion":
+                    this.Conversion();
+                    break;
+                case "ConversionDetails":
+                    this.ConversionDetails();
+                    break;
+            }
+
+        }
+
+        public void Conversion()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_KPICONVERSION", "SHOWKPICONVERSION", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvConversion.DataSource = null;
+                this.gvConversion.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 5;
+            Session["Conversion"] = ds1.Tables[0];
+
+            this.gvConversion.DataSource = ds1.Tables[0];
+            this.gvConversion.DataBind();
+            Session["Report1"] = gvConversion;
+            ((HyperLink)this.gvConversion.HeaderRow.FindControl("hlbtntbCdataExelC")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            return;
+        }
+
+
+        public void ConversionDetails()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_KPICONVERSION", "SHOWKPICONVERSION", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvConversionDetails.DataSource = null;
+                this.gvConversionDetails.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 4;
+            Session["ConversionDetails"] = ds1.Tables[0];
+
+            this.gvConversionDetails.DataSource = ds1.Tables[0];
+            this.gvConversionDetails.DataBind();
+            Session["Report1"] = gvConversionDetails;
+            ((HyperLink)this.gvConversionDetails.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+            FooterCalculationConversionDetails();
+            return;
+        }
+
+
+        public void RptTracking()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_EMP_KPI04", "SHOWTEAMTRACKING", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvRptTracking.DataSource = null;
+                this.gvRptTracking.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 3;
+            Session["RptTracking"] = ds1.Tables[0];
+
+            this.gvRptTracking.DataSource = ds1.Tables[0];
+            this.gvRptTracking.DataBind();
+            FooterCalculationRptTracking();
+            return;
+        }
+        public void SPWiseActivity()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+
+            DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_EMP_KPI04", "SHOWTEAMACTIVITIES", "8301%", frmdate, toDate, emp, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvSPWiseActivity.DataSource = null;
+                this.gvSPWiseActivity.DataBind();
+                return;
+
+            }
+            this.MultiView1.ActiveViewIndex = 2;
+            Session["SPWiseActivity"] = ds1.Tables[0];
+            
+            this.gvSPWiseActivity.DataSource = ds1.Tables[0];
+            this.gvSPWiseActivity.DataBind();
+            FooterCalculationSPWiseActivity();
+            return;
+        }
+
+        private void FooterCalculationConversionDetails()
+        {
+            DataTable dt = (DataTable)Session["ConversionDetails"];
+
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQryCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qry)", "")) ? 0 : dt.Compute("sum(qry)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalcurQryCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curqry)", "")) ? 0 : dt.Compute("sum(curqry)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQryTohldCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qrytohold)", "")) ? 0 : dt.Compute("sum(qrytohold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQryTolostCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qrytolost)", "")) ? 0 : dt.Compute("sum(qrytolost)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQryToleadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qrytolead)", "")) ? 0 : dt.Compute("sum(qrytolead)", ""))).ToString("#,##0;(#,##0); ");
+                //((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQryToleadperCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qrytoleadper)", "")) ? 0 : dt.Compute("sum(qrytoleadper)", ""))).ToString("#,##0;(#,##0); ");
+                            
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalLeadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lead)", "")) ? 0 : dt.Compute("sum(lead)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalcurLeadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curlead)", "")) ? 0 : dt.Compute("sum(curlead)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalLeadTohldCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leadtohold)", "")) ? 0 : dt.Compute("sum(leadtohold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalLeadTolostCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leadtolost)", "")) ? 0 : dt.Compute("sum(leadtolost)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalLeadToqleadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leadtoqlead)", "")) ? 0 : dt.Compute("sum(leadtoqlead)", ""))).ToString("#,##0;(#,##0); ");
+                //((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalLeadToqleadperCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leadtoqleadper)", "")) ? 0 : dt.Compute("sum(leadtoqleadper)", ""))).ToString("#,##0;(#,##0); ");
+                            
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalQLeadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qlead)", "")) ? 0 : dt.Compute("sum(qlead)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalcurQLeadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curqlead)", "")) ? 0 : dt.Compute("sum(curqlead)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalqLeadTohldCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qleadtohold)", "")) ? 0 : dt.Compute("sum(qleadtohold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalqLeadTolostCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qleadtolost)", "")) ? 0 : dt.Compute("sum(qleadtolost)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalqLeadToqleadCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qleadtonego)", "")) ? 0 : dt.Compute("sum(qleadtonego)", ""))).ToString("#,##0;(#,##0); ");
+                //((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalqLeadToNegoperCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qleadtonegoper)", "")) ? 0 : dt.Compute("sum(qleadtonegoper)", ""))).ToString("#,##0;(#,##0); ");
+                           
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalnegoCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(nego)", "")) ? 0 : dt.Compute("sum(nego)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalcurnegoCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(curnego)", "")) ? 0 : dt.Compute("sum(curnego)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalNegoTohldCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(negotohold)", "")) ? 0 : dt.Compute("sum(negotohold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalnegoTolostCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(negotolost)", "")) ? 0 : dt.Compute("sum(negotolost)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalnegoToWinCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(negotowin)", "")) ? 0 : dt.Compute("sum(negotowin)", ""))).ToString("#,##0;(#,##0); ");
+                //((Label)this.gvConversionDetails.FooterRow.FindControl("lbltotalnegoToWinperCD")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(negotowinper)", "")) ? 0 : dt.Compute("sum(negotowinper)", ""))).ToString("#,##0;(#,##0); ");
 
             }
 
+            else
+            {
+                return;
+            }
+        }
 
 
+        private void FooterCalculationRptTracking()
+        {
+
+            DataTable dt = (DataTable)Session["RptTracking"];
+
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalsold")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(sold)", "")) ? 0 : dt.Compute("sum(sold)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalsoldamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(soldamt)", "")) ? 0 : dt.Compute("sum(soldamt)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalleads")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(leads)", "")) ? 0 : dt.Compute("sum(leads)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvRptTracking.FooterRow.FindControl("lgvtotalnoofcusoverpay")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(noofcusoverpay)", "")) ? 0 : dt.Compute("sum(noofcusoverpay)", ""))).ToString("#,##0;(#,##0); ");
+
+            }
+
+            else
+            {
+                return;
+            }
+
+        }
+        private void FooterCalculationSPWiseActivity()
+        {
+
+            DataTable dt = (DataTable)Session["SPWiseActivity"];
+
+            if (dt.Rows.Count > 0)
+            {
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalcall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(call)", "")) ? 0 : dt.Compute("sum(call)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalfirstmeet")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(firstmeeting)", "")) ? 0 : dt.Compute("sum(firstmeeting)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lgvtotalflowmeet")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(followupmeeting)", "")) ? 0 : dt.Compute("sum(followupmeeting)", ""))).ToString("#,##0;(#,##0); ");
+
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalvisit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(firstvisit)", "")) ? 0 : dt.Compute("sum(firstvisit)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalflowupvisit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(followupvisit)", "")) ? 0 : dt.Compute("sum(followupvisit)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvSPWiseActivity.FooterRow.FindControl("lbltotalfooter")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(total)", "")) ? 0 : dt.Compute("sum(total)", ""))).ToString("#,##0;(#,##0); ");
+
+            }
+
+            else
+            {
+                return;
+            }
 
         }
         private void ShowSourceWiseLead()
@@ -253,12 +609,14 @@ namespace RealERPWEB.F_21_MKT
 
             }
 
+
             Session["tblCallCenter"] = HiddenSameData(ds1.Tables[0]);
             ViewState["tblCalldesc"] = ds1.Tables[1];
             this.Data_Bind();
 
 
         }
+        
 
         private void ShowSalesPWiseLead()
         {

@@ -1,28 +1,72 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard03.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard03" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
-     <script type="text/javascript">
-         $(document).ready(function () {
-             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-         });
-         function pageLoaded() {
-             try {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-                 $("#btnInterface").click(function () {
-                     //specify your URL here..
-                     window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
-                 });
-                 $("#btnSalesFunnel").click(function () {
-                     window.location.href = '../F_21_Mkt/RptSalesFunnel';
-                 });
+            //var date = new Date();
 
-             }
-             catch (e) {
+            //var day = ("0" + date.getDate()).slice(-2);
+            //var month = ("0" + (date.getMonth() + 1)).slice(-2);
 
-             }
-         };
-     </script>
+            //var today = date.getFullYear() + "-" + (month) + "-" + (day);
+
+            //$('#TxtFdate').val(today);
+            //$('#TxtTdate').val(today);
+            $(document).on("change", "#DdlDateType", function () {
+                // $("#DdlDateType").change(function () {
+                var status = this.value;
+                // alert(status);
+                if (status == "7") {
+                    $("#exampleModalSm").modal("toggle");
+                }
+
+            });
+            $('.po-markup > .po-link').popover({
+                sanitize: false,
+                html: true,
+                trigger: 'click',
+                // must have if HTML is contained in popover
+
+                // get the title and conent
+                title: function () {
+                    return $(this).parent().find('.po-title').html();
+                },
+                content: function () {
+                    return $(this).parent().find('.po-body').html();
+                },
+
+                container: 'body',
+                placement: 'bottom'
+
+            });
+        });
+        function pageLoaded() {
+            try {
+
+                $("#btnInterface").click(function () {
+                    //specify your URL here..
+                    window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
+                });
+                $("#btnSalesFunnel").click(function () {
+                    window.location.href = '../F_21_Mkt/RptSalesFunnel';
+                });
+
+            }
+            catch (e) {
+
+            }
+        };
+    </script>
+    <style>
+        .popover {
+            min-width: 27%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -34,10 +78,58 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="form-group mb-0 mw-170px">
+
+
+
+
+                                        <div class="form-group mb-0 mw-170px  po-markup">
                                             <label for="form-date-range" class="form-label">
-                                                Date</label>
-                                            <select class="form-select" id="form-date-range">
+                                                Date
+                                            </label>
+
+                                            <asp:DropDownList ID="DdlDateType" runat="server" ClientIDMode="Static" class="form-select">
+                                                <asp:ListItem Value="0">Today</asp:ListItem>
+                                                <asp:ListItem Value="1">Yesterday</asp:ListItem>
+                                                <asp:ListItem Value="2">Last 7 Days</asp:ListItem>
+                                                <asp:ListItem Value="3">This Month</asp:ListItem>
+                                                <asp:ListItem Value="4">Last Month</asp:ListItem>
+                                                <asp:ListItem Value="5">This Year</asp:ListItem>
+                                                <asp:ListItem Value="6">last Year</asp:ListItem>
+                                                <asp:ListItem Value="7">Custom</asp:ListItem>
+
+                                            </asp:DropDownList>
+
+                                            <a href="#" class="po-link pull-right"></a>
+                                            <div class="po-content d-none">
+                                                <div class="po-title">
+                                                    Select Date 
+                   
+                                                </div>
+                                                <!-- ./po-title -->
+
+                                                <div class="po-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <asp:Label ID="Label1" runat="server">From</asp:Label>
+                                                            <input type="date" id="TxtFdate" runat="server" class="form-control">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <asp:Label ID="Label2" runat="server">To</asp:Label>
+                                                            <input type="date" id="TxtTdate" runat="server" class="form-control">
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <br />
+                                                            <button type="button" onclick='$(".po-link").trigger("click")' style="float: right;" class="btn btn-primary btn-sm">SET</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- ./po-body -->
+                                            </div>
+                                            <!-- ./po-content -->
+
+                                            <%-- <select class="form-select" id="form-date-range">
                                                 <option>Today</option>
                                                 <option>Yesterday</option>
                                                 <option>Last 7 Days</option>
@@ -46,7 +138,7 @@
                                                 <option>This Year</option>
                                                 <option>last Year</option>
                                                 <option>Custom</option>
-                                            </select>
+                                            </select>--%>
                                         </div>
                                     </div>
                                     <div class="col-8">
@@ -58,10 +150,10 @@
                                                 <option>Nayem</option>
                                                 <option>Forid</option>
                                             </select>
-                                            <button
-                                                class="form-select-group-prepend btn btn-primary">
+                                            <asp:LinkButton ID="LbtnOk" OnClick="LbtnOk_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
                                                 Apply
-                                            </button>
+                                            </asp:LinkButton>
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +180,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-warning">
-                                            <div class="card-title">100</div>
+                                            <div class="card-title" id="Widget_Query" runat="server"></div>
                                             <div class="card-subtitle">Query</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -104,7 +196,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-purple">
-                                            <div class="card-title">50</div>
+                                            <div class="card-title" id="Widget_Lead" runat="server"></div>
                                             <div class="card-subtitle">Lead</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -125,7 +217,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-primary">
-                                            <div class="card-title">40</div>
+                                            <div class="card-title" id="Widget_QLead" runat="server"></div>
                                             <div class="card-subtitle">Qualified Lead</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -146,7 +238,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-success">
-                                            <div class="card-title">30</div>
+                                            <div class="card-title" id="Widget_Nego" runat="server"></div>
                                             <div class="card-subtitle">Negotiation</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -167,7 +259,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-success">
-                                            <div class="card-title">30</div>
+                                            <div class="card-title" id="Widget_Sold" runat="server"></div>
                                             <div class="card-subtitle">Sold</div>
                                         </div>
                                     </div>
@@ -176,7 +268,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-primary">
-                                            <div class="card-title">20</div>
+                                            <div class="card-title" id="Widget_Hold" runat="server"></div>
                                             <div class="card-subtitle">Hold</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -197,7 +289,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-purple">
-                                            <div class="card-title">20</div>
+                                            <div class="card-title" id="Widget_close" runat="server"></div>
                                             <div class="card-subtitle">Close</div>
                                             <ul class="p-0 mb-0">
                                                 <li class="d-flex">
@@ -218,7 +310,7 @@
                                 <div class="col-6 col-lg-3 mb-3">
                                     <div class="card-color h-100">
                                         <div class="card-body card-light-danger">
-                                            <div class="card-title">10</div>
+                                            <div class="card-title" id="Widget_lost" runat="server">10</div>
                                             <div class="card-subtitle">Lost</div>
                                         </div>
                                     </div>
@@ -243,7 +335,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoScheduleWOrk" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Schedule Work</div>
@@ -257,7 +349,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">100</div>
+                                                            <div class="symbol-label" id="TodoDailyWorkReport" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -273,7 +365,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayVisit" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Visit</div>
@@ -287,7 +379,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedCall" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Call</div>
@@ -303,7 +395,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayTask" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today Task</div>
@@ -317,7 +409,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayWorkLog" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Work Log</div>
@@ -331,7 +423,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedMeetExt" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -349,7 +441,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedVisit" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Visit</div>
@@ -366,7 +458,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayCall" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Call</div>
@@ -383,7 +475,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayMeeting" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Meeting</div>
@@ -400,7 +492,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedMeetInt" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -419,7 +511,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTotalMissedFlowup" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Followup</div>
@@ -975,7 +1067,7 @@
                                         </div>
                                         <div class="card-body pb-0">
                                             <div class="table-responsive">
-                                                <table class="table table-dashed">
+                                                <table class="table table-dashed d-none">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="text-left">Project Name
@@ -1165,6 +1257,121 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+
+                                                <asp:GridView BorderWidth="0" ID="GvPrjsum" AutoGenerateColumns="False"
+                                                    CssClass="table table-dashed" runat="server" AllowPaging="true" PageSize="5" OnPageIndexChanging="GvPrjsum_PageIndexChanging">
+                                                    <RowStyle />
+                                                    <Columns>
+                                                        <asp:TemplateField ControlStyle-CssClass="text-left" HeaderText="Project Name">
+                                                            <ItemTemplate>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div
+                                                                        class="symbol symbol-circle symbol-50px overflow-hidden mr-3">
+                                                                        <a href="#">
+                                                                            <div class="symbol-label">
+                                                                                <img
+                                                                                    src="../assets/new-ui/images/office-building.png"
+                                                                                    alt=""
+                                                                                    class="img-responsive" />
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column">
+                                                                         <a class="fs-3" href="#"><%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjdesc")) %></a>
+                                                                    </div>
+                                                                </div>
+
+                                                             
+                                                            </ItemTemplate>
+                                                             
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ControlStyle-CssClass="text-center bg-light" HeaderText="Inventory">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjinv" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "invtry")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle  CssClass="text-center bg-light" />
+                                                              <HeaderStyle CssClass="text-center bg-light" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center bg-light" HeaderText="Unsold">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjunsold"  runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "unsold")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle CssClass="text-center bg-light" />
+                                                              <HeaderStyle CssClass="text-center bg-light" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Query">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjquery" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "query")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center " HeaderText="Lead">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjLead" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lead")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Q.Lead">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjQLead" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qualiflead")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Negotiation">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjNego" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "nego")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Hold">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjHold" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hold")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Close">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjClose" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lclose")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Lost">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjLost" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lost")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-right " HeaderText="Action">
+                                                            <ItemTemplate>
+                                                               <button class="btn btn-light">View</button>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-right" />
+                                                              <HeaderStyle CssClass="text-right" />
+                                                        </asp:TemplateField>
+
+                                                    </Columns>
+                                                    <PagerStyle CssClass="table-pagination" />
+                                                </asp:GridView>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4">
@@ -1564,6 +1771,46 @@
                     </div>
                 </div>
                 <!-- /.wrapper -->
+            </div>
+            <div id="exampleModalSm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <!-- .modal-dialog -->
+                <div class="modal-dialog modal-sm" role="document">
+                    <!-- .modal-content -->
+                    <div class="modal-content">
+                        <!-- .modal-header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chose Date Range </h5>
+                        </div>
+                        <!-- /.modal-header -->
+                        <!-- .modal-body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label3" runat="server">From</asp:Label>
+                                        <asp:TextBox ID="txtfrmdate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label4" runat="server">To</asp:Label>
+                                        <asp:TextBox ID="txttodate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-body -->
+                        <!-- .modal-footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Set & Close</button>
+                        </div>
+                        <!-- /.modal-footer -->
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

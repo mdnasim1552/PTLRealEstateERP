@@ -105,6 +105,24 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.TextBox txtBillRef;
 
         /// <summary>
+        /// divchkBillStkrPrnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchkBillStkrPrnt;
+
+        /// <summary>
+        /// chkBillStkrPrnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkBillStkrPrnt;
+
+        /// <summary>
         /// lblmsg1 control.
         /// </summary>
         /// <remarks>

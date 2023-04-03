@@ -381,8 +381,8 @@
                         </div>
 
                      <div class="col-md-6">
-                            <asp:Label ID="lblReqNarr" runat="server" Visible="false" CssClass="control-label" Text="Narration"></asp:Label>
-                            <asp:TextBox ID="txtNarr" runat="server" Visible="false" CssClass="form-control form-control-sm" Rows="3" TextMode="MultiLine"></asp:TextBox>
+                            <asp:Label ID="lblReqNarr" runat="server"  CssClass="control-label" Text="Narration"></asp:Label>
+                            <asp:TextBox ID="txtNarr" runat="server"  CssClass="form-control form-control-sm" Rows="3" TextMode="MultiLine"></asp:TextBox>
 
                         </div>
 

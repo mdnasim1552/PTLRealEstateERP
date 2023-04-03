@@ -375,6 +375,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.LinkButton LbtnSearch;
 
         /// <summary>
+        /// LbtnResetAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LbtnResetAll;
+
+        /// <summary>
         /// gvNedBseDetails control.
         /// </summary>
         /// <remarks>

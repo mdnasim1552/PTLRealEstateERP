@@ -1161,7 +1161,7 @@ namespace RealERPWEB.F_34_Mgt
             DataView dv = dt.DefaultView;
             dv.RowFilter = "usrid<>'" + userid + "'";
             //  this.buyername.Text = dv.ToTable().Rows[0]["buyerdesc"].ToString();
-            this.ddlUser.DataTextField = "usrname";
+            this.ddlUser.DataTextField = "usrsname";
             this.ddlUser.DataValueField = "usrid";
             this.ddlUser.DataSource = dv.ToTable();
             this.ddlUser.DataBind();

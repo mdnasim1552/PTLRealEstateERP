@@ -139,13 +139,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string qtype = this.Request.QueryString["Type"] ?? "";
             if (qtype == "MGT")
             {
-            this.gvLvReq.Columns[11].Visible = true;
+            //this.gvLvReq.Columns[11].Visible = true;
 
                 empid = this.ddlEmpName.SelectedValue.ToString() ?? "";
             }
             else
             {
-            this.gvLvReq.Columns[11].Visible = false;
+            //this.gvLvReq.Columns[11].Visible = false;
 
 
                 empid = hst["empid"].ToString();
@@ -343,6 +343,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string usetime = this.txtUseTime.Text.Trim();
             string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
+            if (txtReson == "")
+            {
+                string errMsg = "Please add leave reason.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                return;
+            }
             if (usetime == "00:00:00")
             {
                 string Messaged = "Submit Fail, Use time 00:00";
@@ -625,7 +631,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
             Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PfrintOpt=" +
               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
@@ -748,16 +754,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.btnSave.Enabled = false;
                 this.txtUseTime.Text = "0";
             }
-            else if ((enjtime > remTimeConvt))
-            {
+            //else if ((enjtime > remTimeConvt))
+            //{
        
-                string Messaged = "Your remaning Time exceed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
-                this.btnSave.Enabled = false;
-                this.txtUseTime.Text = "0";
-            }
+            //    string Messaged = "Your remaning Time exceed";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#TimeOffModal", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#newCodeBook').hide();", true);
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "TimeOffModal();", true);
+            //    this.btnSave.Enabled = false;
+            //    this.txtUseTime.Text = "0";
+            //}
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
@@ -802,6 +808,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             //GetRemaningTime();
 
         }
+
+        
     }
 
 }
