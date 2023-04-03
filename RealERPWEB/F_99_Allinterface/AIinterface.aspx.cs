@@ -402,6 +402,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetCollection();
                     this.TasktState.Items[9].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -2362,10 +2363,15 @@ namespace RealERPWEB.F_99_Allinterface
                 string comcod = this.GetCompCode();
                 DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
-                    return;
-
+                    return;                
+                
                 Session["tblinvoicelist"] = ds.Tables[0];
-                this.gv_Invoice.DataSource = ds.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view1 = new DataView();
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = "vounum='00000000000000' ";
+                dt1 = view1.ToTable();
+                this.gv_Invoice.DataSource = dt1;
                 this.gv_Invoice.DataBind();
 
             }
@@ -2374,6 +2380,33 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
         }
+
+        private void GetCollection()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
+                if (ds == null)
+                    return;
+
+                Session["tblinvoicelist"] = ds.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view1 = new DataView();
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = "vounum<>'00000000000000' ";
+                dt1 = view1.ToTable();
+                this.gvCollection.DataSource = dt1;
+                this.gvCollection.DataBind();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+
 
 
         protected void btninvoiceprint_Click(object sender, EventArgs e)
