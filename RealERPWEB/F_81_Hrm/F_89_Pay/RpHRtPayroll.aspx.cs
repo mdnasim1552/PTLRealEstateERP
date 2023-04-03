@@ -192,16 +192,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.CompanyBonus();
                     this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                    this.lblfrmdate.Text = "Date:";
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.lblfrmdate.Text = "Date";
+                    this.divToDate.Visible = false;
                     if (comcod == "3365")
                     {
-                        chckdiff.Visible = true;
+                        this.divChkDiff.Visible = true;
                         this.lbltodate.Text = "Prev. Month";
                         this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        this.lbltodate.Visible = true;
-                        this.txttodate.Visible = true;
+                        this.divToDate.Visible = true;
                     }
                     break;
                 case "Payslip":
@@ -269,9 +267,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.CompanyBonus();
                     this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                    this.lblfrmdate.Text = "Date:";
-                    this.lbltodate.Visible = false;
-                    this.txttodate.Visible = false;
+                    this.lblfrmdate.Text = "Date";
+                    this.divToDate.Visible = false;
                     this.GetDesignation();
                     break;
             }
@@ -541,6 +538,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3101":
                 case "3366":
                     this.rbtlBonSheet.SelectedIndex = 16;
+                    break;
+
+                case "3374"://Angan Properties
+                case "3376"://Angan Development
+                    this.rbtlBonSheet.SelectedIndex = 17;
                     break;
 
                 default://Bridge  , Terranova        
@@ -1006,7 +1008,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BONLOCK", monthid, compBranch, "", "", "", "", "", "", "");
             this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
             string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
-                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : (this.rbtlBonSheet.SelectedIndex == 16) ? "EMPBONUSLANCO": "EMPBONUSGEN";
+                : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" 
+                : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : (this.rbtlBonSheet.SelectedIndex == 16) ? "EMPBONUSLANCO": (this.rbtlBonSheet.SelectedIndex == 17) ? "EMPBONUSANGAN" : "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
@@ -1059,8 +1062,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
             }
             DataTable dt = this.HiddenSameData(ds3.Tables[0]);
-
-            //DataTable dt = ds3.Tables[0];
             Session["tblpay"] = dt;
             this.LoadGrid();
         }
@@ -1303,12 +1304,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string comcod = this.GetCompCode();
                 DataTable dt = (DataTable)Session["tblpay"];
 
-                ////dt = (DataTable)(this.HiddenSameData(Session["tblpay"]));
-
-                //DataTable dt2 = this.HiddenSameData(dt);
-
-
-
                 string type = this.Request.QueryString["Type"].ToString().Trim();
                 switch (type)
                 {
@@ -1402,6 +1397,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //else
                         //    this.gvpayroll.FooterRow.FindControl("lnkFiUpdate").Visible = true;
                         break;
+
                     case "Bonus":
                         this.gvBonus.Columns[9].HeaderText = (this.rbtlBonSheet.SelectedIndex == 2) ? "Duration(Day)" : "Joining Date";
                         if (comcod == "3365")//BTI
@@ -1414,21 +1410,23 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.gvBonus.Columns[13].HeaderText = "MGT Approved";
                         }
 
-
-
-
                         this.gvBonus.DataSource = dt;
                         this.gvBonus.DataBind();
-                        ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
 
-                        if (Request.QueryString["Entry"].ToString() == "Payroll")
+                        if(dt.Rows.Count > 0)
                         {
-                            ((LinkButton)this.gvBonus.FooterRow.FindControl("lnkUpBonus")).Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
-                            ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Enabled = false;
-                            this.gvBonus.Columns[1].Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
-                        }
-                        this.FooterCalculation();
+                            ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked = (this.lblComBonLock.Text == "True") ? true : false;
+
+                            if (Request.QueryString["Entry"].ToString() == "Payroll")
+                            {
+                                ((LinkButton)this.gvBonus.FooterRow.FindControl("lnkUpBonus")).Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
+                                ((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Enabled = false;
+                                this.gvBonus.Columns[1].Visible = (((CheckBox)this.gvBonus.FooterRow.FindControl("chkbonLock")).Checked) ? false : true;
+                            }
+                            this.FooterCalculation();
+                        }                       
                         break;
+
                     case "CashPay":
                         this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvcashpay.DataSource = dt;
@@ -3907,8 +3905,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     case "3354"://Edison
                         this.PrintBonusEdison();
                         break;
+
                     case "3368"://Edison
                         this.PrintBonusFinlay();
+                        break;
+
+                    case "3374"://Angan Properties
+                    case "3376"://Angan Development
+                        this.PrintBonusAngan();
                         break;
 
                     default:
@@ -3919,6 +3923,39 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
 
+        }
+
+        private void PrintBonusAngan()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var lst = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = lst.Select(p => p.bonamt).Sum();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetAngan", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptname", "Festival Bonus of " + bonusType + " for the Year' " + frmdate));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("Inword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void PrintBonusFinlay()
@@ -4973,6 +5010,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
                         dt.Rows[rowindex]["perbon"] = perbonus;
                         dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["tbamt"] = bonamt;
                     }
                     break;
             }
