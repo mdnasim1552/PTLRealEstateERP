@@ -981,7 +981,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.90139in</Top>
             <Height>0.78125in</Height>
-            <Width>7.49999in</Width>
+            <Width>7.49998in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1376,7 +1376,7 @@
         <Height>1.76389in</Height>
         <Style />
       </Body>
-      <Width>7.49999in</Width>
+      <Width>7.49998in</Width>
       <Page>
         <PageHeader>
           <Height>1.03in</Height>
@@ -1407,7 +1407,7 @@
               <Top>0.02167in</Top>
               <Left>1.26458in</Left>
               <Height>0.25in</Height>
-              <Width>6.0625in</Width>
+              <Width>5.45833in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1442,7 +1442,7 @@
               <Top>0.31333in</Top>
               <Left>1.26458in</Left>
               <Height>0.16667in</Height>
-              <Width>6.0625in</Width>
+              <Width>5.46875in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1475,10 +1475,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>RptTitle</rd:DefaultName>
-              <Top>0.51333in</Top>
+              <Top>0.50319in</Top>
               <Left>1.26458in</Left>
               <Height>0.1875in</Height>
-              <Width>6.0625in</Width>
+              <Width>5.46875in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1495,9 +1495,8 @@
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.03062in</Top>
-              <Left>0.06596in</Left>
-              <Height>0.65625in</Height>
-              <Width>1.11806in</Width>
+              <Height>0.90313in</Height>
+              <Width>1.2368in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1529,7 +1528,7 @@
               <Top>0.74625in</Top>
               <Left>1.28124in</Left>
               <Height>0.1875in</Height>
-              <Width>6.0625in</Width>
+              <Width>5.46875in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1591,10 +1590,12 @@
             </Border>
           </Style>
         </PageFooter>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.25in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
-        <BottomMargin>0.25in</BottomMargin>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.35in</LeftMargin>
+        <RightMargin>0.15in</RightMargin>
+        <TopMargin>0.15in</TopMargin>
+        <BottomMargin>0.15in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

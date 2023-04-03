@@ -227,7 +227,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string empname = this.ddlEmpName.SelectedItem.Text;
             string section = this.lblSection.Text;
             string desig = this.lblDesignation.Text;
-            string mon = this.ddlMonth.Text;
+            string mon = this.ddlMonth.SelectedItem.Text.Trim();
             DataTable dt = (DataTable)Session["tblEmpDesc"];
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.RptMonAttnmen>();
 
