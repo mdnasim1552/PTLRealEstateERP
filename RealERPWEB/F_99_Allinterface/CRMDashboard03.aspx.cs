@@ -102,11 +102,14 @@ namespace RealERPWEB.F_99_Allinterface
             //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
             ddlempid = (ddlempid == "000000000000" ? "93" : ddlempid) + "%";
 
-            DataSet ds3 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_CRM_DASHBAORD_INFO", "8301%", Empid, fromdate, todate, condate, ddlempid);
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_CRM_DASHBAORD_INFO", "8301%", Empid, fromdate, todate, condate, ddlempid);
          
-            Session["tblNotification"] = ds3;
+            Session["tblNotification"] = ds1;
             BindWidgetData();
-           
+
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_TODOLOIST_NUMBER", "8301%", Empid, ddlempid, fromdate, todate);
+            Session["tbltodolist"] = ds2;
+            BindToListData();
         }
 
         private void BindWidgetData()
@@ -131,11 +134,50 @@ namespace RealERPWEB.F_99_Allinterface
             //// this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
             //hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
 
+            Bind_Project_Details();
         }
+        private void Bind_Project_Details()
+        {
+            DataSet ds3 = (DataSet)Session["tblNotification"];
+            this.GvPrjsum.DataSource = ds3.Tables[1];
+            this.GvPrjsum.DataBind();
+        }
+         
+        private void BindToListData()
+        {
+            DataSet ds3 = (DataSet)Session["tbltodolist"];
+            if (ds3 == null)
+            {
+                return;
+            }
 
+            this.TodoScheduleWOrk.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
+            this.TodoTodayTask.InnerText = ds3.Tables[0].Rows[0]["tdt"].ToString();
+            this.TodoDailyWorkReport.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
+            this.TodoMissedCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
+            this.TodoMissedVisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
+            this.TodoTodayVisit.InnerText = ds3.Tables[0].Rows[0]["todayvisit"].ToString();
+            this.TodoTodayWorkLog.InnerText = ds3.Tables[0].Rows[0]["ttlactvty"].ToString();
+            this.TodoTodayCall.InnerText = ds3.Tables[0].Rows[0]["todaycall"].ToString();
+            this.TodoTodayMeeting.InnerText = ds3.Tables[0].Rows[0]["todaymeting"].ToString();
+            //this.lblcsigned.InnerText = ds3.Tables[0].Rows[0]["signed"].ToString();
+
+            this.TodoMissedMeetExt.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
+            this.TodoMissedMeetInt.InnerText = ds3.Tables[0].Rows[0]["pmi"].ToString();
+            //this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
+            this.TodoTotalMissedFlowup.InnerText = ds3.Tables[0].Rows[0]["misdflowup"].ToString();
+
+            
+        }
         protected void LbtnOk_Click(object sender, EventArgs e)
         {
             this.GetDashboardInformation();
+        }
+
+        protected void GvPrjsum_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.GvPrjsum.PageIndex = e.NewPageIndex;
+            this.Bind_Project_Details();
         }
     }
 }
