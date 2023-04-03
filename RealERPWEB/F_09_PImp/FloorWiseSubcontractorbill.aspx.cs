@@ -132,12 +132,13 @@ namespace RealERPWEB.F_09_PImp
             string csircode=  this.ddlcontractorlist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlcontractorlist.SelectedValue.ToString() + "%";
             string billtcode=  this.ddlcatagory.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlcatagory.SelectedValue.ToString() + "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCONSTATEMENT", pactcode, csircode, billtcode, "", "", "", "", "", "");
-
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCONSTATEMENT", pactcode, csircode, billtcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
            
                 return;
             }
+            Session["tblflrwisbillForReport"] = ds2.Tables[0];
             Session["tblflrwisbill"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
        
@@ -196,6 +197,33 @@ namespace RealERPWEB.F_09_PImp
             return dt1;
 
         }
+        private DataTable HiddenSameDataReport(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            string csircode = dt1.Rows[0]["csircode"].ToString();
+
+
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["actdesc"] = "";
+                   
+                }
+
+                else
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                }
+
+                
+            }
+            return dt1;
+        }
 
         protected void gvflrwisbill_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -229,7 +257,7 @@ namespace RealERPWEB.F_09_PImp
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            DataTable dt1 = (DataTable)Session["tblflrwisbill"];
+            DataTable dt1 = (DataTable)Session["tblflrwisbillForReport"];//Session["tblflrwisbill"];
             if (dt1==null || dt1.Rows.Count == 0)
                 return;
             var lst = dt1.DataTableToList<RealEntity.C_09_PIMP.SubConBill.RptPrjFloorWiseBill>();
