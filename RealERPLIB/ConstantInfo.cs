@@ -1447,6 +1447,8 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "2303000", "2303250", "RptReceivedList04?", "Type=AllProDuesCollect", "Revenue Status", "Credit Realization", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "2303000", "2303251", "F_23_CR", "RptPrjWiseClientStatus02", "", "Project Wise Clieint Status 02", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303252", "F_23_CR", "RptCustomerInvoice", "", "Customer Invoice", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303262", "F_23_CR", "RptReconcilationLetter", "", "Reconcilation Letter", "Credit Realization", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2302000", "2303253", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonAR", "Month Wise Collection", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303254", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollBuyer", "Month Wise Collection(Buyer & Project)", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303255", "F_23_CR", "RptProjectWiseCollection?", "Type=CollectionStatus", "Project Wise Status(Collection Status)", "Credit Realization", "False", "False", "False", "False" });
@@ -7969,6 +7971,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000005", "14. All Letter", "F_23_CR/RptAllLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "31. Monthly Collection(Receipt Type Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollMerge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "32. Monthly Collection Schedule(Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollSchMerge", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000008", "33. Reconcilation Letter", "F_23_CR/RptReconcilationLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0340000000", "", "", "", true, "" });

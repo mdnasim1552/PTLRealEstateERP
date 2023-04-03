@@ -225,7 +225,7 @@ namespace RealERPWEB.F_09_PImp
             return dt1;
         }
 
-            protected void gvflrwisbill_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvflrwisbill_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvflrwisbill.PageIndex = e.NewPageIndex;
             this.Data_Bind();

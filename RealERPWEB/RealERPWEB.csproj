@@ -2476,6 +2476,7 @@
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
     <Content Include="F_23_CR\RptPaymentStatusdaywise.aspx" />
+    <Content Include="F_23_CR\RptReconcilationLetter.aspx" />
     <Content Include="F_24_CC\CancellationAddWrk.aspx" />
     <Content Include="F_24_CC\CustCycInformation.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
@@ -4854,6 +4855,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptPaymentStatusdaywise.aspx.designer.cs">
       <DependentUpon>RptPaymentStatusdaywise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptReconcilationLetter.aspx.cs">
+      <DependentUpon>RptReconcilationLetter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptReconcilationLetter.aspx.designer.cs">
+      <DependentUpon>RptReconcilationLetter.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_24_CC\CancellationAddWrk.aspx.cs">
       <DependentUpon>CancellationAddWrk.aspx</DependentUpon>
