@@ -339,7 +339,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0901000", "0901001", "F_09_PImp", "PurOpenigBillCon", "", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0901000", "0901010", "F_22_Sal", "SalesCodeBook?Type=RABill", "", "Sub-Contractor R/A Code Book", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902005", "F_09_PImp", "ImplementPlan", "", "Monthly Implementation Plan", "Project Implementaion", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902007", "F_09_PImp", "ImplementPlanWithMaterials", "", "Monthly Implementation Plan with Materials", "Project Implementaion", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0902000", "0902008", "F_09_PImp", "InpPlanTopSheet", "", "Implementation Plan - 360", "Project Implementaion", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902030", "F_09_PImp", "PurIssueEntry?", "Type=Report", "Work Execution-Category Wise", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902055", "F_09_PImp", "PurLabIssue?", "Type=Opening", "Sub-Contractor Bill Opening", "Project Implementation", "False", "False", "False", "False" }); ;
@@ -696,7 +697,11 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1603000", "1603030", "F_16_Bill", "RptProBillStatus?", "Type=Billstatus", "Progress Bill Status", "Billing", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1603000", "1603040", "F_16_Bill", "RptUpconVsSobCon?", "Type=Report", "Upcon Vs Sub-Contractor", "Billing", "False", "False", "False", "False" });
-            //tblObj.Rows.Add(new Object[] { "1603000", "160201502", "RptProBillStatus", "", "Progress Bill Status", "Billing", "False", "False", "False", "False" });;
+
+            tblObj.Rows.Add(new Object[] { "1651000", "1651001", "F_99_Allinterface", "BillingInterface?", "Type=Billing", "Billing", "Billing-Interface", "False", "False", "False", "False" });
+
+
+
             #endregion
 
             // 17. General Account
@@ -1187,6 +1192,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103134", "F_21_MKT", "RptCallCenterLead?", "Type=RptTracking", "Sales Person Wise Tracking", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103135", "F_21_MKT", "RptCallCenterLead?", "Type=SopTimeLine", "SOP Timeline Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103136", "F_21_MKT", "RptSalesEvaulation?", "Type=TeamMember", "Sales Evaulation Report", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103137", "F_21_MKT", "RptCallCenterLead?", "Type=ConversionDetails", "Sales Person Wise Conversion Details", "CRM", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -2018,6 +2024,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "7051000", "7051001", "F_99_Allinterface", "RptServiceInterface", "", "Service Interface", "Service Management", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "7051000", "7051002", "F_99_Allinterface", "BillingInterface?", "Type=SBilling", "Service Billing Interface", "Service Management", "False", "False", "False", "False" });
+
 
             #endregion
 
@@ -2034,6 +2042,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3802000", "3802006", "F_38_AI", "AIInvoiceApproved.aspx?", "Type=Aproved&Invono=", "AI Invoice Aproved", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3802000", "3802004", "F_38_AI", "RptOngoingProjects.aspx?", "Type=Report", "Month Wise Ongoing Projects", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "AI -Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3851000", "3851002", "F_99_Allinterface", "BillingInterface?", "Type=AiBilling", "AI Billing Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
 
             #endregion
 
@@ -5109,7 +5118,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "12. Sub-Contractor Bill Requisition", "F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });//"01. Sub-Contractor Bill Opening", "F_09_PImp/PurOpenigBillCon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "13. Execution 360", "F_09_PImp/WorkExecutionWithIssue?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000014", "14. Sub-Contractor Bill Requisition (Work Wise)", "F_09_PImp/PurLabRequisition02?Type=Entry&prjcode=&genno=&sircode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000017", "15. Monthly Implementation Plan - 360", "F_09_PImp/ImplementPlanWithMaterials", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000018", "15. Implementation Plan - 360", "F_09_PImp/InpPlanTopSheet", "", true, "" });
+
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000012", "", "", "", true, "" });//"02. Sub-Contractor R/A Code Book", "F_22_Sal/SalesCodeBook?Type=RABill", "", true, "" });
@@ -6304,6 +6314,7 @@ namespace RealERPLIB
 
 
 
+            //tblObj.Rows.Add(new Object[] { "1651000", "1651001", "", "", "", "Billing", "", "False", "False", "False", "False" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0401000000", "General Reports", "", "", false, "mb" });
@@ -6316,7 +6327,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "05. Progress Bill Status", "F_41_GAcc/RptProBillStatus?Type=Billstatus&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "05. Upcon Vs Sub-Contractor", "F_16_Bill/RptUpconVsSobCon?Type=Report&prjcode=&Date1=&Date2=", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "05. Billing-Interface", "F_99_Allinterface/BillingInterface?Type=Billing", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0410000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "", "", "", true, "" });
@@ -7513,6 +7524,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "26. Sales Person Wise Tracking", "F_21_MKT/RptCallCenterLead?Type=RptTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "27. SOP Timeline Report", "F_21_MKT/RptCallCenterLead?Type=SopTimeLine", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000015", "28. Sales Evaulation Report", "F_21_MKT/RptSalesEvaulation?Type=TeamMember", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000016", "25. Sales Person Wise Conversion Details", "F_21_MKT/RptCallCenterLead?Type=ConversionDetails", "", true, "" });
 
 
 
