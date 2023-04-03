@@ -1389,7 +1389,8 @@ namespace RealERPWEB.F_17_Acc
             }
             string Data1 = "1703%"; // Update collection 
             string Data2 = "";
-            DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "ASTREALERPMSGDB.dbo.SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", Data1, Data2, "", "", "", "", "", "", "");
+            ProcessAccess _processAccessMsgdb = new ProcessAccess("ASTREALERPMSG");
+            DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", Data1, Data2, "", "", "", "", "", "", "");
           
             string cutname = ds.Tables[0].Rows[0]["custname"].ToString()==""?"": ds.Tables[0].Rows[0]["custname"].ToString();    
             string custphone = ds.Tables[0].Rows[0]["custphone"].ToString()==""?"": ds.Tables[0].Rows[0]["custphone"].ToString();    
@@ -1397,7 +1398,7 @@ namespace RealERPWEB.F_17_Acc
             string payment = ds.Tables[0].Rows[0]["payamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
             string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString()==""?"": Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");    
             string dues = ds.Tables[0].Rows[0]["duesamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
-
+            string recvamt= ds.Tables[0].Rows[0]["trecvamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) ");
             string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
             tempeng = tempeng.Replace("[name]", cutname);
             tempeng = tempeng.Replace("[date]", paymentdate);
@@ -1405,7 +1406,8 @@ namespace RealERPWEB.F_17_Acc
             tempeng = tempeng.Replace("[taka]", chkcramt.ToString("#,##0;(#,##0);"));
             tempeng = tempeng.Replace("[chequeno]", cheqno);           
             tempeng = tempeng.Replace("[duesamt]", dues);
-          
+            tempeng = tempeng.Replace("[recvamt]", recvamt);
+
 
             string  smtext = tempeng;
 
@@ -1414,8 +1416,9 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
 
-                case "3101"://LanCo
+                case "3101"://PTL
                 case "3366"://LanCo
+                case "3354"://Edison
                     resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
                     break;
 

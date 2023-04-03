@@ -207,7 +207,7 @@ namespace RealERPLIB
                 DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
                 string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
                 string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
-                string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apirouid"].ToString().Trim(); //"ASITNAHID";  //Token
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
                 Random rnd1 = new Random(9); //seed value 10
                 string cmsid = rnd1.Next().ToString();
