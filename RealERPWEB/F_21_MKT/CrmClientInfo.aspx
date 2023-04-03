@@ -789,7 +789,7 @@
 
                             switch (comcod) {
                                 case 3101:
-                                    //case 3354:// Edison   
+                                case 3354:// Edison   
 
 
                                     if ($(item).val() == "9601050") {
