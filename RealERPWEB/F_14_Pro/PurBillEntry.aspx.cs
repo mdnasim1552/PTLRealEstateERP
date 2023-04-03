@@ -1150,7 +1150,7 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            if(comcod=="3374" || comcod == "3374")
+            if(comcod=="3374" || comcod == "3376")
             {
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
             }
