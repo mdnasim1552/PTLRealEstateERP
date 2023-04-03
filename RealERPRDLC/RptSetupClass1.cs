@@ -1087,6 +1087,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_91_ACR.RptEmpEvaluation": Rpt1a = RptRptEmpEvaluation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.EmpFinalSettmnt": Rpt1a = SetEmpFinalSettmnt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptEmpMonthPresence": Rpt1a = RptEmpMonthPresence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptEmpMonthattmen": Rpt1a = SetRptEmpMonthattmen(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptIncomeSatatement": Rpt1a = SetRptSalaryIncomeStatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalStatNagad": Rpt1a = SetrptSalStatementNagad(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalSumm": Rpt1a = SetrptRptSalSumm(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -5678,6 +5679,14 @@ namespace RealERPRDLC
 
 
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.BO_ClassLate.MonthlyPresent>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEmpMonthattmen(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.RptMonAttnmen>)RptDataSet));
 
             return Rpt1a;
         }
