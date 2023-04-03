@@ -1011,7 +1011,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Query To Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQryToleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblQryToleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalQryToleadperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1086,7 +1086,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Lead To Qualified Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLeadToqleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblLeadToqleadperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalLeadToqleadperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1161,7 +1161,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qualified Lead To  Nego %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqLeadToNegoperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblqLeadToNegoperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalqLeadToNegoperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1236,7 +1236,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Nego To Win %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnegoTowinperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblnegoTowinperCD" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalnegoToWinperCD" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1286,7 +1286,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Query To Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQryToleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblQryToleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalQryToleadperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1298,7 +1298,7 @@
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Lead To Qualified Lead %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLeadToqleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblLeadToqleadperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalLeadToqleadperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1310,7 +1310,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Qualified Lead To  Nego %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqLeadToNegoperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblqLeadToNegoperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalqLeadToNegoperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1322,7 +1322,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Nego To Win %">                                            
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnegoTowinperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                <asp:Label ID="lblnegoTowinperC" runat="server" Style="text-align: right"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lbltotalnegoToWinperC" runat="server" Font-Bold="True" Font-Size="13px"

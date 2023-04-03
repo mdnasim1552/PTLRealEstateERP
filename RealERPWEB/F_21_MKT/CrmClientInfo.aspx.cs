@@ -6299,7 +6299,7 @@ namespace RealERPWEB.F_21_MKT
                         //Lost, Hold & Close Enabled
                         switch (comcod)
                         {
-                            //   case "3354"://Edison
+                            case "3354"://Edison
                             case "3101"://PTL
                                 //Clost Inactive only Query
                                 if (lstleadstatus == "9501002") //Query
