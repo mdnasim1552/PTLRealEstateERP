@@ -120,7 +120,7 @@
                                     </div>
                                        <div class="col-md-2 mb-3">
                                         <label for="validationTooltip02">
-                                            Time  
+                                          In  Time  
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
