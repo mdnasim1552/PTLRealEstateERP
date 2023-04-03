@@ -103,6 +103,7 @@ namespace RealERPWEB.F_21_MKT
                     this.PersonWiseTracking();
                     break;
                 case "Conversion":
+                case "ConversionDetails":
                     this.PersonWiseConversion();
                     break;
             }
@@ -122,17 +123,33 @@ namespace RealERPWEB.F_21_MKT
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string Rptname = "Sales Person Wise Conversion";
+            string Rptname;
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string Type = this.Request.QueryString["Type"].ToString();
 
-            DataTable dt = (DataTable)Session["Conversion"];
-
-
+            DataTable dt = new DataTable();
+            if (Type== "Conversion")
+            {
+                dt = (DataTable)Session["Conversion"];
+            }
+            else
+            {
+                dt = (DataTable)Session["ConversionDetails"];
+            }
 
             var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseConversionDetails>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseConversion", lst, null, null);
+            if (Type == "Conversion")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseConversion", lst, null, null);
+                Rptname = "Sales Person Wise Conversion";
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptPersonWiseConversionDetails", lst, null, null);
+                Rptname = "Sales Person Wise Conversion Details";
+            }           
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
             Rpt1.SetParameters(new ReportParameter("toDate", toDate));
