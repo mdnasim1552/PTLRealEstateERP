@@ -432,7 +432,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>2</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -470,7 +470,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>3</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1157,10 +1157,10 @@ Amount</Value>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
-or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
+ or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
                                     <Color>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
-or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
+ or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1271,7 +1271,7 @@ or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgco
 or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
                                     <Color>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
-or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
+ or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1312,7 +1312,7 @@ or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgco
 or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
                                     <Color>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
-or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
+ or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1350,7 +1350,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
-or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
+ or Fields!estgcod.Value="09000"),"Bold","Default")</FontWeight>
                                     <Color>=iif((Fields!estgcod.Value="02000" or Fields!estgcod.Value="02005" or Fields!estgcod.Value="03000" or Fields!estgcod.Value="04000" or Fields!estgcod.Value="04005" or Fields!estgcod.Value="05000"
 or Fields!estgcod.Value="05006" or Fields!estgcod.Value="05008" or Fields!estgcod.Value="06000" or Fields!estgcod.Value="06004" or Fields!estgcod.Value="07000" or Fields!estgcod.Value="08000"
 or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black")</Color>
@@ -1409,6 +1409,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2233,7 +2234,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sales Analyses</Value>
+                                  <Value>Sales Analysis</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2676,7 +2677,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3349,7 +3349,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000" or Fields!estgco
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value />
+                                      <Value>9</Value>
                                       <Style>
                                         <FontFamily>cambria</FontFamily>
                                         <FontSize>9pt</FontSize>

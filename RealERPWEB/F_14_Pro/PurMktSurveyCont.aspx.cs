@@ -1486,6 +1486,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)Session["tblt02"];
             DataTable tblreq = (DataTable)Session["tblreq01"];
             DataTable tbl02 = (DataTable)Session["CopyBillCS"];
+            
            
             string comcod = this.GetCompCode();
 
@@ -1517,20 +1518,24 @@ namespace RealERPWEB.F_14_Pro
                         dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                         dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
                         dr1["proposerate"] = 0;
-                        for (int j = 1; j < tbl02.Rows.Count; j++)
+                        if (this.chkbillcscopy.Checked == true)
                         {
-                           
-                            string rsircode = tbl02.Rows[j]["rsircode"].ToString();
-                            string flrcode = tbl02.Rows[j]["flrcod"].ToString();                           
-                            if(rsircode== mResCode2 && flrcode== flrcod )
+                            for (int j = 1; j < tbl02.Rows.Count; j++)
                             {
-                                 rate = tbl02.Rows[j]["resrate1"].ToString();
-                                 rate1 = tbl02.Rows[j]["resrate2"].ToString();
-                                 rate2 = tbl02.Rows[j]["resrate3"].ToString();
+
+                                string rsircode = tbl02.Rows[j]["rsircode"].ToString();
+                                string flrcode = tbl02.Rows[j]["flrcod"].ToString();
+                                if (rsircode == mResCode2 && flrcode == flrcod)
+                                {
+                                    rate = tbl02.Rows[j]["resrate1"].ToString();
+                                    rate1 = tbl02.Rows[j]["resrate2"].ToString();
+                                    rate2 = tbl02.Rows[j]["resrate3"].ToString();
+                                }
+
+
                             }
-
-
                         }
+                      
                         dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
                         dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
                         dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
