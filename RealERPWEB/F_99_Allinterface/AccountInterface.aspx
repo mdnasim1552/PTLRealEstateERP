@@ -945,6 +945,14 @@
 
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Entry Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblentrydat" runat="server"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "entrydat")).ToString("dd-MMM-yyyy") %>'
+                                                            Width="70px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Amount">
                                                     <FooterTemplate>
                                                         <asp:Label ID="lgvFdramt" runat="server" Width="70px"></asp:Label>
@@ -1064,6 +1072,14 @@
 
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Entry Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblentrydat" runat="server"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "entrydat")).ToString("dd-MMM-yyyy") %>'
+                                                            Width="70px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Cheque No">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvchqno" runat="server" BackColor="Transparent"
