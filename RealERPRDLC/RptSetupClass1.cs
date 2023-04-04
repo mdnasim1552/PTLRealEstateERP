@@ -740,6 +740,7 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptPersonWiseActivity": SetRptPersonWiseActivity(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptPersonWiseTracking": SetRptPersonWiseTracking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptPersonWiseConversion": SetRptPersonWiseConversion(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptPersonWiseConversionDetails": SetRptPersonWiseConversionDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.ClientLetter": SetRptClientLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptDailyWorkStatus": SetRptDailyWorkStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptLeadStatusTimestamp": SetRptLeadStatusTimestamp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1057,6 +1058,7 @@ namespace RealERPRDLC
                 //Bonus Sheet
                 case "R_81_Hrm.R_89_Pay.RptBankFordLetter": Rpt1a = SetRptBankFord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheet": Rpt1a = SetRptBonusSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptBonusSheetAngan": Rpt1a = SetRptBonusSheetAngan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTro": Rpt1a = SetRptBonusSheetTro(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetTerranova": Rpt1a = SetRptBonusSheetTera(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSheetGreenWood": Rpt1a = SetRptBonusSheetGreenWood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6230,7 +6232,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptBonusSheetAngan(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptBonusSheetBTI(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>)RptDataSet));
@@ -7354,6 +7360,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptPersonWiseConversion(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseConversionDetails>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPersonWiseConversionDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.PersonWiseConversionDetails>)RptDataSet));
             return Rpt1a;

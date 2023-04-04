@@ -35,7 +35,7 @@
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
 
         });
         function pageLoaded() {
@@ -129,14 +129,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-2">
-
-
-                                        <asp:Label ID="lblPreList" runat="server">Prev. List
-                                                                    <asp:LinkButton ID="lbtnPrevVOUList" runat="server" OnClick="lbtnPrevVOUList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
-                                        </asp:Label>
-                                        <asp:DropDownList ID="ddlPrevVOUList" runat="server" CssClass="chzn-select form-control form-control-sm " AutoPostBack="true"></asp:DropDownList>
-                                    </div>
+                                    
 
                                     <div class="col-lg-1">
                                         <asp:Label ID="lblpage0" CssClass="lblTxt lblName" runat="server" Text="Item Search"></asp:Label>
@@ -171,6 +164,14 @@
 
 
                                     </div>
+                                    <div class="col-lg-2">
+
+
+                                        <asp:Label ID="lblPreList" runat="server">Prev. List
+                                                                    <asp:LinkButton ID="lbtnPrevVOUList" runat="server" OnClick="lbtnPrevVOUList_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                                        </asp:Label>
+                                        <asp:DropDownList ID="ddlPrevVOUList" runat="server" CssClass="chzn-select form-control form-control-sm " AutoPostBack="true"></asp:DropDownList>
+                                    </div>
                                      <div class="col-lg-1">
                                         <asp:LinkButton ID="lbtnBack" runat="server" CssClass="btn btn-warning btn-sm mt20" OnClick="lbtnBack_Click">Back</asp:LinkButton>
 
@@ -198,7 +199,7 @@
                                             <asp:Label ID="lblitemList" runat="server" Text="Item List">
                                                 <asp:LinkButton ID="imgbtnSearchItemList" runat="server" OnClick="imgbtnSearchItemList_Click"><i class="fa fa-search "> </i></asp:LinkButton>
                                             </asp:Label>
-                                            <asp:DropDownList ID="ddlitemlist" runat="server" CssClass=" chzn-select fform-control form-control-sm " AutoPostBack="True" OnSelectedIndexChanged="ddlitemlist_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlitemlist" runat="server" CssClass=" chzn-select form-control form-control-sm " AutoPostBack="True" OnSelectedIndexChanged="ddlitemlist_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
 
@@ -228,14 +229,15 @@
                                 OnRowDeleting="gvRptResBasis_RowDeleting">
                                 <PagerSettings PageButtonCount="20" Position="Top" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:CommandField ShowDeleteButton="True" />
+                                                                                                    <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
+
 
                                     <asp:TemplateField HeaderText="Floor Code" Visible="false">
                                         <ItemTemplate>
