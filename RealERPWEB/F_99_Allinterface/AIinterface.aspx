@@ -2479,7 +2479,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnelCollection" runat="server" Visible="false">
                                  <asp:GridView ID="gvCollection" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" >
+                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvCollection_RowDataBound" >
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL # ">
                                             <ItemTemplate>

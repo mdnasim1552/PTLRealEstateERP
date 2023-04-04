@@ -2363,8 +2363,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string comcod = this.GetCompCode();
                 DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
-                    return;                
-                
+                    return;
+
                 Session["tblinvoicelist"] = ds.Tables[0];
                 DataTable dt1 = new DataTable();
                 DataView view1 = new DataView();
@@ -2738,6 +2738,20 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
 
+        }
+
+        protected void gvCollection_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnacollect");
+                string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
+                string customer = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString();
+                string totalamount = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "totalamount")).ToString();
+                //hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Date=" + invoicedate;
+
+            }
         }
     }
 }
