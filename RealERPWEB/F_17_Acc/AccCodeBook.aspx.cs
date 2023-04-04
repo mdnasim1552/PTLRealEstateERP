@@ -72,7 +72,7 @@ namespace RealERPWEB.F_17_Acc
             // Create an event handler for the master page's contentCallEvent event
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
 
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
@@ -620,16 +620,12 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     this.lnkok.Text = "New";
-                    this.ddlCodeBook.Visible = false;
-                    this.ddlCodeBookSegment.Visible = false;
-                    this.lbalterofddl.Visible = true;
-                    this.lbalterofddl0.Visible = true;
                     this.ibtnSrch.Visible = true;
+                    this.LblBookName2.Visible = true;
+                    this.txtsrch.Visible = true;
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
-                    this.LblBookName1.Text = "Code Book:";
-                    this.lbalterofddl.Text = this.ddlCodeBook.SelectedItem.ToString().Trim();
-                    this.lbalterofddl0.Text = "(" + this.ddlCodeBookSegment.SelectedItem.ToString().Trim() + ")";
+                    this.LblBookName1.Text = "Code Book";
                     this.ShowInformation();
 
                 }
@@ -641,9 +637,9 @@ namespace RealERPWEB.F_17_Acc
 
                     this.ddlCodeBook.Visible = true;
                     this.ddlCodeBookSegment.Visible = true;
-                    this.lbalterofddl.Visible = false;
-                    this.lbalterofddl0.Visible = false;
                     this.ibtnSrch.Visible = false;
+                    this.LblBookName2.Visible = false;
+                    this.txtsrch.Visible = false;
                     this.lblPage.Visible = false;
                     this.ddlpagesize.Visible = false;
                     this.grvacc.DataSource = null;
