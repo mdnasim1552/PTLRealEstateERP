@@ -335,6 +335,7 @@ namespace RealERPLIB
         }
         public static DataRow[] PagePermission1(string frmname, DataSet ds)
         {
+            
             if (ds.Tables.Count == 7)
             {
                 frmname = frmname.Substring(frmname.LastIndexOf('/') + 1).Replace(".aspx", "");

@@ -952,6 +952,7 @@
     <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptLeadStatusTimestamp.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptMissFollowup.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptPersonWiseConversionDetails.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptPersonWiseConversion.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptPersonWiseTracking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptPersonWiseActivity.rdlc" />
@@ -1323,6 +1324,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlayExcel.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPayAngan.rdlc" />

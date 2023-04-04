@@ -1318,8 +1318,9 @@ namespace RealERPWEB.F_23_CR
                     {
                         //case "3101": // Pintech                   
                         case "3356": //Intech                    
-                        case "3366": //Intech                    
+                        case "3366": //Lanco                    
                         case "3101": //Intech                    
+                                       
                             this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
                             break;
                         default:
@@ -1391,15 +1392,23 @@ namespace RealERPWEB.F_23_CR
             string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
             bool resultsms;
-            if (comcod == "3366" || comcod=="3101")
+
+            switch (comcod)
             {
-                //sslwireless.com Provider API
-                resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
+                case "3366"://Lanco
+                case "3101"://PT
+                case "3354"://PT
+                    resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
+                    break;
+
+                default:
+                    resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+                    break;
+
+
+
             }
-            else
-            {
-                resultsms = sms.SendSMSClient(comcod, smtext, custphone);
-            }
+            
 
 
             if (resultsms == true)

@@ -645,8 +645,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             int index = row.RowIndex;
 
             string id = ((Label)this.gvLvReq.Rows[index].FindControl("lbllevid")).Text.ToString().Trim();
-            string intime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvstrtdat")).Text.ToString().Trim();
-            string outtime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvenddat")).Text.ToString().Trim();
+            string outtime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvstrtdat")).Text.ToString().Trim();
+            string intime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvenddat")).Text.ToString().Trim();
 
             string usetime = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvDuration")).Text.ToString().Trim(); 
             string applydat= ((Label)this.gvLvReq.Rows[index].FindControl("lblgvaplydat")).Text.ToString().Trim(); 
