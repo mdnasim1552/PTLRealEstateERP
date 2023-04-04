@@ -267,6 +267,24 @@ namespace RealERPWEB.F_02_Fea
         protected global::System.Web.UI.WebControls.GridView gvAgeing;
 
         /// <summary>
+        /// lblgvname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblgvname;
+
+        /// <summary>
+        /// gvsalAnalysis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvsalAnalysis;
+
+        /// <summary>
         /// lblsaleprice control.
         /// </summary>
         /// <remarks>
@@ -292,15 +310,6 @@ namespace RealERPWEB.F_02_Fea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblsalecoreactual;
-
-        /// <summary>
-        /// gvsalAnalysis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvsalAnalysis;
 
         /// <summary>
         /// lblNarr control.
