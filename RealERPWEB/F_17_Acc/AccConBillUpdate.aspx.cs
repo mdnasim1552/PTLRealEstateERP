@@ -373,7 +373,7 @@ namespace RealERPWEB.F_17_Acc
             string aprvtrmid = "";
             string aprvseson = "";
             string aprvdat = "01-jan-1900";
-            string Payto = "";
+            string Payto = this.lblpaytoname.Text.Trim();
             string isunum = "";
             string recndt = "01-Jan-1900";
             string rpcode = "";
