@@ -202,11 +202,11 @@ namespace RealERPWEB.F_22_Sal
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(' Error: " + ex.Message + "');", true);
             }
+
+        
 
 
 
@@ -232,8 +232,8 @@ namespace RealERPWEB.F_22_Sal
 
                 // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
 
-                this.ddlProjectName.Visible = false;
-                this.lblProjectmDesc.Visible = true;
+                //this.ddlProjectName.Visible = false;
+                //this.lblProjectmDesc.Visible = true;
                 //this.lblProjectdesc.Visible = true;
 
                 this.LoadGrid();
@@ -832,11 +832,12 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -853,7 +854,8 @@ namespace RealERPWEB.F_22_Sal
 
             }
             //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Successfully');", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -932,11 +934,12 @@ namespace RealERPWEB.F_22_Sal
 
         protected void lFinalUpdateCost_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -957,8 +960,9 @@ namespace RealERPWEB.F_22_Sal
                     disamt.ToString(), LOAmt.ToString(), "", "", "", "", "", "");
 
             }
-            // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Successfully');", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
             if (ConstantInfo.LogStatus == true)
             {
                 string ddldesc = hst["ddldesc"].ToString();
@@ -972,11 +976,12 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnUpdateCAST_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1000,7 +1005,8 @@ namespace RealERPWEB.F_22_Sal
 
             if (!res)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
 
             }
@@ -1012,7 +1018,8 @@ namespace RealERPWEB.F_22_Sal
 
             if (res == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -1024,7 +1031,8 @@ namespace RealERPWEB.F_22_Sal
 
             if (res == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -1063,7 +1071,8 @@ namespace RealERPWEB.F_22_Sal
             res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "51001", "D", aggrementdate, "", "", "", "", "", "", "", "", "", "");
             if (res == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             string handoverdate = (this.txthandoverdate.Text.Trim() == "") ? "01-jan-1900" : this.txthandoverdate.Text;
@@ -1071,7 +1080,8 @@ namespace RealERPWEB.F_22_Sal
 
             if (res == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             string BookDate = "";
@@ -1089,22 +1099,25 @@ namespace RealERPWEB.F_22_Sal
 
             if (res == false)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
         }
         protected void lUpdatpayment_Click(object sender, EventArgs e)
         {
             //Min Booking
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
@@ -1118,10 +1131,9 @@ namespace RealERPWEB.F_22_Sal
 
             if (!(minbook))
             {
+                msg = "Booking Amount greater or equal Min Booking";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Booking Amount greater or equal Min Booking";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
 
             }
@@ -1198,7 +1210,8 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Successfully');", true);
+                msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
                 if (ConstantInfo.LogStatus == true)
@@ -1212,15 +1225,15 @@ namespace RealERPWEB.F_22_Sal
             }
             else if (a < b || c > d)
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Plz Check... Amount is Overflow !!!!!!');", true);
+                msg = "Plz Check... Amount is Overflow !!!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
 
             }
             else
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Plz Check... Amount is Overflow !!!!!!');", true);
+                msg = "Plz Check... Amount is Overflow !!!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -1441,7 +1454,8 @@ namespace RealERPWEB.F_22_Sal
             }
             catch(Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: "+ ex.Message.ToString();
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(' Error: " + ex.Message.ToString() + "');", true);
             }
            
 
@@ -1509,11 +1523,12 @@ namespace RealERPWEB.F_22_Sal
         protected void lUpdateLoanInfo_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1529,7 +1544,8 @@ namespace RealERPWEB.F_22_Sal
                 MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTLOAN", PactCode, Usircode, Gcode, gtype, Gvalue, "", "", "", "", "", "", "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated ";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -1560,11 +1576,12 @@ namespace RealERPWEB.F_22_Sal
         protected void lUpdateRegis_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            string msg = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1580,7 +1597,8 @@ namespace RealERPWEB.F_22_Sal
                 MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPCUSTREG", PactCode, Usircode, Gcode, reclegdept, protoclient, "", "", "", "", "", "", "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated ";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
         protected void ibtnFindInstallment_Click(object sender, EventArgs e)
         {
@@ -1671,8 +1689,7 @@ namespace RealERPWEB.F_22_Sal
             catch (Exception ex)
             {
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(' Error: " + ex.Message + "');", true);
 
             }
         }
@@ -1767,7 +1784,7 @@ namespace RealERPWEB.F_22_Sal
 
 
             string Proscode = "";
-
+            string msg = "";
             string comcod = objcom.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = ((Label)this.gvSpayment.Rows[e.RowIndex].FindControl("lblgvItmCod")).Text.Trim();//.ToUpper();
@@ -1785,7 +1802,8 @@ namespace RealERPWEB.F_22_Sal
             //  ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Successfully Updated');", true);
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Fail');", true);
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -1795,7 +1813,8 @@ namespace RealERPWEB.F_22_Sal
 
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Fail');", true);
+                msg = "Update Failed .. !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -2124,8 +2143,7 @@ namespace RealERPWEB.F_22_Sal
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(' Error: " + ex.Message + "');", true);
 
 
             }
@@ -2227,8 +2245,7 @@ namespace RealERPWEB.F_22_Sal
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(' Error: " + ex.Message + "');", true);
             }
 
         }
