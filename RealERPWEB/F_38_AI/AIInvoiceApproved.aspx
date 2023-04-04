@@ -109,7 +109,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="A/C Description">
                                         <ItemTemplate>
-                                             <asp:Label ID="lblactcode" runat="server" Width="400px"
+                                             <asp:Label ID="lblactcode" runat="server" Width="250px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
                                             <asp:Label ID="lblactdesc" runat="server" Width="400px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Label>

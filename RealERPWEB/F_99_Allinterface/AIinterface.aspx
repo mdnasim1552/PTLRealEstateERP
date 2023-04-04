@@ -2479,7 +2479,7 @@
                             </asp:Panel>
                             <asp:Panel ID="pnelCollection" runat="server" Visible="false">
                                  <asp:GridView ID="gvCollection" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" >
+                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvCollection_RowDataBound" >
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL # ">
                                             <ItemTemplate>
@@ -2499,6 +2499,9 @@
                                                 </asp:Label>
                                                 <asp:Label ID="lblgvconprjid" runat="server" Font-Bold="True" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjid")) %>'>
+                                                </asp:Label>
+                                                 <asp:Label ID="lblconpactcode" runat="server" Font-Bold="True" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'>
                                                 </asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
