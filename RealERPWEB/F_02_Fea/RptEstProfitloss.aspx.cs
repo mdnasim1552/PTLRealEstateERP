@@ -140,6 +140,9 @@ namespace RealERPWEB.F_02_Fea
 
                 this.lblsaleprice.Visible = true;
                 this.lblsalecore.Visible = true;
+                this.lblNarr.Visible = true;
+                this.txtNarr.Visible = true;
+                this.lblgvname.Visible = true;
                 //this.ProjectCDate();
                 // this.RadioVisibilitytrue
                 return;
@@ -161,6 +164,9 @@ namespace RealERPWEB.F_02_Fea
             this.lblsalecore.Visible = false;
             this.lblNarr.Visible = false;
             this.txtNarr.Visible = false;
+            this.lblgvname.Visible = false;
+
+            
 
 
 
@@ -542,13 +548,14 @@ namespace RealERPWEB.F_02_Fea
                   , costoffundest = 0.00, costoffundactual = 0.00, purvalue = 0.00, comitedval = 0.00, taginday = 0.00,
                   lossest = 0.00, lossactual = 0.00, comitedval2 = 0.00, lossest2 = 0.00,
             costest2 = 0.00, costoffundest5 = 0.00, costoffundest2 = 0.00,
-            costacutal2 = 0.00, costoffundactual5 = 0.00, costoffundactual2 = 0.00, 
-            
-            costoffundest6 = 0.00, costoffundactual6 = 0.00, actualsalvalue=0.00,
-              purincenspcialest = 0.00 , purincenspcialactual = 0.00 , totalpurinspecialest =0.00, totalpurinspecialactual = 0.00,
-               grpcotributionest = 0.00, grpcotributionactual = 0.00, spsalincest = 0.00, spsalincacutal = 0.00, 
-               totalovcostest = 0.00, totalovcostactual = 0.00, fixtsalinvest=0.00, fixtsalinvactual = 0.00;
-        
+            costacutal2 = 0.00, costoffundactual5 = 0.00, costoffundactual2 = 0.00,
+
+            costoffundest6 = 0.00, costoffundactual6 = 0.00, actualsalvalue = 0.00,
+              purincenspcialest = 0.00, purincenspcialactual = 0.00, totalpurinspecialest = 0.00, totalpurinspecialactual = 0.00,
+               grpcotributionest = 0.00, grpcotributionactual = 0.00, spsalincest = 0.00, spsalincacutal = 0.00,
+               totalovcostest = 0.00, totalovcostactual = 0.00, fixtsalinvest = 0.00, fixtsalinvactual = 0.00, costoffundest7 = 0.00,
+            costoffundactual7 = 0.00, costoffundest8 = 0.00, costoffundactual8 = 0.00, costoffundest9 = 0.00, costoffundactual9 = 0.00;
+
 
             TimeSpan tday;
             double NrOfDays = 0.00;
@@ -1096,6 +1103,10 @@ namespace RealERPWEB.F_02_Fea
                     case "07001":
                     case "07002":
                     case "07003":
+                    case "07004":
+                    case "07005":
+                    case "07006":
+
 
 
                         if (Gcode == "07001")
@@ -1165,8 +1176,68 @@ namespace RealERPWEB.F_02_Fea
 
                         }
 
-                        costest2 = costoffundest + costoffundest5 + costoffundest6;
-                        costacutal2 = costoffundactual + costoffundactual5 + costoffundactual6;
+                        else if (Gcode == "07004")
+                        {
+                            DateTime datefrm4 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto5 = Convert.ToDateTime(paymentdate.Trim());
+
+                            tday = datefrm4 - dateto5;
+                            NrOfDays = tday.TotalDays;
+
+
+                            costoffundest7 = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual7 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                            dt.Select("estgcod='07004'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07004'")[0]["estcost"] = costoffundest7;
+                            dt.Select("estgcod='07004'")[0]["actual"] = costoffundactual7;
+                            dt.Select("estgcod='07004'")[0]["balamt"] = costoffundest7 - costoffundactual7;
+
+                        }
+
+                        else if (Gcode == "07005")
+                        {
+                            DateTime datefrm5 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto6 = Convert.ToDateTime(paymentdate.Trim());
+
+                            tday = datefrm5 - dateto6;
+                            NrOfDays = tday.TotalDays;
+
+
+                            costoffundest8 = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual8 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                            dt.Select("estgcod='07005'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07005'")[0]["estcost"] = costoffundest8;
+                            dt.Select("estgcod='07005'")[0]["actual"] = costoffundactual8;
+                            dt.Select("estgcod='07005'")[0]["balamt"] = costoffundest8 - costoffundactual8;
+
+                        }
+
+                        else if (Gcode == "07006")
+                        {
+                            DateTime datefrm6 = Convert.ToDateTime(this.txtCurDate.Text.Trim());
+                            DateTime dateto7 = Convert.ToDateTime(paymentdate.Trim());
+
+                            tday = datefrm6 - dateto7;
+                            NrOfDays = tday.TotalDays;
+
+
+                            costoffundest9 = (costoffund * percnt * .01 * vality) / (360);
+                            costoffundactual9 = (costoffund * percnt * .01 * NrOfDays) / (360); //current date
+
+                            dt.Select("estgcod='07006'")[0]["fundamt"] = costoffund;
+                            dt.Select("estgcod='07006'")[0]["estcost"] = costoffundest9;
+                            dt.Select("estgcod='07006'")[0]["actual"] = costoffundactual9;
+                            dt.Select("estgcod='07006'")[0]["balamt"] = costoffundest9 - costoffundactual9;
+
+                        }
+
+
+
+
+                        costest2 = costoffundest + costoffundest5 + costoffundest6+ costoffundest7+ costoffundest8+ costoffundest9;
+                        costacutal2 = costoffundactual + costoffundactual5 + costoffundactual6+ costoffundactual7+ costoffundactual8+ costoffundactual9;
 
 
                         dt.Select("estgcod='07000'")[0]["fundamt"] = 0.00;
@@ -1469,7 +1540,7 @@ namespace RealERPWEB.F_02_Fea
 
 
                 if (code == "02000" || code == "02005" || code == "03000" || code == "04000" || code == "04005" || code == "05000" ||
-                    code == "05006" || code == "05008" || code == "06000" || code == "06004" || code == "07000" || code == "08000"  || code == "07004"||code=="09000")
+                    code == "05006" || code == "05008" || code == "06000" || code == "06004" || code == "07000" || code == "08000"  ||code=="09000")
                 {
 
                     txtpercnt.Enabled = false;
@@ -1831,6 +1902,65 @@ namespace RealERPWEB.F_02_Fea
 
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+
+        }
+
+        protected void gvsalAnalysis_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Label lblgvItmCode1 = (Label)e.Row.FindControl("lblgvItmCode1");
+            Label lgcResDesc2 = (Label)e.Row.FindControl("lgcResDesc2");
+            Label lblTargetSales = (Label)e.Row.FindControl("lblTargetSales");
+            Label lblSalAnapercnt = (Label)e.Row.FindControl("lblSalAnapercnt");
+
+            Label lbltodaysal = (Label)e.Row.FindControl("lbltodaysal");
+            Label lblPercnt2 = (Label)e.Row.FindControl("lblPercnt2");
+           
+
+            string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "estgcod")).ToString();
+
+            if (code == "")
+            {
+                return;
+            }
+
+
+            if (code == "11001" || code == "11002" || code == "11003" || code == "11005" || code == "11010")
+            {
+
+
+                lgcResDesc2.Font.Bold = true;
+                lblTargetSales.Font.Bold = true;
+                lblSalAnapercnt.Font.Bold = true;
+                lbltodaysal.Font.Bold = true;
+                lblPercnt2.Font.Bold = true;
+
+
+                lgcResDesc2.Style["font-size"] = "12px";
+                lblTargetSales.Style["font-size"] = "12px";
+                lblSalAnapercnt.Style["font-size"] = "12px";
+                lbltodaysal.Style["font-size"] = "12px";
+                lblPercnt2.Style["font-size"] = "12px";
+                
+
+
+
+                //  e.Row.BackColor = System.Drawing.Color.Orange;
+                //e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='green'");
+                //lgcResDesc1.Attributes["style"] = "font-weight:bold; color:maroon;";
+                //txtpercnt.Attributes["style"] = "font-weight:bold; color:maroon;";
+                //txtcostoffund.Attributes["style"] = "font-weight:bold; color:maroon;";
+                //txtestcost.Attributes["style"] = "font-weight:bold; color:maroon;";
+                //txtbuiactual.Attributes["style"] = "font-weight:bold; color:maroon;";
+                //lblsaving.Attributes["style"] = "font-weight:bold; color:maroon; ";
+
+               
+
+
+
+
+
+
+            }
 
         }
     }
