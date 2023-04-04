@@ -576,8 +576,11 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt1 = ds1.Tables[2];
             DataTable dtmrref = ds1.Tables[1];
+            DataTable dtmrrno = ds1.Tables[0];
             string mrfno = dtmrref.Rows[0]["mrfno"].ToString();
             string mrfno1 = dtmrref.Rows[0]["mrfno"].ToString();
+            string mrrno = dtmrrno.Rows[0]["mrrref"].ToString();
+            string mrrno1 = dtmrrno.Rows[0]["mrrref"].ToString();
 
             for (int i = 1; i < dtmrref.Rows.Count; i++)
             {
@@ -591,6 +594,23 @@ namespace RealERPWEB.F_14_Pro
                 }
 
                 mrfno = dtmrref.Rows[i]["mrfno"].ToString();
+
+            }
+
+
+
+            for (int i = 1; i < dtmrrno.Rows.Count; i++)
+            {
+
+                if (dtmrrno.Rows[i]["mrrref"].ToString() == mrrno)
+                    ;
+                else
+                {
+                    mrrno1 = mrrno1 + ", " + dtmrrno.Rows[i]["mrrref"].ToString();
+
+                }
+
+                mrrno = dtmrrno.Rows[i]["mrrref"].ToString();
 
 
 
@@ -671,6 +691,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBilldate", (this.ddlPayType.SelectedValue == "003") ? "Adjustment" : " : " + billrefdate));
             rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillno));
             rpt.SetParameters(new ReportParameter("mprno", "MPR NO  :  " + mrfno1));
+            rpt.SetParameters(new ReportParameter("mrrno", "MRR Ref NO  :  " + mrrno1));
             rpt.SetParameters(new ReportParameter("date", " : " + CurDate1));
             rpt.SetParameters(new ReportParameter("chqdate", (this.ddlPayType.SelectedValue == "003") ? "" : " : " + chqdate));
             rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
@@ -1129,7 +1150,7 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            if(comcod=="3374" || comcod == "3374")
+            if(comcod=="3374" || comcod == "3376")
             {
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
             }

@@ -547,7 +547,8 @@ namespace RealERPWEB.F_04_Bgd
             string comcod = this.GetComeCode();
             string srchTxt = "%";
             DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "ITMCODELIST", srchTxt, userid, "", "", "", "", "", "", "");
-
+            if (ds1 == null)
+                return;
             ViewState["tblItmCod"] = ds1.Tables[0];
 
             this.ddlgroupwrk.DataTextField = "isirdesc1";

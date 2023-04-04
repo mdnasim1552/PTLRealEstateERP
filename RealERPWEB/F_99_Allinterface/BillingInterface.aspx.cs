@@ -123,9 +123,9 @@ namespace RealERPWEB.F_99_Allinterface
         private void Countqty()
         {
             string comcod = this.GetCompCode();
-            string frdate = "01-Jan-2015";
+            //string frdate = "01-Jan-2015";
 
-            //string frdate = "01" + this.txtdate.Text.Trim().Substring(2); //"25-May-2016";
+            string frdate = "01" + this.txtdate.Text.Trim().Substring(2); //"25-May-2016";
             string todate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
             //string endmonth = Convert.ToDateTime(frdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALES_INTERFACE", "SALESDASHBORD_OTH", frdate, todate, "", "", "", "", "", "", "");

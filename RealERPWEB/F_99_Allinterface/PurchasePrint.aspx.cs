@@ -1801,7 +1801,7 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign4 = "Procurement";
             string txtSign5 = "Head Of Construction";
             string txtSign6 = "Cost & Budget";
-            string txtSign7 = "DMD";
+            string txtSign7 = "DMD/CEO";
             string txtSign8 = "Chairman";
 
             var list = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
@@ -4509,6 +4509,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3311": //Rupayan group
                     case "2305": //Rupayan group
                     case "2306": //Rupayan group
+                    case "3101":
                         Reportpath = "~/Report/RptPurchaseOrderRupayon.rdlc";
                         break;
 
@@ -4589,7 +4590,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3370": // cpdl
-                    case "3101": // cpdl                        
+                     // cpdl                        
 
 
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
