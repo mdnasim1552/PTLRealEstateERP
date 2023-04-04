@@ -2500,6 +2500,9 @@
                                                 <asp:Label ID="lblgvconprjid" runat="server" Font-Bold="True" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjid")) %>'>
                                                 </asp:Label>
+                                                 <asp:Label ID="lblconpactcode" runat="server" Font-Bold="True" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'>
+                                                </asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

@@ -2746,10 +2746,10 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnacollect");
-                string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
-                string customer = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString();
+                string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
+                string customer = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
                 string totalamount = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "totalamount")).ToString();
-                //hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Date=" + invoicedate;
+                hlink.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt.aspx?Type=AIBilling&Pactcode=" + prjid + "&Cust=" + customer+"$amt="+ totalamount;
 
             }
         }
