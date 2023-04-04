@@ -1409,7 +1409,6 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2621,7 +2620,9 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox34</rd:DefaultName>
@@ -5265,11 +5266,26 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Narration : </Value>
+                    <Value>Note: </Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>13pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <TextDecoration>Underline</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -5282,6 +5298,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -5291,7 +5308,7 @@ or Fields!estgcod.Value="07004" or Fields!estgcod.Value="09000"),"Brown","Black"
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>5.37708in</Top>
             <Left>0.0125in</Left>
-            <Height>1.32292in</Height>
+            <Height>1.41112in</Height>
             <Width>7.9409in</Width>
             <ZIndex>6</ZIndex>
             <Style>
