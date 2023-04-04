@@ -108,7 +108,7 @@
 
                                             <asp:Label ID="lblcommitedval" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
-                                    <asp:Label ID="lblactualsal" runat="server" CssClass="form-label ml-2" Text="Today Sales Value/Price:" Width="130px"></asp:Label>
+                                           <asp:Label ID="lblactualsal" runat="server" CssClass="form-label ml-2" Text="Today Sales Value/Price:" Width="130px"></asp:Label>
 
                                             <asp:Label ID="lblactualsal1" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
@@ -142,7 +142,7 @@
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
                                 <RowStyle Font-Size="11px" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0"
                                                 runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
@@ -344,28 +344,28 @@
 
                                     <asp:TemplateField HeaderText="Ageing">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvdesc" runat="server" Style="text-align: left" Font-Bold="true" Font-Size="14px"
+                                            <asp:Label ID="lgvdesc" runat="server" Style="text-align: left" Font-Bold="true" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                Width="80px"></asp:Label>
+                                                Width="130px"></asp:Label>
                                         </ItemTemplate>
 
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="14px" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="12px" />
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Days">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgnaginday" runat="server" Style="text-align: right" Font-Size="14px" Font-Bold="true"
+                                            <asp:Label ID="lgnaginday" runat="server" Style="text-align: right" Font-Size="12px" Font-Bold="true"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "aginday")) %>'
-                                                Width="75px"></asp:Label>
+                                                Width="40px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFaginday" runat="server" Font-Bold="True" Font-Size="12px"
                                                 ForeColor="#000" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        <HeaderStyle Font-Bold="true" Font-Size="14px" />
+                                        <HeaderStyle Font-Bold="true" Font-Size="12px" />
 
                                     </asp:TemplateField>
 
@@ -393,28 +393,35 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="col-md-4">
+                        <%--<div class="col-md-4"  >
                             <asp:Label ID="lblsaleprice" runat="server" Text="Break even sales price on Aeging  :" Width="140px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
                             <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
                             <asp:Label ID="lblsalecoreactual" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399"></asp:Label>
 
 
 
-                        </div>
+                        </div>--%>
 
 
 
                     </div>
+                    
+            <div class="row" >
+                <asp:Label ID="lblgvname" runat="server" Font-Bold="True" Font-Size="16px" Text="Sales Analysis :" Font-Underline="true" Visible="false"></asp:Label>
+               
+
+            </div>
                <div class="row">
-                   <asp:GridView ID="gvsalAnalysis" runat="server" AutoGenerateColumns="False"
-                                ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                  <div class="col-md-8">
+                      <asp:GridView ID="gvsalAnalysis" runat="server" AutoGenerateColumns="False"
+                                ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvsalAnalysis_RowDataBound">
                                 <RowStyle Font-Size="11px" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo01"
                                                 runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle
                                             HorizontalAlign="Center" VerticalAlign="Top" />
@@ -517,7 +524,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Percent">
+                                    <asp:TemplateField HeaderText="Percent (%)">
 
                                         <ItemTemplate>
                                             <asp:Label
@@ -529,8 +536,10 @@
                                         </ItemTemplate>
 
                                         <HeaderStyle
-                                            HorizontalAlign="Center" VerticalAlign="Top" />
+                                            HorizontalAlign="Center" VerticalAlign="Top"  />
                                         <ItemStyle HorizontalAlign="Right" />
+                                      
+
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Difference">
@@ -554,32 +563,28 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                  </div>
+
+                  <div class="col-md-4"  >
+                            <asp:Label ID="lblsaleprice" runat="server" Text="Break even sales price on Aeging  :" Width="140px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
+                            <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
+                            <asp:Label ID="lblsalecoreactual" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399"></asp:Label>
+
+
+
+                        </div>
+                   
 
                    </div>
 
                     <div class="row">
                                 <div class="col-md-8">
-                                    <asp:Label ID="lblNarr" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
-                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:Label ID="lblNarr" runat="server" CssClass="lblTxt lblName" Text="Narration :"  Font-Bold="true" Font-Size="16px"  Visible="false"></asp:Label>
+                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Height="140px"  Visible="false"></asp:TextBox>
                                 </div>
                  </div>
 
-                <%--    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Project Image preview</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="" id="imagepreview" class="img img-responsive" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
+                
 
 
                 </div>
