@@ -21,7 +21,7 @@ namespace RealERPWEB.F_34_Mgt
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -30,7 +30,7 @@ namespace RealERPWEB.F_34_Mgt
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.WebControls.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// lblDate control.
@@ -141,12 +141,12 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.View ViewSuncon;
 
         /// <summary>
-        /// Constructor control.
+        /// Contractor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View Constructor;
+        protected global::System.Web.UI.WebControls.View Contractor;
     }
 }
