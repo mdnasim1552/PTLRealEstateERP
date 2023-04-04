@@ -159,7 +159,7 @@
 
 
 
-            <div class="card card-fluid">
+             <div class="card card-fluid" style="min-height:500px;">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-11 col-sm-11 col-lg-11">
