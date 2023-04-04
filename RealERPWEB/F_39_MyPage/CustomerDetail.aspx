@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="CustomerDetail.aspx.cs" Inherits="RealERPWEB.F_39_MyPage.CustomerDetail" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CustomerDetail.aspx.cs" Inherits="RealERPWEB.F_39_MyPage.CustomerDetail" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -213,8 +213,8 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+           <div class="card card-fluid">
+                <div class="card-body">
                     <div class="row" style="display: none;">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
@@ -272,7 +272,7 @@
                                 ShowFooter="True" Width="831px" Visible="True" OnRowDataBound="gvPersonalInfo_RowDataBound">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right; font-size: 12px;"
@@ -343,12 +343,12 @@
                                 </Columns>
 
 
-                                <%--<FooterStyle CssClass="grvFooter" />--%>
+                                <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <FooterStyle BackColor="#23cc94" />
-                                <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" />
+                                <HeaderStyle CssClass="grvHeader" />
+                                <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </div>
                         <div class="col-md-4" id="divAttachedfiles" runat="server">
