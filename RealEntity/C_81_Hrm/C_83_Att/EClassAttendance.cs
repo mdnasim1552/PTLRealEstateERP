@@ -103,5 +103,31 @@ namespace RealEntity.C_81_Hrm.C_83_Att
                     
             }
         }
+        [Serializable]
+        public class RptMonAttnmen
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string leav { get; set; }
+            public string absnt { get; set; }
+            public string hday { get; set; }
+            public DateTime cdate { get; set; }
+            public DateTime offintime { get; set; }
+            public DateTime offouttime { get; set; }
+            public DateTime intime { get; set; }
+            public DateTime outtime { get; set; }
+            public DateTime lnchintime { get; set; }
+            public DateTime lnchouttime { get; set; }
+         
+
+           
+           
+
+
+            public RptMonAttnmen()
+            {
+
+            }
+        }
     }
 }
