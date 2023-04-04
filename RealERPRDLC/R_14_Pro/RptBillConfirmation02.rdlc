@@ -138,7 +138,7 @@
                   <Width>0.81598in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.81579in</Width>
+                  <Width>0.82621in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.82778in</Width>
@@ -319,7 +319,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Chalan No</Value>
+                                  <Value>MRR No</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1037,26 +1037,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="chlnno">
+                        <Textbox Name="mrrno">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!chlnno.Value</Value>
+                                  <Value>=Fields!mrrno.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>chlnno</rd:DefaultName>
+                          <rd:DefaultName>mrrno</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1096,7 +1096,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1621,7 +1621,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.67159in</Height>
-            <Width>13.37667in</Width>
+            <Width>13.38709in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1640,7 +1640,7 @@
           </BackgroundImage>
         </Style>
       </Body>
-      <Width>13.37667in</Width>
+      <Width>13.38709in</Width>
       <Page>
         <PageHeader>
           <Height>1.67153in</Height>
@@ -2346,40 +2346,6 @@
               <Height>0.2125in</Height>
               <Width>1.68347in</Width>
               <ZIndex>20</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="txtProjName10">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!mrrno.Value</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>txtProjName</rd:DefaultName>
-              <Top>1.30486in</Top>
-              <Left>10.69625in</Left>
-              <Height>0.31181in</Height>
-              <Width>2.65917in</Width>
-              <ZIndex>21</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
