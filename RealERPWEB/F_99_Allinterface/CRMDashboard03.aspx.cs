@@ -27,11 +27,12 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.txtfrmdate.Text = Convert.ToDateTime("01-Jan-" + curdate.ToString("yyyy")).ToString("dd-MMM-yyyy");
                 //this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                //this.GetAllSubdata();
-                //this.GETEMPLOYEEUNDERSUPERVISED();
+                this.GetAllSubdata();
+                this.GETEMPLOYEEUNDERSUPERVISED();
                 //this.ModalDataBind();
                 //this.GetComponentData();
                 GetDashboardInformation();
+                GetToDoListInformation();
             }
         }
         public string GetComeCode()
@@ -41,10 +42,107 @@ namespace RealERPWEB.F_99_Allinterface
 
             return (hst["comcod"].ToString());
         }
-        private void GetDashboardInformation()
+        private void GetAllSubdata()
+        {
+            string comcod = GetComeCode();
+            string filter = comcod == "3374" ? "namdesgsec" : "";
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", filter, "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            ViewState["tblsubddl"] = ds2.Tables[0];
+            ViewState["tblstatus"] = ds2.Tables[1];
+            ViewState["tblproject"] = ds2.Tables[2];
+            ViewState["tblcompany"] = ds2.Tables[3];
+            ds2.Dispose();
+        }
+
+        private void GETEMPLOYEEUNDERSUPERVISED()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            ViewState["tblempsup"] = ds1.Tables[0];
+
+            ds1.Dispose();
+
+            DataTable dt1 = (DataTable)ViewState["tblsubddl"];
+            DataTable dtemp = (DataTable)ViewState["tblempsup"];
+            DataView dv;
+            dv = dt1.Copy().DefaultView;
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+           
+            string userrole = hst["userrole"].ToString();
+            string lempid = hst["empid"].ToString();
+            //string empid = (userrole == "1" ? "93" : lempid) + "%";
+            
+            DataTable dtE = new DataTable();
+            dv.RowFilter = ("gcod like '93%'");
+            if (userrole == "1")
+            {
+
+                dtE = dv.ToTable();
+                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+
+            }
+
+            else
+            {
+                DataTable dts = dv.ToTable();
+                var query = (from dtl1 in dts.AsEnumerable()
+                             join dtl2 in dtemp.AsEnumerable() on dtl1.Field<string>("gcod") equals dtl2.Field<string>("empid")
+                             select new
+                             {
+                                 gcod = dtl1.Field<string>("gcod"),
+                                 gdesc = dtl1.Field<string>("gdesc"),
+                                 code = dtl1.Field<string>("code")
+                             }).ToList();
+                dtE = ASITUtility03.ListToDataTable(query);
+                if (dtE.Rows.Count >= 2)
+                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                // if(dtE.Rows.Count>1)
+                //dtE.Rows.Add("000000000000", "Choose Employee..", "");
+            }
+
+            this.ddlEmpid.DataTextField = "gdesc";
+            this.ddlEmpid.DataValueField = "gcod";
+            this.ddlEmpid.DataSource = dtE;
+            this.ddlEmpid.DataBind();
+            if (dtE.Rows.Count >= 2)
+                this.ddlEmpid.SelectedValue = "000000000000";
+
+
+            DataView dv5;
+            dv5 = dt1.DefaultView;
+            dv5.RowFilter = ("gcod like '31%' and code like '2901001%'");
+            DataTable dt = dv5.ToTable();
+            dt.Rows.Add("0000000", "--All--", "");
+            DdlSubSource.DataTextField = "gdesc";
+            DdlSubSource.DataValueField = "gcod";
+            DdlSubSource.DataSource = dt;
+            DdlSubSource.DataBind();
+            DdlSubSource.SelectedValue = "0000000";
+
+            DataView dv6;
+            dv6 = dt1.DefaultView;
+            dv6.RowFilter = ("gcod like '31%' and code like '2901002%'");
+            DataTable dt2 = dv6.ToTable();
+            dt2.Rows.Add("0000000", "--All--", "");
+            DdlSalesSubsource.DataTextField = "gdesc";
+            DdlSalesSubsource.DataValueField = "gcod";
+            DdlSalesSubsource.DataSource = dt2;
+            DdlSalesSubsource.DataBind();
+            DdlSalesSubsource.SelectedValue = "0000000";
+        }
+
+
+        
+
+
+private void GetDashboardInformation()
         {
 
-            string ddlempid = "000000000000";// this.ddlEmpid.SelectedValue.ToString();
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -101,17 +199,84 @@ namespace RealERPWEB.F_99_Allinterface
             }
             //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
             ddlempid = (ddlempid == "000000000000" ? "93" : ddlempid) + "%";
-
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_CRM_DASHBAORD_INFO", "8301%", Empid, fromdate, todate, condate, ddlempid);
+           
+            string mktsource = (this.DdlSubSource.SelectedValue.ToString() == "0000000" ? "%" : this.DdlSubSource.SelectedValue.ToString()) + "%";
+            
+            string salesource = (this.DdlSalesSubsource.SelectedValue.ToString() == "0000000" ? "%" : this.DdlSalesSubsource.SelectedValue.ToString()) + "%";
+         
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_CRM_DASHBAORD_INFO", "8301%", Empid, fromdate, todate, condate, ddlempid,mktsource, salesource);
          
             Session["tblNotification"] = ds1;
             BindWidgetData();
+
+       
+        }
+
+        private void GetToDoListInformation()
+        {
+
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
+            string datetype = DdlDateType.SelectedValue.ToString();
+            string fromdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            switch (datetype)
+            {
+                case "1"://yesterday
+                    fromdate = System.DateTime.Today.AddDays(-1).ToString("dd-MMM-yyyy");
+                    todate = System.DateTime.Today.AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                case "2":// Last Seven day
+                    fromdate = System.DateTime.Today.AddDays(-7).ToString("dd-MMM-yyyy");
+                    todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    break;
+                case "3": // this Month
+                    fromdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    fromdate = "01" + fromdate.Substring(2);
+                    todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+                case "4": // Last month
+                    fromdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    fromdate = "01" + fromdate.Substring(2);
+                    todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+                case "5": // This Year
+                    int year = DateTime.Now.Year;
+                    DateTime firstDay = new DateTime(year, 1, 1);
+                    fromdate = firstDay.ToString("dd-MMM-yyyy");
+
+                    break;
+                case "6": // Last Year
+                    int year1 = DateTime.Now.AddYears(-1).Year;
+                    DateTime firstDaylastyear = new DateTime(year1, 1, 1);
+                    DateTime lastDaylastyear = new DateTime(year1, 12, 31);
+                    fromdate = firstDaylastyear.ToString("dd-MMM-yyyy");
+                    todate = lastDaylastyear.ToString("dd-MMM-yyyy");
+                    break;
+                case "7": // Custom                  
+                    fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                    todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                    break;
+            }
+            string condate = todate;
+            string Empid = "";
+            if (userrole != "1")
+            {
+                Empid = hst["empid"].ToString();
+            }
+            //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
+            ddlempid = (ddlempid == "000000000000" ? "93" : ddlempid) + "%";
 
             DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_TODOLOIST_NUMBER", "8301%", Empid, ddlempid, fromdate, todate);
             Session["tbltodolist"] = ds2;
             BindToListData();
         }
-
         private void BindWidgetData()
         {
             DataSet ds3 = (DataSet)Session["tblNotification"];
@@ -133,6 +298,55 @@ namespace RealERPWEB.F_99_Allinterface
             //string curDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             //// this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
             //hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+
+            string mktsourhtml = "";
+            foreach (DataRow dr in ds3.Tables[2].Rows)
+            {
+                mktsourhtml += "<div class=\"row align-items-center\">"+
+                                                            "<div class=\"col-4 py-0\">"+
+                                                                "<div class=\"progress-label\">"+ dr["leadst"].ToString() + "</div>"+
+                                                            "</div>"+
+                                                            "<div class=\"col-8 py-0\">"+
+                                                                "<div class=\"d-flex align-items-center py-2\">"+
+                                                                    "<div class=\"flex-grow-1\">"+
+                                                                        "<div class=\"progress "+ dr["cssclass"].ToString() + "\">"+
+                                                                            "<div class=\"progress-bar\"  style=\"width: " + dr["percnt"].ToString() + "%\">" +
+                                                                                "<p class=\"progress-percent\">"+ dr["percnt"].ToString() + "%</p>"+
+                                                                            "</div>"+
+                                                                        "</div>"+
+                                                                    "</div>"+
+                                                                    "<div class=\"progress-end\">"+ dr["total"].ToString() + "</div>"+
+                                                                "</div>"+
+                                                            "</div>"+
+                                                        "</div>";
+            }
+         this.MktSourceGraph.InnerHtml = mktsourhtml;
+        this.SearcingMktKey.InnerText = this.DdlSubSource.SelectedItem.ToString()+"("+ ds3.Tables[2].Rows[0]["ttlsts"].ToString() + ")";
+
+
+            string salessourhtml = "";
+            foreach (DataRow dr in ds3.Tables[3].Rows)
+            {
+                salessourhtml += "<div class=\"row align-items-center\">" +
+                                                            "<div class=\"col-4 py-0\">" +
+                                                                "<div class=\"progress-label\">" + dr["leadst"].ToString() + "</div>" +
+                                                            "</div>" +
+                                                            "<div class=\"col-8 py-0\">" +
+                                                                "<div class=\"d-flex align-items-center py-2\">" +
+                                                                    "<div class=\"flex-grow-1\">" +
+                                                                        "<div class=\"progress " + dr["cssclass"].ToString() + "\">" +
+                                                                            "<div class=\"progress-bar\"  style=\"width: " + dr["percnt"].ToString() + "%\">" +
+                                                                                "<p class=\"progress-percent\">" + dr["percnt"].ToString() + "%</p>" +
+                                                                            "</div>" +
+                                                                        "</div>" +
+                                                                    "</div>" +
+                                                                    "<div class=\"progress-end\">" + dr["total"].ToString() + "</div>" +
+                                                                "</div>" +
+                                                            "</div>" +
+                                                        "</div>";
+            }
+            this.SalesSourceGraph.InnerHtml = salessourhtml;
+            this.SearcingSalKey.InnerText = this.DdlSalesSubsource.SelectedItem.ToString() + "(" + ds3.Tables[3].Rows[0]["ttlsts"].ToString() + ")";
 
             Bind_Project_Details();
         }
@@ -178,6 +392,11 @@ namespace RealERPWEB.F_99_Allinterface
         {
             this.GvPrjsum.PageIndex = e.NewPageIndex;
             this.Bind_Project_Details();
+        }
+
+        protected void LbtnSourceSum_Click(object sender, EventArgs e)
+        {
+            GetDashboardInformation();
         }
     }
 }
