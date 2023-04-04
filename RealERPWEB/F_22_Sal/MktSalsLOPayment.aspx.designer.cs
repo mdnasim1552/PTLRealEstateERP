@@ -96,15 +96,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lblSearch;
 
         /// <summary>
-        /// txtsrchunit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchunit;
-
-        /// <summary>
         /// lbtnsrchunit control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnsrchunit;
+
+        /// <summary>
+        /// txtsrchunit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchunit;
 
         /// <summary>
         /// lbtnOk control.
@@ -582,15 +582,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// txtsrchInstallment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchInstallment;
-
-        /// <summary>
         /// ibtnFindInstallment control.
         /// </summary>
         /// <remarks>
@@ -607,6 +598,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlInstallment;
+
+        /// <summary>
+        /// txtsrchInstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchInstallment;
 
         /// <summary>
         /// lbtnAddInstallment control.
