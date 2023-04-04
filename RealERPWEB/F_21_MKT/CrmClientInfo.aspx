@@ -2259,7 +2259,7 @@
                                 if ($(item).val() == data.gdesc1) {
 
                                     $(item).attr("selected", true);
-                                    alert(data.gdesc1);
+                                   
                                 }
 
 
