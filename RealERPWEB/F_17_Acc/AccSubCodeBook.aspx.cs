@@ -338,7 +338,8 @@ namespace RealERPWEB.F_17_Acc
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
                 string unitCode = ((ASTUtility.Left(sircode, 2) == "41") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
                 string mapCode = ((ASTUtility.Left(sircode, 2) == "63") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlMapping")).SelectedValue.ToString().Trim() : "");
-                string csReq = this.chkCsReq.Checked ? "1" : "";
+                string csReq = ((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkgvCsReq")).Checked ? "1" : "";
+                //this.chkgvCsReq.Checked ? "1" : "";
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 

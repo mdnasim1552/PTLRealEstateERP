@@ -118,8 +118,8 @@ namespace RealERPWEB.F_34_Mgt
                     GetConBillAndPay();
                     this.MultiView1.ActiveViewIndex = 4;
                     break; 
-                case "Constructor":  //Shovon
-                    GetConstructorData();
+                case "Contractor":  //Shovon
+                    GetContractorData();
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
 
@@ -265,7 +265,7 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-        public void GetConstructorData()
+        public void GetContractorData()
         {
             string comcod = this.GetCompCode();
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
@@ -289,7 +289,7 @@ namespace RealERPWEB.F_34_Mgt
             var pur_json = jsonSerialiser.Serialize(monthly);
             var pur_json1 = jsonSerialiser.Serialize(top5data);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteConstructorGraph('" + pur_json + "','" + pur_json1 + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteContractorGraph('" + pur_json + "','" + pur_json1 + "')", true);
 
         }
         protected void OkBtn_Click(object sender, EventArgs e)
