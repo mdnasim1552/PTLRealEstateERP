@@ -1036,29 +1036,33 @@ namespace RealERPWEB.F_12_Inv
 
         private void Data_Bind()
         {
+            string comcod = this.GetCompCode();
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
+            if (comcod == "3367")
+            {
+                this.grvacc.Columns[7].HeaderText = "Master Quantity";
+                this.grvacc.Columns[8].HeaderText = "Received Qty";
+                this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[10].HeaderText = "Required Quantity";
+            }
             this.grvacc.PageSize = Convert.ToInt16(this.ddlpagesize.SelectedValue.ToString());
             this.grvacc.DataSource = dt1;
             this.grvacc.DataBind();
 
+            
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
-            string comcod = this.GetCompCode();
+            
+          
 
             switch (comcod)
             {
+                
                 case "3370":
 
                     this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
                     break;
-                case "3367":
-                    this.grvacc.Columns[7].HeaderText = "Master Quantity";
-                    this.grvacc.Columns[8].HeaderText = "Received Qty";
-                    this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
-                    this.grvacc.Columns[10].HeaderText = "Required Quantity";
-                    this.grvacc.Columns[11].Visible = true;
-                    this.grvacc.Columns[12].Visible = true;
-                    break;
+               
 
                 default:
                     this.grvacc.Columns[11].Visible = true;

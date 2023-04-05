@@ -2363,7 +2363,7 @@ namespace RealERPWEB.F_04_Bgd
             string Copypactcode = this.ddlCopyProjectName.SelectedValue.ToString();
             string pactcode = this.ddlProject.SelectedValue.ToString();
             //string withoutqty = this.chkwithoutqty.Checked ? "withoutqty" : "";
-            string check = this.CheckBoxList1.SelectedValue=="0"?"0": this.CheckBoxList1.SelectedValue=="1"?"1":"";
+            string check = this.CheckBoxList1.SelectedValue=="0"? "WithoutQty" : this.CheckBoxList1.SelectedValue=="1"? "WithoutQtyandRate" : "";
             string approval = GetReqApproval();
             bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "INSORUPBGTPROCOPY", Copypactcode, pactcode, check, approval, "", "", "", "", "", "", "", "", "", "", "");
 
