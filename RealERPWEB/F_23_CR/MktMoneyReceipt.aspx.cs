@@ -1472,7 +1472,7 @@ namespace RealERPWEB.F_23_CR
                 {
                     case "3366"://Lanco
                     case "3101"://PT
-                    //case "3354"://PT
+                    case "3354"://PT
                         resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
                         break;
 

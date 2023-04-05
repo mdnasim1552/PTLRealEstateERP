@@ -1418,7 +1418,7 @@ namespace RealERPWEB.F_17_Acc
 
                 case "3101"://PTL
                 case "3366"://LanCo
-              //  case "3354"://Edison
+                case "3354"://Edison
                     resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
                     break;
 
