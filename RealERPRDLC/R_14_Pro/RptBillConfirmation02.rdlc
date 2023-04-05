@@ -319,11 +319,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MRR No</Value>
+                                  <Value>MRR Ref</Value>
                                   <Style>
+                                    <FontStyle>Normal</FontStyle>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1037,14 +1040,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="mrrno">
+                        <Textbox Name="mrrref">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!mrrno.Value</Value>
+                                  <Value>=Fields!mrrref.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1056,7 +1059,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>mrrno</rd:DefaultName>
+                          <rd:DefaultName>mrrref</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
