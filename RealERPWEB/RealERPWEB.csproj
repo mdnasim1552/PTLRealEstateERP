@@ -257,11 +257,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>C:\Users\Admin\Desktop\New folder\Microsoft.ReportViewer.WinForms.dll</HintPath>
-=======
       <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
->>>>>>> a8865d8c953610511a707c8444aabd006886d308
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
