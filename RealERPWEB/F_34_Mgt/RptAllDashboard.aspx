@@ -2510,7 +2510,7 @@
 
         }
 
-        function ExecuteConstructorGraph(purdata, topdata) {
+        function ExecuteContractorGraph(purdata, topdata) {
 
             try {
 
@@ -2742,7 +2742,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Constructor (In Month)',
+                        text: 'Top 5 Sub-Contractor (In Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -2776,7 +2776,7 @@
 
                     "series": [
                         {
-                            "name": "Top Constructor",
+                            "name": "Top Sub-Contractor",
                             "colorByPoint": true,
                             "data": [
                                 {
@@ -2895,7 +2895,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Constructor Outstanding (In Month)',
+                        text: 'Top 5 Sub-Contractor Outstanding (In Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -2929,7 +2929,7 @@
 
                     "series": [
                         {
-                            "name": "Top Constructor Outstanding",
+                            "name": "Top Sub-Contractor Outstanding",
                             "colorByPoint": true,
                             "data": [
                                 {
@@ -2971,7 +2971,7 @@
                         text: ''
                     },
                     subtitle: {
-                        text: 'Top 5 Constructor Payment (In Month)',
+                        text: 'Top 5 Sub-Contractor Payment (In Month)',
                         style: {
                             color: '#44994a',
                             fontWeight: 'bold'
@@ -3005,7 +3005,7 @@
 
                     "series": [
                         {
-                            "name": "Top Constructor Payment",
+                            "name": "Top Sub-Contractor Payment",
                             "colorByPoint": true,
                             "data": [
                                 {
@@ -3987,7 +3987,7 @@
 
 
                             </asp:View>
-                            <asp:View ID="Constructor" runat="server">
+                            <asp:View ID="Contractor" runat="server">
                                 <div class="row">
                                     <div class="col-md-6" style="border: 1px solid #D8D8D8">
                                         <div id="monthbill" style="width: 580px; height: 250px; margin: 0 auto"></div>
