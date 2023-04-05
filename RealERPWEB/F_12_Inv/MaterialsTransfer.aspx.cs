@@ -1030,7 +1030,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             this.FooterCalCulation();
         }
 

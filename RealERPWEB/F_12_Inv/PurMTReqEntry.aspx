@@ -157,7 +157,7 @@
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="lblSpecification" runat="server" CssClass="control-label" Text="Specification"></asp:Label>
-                                <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass="chzn-select form-control form-control-sm">
+                                <asp:DropDownList ID="ddlResSpcf" runat="server" AutoPostBack="true" CssClass="chzn-select form-control form-control-sm">
                                 </asp:DropDownList>
 
 
@@ -691,7 +691,12 @@
                 </div>
             </div>
         </ContentTemplate>
+           <Triggers>
+            <asp:PostBackTrigger ControlID="lnkselect" />
+        </Triggers>
+
     </asp:UpdatePanel>
+
 </asp:Content>
 
 
