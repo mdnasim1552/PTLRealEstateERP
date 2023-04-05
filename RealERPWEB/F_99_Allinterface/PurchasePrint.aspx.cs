@@ -85,6 +85,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.MktReqPrint();
                     break;
 
+
                 case "MktCSPrint":
                     this.MktCSPrint();
                     break;
@@ -4517,7 +4518,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3311": //Rupayan group
                     case "2305": //Rupayan group
                     case "2306": //Rupayan group
-                    case "3101":
+                    //case "3101":
                         Reportpath = "~/Report/RptPurchaseOrderRupayon.rdlc";
                         break;
 
@@ -4612,7 +4613,8 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     default:
-                        Reportpath = "~/Report/RptPurchaseOrder.rdlc";
+                        Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
+                        //Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
                 }
 
