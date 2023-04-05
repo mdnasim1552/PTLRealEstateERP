@@ -2749,7 +2749,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
                 string customer = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
                 string totalamount = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "totalamount")).ToString();
-                hlink.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt.aspx?Type=AIBilling&Pactcode=" + prjid + "&Cust=" + customer+"$amt="+ totalamount;
+                string invno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invno")).ToString();
+                hlink.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt.aspx?Type=AIBilling&Pactcode=" + prjid + "&Cust=" + customer+"&amt="+ totalamount+"&invono="+ invno;
 
             }
         }
