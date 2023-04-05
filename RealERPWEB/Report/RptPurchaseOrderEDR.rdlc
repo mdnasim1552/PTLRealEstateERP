@@ -231,9 +231,8 @@
                                       <Value>PURCHASE ORDER FORM</Value>
                                       <Style>
                                         <FontFamily>cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
-                                        <Color>Firebrick</Color>
+                                        <Color>#1866b2</Color>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -243,10 +242,10 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox34</rd:DefaultName>
-                              <Top>0.05696in</Top>
-                              <Left>3.2331in</Left>
-                              <Height>0.18961in</Height>
-                              <Width>1.51679in</Width>
+                              <Top>0.03335in</Top>
+                              <Left>3.08727in</Left>
+                              <Height>0.21028in</Height>
+                              <Width>1.85012in</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -305,6 +304,7 @@
                           </Style>
                         </Rectangle>
                         <ColSpan>12</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -5899,7 +5899,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.90556in</Height>
+          <Height>1.20278in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -6448,7 +6448,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox134</rd:DefaultName>
-                  <Top>0.55984in</Top>
+                  <Top>0.78484in</Top>
                   <Height>0.1875in</Height>
                   <Width>7.90687in</Width>
                   <ZIndex>14</ZIndex>
@@ -6465,7 +6465,7 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.01389in</Top>
-              <Height>0.89167in</Height>
+              <Height>1.09862in</Height>
               <Width>7.90688in</Width>
               <Style>
                 <Border>
