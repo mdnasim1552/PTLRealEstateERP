@@ -391,6 +391,8 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+
+                   
                         </div>
 
                         <%--<div class="col-md-4"  >
@@ -407,7 +409,7 @@
                     </div>
                     
             <div class="row" >
-                <asp:Label ID="lblgvname" runat="server" Font-Bold="True" Font-Size="16px" Text="Sales Analysis :" Font-Underline="true"></asp:Label>
+                <asp:Label ID="lblgvname" runat="server" Font-Bold="True" Font-Size="16px" Text="Sales Analysis :" Font-Underline="true" Visible="false"></asp:Label>
                
 
             </div>
@@ -565,8 +567,8 @@
                             </asp:GridView>
                   </div>
 
-                  <div class="col-md-4"  >
-                            <asp:Label ID="lblsaleprice" runat="server" Text="Break even sales price on Aeging  :" Width="140px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
+                           <div class="col-md-4"  >
+                            <asp:Label ID="lblsaleprice" runat="server" Text="Break even  sales price<br> on Aeging  :" Width="140px" ForeColor="#ff3300" Font-Size="14px" CssClass="lblTxt lblName" Visible="false"></asp:Label>
                             <asp:Label ID="lblsalecore" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399" Visible="false"></asp:Label>
                             <asp:Label ID="lblsalecoreactual" runat="server" CssClass="smLbl" Font-Bold="true" Font-Size="16px" Width="120px" Font-Underline="true" ForeColor="#cc3399"></asp:Label>
 
@@ -579,8 +581,8 @@
 
                     <div class="row">
                                 <div class="col-md-8">
-                                    <asp:Label ID="lblNarr" runat="server" CssClass="lblTxt lblName" Text="Narration :"  Font-Bold="true" Font-Size="16px"></asp:Label>
-                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Height="140px"></asp:TextBox>
+                                    <asp:Label ID="lblNarr" runat="server" CssClass="lblTxt lblName" Text="Note :"  Font-Bold="true" Font-Size="16px"  Visible="false"></asp:Label>
+                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Height="140px"  Visible="false"></asp:TextBox>
                                 </div>
                  </div>
 

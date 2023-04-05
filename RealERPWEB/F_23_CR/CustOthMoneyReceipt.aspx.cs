@@ -45,7 +45,16 @@ namespace RealERPWEB.F_23_CR
                 Session.Remove("tblfincoll");
                 this.GetComBillnoVisible();
 
-                if (this.Request.QueryString["Type"] == "CustCare" || this.Request.QueryString["Type"] == "Billing")
+                if (this.Request.QueryString["Type"] == "AIBilling")
+                {
+                    lblBalance.Visible = true;
+                    txtBalance.Visible = true;
+                    txtBalance.Text = this.Request.QueryString["amt"];
+
+
+                }
+
+                if (this.Request.QueryString["Type"] == "CustCare" || this.Request.QueryString["Type"] == "Billing" || this.Request.QueryString["Type"] == "AIBilling")
                 {
                     this.chkPrevious.Visible = false;
 
@@ -60,7 +69,6 @@ namespace RealERPWEB.F_23_CR
 
 
                 this.txtSrcPro.Focus();
-                txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
                 string comcod = GetCompCode();
                 if (comcod == "1207") //This Part is Only For Acme Services Only
                 {
@@ -80,20 +88,25 @@ namespace RealERPWEB.F_23_CR
                     {
                         lblBalance.Visible = true;
                         txtBalance.Visible = true;
-                        txtBalance.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["balamt"]).ToString("#,##0.00;-#,##0.00; ");
+                        txtBalance.Text = Convert.ToDouble( ds1.Tables[0].Rows[0]["balamt"]).ToString("#,##0.00;-#,##0.00; ");
                         lblCustomerFromService.Text = ds1.Tables[0].Rows[0]["customerid"].ToString();
 
                     }
 
 
                     this.txtrefid.Text = this.Request.QueryString.AllKeys.Contains("quotid") ? this.Request.QueryString["quotid"].ToString() : "";
-                    this.txtPaidamt.Text = this.Request.QueryString.AllKeys.Contains("qamt") ? Convert.ToDouble(this.Request.QueryString["qamt"].ToString()).ToString("#,##0.00;-#,##0.00; ") : Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
                     this.txtrefid.ReadOnly = true;
                     if (this.Request.QueryString.AllKeys.Contains("quotid"))
                     {
                         this.lbtnOk_Click(null, null);
                     }
 
+                   
+                   
+                        this.txtPaidamt.Text = this.Request.QueryString.AllKeys.Contains("qamt") ? Convert.ToDouble(this.Request.QueryString["qamt"].ToString()).ToString("#,##0.00;-#,##0.00; ") : Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                        txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+
+                    
                 }
             }
         }
@@ -107,6 +120,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "Billing":
                 case "Service":
+                case "AIBilling":
 
                     this.lblbillno.Visible = true;
                     this.ddlbilno.Visible = true;
@@ -209,7 +223,8 @@ namespace RealERPWEB.F_23_CR
             DataRow[] dr1 = dt.Select("actcode='" + pactcode + "'");
             pactcode = dr1[0]["mapactcode"].ToString().Length > 0 ? dr1[0]["mapactcode"].ToString() : pactcode;
             string txtsrchCustomer = "%" + this.txtSrcCustomer.Text + "%";
-            DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCUSTOMERNAME", pactcode, txtsrchCustomer, "", "", "", "", "", "", "");
+            string calltype = this.Request.QueryString["Type"] == "AIBilling" ? "GETAIINFO" : "GETCUSTOMERNAME";
+            DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", calltype, pactcode, txtsrchCustomer, "", "", "", "", "", "", "");
             this.ddlCustomer.DataTextField = "sirdesc";
             this.ddlCustomer.DataValueField = "sircode";
             this.ddlCustomer.DataSource = ds1.Tables[0];
@@ -323,12 +338,13 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue;
             //string Type = this.Request.QueryString["Type"].ToString();
-            string CallType = this.Request.QueryString["Type"].ToString() == "Service" ? "BILLNOWITHBALANCESER" : "BILLNOWITHBALANCE";
+            string CallType = this.Request.QueryString["Type"].ToString() == "Service" ? "BILLNOWITHBALANCESER" : this.Request.QueryString["Type"].ToString() == "AIBilling" ? "AIINVOICE" :"BILLNOWITHBALANCE";
             string usircode = this.ddlCustomer.Items.Count == 0 ? "000000000000" : this.ddlCustomer.SelectedValue.ToString();
 
 
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", CallType, pactcode, usircode, "", "", "", "", "", "", "");
-
+            if (ds1 == null)
+                return;
             this.ddlbilno.DataTextField = "billno1";
             this.ddlbilno.DataValueField = "billno";
             this.ddlbilno.DataSource = ds1.Tables[0];

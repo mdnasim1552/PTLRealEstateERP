@@ -328,7 +328,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Company Rate" Visible="false">
+                                    <asp:TemplateField HeaderText="Company Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvMSRproposerate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
