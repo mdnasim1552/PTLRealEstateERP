@@ -346,7 +346,7 @@
                                             <asp:TextBox ID="txtgvitemcode" runat="server" Font-Size="12px" MaxLength="100"
                                                 Style="border-style: none;"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcode")) %>'
-                                                Width="280px"></asp:TextBox>
+                                                Width="180px"></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lbllgritemcode" runat="server" Font-Size="12px"
@@ -533,11 +533,11 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Mapping" Visible="false">
-                                         <EditItemTemplate>
-                                              <asp:Label ID="lblgvMapDesc" runat="server"
+                                        <EditItemTemplate>
+                                            <asp:Label ID="lblgvMapDesc" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mapdesc")) %>'
                                                 Width="80px"></asp:Label>
-                                           <asp:DropDownList ID="ddlMapping" runat="server" CssClass="form-control form-control-sm chzn-select" Width="80px"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlMapping" runat="server" CssClass="form-control form-control-sm chzn-select" Width="80px"></asp:DropDownList>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblMapDesc" runat="server"
@@ -545,6 +545,23 @@
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+                                    
+                                  <asp:TemplateField HeaderText="Method" Visible="false" >
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblMethod" runat="server" Font-Size="12px" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "method")) == "1" ? "CS" : "" %>'
+                                                Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                       <EditItemTemplate>
+                                            <asp:CheckBox runat="server" ID="chkgvCsReq" Text="CS Required" Width="80" />
+                                            <asp:Label ID="lbleditMethod" runat="server" Font-Size="12px" BackColor="Transparent" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "method")) == "1" ? "CS" : "" %>'
+                                                Width="50px"></asp:Label>
+                                        </EditItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="50px" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
+                                      
                                     </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
@@ -608,7 +625,7 @@
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtresourcecode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="row mb-1">
                                 <label class="col-md-4">Description EN</label>
                                 <div class="col-md-8">
@@ -638,12 +655,17 @@
 
                             <div class="row mb-1">
                                 <label class="col-md-4">Unit </label>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <asp:TextBox ID="txtunit" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
                                     <asp:DropDownList ID="ddlUnits" CssClass="chzn-select form-control" Visible="false" runat="server">
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2 mt-2 text-center" runat="server" id="divChkCsReq" visible="false">
+                                    <div class="form-check">
+                                        <asp:CheckBox runat="server" ID="chkCsReq"  CssClass="form-check-label" Text="CS Required"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 mt-2 text-center">
                                     <label id="chkbod" runat="server" class="switch">
                                         <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
                                         <span class="btn btn-xs slider round"></span>

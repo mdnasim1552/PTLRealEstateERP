@@ -2259,7 +2259,7 @@
                                 if ($(item).val() == data.gdesc1) {
 
                                     $(item).attr("selected", true);
-                                    alert(data.gdesc1);
+                                   
                                 }
 
 
@@ -5068,7 +5068,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal" Width="650px"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 

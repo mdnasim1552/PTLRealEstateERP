@@ -1406,6 +1406,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303118", "F_23_CR", "RptPrjwisecollofSummDetails", "", "Project wise Summary of Collection Details", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303119", "F_23_CR", "RptUtilityAndOtherCollection", "", "Utility & Other Collection", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303124", "F_23_CR", "RptReceivedList02?", "Type=yCollectionDetails", "Yearly Collection Forcasting Details", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2302000", "2302011", "F_23_CR", "CustOthMoneyReceipt?", "Type=AIBilling", "AI Collection ", "Credit Realization", "False", "False", "False", "False" });
 
 
 
