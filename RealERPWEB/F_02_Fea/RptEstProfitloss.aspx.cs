@@ -280,10 +280,10 @@ namespace RealERPWEB.F_02_Fea
             if (dt6.Rows.Count ==0)
             {
                 this.txtNarr.Text = "1. All cost calculation made by based on purchases prices except sales incentive" +
-                              "\n2.Administration Overhead fixed 5 % on purchased value" +
-                              "\n3.Tax Calculated by 30 % on NPBT" +
-                              "\n4.All Percentage(%) calculation based on purchase value" +
-                              "\n5.Product Costing Format will be reviewed after each six months";
+                              "\n2. Administration Overhead fixed 5 % on purchased value" +
+                              "\n3. Tax Calculated by 30 % on NPBT" +
+                              "\n4. All Percentage(%) calculation based on purchase value" +
+                              "\n5. Product Costing Format will be reviewed after each six months";
 
             }
 
@@ -1716,7 +1716,7 @@ namespace RealERPWEB.F_02_Fea
 
                         dt3.Select("estgcod='11003'")[0]["estcost"] = comitedval - tarpurAndB;//02005 change
                         dt3.Select("estgcod='11003'")[0]["tarpercntange"] = actualsalvalue - todaypurAndB;
-                        dt3.Select("estgcod='11003'")[0]["actual"] = actualsalvalue - todaypurAndB;
+                        dt3.Select("estgcod='11003'")[0]["actual"] = 0.00;
 
 
                         // dt.Select("estgcod='02000'")[0]["balamt"] = cost - actual;
