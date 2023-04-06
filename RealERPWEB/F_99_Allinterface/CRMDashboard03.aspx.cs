@@ -33,6 +33,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.GetComponentData();
                 GetDashboardInformation();
                 GetToDoListInformation();
+                GetKPIInformation();
             }
         }
         public string GetComeCode()
@@ -277,6 +278,81 @@ private void GetDashboardInformation()
             Session["tbltodolist"] = ds2;
             BindToListData();
         }
+        private void GetKPIInformation()
+        {
+
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
+            string datetype = DdlDateType.SelectedValue.ToString();
+            string fromdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            switch (datetype)
+            {
+                case "1"://yesterday
+                    fromdate = System.DateTime.Today.AddDays(-1).ToString("dd-MMM-yyyy");
+                    todate = System.DateTime.Today.AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                case "2":// Last Seven day
+                    fromdate = System.DateTime.Today.AddDays(-7).ToString("dd-MMM-yyyy");
+                    todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    break;
+                case "3": // this Month
+                    fromdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    fromdate = "01" + fromdate.Substring(2);
+                    todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+                case "4": // Last month
+                    fromdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    fromdate = "01" + fromdate.Substring(2);
+                    todate = Convert.ToDateTime(fromdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+                case "5": // This Year
+                    int year = DateTime.Now.Year;
+                    DateTime firstDay = new DateTime(year, 1, 1);
+                    fromdate = firstDay.ToString("dd-MMM-yyyy");
+
+                    break;
+                case "6": // Last Year
+                    int year1 = DateTime.Now.AddYears(-1).Year;
+                    DateTime firstDaylastyear = new DateTime(year1, 1, 1);
+                    DateTime lastDaylastyear = new DateTime(year1, 12, 31);
+                    fromdate = firstDaylastyear.ToString("dd-MMM-yyyy");
+                    todate = lastDaylastyear.ToString("dd-MMM-yyyy");
+                    break;
+                case "7": // Custom                  
+                    fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                    todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                    break;
+            }
+            string condate = todate;
+            string Empid = "";
+            if (userrole != "1")
+            {
+                Empid = hst["empid"].ToString();
+            }
+            //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
+            ddlempid = (ddlempid == "000000000000" ? "" : ddlempid) + "%";
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_DASHBOARD", "GET_DASHBOARD_KPI", ddlempid, fromdate, todate);
+            if (ds1 == null)
+                return;
+
+            this.KpiSaleAmt.InnerText= Convert.ToDouble(ds1.Tables[0].Rows[0]["revenueamt"]).ToString("#,##0;");
+            this.KpiTaramt.InnerText = "Target-" + Convert.ToDouble(ds1.Tables[0].Rows[0]["targetamt"]).ToString("#,##0;");
+            this.KpiSalePercnt.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["amtpercnt"]).ToString("#,##0;")+ "%";
+
+            
+            this.KpiSaleAppt.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["saleappt"]).ToString("#,##0;");
+            this.KpiTarAppt.InnerText = "Target-" + Convert.ToDouble(ds1.Tables[0].Rows[0]["targetappt"]).ToString("#,##0;");
+            this.KpiTarPercnt.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["aptpercnt"]).ToString("#,##0;") + "%";
+
+        }
         private void BindWidgetData()
         {
             DataSet ds3 = (DataSet)Session["tblNotification"];
@@ -386,6 +462,7 @@ private void GetDashboardInformation()
         protected void LbtnOk_Click(object sender, EventArgs e)
         {
             this.GetDashboardInformation();
+            this.GetKPIInformation();
         }
 
         protected void GvPrjsum_PageIndexChanging(object sender, GridViewPageEventArgs e)
