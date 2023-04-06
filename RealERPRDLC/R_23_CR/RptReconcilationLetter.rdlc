@@ -105,7 +105,23 @@ as of  </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> of Finlay ...................</Value>
+                    <Value> of Finlay </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!projectName.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -374,6 +390,10 @@ Finlay Properties Limited</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="projectName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -404,6 +424,11 @@ Finlay Properties Limited</Value>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>unit</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>projectName</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
