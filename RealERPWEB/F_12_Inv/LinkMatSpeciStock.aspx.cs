@@ -27,9 +27,9 @@ namespace RealERPWEB.F_12_Inv
 
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS STOCK REPORT ";
-
+               
                 this.lblvalprojectname.Text = this.Request.QueryString["pactdesc"].ToString();
-                this.lblvalmaterial.Text = this.Request.QueryString["rsirdesc"].ToString();
+                //this.lblvalmaterial.Text = this.Request.QueryString["rsirdesc"].ToString();
                 this.lblvaldaterange.Text = "(From " + this.Request.QueryString["frmdate"].ToString() + " To " + this.Request.QueryString["todate"].ToString() + ")";
                 this.MatStock();
 
@@ -63,7 +63,7 @@ namespace RealERPWEB.F_12_Inv
             string usircode = this.Request.QueryString["rsircode"].ToString();
             string fdate = this.Request.QueryString["frmdate"].ToString();
             string tdate = this.Request.QueryString["todate"].ToString();
-            string chalan = this.Request.QueryString["chalan"].ToString();
+            string chalan = this.Request.QueryString["chalan"].ToString()==""?"": this.Request.QueryString["chalan"].ToString();
 
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTINDMATSTOCKWSPC", pactcode, usircode, fdate, tdate, chalan, "", "", "", "");
             if (ds1 == null)
