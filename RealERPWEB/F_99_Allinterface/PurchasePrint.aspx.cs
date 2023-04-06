@@ -4609,12 +4609,13 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3376": 
 
                         Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
+                        Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
                         porderno = ASTUtility.CustomReqFormat(wrkid);
                         break;
 
                     default:
-                        Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
-                        //Reportpath = "~/Report/RptPurchaseOrder.rdlc";
+                        //Reportpath = "~/Report/RptPurchaseOrderEDRold.rdlc";
+                        Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
                 }
 

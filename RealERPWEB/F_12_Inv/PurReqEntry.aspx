@@ -105,7 +105,7 @@
 
 
                                                 </div>
-                                                <div class="col-md-3 pading5px asitCol3">
+                                            <div class="col-md-3 pading5px asitCol3">
 
                                                     <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Req.Date"></asp:Label>
 
@@ -319,17 +319,24 @@
                                                 <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClientClick="return Confirmation();" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvUseDat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                <asp:TextBox ID="txtgvUseDat"  runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
 
-                                                <asp:TextBox ID="txtgvUseDatCal" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" Visible="false"
+
+
+                                              
+                                                <%-- <cc1:CalendarExtender ID="txtgvUseDat_CalendarExtender" runat="server"
+                                                        Format="dd-MMM-yyyy"  PopupButtonID="imgbtn" ></cc1:CalendarExtender>--%>
+
+                                                
+                                                
+                                                <%--<asp:TextBox ID="txtgvUseDatCal" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" Visible="false"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString().Length <= 0 ? DateTime.Now.ToString("dd-MMM-yyyy") 
-                                                        : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "expusedt")).ToString("dd-MMM-yyyy") %>' Width="70px"></asp:TextBox>
+                                                        : Convert.ToString(DataBinder.Eval(Container.DataItem, "expusedt")) %>' Width="70px"></asp:TextBox>--%>
 
-                                                <cc1:CalendarExtender ID="txtgvUseDatCal_CalendarExtender" runat="server"
-                                                    Format="dd-MMM-yyyy" TargetControlID="txtgvUseDatCal"></cc1:CalendarExtender>
+                                                
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
