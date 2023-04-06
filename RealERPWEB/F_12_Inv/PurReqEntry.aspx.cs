@@ -2583,7 +2583,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.ddlCatagory.DataTextField = "catdesc";
             this.ddlCatagory.DataValueField = "catcode";
-            this.ddlCatagory.DataSource = ds1.Tables[3];
+            this.ddlCatagory.DataSource = ds1.Tables[2];
             this.ddlCatagory.DataBind();
             this.ddlResourceBound();
 

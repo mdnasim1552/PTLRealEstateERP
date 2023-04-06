@@ -160,17 +160,17 @@
             <div class="card card-fluid mt-4">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-sm-6 col-md-2 col-lg-2">
                             <div class="form-group">
                                 <asp:Label ID="LblBookName1" runat="server" CssClass="lblTxt lblName" Text="Select Code Book:"></asp:Label>
-                                <asp:DropDownList ID="ddlCodeBook" runat="server" CssClass="form-control form-control-sm chzn-select" Width="265px">
+                                <asp:DropDownList ID="ddlCodeBook" runat="server" CssClass="form-control form-control-sm chzn-select" >
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
                                 <asp:Label ID="LalSubCode" runat="server" CssClass="lblTxt lblName" Text="Level"></asp:Label>
-                                <asp:DropDownList ID="ddlCodeBookSegment" CssClass="form-control form-control-sm chzn-select" runat="server" Width="160px">
+                                <asp:DropDownList ID="ddlCodeBookSegment" CssClass="form-control form-control-sm chzn-select" runat="server" >
                                     <asp:ListItem Value="2">Main Code</asp:ListItem>
                                     <asp:ListItem Value="4">Sub Code-1</asp:ListItem>
                                     <asp:ListItem Value="8">Sub Code-2</asp:ListItem>
@@ -257,6 +257,7 @@
 
                                         <%--data-toggle="modal" data-target="#detialsinfo"--%>
                                     </ItemTemplate>
+                                    <ItemStyle Font-Bold="True" Font-Size="14px" HorizontalAlign="Center" />
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
 
                                     <ItemStyle HorizontalAlign="Left" />
