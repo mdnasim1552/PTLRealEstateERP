@@ -51,7 +51,7 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header">
-                    <div class="row mt-4">
+                    <div class="row ">
                         <div class=" col-md-3 d-none">
                             <asp:Label ID="Label1" CssClass="lblTxt lblName" runat="server" Text="Project Name:"></asp:Label>
                             <asp:TextBox ID="txtSrcPro" runat="server" CssClass=" inputtextbox" TabIndex="0"></asp:TextBox>
@@ -77,11 +77,11 @@
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click" TabIndex="6">Ok</asp:LinkButton>
 
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1 mt-2">
                             <asp:Label ID="lblBalance" CssClass="form-label" runat="server" Text="Balance:" Visible="false"></asp:Label>
                             <asp:Label ID="lblCustomerFromService" CssClass="form-label" runat="server" Visible="false"></asp:Label>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 mt-2">
                             <asp:TextBox ID="txtBalance" runat="server" CssClass="form-control" TabIndex="0" Visible="false" Enabled="false" Style="text-align: right;"></asp:TextBox>
                         </div>
 

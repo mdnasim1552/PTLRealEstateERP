@@ -20,18 +20,18 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
-            $("input, select").bind("keydown", function (event) {
+           <%-- $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
                 var gvisu = $('#<%=this.grvacc.ClientID %>');
                 $.keynavigation(gvisu);
-            });
+            });--%>
             $('.chzn-select').chosen({ search_contains: true });
         }
     </script>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -165,7 +165,7 @@
                         </div>
                         <div class="col-md-2" style="margin-top: 22px;">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkselect_Click">Select</asp:LinkButton>
+                                <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkselect_Click" >Select</asp:LinkButton>
                                 <asp:Label ID="lblVoucherNo" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
                             </div>
@@ -691,7 +691,12 @@
                 </div>
             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>
+      <%--<Triggers>
+            <asp:PostBackTrigger ControlID="lnkselect" />
+        </Triggers>--%>
+
+   </asp:UpdatePanel>
+
 </asp:Content>
 
 

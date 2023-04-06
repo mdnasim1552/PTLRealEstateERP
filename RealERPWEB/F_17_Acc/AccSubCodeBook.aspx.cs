@@ -39,10 +39,10 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                if (dr1.Length==0)
+                if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString() ;
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 this.MappingColVisible();
 
@@ -53,7 +53,7 @@ namespace RealERPWEB.F_17_Acc
         public void CommonButton()
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
-           
+
 
         }
 
@@ -91,7 +91,7 @@ namespace RealERPWEB.F_17_Acc
         private void MappingColVisible()
         {
             string quType = this.Request.QueryString["InputType"].ToString();
-            if(quType=="Marketing")
+            if (quType == "Marketing")
             {
                 this.grvacc.Columns[18].Visible = true;
             }
@@ -133,12 +133,12 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 string Querytype = this.Request.QueryString["InputType"];
-                
+
                 string coderange = (Querytype == "res") ? "sircode like '[0-9]%'" : (Querytype == "Overhead") ? "sircode like '0[89]%'  or  sircode like '1[0-9]%' or sircode like '20%'"
                    : (Querytype == "Assets") ? "sircode like '2[1-9]%'" : (Querytype == "Liabilities") ? "sircode like '31%'" : (Querytype == "HOverhead") ? "sircode like '32%'"
                    : (Querytype == "Wrkschedule") ? "sircode like '4[1-5]%'" : (Querytype == "UnitCode") ? "sircode like '5[1-9]%'" : (Querytype == "customer") ? "sircode like '6[1-9]%'"
                    : (Querytype == "Marketing") ? "sircode like '63%'"
-                   : (Querytype == "Subcontractor") ? "sircode like '98%'"  : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
+                   : (Querytype == "Subcontractor") ? "sircode like '98%'" : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
                    : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'" : (Querytype == "MatLab") ? "sircode like '0[1-4]%'"
                    : (Querytype == "Employee") ? "sircode like '93%'" : (Querytype == "DeptCode") ? "sircode like '94%'" : "sircode like '%'";
 
@@ -214,6 +214,8 @@ namespace RealERPWEB.F_17_Acc
             int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
             string actcode = ((DataTable)Session["storedata"]).Rows[rowindex]["actcode"].ToString();
             string mapcode = ((DataTable)Session["storedata"]).Rows[rowindex]["mapcode"].ToString().Trim();
+            if (((Label)grvacc.Rows[e.NewEditIndex].FindControl("lbleditMethod")).Text.Trim() == "CS")
+                ((CheckBox)grvacc.Rows[e.NewEditIndex].FindControl("chkgvCsReq")).Checked = true;
 
             DropDownList ddl2 = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlProName");
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -252,7 +254,7 @@ namespace RealERPWEB.F_17_Acc
                 ddlUnit.DataValueField = "gcod";
                 ddlUnit.DataSource = ds1;
                 ddlUnit.DataBind();
-                ddlUnit.SelectedItem.Text = txtUnit.Text; 
+                ddlUnit.SelectedItem.Text = txtUnit.Text;
                 ddlUnit.Visible = true;
                 txtUnit.Visible = false;
             }
@@ -284,6 +286,7 @@ namespace RealERPWEB.F_17_Acc
         }
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
@@ -334,7 +337,9 @@ namespace RealERPWEB.F_17_Acc
                 string txtsirval = Convert.ToDouble("0" + ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirval")).Text.Trim()).ToString();
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
                 string unitCode = ((ASTUtility.Left(sircode, 2) == "41") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
-                string mapCode = ((ASTUtility.Left(sircode, 2) == "63") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlMapping")).SelectedValue.ToString().Trim() : ""); 
+                string mapCode = ((ASTUtility.Left(sircode, 2) == "63") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlMapping")).SelectedValue.ToString().Trim() : "");
+                string csReq = ((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkgvCsReq")).Checked ? "1" : "";
+                //this.chkgvCsReq.Checked ? "1" : "";
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 
@@ -422,7 +427,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, Descbn,
-                        unitCode, mapCode, itemcode, "", "");
+                        unitCode, mapCode, itemcode, csReq, "");
                     this.ShowInformation();
                     if (result)
                     {
@@ -465,7 +470,12 @@ namespace RealERPWEB.F_17_Acc
                 DataTable tbl1 = (DataTable)Session["storedata"];
                 this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
-                this.grvacc.DataBind();               
+                this.grvacc.DataBind();
+
+                if (this.ddlOthersBook.SelectedValue == "010000000000")
+                   this.grvacc.Columns[19].Visible = true;
+                
+
 
                 if (this.Request.QueryString["InputType"] == "DeptCode")
                 {
@@ -619,10 +629,11 @@ namespace RealERPWEB.F_17_Acc
                     this.lnkok.Text = "New";
                     this.ddlOthersBook.Enabled = false;
                     this.ddlOthersBookSegment.Enabled = false;
-
                     this.ibtnSrch.Visible = true;
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
+                    if (this.ddlOthersBook.SelectedValue == "010000000000")
+                        this.divChkCsReq.Visible = true;
                     //this.lbalterofddl.Text = this.ddlOthersBook.SelectedItem.ToString().Trim();
                     //this.lbalterofddl0.Text = "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
                     string tempddl1 = (this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2);
@@ -645,6 +656,7 @@ namespace RealERPWEB.F_17_Acc
                     this.lblPage.Visible = false;
                     this.ddlpagesize.Visible = false;
                     this.grvacc.DataSource = null;
+                    this.grvacc.Columns[19].Visible = false;
                     this.grvacc.DataBind();
 
                 }
@@ -733,7 +745,7 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.grvacc.PageIndex = e.NewPageIndex;
-             this.grvacc_DataBind();
+            this.grvacc_DataBind();
         }
 
 
@@ -762,7 +774,7 @@ namespace RealERPWEB.F_17_Acc
                 if (Code == "")
                     return;
 
-                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "42" || ASTUtility.Left(Code, 2) == "43" || ASTUtility.Left(Code,2) =="63")
+                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "42" || ASTUtility.Left(Code, 2) == "43" || ASTUtility.Left(Code, 2) == "63")
                 {
                     LinkButton lbtnDetails = (LinkButton)e.Row.FindControl("lbtnDetails");
 
@@ -988,7 +1000,7 @@ namespace RealERPWEB.F_17_Acc
                     txtunit.Visible = true;
                 }
 
-                if (sircode.Substring(0, 2)=="63")
+                if (sircode.Substring(0, 2) == "63")
                 {
                     DataTable dt1 = (DataTable)Session["tblMktMapp"];
                     ddlModMapping.DataTextField = "mapdesc";
@@ -996,12 +1008,12 @@ namespace RealERPWEB.F_17_Acc
                     ddlModMapping.DataSource = dt1;
                     ddlModMapping.DataBind();
                     ddlModMapping.SelectedValue = mapCode;
-                    lblMapping.Visible =true;
+                    lblMapping.Visible = true;
                     ddlModMapping.Visible = true;
                 }
                 else
                 {
-                    lblMapping.Visible =false;
+                    lblMapping.Visible = false;
                     ddlModMapping.Visible = false;
                 }
 
@@ -1084,11 +1096,13 @@ namespace RealERPWEB.F_17_Acc
                 string txtTDetails = this.txtTDetails.Text.Trim();
 
                 string sphone = this.txtSupPhone.Text.ToString();
-                string ssno = ASTUtility.Left(tsircode, 2)+"%";
+                string ssno = ASTUtility.Left(tsircode, 2) + "%";
 
                 bool isResultValid = true;
                 bool isSupPhone = false;
-                string mapCode = (sircode.Substring(0, 2) == "63" ? this.ddlModMapping.SelectedValue.ToString().Trim(): "");
+                string mapCode = (sircode.Substring(0, 2) == "63" ? this.ddlModMapping.SelectedValue.ToString().Trim() : "");
+
+                string csReq = this.chkCsReq.Checked ? "1" : "";
 
                 if (Desc.Length == 0)
                 {
@@ -1141,7 +1155,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                     bool result = da.UpdateTransInfo3(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
-                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, mapCode,itemcode, "");
+                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, mapCode, itemcode, csReq);
 
                     if (!result)
                     {
