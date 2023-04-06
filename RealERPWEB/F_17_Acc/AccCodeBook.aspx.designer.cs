@@ -24,6 +24,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// UpdateProgress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
         /// LblBookName1 control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlCodeBook;
 
         /// <summary>
-        /// lbalterofddl control.
+        /// LalSubCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbalterofddl;
+        protected global::System.Web.UI.WebControls.Label LalSubCode;
 
         /// <summary>
         /// ddlCodeBookSegment control.
@@ -58,15 +67,6 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCodeBookSegment;
-
-        /// <summary>
-        /// lbalterofddl0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbalterofddl0;
 
         /// <summary>
         /// lnkok control.

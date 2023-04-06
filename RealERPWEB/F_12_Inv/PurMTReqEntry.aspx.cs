@@ -312,41 +312,47 @@ namespace RealERPWEB.F_12_Inv
 
         protected void Load_Project_Res_Combo()
         {
-            string comcod = this.GetCompCode();
-            ViewState.Remove("projectreslist");
-            ViewState.Remove("tblspcf");
-
-            string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-            string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
-            string curdate = this.txtCurTransDate.Text.ToString().Trim();
-            string lenght = "0";
-            if (comcod == "3348")
+            try
             {
-                lenght = "1";
-            }
+                string comcod = this.GetCompCode();
+                ViewState.Remove("projectreslist");
+                ViewState.Remove("tblspcf");
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
-            ViewState["projectreslist"] = ds1.Tables[0];
-            ViewState["tblspcf"] = ds1.Tables[1];
+                string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+                string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
+                string curdate = this.txtCurTransDate.Text.ToString().Trim();
+                string lenght = "0";
+                if (comcod == "3348")
+                {
+                    lenght = "1";
+                }
 
-            if (ds1 == null)
-                return;
-            if (ds1.Tables[0].Rows.Count == 0)
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
+                ViewState["projectreslist"] = ds1.Tables[0];
+                ViewState["tblspcf"] = ds1.Tables[1];
+
+                if (ds1 == null)
+                    return;
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Materials are not available for Store');", true);
+                    return;
+                }
+
+                DataView dv = ds1.Tables[0].DefaultView;
+                dv.Sort = "rsircode";
+                DataTable dt = dv.ToTable(true, "rsircode", "resdesc");
+                this.ddlreslist.DataTextField = "resdesc";
+                this.ddlreslist.DataValueField = "rsircode";
+                this.ddlreslist.DataSource = dt;
+                this.ddlreslist.DataBind();
+                ds1.Dispose();
+
+                this.GetSpecification();
+            }catch(Exception exp)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Materials are not available for Store');", true);
-                return;
+
             }
-
-            DataView dv = ds1.Tables[0].DefaultView;
-            dv.Sort = "rsircode";
-            DataTable dt = dv.ToTable(true, "rsircode", "resdesc");
-            this.ddlreslist.DataTextField = "resdesc";
-            this.ddlreslist.DataValueField = "rsircode";
-            this.ddlreslist.DataSource = dt;
-            this.ddlreslist.DataBind();
-            ds1.Dispose();
-
-            this.GetSpecification();
         }
 
         private void GetSpecification()

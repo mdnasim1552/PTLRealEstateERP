@@ -1056,8 +1056,8 @@ namespace RealERPWEB.F_17_Acc
             string limit = "";
             switch (comcod)
             {
-
-                case "2305":
+                case "3101"://own
+                case "2305":               
                 case "3305":
                 case "3306":
                 case "3309":
@@ -1155,17 +1155,23 @@ namespace RealERPWEB.F_17_Acc
             DataTable dt = (DataTable)Session["tblt01"];
 
 
-            //if ((this.Request.QueryString["Type"] == "Mgt"))
-            //{
-            //    if (!this.Getbillbal())
-            //    {
-            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
-            //        return;
+            if ((this.Request.QueryString["Type"] == "Mgt"))
+            {
 
-            //    }
-            //}
+                string comlimit = this.Companylimit(); //Only Rupayan
+                if (comlimit.Length == 0)
+                {
+                    if (!this.Getbillbal())
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Bill Amount  must be less then or equal bill Balance !!!!');", true);
+                        return;
 
-           
+                    }
+                }
+
+            }
+
+
 
             string pbillno = "";
             double netbalance = 0.00;

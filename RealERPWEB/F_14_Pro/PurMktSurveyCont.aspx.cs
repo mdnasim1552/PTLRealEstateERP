@@ -1187,6 +1187,7 @@ namespace RealERPWEB.F_14_Pro
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
                 string flrcod = tbl1.Rows[i]["flrcod"].ToString();
+                string proposerate = tbl1.Rows[i]["proposerate"].ToString();
                 DataTable tbls1 = (DataTable)Session["tblt01"];
 
                 for (int j = 0; j < tbls1.Rows.Count; j++)
@@ -1196,7 +1197,7 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B", mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B", mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, proposerate, "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -1428,10 +1429,12 @@ namespace RealERPWEB.F_14_Pro
                 double resrate3 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate3")).Text.Trim());
                 double resrate4 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate4")).Text.Trim());
                 double resrate5 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate5")).Text.Trim());
+                double proposerate = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtgvMSRproposerate")).Text.Trim());
 
 
                 string aprovrate = (((Label)this.gvMSRInfo2.Rows[j].FindControl("lblaprovrate")).Text.Trim() == "") ? "0.00" : ((Label)this.gvMSRInfo2.Rows[j].FindControl("lblaprovrate")).Text.Trim();
                 string dgvMSRRemarks = ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtgvMSRRemarks")).Text.Trim();
+                tbl1.Rows[j]["proposerate"] = proposerate;
                 tbl1.Rows[j]["qty"] = qty;
                 tbl1.Rows[j]["rsirunit"] = rsirunit;
                 tbl1.Rows[j]["resrate1"] = resrate1;
@@ -1776,7 +1779,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 7;
+                cell0.ColumnSpan = 9;
                 gvrow.Cells.Add(cell0);
 
 
