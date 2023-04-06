@@ -203,7 +203,7 @@
                                         <%--<asp:Label ID="lgvPrjName" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))%>'
                                             Width="180px"></asp:Label>--%>
-                                        <asp:LinkButton ID="lbtnSendMail" runat="server" CssClass="btn btn-sm btn-primary m-1">Send</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnSendMail" runat="server" CssClass="btn btn-sm btn-primary m-1" OnClick="lbtnSendMail_Click">Send</asp:LinkButton>
                                     </ItemTemplate>
 
                                     <ItemStyle HorizontalAlign="Center" />
@@ -256,7 +256,7 @@
                                 <div class="row">
                                     <p>Dear Sir/Madam,<br /><br />
                                        Assalamu Alaikum.<br /><br />
-                                       We are happy to inform you that we have received Tk. ...............(In Word:............)<br />
+                                       We are happy to inform you that we have received Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label> (In Word: <asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label>)<br />
                                        as of 30th March, 2023 against Apt / Shop ......... of Finlay ...................<br /><br />
                                        Please reply us within 07 (seven) days if any mismatch found. Otherwise, We will treat this<br />
                                        statement as correct.<br /><br />

@@ -15,6 +15,7 @@
                     <Value>Dear Sir/Madam,</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -28,6 +29,7 @@
 Assalamu Alaikum.</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -38,10 +40,43 @@ Assalamu Alaikum.</Value>
                 <TextRuns>
                   <TextRun>
                     <Value>
-We are happy to inform you that we have received Tk. ...............(In Word:............)
+We are happy to inform you that we have received Tk. </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!custTK.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value> (In Word: </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!custTKWord.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>)
 as of 30th March, 2023 against Apt / Shop ......... of Finlay ...................</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -61,6 +96,7 @@ Customer Management
 Finlay Properties Limited</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -70,9 +106,9 @@ Finlay Properties Limited</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.16944in</Top>
-            <Left>0.13in</Left>
+            <Left>0.63833in</Left>
             <Height>2.47778in</Height>
-            <Width>5.59167in</Width>
+            <Width>6.88334in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -87,7 +123,7 @@ Finlay Properties Limited</Value>
         <Height>2.83333in</Height>
         <Style />
       </Body>
-      <Width>5.83333in</Width>
+      <Width>7.775in</Width>
       <Page>
         <PageHeader>
           <Height>0.78333in</Height>
@@ -98,8 +134,8 @@ Finlay Properties Limited</Value>
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.125in</Top>
-              <Left>1.55778in</Left>
+              <Top>0.15556in</Top>
+              <Left>2.79945in</Left>
               <Height>0.55833in</Height>
               <Width>0.79167in</Width>
               <Style>
@@ -139,8 +175,8 @@ Finlay Properties Limited</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.125in</Top>
-              <Left>2.50222in</Left>
+              <Top>0.15556in</Top>
+              <Left>3.74389in</Left>
               <Height>0.55833in</Height>
               <Width>1.475in</Width>
               <ZIndex>1</ZIndex>
@@ -188,7 +224,15 @@ Finlay Properties Limited</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Corporate Office: ABC Tower (th Floor), 1113/1140 Enayet Bazar Road, Chattogram-4000, Bangladesh.</Value>
+                      <Value>Corporate Office:</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> ABC Tower (th Floor), 1113/1140 Enayet Bazar Road, Chattogram-4000, Bangladesh.</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -216,7 +260,15 @@ Finlay Properties Limited</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Registered Office: FinlayHouse (1st Floor), 11 Agrabad C/A, Chattogram-4100, Bangladesh.</Value>
+                      <Value>Registered Office:</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> FinlayHouse (1st Floor), 11 Agrabad C/A, Chattogram-4100, Bangladesh.</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -232,7 +284,7 @@ Finlay Properties Limited</Value>
               <Top>0.06944in</Top>
               <Left>0.13in</Left>
               <Height>0.77222in</Height>
-              <Width>5.59167in</Width>
+              <Width>7.53334in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -250,7 +302,7 @@ Finlay Properties Limited</Value>
             </Border>
           </Style>
         </PageFooter>
-        <PageWidth>6in</PageWidth>
+        <PageWidth>8.3in</PageWidth>
         <LeftMargin>15in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
         <TopMargin>0.15in</TopMargin>
