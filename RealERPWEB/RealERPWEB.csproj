@@ -255,9 +255,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\PTLSPEERP\SPEWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -4318,7 +4318,6 @@
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.designer.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
@@ -4355,7 +4354,6 @@
     </Compile>
     <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.cs">
       <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\RptLabourSearchRaWise.aspx.designer.cs">
       <DependentUpon>RptLabourSearchRaWise.aspx</DependentUpon>
@@ -4428,7 +4426,6 @@
     </Compile>
     <Compile Include="F_12_Inv\RptProjectStockEva.aspx.cs">
       <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_12_Inv\RptProjectStockEva.aspx.designer.cs">
       <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
@@ -4477,7 +4474,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.cs">
       <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.designer.cs">
       <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
@@ -4550,7 +4546,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
       <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.designer.cs">
       <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
@@ -4575,7 +4570,6 @@
     </Compile>
     <Compile Include="F_21_MKT\CrmClientInfo02.aspx.cs">
       <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_21_MKT\CrmClientInfo02.aspx.designer.cs">
       <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
@@ -4636,7 +4630,6 @@
     </Compile>
     <Compile Include="F_21_MKT\RptMissFollowup.aspx.cs">
       <DependentUpon>RptMissFollowup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_21_MKT\RptMissFollowup.aspx.designer.cs">
       <DependentUpon>RptMissFollowup.aspx</DependentUpon>
@@ -4661,7 +4654,6 @@
     </Compile>
     <Compile Include="F_22_Sal\SaleUnitMapping.aspx.cs">
       <DependentUpon>SaleUnitMapping.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\SaleUnitMapping.aspx.designer.cs">
       <DependentUpon>SaleUnitMapping.aspx</DependentUpon>
@@ -4944,7 +4936,6 @@
     </Compile>
     <Compile Include="F_22_Sal\MktDummySalsPayment03.aspx.cs">
       <DependentUpon>MktDummySalsPayment03.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\MktDummySalsPayment03.aspx.designer.cs">
       <DependentUpon>MktDummySalsPayment03.aspx</DependentUpon>
@@ -5041,7 +5032,6 @@
     </Compile>
     <Compile Include="F_30_Facility\ComplainQC.aspx.cs">
       <DependentUpon>ComplainQC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_30_Facility\ComplainQC.aspx.designer.cs">
       <DependentUpon>ComplainQC.aspx</DependentUpon>
@@ -5120,7 +5110,6 @@
     </Compile>
     <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.cs">
       <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
       <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
@@ -5145,7 +5134,6 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
@@ -5182,7 +5170,6 @@
     </Compile>
     <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.cs">
       <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.designer.cs">
       <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
@@ -5411,7 +5398,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance02.aspx.cs">
       <DependentUpon>RptEmpDailyAttendance02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance02.aspx.designer.cs">
       <DependentUpon>RptEmpDailyAttendance02.aspx</DependentUpon>
@@ -5436,7 +5422,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx.cs">
       <DependentUpon>RptMonthlyLate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx.designer.cs">
       <DependentUpon>RptMonthlyLate.aspx</DependentUpon>
@@ -5515,7 +5500,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx.cs">
       <DependentUpon>RptEmpMonthLeave.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx.designer.cs">
       <DependentUpon>RptEmpMonthLeave.aspx</DependentUpon>
@@ -5726,7 +5710,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.designer.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
@@ -6354,7 +6337,6 @@
     </Compile>
     <Compile Include="F_04_Bgd\AddBudgetold.aspx.cs">
       <DependentUpon>AddBudgetold.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_04_Bgd\AddBudgetold.aspx.designer.cs">
       <DependentUpon>AddBudgetold.aspx</DependentUpon>
@@ -6517,7 +6499,6 @@
     </Compile>
     <Compile Include="F_04_Bgd\ProjectMapCombined.aspx.cs">
       <DependentUpon>ProjectMapCombined.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_04_Bgd\ProjectMapCombined.aspx.designer.cs">
       <DependentUpon>ProjectMapCombined.aspx</DependentUpon>
@@ -6884,14 +6865,12 @@
     </Compile>
     <Compile Include="F_09_PImp\LinkSubContractorSd02.aspx.cs">
       <DependentUpon>LinkSubContractorSd02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\LinkSubContractorSd02.aspx.designer.cs">
       <DependentUpon>LinkSubContractorSd02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\PurConWrkOrderEntry.aspx.cs">
       <DependentUpon>PurConWrkOrderEntry.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\PurConWrkOrderEntry.aspx.designer.cs">
       <DependentUpon>PurConWrkOrderEntry.aspx</DependentUpon>
@@ -6982,7 +6961,6 @@
     </Compile>
     <Compile Include="F_09_PImp\RptMonthlySubConBill.aspx.cs">
       <DependentUpon>RptMonthlySubConBill.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\RptMonthlySubConBill.aspx.designer.cs">
       <DependentUpon>RptMonthlySubConBill.aspx</DependentUpon>
@@ -7055,7 +7033,6 @@
     </Compile>
     <Compile Include="F_09_PImp\RptSubContractorTopSheet.aspx.cs">
       <DependentUpon>RptSubContractorTopSheet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\RptSubContractorTopSheet.aspx.designer.cs">
       <DependentUpon>RptSubContractorTopSheet.aspx</DependentUpon>
@@ -7260,7 +7237,6 @@
     </Compile>
     <Compile Include="F_12_Inv\RptMatStock.aspx.cs">
       <DependentUpon>RptMatStock.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_12_Inv\RptMatStock.aspx.designer.cs">
       <DependentUpon>RptMatStock.aspx</DependentUpon>
@@ -7345,14 +7321,12 @@
     </Compile>
     <Compile Include="F_14_Pro\LinkSupPayableStatus.aspx.cs">
       <DependentUpon>LinkSupPayableStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\LinkSupPayableStatus.aspx.designer.cs">
       <DependentUpon>LinkSupPayableStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\MatLedCodeBook.aspx.cs">
       <DependentUpon>MatLedCodeBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\MatLedCodeBook.aspx.designer.cs">
       <DependentUpon>MatLedCodeBook.aspx</DependentUpon>
@@ -7503,7 +7477,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPaymentStatus.aspx.cs">
       <DependentUpon>RptPaymentStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptPaymentStatus.aspx.designer.cs">
       <DependentUpon>RptPaymentStatus.aspx</DependentUpon>
@@ -7522,7 +7495,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseOrdItemRate.aspx.cs">
       <DependentUpon>RptPurchaseOrdItemRate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseOrdItemRate.aspx.designer.cs">
       <DependentUpon>RptPurchaseOrdItemRate.aspx</DependentUpon>
@@ -7601,7 +7573,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptWorkOrderHistorySup.aspx.cs">
       <DependentUpon>RptWorkOrderHistorySup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptWorkOrderHistorySup.aspx.designer.cs">
       <DependentUpon>RptWorkOrderHistorySup.aspx</DependentUpon>
@@ -7746,7 +7717,6 @@
     </Compile>
     <Compile Include="F_16_Bill\RptUpconVsSobCon.aspx.cs">
       <DependentUpon>RptUpconVsSobCon.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_16_Bill\RptUpconVsSobCon.aspx.designer.cs">
       <DependentUpon>RptUpconVsSobCon.aspx</DependentUpon>
@@ -7795,7 +7765,6 @@
     </Compile>
     <Compile Include="F_17_Acc\AccCodeBook.aspx.cs">
       <DependentUpon>AccCodeBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\AccCodeBook.aspx.designer.cs">
       <DependentUpon>AccCodeBook.aspx</DependentUpon>
@@ -7976,7 +7945,6 @@
     </Compile>
     <Compile Include="F_17_Acc\AccPostDatedTrnLink.aspx.cs">
       <DependentUpon>AccPostDatedTrnLink.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\AccPostDatedTrnLink.aspx.designer.cs">
       <DependentUpon>AccPostDatedTrnLink.aspx</DependentUpon>
@@ -8373,7 +8341,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccSales.aspx.cs">
       <DependentUpon>RptAccSales.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptAccSales.aspx.designer.cs">
       <DependentUpon>RptAccSales.aspx</DependentUpon>
@@ -8404,7 +8371,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccVouher02.aspx.cs">
       <DependentUpon>RptAccVouher02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptAccVouher02.aspx.designer.cs">
       <DependentUpon>RptAccVouher02.aspx</DependentUpon>
@@ -8519,7 +8485,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptMonthWiseBankLedger.aspx.cs">
       <DependentUpon>RptMonthWiseBankLedger.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptMonthWiseBankLedger.aspx.designer.cs">
       <DependentUpon>RptMonthWiseBankLedger.aspx</DependentUpon>
@@ -8562,7 +8527,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptPrjWiseMaterialCosting.aspx.cs">
       <DependentUpon>RptPrjWiseMaterialCosting.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptPrjWiseMaterialCosting.aspx.designer.cs">
       <DependentUpon>RptPrjWiseMaterialCosting.aspx</DependentUpon>
@@ -8653,14 +8617,12 @@
     </Compile>
     <Compile Include="F_17_Acc\TransectionPrint2.aspx.cs">
       <DependentUpon>TransectionPrint2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\TransectionPrint2.aspx.designer.cs">
       <DependentUpon>TransectionPrint2.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_18_MAcc\AccDashBoard.aspx.cs">
       <DependentUpon>AccDashBoard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_18_MAcc\AccDashBoard.aspx.designer.cs">
       <DependentUpon>AccDashBoard.aspx</DependentUpon>
@@ -8679,7 +8641,6 @@
     </Compile>
     <Compile Include="F_20_BillMod\BillTransfer.aspx.cs">
       <DependentUpon>BillTransfer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_20_BillMod\BillTransfer.aspx.designer.cs">
       <DependentUpon>BillTransfer.aspx</DependentUpon>
@@ -8992,7 +8953,6 @@
     </Compile>
     <Compile Include="F_22_Sal\MktEntryUnitFH.aspx.cs">
       <DependentUpon>MktEntryUnitFH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\MktEntryUnitFH.aspx.designer.cs">
       <DependentUpon>MktEntryUnitFH.aspx</DependentUpon>
@@ -9185,7 +9145,6 @@
     </Compile>
     <Compile Include="F_22_Sal\RptSalSummeryDetails.aspx.cs">
       <DependentUpon>RptSalSummeryDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\RptSalSummeryDetails.aspx.designer.cs">
       <DependentUpon>RptSalSummeryDetails.aspx</DependentUpon>
@@ -9342,7 +9301,6 @@
     </Compile>
     <Compile Include="F_23_CR\RptCustInvoice.aspx.cs">
       <DependentUpon>RptCustInvoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_23_CR\RptCustInvoice.aspx.designer.cs">
       <DependentUpon>RptCustInvoice.aspx</DependentUpon>
@@ -9427,7 +9385,6 @@
     </Compile>
     <Compile Include="F_23_CR\RptSalesReportBR.aspx.cs">
       <DependentUpon>RptSalesReportBR.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_23_CR\RptSalesReportBR.aspx.designer.cs">
       <DependentUpon>RptSalesReportBR.aspx</DependentUpon>
@@ -9482,7 +9439,6 @@
     </Compile>
     <Compile Include="F_24_CC\CustAddWorkCBook.aspx.cs">
       <DependentUpon>CustAddWorkCBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_24_CC\CustAddWorkCBook.aspx.designer.cs">
       <DependentUpon>CustAddWorkCBook.aspx</DependentUpon>
@@ -9531,7 +9487,6 @@
     </Compile>
     <Compile Include="F_24_CC\EntryComplain.aspx.cs">
       <DependentUpon>EntryComplain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_24_CC\EntryComplain.aspx.designer.cs">
       <DependentUpon>EntryComplain.aspx</DependentUpon>
@@ -9586,7 +9541,6 @@
     </Compile>
     <Compile Include="F_24_CC\RptProjectwiseClient.aspx.cs">
       <DependentUpon>RptProjectwiseClient.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_24_CC\RptProjectwiseClient.aspx.designer.cs">
       <DependentUpon>RptProjectwiseClient.aspx</DependentUpon>
@@ -9683,7 +9637,6 @@
     </Compile>
     <Compile Include="F_29_Fxt\RptdeptITStock.aspx.cs">
       <DependentUpon>RptdeptITStock.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_29_Fxt\RptdeptITStock.aspx.designer.cs">
       <DependentUpon>RptdeptITStock.aspx</DependentUpon>
@@ -9696,7 +9649,6 @@
     </Compile>
     <Compile Include="F_29_Fxt\RptFixAssetStatus02.aspx.cs">
       <DependentUpon>RptFixAssetStatus02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_29_Fxt\RptFixAssetStatus02.aspx.designer.cs">
       <DependentUpon>RptFixAssetStatus02.aspx</DependentUpon>
@@ -9775,14 +9727,12 @@
     </Compile>
     <Compile Include="F_32_Mis\LinkImpExeStatus.aspx.cs">
       <DependentUpon>LinkImpExeStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\LinkImpExeStatus.aspx.designer.cs">
       <DependentUpon>LinkImpExeStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_32_Mis\LinkIndProjectStatus.aspx.cs">
       <DependentUpon>LinkIndProjectStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\LinkIndProjectStatus.aspx.designer.cs">
       <DependentUpon>LinkIndProjectStatus.aspx</DependentUpon>
@@ -9891,7 +9841,6 @@
     </Compile>
     <Compile Include="F_32_Mis\RptInComeStExe.aspx.cs">
       <DependentUpon>RptInComeStExe.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\RptInComeStExe.aspx.designer.cs">
       <DependentUpon>RptInComeStExe.aspx</DependentUpon>
@@ -9946,7 +9895,6 @@
     </Compile>
     <Compile Include="F_32_Mis\RptProjectCollBrkDown.aspx.cs">
       <DependentUpon>RptProjectCollBrkDown.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\RptProjectCollBrkDown.aspx.designer.cs">
       <DependentUpon>RptProjectCollBrkDown.aspx</DependentUpon>
@@ -10328,7 +10276,6 @@
     </Compile>
     <Compile Include="F_39_MyPage\EmpKpiEntry04All.aspx.cs">
       <DependentUpon>EmpKpiEntry04All.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_39_MyPage\EmpKpiEntry04All.aspx.designer.cs">
       <DependentUpon>EmpKpiEntry04All.aspx</DependentUpon>
@@ -10359,7 +10306,6 @@
     </Compile>
     <Compile Include="F_39_MyPage\LinkActiComments02.aspx.cs">
       <DependentUpon>LinkActiComments02.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_39_MyPage\LinkActiComments02.aspx.designer.cs">
       <DependentUpon>LinkActiComments02.aspx</DependentUpon>
@@ -10438,7 +10384,6 @@
     </Compile>
     <Compile Include="F_39_MyPage\PrjCompFlowchart.aspx.cs">
       <DependentUpon>PrjCompFlowchart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_39_MyPage\PrjCompFlowchart.aspx.designer.cs">
       <DependentUpon>PrjCompFlowchart.aspx</DependentUpon>
@@ -10559,14 +10504,12 @@
     </Compile>
     <Compile Include="F_45_GrAcc\GrpPostDatedChequs.aspx.cs">
       <DependentUpon>GrpPostDatedChequs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_45_GrAcc\GrpPostDatedChequs.aspx.designer.cs">
       <DependentUpon>GrpPostDatedChequs.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_45_GrAcc\LinkAccMultiReport.aspx.cs">
       <DependentUpon>LinkAccMultiReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_45_GrAcc\LinkAccMultiReport.aspx.designer.cs">
       <DependentUpon>LinkAccMultiReport.aspx</DependentUpon>
@@ -10639,7 +10582,6 @@
     </Compile>
     <Compile Include="F_45_GrAcc\LinkGrpMatPurHistory.aspx.cs">
       <DependentUpon>LinkGrpMatPurHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_45_GrAcc\LinkGrpMatPurHistory.aspx.designer.cs">
       <DependentUpon>LinkGrpMatPurHistory.aspx</DependentUpon>
@@ -10712,7 +10654,6 @@
     </Compile>
     <Compile Include="F_45_GrAcc\LinkGrpRealPaySummary.aspx.cs">
       <DependentUpon>LinkGrpRealPaySummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_45_GrAcc\LinkGrpRealPaySummary.aspx.designer.cs">
       <DependentUpon>LinkGrpRealPaySummary.aspx</DependentUpon>
@@ -10881,7 +10822,6 @@
     </Compile>
     <Compile Include="F_47_Kpi\LinkEmpMonthWiseEvaDet.aspx.cs">
       <DependentUpon>LinkEmpMonthWiseEvaDet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_47_Kpi\LinkEmpMonthWiseEvaDet.aspx.designer.cs">
       <DependentUpon>LinkEmpMonthWiseEvaDet.aspx</DependentUpon>
@@ -10906,7 +10846,6 @@
     </Compile>
     <Compile Include="F_47_Kpi\RptEmpMonthWiseEva.aspx.cs">
       <DependentUpon>RptEmpMonthWiseEva.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_47_Kpi\RptEmpMonthWiseEva.aspx.designer.cs">
       <DependentUpon>RptEmpMonthWiseEva.aspx</DependentUpon>
@@ -10949,7 +10888,6 @@
     </Compile>
     <Compile Include="F_50_CMIS\UserLoginfrm.aspx.cs">
       <DependentUpon>UserLoginfrm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_50_CMIS\UserLoginfrm.aspx.designer.cs">
       <DependentUpon>UserLoginfrm.aspx</DependentUpon>
@@ -11418,7 +11356,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx.cs">
       <DependentUpon>RptSalarySummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx.designer.cs">
       <DependentUpon>RptSalarySummary.aspx</DependentUpon>
@@ -11515,14 +11452,12 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvPay.aspx.cs">
       <DependentUpon>RptPFIndvPay.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_90_PF\RptPFIndvPay.aspx.designer.cs">
       <DependentUpon>RptPFIndvPay.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_90_PF\TransectionPrint.aspx.cs">
       <DependentUpon>TransectionPrint.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_90_PF\TransectionPrint.aspx.designer.cs">
       <DependentUpon>TransectionPrint.aspx</DependentUpon>
@@ -11607,7 +11542,6 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx.cs">
       <DependentUpon>InterfaceAtt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx.designer.cs">
       <DependentUpon>InterfaceAtt.aspx</DependentUpon>
@@ -11812,7 +11746,6 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InventoryInterface.aspx.cs">
       <DependentUpon>InventoryInterface.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_99_Allinterface\InventoryInterface.aspx.designer.cs">
       <DependentUpon>InventoryInterface.aspx</DependentUpon>
