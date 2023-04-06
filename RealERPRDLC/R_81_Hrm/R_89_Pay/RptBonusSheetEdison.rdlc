@@ -223,10 +223,10 @@
                   <Width>0.80208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.04372in</Width>
+                  <Width>0.96039in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6875in</Width>
+                  <Width>0.76042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.70833in</Width>
@@ -2517,7 +2517,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.16819in</Top>
             <Height>1.68598in</Height>
-            <Width>11.48748in</Width>
+            <Width>11.47705in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

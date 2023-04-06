@@ -105,7 +105,7 @@
 
 
                                                 </div>
-                                                <div class="col-md-3 pading5px asitCol3">
+                                            <div class="col-md-3 pading5px asitCol3">
 
                                                     <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Req.Date"></asp:Label>
 
@@ -326,10 +326,9 @@
                                                 <asp:TextBox ID="txtgvUseDatCal" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" Visible="false"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString().Length <= 0 ? DateTime.Now.ToString("dd-MMM-yyyy") 
-                                                        : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "expusedt")).ToString("dd-MMM-yyyy") %>' Width="70px"></asp:TextBox>
+                                                        : Convert.ToString(DataBinder.Eval(Container.DataItem, "expusedt")) %>' Width="70px"></asp:TextBox>
 
-                                                <cc1:CalendarExtender ID="txtgvUseDatCal_CalendarExtender" runat="server"
-                                                    Format="dd-MMM-yyyy" TargetControlID="txtgvUseDatCal"></cc1:CalendarExtender>
+                                                
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
