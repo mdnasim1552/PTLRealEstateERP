@@ -284,7 +284,7 @@
                                         <asp:TemplateField HeaderText="Description">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldescription0" runat="server" CssClass="GridLebelL textwrap"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim().Length > 0? "<br>" + DataBinder.Eval(Container.DataItem, "resdesc"):"") + (Convert.ToString(DataBinder.Eval(Container.DataItem, "cactcode")).ToString()=="Narration:  "?(DataBinder.Eval(Container.DataItem, "venar1")  +" "+ DataBinder.Eval(Container.DataItem, "venar2")):"") %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) + Convert.ToString(DataBinder.Eval(Container.DataItem, "recndt")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim().Length > 0? "<br>" + DataBinder.Eval(Container.DataItem, "resdesc"):"") + (Convert.ToString(DataBinder.Eval(Container.DataItem, "cactcode")).ToString()=="Narration:  "?(DataBinder.Eval(Container.DataItem, "venar1")  +" "+ DataBinder.Eval(Container.DataItem, "venar2")):"") %>'
                                                     Width="250px"></asp:Label>
 
                                             </ItemTemplate>

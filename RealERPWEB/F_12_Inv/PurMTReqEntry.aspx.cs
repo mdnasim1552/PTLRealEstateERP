@@ -315,8 +315,8 @@ namespace RealERPWEB.F_12_Inv
             try
             {
                 string comcod = this.GetCompCode();
-                ViewState.Remove("projectreslist");
-                ViewState.Remove("tblspcf");
+                Session.Remove("projectreslist");
+                Session.Remove("tblspcf");
 
                 string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
                 string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
@@ -328,8 +328,8 @@ namespace RealERPWEB.F_12_Inv
                 }
 
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, lenght, "", "", "", "", "");
-                ViewState["projectreslist"] = ds1.Tables[0];
-                ViewState["tblspcf"] = ds1.Tables[1];
+                Session["projectreslist"] = ds1.Tables[0];
+                Session["tblspcf"] = ds1.Tables[1];
 
                 if (ds1 == null)
                     return;
@@ -364,7 +364,7 @@ namespace RealERPWEB.F_12_Inv
                 string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
                 //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
                 this.ddlResSpcf.Items.Clear();
-                DataTable tbl1 = (DataTable)ViewState["tblspcf"];
+                DataTable tbl1 = (DataTable)Session["tblspcf"];
                 DataView dv1 = tbl1.DefaultView;
                 //dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
                 dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
@@ -390,7 +390,7 @@ namespace RealERPWEB.F_12_Inv
                 string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
                 string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
                 DataTable dt = (DataTable)ViewState["tblmattrns"];
-                DataTable dt1 = (DataTable)ViewState["projectreslist"];
+                DataTable dt1 = (DataTable)Session["projectreslist"];
                 DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
                 DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
 
@@ -454,7 +454,7 @@ namespace RealERPWEB.F_12_Inv
         {
 
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
-            DataTable dt2 = (DataTable)ViewState["projectreslist"];
+            DataTable dt2 = (DataTable)Session["projectreslist"];
             switch (GetCompCode())
             {
                 case "3370":
@@ -1036,29 +1036,33 @@ namespace RealERPWEB.F_12_Inv
 
         private void Data_Bind()
         {
+            string comcod = this.GetCompCode();
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
+            if (comcod == "3367")
+            {
+                this.grvacc.Columns[7].HeaderText = "Master Quantity";
+                this.grvacc.Columns[8].HeaderText = "Received Qty";
+                this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
+                this.grvacc.Columns[10].HeaderText = "Required Quantity";
+            }
             this.grvacc.PageSize = Convert.ToInt16(this.ddlpagesize.SelectedValue.ToString());
             this.grvacc.DataSource = dt1;
             this.grvacc.DataBind();
 
+            
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
-            string comcod = this.GetCompCode();
+            
+          
 
             switch (comcod)
             {
+                
                 case "3370":
 
                     this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
                     break;
-                case "3367":
-                    this.grvacc.Columns[7].HeaderText = "Master Quantity";
-                    this.grvacc.Columns[8].HeaderText = "Received Qty";
-                    this.grvacc.Columns[9].HeaderText = "Store Stock Qty";
-                    this.grvacc.Columns[10].HeaderText = "Required Quantity";
-                    this.grvacc.Columns[11].Visible = true;
-                    this.grvacc.Columns[12].Visible = true;
-                    break;
+               
 
                 default:
                     this.grvacc.Columns[11].Visible = true;
