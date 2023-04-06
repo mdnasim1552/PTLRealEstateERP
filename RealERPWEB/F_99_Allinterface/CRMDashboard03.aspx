@@ -1248,7 +1248,7 @@
                                                     <p class="title mb-0">
                                                         Key Performance Indicator
                                                     </p>
-                                                    <p class="subtitle mb-0">Today: 26 Feb 2023</p>
+                                                    <p class="subtitle mb-0">Today: <% System.DateTime.Today.ToString("dd-MMM-yyyy"); %></p>
                                                     <p class="text-muted mb-0">Due: 27 Apr 2023</p>
                                                 </div>
                                             </div>
@@ -1280,22 +1280,22 @@
                                                             <div class="card-body card-text-danger">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">100</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAmt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            10%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiSalePercnt" runat="server">
+                                                                            
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTaramt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1316,22 +1316,22 @@
                                                             <div class="card-body card-text-cheyenne">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">50,000</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAppt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            50%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiTarPercnt" runat="server">
+                                                                           
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTarAppt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>

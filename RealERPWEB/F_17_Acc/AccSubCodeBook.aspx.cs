@@ -214,8 +214,11 @@ namespace RealERPWEB.F_17_Acc
             int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
             string actcode = ((DataTable)Session["storedata"]).Rows[rowindex]["actcode"].ToString();
             string mapcode = ((DataTable)Session["storedata"]).Rows[rowindex]["mapcode"].ToString().Trim();
-            if (((Label)grvacc.Rows[e.NewEditIndex].FindControl("lbleditMethod")).Text.Trim() == "CS")
-                ((CheckBox)grvacc.Rows[e.NewEditIndex].FindControl("chkgvCsReq")).Checked = true;
+            if (this.ddlOthersBook.SelectedValue == "010000000000")
+            {
+                if (((Label)grvacc.Rows[e.NewEditIndex].FindControl("lbleditMethod")).Text.Trim() == "CS")
+                    ((CheckBox)grvacc.Rows[e.NewEditIndex].FindControl("chkgvCsReq")).Checked = true;
+            }
 
             DropDownList ddl2 = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlProName");
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -338,8 +341,11 @@ namespace RealERPWEB.F_17_Acc
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
                 string unitCode = ((ASTUtility.Left(sircode, 2) == "41") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
                 string mapCode = ((ASTUtility.Left(sircode, 2) == "63") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlMapping")).SelectedValue.ToString().Trim() : "");
-                string csReq = ((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkgvCsReq")).Checked ? "1" : "";
-                //this.chkgvCsReq.Checked ? "1" : "";
+                string csReq = "";
+                if (this.ddlOthersBook.SelectedValue == "010000000000")
+                    csReq = ((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkgvCsReq")).Checked ? "1" : "";
+                
+                
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 
@@ -1101,8 +1107,9 @@ namespace RealERPWEB.F_17_Acc
                 bool isResultValid = true;
                 bool isSupPhone = false;
                 string mapCode = (sircode.Substring(0, 2) == "63" ? this.ddlModMapping.SelectedValue.ToString().Trim() : "");
-
-                string csReq = this.chkCsReq.Checked ? "1" : "";
+                string csReq = "";
+                if (this.ddlOthersBook.SelectedValue == "010000000000")
+                    csReq = this.chkCsReq.Checked ? "1" : "";
 
                 if (Desc.Length == 0)
                 {
