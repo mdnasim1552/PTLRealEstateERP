@@ -180,7 +180,7 @@
                                 <asp:TemplateField HeaderText="Customer Name">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvPrjcustName" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "Name"))%>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "name"))%>'
                                             Width="180px"></asp:Label>
                                     </ItemTemplate>
 
@@ -190,11 +190,22 @@
                                  <asp:TemplateField HeaderText="Unit">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvPrjUnit" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "UDESC"))%>'
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc"))%>'
                                             Width="180px"></asp:Label>
                                     </ItemTemplate>
 
                                     <ItemStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Paid Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvPaidAmount" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamt")).ToString("#,##0;(#,##0); ")%>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
@@ -257,7 +268,7 @@
                                     <p>Dear Sir/Madam,<br /><br />
                                        Assalamu Alaikum.<br /><br />
                                        We are happy to inform you that we have received Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label> (In Word: <asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label>)<br />
-                                       as of 30th March, 2023 against Apt / Shop ......... of Finlay ...................<br /><br />
+                                       as of <asp:Label ID="todayDateFormattedLabel" runat="server" Text="Label"></asp:Label> against Apt / Shop <asp:Label ID="unitLabel" runat="server" Text="Label"></asp:Label> of Finlay ...................<br /><br />
                                        Please reply us within 07 (seven) days if any mismatch found. Otherwise, We will treat this<br />
                                        statement as correct.<br /><br />
                                     

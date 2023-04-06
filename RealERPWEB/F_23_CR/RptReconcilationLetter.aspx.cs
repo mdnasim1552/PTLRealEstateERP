@@ -17,6 +17,7 @@ using Microsoft.Reporting.WinForms;
 using RealERPRPT;
 using System.IO;
 using System.Net.Mail;
+using System.Globalization;
 
 namespace RealERPWEB.F_23_CR
 {
@@ -109,13 +110,42 @@ namespace RealERPWEB.F_23_CR
         {
             DataTable dt = (DataTable)Session["RptReconcilationLetter"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string empName = dt.Rows[rowIndex]["Name"].ToString();
-            TkLabel.Text = "100";
-            TkLabelWord.Text = "One Hundred Tk";
+            string empName = dt.Rows[rowIndex]["name"].ToString();
+            string unit= dt.Rows[rowIndex]["udesc"].ToString();
+            unitLabel.Text = unit;
+
+
+            DateTime today = DateTime.Today;
+            string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            string suffix = GetDateSuffix(today.Day);
+
+            string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            todayDateFormattedLabel.Text = todayDateFormatted;
+
+            //Decimal paidAmount = (Decimal)(dt.Rows[rowIndex]["paidamt"]);//.ToString("#,##0;(#,##0); ");
+            //string formattedPaidamt = paidAmount.ToString("#,##0;(#,##0);0");
+            //TkLabel.Text = formattedPaidamt;//"100";
+            //TkLabelWord.Text = NumberToWords(int.Parse(formattedPaidamt));// "One Hundred Tk";
+            int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
+            TkLabel.Text = paidAmount.ToString();
+            TkLabelWord.Text = NumberToWords(paidAmount);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDedModal();", true);
         }
-
-        private void RptReconsilationLetter()
+        public string GetDateSuffix(int day)
+        {
+            switch (day % 10)
+            {
+                case 1 when day != 11:
+                    return "st";
+                case 2 when day != 12:
+                    return "nd";
+                case 3 when day != 13:
+                    return "rd";
+                default:
+                    return "th";
+            }
+        }
+        private void RptReconsilationLetter(string paidAmount="",string paidAmountInWord="",string unit="")
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -135,13 +165,22 @@ namespace RealERPWEB.F_23_CR
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptReconcilationLetter", null, null, null);
             Rpt1.EnableExternalImages = true;
 
+            DateTime today = DateTime.Today;
+            string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            string suffix = GetDateSuffix(today.Day);
+
+            string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+
             //string selectedProjectText = ddlprjlist.SelectedItem.Text;
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             //Rpt1.SetParameters(new ReportParameter("selectedProjectText", selectedProjectText));
             //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("custTK", "100"));
-            Rpt1.SetParameters(new ReportParameter("custTKWord", "One Hundred Tk"));
+            Rpt1.SetParameters(new ReportParameter("custTK", paidAmount));
+            Rpt1.SetParameters(new ReportParameter("custTKWord", paidAmountInWord));
+            Rpt1.SetParameters(new ReportParameter("todayDateFormatted", todayDateFormatted));
+            Rpt1.SetParameters(new ReportParameter("unit", unit));
+
 
             //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
@@ -150,7 +189,12 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnPrintMail_Click(object sender, EventArgs e)
         {
-            this.RptReconsilationLetter();
+            DataTable dt = (DataTable)Session["RptReconcilationLetter"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
+            string unit = dt.Rows[rowIndex]["udesc"].ToString();
+            this.RptReconsilationLetter(paidAmount.ToString(), NumberToWords(paidAmount),unit);
+
             string url = "../RDLCViewer.aspx?PrintOpt=PDF";
             string script = "window.open('" + url + "', '_blank');";
             ScriptManager.RegisterStartupScript(this, typeof(Page), "OpenWindow", script, true);
@@ -158,13 +202,18 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnSendMail_Click(object sender, EventArgs e)
         {
-            this.RptReconsilationLetter();
-            LocalReport Rpt1 = new LocalReport();
-            Rpt1 = (LocalReport)Session["Report1"];
             DataTable dt = (DataTable)Session["RptReconcilationLetter"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string custName = dt.Rows[rowIndex]["Name"].ToString();
-            string custEmail= dt.Rows[rowIndex]["Email"].ToString();
+            int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
+            string unit = dt.Rows[rowIndex]["udesc"].ToString();
+            this.RptReconsilationLetter(paidAmount.ToString(), NumberToWords(paidAmount), unit);
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = (LocalReport)Session["Report1"];
+            //DataTable dt = (DataTable)Session["RptReconcilationLetter"];
+            //int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string custName = dt.Rows[rowIndex]["name"].ToString();
+            string custEmail= dt.Rows[rowIndex]["email"].ToString();
 
 
             string deviceInfo = "<DeviceInfo>" +
@@ -272,6 +321,55 @@ namespace RealERPWEB.F_23_CR
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
+        }
+        //between -999,999,999 and 999,999,999.
+        public string NumberToWords(int number)
+        {
+            if (number == 0)
+                return "zero";
+
+            if (number < 0)
+                return "minus " + NumberToWords(Math.Abs(number));
+
+            string words = "";
+
+            if ((number / 1000000) > 0)
+            {
+                words += NumberToWords(number / 1000000) + " million ";
+                number %= 1000000;
+            }
+
+            if ((number / 1000) > 0)
+            {
+                words += NumberToWords(number / 1000) + " thousand ";
+                number %= 1000;
+            }
+
+            if ((number / 100) > 0)
+            {
+                words += NumberToWords(number / 100) + " hundred ";
+                number %= 100;
+            }
+
+            if (number > 0)
+            {
+                if (words != "")
+                    words += "and ";
+
+                var unitsMap = new[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+                var tensMap = new[] { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+
+                if (number < 20)
+                    words += unitsMap[number];
+                else
+                {
+                    words += tensMap[number / 10];
+                    if ((number % 10) > 0)
+                        words += "-" + unitsMap[number % 10];
+                }
+            }
+
+            return words;
         }
     }
 }
