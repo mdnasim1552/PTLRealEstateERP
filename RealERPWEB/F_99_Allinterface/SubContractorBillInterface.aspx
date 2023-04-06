@@ -1152,7 +1152,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%-- <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server"  Style="text-align: center"
@@ -1162,7 +1162,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Bundle No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="txtbundno" runat="server" BackColor="Transparent"
@@ -1491,7 +1491,7 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Nature Of Work" >
+                                           <%-- <asp:TemplateField HeaderText="Nature Of Work" >
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -1501,7 +1501,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
                                                             <ItemTemplate>
@@ -1642,7 +1642,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%-- <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -1652,7 +1652,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                             <asp:TemplateField HeaderText="Amount">
 
@@ -2274,7 +2274,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%-- <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -2284,7 +2284,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                             <%--  <asp:TemplateField HeaderText="Bill No">
 
@@ -2442,7 +2442,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%-- <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -2452,7 +2452,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Bundle No" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="txtbundnofiapp" runat="server" BackColor="Transparent"
@@ -3238,7 +3238,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%--  <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -3248,7 +3248,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             
                                             <asp:TemplateField HeaderText="Req Item">
 
@@ -3415,7 +3415,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%--  <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -3425,7 +3425,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3582,7 +3582,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                              <asp:TemplateField HeaderText="Nature Of Work">
+                                           <%--   <asp:TemplateField HeaderText="Nature Of Work">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvntrwk" runat="server" Style="text-align: center"
@@ -3592,7 +3592,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                             <asp:TemplateField HeaderText="Work Order">
 
@@ -3617,7 +3617,7 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                               <asp:TemplateField HeaderText="MB Date">
+                                              <%-- <asp:TemplateField HeaderText="MB Date">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvmbdat" runat="server"
@@ -3627,7 +3627,7 @@
                                                 <FooterTemplate>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>

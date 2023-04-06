@@ -85,6 +85,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.MktReqPrint();
                     break;
 
+
                 case "MktCSPrint":
                     this.MktCSPrint();
                     break;
@@ -4232,6 +4233,14 @@ namespace RealERPWEB.F_99_Allinterface
                 string cperson2 = "";
                 string contactperson = "";
 
+                for(int i=0; i<termscondition.Count; i++)
+                {
+                    if (termscondition[i].termssubj.ToLower() == "contact person")
+                    {
+                        contactperson = termscondition[i].termsdesc.ToString();
+                    }
+                }
+
                 string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
 
                 // Terms & Conditions Variables//
@@ -4333,7 +4342,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms7 = "7. " + termscondition[6].termssubj.ToString() + ":" + termscondition[6].termsdesc.ToString();
                         terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
-                        contactperson = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
+                        terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
 
                         break;
                     case "3335": // Edison Properties
@@ -4509,7 +4518,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3311": //Rupayan group
                     case "2305": //Rupayan group
                     case "2306": //Rupayan group
-                    case "3101":
+                    //case "3101":
                         Reportpath = "~/Report/RptPurchaseOrderRupayon.rdlc";
                         break;
 
@@ -4600,10 +4609,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3376": 
 
                         Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
+                        Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
                         porderno = ASTUtility.CustomReqFormat(wrkid);
                         break;
 
                     default:
+                        //Reportpath = "~/Report/RptPurchaseOrderEDRold.rdlc";
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
                 }
@@ -4761,6 +4772,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
                     case "3367": // epic
                         Rpt1.SetParameters(new ReportParameter("suppliercontact", cperson));
+                        Rpt1.SetParameters(new ReportParameter("contactperson", contactperson));
                         break;
 
                     default:

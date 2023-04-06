@@ -31,6 +31,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             if (!IsPostBack)
             {
+
+         
+       
+                DataSet ds = (DataSet)Session["tblusrlog"];
+                if (ds == null)
+                {
+                    Response.Redirect("../../Login.aspx");
+                    return;
+                }
+
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");

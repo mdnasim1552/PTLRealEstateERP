@@ -19,10 +19,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
+                DataSet ds = (DataSet)Session["tblusrlog"];
+                if (ds == null)
+                {
+                    Response.Redirect("../../Login.aspx");
+                    return;
+                }
                 GetDptUserCheck();
                 GetRequestType();
                 this.ShowData();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//             
+                ((Label)this.Master.FindControl("lblTitle")).Text = "REQUEST INTERFACE APPROVAL";//
+
+                this.Master.Page.Title = "REQUEST INTERFACE APPROVAL";//
+                //    
             }
         }
 
@@ -107,6 +116,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 this.lbldadteTime.Text = "09:00 AM";// Convert.ToDateTime(intime).ToString("hh:mm tt");
                 this.lblouttime.Text = "05:00 PM";// Convert.ToDateTime(outtime).ToString("hh:mm tt");
+            }else if (reqtype == "TC")
+            {
+                this.lbldadteTime.Text =  Convert.ToDateTime(intime).ToString("hh:mm tt");
+                this.lblouttime.Text =  Convert.ToDateTime(outtime).ToString("hh:mm tt");
+
             }
     
             this.ddlReqType.SelectedValue = reqtype;
@@ -420,6 +434,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
+
+                        if (comcod == "3365")
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeCurrentTab();", true);
+
+                        }
 
                     }
                 }

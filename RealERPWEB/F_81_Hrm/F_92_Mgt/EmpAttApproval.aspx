@@ -5,6 +5,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        function closeCurrentTab() {
+            window.close();
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -120,7 +125,7 @@
                                     </div>
                                        <div class="col-md-2 mb-3">
                                         <label for="validationTooltip02">
-                                            Time  
+                                          In  Time  
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>

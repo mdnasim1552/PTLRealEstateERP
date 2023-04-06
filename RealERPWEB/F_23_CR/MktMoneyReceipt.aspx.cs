@@ -18,6 +18,7 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
+using RestSharp;
 namespace RealERPWEB.F_23_CR
 {
     public partial class MktMoneyReceipt : System.Web.UI.Page
@@ -1318,8 +1319,9 @@ namespace RealERPWEB.F_23_CR
                     {
                         //case "3101": // Pintech                   
                         case "3356": //Intech                    
-                        case "3366": //Intech                    
+                        case "3366": //Lanco                    
                         case "3101": //Intech                    
+                                       
                             this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
                             break;
                         default:
@@ -1347,67 +1349,166 @@ namespace RealERPWEB.F_23_CR
 
         private void SMSSendMoneyRecipt(string comcod, string PactCode, string Usircode, string mrno, string mrdate)
         {
-            DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_SALMGT", "GETOUTSTANDAMT", PactCode, Usircode,
-                      "", "", "", "", "", "", "");
-            if (ds == null)
-            {
-                return;
-            }
-             
 
-            DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
-            if (dssms == null)
+            try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Fail";
+
+                DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_SALMGT", "GETOUTSTANDAMT", PactCode, Usircode,
+                          "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    return;
+                }
+
+
+                DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
+                if (dssms == null)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
+                string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
+                string custphone = ds.Tables[0].Rows[0]["custphone"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custphone"].ToString();
+                string trcvamt = ds.Tables[0].Rows[0]["trecvamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) "); ;
+                string payment = ds.Tables[0].Rows[0]["payamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
+                string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString() == "" ? "" : Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
+                string dues = ds.Tables[0].Rows[0]["duesamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3366":
+                        paymentdate = mrdate;
+                        break;
+                }
+                string paymod = this.ddlpaytype.SelectedItem.Text.ToString();
+                string cheq = this.txtchqno.Text.ToString();
+
+                string tempeng = dssms.Tables[0].Rows[0]["smscont"].ToString();
+                tempeng = tempeng.Replace("[name]", cutname);
+                tempeng = tempeng.Replace("[date]", paymentdate);
+                tempeng = tempeng.Replace("[payamt]", payableamt);
+                tempeng = tempeng.Replace("[duesamt]", dues);
+                tempeng = tempeng.Replace("[paymode]", paymod);
+                tempeng = tempeng.Replace("[chequeno]", cheq);
+                string smtext = tempeng;
+                SendSmsProcess sms = new SendSmsProcess();
+                string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
+                string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
+                bool resultsms;
+
+                //switch (comcod)
+                //{
+                //    case "3366"://Lanco
+                //    case "3101"://PT
+                //    case "3354"://PT
+                //        try
+                //        {
+
+                //            DataSet ds3 = MktData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+                //            string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+                //            string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+                //            string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apirouid"].ToString().Trim(); //"ASITNAHID";  //Token
+                //            string mobile = "88" + custphone; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                //            Random rnd1 = new Random(9); //seed value 10
+                //            string cmsid = rnd1.Next().ToString();
+                //            var options = new RestClientOptions(Single_Sms_Url)
+                //            {
+                //                ThrowOnAnyError = true,
+                //                Timeout = 1000  // 1 second
+                //            };
+                //            var client = new RestClient(Single_Sms_Url);
+                //            var request = new RestRequest();
+
+                //            request.Method = Method.Post;
+                //            request.AddHeader("Accept", "application/json");
+                //            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                //            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                //            request.AddParameter("api_token", Single_Sms_api_token);
+                //            request.AddParameter("sid", Single_Sms_Sid);
+                //            request.AddParameter("msisdn", mobile);
+                //            request.AddParameter("sms", smtext);
+                //            request.AddParameter("csms_id", cmsid);
+                //            var response = client.Execute(request);
+
+
+                //            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + response.Content.ToString() + "');", true);
+                //            if (response.IsSuccessful)
+                //            {
+
+                //            }
+                //            else
+                //            {
+
+                //                ((Label)this.Master.FindControl("lblmsg")).Text = response.ErrorMessage;
+                //                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+                //            }
+
+
+                //        }
+                //        catch (Exception ex)
+                //        {
+
+                //        }
+                //        break;
+
+                //    default:
+                //        resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+                //        break;
+
+
+
+                //}
+
+
+
+
+
+
+                switch (comcod)
+                {
+                    case "3366"://Lanco
+                    case "3101"://PT
+                    case "3354"://PT
+                        resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
+                        break;
+
+                    default:
+                        resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+                        break;
+
+
+
+                }
+
+
+
+                if (resultsms == true)
+                {
+                    bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
+                               "", "", custphone, "");
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = sms.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
-            string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
-            string custphone = ds.Tables[0].Rows[0]["custphone"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custphone"].ToString();
-            string trcvamt = ds.Tables[0].Rows[0]["trecvamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) "); ;
-            string payment = ds.Tables[0].Rows[0]["payamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
-            string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString() == "" ? "" : Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
-            string dues = ds.Tables[0].Rows[0]["duesamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
-            switch (comcod)
-            {
-                case "3101":
-                case "3366":
-                    paymentdate = mrdate;
-                        break; 
-            }
-            string paymod = this.ddlpaytype.SelectedItem.Text.ToString();
-            string cheq = this.txtchqno.Text.ToString();
 
-            string tempeng = dssms.Tables[0].Rows[0]["smscont"].ToString();
-            tempeng = tempeng.Replace("[name]", cutname);
-            tempeng = tempeng.Replace("[date]", paymentdate);
-            tempeng = tempeng.Replace("[payamt]", payableamt);
-            tempeng = tempeng.Replace("[duesamt]", dues);
-            tempeng = tempeng.Replace("[paymode]", paymod);
-            tempeng = tempeng.Replace("[chequeno]", cheq);
-            string smtext = tempeng;
-            SendSmsProcess sms = new SendSmsProcess();
-            string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
-            string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms;
-            if (comcod == "3366" || comcod=="3101")
-            {
-                //sslwireless.com Provider API
-                resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
-            }
-            else
-            {
-                resultsms = sms.SendSMSClient(comcod, smtext, custphone);
-            }
-
-
-            if (resultsms == true)
-            {
-                bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
-                           "", "", custphone, "");
-                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
         private string GetSchCode(string instype)

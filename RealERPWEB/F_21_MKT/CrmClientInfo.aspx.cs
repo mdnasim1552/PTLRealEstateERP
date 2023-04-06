@@ -6793,7 +6793,7 @@ namespace RealERPWEB.F_21_MKT
                 switch (comcod)
                 {
 
-                    case "3354":
+                    case "3354"://Edison
                     case "3101":
 
 
@@ -7107,7 +7107,7 @@ namespace RealERPWEB.F_21_MKT
             switch (comcod)
             {
 
-                case "3354": //Edison
+               // case "3354": //Edison
                 case "3101":
 
                     int i = 1;

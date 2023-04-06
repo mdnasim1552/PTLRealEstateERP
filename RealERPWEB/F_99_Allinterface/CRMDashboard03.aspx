@@ -1,74 +1,95 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard03.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard03" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
-     <script type="text/javascript">
-         $(document).ready(function () {
-             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-             //var date = new Date();
+            //var date = new Date();
 
-             //var day = ("0" + date.getDate()).slice(-2);
-             //var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            //var day = ("0" + date.getDate()).slice(-2);
+            //var month = ("0" + (date.getMonth() + 1)).slice(-2);
 
-             //var today = date.getFullYear() + "-" + (month) + "-" + (day);
-          
-             //$('#TxtFdate').val(today);
-             //$('#TxtTdate').val(today);
-             $(document).on("change", "#DdlDateType", function () {
-            // $("#DdlDateType").change(function () {
-                 var status = this.value;
+            //var today = date.getFullYear() + "-" + (month) + "-" + (day);
+
+            //$('#TxtFdate').val(today);
+            //$('#TxtTdate').val(today);
+            $(document).on("change", "#DdlDateType", function () {
+                // $("#DdlDateType").change(function () {
+                var status = this.value;
                 // alert(status);
-                 if (status == "7") {
-                     $("#exampleModalSm").modal("toggle");
-                 }
-                
-             });
-             $('.po-markup > .po-link').popover({
-                 sanitize: false,
-                 html: true,
-                 trigger: 'click',
-                  // must have if HTML is contained in popover
+                if (status == "7") {
+                    $("#exampleModalSm").modal("toggle");
+                }
 
-                 // get the title and conent
-                 title: function () {
-                     return $(this).parent().find('.po-title').html();
-                 },
-                 content: function () {
-                     return $(this).parent().find('.po-body').html();
-                 },
+            });
+            $('.po-markup > .po-link').popover({
+                sanitize: false,
+                html: true,
+                trigger: 'click',
+                // must have if HTML is contained in popover
 
-                 container: 'body',
-                 placement: 'bottom'
+                // get the title and conent
+                title: function () {
+                    return $(this).parent().find('.po-title').html();
+                },
+                content: function () {
+                    return $(this).parent().find('.po-body').html();
+                },
 
-             });
-         });
-         function pageLoaded() {
-             try {
+                container: 'body',
+                placement: 'bottom'
 
-                 $("#btnInterface").click(function () {
-                     //specify your URL here..
-                     window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
-                 });
-                 $("#btnSalesFunnel").click(function () {
-                     window.location.href = '../F_21_Mkt/RptSalesFunnel';
-                 });
+            });
+        });
+        function pageLoaded() {
+            try {
 
-             }
-             catch (e) {
+                $("#btnInterface").click(function () {
+                    //specify your URL here..
+                    window.open('../F_21_MKT/CrmClientInfo02?Type=Entry','_blank')
+                   
+                });
+                $("#btnSalesFunnel").click(function () {
+                    window.open('../F_21_Mkt/RptSalesFunnel', '_blank')
 
-             }
-         };
-     </script>
-    <style>    
-          .popover {min-width: 27%;}
-          
+                });
+
+            }
+            catch (e) {
+
+            }
+        };
+    </script>
+    <style>
+        .popover {
+            min-width: 27%;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="10">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
             <div class="wrapper">
                 <div class="page mt-4">
                     <div class="page">
@@ -76,15 +97,15 @@
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-4">
-                                                
-                                       
-                
 
-                                            <div class="form-group mb-0 mw-170px  po-markup">
+
+
+
+                                        <div class="form-group mb-0 mw-170px  po-markup">
                                             <label for="form-date-range" class="form-label">
                                                 Date
                                             </label>
-                                                
+
                                             <asp:DropDownList ID="DdlDateType" runat="server" ClientIDMode="Static" class="form-select">
                                                 <asp:ListItem Value="0">Today</asp:ListItem>
                                                 <asp:ListItem Value="1">Yesterday</asp:ListItem>
@@ -97,33 +118,37 @@
 
                                             </asp:DropDownList>
 
-                                                <a href="#"  class="po-link pull-right"></a>
-                <div class="po-content d-none">
-                    <div class="po-title">        
-                       Select Date 
-                    </div> <!-- ./po-title -->
-            
-                    <div class="po-body">
-                <div class="form-group row">
-                   <div class="col-md-6">
-                       <asp:Label ID="Label1" runat="server">From</asp:Label>
-                   <input type="date" id="TxtFdate" runat="server" class="form-control" >
-                   </div>
-                        <div class="col-md-6">
-                       <asp:Label ID="Label2" runat="server">To</asp:Label>
-                   <input type="date" id="TxtTdate" runat="server" class="form-control" >
-                   </div>      
+                                            <a href="#" class="po-link pull-right"></a>
+                                            <div class="po-content d-none">
+                                                <div class="po-title">
+                                                    Select Date 
                    
-                      <div class="col-md-12">
-                          <br /> 
-                        <button type="button" onclick='$(".po-link").trigger("click")' style="float:right;" class="btn btn-primary btn-sm">SET</button>
-                    </div>
-                    
-                </div>
-                    </div><!-- ./po-body -->
-                 </div>  <!-- ./po-content -->
-               
-                                               <%-- <select class="form-select" id="form-date-range">
+                                                </div>
+                                                <!-- ./po-title -->
+
+                                                <div class="po-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <asp:Label ID="Label1" runat="server">From</asp:Label>
+                                                            <input type="date" id="TxtFdate" runat="server" class="form-control">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <asp:Label ID="Label2" runat="server">To</asp:Label>
+                                                            <input type="date" id="TxtTdate" runat="server" class="form-control">
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <br />
+                                                            <button type="button" onclick='$(".po-link").trigger("click")' style="float: right;" class="btn btn-primary btn-sm">SET</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- ./po-body -->
+                                            </div>
+                                            <!-- ./po-content -->
+
+                                            <%-- <select class="form-select" id="form-date-range">
                                                 <option>Today</option>
                                                 <option>Yesterday</option>
                                                 <option>Last 7 Days</option>
@@ -139,15 +164,13 @@
                                         <label for="form-name" class="form-label">
                                             Username</label>
                                         <div class="form-select-group">
-                                            <select class="form-select" id="form-name">
-                                                <option>Select</option>
-                                                <option>Nayem</option>
-                                                <option>Forid</option>
-                                            </select>
+                                            <asp:DropDownList CssClass="form-select" ID="ddlEmpid" runat="server">
+                                            </asp:DropDownList>
+                                           
                                             <asp:LinkButton ID="LbtnOk" OnClick="LbtnOk_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
                                                 Apply
                                             </asp:LinkButton>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +352,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoScheduleWOrk" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Schedule Work</div>
@@ -343,7 +366,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">100</div>
+                                                            <div class="symbol-label" id="TodoDailyWorkReport" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -359,7 +382,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayVisit" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Visit</div>
@@ -373,7 +396,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedCall" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Call</div>
@@ -389,7 +412,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayTask" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today Task</div>
@@ -403,7 +426,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayWorkLog" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Work Log</div>
@@ -417,7 +440,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedMeetExt" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -435,7 +458,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedVisit" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Visit</div>
@@ -452,7 +475,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayCall" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Call</div>
@@ -469,7 +492,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTodayMeeting" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Today’s Meeting</div>
@@ -486,7 +509,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoMissedMeetInt" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">
@@ -505,7 +528,7 @@
                                                         <a
                                                             href="#"
                                                             class="symbol symbol-60px symbol-light">
-                                                            <div class="symbol-label">30</div>
+                                                            <div class="symbol-label" id="TodoTotalMissedFlowup" runat="server"></div>
                                                         </a>
                                                         <a href="#" class="list-body">
                                                             <div class="list-title">Missed Followup</div>
@@ -536,254 +559,22 @@
                                             <div class="dropdown-panel">
                                                 <div class="form-group-1">
                                                     <div class="form-select-group">
-                                                        <select class="form-select" id="form-name">
-                                                            <option>Cold Call to MKT</option>
-                                                            <option>Nayem</option>
-                                                            <option>Forid</option>
-                                                        </select>
-                                                        <button
-                                                            class="form-select-group-prepend btn btn-primary">
-                                                            Apply
-                                                        </button>
+                                    <asp:DropDownList ID="DdlSubSource" runat="server" CssClass="form-select"></asp:DropDownList>
+
+                <asp:LinkButton ID="LbtnSourceSum" OnClick="LbtnSourceSum_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
+                                                Apply
+                                            </asp:LinkButton>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-flash card-light">
                                                 <div class="card-header">
-                                                    <div class="card-title">Cold Call To MKT</div>
+                                                    <div class="card-title" id="SearcingMktKey" runat="server"></div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="progress-1">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Query</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-warning">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 35%">
-                                                                                <p class="progress-percent">35%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">100</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Lost</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 35%">
-                                                                                <p class="progress-percent">35%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">100</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Lead</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-purple">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 20%">
-                                                                                <p class="progress-percent">20%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">40</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Lead to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 20%">
-                                                                                <p class="progress-percent">20%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">40</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Q.Lead</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-primary">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Q.Lead to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Negotiation
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-cheyenne">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Nego. to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Total Sold</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Total Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Total Hold</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
+                                                    <div class="progress-1" id="MktSourceGraph" runat="server">
+                                                        <!--lead status marketing source load here-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -798,14 +589,25 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="dropdown-panel"></div>
+                                           <div class="dropdown-panel">
+                                                <div class="form-group-1">
+                                                    <div class="form-select-group">
+                                    <asp:DropDownList ID="DdlSalesSubsource" runat="server" CssClass="form-select"></asp:DropDownList>
+
+                <asp:LinkButton ID="LinkButton1" OnClick="LbtnSourceSum_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
+                                                Apply
+                                            </asp:LinkButton>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="card-flash card-light">
                                                 <div class="card-header">
-                                                    <div class="card-title">Sales Reference</div>
+                                                    <div class="card-title" id="SearcingSalKey" runat="server"></div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="progress-1">
-                                                        <div class="row align-items-center">
+                                                    <div class="progress-1" id="SalesSourceGraph" runat="server">
+                                                        <%--<div class="row align-items-center">
                                                             <div class="col-4 py-0">
                                                                 <div class="progress-label">Query</div>
                                                             </div>
@@ -1034,7 +836,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- END -->
+                                                        <!-- END -->--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1061,7 +863,7 @@
                                         </div>
                                         <div class="card-body pb-0">
                                             <div class="table-responsive">
-                                                <table class="table table-dashed">
+                                                <table class="table table-dashed d-none">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="text-left">Project Name
@@ -1251,6 +1053,121 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+
+                                                <asp:GridView BorderWidth="0" ID="GvPrjsum" AutoGenerateColumns="False"
+                                                    CssClass="table table-dashed" runat="server" AllowPaging="true" PageSize="5" OnPageIndexChanging="GvPrjsum_PageIndexChanging">
+                                                    <RowStyle />
+                                                    <Columns>
+                                                        <asp:TemplateField ControlStyle-CssClass="text-left" HeaderText="Project Name">
+                                                            <ItemTemplate>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div
+                                                                        class="symbol symbol-circle symbol-50px overflow-hidden mr-3">
+                                                                        <a href="#">
+                                                                            <div class="symbol-label">
+                                                                                <img
+                                                                                    src="../assets/new-ui/images/office-building.png"
+                                                                                    alt=""
+                                                                                    class="img-responsive" />
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column">
+                                                                         <a class="fs-3" href="#"><%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjdesc")) %></a>
+                                                                    </div>
+                                                                </div>
+
+                                                             
+                                                            </ItemTemplate>
+                                                             
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ControlStyle-CssClass="text-center bg-light" HeaderText="Inventory">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjinv" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "invtry")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle  CssClass="text-center bg-light" />
+                                                              <HeaderStyle CssClass="text-center bg-light" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center bg-light" HeaderText="Unsold">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjunsold"  runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "unsold")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle CssClass="text-center bg-light" />
+                                                              <HeaderStyle CssClass="text-center bg-light" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Query">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjquery" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "query")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                              <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center " HeaderText="Lead">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjLead" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lead")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Q.Lead">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjQLead" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qualiflead")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Negotiation">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjNego" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "nego")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Hold">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjHold" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hold")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Close">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjClose" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lclose")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-center" HeaderText="Lost">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="gvprjLost" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lost")).ToString("#,##0;(#,##0); ") %>'
+                                                                    Width="70px"></asp:Label>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-center" />
+                                                              <HeaderStyle CssClass="text-center" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField ControlStyle-CssClass="text-right " HeaderText="Action">
+                                                            <ItemTemplate>
+                                                               <button class="btn btn-light">View</button>
+                                                            </ItemTemplate>
+                                                                <ItemStyle CssClass="text-right" />
+                                                              <HeaderStyle CssClass="text-right" />
+                                                        </asp:TemplateField>
+
+                                                    </Columns>
+                                                    <PagerStyle CssClass="table-pagination" />
+                                                </asp:GridView>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4">
@@ -1331,7 +1248,7 @@
                                                     <p class="title mb-0">
                                                         Key Performance Indicator
                                                     </p>
-                                                    <p class="subtitle mb-0">Today: 26 Feb 2023</p>
+                                                    <p class="subtitle mb-0">Today: <% System.DateTime.Today.ToString("dd-MMM-yyyy"); %></p>
                                                     <p class="text-muted mb-0">Due: 27 Apr 2023</p>
                                                 </div>
                                             </div>
@@ -1363,22 +1280,22 @@
                                                             <div class="card-body card-text-danger">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">100</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAmt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            10%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiSalePercnt" runat="server">
+                                                                            
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTaramt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1399,22 +1316,22 @@
                                                             <div class="card-body card-text-cheyenne">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">50,000</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAppt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            50%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiTarPercnt" runat="server">
+                                                                           
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTarAppt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1651,46 +1568,46 @@
                 </div>
                 <!-- /.wrapper -->
             </div>
-               <div id="exampleModalSm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                        <!-- .modal-dialog -->
-                        <div class="modal-dialog modal-sm" role="document">
-                          <!-- .modal-content -->
-                          <div class="modal-content">
-                            <!-- .modal-header -->
-                            <div class="modal-header">
-                              <h5 class="modal-title"> Chose Date Range </h5>
-                            </div>
-                            <!-- /.modal-header -->
-                            <!-- .modal-body -->
-                            <div class="modal-body">
-                                <div class="row">
-                                 <div class="col-md-6">
-                             <div class="form-group">
-                                <asp:Label ID="Label3" runat="server">From</asp:Label>
-                                <asp:TextBox ID="txtfrmdate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
-                            </div>
-                                     </div>
-                                 <div class="col-md-6">
-                                 <div class="form-group">
-                                <asp:Label ID="Label4" runat="server">To</asp:Label>
-                                <asp:TextBox ID="txttodate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-                            </div>
-                                     </div>
-                                    </div>
-                            </div>
-                            <!-- /.modal-body -->
-                            <!-- .modal-footer -->
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-warning" data-dismiss="modal">Set & Close</button>
-                            </div>
-                            <!-- /.modal-footer -->
-                          </div>
-                          <!-- /.modal-content -->
+            <div id="exampleModalSm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <!-- .modal-dialog -->
+                <div class="modal-dialog modal-sm" role="document">
+                    <!-- .modal-content -->
+                    <div class="modal-content">
+                        <!-- .modal-header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">Chose Date Range </h5>
                         </div>
-                        <!-- /.modal-dialog -->
-                      </div>
+                        <!-- /.modal-header -->
+                        <!-- .modal-body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label3" runat="server">From</asp:Label>
+                                        <asp:TextBox ID="txtfrmdate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="Label4" runat="server">To</asp:Label>
+                                        <asp:TextBox ID="txttodate" autocomplete="off" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-body -->
+                        <!-- .modal-footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Set & Close</button>
+                        </div>
+                        <!-- /.modal-footer -->
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

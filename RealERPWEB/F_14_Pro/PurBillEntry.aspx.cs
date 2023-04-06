@@ -599,22 +599,22 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-            for (int i = 1; i < dtmrrno.Rows.Count; i++)
-            {
+            //for (int i = 1; i < dtmrrno.Rows.Count; i++)
+            //{
 
-                if (dtmrrno.Rows[i]["mrrref"].ToString() == mrrno)
-                    ;
-                else
-                {
-                    mrrno1 = mrrno1 + ", " + dtmrrno.Rows[i]["mrrref"].ToString();
+            //    if (dtmrrno.Rows[i]["mrrref"].ToString() == mrrno)
+            //        ;
+            //    else
+            //    {
+            //        mrrno1 = mrrno1 + ", " + dtmrrno.Rows[i]["mrrref"].ToString();
 
-                }
+            //    }
 
-                mrrno = dtmrrno.Rows[i]["mrrref"].ToString();
+            //    mrrno = dtmrrno.Rows[i]["mrrref"].ToString();
 
 
 
-            }
+            //}
 
             // rdlc start
 
@@ -691,7 +691,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBilldate", (this.ddlPayType.SelectedValue == "003") ? "Adjustment" : " : " + billrefdate));
             rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillno));
             rpt.SetParameters(new ReportParameter("mprno", "MPR NO  :  " + mrfno1));
-            rpt.SetParameters(new ReportParameter("mrrno", "MRR Ref NO  :  " + mrrno1));
+           // rpt.SetParameters(new ReportParameter("mrrno", "MRR Ref NO  :  " + mrrno1));
             rpt.SetParameters(new ReportParameter("date", " : " + CurDate1));
             rpt.SetParameters(new ReportParameter("chqdate", (this.ddlPayType.SelectedValue == "003") ? "" : " : " + chqdate));
             rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
@@ -1150,7 +1150,7 @@ namespace RealERPWEB.F_14_Pro
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
             LocalReport rpt = new LocalReport();
-            if(comcod=="3374" || comcod == "3374")
+            if(comcod=="3374" || comcod == "3376")
             {
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoInnsANGAN", list, null, null);
             }

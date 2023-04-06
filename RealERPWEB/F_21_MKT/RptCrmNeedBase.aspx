@@ -387,6 +387,12 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Main Source" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvMainSrc" runat="server" Width="100px" Font-Size="12px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mleadsrc")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
 
                                             <asp:TemplateField HeaderText="Lead Source" Visible="false">
@@ -503,6 +509,13 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbllastdiscuss" runat="server" Width="100px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Reassign Date" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvReassignDate" runat="server" Width="100px" Font-Size="12px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rassigndat")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -975,9 +988,14 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                             <asp:TemplateField HeaderText="Main Source">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvMainSrc" runat="server" Width="100px" Font-Size="12px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mleadsrc")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
-
-                                            <asp:TemplateField HeaderText="Lead Source">
+                                            <asp:TemplateField HeaderText="Sub Source">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lLSrc" runat="server" Width="100px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
@@ -1091,6 +1109,13 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbllastdiscuss" runat="server" Width="100px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Reassign Date">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvReassignDate" runat="server" Width="100px" Font-Size="12px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rassigndat")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
