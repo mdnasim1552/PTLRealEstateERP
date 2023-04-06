@@ -435,6 +435,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
 
+                        if (comcod == "3365")
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeCurrentTab();", true);
+
+                        }
+
                     }
                 }
 

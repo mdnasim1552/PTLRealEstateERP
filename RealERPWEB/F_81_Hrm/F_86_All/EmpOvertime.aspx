@@ -582,8 +582,8 @@
                                     <asp:TemplateField HeaderText="System Day" Visible="false">
                                         <ItemTemplate>
 
-
-                                            <asp:Button runat="server" ID="lblsysday" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>' CommandArgument="D" />
+                                            <asp:Label runat="server" ID="lblsysday" Visible="false" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                            <asp:Button runat="server"  Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>' CommandArgument="D" />
 
                                         </ItemTemplate>
 

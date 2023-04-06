@@ -1139,6 +1139,38 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[21].Visible = false;
                         this.gvEmpOverTime.Columns[22].Visible = false;
                     }
+                    else if (comcod == "3364")
+                    {
+                        this.gvEmpOverTime.Columns[1].Visible = true;
+                        this.gvEmpOverTime.Columns[2].Visible = true;
+
+
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = false;
+                        this.gvEmpOverTime.Columns[6].Visible = false;
+                        this.gvEmpOverTime.Columns[7].Visible = false;
+                        this.gvEmpOverTime.Columns[8].Visible = true;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = false;
+                        this.gvEmpOverTime.Columns[18].Visible = false;
+                        this.gvEmpOverTime.Columns[19].Visible = false;
+                        this.gvEmpOverTime.Columns[20].Visible = true;
+                        this.gvEmpOverTime.Columns[21].Visible = false;
+                        this.gvEmpOverTime.Columns[22].Visible = true;
+                        this.gvEmpOverTime.Columns[22].HeaderText = "Total Day";
+                        this.gvEmpOverTime.Columns[20].HeaderText = "Total Amount";
+
+
+                    }
+
                     //else if (comcod == "3368")
                     //{
                     //    this.gvEmpOverTime.Columns[1].Visible = true;
@@ -1971,7 +2003,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double dayrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvdayrate")).Text.Trim());
                         double fixhourcount = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixedhour")).Text.Trim());
                         double hourlyrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvhourlyrate")).Text.Trim());
- 
+                        double sysdaycount = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblsysday")).Text.Trim());
+
+
 
 
 
@@ -1986,6 +2020,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
+                        if (comcod == "3364")
+                        {
+                            dt.Rows[rowindex]["fixday"] = sysdaycount;
+                            dt.Rows[rowindex]["holidayrate"] = dayrate;
+                        }
+    
+
+
+
                         //if (comcod == "3368")
                         //{
 
@@ -2294,7 +2337,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double c3rate = Convert.ToDouble(dt.Rows[i]["c3rate"]);
                 double fixamtx = Convert.ToDouble(dt.Rows[i]["fixamt"]);
 
-                string fixamt = (comcod == "3370" || comcod == "3101") ? fixamtx.ToString() : (fixhour * fixrate).ToString();
+                string fixamt = (comcod == "3370" || comcod == "3101" || comcod=="3364") ? fixamtx.ToString() : (fixhour * fixrate).ToString();
 
                 string houramt = (hourly * hourrate).ToString();
                 string c1amt = (c1hour * c1rate).ToString();
@@ -2302,36 +2345,25 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string c3amt = (c3hour * c3rate).ToString();
                 double tohour = Convert.ToDouble(dt.Rows[i]["tohour"]); ;
 
-                double daycount = 0.0;
-                double dayrate = 0.0;
-                double syshour = 0.0;
-                double syshourrate = 0.0;
+                //double daycount = 0.0;
+                //double dayrate = 0.0;
+                //double syshour = 0.0;
+                //double syshourrate = 0.0;
+                double daycount = Convert.ToDouble(dt.Rows[i]["fixday"]);
+                double dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
+                double syshour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
+                double syshourrate = Convert.ToDouble(dt.Rows[i]["fixrate"]);
                 double dayamt = 0.0;
-                double totalamt = 0.0;
-
                 if ( comcod=="3369")
                 {
-                    daycount = Convert.ToDouble(dt.Rows[i]["fixday"]);
-                    dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
-                    syshour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
-                    syshourrate = Convert.ToDouble(dt.Rows[i]["fixrate"]);
                     dayamt = daycount * dayrate;
-                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                    if (!result)
-                        return;
+                    //result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                    //if (!result)
+                    //    return;
                 }
                 
-                
-                
-                
-                
-                else
-                {
-
-                    //if (tohour > 0)
-                    //{
-
-                        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+           
+               result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
 
                     if (!result)
                     {
@@ -2341,29 +2373,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     }
                            
-                   // }
-                    
-                    
-                    
-                    
-                    
-                    
-                    //switch (comcod)                
-                    
-                    //{
-                    //case "3101":
-                    //case "3370":
-                    //    if (fixamtx > 0)
-                    //    {
-                    //        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                    //        if (!result)
-                    //            return;
-                    //    }
-                    //    break;
-
-                    //}
-
-            }
+     
 
 
             }
@@ -4064,13 +4074,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string fixamt = "0.00";
-                        
+                        string dayrate = "0.00";
+                        string overtimeday = "0.00";
+
+
+
+
                         switch (comcod)
                         {
                             case "3370":
                                 fixamt = dt.Rows[i]["fixamt"].ToString().Length == 0 ? "0" : dt.Rows[i]["fixamt"].ToString();                               
                                 break;
-                           
+
+                            case "3364":
+                                overtimeday = dt.Rows[i]["overtimeday"].ToString().Length == 0 ? "0" : dt.Rows[i]["overtimeday"].ToString();
+                                dayrate = dt.Rows[i]["dayrate"].ToString().Length == 0 ? "0" : dt.Rows[i]["dayrate"].ToString();
+                                //fixamt = (Convert.ToDecimal(overtimeday) * Convert.ToDecimal(dayrate)).ToString();
+                                break;
+
                             default:
                                 fixamt = "0.00";                               
                                 break;
@@ -4102,19 +4123,33 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             if (rows.Length > 0)
                             {
                                 double fixamt = 0.00;
-                                 
+                                double dayrate = 0.00;
+                                double overtimeday = 0.0;
+
+
                                 switch (comcod)
                                 {
                                     case "3370":
                                         fixamt = Convert.ToDouble("0" + rows[0]["fixamt"]);
                                         break;
-                                    
+
+                                    case "3364":
+                                        dayrate = Convert.ToDouble("0" + rows[0]["dayrate"]);
+                                        overtimeday = Convert.ToDouble("0" + rows[0]["overtimeday"]);
+                                        fixamt=(dayrate*overtimeday);
+
+                                        break;
+
                                     default:
                                         fixamt = 0.00;                                        
                                         break;
                                 }
                                 dt1.Rows[i]["fixamt"] = fixamt;
-                                
+
+                                dt1.Rows[i]["holidayrate"] = dayrate;
+                                dt1.Rows[i]["daycount"] = overtimeday;
+
+
                                 rowCount++;
                                 dt1.AcceptChanges();
 
