@@ -163,13 +163,23 @@ namespace RealERPWEB.F_21_MKT
         {
 
             string Type = this.Request.QueryString["Type"].ToString();
-
+            string comcod = this.GetComeCode();
             switch (Type)
             {
 
                 case "Report":
                     GridSummary();
                     this.Multiview.ActiveViewIndex = 0;
+                    switch (comcod)
+                    {
+                        case "3354"://Edison
+                        case "3101"://PTL
+                            this.gvSummary.Columns[15].HeaderText = "Sub Source";
+                            break;
+
+                        default:
+                            break;
+                    }
                     break;
 
                 case "RptStd":
@@ -270,24 +280,16 @@ namespace RealERPWEB.F_21_MKT
             string employee = (this.DdlEmployee.SelectedValue.ToString() == "000000000000") ? "%" : this.DdlEmployee.SelectedValue.ToString() + "%";
             string visitstatus = (this.DdlVisitSource.SelectedValue.ToString().Length == 0) ? "%" : this.DdlVisitSource.SelectedValue.ToString();
 
-
-
-
-
-
-
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE02", 
                 "GET_CLIENT_NEED_BASE_REPORT", null, null, null, "8301%", leadid, custname, mobile, Email, org, profecode, areacode,
                  category, LeadStatus, apptsize, projectcod, fromdate, todate, subsource, employee, visitstatus);
-
-
-            // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-            //Pri, Status, Other, TxtVal, todate, srchempid);
-
-
-            this.gvNedBseDetails.DataSource = null;
-            this.gvNedBseDetails.DataBind();
-
+            if (ds3 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found!');", true);
+                this.gvNedBseDetails.DataSource = null;
+                this.gvNedBseDetails.DataBind();
+                return;
+            }
 
             Session["tblsummData"] = ds3.Tables[0];
             this.dataBindGV();
