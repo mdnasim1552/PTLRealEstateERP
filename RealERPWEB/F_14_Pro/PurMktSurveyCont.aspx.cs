@@ -1187,6 +1187,7 @@ namespace RealERPWEB.F_14_Pro
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
                 string flrcod = tbl1.Rows[i]["flrcod"].ToString();
+                string proposerate = tbl1.Rows[i]["proposerate"].ToString();
                 DataTable tbls1 = (DataTable)Session["tblt01"];
 
                 for (int j = 0; j < tbls1.Rows.Count; j++)
@@ -1196,7 +1197,7 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B", mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B", mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, proposerate, "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -1428,10 +1429,12 @@ namespace RealERPWEB.F_14_Pro
                 double resrate3 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate3")).Text.Trim());
                 double resrate4 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate4")).Text.Trim());
                 double resrate5 = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtrate5")).Text.Trim());
+                double proposerate = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtgvMSRproposerate")).Text.Trim());
 
 
                 string aprovrate = (((Label)this.gvMSRInfo2.Rows[j].FindControl("lblaprovrate")).Text.Trim() == "") ? "0.00" : ((Label)this.gvMSRInfo2.Rows[j].FindControl("lblaprovrate")).Text.Trim();
                 string dgvMSRRemarks = ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtgvMSRRemarks")).Text.Trim();
+                tbl1.Rows[j]["proposerate"] = proposerate;
                 tbl1.Rows[j]["qty"] = qty;
                 tbl1.Rows[j]["rsirunit"] = rsirunit;
                 tbl1.Rows[j]["resrate1"] = resrate1;
@@ -1486,6 +1489,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)Session["tblt02"];
             DataTable tblreq = (DataTable)Session["tblreq01"];
             DataTable tbl02 = (DataTable)Session["CopyBillCS"];
+            
            
             string comcod = this.GetCompCode();
 
@@ -1517,20 +1521,24 @@ namespace RealERPWEB.F_14_Pro
                         dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                         dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
                         dr1["proposerate"] = 0;
-                        for (int j = 1; j < tbl02.Rows.Count; j++)
+                        if (this.chkbillcscopy.Checked == true)
                         {
-                           
-                            string rsircode = tbl02.Rows[j]["rsircode"].ToString();
-                            string flrcode = tbl02.Rows[j]["flrcod"].ToString();                           
-                            if(rsircode== mResCode2 && flrcode== flrcod )
+                            for (int j = 1; j < tbl02.Rows.Count; j++)
                             {
-                                 rate = tbl02.Rows[j]["resrate1"].ToString();
-                                 rate1 = tbl02.Rows[j]["resrate2"].ToString();
-                                 rate2 = tbl02.Rows[j]["resrate3"].ToString();
+
+                                string rsircode = tbl02.Rows[j]["rsircode"].ToString();
+                                string flrcode = tbl02.Rows[j]["flrcod"].ToString();
+                                if (rsircode == mResCode2 && flrcode == flrcod)
+                                {
+                                    rate = tbl02.Rows[j]["resrate1"].ToString();
+                                    rate1 = tbl02.Rows[j]["resrate2"].ToString();
+                                    rate2 = tbl02.Rows[j]["resrate3"].ToString();
+                                }
+
+
                             }
-
-
                         }
+                      
                         dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
                         dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
                         dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
@@ -1771,7 +1779,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 7;
+                cell0.ColumnSpan = 9;
                 gvrow.Cells.Add(cell0);
 
 

@@ -303,6 +303,8 @@ namespace RealERPLIB
         {
             try
             {
+
+
                 string comcod = comcode;
                 DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
                 string user = ds3.Tables[0].Rows[0]["apiusrid"].ToString().Trim(); //"nahid@asit.com.bd";
@@ -314,8 +316,9 @@ namespace RealERPLIB
                 string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
                 string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
 
-                
-               
+                Random rnd1 = new Random(9); //seed value 10
+                string cmsid = rnd1.Next().ToString();
+
 
 
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
@@ -328,7 +331,9 @@ namespace RealERPLIB
                         apiinfo = ApiUrl + user + "&password=" + pass + "&masking=" + sender + "&MsgType=TEXT" + "&receiver=" + mobile + "&message=" + text;
                         break;
                     case "3354"://Edison
-                        apiinfo = ApiUrl + apikey + "&ClientId=" + ClientId + "&SenderId=" + sender + "&from=" + var_from + "&MobileNumbers=" + mobile + "&Message=" + text;
+
+                       
+                        apiinfo = ApiUrl + apikey + "&sid=" + sender + "&csms_id=" + cmsid + "&msisdn=" + mobile + "&sms=" + text;
                         break;
 
                         

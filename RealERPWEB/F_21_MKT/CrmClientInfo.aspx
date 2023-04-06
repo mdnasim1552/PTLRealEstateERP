@@ -550,7 +550,7 @@
                             break;
 
 
-                            
+
 
                         //Last Followup
                         case '810100101020':
@@ -622,7 +622,7 @@
                 $(ddlcompany).change(function () {
 
                     var company = $('#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom).val();
-                    var pactcode = $(this).val();  
+                    var pactcode = $(this).val();
                     funCompanyProjectUnit(company, pactcode);
 
 
@@ -721,7 +721,7 @@
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
-                    if (comcod == "3354" ||comcod=="3364") {
+                    if (comcod == "3354" || comcod == "3364") {
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
@@ -789,7 +789,7 @@
 
                             switch (comcod) {
                                 case 3101:
-                               // case 3354:// Edison   
+                                    // case 3354:// Edison   
 
 
                                     if ($(item).val() == "9601050") {
@@ -826,6 +826,76 @@
 
                     });
                 });
+
+
+
+                // Status
+
+                $('#ChkBoxLstStatus input[type=checkbox]').click(function () {
+
+
+                    $('#ChkBoxLstStatus span >input').each(function (index, item) {
+
+
+
+
+                        if ($(item).is(':checked')) {
+
+
+
+
+                            switch (comcod) {
+                                case 3101:
+                                case 3354:// Edison 
+                                    var leadst = $(item).val();
+
+                                    switch (leadst) {
+                                        case "9501020"://Hold
+
+                                            $('#divhold').show();
+                                            $('#divlost').hide();
+                                            $('#divclose').hide();
+                                            break;
+
+                                        case "9501028"://Lost                                           
+                                            $('#divhold').hide();
+                                            $('#divlost').show();
+                                            $('#divclose').hide();
+                                            break;
+
+                                        case "9501035"://Close
+                                            $('#divhold').hide();
+                                            $('#divlost').hide();
+                                            $('#divclose').show();
+                                            break;
+
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+
+
+
+                            }
+
+
+                        }
+                        else {
+
+
+
+                        }
+
+
+
+
+
+
+                    });
+                });
+
+
 
 
                 //Sold Info
@@ -868,12 +938,12 @@
                 var utility01 = '#ContentPlaceHolder1_rpsold_txtUtility_0';
                 var pamt01 = '#ContentPlaceHolder1_rpsold_txtpamt_0';
                 var toamt01 = '#ContentPlaceHolder1_rpsold_txtgrandTotal_0';
-                
+
                 $(flatcost01).change(function () {
 
-                    var flatcost = $(flatcost01).val().length==0?0: parseFloat($(flatcost01).val());
+                    var flatcost = $(flatcost01).val().length == 0 ? 0 : parseFloat($(flatcost01).val());
                     var utility = $(utility01).val().length == 0 ? 0 : parseFloat($(utility01).val());
-                    var pamt = $(pamt01).val().length == 0 ? 0 :parseFloat($(pamt01).val());
+                    var pamt = $(pamt01).val().length == 0 ? 0 : parseFloat($(pamt01).val());
                     var tamt = flatcost + utility + pamt;
                     $(toamt01).val(tamt.toString());
 
@@ -984,8 +1054,8 @@
 
 
 
-                
-                
+
+
 
 
 
@@ -1108,7 +1178,7 @@
             }
 
             catch (e) {
-
+               // alert(e.message)
 
             }
 
@@ -1701,7 +1771,7 @@
 
 
         }
-         // Company Project Unit
+        // Company Project Unit
 
         function funCompanyProjectUnit(company, pactcode) {
             try {
@@ -1741,7 +1811,7 @@
                         //var ddlProject = '#ddlProject';
 
 
-             
+
                         $(ddlUnit).html('');
 
                         // $(lstProject).empty();
@@ -2259,7 +2329,7 @@
                                 if ($(item).val() == data.gdesc1) {
 
                                     $(item).attr("selected", true);
-                                    alert(data.gdesc1);
+
                                 }
 
 
@@ -5068,7 +5138,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstnextFollow" ClientIDMode="Static" RepeatLayout="Flow" RepeatDirection="Horizontal" Width="650px"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
@@ -5112,8 +5182,6 @@
                                 <div class=" col-md-4 col-lg-4">
                                     <div id="divsold" style="display: none;">
                                         <strong>Sold Information</strong>
-
-
                                         <asp:Repeater ID="rpsold" runat="server">
                                             <HeaderTemplate>
                                             </HeaderTemplate>
@@ -5263,6 +5331,154 @@
                                         <%--<asp:LinkButton ID="lbtnAddMore"  OnClientClick="funDataToggle();" CssClass="btn btn-info btn-sm fa-pull-right" runat="server"> Add More</asp:LinkButton>--%>
                                     </div>
 
+
+                                    <div id="divhold" style="display: none">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Reason of Hold</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtreason" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div id="divlost" style="display: none">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Different Location</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtdifflocation" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Low Budget</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtlowbudged" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <label id="chkbod" runat="server" class="switch">
+                                                            <asp:CheckBox ID="chkintended" runat="server" />
+                                                            <span class="btn btn-xs slider round"></span>
+                                                        </label>
+                                                        <label>Not intended to by Within 6 months</label>
+
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Others</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtothers" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="divclose" style="display: none">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+                                              
+                                               
+                                                
+                                                 <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Brought From Other</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtbroughtfothers" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Price doesn’t match</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="tctpricenotmatch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+                                                            <label>Others Reason</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtcloseoreason" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
                                 </div>
 
 
@@ -5406,7 +5622,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="detnotification" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-full-width">
                     <div class="modal-content modal-content-full-width">

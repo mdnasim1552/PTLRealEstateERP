@@ -50,10 +50,12 @@
 
                 $("#btnInterface").click(function () {
                     //specify your URL here..
-                    window.location.href = '../F_21_MKT/CrmClientInfo02?Type=Entry';
+                    window.open('../F_21_MKT/CrmClientInfo02?Type=Entry','_blank')
+                   
                 });
                 $("#btnSalesFunnel").click(function () {
-                    window.location.href = '../F_21_Mkt/RptSalesFunnel';
+                    window.open('../F_21_Mkt/RptSalesFunnel', '_blank')
+
                 });
 
             }
@@ -71,6 +73,23 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="10">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
             <div class="wrapper">
                 <div class="page mt-4">
                     <div class="page">
@@ -145,11 +164,9 @@
                                         <label for="form-name" class="form-label">
                                             Username</label>
                                         <div class="form-select-group">
-                                            <select class="form-select" id="form-name">
-                                                <option>Select</option>
-                                                <option>Nayem</option>
-                                                <option>Forid</option>
-                                            </select>
+                                            <asp:DropDownList CssClass="form-select" ID="ddlEmpid" runat="server">
+                                            </asp:DropDownList>
+                                           
                                             <asp:LinkButton ID="LbtnOk" OnClick="LbtnOk_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
                                                 Apply
                                             </asp:LinkButton>
@@ -542,254 +559,22 @@
                                             <div class="dropdown-panel">
                                                 <div class="form-group-1">
                                                     <div class="form-select-group">
-                                                        <select class="form-select" id="form-name">
-                                                            <option>Cold Call to MKT</option>
-                                                            <option>Nayem</option>
-                                                            <option>Forid</option>
-                                                        </select>
-                                                        <button
-                                                            class="form-select-group-prepend btn btn-primary">
-                                                            Apply
-                                                        </button>
+                                    <asp:DropDownList ID="DdlSubSource" runat="server" CssClass="form-select"></asp:DropDownList>
+
+                <asp:LinkButton ID="LbtnSourceSum" OnClick="LbtnSourceSum_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
+                                                Apply
+                                            </asp:LinkButton>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-flash card-light">
                                                 <div class="card-header">
-                                                    <div class="card-title">Cold Call To MKT</div>
+                                                    <div class="card-title" id="SearcingMktKey" runat="server"></div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="progress-1">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Query</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-warning">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 35%">
-                                                                                <p class="progress-percent">35%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">100</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Lost</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 35%">
-                                                                                <p class="progress-percent">35%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">100</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Lead</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-purple">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 20%">
-                                                                                <p class="progress-percent">20%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">40</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Lead to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 20%">
-                                                                                <p class="progress-percent">20%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">40</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Q.Lead</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-primary">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Q.Lead to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Negotiation
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-cheyenne">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Nego. to Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Total Sold</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">
-                                                                    Total Close
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
-                                                        <div class="row align-items-center">
-                                                            <div class="col-4 py-0">
-                                                                <div class="progress-label">Total Hold</div>
-                                                            </div>
-                                                            <div class="col-8 py-0">
-                                                                <div class="d-flex align-items-center py-2">
-                                                                    <div class="flex-grow-1">
-                                                                        <div class="progress progress-light">
-                                                                            <div
-                                                                                class="progress-bar"
-                                                                                style="width: 10%">
-                                                                                <p class="progress-percent">10%</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="progress-end">10</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END -->
+                                                    <div class="progress-1" id="MktSourceGraph" runat="server">
+                                                        <!--lead status marketing source load here-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -804,14 +589,25 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="dropdown-panel"></div>
+                                           <div class="dropdown-panel">
+                                                <div class="form-group-1">
+                                                    <div class="form-select-group">
+                                    <asp:DropDownList ID="DdlSalesSubsource" runat="server" CssClass="form-select"></asp:DropDownList>
+
+                <asp:LinkButton ID="LinkButton1" OnClick="LbtnSourceSum_Click" runat="server" CssClass="form-select-group-prepend btn btn-primary">
+                                                Apply
+                                            </asp:LinkButton>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="card-flash card-light">
                                                 <div class="card-header">
-                                                    <div class="card-title">Sales Reference</div>
+                                                    <div class="card-title" id="SearcingSalKey" runat="server"></div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="progress-1">
-                                                        <div class="row align-items-center">
+                                                    <div class="progress-1" id="SalesSourceGraph" runat="server">
+                                                        <%--<div class="row align-items-center">
                                                             <div class="col-4 py-0">
                                                                 <div class="progress-label">Query</div>
                                                             </div>
@@ -1040,7 +836,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- END -->
+                                                        <!-- END -->--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1452,7 +1248,7 @@
                                                     <p class="title mb-0">
                                                         Key Performance Indicator
                                                     </p>
-                                                    <p class="subtitle mb-0">Today: 26 Feb 2023</p>
+                                                    <p class="subtitle mb-0">Today: <% System.DateTime.Today.ToString("dd-MMM-yyyy"); %></p>
                                                     <p class="text-muted mb-0">Due: 27 Apr 2023</p>
                                                 </div>
                                             </div>
@@ -1484,22 +1280,22 @@
                                                             <div class="card-body card-text-danger">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">100</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAmt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            10%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiSalePercnt" runat="server">
+                                                                            
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTaramt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1520,22 +1316,22 @@
                                                             <div class="card-body card-text-cheyenne">
                                                                 <div
                                                                     class="d-flex align-items-center justify-content-between">
-                                                                    <div class="card-title mb-0">50,000</div>
+                                                                    <div class="card-title mb-0" id="KpiSaleAppt" runat="server"></div>
                                                                     <div class="d-flex align-items-center">
                                                                         <div>
                                                                             <img
                                                                                 src="assets/new-ui/images/transfer.png"
                                                                                 alt="" />
                                                                         </div>
-                                                                        <p class="progress-percent mb-0 ml-2">
-                                                                            50%
+                                                                        <p class="progress-percent mb-0 ml-2" id="KpiTarPercnt" runat="server">
+                                                                           
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-subtitle mb-2">
                                                                     Achievement
                                                                 </div>
-                                                                <p class="mb-0">Target-1,00,000</p>
+                                                                <p class="mb-0" id="KpiTarAppt" runat="server"></p>
                                                             </div>
                                                         </div>
                                                     </div>

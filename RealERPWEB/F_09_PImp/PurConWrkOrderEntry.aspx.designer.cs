@@ -159,6 +159,24 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevList;
 
         /// <summary>
+        /// Checkrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Checkrate;
+
+        /// <summary>
+        /// ProposeRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ProposeRate;
+
+        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>

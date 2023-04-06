@@ -258,6 +258,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlUnits;
 
         /// <summary>
+        /// divChkCsReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divChkCsReq;
+
+        /// <summary>
+        /// chkCsReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkCsReq;
+
+        /// <summary>
         /// chkbod control.
         /// </summary>
         /// <remarks>

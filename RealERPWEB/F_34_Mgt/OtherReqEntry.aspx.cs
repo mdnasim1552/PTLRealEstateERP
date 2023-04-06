@@ -626,6 +626,7 @@ namespace RealERPWEB.F_34_Mgt
                 this.gvOtherReq.DataBind();
                 this.Panel1.Visible = false;
                 this.lbtnOk.Text = "Ok";
+                
                 if ((Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqPrint") || (Request.QueryString["Type"].ToString() == "OreqAcc"))
                 {
                     this.lblMatGroup.Visible = false;
@@ -673,7 +674,10 @@ namespace RealERPWEB.F_34_Mgt
 
             this.ddlMatGrp_SelectedIndexChanged(null, null);
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            this.lbtnGroupSelect.Visible = (pactcode.Substring(0, 2) == "16") ? false : true;
+            //this.lbtnGroupSelect.Visible = (pactcode.Substring(0, 2) == "16") ? false : true;
+            this.lbtnGroupSelect.Visible = true;
+
+
             this.Get_Requisition_Info();
             // this.Get_TrmCon_Info();
         }

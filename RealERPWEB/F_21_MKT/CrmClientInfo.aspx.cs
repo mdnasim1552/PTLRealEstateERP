@@ -5708,7 +5708,7 @@ namespace RealERPWEB.F_21_MKT
             DataTable dt = (DataTable)ViewState["tblsoldinfo"];
             DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
             DataSet ds1 = ((DataSet)ViewState["tblproaunit"]).Copy();
-           DataTable dtagg=((DataTable) ViewState["tblsubddl"]).Copy() ;
+            DataTable dtagg = ((DataTable)ViewState["tblsubddl"]).Copy();
             // this.hdnnoofsold.Value = dt.Rows.Count.ToString();
 
             this.rpsold.DataSource = dt;
@@ -5719,7 +5719,7 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
 
             DropDownList ddlProject, ddlUnit, ddlaggst;
-            DataView dv,dvagg;
+            DataView dv, dvagg;
             dv = dtprj.DefaultView;
             dv.RowFilter = ("comcod='" + comcod + "' and pactcode<>''");
 
@@ -5729,8 +5729,8 @@ namespace RealERPWEB.F_21_MKT
 
             string pactcode = "";
 
-            
-        
+
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -5765,7 +5765,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                 ((TextBox)this.rpsold.Items[i].FindControl("txtrpsolddate")).Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    
+
 
             }
 
@@ -5778,9 +5778,9 @@ namespace RealERPWEB.F_21_MKT
             DataTable dt = (DataTable)ViewState["tblsoldinfo"];
             DataRow dr1 = dt.Rows[0];
             dt.ImportRow(dr1);
-            ViewState["tblsoldinfo"] = dt ;
-           // divsold.Attributes["style"] = "display:show";
-           
+            ViewState["tblsoldinfo"] = dt;
+            // divsold.Attributes["style"] = "display:show";
+
             this.SoldData_Bind();
 
 
@@ -6299,7 +6299,7 @@ namespace RealERPWEB.F_21_MKT
                         //Lost, Hold & Close Enabled
                         switch (comcod)
                         {
-                           // case "3354"://Edison
+                            case "3354"://Edison
                             case "3101"://PTL
                                 //Clost Inactive only Query
                                 if (lstleadstatus == "9501002") //Query
@@ -6774,6 +6774,7 @@ namespace RealERPWEB.F_21_MKT
 
                 string Gvalue = "";
                 string folloupsold = "";
+                string statuscode = "";
                 bool result;
 
                 Gvalue = (((CheckBoxList)this.gvInfo.Rows[1].FindControl("ChkBoxLstFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[1].FindControl("txtgvValdis")).Text.Trim()
@@ -6793,7 +6794,7 @@ namespace RealERPWEB.F_21_MKT
                 switch (comcod)
                 {
 
-                    //case "3354"://Edison
+                    case "3354"://Edison
                     case "3101":
 
 
@@ -6974,6 +6975,7 @@ namespace RealERPWEB.F_21_MKT
 
                         Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
                             : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
+                        statuscode = Gvalue;
                     }
 
                     else if (Gcode == "810100101017" || Gcode == "810100101014")
@@ -7064,12 +7066,19 @@ namespace RealERPWEB.F_21_MKT
                 if (folloupsold == "9601050")
                 {
                     this.UpdateSoldInfo(Client, cdate);
-                
-                
+
+
+                }
+
+                //Lost, Close and hold reason
+                if (statuscode == "9501020" || statuscode == "9501028" || statuscode == "9501035")
+                {
+                    this.UpdateLostCloseaHoldReason(hempid, Client, cdate, statuscode);
+
                 }
 
 
-              
+
 
 
 
@@ -7107,7 +7116,7 @@ namespace RealERPWEB.F_21_MKT
             switch (comcod)
             {
 
-                case "3354": //Edison
+                // case "3354": //Edison
                 case "3101":
 
                     int i = 1;
@@ -7148,13 +7157,73 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-           
+
 
 
         }
 
 
+        private void UpdateLostCloseaHoldReason(string empid, string proscod, string cdate, string statuscode)
+        {
+            string comcod = this.GetComeCode();
+            bool result = false;
+            switch (comcod)
+            {
 
+                case "3354": //Edison
+                case "3101":
+                    switch (statuscode)
+
+                    {
+                        case "9501020":
+                            string holdreason = this.txtreason.Text.Trim();
+
+                            result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTORUPHOLDREASON", empid, proscod , cdate, statuscode, holdreason, "", "", "", "", "", "", "");
+                            break;
+
+                        case "9501028":
+                            string difflocation = this.txtdifflocation.Text.Trim();
+                            string lowbudged = this.txtlowbudged.Text.Trim();
+                            string notintended = this.chkintended.Checked?"True":"False";
+                            string others = this.txtothers.Text.Trim();
+
+                            result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTORUPLOSTREASON", empid, proscod, cdate, statuscode, difflocation, lowbudged, notintended, others, "", "", "", "");
+                            break;
+                        case "9501035":
+                            
+                            string broughtfohters = this.txtbroughtfothers.Text.Trim();
+                            string pricenotmatch = this.tctpricenotmatch.Text.Trim();
+                            string reason = this.txtcloseoreason.Text.Trim();
+                            result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTORUPCLOSEREASON", empid, proscod, cdate, statuscode, broughtfohters, pricenotmatch, reason, "", "", "", "", "");
+                            break;
+
+
+
+                    }
+
+
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + instcrm.ErrorObject["Msg"].ToString() + "');", true);
+                        return;
+
+                    }
+
+
+
+
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+
+                    break;
+                default:
+                    break;
+            }
+
+
+
+
+        }
 
         protected void lbtnCancel_Click(object sender, EventArgs e)
         {
@@ -8296,7 +8365,7 @@ namespace RealERPWEB.F_21_MKT
             this.gvkpidet.DataBind();
         }
 
-       
+
     }
 
 
