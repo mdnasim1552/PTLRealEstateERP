@@ -11,12 +11,10 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
+
 using RealEntity.C_17_Acc;
 using RealERPLIB;
-using RealERPRPT;
+
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
 namespace RealERPWEB.F_22_Sal
