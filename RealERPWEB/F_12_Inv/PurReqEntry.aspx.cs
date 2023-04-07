@@ -289,7 +289,7 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -3089,22 +3089,25 @@ namespace RealERPWEB.F_12_Inv
             {
                 HyperLink hlnkacrcvqty = (HyperLink)e.Row.FindControl("hlnkgvacrcvqty");
 
-                //string comcod = this.GetCompCode();
-                //TextBox txtgvUseDat = (TextBox)e.Row.FindControl("txtgvUseDat");
+                string comcod = this.GetCompCode();
+                //  TextBox txtgvUseDat = (TextBox)e.Row.FindControl("txtgvUseDat");
                 //CalendarExtender cextender = (CalendarExtender)e.Row.FindControl("txtgvUseDat_CalendarExtender");
-                //switch (comcod)
-                //{
-                //    case "3354":
-                //        // case "3101":                       
-                //        cextender.TargetControlID = txtgvUseDat.ID;
-                //        break;
-                //    default:
-                //        break;
+                ImageButton ibtncalextender = (ImageButton)e.Row.FindControl("ibtncalextender");
+                switch (comcod)
+                {
+                    case "3354":
+                    case "3101":
+                        break;
+
+                    default:
+                        ibtncalextender.Attributes["style"] = "display:none;";
+                        break;
 
 
 
 
-                //}
+
+                }
 
 
 
