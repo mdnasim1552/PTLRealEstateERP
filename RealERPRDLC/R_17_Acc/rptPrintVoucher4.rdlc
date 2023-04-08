@@ -943,7 +943,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!trnqty.Value=0,"",iif(Fields!Dr.Value&gt;0, Fields!Dr.Value/Fields!trnqty.Value,iif(Fields!Cr.Value&gt;0,Fields!Cr.Value/Fields!trnqty.Value,"")))</Value>
+                                  <Value>=iif(Fields!trnqty.Value=0,"",iif(Fields!Dr.Value&gt;0, Format(Fields!Dr.Value/Fields!trnqty.Value,"#,##0.000;(#,##0.000); "),iif(Fields!Cr.Value&gt;0, Format(Fields!Cr.Value/Fields!trnqty.Value,"#,##0.000;(#,##0.000); "),"")))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -975,6 +975,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
