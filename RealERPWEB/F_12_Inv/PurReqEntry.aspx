@@ -350,7 +350,7 @@
 
                                                 <asp:ImageButton  runat="server" ID="ibtncalextender"  ImageUrl="~/Image/calender.png"  style="width:20px; height:20px;"/>
                                               
-                                                 <cc1:CalendarExtender ID="txtgvUseDat_CalendarExtender" runat="server"
+                                                 <cc1:CalendarExtender ID="txtgvUseDat_CalendarExtender" runat="server" 
                                                         Format="dd-MMM-yyyy"   TargetControlID="txtgvUseDat" PopupButtonID="ibtncalextender" ></cc1:CalendarExtender>
 
                                                 
