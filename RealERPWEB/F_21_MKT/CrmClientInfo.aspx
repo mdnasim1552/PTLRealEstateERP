@@ -1178,7 +1178,7 @@
             }
 
             catch (e) {
-                alert(e.message)
+               // alert(e.message)
 
             }
 

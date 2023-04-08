@@ -956,12 +956,12 @@ namespace RealERPWEB.F_23_CR
                     string userid = hst["usrid"].ToString();
                     string Terminal = hst["compname"].ToString();
                     string Sessionid = hst["session"].ToString();
-                    string PostedByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
-                    string Posttrmid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-                    string PostSession = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-                    string Posteddat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-                    string EditByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
-                    string Editdat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    string PostedByid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
+                    string Posttrmid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+                    string PostSession = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
+                    string Posteddat = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                    string EditByid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
+                    string Editdat = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                     DataTable dt1 = (DataTable)Session["tblfincoll"];
                     bool result = true;
@@ -1010,7 +1010,7 @@ namespace RealERPWEB.F_23_CR
                     string Type = this.Request.QueryString["Type"];
 
 
-                    if (Type == "CustCare" || Type == "Billing")
+                    if (Type == "CustCare" || Type == "Billing" || Type=="AIBilling")
                     {
                         switch (comcod)
                         {
