@@ -87,7 +87,7 @@ namespace RealERPWEB.F_23_CR
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            string Desc2 = "asdas";
+            
             //string csircode = "98%";//this.ddlcontractorlist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlcontractorlist.SelectedValue.ToString() + "%";
             //string billtcode = "%";//this.ddlcatagory.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlcatagory.SelectedValue.ToString() + "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCUSTOMERDETAILS", pactcode, "", "", "", "", "", "", "", "");
@@ -113,7 +113,7 @@ namespace RealERPWEB.F_23_CR
             string empName = dt.Rows[rowIndex]["name"].ToString();
             string unit= dt.Rows[rowIndex]["udesc"].ToString();
             unitLabel.Text = unit;
-
+            projectLabel.Text= ddlprjlist.SelectedItem.Text;
 
             DateTime today = DateTime.Today;
             string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
@@ -128,7 +128,8 @@ namespace RealERPWEB.F_23_CR
             //TkLabelWord.Text = NumberToWords(int.Parse(formattedPaidamt));// "One Hundred Tk";
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
             TkLabel.Text = paidAmount.ToString();
-            TkLabelWord.Text = NumberToWords(paidAmount);
+            TkLabelWord.Text = NumberToWords(paidAmount)+" Tk";
+            
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDedModal();", true);
         }
         public string GetDateSuffix(int day)
@@ -180,6 +181,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("custTKWord", paidAmountInWord));
             Rpt1.SetParameters(new ReportParameter("todayDateFormatted", todayDateFormatted));
             Rpt1.SetParameters(new ReportParameter("unit", unit));
+            Rpt1.SetParameters(new ReportParameter("projectName", ddlprjlist.SelectedItem.Text));
 
 
             //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));

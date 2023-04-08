@@ -28,8 +28,47 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-5">
+            <div class="card mt-4">
                 <div class="row">
+                    <div class="col-md-3">
+                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
+                            <div class="text-center">
+                                <h6>Total Project</h6>
+                            </div>
+                            <h2 class="text-center" id="dontask" runat="server">3</h2>                           
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
+                            <div class="text-center">
+                                <h6>Completed Tasks</h6>
+                            </div>
+                            <h2 class="text-center" id="H1" runat="server">3</h2>                           
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
+                            <div class="text-center">
+                                <h6>Completed Tasks</h6>
+                            </div>
+                            <h2 class="text-center" id="H2" runat="server">3</h2>                           
+                        </div>
+                    </div>
+                     <div class="col-md-3">
+                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
+                            <div class="text-center">
+                                <h6>Completed Tasks</h6>
+                            </div>
+                            <h2 class="text-center" id="H3" runat="server">3</h2>                           
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6 text-center" style="width: 100%">
+                        <img id="ContentPlaceHolder1_Image1"
+                            src="https://www.ganttexcel.com/wp-content/uploads/2014/11/Gantt-Chart-Dashboard-1.png" class="mt-5">
+                    </div>
                     <div class="col-lg-6" style="width: 100%">
                         <%--<h2>Demo Projects</h2>
                         <div class="card">
@@ -125,10 +164,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 text-center" style="width: 100%">
-                        <img id="ContentPlaceHolder1_Image1" 
-                            src="https://www.ganttexcel.com/wp-content/uploads/2014/11/Gantt-Chart-Dashboard-1.png" class="mt-5">
-                    </div>
                 </div>
                 <hr />
                 <div class="metric-row metric-flush">
@@ -136,7 +171,7 @@
                         <div class="metric metric-bordered align-items-center">
                             <h2 class="text-center" runat="server" id="doninstnace">25K</h2>
                             <div class="text-center">
-                               
+
                                 <p>Total Number of Complate class insatance</p>
                             </div>
                         </div>
@@ -145,7 +180,7 @@
                         <div class="metric metric-bordered align-items-center">
                             <h2 class="text-center text-primary" runat="server" id="attinstance">0</h2>
                             <div class="text-center">
-                                
+
                                 <p>Number of Complete attribute insatance</p>
 
                             </div>
@@ -203,9 +238,9 @@
                     </div>
 
                 </div>
-               
+
             </div>
-             <div class="card">
+            <div class="card">
                      
                     <div class="card-header bg-light"><span class="font-weight-bold text-muted">Users</span></div>
                     <div class="table-responsive">

@@ -397,6 +397,8 @@ namespace RealERPWEB.F_22_Sal
             switch (Type)
             {
                 case "MonsalVsAchieve":
+                case "MonsalVsAchieveLO":
+
 
                     ((Label)this.gvsalesvscoll.FooterRow.FindControl("lblFtvalue")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(tsalval)", "")) ? 0.00 :
                dt1.Compute("sum(tsalval)", ""))).ToString("#,##0.00;(#,##0.00); ");
