@@ -390,6 +390,15 @@
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Supplier Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvsupnam" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
+                                                Width="180px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
 
 
                                     <asp:TemplateField HeaderText="P.O. Qty">

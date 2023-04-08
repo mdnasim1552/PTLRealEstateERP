@@ -47,7 +47,7 @@
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -1139,6 +1139,7 @@
     <EmbeddedResource Include="R_23_CR\RptPrjwiseCollofSummDetails.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptProClientSt.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptProjectWiseCollection.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptReconcilationLetter.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptResreceivable.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptSalClPayDetails.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptSalesStatusGen.rdlc" />

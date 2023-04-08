@@ -143,6 +143,7 @@
                         </div>
                         <div class="col-md-1 mt-4">
                             <asp:CheckBox runat="server" ID="Checkrate" Text="ProposeRate"/>
+                            <asp:LinkButton runat="server" ID="ProposeRate" CssClass="btn btn-info btn-sm">CompanyRate</asp:LinkButton>
                         </div>
 
                         <div class="col-lg-1">
