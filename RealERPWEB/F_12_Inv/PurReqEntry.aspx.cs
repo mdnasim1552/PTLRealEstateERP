@@ -17,6 +17,8 @@ using RealERPRPT;
 using System.Net;
 using RealEntity;
 using Microsoft.Reporting.WinForms;
+using AjaxControlToolkit;
+
 namespace RealERPWEB.F_12_Inv
 {
     public partial class PurReqEntry : System.Web.UI.Page
@@ -287,7 +289,7 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2235,14 +2237,14 @@ namespace RealERPWEB.F_12_Inv
             this.gvReqInfo.Columns[23].Visible = true && (comcod == "3325" || comcod == "2325");
             this.gvReqInfo.DataBind();
 
-            if (comcod == "3354")
-            {
-                for (int i = 0; i < this.gvReqInfo.Rows.Count; i++)
-                {
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDat")).Visible = false;
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDatCal")).Visible = true;
-                }
-            }
+            //if (comcod == "3354")
+            //{
+            //    for (int i = 0; i < this.gvReqInfo.Rows.Count; i++)
+            //    {
+            //        ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDat")).Visible = false;
+            //        ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDatCal")).Visible = true;
+            //    }
+            //}
 
             if (Request.QueryString["InputType"].ToString() == "Approval") // "Entry"
             {
@@ -2454,7 +2456,9 @@ namespace RealERPWEB.F_12_Inv
                 double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
                 double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
                 double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
-                string dgvUseDat = this.GetCompCode() == "3101" ? ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDatCal")).Text.Trim() :  ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
+                //string dgvUseDat = this.GetCompCode() == "3101" ? ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDatCal")).Text.Trim() :  ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
+
+                string dgvUseDat =((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
                 string dgvSupDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvpursupDat")).Text.Trim();
                 string dgvReqNote = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
                 double dgvReqAmt = dgvReqQty * dgvReqRat;
@@ -3085,13 +3089,40 @@ namespace RealERPWEB.F_12_Inv
             {
                 HyperLink hlnkacrcvqty = (HyperLink)e.Row.FindControl("hlnkgvacrcvqty");
 
+                string comcod = this.GetCompCode();
+                //  TextBox txtgvUseDat = (TextBox)e.Row.FindControl("txtgvUseDat");
+                //CalendarExtender cextender = (CalendarExtender)e.Row.FindControl("txtgvUseDat_CalendarExtender");
+                ImageButton ibtncalextender = (ImageButton)e.Row.FindControl("ibtncalextender");
+                switch (comcod)
+                {
+                    case "3354":
+                    case "3101":
+                        break;
+
+                    default:
+                        ibtncalextender.Attributes["style"] = "display:none;";
+                        break;
+
+
+
+
+
+                }
+
+
+
+
+
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
+                //string comcod = hst["comcod"].ToString();
                 string rsircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
                 string pactcode = ASTUtility.Left(this.ddlProject.SelectedItem.Text.Trim(), 12);
 
                 //hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/RptPurchasetracking?Type=Purchasetrk&reqno=" + reqno + "&comcod=" + comcod1;
                 hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/LinkRptPurchaseStatusUr?Type=Purchase&Rpt=BgdBal&pactcode=" + pactcode + "&rsircode=" + rsircode;
+
+               
 
 
 
