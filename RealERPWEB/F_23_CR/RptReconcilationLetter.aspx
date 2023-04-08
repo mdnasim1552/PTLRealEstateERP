@@ -108,6 +108,14 @@
                             </div>
 
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <asp:Label ID="lblToDat" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                 <asp:TextBox ID="txtTodate" runat="server" CssClass="inputTxt inpPixedWidth form-control form-control-sm" AutoCompleteType="Disabled"></asp:TextBox>
+                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Enabled="True"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtTodate"></cc1:CalendarExtender>
+                             </div>
+                        </div>
                         <%--<div class="col-md-3">
                             <div class="form-group">
                                 <asp:LinkButton ID="ibtnFindSubConName" runat="server" CssClass="form-label">Contractor List</asp:LinkButton>
