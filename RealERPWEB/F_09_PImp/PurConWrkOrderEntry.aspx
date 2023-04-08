@@ -128,7 +128,7 @@
                             <asp:DropDownList ID="ddlContractorlist" runat="server" CssClass="chzn-select form-control form-control-sm " AutoPostBack="True" TabIndex="3"></asp:DropDownList>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <asp:Label ID="Label4" runat="server" Text="Project Name"></asp:Label>
 
                             <asp:DropDownList ID="ddlprjlist" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="True"></asp:DropDownList>
@@ -141,6 +141,11 @@
                             <asp:DropDownList ID="ddlPrevList" runat="server" CssClass=" form-control form-control-sm chzn-select" AutoPostBack="True"></asp:DropDownList>
 
                         </div>
+                        <div class="col-md-1 mt-4">
+                            <asp:CheckBox runat="server" ID="Checkrate" Text="ProposeRate"/>
+                            <asp:LinkButton runat="server" ID="ProposeRate" CssClass="btn btn-info btn-sm">CompanyRate</asp:LinkButton>
+                        </div>
+
                         <div class="col-lg-1">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click" TabIndex="11">Ok</asp:LinkButton>
 

@@ -28,15 +28,12 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-           // $('.chzn-select').chosen({ search_contains: true });
+            // $('.chzn-select').chosen({ search_contains: true });
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            $('.chzn-select').chosen({ search_contains: true }
+            //$('.chzn-select').chosen({ search_contains: true }
 
         });
         function pageLoaded() {
-          
-
-
             $('.chzn-select').chosen({ search_contains: true });
         };
 
@@ -303,11 +300,11 @@
                                         <div class="col-sm-12 panel">
                                             <div class=" col-sm-12">
                                                 <p>
-                                                    <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
-                                                    <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
-                                                    <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
-                                                    <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
-                                                    <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+                                                    <strong><%# DataBinder.Eval(Container.DataItem, "prosdesc")%></strong> <%# DataBinder.Eval(Container.DataItem, "kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
+                                                    <strong>Participants:</strong> <%# DataBinder.Eval(Container.DataItem, "partcilist").ToString() %><br>
+                                                    <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container.DataItem, "discus").ToString() %></span><br>
+                                                    <strong>Next Action:</strong> <%# DataBinder.Eval(Container.DataItem, "nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                    <strong>Comments:</strong> <%# DataBinder.Eval(Container.DataItem, "disgnote").ToString() %>
                                                     <br>
                                                 </p>
                                             </div>

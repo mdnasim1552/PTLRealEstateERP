@@ -66,7 +66,15 @@
             $('.chzn-select').chosen({ search_contains: true });
 
 
-        }
+         }
+
+         function OpenDedModal() {
+             $('#DeductinModal').modal('toggle');
+         };
+
+         function CloseDedModal() {
+             $('#DeductinModal').modal('hide');
+         }
 
      </script>
 
@@ -99,6 +107,14 @@
                                 <asp:DropDownList ID="ddlprjlist" runat="server" CssClass="chzn-select form-control  form-control-sm" TabIndex="3"  OnSelectedIndexChanged="ddlprjlist_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                             </div>
 
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <asp:Label ID="lblToDat" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                 <asp:TextBox ID="txtTodate" runat="server" CssClass="inputTxt inpPixedWidth form-control form-control-sm" AutoCompleteType="Disabled"></asp:TextBox>
+                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Enabled="True"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtTodate"></cc1:CalendarExtender>
+                             </div>
                         </div>
                         <%--<div class="col-md-3">
                             <div class="form-group">
@@ -155,7 +171,7 @@
                                             Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Project Name">
@@ -165,26 +181,48 @@
                                             Width="180px"></asp:Label>
                                     </ItemTemplate>
 
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Customer Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgvPrjName" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))%>'
+                                        <asp:Label ID="lgvPrjcustName" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "name"))%>'
                                             Width="180px"></asp:Label>
                                     </ItemTemplate>
 
-                                    <ItemStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Unit">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvPrjUnit" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc"))%>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Paid Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvPaidAmount" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamt")).ToString("#,##0;(#,##0); ")%>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Send Mail">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgvPrjName" runat="server"
+                                        <%--<asp:Label ID="lgvPrjName" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))%>'
-                                            Width="180px"></asp:Label>
+                                            Width="180px"></asp:Label>--%>
+                                        <asp:LinkButton ID="lbtnSendMail" runat="server" CssClass="btn btn-sm btn-primary m-1" OnClick="lbtnSendMail_Click">Send</asp:LinkButton>
                                     </ItemTemplate>
 
                                     <ItemStyle HorizontalAlign="Center" />
@@ -196,7 +234,16 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))%>'
                                             Width="180px"></asp:Label>--%>
                                         <%--<asp:Button OnClientClick="target ='_blank';" ID="MyButton" runat="server" CssClass="btn btn-outline-primary" Text="View" />--%>
-                                        <asp:LinkButton ID="lbtnok" runat="server" CssClass="btn btn-sm btn-primary">View</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnView" runat="server" CssClass="btn btn-sm btn-primary m-1" OnClick="lbtnView_Click">View</asp:LinkButton>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Print">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnPrintMail" runat="server" CssClass="btn btn-sm  btn-success m-1" OnClick="lbtnPrintMail_Click">Print</asp:LinkButton>
                                     </ItemTemplate>
 
                                     <ItemStyle HorizontalAlign="Center" />
@@ -215,8 +262,36 @@
                     </div>
                 </div>
             </div>
-
+            <%-- Deduction Modal --%>
+            <div id="DeductinModal" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Reconsilation Letter</h4>
+                            <button type="button" class="close btn btn-xs" data-dismiss="modal" title="Close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="modal-body form-horizontal" style="min-height: 200px;">
+                            <div class="row-fluid">
+                                <div class="row">
+                                    <p>Dear Sir/Madam,<br /><br />
+                                       Assalamu Alaikum.<br /><br />
+                                       We are happy to inform you that we have received Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label> (In Word: <asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label>)<br />
+                                       as of <asp:Label ID="todayDateFormattedLabel" runat="server" Text="Label"></asp:Label> against Apt / Shop <asp:Label ID="unitLabel" runat="server" Text="Label"></asp:Label> of Finlay <asp:Label ID="projectLabel" runat="server" Text="Label"></asp:Label>.<br /><br />
+                                       Please reply us within 07 (seven) days if any mismatch found. Otherwise, We will treat this<br />
+                                       statement as correct.<br /><br />
+                                    
+                                       Best regards,<br /><br />
+                                    
+                                       Customer Management<br />
+                                       Finlay Properties Limited</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
         </ContentTemplate>
+         
     </asp:UpdatePanel>
 
 </asp:Content>

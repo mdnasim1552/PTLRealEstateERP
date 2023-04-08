@@ -182,14 +182,19 @@ namespace RealERPWEB.F_14_Pro
                 string hostname = scheme+"://" + host + port + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
                 **/
                 string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
-                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "F_99_Allinterface/";
-                string currentptah = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
+                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+                string currentptah = "PurchasePrint.aspx?Type=OrderPrintNew&orderno=" + orderno;
+                string totalpath = hostname + currentptah;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+                
+                //Response.Redirect(currentptah);
+                //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+                //string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
                 //string totalpath = hostname + currentptah;
                 //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-                
-                Response.Redirect(currentptah);
+
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
 
             }

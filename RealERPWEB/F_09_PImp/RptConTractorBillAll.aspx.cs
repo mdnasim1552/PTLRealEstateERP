@@ -182,15 +182,17 @@ namespace RealERPWEB.F_09_PImp
             string chkfloor = this.chkfloor.Checked ? "checked" : "";
             DataSet ds1 = ImpData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTSCONBILWORKWISE", pactcode, csircode, date, chkfloor, "", "", "", "", "");
 
-            this.txtsub.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["sub"].ToString();
-            this.txtmemo.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["memono"].ToString();
-
             if (ds1 == null)
             {
                 this.rpconbilldet.DataSource = null;
                 this.rpconbilldet.DataBind();
                 return;
             }
+
+            this.txtsub.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["sub"].ToString();
+            this.txtmemo.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["memono"].ToString();
+
+            
 
 
             // Session["tblconbill"] =ds1.Tables[0];

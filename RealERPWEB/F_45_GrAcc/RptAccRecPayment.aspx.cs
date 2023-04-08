@@ -467,6 +467,7 @@ namespace RealERPWEB.F_45_GrAcc
             }
 
             Session["tblrecandpayment"] = ds1.Tables[0];
+     
             this.Data_Bind();
 
 
@@ -1344,6 +1345,9 @@ namespace RealERPWEB.F_45_GrAcc
 
                     this.gvPrjtrbal.DataSource = dt1;
                     this.gvPrjtrbal.DataBind();
+
+                    Session["Report1"] = gvPrjtrbal;                  
+                    ((HyperLink)this.gvPrjtrbal.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
                    
