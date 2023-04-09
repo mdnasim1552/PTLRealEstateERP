@@ -316,6 +316,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+AllBankSummary.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+BonusSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+DeptWiseSal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
@@ -1330,6 +1331,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSheetFinlay.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusPayAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPayAngan.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Finlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankStatementFinlay.rdlc" />
