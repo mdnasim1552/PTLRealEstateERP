@@ -275,7 +275,7 @@
                                 <div class="row">
                                     <p>Dear Sir/Madam,<br /><br />
                                        Assalamu Alaikum.<br /><br />
-                                       We are happy to inform you that we have received Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label> (In Word: <asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label>)<br />
+                                       We are happy to inform you that we have received <b>Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label></b> (In Word: <b><asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label></b>)<br />
                                        as of <asp:Label ID="todayDateFormattedLabel" runat="server" Text="Label"></asp:Label> against Apt / Shop <asp:Label ID="unitLabel" runat="server" Text="Label"></asp:Label> of Finlay <asp:Label ID="projectLabel" runat="server" Text="Label"></asp:Label>.<br /><br />
                                        Please reply us within 07 (seven) days if any mismatch found. Otherwise, We will treat this<br />
                                        statement as correct.<br /><br />
