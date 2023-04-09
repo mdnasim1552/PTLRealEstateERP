@@ -312,6 +312,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3370"://CPDL
                 case "3374"://ANGAN
                 case "3376":
+                case "1211":
+
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryCPDL", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -4322,6 +4324,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3352": //P2P 
                     case "3374": //Angan 
                     case "3376": //Angan 
+                    case "1211": //bnb 
                         terms1 = terms.ToString();
                         break;
 
@@ -4599,6 +4602,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3370": // cpdl
+                    case "1211":
                      // cpdl                        
 
 
@@ -4721,6 +4725,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3370": // cpdl
                     case "3374": // ANGAN
                     case "3376":
+                    case "1211":
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
                         Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
