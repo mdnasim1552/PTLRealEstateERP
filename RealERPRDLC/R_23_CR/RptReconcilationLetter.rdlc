@@ -64,7 +64,7 @@ We are happy to inform you that we have received </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> (In Word: </Value>
+                    <Value> ( In Word:</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -80,8 +80,7 @@ We are happy to inform you that we have received </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>)
-as of  </Value>
+                    <Value>) as of  </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
