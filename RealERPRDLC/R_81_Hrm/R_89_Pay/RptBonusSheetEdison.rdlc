@@ -1455,6 +1455,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2517,7 +2518,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.16819in</Top>
             <Height>1.68598in</Height>
-            <Width>11.47705in</Width>
+            <Width>11.47706in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
