@@ -38,6 +38,11 @@
             height: 28px !important;
             line-height: 28px !important;
         }
+
+        .clearfix {
+            clear: both !important;
+            display: block;
+        }
     </style>
 
 
@@ -106,7 +111,7 @@
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                     Font-Bold="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                                     Width="70px">
-                                    <asp:ListItem Value="10">10</asp:ListItem>
+                                    <%--<asp:ListItem Value="10">10</asp:ListItem>--%>
                                     <asp:ListItem Value="15">15</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
                                     <asp:ListItem Value="30">30</asp:ListItem>
@@ -486,7 +491,99 @@
                             <HeaderStyle CssClass="grvHeader" />
                             <RowStyle CssClass="grvRows" />
                         </asp:GridView>
+
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <div class="form-group lblmargin lblheadertitle">
+                                <label id="lbltitleparking" runat="server" visible="False">Parking Status</label>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <asp:GridView ID="gvparking" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            AutoGenerateColumns="False" ShowFooter="True"
+                            Style="margin-right: 0px">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvslnopark" runat="server"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="">
+                                    <ItemTemplate>
+
+                                        <asp:LinkButton ID="lbtnDelparking" OnClick="lbtnDelparking_Click" ToolTip="Delete Parking" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
+
+
+                                    </ItemTemplate>
+                                    <ItemStyle Width="30px" HorizontalAlign="Center" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+
+
+                                <asp:TemplateField HeaderText="Description">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvparkdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
+                                            Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'
+                                            Width="120px"></asp:TextBox>
+
+
+
+                                    </ItemTemplate>
+
+
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Status">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkStatus" runat="server" Width="60px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pstatus"))=="True" %>' />
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+
+
+
+
+
+
+
+
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
+
+                    </div>
+
                 </div>
             </div>
         </ContentTemplate>
