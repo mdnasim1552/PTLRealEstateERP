@@ -152,9 +152,12 @@ namespace RealERPWEB.F_23_CR
             //TkLabel.Text = formattedPaidamt;//"100";
             //TkLabelWord.Text = NumberToWords(int.Parse(formattedPaidamt));// "One Hundred Tk";
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
-            TkLabel.Text = paidAmount.ToString("#,##0;(#,##0);0");//ToString("#,##0;(#,##0); ")
-            TkLabelWord.Text = NumberToWords(paidAmount)+" Tk";
-            
+            TkLabel.Text = paidAmount.ToString("#,##0;(#,##0);0");//ToString("#,##0;(#,##0); ")// Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
+            //TkLabelWord.Text = NumberToWords(paidAmount)+" Tk"; //
+            string str = ASTUtility.Trans(paidAmount, 2);
+            TkLabelWord.Text = str.Substring(1, str.Length - 2);
+
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDedModal();", true);
         }
         public string GetDateSuffix(int day)
@@ -227,8 +230,12 @@ namespace RealERPWEB.F_23_CR
             DataTable dt = (DataTable)Session["RptReconcilationLetter"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
+
+            string str = ASTUtility.Trans(paidAmount, 2);
+            //TkLabelWord.Text = str.Substring(1, str.Length - 2);
+
             string unit = dt.Rows[rowIndex]["udesc"].ToString();
-            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), NumberToWords(paidAmount),unit);
+            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), str.Substring(1, str.Length - 2), unit);
 
             string url = "../RDLCViewer.aspx?PrintOpt=PDF";
             string script = "window.open('" + url + "', '_blank');";
@@ -240,8 +247,10 @@ namespace RealERPWEB.F_23_CR
             DataTable dt = (DataTable)Session["RptReconcilationLetter"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
+            string str = ASTUtility.Trans(paidAmount, 2);
+
             string unit = dt.Rows[rowIndex]["udesc"].ToString();
-            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), NumberToWords(paidAmount), unit);
+            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), str.Substring(1, str.Length - 2), unit);
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = (LocalReport)Session["Report1"];
@@ -361,28 +370,34 @@ namespace RealERPWEB.F_23_CR
         public string NumberToWords(int number)
         {
             if (number == 0)
-                return "zero";
+                return "Zero";
 
             if (number < 0)
-                return "minus " + NumberToWords(Math.Abs(number));
+                return "Minus " + NumberToWords(Math.Abs(number));
 
             string words = "";
 
-            if ((number / 1000000) > 0)
+            if ((number / 10000000) > 0)
             {
-                words += NumberToWords(number / 1000000) + " million ";
-                number %= 1000000;
+                words += NumberToWords(number / 10000000) + " Crore ";
+                number %= 10000000;
+            }
+
+            if ((number / 100000) > 0)
+            {
+                words += NumberToWords(number / 100000) + " Lac ";
+                number %= 100000;
             }
 
             if ((number / 1000) > 0)
             {
-                words += NumberToWords(number / 1000) + " thousand ";
+                words += NumberToWords(number / 1000) + " Thousand ";
                 number %= 1000;
             }
 
             if ((number / 100) > 0)
             {
-                words += NumberToWords(number / 100) + " hundred ";
+                words += NumberToWords(number / 100) + " Hundred ";
                 number %= 100;
             }
 
@@ -391,8 +406,8 @@ namespace RealERPWEB.F_23_CR
                 if (words != "")
                     words += "and ";
 
-                var unitsMap = new[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-                var tensMap = new[] { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+                var unitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+                var tensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
                 if (number < 20)
                     words += unitsMap[number];
