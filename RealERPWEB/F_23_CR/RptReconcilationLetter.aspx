@@ -100,13 +100,21 @@
             <div class="card card-fluid mb-1 mt-2">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="lblProjectList" runat="server" Text="Project Name"></asp:Label>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inputDateBox d-none"></asp:TextBox>
                                 <asp:DropDownList ID="ddlprjlist" runat="server" CssClass="chzn-select form-control  form-control-sm" TabIndex="3"  OnSelectedIndexChanged="ddlprjlist_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                             </div>
 
+                        </div>
+                        <div class="col-md-1 ml-1">
+                            <div class="form-group">
+                                <asp:Label ID="lblToDat" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                 <asp:TextBox ID="txtTodate" runat="server" CssClass="inputTxt inpPixedWidth form-control form-control-sm" AutoCompleteType="Disabled"></asp:TextBox>
+                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server" Enabled="True"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtTodate"></cc1:CalendarExtender>
+                             </div>
                         </div>
                         <%--<div class="col-md-3">
                             <div class="form-group">
@@ -123,7 +131,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>--%>
-                           <div class="col-md-3">
+                           <div class="col-md-1">
                                         <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size"></asp:Label>
 
 
@@ -140,7 +148,7 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                        <div class="col-md-2 ml-5" style="margin-top: 22px;">
+                        <div class="col-md-1 ml-5" style="margin-top: 20px;">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtnok" runat="server" OnClick="lbtnok_Click" CssClass="btn btn-sm btn-primary">ok</asp:LinkButton>
                             </div>
@@ -159,7 +167,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
+                                        <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" CssClass="ml-1 mr-1"
                                             Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                     </ItemTemplate>
@@ -202,7 +210,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lgvPaidAmount" runat="server"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamt")).ToString("#,##0;(#,##0); ")%>'
-                                            Width="180px"></asp:Label>
+                                            Width="80px"></asp:Label>
                                     </ItemTemplate>
 
                                     <ItemStyle HorizontalAlign="Right" />

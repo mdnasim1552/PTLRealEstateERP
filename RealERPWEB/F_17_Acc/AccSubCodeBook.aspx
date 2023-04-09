@@ -547,7 +547,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
                                     
-                                 <%-- <asp:TemplateField HeaderText="Method" Visible="false" >
+                                  <asp:TemplateField HeaderText="Method" Visible="false" >
                                         <ItemTemplate>
                                             <asp:Label ID="lblMethod" runat="server" Font-Size="12px" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "method")) == "1" ? "CS" : "" %>'
@@ -562,7 +562,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" Width="50px" />
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
                                       
-                                    </asp:TemplateField>--%>
+                                    </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />

@@ -39,6 +39,8 @@ namespace RealERPWEB.F_23_CR
 
 
                 this.GetProjectName();
+                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtTodate.Text = date;
 
             }
         }
@@ -87,10 +89,11 @@ namespace RealERPWEB.F_23_CR
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            
+            string @Desc3 = Convert.ToDateTime(this.txtTodate.Text).ToString("dd-MMM-yyyy");
+
             //string csircode = "98%";//this.ddlcontractorlist.SelectedValue.ToString() == "000000000000" ? "98%" : this.ddlcontractorlist.SelectedValue.ToString() + "%";
             //string billtcode = "%";//this.ddlcatagory.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlcatagory.SelectedValue.ToString() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCUSTOMERDETAILS", pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETCUSTOMERDETAILS", pactcode, "", @Desc3, "", "", "", "", "", "");
             if (ds1 == null)
             {
 
@@ -105,7 +108,22 @@ namespace RealERPWEB.F_23_CR
         {
 
         }
-
+        public string SkipBeforeDelimeter(string originalString)
+        {
+            char delimiter = '-';
+            int index = originalString.IndexOf(delimiter);
+            if (index >= 0)
+            {
+                string newString = originalString.Substring(index + 1);
+                return newString;
+                // newString will now contain "Finlay dev"
+            }
+            else
+            {
+                return originalString;
+            }
+            
+        }
         protected void lbtnView_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["RptReconcilationLetter"];
@@ -113,13 +131,20 @@ namespace RealERPWEB.F_23_CR
             string empName = dt.Rows[rowIndex]["name"].ToString();
             string unit= dt.Rows[rowIndex]["udesc"].ToString();
             unitLabel.Text = unit;
-            projectLabel.Text= ddlprjlist.SelectedItem.Text;
+            projectLabel.Text= SkipBeforeDelimeter(ddlprjlist.SelectedItem.Text);
 
-            DateTime today = DateTime.Today;
-            string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
-            string suffix = GetDateSuffix(today.Day);
+            //DateTime today = DateTime.Today;
+            //string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            //string suffix = GetDateSuffix(today.Day);
 
-            string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            DateTime toDate = DateTime.ParseExact(txtTodate.Text, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            int day = toDate.Day;
+            string formattedDate = Convert.ToDateTime(this.txtTodate.Text).ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            string suffix = GetDateSuffix(day);
+
+
+            //string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            string todayDateFormatted = $"{day}{suffix} {formattedDate}";
             todayDateFormattedLabel.Text = todayDateFormatted;
 
             //Decimal paidAmount = (Decimal)(dt.Rows[rowIndex]["paidamt"]);//.ToString("#,##0;(#,##0); ");
@@ -127,7 +152,7 @@ namespace RealERPWEB.F_23_CR
             //TkLabel.Text = formattedPaidamt;//"100";
             //TkLabelWord.Text = NumberToWords(int.Parse(formattedPaidamt));// "One Hundred Tk";
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
-            TkLabel.Text = paidAmount.ToString();
+            TkLabel.Text = paidAmount.ToString("#,##0;(#,##0);0");//ToString("#,##0;(#,##0); ")
             TkLabelWord.Text = NumberToWords(paidAmount)+" Tk";
             
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDedModal();", true);
@@ -166,11 +191,19 @@ namespace RealERPWEB.F_23_CR
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptReconcilationLetter", null, null, null);
             Rpt1.EnableExternalImages = true;
 
-            DateTime today = DateTime.Today;
-            string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
-            string suffix = GetDateSuffix(today.Day);
+            //DateTime today = DateTime.Today;
+            //string formattedDate = today.ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            //string suffix = GetDateSuffix(today.Day);
 
-            string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            //string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            DateTime toDate = DateTime.ParseExact(txtTodate.Text, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            int day = toDate.Day;
+            string formattedDate = Convert.ToDateTime(this.txtTodate.Text).ToString("MMMM, yyyy", CultureInfo.InvariantCulture);
+            string suffix = GetDateSuffix(day);
+
+
+            //string todayDateFormatted = $"{today.Day}{suffix} {formattedDate}";
+            string todayDateFormatted = $"{day}{suffix} {formattedDate}";
 
             //string selectedProjectText = ddlprjlist.SelectedItem.Text;
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -181,7 +214,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("custTKWord", paidAmountInWord));
             Rpt1.SetParameters(new ReportParameter("todayDateFormatted", todayDateFormatted));
             Rpt1.SetParameters(new ReportParameter("unit", unit));
-            Rpt1.SetParameters(new ReportParameter("projectName", ddlprjlist.SelectedItem.Text));
+            Rpt1.SetParameters(new ReportParameter("projectName", SkipBeforeDelimeter(ddlprjlist.SelectedItem.Text)));
 
 
             //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
@@ -195,7 +228,7 @@ namespace RealERPWEB.F_23_CR
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
             string unit = dt.Rows[rowIndex]["udesc"].ToString();
-            this.RptReconsilationLetter(paidAmount.ToString(), NumberToWords(paidAmount),unit);
+            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), NumberToWords(paidAmount),unit);
 
             string url = "../RDLCViewer.aspx?PrintOpt=PDF";
             string script = "window.open('" + url + "', '_blank');";
@@ -208,7 +241,7 @@ namespace RealERPWEB.F_23_CR
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int paidAmount = Convert.ToInt32(dt.Rows[rowIndex]["paidamt"]);
             string unit = dt.Rows[rowIndex]["udesc"].ToString();
-            this.RptReconsilationLetter(paidAmount.ToString(), NumberToWords(paidAmount), unit);
+            this.RptReconsilationLetter(paidAmount.ToString("#,##0;(#,##0);0"), NumberToWords(paidAmount), unit);
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = (LocalReport)Session["Report1"];
