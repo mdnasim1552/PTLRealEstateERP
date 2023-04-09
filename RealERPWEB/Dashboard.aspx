@@ -1996,7 +1996,11 @@
                                         </div>
                                         <div class="tab-pane fade" id="Contractor">
 
-
+                                            <div class="row ">
+                                                <div class="col-md-12 text-right">
+                                                    <a href="F_34_Mgt/RptAllDashboard.aspx?Type=Contractor" target="_blank" class="float-right">View all <i class="fa fa-fw fa-angle-right"></i></a>
+                                                </div>
+                                            </div>
 
                                             <div id="subconchart" style="width: 90%; height: 325px;"></div>
                                         </div>
