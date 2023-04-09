@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptPurchaseStatus.aspx.cs" Inherits="RealERPWEB.F_14_Pro.RptPurchaseStatus" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+      <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -51,6 +53,13 @@
                 freezesize: 6
             });
             $('.chzn-select').chosen({ search_contains: true });
+            $(function () {
+                $('[id*=listMaterialscom]').multiselect({
+                    includeSelectAllOption: true,
+                    enableCaseInsensitiveFiltering: true,
+                });
+            });
+
         };
         function printTracking(data) {
             window.open(data, '_blank');
@@ -58,7 +67,45 @@
 
     </script>
 
-    <style>
+   
+    <style type="text/css">
+           .multiselect  {
+            width:300px !important;
+           border: 1px solid;
+            height: 29px;
+            border-color: #cfd1d4;
+            font-family: sans-serif;
+           
+        }
+        .multiselect-container{
+            overflow: scroll;
+            max-height: 300px !important;
+        }
+        /*.multiselect {
+            width: 270px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }*/
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        /*.multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }*/
+        .caret {
+            display: none !important;
+        }
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        #ContentPlaceHolder1_divgrp {
+            /*width: 395px !important;*/
+        }
         .grvContentarea > thead > tr > th, .grvContentarea > tbody > tr > th, .grvContentarea > tfoot > tr > th {
             padding: 5px 4px;
         }
@@ -68,6 +115,10 @@
         #ContentPlaceHolder1_gvPurStatusVerticalBar{
             height:50px;
         }
+        .chzn-single{
+                border-radius: 3px!important;
+                height: 29px!important;
+            }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -1865,10 +1916,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pading5px  asitCol3">
-                                                    <asp:DropDownList ID="ddlMaterialscom" runat="server" CssClass="chzn-select form-control inputTxt" Width="300px">
-                                                    </asp:DropDownList>
+                                                 <%--   <asp:DropDownList ID="ddlMaterialscom" runat="server" CssClass="chzn-select form-control inputTxt" Width="300px">
+                                                    </asp:DropDownList>--%>
+                                                     <asp:ListBox ID="listMaterialscom" runat="server" CssClass="form-control form-control-sm" SelectionMode="Multiple" Style="min-height: 200px !important;"></asp:ListBox>
 
                                                 </div>
+                                               
 
                                             </div>
                                         </div>
