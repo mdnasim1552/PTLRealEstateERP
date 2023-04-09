@@ -967,6 +967,28 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="">
+                                            <HeaderTemplate>
+                                                <table style="width: 90px;">
+                                                    <tr>
+                                                        <td>
+                                                            <asp:Label ID="lblcheckallBonus" runat="server" Text="Check All"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <asp:CheckBox ID="chkMergeAllBonus" runat="server" AutoPostBack="True" 
+                                                                OnCheckedChanged="chkMergeAllBonus_CheckedChanged" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkMergeBonus" runat="server" CssClass="input-control" Text=""  />
+                                                     <%--Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "iscehcked"))=="True" %>'--%>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="30" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
