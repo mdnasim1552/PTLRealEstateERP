@@ -83,7 +83,7 @@
 
                                         <asp:Label ID="Label15" runat="server" CssClass="smLbl_to text-left" Style="padding-left: 21px;"> Ref. No</asp:Label>
 
-                                        <asp:TextBox ID="txtOrderRefNo" runat="server" CssClass="ddlPage62"></asp:TextBox>
+                                        <asp:TextBox ID="txtOrderRefNo" runat="server" CssClass="ddlPage62" Style="width: 120px;"></asp:TextBox>
 
                                         <asp:Label ID="lbltxtissueno" runat="server" CssClass="smLbl_to" Text="P.O #"></asp:Label>
                                         <asp:Label ID="lblissueno" runat="server" CssClass=" smltxtBox60px" Style="width: 70px;"></asp:Label>

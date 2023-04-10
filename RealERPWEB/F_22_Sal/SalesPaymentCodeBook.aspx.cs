@@ -67,8 +67,13 @@ namespace RealERPWEB.F_22_Sal
             {
 
 
+
+
                 string comcod = this.GetCompCode();
-                string Code = (this.Request.QueryString["Type"].ToString() == "Mkt") ? "80" : "81";
+                string Code = (this.Request.QueryString["Type"].ToString() == "Mkt") ? "80" : (this.Request.QueryString["Type"].ToString() == "Sales")? "81":"59";
+
+
+
                 DataSet dsone = this.da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTSALEPAYCODE",
                                 Code, "", "", "", "", "", "", "", "");
                 this.ddlSalPayment.DataTextField = "gdesc";

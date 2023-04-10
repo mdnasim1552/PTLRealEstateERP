@@ -3297,6 +3297,7 @@ namespace RealERPWEB.F_23_CR
             double modicharge = Convert.ToDouble(ds5.Tables[1].Rows[0]["adwrk"]);
             double delcharge = Convert.ToDouble(ds5.Tables[1].Rows[0]["delchg"]);
             double regisfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["regavat"]);
+            double terrace = Convert.ToDouble(ds5.Tables[1].Rows[0]["terrace"]);
             double assciationfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["devcharge"]);
             double transfee = Convert.ToDouble(ds5.Tables[1].Rows[0]["transfee"]);
             double bgcost = Convert.ToDouble(ds5.Tables[1].Rows[0]["bgcost"]);
@@ -3369,6 +3370,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("rptsalesdate", rptsalesdate));
             Rpt1.SetParameters(new ReportParameter("rptagreementdate", rptagreementdate));
             Rpt1.SetParameters(new ReportParameter("rptHandoverdate", rpthandoverdate));
+            Rpt1.SetParameters(new ReportParameter("terrace", terrace.ToString("#,##0;(#,##0); ")));
 
             Rpt1.SetParameters(new ReportParameter("txtbgcost", bgcost.ToString("#,##0;(#,##0); ")));
             Rpt1.SetParameters(new ReportParameter("rptapartmentprice", aprment.ToString("#,##0;(#,##0); ")));
