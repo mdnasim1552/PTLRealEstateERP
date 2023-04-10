@@ -325,7 +325,7 @@
 
 
 
-                                <div class="col-6 bd-example mb-5" id="UploadCV" runat="server">
+                                <div class="col-6 bd-example mb-5" id="UploadCV" runat="server" visible="false">
                                     <div class="row">
                                         <div class="col-7">
                                             <asp:Label ID="lblUploadCV" runat="server">Upload CV</asp:Label>
