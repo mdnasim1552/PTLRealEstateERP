@@ -2354,8 +2354,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102175", "F_81_Hrm/F_83_Att", "RptMonthlyAttnSummary?", "Type=EmpWise", "Monthly Attendance Summary (Personnel Wise)", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102176", "F_81_Hrm/F_92_Mgt", "EmployeeSrcCriteria", "", "Employee Search Criteria", "HR Management", "False", "False", "False", "False" });
 
-
+            
 
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102071", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
@@ -16422,7 +16423,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Appointment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "01. Employee Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpAllInfo&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Employee List Details", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
-            
+            mnuTbl1.Rows.Add(new Object[] { "0402000001", "03. Employee Search Criteria", "F_81_Hrm/F_92_Mgt/EmployeeSrcCriteria", "", true, "" });
+
+
 
 
 
