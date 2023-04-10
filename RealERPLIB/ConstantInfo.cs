@@ -874,7 +874,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703193", "F_17_Acc", "RptAccSpLedger?", "Type=SubConPay", "Sub-Contractor Payment Proposal", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703194", "F_17_Acc", "RptAccSpLedger?", "Type=ASPayment", " Supplier Overall Position", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703195", "F_17_Acc", "RptAccSpLedger?", "Type=AConPayment", " Sub-Contractor Overall Position", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703198", "F_17_Acc", "RptAccSpLedger?", "Type=ASupConPayment", "Overall Position(Supplier & Contractor)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703398", "F_17_Acc", "RptAccSpLedger?", "Type=ASupConPayment", "Overall Position(Supplier & Contractor)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703198", "F_17_Acc", "RptAccSpLedger?", "Type=SubContractorPayment", "Overall Position Sub-Contractor", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703199", "F_17_Acc", "RptSupplierOvAllPSummary?", "Type=SupPayment", " Supplier Overall Position Summary", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703200", "F_17_Acc", "AccFinalReports?", "RepType=SPC", "Project Report-Specifition", "Accounts", "False", "False", "False", "False" }); ;
@@ -5941,6 +5942,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "	Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "28. Supplier Overall Position", "F_17_Acc/RptAccSpLedger?Type=ASPayment&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000001", "28. Sub-Contractor Overall Position", "F_17_Acc/RptAccSpLedger?Type=ASPayment&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "30. Materials Delivery Efficiency Report", "F_14_Pro/RptDeliveryEfficiency?Type=Report&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000003", "31. Payment History Supplier Wise", "F_14_Pro/RptPaymentStatus?Type=PayStatusSwise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "32. Monthly Supplier & Group Wise Payable", "F_14_Pro/RptSupPayableStatus?Type=RptSuppPayable", "", true, "" });
@@ -6558,6 +6560,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000004", "04. Sub-Contractor Overall Position", "F_17_Acc/RptAccSpLedger?Type=AConPayment&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000005", "05. Sub-Contractor Payment Proposal", "F_17_Acc/RptAccSpLedger?Type=SubConPay&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "06.Overall Position(Supplier & Contractor)", "F_17_Acc/RptAccSpLedger?Type=ASupConPayment&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000066", "06.Overall Position Sub-Contractor", "F_17_Acc/RptAccSpLedger?Type=SubContractorPayment&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "06.Supplier Overall Position Summary", "F_17_Acc/RptSupplierOvAllPSummary?Type=SupPayment", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000008", "06.Sub-Contractor Overall Position Summary", "F_17_Acc/RptSupplierOvAllPSummary?Type=ConPayment", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000008", "06.Sub-Contractor Security Payment", "F_17_Acc/RptSupplierOvAllPSummary?Type=SubConSecPayment", "", true, "" });
