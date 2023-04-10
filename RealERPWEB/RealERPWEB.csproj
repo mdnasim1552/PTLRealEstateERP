@@ -13273,6 +13273,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\AIimage\" />
+    <Folder Include="CV\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
@@ -13291,8 +13292,6 @@
     <Content Include="ASITMaster.Master" />
     <Content Include="ASITNEW.Master" />
     <Content Include="FileUploadHandler.ashx" />
-    <Content Include="CV\Text.docx" />
-    <Content Include="CV\Uzzal CV1.docx" />
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
