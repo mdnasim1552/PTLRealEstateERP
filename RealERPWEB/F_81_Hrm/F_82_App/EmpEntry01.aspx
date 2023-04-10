@@ -7,9 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         #csv-input {
-  display: none;
-}
-
+            display: none;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -202,7 +201,7 @@
                                     </asp:GridView>
                                 </div>
                                 <div class="col-6">
-                                    
+
                                     <asp:GridView ID="gvPersonalInfo2" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         OnRowDataBound="gvPersonalInfo2_RowDataBound">
@@ -274,7 +273,7 @@
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="mb-0" style="width:260px;">
+                                                        <div class="mb-0" style="width: 260px;">
 
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
                                                                 CssClass="select2 col-12" AutoPostBack="true" TabIndex="2">
@@ -307,7 +306,7 @@
 
 
                                 </div>
-                <%--                <div class="col-sm-6 col-md-2 col-lg-2">
+                                <%--                <div class="col-sm-6 col-md-2 col-lg-2">
                                     <div class="row" id="UploadCV" runat="server" >
 
                                         <div class="col-md-12 ">
@@ -325,47 +324,46 @@
                                 </div>--%>
 
 
-           
-     <div class="col-6 bd-example mb-5" id="UploadCV" runat="server" >
-         <div class="row">
-             <div class="col-7">
-               <asp:Label ID="lblUploadCV" runat="server" >Upload CV</asp:Label>
-               <div class="input-group">
-        <div class="custom-file">
-         <asp:FileUpload ID="FileUploadControl"  CssClass="custom-file-input"  type="file" runat="server"/>
-         <asp:Label CssClass="custom-file-label"  runat="server" Text="Upload File"/>
-        </div>
-        <div class="input-group-append">
-          <asp:Button runat="server" ID="btnUpload" class="btn btn-outline-primary" OnClick="btnUpload_Click" Text="Upload" />
-        </div>
-      </div>
-             </div>
-             <div class="col-5">
-<%--                 <div class="table table-sm table-responsive">
-                                        <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server" AutoGenerateColumns="false">
-                                            <Columns>
-                    
 
-                                                <asp:TemplateField HeaderText="File">
-                                                    <ItemTemplate>
-                                                        <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Action">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click"> <i class="fa fa-edit"></i> 
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
-                                                        </asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-             </div>--%>
+                                <div class="col-6 bd-example mb-5" id="UploadCV" runat="server">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <asp:Label ID="lblUploadCV" runat="server">Upload CV</asp:Label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <asp:FileUpload ID="FileUploadControl" CssClass="custom-file-input" type="file" runat="server" />
+                                                    <asp:Label CssClass="custom-file-label" runat="server" Text="Upload File" />
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <asp:Button runat="server" ID="btnUpload" class="btn btn-outline-primary" OnClick="btnUpload_Click" Text="Upload" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="table table-sm table-responsive">
+                                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvempdoc" runat="server" AutoGenerateColumns="false">
+                                                    <Columns>
 
-         </div>
-    </div>
- 
+
+                                                        <asp:TemplateField HeaderText="File">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger"> <i class="fa fa-trash"></i> 
+                                                                </asp:LinkButton>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
 
 
 
@@ -387,7 +385,7 @@
                                             <div class="form-group">
                                                 <label for="sel4">Exam/Degree Title	</label>
 
-                                                <asp:DropDownList ID="ddlAcadegreeList" runat="server" CssClass="form-control select2"  OnSelectedIndexChanged="ddlAcadegreeList_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlAcadegreeList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlAcadegreeList_SelectedIndexChanged">
                                                 </asp:DropDownList>
 
                                             </div>
@@ -395,35 +393,35 @@
                                             <!-- .form-group -->
                                             <div class="form-group">
                                                 <label for="sel5">Major Subject	</label>
-                                                <asp:DropDownList ID="ddlMajorSubjList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlMajorSubjList_SelectedIndexChanged"  AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlMajorSubjList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlMajorSubjList_SelectedIndexChanged" AutoPostBack="True">
                                                 </asp:DropDownList>
-                                                
+
                                             </div>
                                             <!-- /.form-group -->
                                             <!-- /.form-group -->
                                             <!-- .form-group -->
                                             <div class="form-group">
                                                 <label for="sel5">Result</label>
-                                                <asp:DropDownList ID="ddlResultList" runat="server" CssClass="form-control select2"   AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlResultList" runat="server" CssClass="form-control select2" AutoPostBack="True">
                                                 </asp:DropDownList>
-                                                
-                                            </div>
-                                              <div class="form-group">
-                                                <label for="sel5">Institution</label>
-                                                 <asp:TextBox ID="txtInstitue" runat="server" CssClass="form-control"></asp:TextBox>
+
                                             </div>
                                             <div class="form-group">
-                                                 <asp:LinkButton ID="lnkaccAdd" runat="server" CssClass="btn btn-sm btn-primary float-right">Add</asp:LinkButton>
-                                                
+                                                <label for="sel5">Institution</label>
+                                                <asp:TextBox ID="txtInstitue" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:LinkButton ID="lnkaccAdd" runat="server" CssClass="btn btn-sm btn-primary float-right">Add</asp:LinkButton>
+
                                             </div>
                                             <!-- /.form-group -->
 
                                         </fieldset>
                                     </div>
                                     <div class="col-12">
-                                          <legend>Academic Information</legend>
+                                        <legend>Academic Information</legend>
                                         <asp:GridView ID="gvDegree" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                            ShowFooter="True"   OnRowDeleting="gvDegree_RowDeleting">
+                                            ShowFooter="True" OnRowDeleting="gvDegree_RowDeleting">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:CommandField ShowDeleteButton="True" />
@@ -1284,7 +1282,7 @@
                                                 </ItemTemplate>
 
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lUpdateInfoNomi" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdateInfoNomi_Click" >Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lUpdateInfoNomi" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdateInfoNomi_Click">Update</asp:LinkButton>
                                                 </FooterTemplate>
 
                                                 <HeaderStyle HorizontalAlign="Center" />
@@ -1292,7 +1290,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                           
+
 
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
@@ -1345,7 +1343,7 @@
         </ContentTemplate>
 
 
-                <Triggers>
+        <Triggers>
             <asp:PostBackTrigger ControlID="btnUpload" />
         </Triggers>
 

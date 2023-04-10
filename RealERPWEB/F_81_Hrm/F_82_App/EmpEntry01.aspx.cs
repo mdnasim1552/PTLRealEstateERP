@@ -52,6 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = true;
                 CommonButton();
+                this.getDocument();
             }
         }
         public void CommonButton()
@@ -1947,6 +1948,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        private void getDocument()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETEMPDOC", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.gvempdoc.DataSource = ds1.Tables[0];
+            this.gvempdoc.DataBind();
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
