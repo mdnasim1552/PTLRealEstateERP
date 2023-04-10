@@ -52,6 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = true;
                 CommonButton();
+                this.getDocument();
             }
         }
         public void CommonButton()
@@ -1948,6 +1949,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+
+        private void getDocument()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETEMPDOC", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.gvempdoc.DataSource = ds1.Tables[0];
+            this.gvempdoc.DataBind();
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             if (FileUploadControl.HasFile)
@@ -1970,8 +1981,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
                     string comcod = this.GetCompCode();
                     string empcode = ddlEmpName.SelectedValue.ToString();
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
-                    if (!result)
+                      filename = empcode + filename;
+                string imgPath = "~/CV/" + filename;
+
+                //bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
+
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADEMPDOC", empcode, imgPath, "", "", "", "", "", "", "");
+
+                if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "File Update fail !!!" + "');", true);
                         return;
@@ -1980,14 +1997,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "File Update Succesfull !!!" + "');", true);
                     }
-                    FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
+                    //FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
-                    //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
+
+
+                FileUploadControl.SaveAs(Server.MapPath(imgPath));
+
+                //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 //}
                 //catch (Exception ex)
                 //{
 
- 
+
 
                 //}
             }
