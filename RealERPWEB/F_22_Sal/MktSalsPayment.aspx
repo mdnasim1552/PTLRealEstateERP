@@ -73,6 +73,18 @@
             $('#viewconfrimation').modal('hide');
         }
 
+
+        function loadModalAddParking() {
+            $('#AddParking').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        };
+        function CloseModalAddParking() {
+            $('#AddParking').modal('hide');
+        };
+
+
     </script>
     <style>
         .grvHeader th {
@@ -282,10 +294,15 @@
 
                                     <asp:TemplateField HeaderText="Parking">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvminbmoneyaa" runat="server" Style="text-align: right" BackColor="Transparent"
-                                                BorderStyle="None"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pamt")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:Label>
+                                           
+
+
+                                             <asp:LinkButton ID="lbtnparking" runat="server" 
+                                                OnClick="lbtnparking_Click" Style="text-align: right;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="80px"></asp:LinkButton>
+
+
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -1410,6 +1427,127 @@
                     </div>
                 </div>
             </div>
+
+            <%--Add parking--%>
+             <div id="AddParking" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add Parking</h5>
+                            <asp:Label ID="lblmobile" runat="server"></asp:Label>
+                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row">
+                                 <asp:GridView ID="gvparking" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            AutoGenerateColumns="False" ShowFooter="True"
+                            Style="margin-right: 0px">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvslnopark" runat="server"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Parking Code" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvparkcode" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
+                                            Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "parkcode"))%>'
+                                            Width="50px"></asp:Label>
+
+
+
+                                    </ItemTemplate>
+
+
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                                </asp:TemplateField>
+
+
+                                 <asp:TemplateField HeaderText="Floor">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvparkgrpdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
+                                            Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "parkgrpdesc"))%>'
+                                            Width="120px"></asp:Label>
+
+
+
+                                    </ItemTemplate>
+
+
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                                </asp:TemplateField>
+
+                               
+
+
+
+                                <asp:TemplateField HeaderText="Description">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvparkdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
+                                            Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "parkdesc"))%>'
+                                            Width="120px"></asp:Label>
+
+
+
+                                    </ItemTemplate>
+
+
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Status">
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="chkStatus" runat="server" Width="60px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pstatus"))=="True" %>' />
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+
+
+
+
+
+
+
+
+                            </Columns>
+                            <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
+
+
+                            </div>
+
+                          
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnAddParking" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddParking();" OnClick="lbtnAddParking_Click" ToolTip="Update Code Info.">
+                                <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </ContentTemplate>
     </asp:UpdatePanel>
