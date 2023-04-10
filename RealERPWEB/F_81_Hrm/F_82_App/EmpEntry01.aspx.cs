@@ -1970,8 +1970,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
                     string comcod = this.GetCompCode();
                     string empcode = ddlEmpName.SelectedValue.ToString();
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
-                    if (!result)
+                      filename = empcode + filename;
+                string imgPath = "~/CV/" + filename;
+
+                //bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
+
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADEMPDOC", empcode, imgPath, "", "", "", "", "", "", "");
+
+                if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "File Update fail !!!" + "');", true);
                         return;
@@ -1980,14 +1986,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "File Update Succesfull !!!" + "');", true);
                     }
-                    FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
+                    //FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
-                    //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
+
+
+                FileUploadControl.SaveAs(Server.MapPath(imgPath));
+
+                //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 //}
                 //catch (Exception ex)
                 //{
 
- 
+
 
                 //}
             }

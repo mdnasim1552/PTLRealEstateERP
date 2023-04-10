@@ -5,6 +5,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        #csv-input {
+  display: none;
+}
+
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -301,7 +307,7 @@
 
 
                                 </div>
-                                <div class="col-sm-6 col-md-2 col-lg-2">
+                <%--                <div class="col-sm-6 col-md-2 col-lg-2">
                                     <div class="row" id="UploadCV" runat="server" >
 
                                         <div class="col-md-12 ">
@@ -316,7 +322,52 @@
                                             <asp:Button runat="server" ID="btnUpload" Text="Upload CV" CssClass="btn btn-sm btn-warning" OnClick="btnUpload_Click"  />
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
+
+
+           
+     <div class="col-6 bd-example mb-5" id="UploadCV" runat="server" >
+         <div class="row">
+             <div class="col-7">
+               <asp:Label ID="lblUploadCV" runat="server" >Upload CV</asp:Label>
+               <div class="input-group">
+        <div class="custom-file">
+         <asp:FileUpload ID="FileUploadControl"  CssClass="custom-file-input"  type="file" runat="server"/>
+         <asp:Label CssClass="custom-file-label"  runat="server" Text="Upload File"/>
+        </div>
+        <div class="input-group-append">
+          <asp:Button runat="server" ID="btnUpload" class="btn btn-outline-primary" OnClick="btnUpload_Click" Text="Upload" />
+        </div>
+      </div>
+             </div>
+             <div class="col-5">
+<%--                 <div class="table table-sm table-responsive">
+                                        <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvdoc" runat="server" AutoGenerateColumns="false">
+                                            <Columns>
+                    
+
+                                                <asp:TemplateField HeaderText="File">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btn_edit" runat="server" CssClass="btn-sm text-info" OnClick="btn_edit_Click"> <i class="fa fa-edit"></i> 
+                                                        </asp:LinkButton>
+                                                        <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+                                                        </asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+             </div>--%>
+
+         </div>
+    </div>
+ 
+
+
 
                             </asp:View>
                             <asp:View ID="ViewDegree" runat="server">
