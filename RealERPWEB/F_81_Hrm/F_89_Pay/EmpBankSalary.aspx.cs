@@ -924,11 +924,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string valueDate = lastDayOfMonth.ToString() + "/" + month2 + "/" + year;
 
+            string subtitle = "Salary";
+            string bodytitle = "salary of";
+            if (this.chkBonus.Checked && this.chckFitr.Checked)
+            {
+                subtitle = "Bonus(Eid ul-Fitr)";
+                bodytitle = "bonus (Eid ul-Fitr)";
+            }
+            else if (this.chkBonus.Checked && this.chckAdha.Checked)
+            {
+                subtitle = "Bonus (Eid ul-Adha)";
+                bodytitle = "bonus (Eid-ul-Adha)";
+            }
 
-
-            ReportDocument rptstk = new ReportDocument();
+                ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
+
+
+
 
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementAngan", lst, null, null);
@@ -938,6 +952,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
             Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+
+            Rpt1.SetParameters(new ReportParameter("subtitle", subtitle));
+            Rpt1.SetParameters(new ReportParameter("bodytitle", bodytitle));
 
 
             Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
