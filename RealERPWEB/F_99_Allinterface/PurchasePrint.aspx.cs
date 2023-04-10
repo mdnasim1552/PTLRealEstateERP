@@ -333,6 +333,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
+                    Rpt1.SetParameters(new ReportParameter("txtfiapp", ds1.Tables[1].Rows[0]["appnum"].ToString()));
                     mrdate = "MRR Date : " + mrdate;
                     prjname = "Project Name : " + prjname;
                     suppliername = "Supplier Name : " + suppliername;

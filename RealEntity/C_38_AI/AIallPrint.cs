@@ -72,7 +72,16 @@ namespace RealEntity.C_38_AI
 
             }
 
-
+            
+        }
+        [Serializable]
+        public class GrphicalShow
+        {
+            public string comcod { get; set; }
+            public double total { get; set; }
+            public double qa1work { get; set; }
+            public double qa2work { get; set; }
+            public double qa3work { get; set; }
         }
     }
 }
