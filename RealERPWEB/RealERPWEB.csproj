@@ -3368,6 +3368,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
@@ -5946,6 +5947,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
       <DependentUpon>EmpAttApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.designer.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.cs">
       <DependentUpon>EmployeeListEpic.aspx</DependentUpon>

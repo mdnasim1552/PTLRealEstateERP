@@ -9,6 +9,9 @@
         #csv-input {
             display: none;
         }
+        .input-group {
+            border:0!important;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -334,9 +337,9 @@
                                                     <asp:FileUpload ID="FileUploadControl" CssClass="custom-file-input" type="file" runat="server" />
                                                     <asp:Label CssClass="custom-file-label" runat="server" Text="Upload File" />
                                                 </div>
-                                                <div class="input-group-append">
-                                                    <asp:Button runat="server" ID="btnUpload" class="btn btn-outline-primary" OnClick="btnUpload_Click" Text="Upload" />
-                                                </div>
+                                                <%--<div class="input-group-append">--%>
+                                                    <asp:Button runat="server" ID="btnUpload" class="btn btn-primary ml-2" OnClick="btnUpload_Click" Text="Upload" />
+                                                <%--</div>--%>
                                             </div>
                                         </div>
                                         <div class="col-5">
@@ -345,17 +348,19 @@
                                                     <Columns>
 
 
-                                                        <asp:TemplateField HeaderText="File">
+                                                        <asp:TemplateField HeaderText="View Document">
                                                             <ItemTemplate>
+                                                               <asp:Label runat="server" ID="lblempid" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'></asp:Label>
+
+                                                               <asp:Label runat="server" ID="lblimgpath" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "imgpath")) %>'></asp:Label>
                                                                 <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
+                                                                         <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger" OnClick="btn_remove_Click"> <i class="fa fa-trash"></i> 
+                                                        </asp:LinkButton>
+                                                                
                                                             </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Center" />
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="View">
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="btn_remove" runat="server" CssClass="btn-sm text-danger"> <i class="fa fa-trash"></i> 
-                                                                </asp:LinkButton>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                      
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
