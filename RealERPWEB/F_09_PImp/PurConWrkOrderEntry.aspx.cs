@@ -955,14 +955,14 @@ namespace RealERPWEB.F_09_PImp
             this.SaveValue();
             DataTable tbl2 = (DataTable)ViewState["tblorder"];
 
-            DataRow[] dr = tbl2.Select("ordrrate=0.00");
+            DataRow[] dr = this.Checkrate.Checked==true ? tbl2.Select("proposerate=0.00") : tbl2.Select("ordrrate=0.00");
 
             if (dr.Length > 0)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity Field ";
                 return;
             }
-
+           
             string comcod = this.GetCompCode();
             if (ddlPrevList.Items.Count == 0)
             {
@@ -1050,7 +1050,7 @@ namespace RealERPWEB.F_09_PImp
                 //string spec = ((TextBox)this.grvissue.Rows[i].FindControl ("txtspec")).Text.Trim ();
                 TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
 
-                double gvrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text.Trim());
+                double gvrate =this.Checkrate.Checked == true ? Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvproposerate")).Text.Trim()) : Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text.Trim());
                 double gvQty = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvQty")).Text.Trim());
                 double orqty = Convert.ToDouble("0" + dt.Rows[TblRowIndex]["ordqty"].ToString());
 
@@ -1064,11 +1064,28 @@ namespace RealERPWEB.F_09_PImp
                 }
                 double amt = gvQty * gvrate;
                 ((TextBox)this.grvissue.Rows[i].FindControl("txtgvAmount")).Text = amt.ToString("#,##0.000;(#,##0.000); ");
-                ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text = gvrate.ToString("#,##0.000;(#,##0.000); ");
+                if (this.Checkrate.Checked)
+                {
+                    ((TextBox)this.grvissue.Rows[i].FindControl("txtgvproposerate")).Text = gvrate.ToString("#,##0.000;(#,##0.000); ");
+
+                }
+                else
+                {
+                    ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text = gvrate.ToString("#,##0.000;(#,##0.000); ");
+
+                }
                 ((TextBox)this.grvissue.Rows[i].FindControl("txtgvQty")).Text = gvQty.ToString("#,##0.000;(#,##0.000); ");
 
                 dt.Rows[TblRowIndex]["ordqty"] = gvQty;
-                dt.Rows[TblRowIndex]["ordrrate"] = gvrate;
+                if (this.Checkrate.Checked)
+                {
+                    dt.Rows[TblRowIndex]["proposerate"] = gvrate;
+                }
+                else
+                {
+                    dt.Rows[TblRowIndex]["ordrrate"] = gvrate;
+                }
+                    
                 dt.Rows[TblRowIndex]["ordamt"] = amt;
                 dt.Rows[TblRowIndex]["rmrks"] = txtisurmk;
                 dt.Rows[TblRowIndex]["sdetails"] = sdetails;

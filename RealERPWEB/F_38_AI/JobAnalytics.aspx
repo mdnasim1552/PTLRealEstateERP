@@ -5,7 +5,175 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+     <script src="../Scripts/highcharts.js"></script>
+    <script src="../Scripts/highchartexporting.js"></script>
+    <script language="javascript" type="text/javascript">
+        var comcod, projcode, data;
+        function pageLoaded() {
 
+            $('.chzn-select').chosen({ search_contains: true });
+            GetData();
+
+
+        });
+
+        function GetData() {
+            try {
+                comcod = <%=this.GetComdCode()%>;
+                projcode = $('#<%=this.Request.QueryString["PID"]%>').val();
+                var temp = comcod.toString();
+                var com = temp.slice(0, 1);
+                $.ajax({
+                    type: "GET",
+                    url: "JobAnalytics.aspx/GetAllData",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{comcodi:"' + comcod + '" , projcode: "' + $('#<%=this.Request.QueryString["PID"]%>').val() + '"}',
+                    dataType: "json",
+
+                    success: function (response) {
+                        var data = JSON.parse(response.d);
+                        var data1 = data.GrphicalShow;
+                        console.log('success',response);
+
+                        data1[1].pmargin
+                        var marcolor = data1[1].pmargin > 0 ? "#009999" : "#FF0000";
+                        var cashflowcolor = data1[1].cashflow > 0 ? "#009999" : "#FF0000";
+
+                        Highcharts.chart('#container', {
+                            chart: {
+                                type: 'pie'
+                                styledMode: true
+                            },
+                            title: {
+                                text: 'AI Project Wise Report',
+                                align: 'left'
+                            },
+                            subtitle: {
+                                text: '',
+                                align: ''
+                            },
+
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                },
+                                point: {
+                                    valueSuffix: '%'
+                                }
+                            },
+
+                            plotOptions: {
+                                series: {
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.name}: {point.y:.1f}%'
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                            },
+
+                            series: [
+                                {
+                                    name: '',
+                                    colorByPoint: true,
+                                    data: [
+                                        {
+                                            name: 'Total',
+                                            y: data1[1].total,
+                                            "color": '#8A2BE2'
+                                        },
+                                        {
+                                            name: 'Annotor',
+                                            y: data1[1].qa1work,
+                                            "color": '#808080'
+                                        },
+                                        {
+                                            name: 'QA1',
+                                            y: data1[1].qa2work,
+                                            "color": '#993366'
+                                        },
+                                        {
+                                            name: 'QA2',
+                                            y: data1[1].qa3work,
+                                            "color": '#883366'
+                                        }
+
+                                    ]
+                                }
+                            ]
+
+
+                        });
+                    },
+                    failure: function (response) {
+                        //  alert(response);
+                        console.log('failure',response);
+                        alert("f");
+                    }
+
+                });
+
+
+            } catch (e) {
+                alert(e);
+            }
+
+        }
+    </script>
+    <style>
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 320px;
+            max-width: 660px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #ebebeb;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -35,7 +203,8 @@
                             <div class="text-center">
                                 <h6>Total Batch</h6>
                             </div>
-                            <h3 class="text-center"><asp:Label runat="server" ID="lbltotalbatch"></asp:Label></h3>
+                            <h3 class="text-center">
+                                <asp:Label runat="server" ID="lbltotalbatch"></asp:Label></h3>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -43,7 +212,8 @@
                             <div class="text-center">
                                 <h6>Total QA1</h6>
                             </div>
-                            <h3 class="text-center" id="H1" runat="server"><asp:Label runat="server" ID="lbltotalqa1"></asp:Label></h3>
+                            <h3 class="text-center" id="H1" runat="server">
+                                <asp:Label runat="server" ID="lbltotalqa1"></asp:Label></h3>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -51,7 +221,8 @@
                             <div class="text-center">
                                 <h6>Total QA2</h6>
                             </div>
-                            <h3 class="text-center" id="H2" runat="server"><asp:Label runat="server" ID="lbltotalqa2"></asp:Label></h3>
+                            <h3 class="text-center" id="H2" runat="server">
+                                <asp:Label runat="server" ID="lbltotalqa2"></asp:Label></h3>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -59,7 +230,8 @@
                             <div class="text-center">
                                 <h6>Total QA3</h6>
                             </div>
-                            <h3 class="text-center" id="H3" runat="server"><asp:Label runat="server" ID="lbltotalqa3"></asp:Label></h3>
+                            <h3 class="text-center" id="H3" runat="server">
+                                <asp:Label runat="server" ID="lbltotalqa3"></asp:Label></h3>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -67,7 +239,8 @@
                             <div class="text-center">
                                 <h6>Total Work</h6>
                             </div>
-                            <h3 class="text-center" id="H4" runat="server"><asp:Label runat="server" ID="lbltotaltask"></asp:Label></h3>
+                            <h3 class="text-center" id="H4" runat="server">
+                                <asp:Label runat="server" ID="lbltotaltask"></asp:Label></h3>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -75,15 +248,15 @@
                             <div class="text-center">
                                 <h6>Complete</h6>
                             </div>
-                            <h3 class="text-center" id="H5" runat="server"><asp:Label runat="server" ID="lblcomplete"></asp:Label></h3>
+                            <h3 class="text-center" id="H5" runat="server">
+                                <asp:Label runat="server" ID="lblcomplete"></asp:Label></h3>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-lg-6 text-center" style="width: 100%">
-                        <img id="ContentPlaceHolder1_Image1"
-                            src="https://www.ganttexcel.com/wp-content/uploads/2014/11/Gantt-Chart-Dashboard-1.png" class="mt-5">
+                    <div class="col-lg-6 text-center">
+                        <div id="container" style="height: 360px; width: 600px;"></div>
                     </div>
                     <div class="col-lg-6" style="width: 100%">
                         <div class="row">
@@ -106,64 +279,60 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                        <div class="metric metric-bordered align-items-center">
-                            <h2 class="text-center" runat="server" id="qaspent">0.1<small>hrs</small></h2>
-                            <div class="text-center">
-                                <p>
-                                    Out of 770.4hrs 
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center" runat="server" id="qaspent">0.1<small>hrs</small></h2>
+                                    <div class="text-center">
+                                        <p>
+                                            Out of 770.4hrs 
                                     <br />
-                                    <b class="text-primary">QA hours spent</b>
-                                </p>
+                                            <b class="text-primary">QA hours spent</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center text-primary" runat="server" id="annotspent">410.8<small>hrs</small></h2>
+                                    <div class="text-center">
+                                        <p>
+                                            Out of 770.4hrs
+                                    <br />
+                                            <b class="text-primary">Annot, hours spent</b>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="metric metric-bordered align-items-center">
-                            <h2 class="text-center text-primary" runat="server" id="annotspent">410.8<small>hrs</small></h2>
-                            <div class="text-center">
-                                <p>
-                                    Out of 770.4hrs
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center text-primary" runat="server" id="adminspnt">359.4<small>hrs</small></h2>
+                                    <div class="text-center">
+                                        <p>
+                                            Out of 770.4hrs 
                                     <br />
-                                    <b class="text-primary">Annot, hours spent</b>
-                                </p>
+                                            <b class="text-primary">Admin hours spent</b>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="col-md-6">
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center text-primary" runat="server" id="ttlskip">0.00</h2>
+                                    <div class="text-center">
+                                        <p>
+                                            Out of 770.4hrs 
+                                    <br />
+                                            <b class="text-primary">Total Number of Skip</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <hr />
-                <div class="metric-row metric-flush">
 
-                    <%--doninstnace=sum(doninstnace),attinstance=sum(attinstance),qaspent=sum(qaspent), annotspent=sum(annotspent), adminspnt=sum(adminspnt), ttlskip--%>
-
-                    
-                    <div class="col-md-2">
-                        <div class="metric metric-bordered align-items-center">
-                            <h2 class="text-center text-primary" runat="server" id="adminspnt">359.4<small>hrs</small></h2>
-                            <div class="text-center">
-                                <p>
-                                    Out of 770.4hrs 
-                                    <br />
-                                    <b class="text-primary">Admin hours spent</b>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="metric metric-bordered align-items-center">
-                            <h2 class="text-center text-primary" runat="server" id="ttlskip">0.00</h2>
-                            <div class="text-center">
-                                <p>
-                                    Out of 770.4hrs 
-                                    <br />
-                                    <b class="text-primary">Total Number of Skip</b>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
             </div>
             <div class="card">
