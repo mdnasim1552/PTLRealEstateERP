@@ -487,6 +487,15 @@ text-align:right;
 }
 
 
+.lblheadertitle {
+    background-color: #346CB0;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    padding-left: 5px !important;
+}
+
+
 
 /*Switch Rounded sliders */
 

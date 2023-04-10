@@ -253,7 +253,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
-                    break;
+                
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -545,11 +545,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3368":
                     this.rbtlBonSheet.SelectedIndex = 15;
                     break;
-                case "3101":
+            
                 case "3366":
                     this.rbtlBonSheet.SelectedIndex = 16;
                     break;
 
+                case "3101":
                 case "3374"://Angan Properties
                 case "3376"://Angan Development
                     this.rbtlBonSheet.SelectedIndex = 17;
@@ -5010,6 +5011,51 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         i++;
                     }
                     break;
+
+
+
+          
+                case "3101":
+                case "3374": //Angan
+                case "3376":
+                    for (i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());                      
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvBonusAmt")).Text.Trim());
+                        double bankamt1  = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double cashamt1 = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvcashAmtbon")).Text.Trim());
+
+
+               
+
+                        //double bonamt = bsal * 0.01 * perbonus;
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+
+
+                        double bankamta = Convert.ToDouble(dt.Rows[rowindex]["bankamta"]);
+                        double cashamta = Convert.ToDouble(dt.Rows[rowindex]["cashamta"]);
+                        string bankgrp = dt.Rows[rowindex]["bankgrp"].ToString();
+                        string empconfirm = dt.Rows[rowindex]["empconfirm"].ToString();
+
+                        double bankamt = (bankgrp.Length >0) ? bankamt1==0 ? 0 : bonamt == bankamt1 ? bonamt: (bonamt*50*.01) : 0.00;
+                        double bankamt2 =(bankgrp == "b2") ? (bonamt - (bankamta + cashamta)) : bankamta;                       
+                        double cashamt = (bankgrp.Length > 0) ? cashamt1==0.00?0.00: bonamt == cashamt1 ? bonamt : (bonamt * 50 * .01) : bonamt;
+
+
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bankamt;
+                        dt.Rows[rowindex]["bankamt2"] = bankamt2;
+                        dt.Rows[rowindex]["cashamt"] = cashamt;
+
+                    }
+                    break;
+
+
+
                 default:
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {

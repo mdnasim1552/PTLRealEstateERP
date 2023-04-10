@@ -1059,7 +1059,7 @@ namespace RealERPWEB.F_12_Inv
                 
                 case "3370":
 
-                    this.grvacc.Columns[11].Visible = false;
+                    //this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
                     break;
                

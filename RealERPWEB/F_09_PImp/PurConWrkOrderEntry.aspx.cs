@@ -805,6 +805,13 @@ namespace RealERPWEB.F_09_PImp
             this.grvissue.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue);
             this.grvissue.DataSource = (DataTable)ViewState["tblorder"];
             this.grvissue.DataBind();
+            if (this.Checkrate.Checked == true)
+            {
+                this.grvissue.Columns[7].Visible = false;
+                this.grvissue.Columns[8].Visible = true;
+                this.grvissue.Columns[9].Visible = true;
+                this.grvissue.Columns[10].Visible = false;
+            }
             this.FooterCalculation();
         }
         private void FooterCalculation()
@@ -816,8 +823,17 @@ namespace RealERPWEB.F_09_PImp
             ((Label)this.grvissue.FooterRow.FindControl("lblgvFQty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ordqty)", "")) ? 0.00
                 : dt.Compute("Sum(ordqty)", ""))).ToString("#,##0.00;(#,##0.00);  ");
 
-            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ordamt)", "")) ? 0.00
-                : dt.Compute("Sum(ordamt)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            if(this.Checkrate.Checked == true)
+            {
+                ((Label)this.grvissue.FooterRow.FindControl("lblgvpFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(pordamt)", "")) ? 0.00
+               : dt.Compute("Sum(pordamt)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            }
+            else
+            {
+                ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ordamt)", "")) ? 0.00
+               : dt.Compute("Sum(ordamt)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            }
+           
 
         }
         protected void lbtnSelect_Click(object sender, EventArgs e)
@@ -910,6 +926,7 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
                 return;
             }
+           
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string sessionid = hst["session"].ToString();
@@ -987,9 +1004,9 @@ namespace RealERPWEB.F_09_PImp
             {
                 string flrcod = dru["flrcod"].ToString();
                 string Rsircode = dru["rsircode"].ToString();
-                double rate = Convert.ToDouble(dru["ordrrate"].ToString());
+                double rate =this.Checkrate.Checked==true ? Convert.ToDouble(dru["proposerate"].ToString()) : Convert.ToDouble(dru["ordrrate"].ToString());
                 double qty = Convert.ToDouble(dru["ordqty"].ToString());
-                double amt = Convert.ToDouble(dru["ordamt"].ToString());
+                double amt = this.Checkrate.Checked == true? Convert.ToDouble(dru["pordamt"].ToString()) : Convert.ToDouble(dru["ordamt"].ToString());
                 string txtremarks = dru["rmrks"].ToString();
                 string sdetails = dru["sdetails"].ToString();
                 string spec = dru["spec"].ToString();
@@ -1109,6 +1126,11 @@ namespace RealERPWEB.F_09_PImp
         protected void lnkTotal_Click(object sender, EventArgs e)
         {
             this.SaveValue();
+            this.grvissue_DataBind();
+        }
+
+        protected void ProposeRate_Click(object sender, EventArgs e)
+        {
             this.grvissue_DataBind();
         }
     }
