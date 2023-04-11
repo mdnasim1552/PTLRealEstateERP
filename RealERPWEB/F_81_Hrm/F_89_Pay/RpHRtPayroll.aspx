@@ -1066,6 +1066,8 @@
                                                 <asp:ListItem>Finlay</asp:ListItem>
                                                 <asp:ListItem>Lanco</asp:ListItem>
                                                 <asp:ListItem>Angan</asp:ListItem>
+                                                <asp:ListItem>CPDL</asp:ListItem>
+
                                             </asp:RadioButtonList>
                                         </div>
 
