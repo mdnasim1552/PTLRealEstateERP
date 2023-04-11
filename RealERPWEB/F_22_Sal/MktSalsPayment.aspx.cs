@@ -2311,9 +2311,159 @@ namespace RealERPWEB.F_22_Sal
             }
         }
 
-       
+        protected void lbtnparking_Click(object sender, EventArgs e)
+        {
+           
+           
+            try
+            {
+                string comcod = this.GetCompCode();                
+                int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = ((Label)this.gvSpayment.Rows[RowIndex].FindControl("lblgvItmCod")).Text.Trim();
+                this.lblCode.Text = usircode;
+                ViewState.Remove("tblparking");
 
-      
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPARKINGINFO", pactcode, usircode, "", "", "", "", "", "", "");
+                ViewState["tblparking"] =this.HiddenSamData(ds1.Tables[0]);
+                
+                this.gvparking.DataSource = ds1.Tables[0];
+                this.gvparking.DataBind() ;
+                ds1.Dispose();
+
+
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddParking();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+
+
+            }
+
+        }
+
+        private DataTable HiddenSamData(DataTable dt1)
+        {
+            
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+
+           
+                int i = 0;
+                string parkgrp = dt1.Rows[0]["parkgrp"].ToString();
+
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    if (i == 0)
+                    {
+
+
+                    parkgrp = dr1["parkgrp"].ToString();
+                        i++;
+                        continue;
+                    }
+
+                    if (dr1["parkgrp"].ToString() == parkgrp)
+                    {
+
+                        dr1["parkgrpdesc"] = "";
+
+                    }
+
+
+                parkgrp = dr1["parkgrp"].ToString();
+                }
+
+
+
+                return dt1;
+
+            
+
+
+
+        }
+
+        private void SaveParking()
+        {
+
+            int rowindex;
+            int i = 0;
+            DataTable dt = (DataTable)ViewState["tblparking"];
+            foreach (GridViewRow gv1 in gvparking.Rows)
+            {
+
+               
+                string pstatus = ((CheckBox)gv1.FindControl("chkStatus")).Checked ? "True" : "False";
+                rowindex = (this.gvparking.PageSize * this.gvparking.PageIndex) + i;             
+                dt.Rows[rowindex]["pstatus"] = pstatus;
+                i++;
+
+
+            }
+            ViewState["tblparking"] = dt;
+
+
+
+        }
+        protected void lbtnAddParking_Click(object sender, EventArgs e)
+        {
+
+            this.SaveParking();
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string usircode = this.lblCode.Text.Trim();
+
+           
+            DataTable dt = (DataTable)ViewState["tblparking"];
+            //
+
+            DataRow[] dr1 = dt.Select("pstatus=1");
+            if (dr1.Length == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                return;
+
+            }
+
+            foreach (GridViewRow gv1 in gvparking.Rows)
+            {
+
+                string gcod = ((Label)gv1.FindControl("lblgvparkcode")).Text.Trim();
+                bool status = ((CheckBox)gv1.FindControl("chkStatus")).Checked ? true:false ;
+                if (status == true)
+                {
+                    bool result = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "ADDPARKING", pactcode, usircode, gcod, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Failed');", true);
+
+                    }
+
+
+                }
+
+
+
+
+
+
+
+            }
+        }
+
         protected void lbtnAddJob_Click(object sender, EventArgs e)
         {
 

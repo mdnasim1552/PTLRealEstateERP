@@ -112,7 +112,7 @@ namespace RealERPWEB.F_14_Pro
                     this.GetReqno01();
                     this.LoadSertial();
                 }
-                this.imgbtnFindMatCom_Click(null, null);
+                //this.imgbtnFindMatCom_Click(null, null);
             }
         }
 
@@ -1704,10 +1704,25 @@ namespace RealERPWEB.F_14_Pro
 
             string frmdate = Convert.ToDateTime(this.txtFDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string ResCode = ((this.ddlMaterialscom.SelectedValue == "000000000000") ? "" : this.ddlMaterialscom.SelectedValue.ToString()) + "%";
+            //string ResCode = ((this.listMaterialscom.SelectedValue == "000000000000") ? "" : this.listMaterialscom.SelectedValue.ToString()) + "%";
             // DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATRATEVARIANCE", frmdate, todate, ResCode, "", "", "", "", "", "");
+            string Matrialcode = "";
+            string gp = this.listMaterialscom.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    Matrialcode = "";
+                else
+                    foreach (ListItem s1 in listMaterialscom.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            Matrialcode = Matrialcode + s1.Value.Substring(0, 12);
+                        }
+                    }
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATRATEVARIANCMONTHWISE", frmdate, todate, ResCode, "", "", "", "", "", "");
+            }
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATRATEVARIANCMONTHWISE", frmdate, todate, Matrialcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
 
@@ -2181,11 +2196,12 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetComeCode();
             string txtfindMat = "%" + this.txtMatcomSearch.Text.Trim() + "%";
+            //string txtfindMat = "%%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETMATERIALCOM", txtfindMat, "", "", "", "", "", "", "", "");
-            this.ddlMaterialscom.DataTextField = "sirdesc";
-            this.ddlMaterialscom.DataValueField = "sircode";
-            this.ddlMaterialscom.DataSource = ds1.Tables[0];
-            this.ddlMaterialscom.DataBind();
+            this.listMaterialscom.DataTextField = "sirdesc";
+            this.listMaterialscom.DataValueField = "sircode";
+            this.listMaterialscom.DataSource = ds1.Tables[0];
+            this.listMaterialscom.DataBind();
         }
 
         protected void lbtnDelete_Click(object sender, EventArgs e)

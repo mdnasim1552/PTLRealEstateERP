@@ -964,8 +964,8 @@ namespace RealERPWEB.F_17_Acc
 
 
                    
-                    int lenght = Narration.Length;
-                    Narration = Narration.Substring(0, lenght - 2);
+                    //int lenght = Narration.Length;
+                    //Narration = Narration.Substring(0, lenght - 2);
                     /////////---------------------------------------
                     vounum = dt12.Rows[0]["couvounum"].ToString();
 
@@ -974,7 +974,7 @@ namespace RealERPWEB.F_17_Acc
 
                     string vounarration1 = Narration;
                     string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
-                    vounarration1 = (vounarration1.Length > 200 ? vounarration1.Substring(0, 200) : vounarration1);
+                    //vounarration1 = (vounarration1.Length > 200 ? vounarration1.Substring(0, 200) : vounarration1);
                     string vouno = vounum.Substring(0, 2).ToString();
                     string voutype = (vouno == "JV"
                         ? "Journal Voucher"

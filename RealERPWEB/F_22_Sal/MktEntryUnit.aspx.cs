@@ -193,6 +193,7 @@ namespace RealERPWEB.F_22_Sal
                 this.ddlProjectName.Visible = false;
                 //this.lblProjectmDesc.Visible = true;
                 this.lblProjectdesc.Visible = true;
+                this.lbltitleparking.Visible = true;
                 //this.ibtnFindProject.Enabled = false;
                 this.LoadGrid();
 
@@ -202,6 +203,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 this.lbtnOk.Text = "Ok";
                 this.PanelGroup.Visible = false;
+                this.lbltitleparking.Visible = false;
                 this.ClearScreen();
             }
         }
@@ -216,6 +218,8 @@ namespace RealERPWEB.F_22_Sal
             this.lblProjectdesc.Visible = false;
             this.gvUnit.DataSource = null;
             this.gvUnit.DataBind();
+            this.gvparking.DataSource = null;
+            this.gvparking.DataBind();
 
 
 
@@ -310,6 +314,78 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+        private DataTable HiddenSamData(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+
+
+            int i = 0;
+            string parkgrp = dt1.Rows[0]["parkgrp"].ToString();
+
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                if (i == 0)
+                {
+
+
+                    parkgrp = dr1["parkgrp"].ToString();
+                    i++;
+                    continue;
+                }
+
+                if (dr1["parkgrp"].ToString() == parkgrp)
+                {
+
+                    dr1["parkgrpdesc"] = "";
+
+                }
+
+
+                parkgrp = dr1["parkgrp"].ToString();
+            }
+
+
+
+            return dt1;
+
+
+
+
+
+        }
+
+        private void SaveParking()
+        {
+
+            int rowindex;
+            int i=0;
+            DataTable dt = (DataTable)ViewState["tblparking"];
+            foreach (GridViewRow gv1 in gvparking.Rows)
+            {
+               
+                string gdesc = ((TextBox)gv1.FindControl("txtgvparkdesc")).Text.Trim();
+                string pstatus = ((CheckBox)gv1.FindControl("chkStatus")).Checked?"True":"False";
+               
+
+
+
+                rowindex = (this.gvparking.PageSize * this.gvparking.PageIndex) + i;
+                dt.Rows[rowindex]["gdesc"] = gdesc;
+                dt.Rows[rowindex]["pstatus"] = pstatus;
+                i++;
+               
+
+            }
+            ViewState["tblparking"] = dt;
+
+
+
+        }
+
         protected void lFinalUpdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -376,7 +452,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-
+            string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -403,7 +479,7 @@ namespace RealERPWEB.F_22_Sal
                 string cooprative = dt.Rows[i]["cooperative"].ToString();
                 string chkper = dt.Rows[i]["mgtbook"].ToString().Trim();
                 string fcode = dt.Rows[i]["fcode"].ToString().Trim();
-                string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
+              
                 string bookingper = dt.Rows[i]["bookingper"].ToString();
                 string noofinstall = dt.Rows[i]["noofinstall"].ToString();
                 string handovdate = Convert.ToDateTime(dt.Rows[i]["handovdate"].ToString()).ToString("dd-MMM-yyyy");
@@ -431,9 +507,47 @@ namespace RealERPWEB.F_22_Sal
 
 
             }
-       
+
+            this.SaveParking();
+            DataTable dtp = (DataTable)ViewState["tblparking"];
+            foreach (DataRow drp in dtp.Rows)
+            {
+
+                string gcod = drp["gcod"].ToString();
+                string gdesc = drp["gdesc"].ToString();
+                bool status= Convert.ToBoolean(drp["pstatus"].ToString());
+
+               
+
+
+                if (status == true)
+                {
+                    bool result = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPARKINGINF", PactCode, gcod, gdesc, isLO, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Failed');", true);
+
+                    }
+
+
+                }
+
+
+
+
+
+
+
+            }
+
+
+
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+
+
+
             this.LoadGrid();
 
             if (ConstantInfo.LogStatus == true)
@@ -461,6 +575,7 @@ namespace RealERPWEB.F_22_Sal
             if (ds4 == null)
                 return;
             ViewState["tblUnit"] = ds4.Tables[0];
+            ViewState["tblparking"] =this.HiddenSamData(ds4.Tables[1]);
             this.Data_bind();
 
         }
@@ -472,10 +587,25 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 string comcod = this.GetCompCode();
+                DataTable dtp = (DataTable)ViewState["tblparking"];
                 DataTable tblt05 = (DataTable)ViewState["tblUnit"];
+
+                this.gvparking.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.gvparking.DataSource = dtp;
+                this.gvparking.DataBind();
+
+
                 this.gvUnit.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.gvUnit.DataSource = tblt05;
                 this.gvUnit.DataBind();
+
+
+
+
+
+
+
+
 
                 if (tblt05.Rows.Count == 0)
                     return;
@@ -496,6 +626,12 @@ namespace RealERPWEB.F_22_Sal
               0.00 : tblt05.Compute("Sum(utility)", ""))).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvUnit.FooterRow.FindControl("lgvPCooprative")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(cooperative)", "")) ?
               0.00 : tblt05.Compute("Sum(cooperative)", ""))).ToString("#,##0;(#,##0); ");
+
+                
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -724,6 +860,7 @@ namespace RealERPWEB.F_22_Sal
                     return;
                 //this.gvUnit.Columns[1].Visible = false;
                 ViewState["tblUnit"] = ds3.Tables[0];
+                ViewState["tblparking"] = this.HiddenSamData(ds3.Tables[1]);
                 this.Data_bind();
             }
             else
@@ -749,6 +886,11 @@ namespace RealERPWEB.F_22_Sal
           
 
             Response.Redirect(this.Request.UrlReferrer.ToString());
+
+        }
+
+        protected void lbtnDelparking_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-md-1 mt-4">
                             <asp:CheckBox runat="server" ID="Checkrate" Text="ProposeRate"/>
-                            <asp:LinkButton runat="server" ID="ProposeRate" CssClass="btn btn-info btn-sm">CompanyRate</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="ProposeRate" OnClick="ProposeRate_Click" CssClass="btn btn-info btn-sm">CompanyRate</asp:LinkButton>
                         </div>
 
                         <div class="col-lg-1">
@@ -312,6 +312,29 @@
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordrrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
                                     </ItemTemplate>
+                                    <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                
+                                <asp:TemplateField HeaderText="Propose Rate" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvproposerate" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposerate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="100px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+
+                                 <asp:TemplateField HeaderText="Amount" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvpAmount" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="80px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvpFamount" runat="server" Style="text-align: right"
+                                            Width="80px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                    </FooterTemplate>
                                     <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Amount">

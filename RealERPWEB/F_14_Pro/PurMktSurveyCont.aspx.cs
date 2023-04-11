@@ -1484,83 +1484,91 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void lbtnMSRSelect_Click(object sender, EventArgs e)
         {
-            this.Session_tblMSR_Update();
-            this.GetPreviousCS();
-            DataTable tbl1 = (DataTable)Session["tblt02"];
-            DataTable tblreq = (DataTable)Session["tblreq01"];
-            DataTable tbl02 = (DataTable)Session["CopyBillCS"];
-            
-           
-            string comcod = this.GetCompCode();
 
-
-            foreach (ListItem s1 in chkMSRRes.Items)
+            try
             {
-                if (s1.Selected)
+                this.Session_tblMSR_Update();
+                this.GetPreviousCS();
+                DataTable tbl1 = (DataTable)Session["tblt02"];
+                DataTable tblreq = (DataTable)Session["tblreq01"];
+                DataTable tbl02 = (DataTable)Session["CopyBillCS"];
+
+
+                string comcod = this.GetCompCode();
+
+
+                foreach (ListItem s1 in chkMSRRes.Items)
                 {
-                    string mResCode1 = s1.Value.ToString();
-                    //string mResCode1 = "000000000000";//this.ddlMSRRes.SelectedValue.ToString();
-                    //string spcfcod1 = "000000000000";// this.ddlSpecificationms.SelectedValue.ToString();
-                    string rate = "";
-                    string rate1 = "";
-                    string rate2 = "";
-                    string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
-                    string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
-
-                    DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ");
-                    if (dr2.Length == 0)
+                    if (s1.Selected)
                     {
-                        DataRow dr1 = tbl1.NewRow();
-                        dr1["rsircode"] = mResCode2;
-                        dr1["rsirdesc1"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["rsirdesc1"];
-                        dr1["spcfcod"] = "";
-                        dr1["spcfdesc"] = "";// this.ddlSpecificationms.SelectedItem.Text.Trim();
-                        dr1["flrcod"] = flrcod;
-                        dr1["flrdesc"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["flrdesc"];
+                        string mResCode1 = s1.Value.ToString();
+                        //string mResCode1 = "000000000000";//this.ddlMSRRes.SelectedValue.ToString();
+                        //string spcfcod1 = "000000000000";// this.ddlSpecificationms.SelectedValue.ToString();
+                        string rate = "";
+                        string rate1 = "";
+                        string rate2 = "";
+                        string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
+                        string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
 
-                        dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
-                        dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
-                        dr1["proposerate"] = 0;
-                        if (this.chkbillcscopy.Checked == true)
+                        DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ");
+                        if (dr2.Length == 0)
                         {
-                            for (int j = 1; j < tbl02.Rows.Count; j++)
+                            DataRow dr1 = tbl1.NewRow();
+                            dr1["rsircode"] = mResCode2;
+                            dr1["rsirdesc1"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["rsirdesc1"];
+                            dr1["spcfcod"] = "";
+                            dr1["spcfdesc"] = "";// this.ddlSpecificationms.SelectedItem.Text.Trim();
+                            dr1["flrcod"] = flrcod;
+                            dr1["flrdesc"] = tblreq.Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' ")[0]["flrdesc"];
+
+                            dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
+                            dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
+                            dr1["proposerate"] = 0;
+                            if (this.chkbillcscopy.Checked == true)
                             {
-
-                                string rsircode = tbl02.Rows[j]["rsircode"].ToString();
-                                string flrcode = tbl02.Rows[j]["flrcod"].ToString();
-                                if (rsircode == mResCode2 && flrcode == flrcod)
+                                for (int j = 0; j < tbl02.Rows.Count; j++)
                                 {
-                                    rate = tbl02.Rows[j]["resrate1"].ToString();
-                                    rate1 = tbl02.Rows[j]["resrate2"].ToString();
-                                    rate2 = tbl02.Rows[j]["resrate3"].ToString();
+
+                                    string rsircode = tbl02.Rows[j]["rsircode"].ToString();
+                                    string flrcode = tbl02.Rows[j]["flrcod"].ToString();
+                                    if (rsircode == mResCode2 && flrcode == flrcod)
+                                    {
+                                        rate = tbl02.Rows[j]["resrate1"].ToString();
+                                        rate1 = tbl02.Rows[j]["resrate2"].ToString();
+                                        rate2 = tbl02.Rows[j]["resrate3"].ToString();
+                                    }
+
+
                                 }
-
-
                             }
-                        }
-                      
-                        dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
-                        dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
-                        dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
-                        dr1["resrate4"] = 0;
-                        dr1["resrate5"] = 0;
-                        dr1["amt1"] = 0;
-                        dr1["amt2"] = 0;
-                        dr1["amt3"] = 0;
-                        dr1["amt4"] = 0;
-                        dr1["amt5"] = 0;
 
-                        DataTable tbl2 = (DataTable)Session["tblMat"];
-                        DataRow[] dr5 = tbl2.Select("rsircode = '" + mResCode1 + "'");
-                        dr1["rsirunit"] = dr5[0]["rsirunit"];
-                        dr1["aprovrate"] = dr5[0]["aprovrate"];
-                        dr1["msrrmrk"] = "";
-                        tbl1.Rows.Add(dr1);
+                            dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
+                            dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
+                            dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
+                            dr1["resrate4"] = 0;
+                            dr1["resrate5"] = 0;
+                            dr1["amt1"] = 0;
+                            dr1["amt2"] = 0;
+                            dr1["amt3"] = 0;
+                            dr1["amt4"] = 0;
+                            dr1["amt5"] = 0;
+
+                            DataTable tbl2 = (DataTable)Session["tblMat"];
+                            DataRow[] dr5 = tbl2.Select("rsircode = '" + mResCode1 + "'");
+                            dr1["rsirunit"] = dr5[0]["rsirunit"];
+                            dr1["aprovrate"] = dr5[0]["aprovrate"];
+                            dr1["msrrmrk"] = "";
+                            tbl1.Rows.Add(dr1);
+                        }
                     }
                 }
+                Session["tblt02"] = (comcod == "3101" || comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3370") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
+                this.gvMSRInfo_DataBind();
             }
-            Session["tblt02"] = (comcod == "3101" || comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3370") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
-            this.gvMSRInfo_DataBind();
+            catch (Exception exp)
+            {
+
+            }
         }
 
         //private void GetCsRate(string rate="")

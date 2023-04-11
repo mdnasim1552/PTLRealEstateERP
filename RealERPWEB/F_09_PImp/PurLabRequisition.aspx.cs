@@ -1529,13 +1529,14 @@ namespace RealERPWEB.F_09_PImp
             int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
             string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
+            string flrcod = dt.Rows[rowindex]["flrcod"].ToString();
             if (csircode == "000000000000")
             {
                 dt.Rows[rowindex]["reqrat"] = 0.00;
             }
             else
             {
-                dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+                dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "'and flrcod='"+ flrcod +"' and ssircode='" + csircode + "'")[0]["rate"];
             }
 
             dt.Rows[rowindex]["csircode"] = csircode;
