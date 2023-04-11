@@ -257,7 +257,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2449,6 +2449,7 @@
     <Content Include="F_21_MKT\CrmClientInfo02.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
+    <Content Include="F_21_MKT\KPIGeneralCode.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
     <Content Include="F_21_MKT\LostProspectTransfer.aspx" />
@@ -4645,6 +4646,13 @@
     </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.designer.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\KPIGeneralCode.aspx.cs">
+      <DependentUpon>KPIGeneralCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\KPIGeneralCode.aspx.designer.cs">
+      <DependentUpon>KPIGeneralCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>

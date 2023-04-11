@@ -314,6 +314,50 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+        private DataTable HiddenSamData(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+
+
+            int i = 0;
+            string parkgrp = dt1.Rows[0]["parkgrp"].ToString();
+
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                if (i == 0)
+                {
+
+
+                    parkgrp = dr1["parkgrp"].ToString();
+                    i++;
+                    continue;
+                }
+
+                if (dr1["parkgrp"].ToString() == parkgrp)
+                {
+
+                    dr1["parkgrpdesc"] = "";
+
+                }
+
+
+                parkgrp = dr1["parkgrp"].ToString();
+            }
+
+
+
+            return dt1;
+
+
+
+
+
+        }
+
         private void SaveParking()
         {
 
@@ -329,7 +373,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-                rowindex = (this.gvUnit.PageSize * this.gvUnit.PageIndex) + i;
+                rowindex = (this.gvparking.PageSize * this.gvparking.PageIndex) + i;
                 dt.Rows[rowindex]["gdesc"] = gdesc;
                 dt.Rows[rowindex]["pstatus"] = pstatus;
                 i++;
@@ -531,7 +575,7 @@ namespace RealERPWEB.F_22_Sal
             if (ds4 == null)
                 return;
             ViewState["tblUnit"] = ds4.Tables[0];
-            ViewState["tblparking"] = ds4.Tables[1];
+            ViewState["tblparking"] =this.HiddenSamData(ds4.Tables[1]);
             this.Data_bind();
 
         }
@@ -816,7 +860,7 @@ namespace RealERPWEB.F_22_Sal
                     return;
                 //this.gvUnit.Columns[1].Visible = false;
                 ViewState["tblUnit"] = ds3.Tables[0];
-                ViewState["tblparking"] = ds3.Tables[1];
+                ViewState["tblparking"] = this.HiddenSamData(ds3.Tables[1]);
                 this.Data_bind();
             }
             else
