@@ -1104,7 +1104,7 @@ namespace RealERPWEB.F_09_PImp
 
         }
         private void SaveValue()
-        {
+      {
 
             DataTable dt = (DataTable)Session["tblbill"];
             int TblRowIndex;
@@ -1129,10 +1129,24 @@ namespace RealERPWEB.F_09_PImp
                 //else
                 //{
 
-                    dt.Rows[TblRowIndex]["conqty"] = conqty;
-                    dt.Rows[TblRowIndex]["billamt"] = conqty>0? conqty*conrate: billamt;
-                dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
-               // }
+
+
+           
+
+                conrate = conqty==0 ? 0.00 : conrate == 0.00 ? billamt / conqty: conrate >0 ? conrate : 0.00;               
+                billamt = conrate > 0 ? conrate * conqty : billamt;
+                //billamt =conrate == 0.00 ? billamt  : conrate > 0 ? conrate * conqty : 0.00;
+
+
+                dt.Rows[TblRowIndex]["conqty"] = conqty;
+                dt.Rows[TblRowIndex]["billamt"] = billamt;
+                dt.Rows[TblRowIndex]["conrate"] = conrate;
+
+
+                //dt.Rows[TblRowIndex]["conqty"] = conqty;
+                //    dt.Rows[TblRowIndex]["billamt"] = conqty>0? conqty*conrate: billamt;
+                //dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
+                // }
 
 
             }
