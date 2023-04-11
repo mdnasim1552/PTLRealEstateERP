@@ -52,6 +52,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = true;
                 CommonButton();
+                this.getDocument();
             }
         }
         public void CommonButton()
@@ -1948,6 +1949,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+
+        private void getDocument()
+        {
+            string comcod = this.GetCompCode();
+            string empcode = ddlEmpName.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "GETEMPDOC", empcode, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.gvempdoc.DataSource = ds1.Tables[0];
+            this.gvempdoc.DataBind();
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             if (FileUploadControl.HasFile)
@@ -1965,13 +1977,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
                         default:
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
-                            return;
+                            //return;
                             break;
                     }
                     string comcod = this.GetCompCode();
                     string empcode = ddlEmpName.SelectedValue.ToString();
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
-                    if (!result)
+                      filename = empcode + filename;
+                string imgPath = "~/CV/" + filename;
+
+                //bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
+
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "UPLOADEMPDOC", empcode, imgPath, "", "", "", "", "", "", "");
+
+                if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "File Update fail !!!" + "');", true);
                         return;
@@ -1980,14 +1998,23 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "File Update Succesfull !!!" + "');", true);
                     }
-                    FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
+                //FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
-                    //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
+                FileInfo file = new FileInfo(Server.MapPath(imgPath));
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+
+                FileUploadControl.SaveAs(Server.MapPath(imgPath));
+                getDocument();
+
+                //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 //}
                 //catch (Exception ex)
                 //{
 
- 
+
 
                 //}
             }
@@ -2133,6 +2160,42 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONINSUPDATE", empid, Gcode, description, "", "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+        }
+
+        protected void btn_remove_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string msg = "";
+
+
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string filePath = ((Label)this.gvempdoc.Rows[index].FindControl("lblimgpath")).Text.ToString();
+            FileInfo file = new FileInfo(Server.MapPath(filePath));
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+            string id = ((Label)this.gvempdoc.Rows[index].FindControl("lblempid")).Text.ToString();
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_DOC", "REMOVEEMPDOC", id, "", "", "", "", "", "");
+            if (result)
+            {
+
+
+                msg = "Deleted Successfully";
+                this.getDocument();
+     
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            }
+            else
+            {
+
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
         }
     }
 }

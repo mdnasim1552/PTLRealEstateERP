@@ -255,11 +255,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
       <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3370,6 +3368,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
@@ -5948,6 +5947,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
       <DependentUpon>EmpAttApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.designer.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.cs">
       <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
@@ -13275,6 +13281,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\AIimage\" />
+    <Folder Include="CV\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
@@ -13293,8 +13300,6 @@
     <Content Include="ASITMaster.Master" />
     <Content Include="ASITNEW.Master" />
     <Content Include="FileUploadHandler.ashx" />
-    <Content Include="CV\Text.docx" />
-    <Content Include="CV\Uzzal CV1.docx" />
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
