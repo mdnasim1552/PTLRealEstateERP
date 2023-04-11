@@ -64,9 +64,9 @@
                 comcod = <%=this.GetCompCode()%>;
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
-
+               
                 if (com == "1") {
-
+                    $('#lnkSales').text('Billing');
                     $("#dpSales").hide();
                     $("#dpCRM").hide();
                 }
@@ -1902,7 +1902,7 @@
                                         <div class="mr-auto">
                                             <ul class="nav ">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active show" data-toggle="tab" href="#home">Sales</a>
+                                                    <a class="nav-link active show" data-toggle="tab" href="#home" id="lnkSales">Sales</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#profile">Procurement</a>
