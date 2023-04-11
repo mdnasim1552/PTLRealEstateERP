@@ -1483,6 +1483,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpIdCard.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelment - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptFinalSettlmntCP.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptGroupAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />

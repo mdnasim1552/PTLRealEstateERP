@@ -206,6 +206,17 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
+                                 <asp:TemplateField HeaderText="Customer Email">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvPrjEmail" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email"))%>'
+                                            Width="180px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Paid Amount">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvPaidAmount" runat="server"
@@ -276,7 +287,7 @@
                                     <p>Dear Sir/Madam,<br /><br />
                                        Assalamu Alaikum.<br /><br />
                                        We are happy to inform you that we have received <b>Tk. <asp:Label ID="TkLabel" runat="server" Text="Label"></asp:Label></b> ( In Word: <b><asp:Label ID="TkLabelWord" runat="server" Text="Label"></asp:Label></b>)<br />
-                                       as of <asp:Label ID="todayDateFormattedLabel" runat="server" Text="Label"></asp:Label> against Apt / Shop <asp:Label ID="unitLabel" runat="server" Text="Label"></asp:Label> of Finlay <asp:Label ID="projectLabel" runat="server" Text="Label"></asp:Label>.<br /><br />
+                                       as of <asp:Label ID="todayDateFormattedLabel" runat="server" Text="Label"></asp:Label> against Apt / Shop <asp:Label ID="unitLabel" runat="server" Text="Label"></asp:Label> of <b><asp:Label ID="projectLabel" runat="server" Text="Label"></asp:Label></b>.<br /><br />
                                        Please reply us within 07 (seven) days if any mismatch found. Otherwise, We will treat this<br />
                                        statement as correct.<br /><br />
                                     
