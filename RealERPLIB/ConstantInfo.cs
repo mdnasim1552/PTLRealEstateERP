@@ -1178,6 +1178,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103123", "F_21_MKT", "RptProspectClient", "", "Prospect Notification", "CRM", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "2103000", "2103124", "F_21_MKT", "ProspectTransferLog", "", "Prospect Transfer Log", "CRM", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103138", "F_21_MKT", "KPIGeneralCode", "", "KPI General Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103126", "F_21_MKT", "RptDailyWorkStatus?", "Type=EmpWise", "Daily Work Status (Employee Wise)", "CRM", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2103000", "2103127", "F_21_MKT", "FunnelAnalysis?", "Type=Report", "Funnel Analysis - Month Wise", "CRM", "False", "False", "False", "False" });
@@ -7351,6 +7352,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "08. Client Assign", "F_21_Mkt/ClientAssign?Type=MktClAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "08. Accept Prospective  Client", "F_21_Mkt/ClientAssign?Type=MktAcceptClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "09. Policy Setup", "F_21_Mkt/CrmPolicy", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000018", "10. KPI General Code", "F_21_MKT/KPIGeneralCode", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Client All Information", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. CRM Dashboard", "F_99_Allinterface/CRMDashboard", "", true, "" });
