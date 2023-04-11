@@ -47,6 +47,8 @@ namespace RealERPWEB.F_22_Sal
                     this.divGVData.Visible = true;
                     this.divgvChart.Visible = false;
                 }
+
+                this.GetUNitOwneraStatus();
                 //((Label)this.Master.FindControl("lblTitle")).Text = (type == "Details" ? "Availability Chart 1" : type == "BookingChart" ? "Booking Chart" : "Availability Chart 2");
             }
         }
@@ -59,6 +61,27 @@ namespace RealERPWEB.F_22_Sal
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
+        }
+        private void GetUNitOwneraStatus()
+        {
+
+            
+            string comcod = this.GetComCode();  
+            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "GETUNITTYPEANDOWNER", "", "", "", "", "", "", "", "", "");
+
+            
+            this.ddlUnitType.DataTextField = "unittypedesc";
+            this.ddlUnitType.DataValueField = "unittype";
+            this.ddlUnitType.DataSource = ds1.Tables[0];
+            this.ddlUnitType.DataBind();
+
+            this.ddlowner.DataTextField = "companytype";
+            this.ddlowner.DataValueField = "comtype";
+            this.ddlowner.DataSource = ds1.Tables[1];
+            this.ddlowner.DataBind();
+
+
+            
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
@@ -376,8 +399,11 @@ namespace RealERPWEB.F_22_Sal
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
                 return;
             }
+            string unittype = (this.ddlUnitType.SelectedValue.ToString() == "00000000" ? "53" : this.ddlUnitType.SelectedValue.ToString()) + "%";
+            string ownertype = this.ddlowner.SelectedValue.ToString();
+            string status = this.ddlstatus.SelectedValue.ToString();
 
-            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, type, "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, type, unittype, ownertype, status, "", "", "", "");
 
             //DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHARt", pactcode, "", "", "", "", "", "", "", "");
 
@@ -399,13 +425,10 @@ namespace RealERPWEB.F_22_Sal
             {
                 Session["tblflorlist"] = (DataTable)ds2.Tables[2];
                 Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
-                Session["grpname"] = (DataTable)ds2.Tables[4];
+                //Session["grpname"] = (DataTable)ds2.Tables[4];
                 Session["floorname"] = (DataTable)ds2.Tables[5];
                 Session["buildingtype"] = (DataTable)ds2.Tables[6];
-
-                //Session["tblAvChartPrint"]= (DataTable)ds3.Tables[0];
-
-                GetAvailabilityChart();
+                this.GetAvailabilityChartFilterData();
 
             }
             // this.FooterCalculation();
@@ -497,70 +520,16 @@ namespace RealERPWEB.F_22_Sal
             this.CompVisibility();
         }
 
-        protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            GetAvailabilityChartFilterData();
-        }
-        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GetAvailabilityChartFilterData();
-        }
-
-        private void GetAvailabilityChart()
-        {
-            try
-            {
-                DataTable dtgrp = (DataTable)Session["grpname"];
-                DataTable dtglorname = (DataTable)Session["floorname"];
-                DataTable dunittype = (DataTable)Session["buildingtype"];
-
-                this.ddlGroup.DataTextField = "groupdesc";
-                this.ddlGroup.DataValueField = "groupcode";
-                this.ddlGroup.DataSource = dtgrp;
-                this.ddlGroup.DataBind();
-
-                this.ddlFloor.DataTextField = "flrdesc";
-                this.ddlFloor.DataValueField = "floorcode";
-                this.ddlFloor.DataSource = dtglorname;
-                this.ddlFloor.DataBind();
-              
-                this.ddlUnitType.DataTextField = "unitgdesc";
-                this.ddlUnitType.DataValueField = "unitgcode";
-                this.ddlUnitType.DataSource = dunittype;
-                this.ddlUnitType.DataBind();
-
-                GetAvailabilityChartFilterData();
-            }
-            catch (Exception ex)
-            {
-
-            }
 
 
 
-        }
-
-        protected void ddlUnitType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void GetAvailabilityChartFilterData()
         {
             DataTable dt = (DataTable)Session["tblflorlist"];
             DataTable dtunit = (DataTable)Session["tblflorUnit"];
-
-            string grp = this.ddlGroup.SelectedValue.ToString();
-            string florr = this.ddlFloor.SelectedValue.ToString();
-
-            DataView dvflor = dt.Copy().DefaultView;
-            dvflor.RowFilter = ("groupcode like'" + grp + "%' and floorcode like'" + florr + "%'");
-            dt = dvflor.ToTable();
-
-
             string str = string.Empty;
-
+            string sftunit = "";
             string bgcolor = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -577,8 +546,9 @@ namespace RealERPWEB.F_22_Sal
 
                 for (int j = 0; j < dtunitfilter.Rows.Count; j++)
                 {
+                    sftunit = dtunitfilter.Rows[j]["usircode"].ToString().Length == 12 ? " Sft" : "";
 
-                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1' title='" + dtunitfilter.Rows[j]["custname"].ToString() + "'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "<br><small>"+ Convert.ToDecimal(dtunitfilter.Rows[j]["usize"]).ToString("#,##0;(#,##0); ") + " Sft</small></a>";
+                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1' title='" + dtunitfilter.Rows[j]["custname"].ToString() + "'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "<br><small>" + Convert.ToDecimal(dtunitfilter.Rows[j]["usize"]).ToString("#,##0;(#,##0); ") + sftunit + "</small></a>";
                 }
                 if (i % 2 == 0)
                 {
@@ -601,7 +571,6 @@ namespace RealERPWEB.F_22_Sal
             }
             this.divUnitGraph.InnerHtml = str;
         }
-
 
 
 

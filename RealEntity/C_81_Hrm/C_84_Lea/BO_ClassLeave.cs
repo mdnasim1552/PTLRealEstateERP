@@ -108,6 +108,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string slength { get; set; }
             public string categorydesc { get; set; }
             public string rmrks { get; set; }
+            public string condat { get; set; }
+
             public double prevbonamt { get; set; }
             public double diffamt { get; set; }
 
