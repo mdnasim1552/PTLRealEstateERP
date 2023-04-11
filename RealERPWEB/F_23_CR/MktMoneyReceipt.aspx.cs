@@ -207,6 +207,8 @@ namespace RealERPWEB.F_23_CR
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbTotal_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
+
+
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
