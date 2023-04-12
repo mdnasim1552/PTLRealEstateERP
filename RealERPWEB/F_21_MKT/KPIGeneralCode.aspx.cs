@@ -115,7 +115,53 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void gvPaySch_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            if (((Label)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Length == 9)
+            {
+                //Hashtable hst = (Hashtable)Session["tblLogin"];
+                //string comcod = hst["comcod"].ToString();
 
+                string comcod = this.GetCompCode();
+                string gcode1 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
+                string gcode2 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
+          
+                string tgcod = gcode1.Substring(0, 2) + gcode2;
+                string gdesc = ((TextBox)this.gvPaySch.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
+                //string gdescbn = ((TextBox)this.gvPaySch.Rows[e.RowIndex].FindControl("txtgvDescgdescbn")).Text.Trim();
+                string marks = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgvMarks")).Text.Trim();
+
+
+                //ddlOthersBookSegment
+                //string gtype = ((TextBox)this.gvPaySch.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
+                //string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+                //string floorcode = ((DropDownList)gvPaySch.Rows[e.RowIndex].FindControl("ddlFloorCode")).SelectedValue.Trim();
+                bool result = da.UpdateTransInfo(comcod, "[dbo_kpi].[SP_ENTRY_CODEBOOK_NEW]", "INSERTUPKPIGINF", tgcod,
+                               gdesc, marks, "", "", "", "", "", "", "");
+
+                if (result == true)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                }
+
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                }
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "KPI Code Book";
+                    string eventdesc = "Update CodeBook";
+                    string eventdesc2 = tgcod;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "KPI Code Must be 9 Degits!";
+            }
+            this.gvPaySch.EditIndex = -1;
+            this.ShowInformation();
+            this.gvPaySch_DataBind();
         }
         protected void lnkok_Click(object sender, EventArgs e)
         {
@@ -167,10 +213,10 @@ namespace RealERPWEB.F_21_MKT
         {
             string comcod = this.GetCompCode();
             string tempddl1 = (this.ddlSalPayment.SelectedValue.ToString()).Substring(0, 2);
-            //string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
+            string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
 
             DataSet ds1 = this.da.GetTransInfo(comcod, "[dbo_kpi].[SP_ENTRY_CODEBOOK_NEW]", "LOADKPISCHEDULE", tempddl1,
-                            "", "", "", "", "", "", "", "");
+                            tempddl2, "", "", "", "", "", "", "");
 
             Session["storedata"] = ds1.Tables[0];
         }
@@ -198,15 +244,15 @@ namespace RealERPWEB.F_21_MKT
             string comcod = hst["comcod"].ToString();
             int index = this.gvPaySch.PageSize * this.gvPaySch.PageIndex + RowIndex;
             string gcod = ((DataTable)Session["storedata"]).Rows[index]["gcod"].ToString();
-            //this.lbgrcod.Text = gcod;
-            //this.paymentcodchk.Text = gcod;
-            //this.txtpaymentcode.Text = gcod.Substring(0, 2) + "-" + gcod.Substring(2, 3) + "-" + ASTUtility.Right(gcod, 2);
+            this.lbgrcod.Text = gcod;
+            this.paymentcodchk.Text = gcod;
+            this.txtpaymentcode.Text = gcod.Substring(0, 2) + "-" + gcod.Substring(2, 2) + "-"+gcod.Substring(4, 2) + "-" + ASTUtility.Right(gcod, 3);
 
-            //this.Chboxchild.Checked = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
-            //this.chkbod.Visible = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
-            //this.lblchild.Visible = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
+            this.Chboxchild.Checked = (ASTUtility.Right(gcod, 3) == "000" && ASTUtility.Right(gcod, 7) != "0000000") || (ASTUtility.Right(gcod, 3) == "000");
+            this.chkbod.Visible = (ASTUtility.Right(gcod, 3) == "000" && ASTUtility.Right(gcod, 7) != "0000000") || (ASTUtility.Right(gcod, 3) == "000");
+            this.lblchild.Visible = (ASTUtility.Right(gcod, 3) == "000" && ASTUtility.Right(gcod, 7) != "0000000") || (ASTUtility.Right(gcod, 3) == "000");
 
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
         }
 
         protected void lbtnAddCode_Click(object sender, EventArgs e)
@@ -218,11 +264,7 @@ namespace RealERPWEB.F_21_MKT
 
             string tpaymentcode = this.txtpaymentcode.Text.Trim().Replace("-", "");
             string Desc = this.txtDesc.Text.Trim();
-            string DescBN = this.txtDescBN.Text.Trim();
-            //string gtype = this.txttype.Text.Trim();
-            string gtype = "";
-            string Gtype = "";
-            //string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string marks = Convert.ToDouble("0"+this.txtMarks.Text.Trim()).ToString();
             string mnumber = (isgcod == tpaymentcode) ? "" : "manual";
 
             bool isResultValid = true;
@@ -235,12 +277,24 @@ namespace RealERPWEB.F_21_MKT
                 isResultValid = false;
                 return;
             }
-            string gcod = this.Chboxchild.Checked ? ((ASTUtility.Right(isgcod, 5) == "00000") ? (ASTUtility.Left(isgcod, 2) + "001" + ASTUtility.Right(isgcod, 2)) : ASTUtility.Left(isgcod, 5) + "01")
+            //string gcod = this.Chboxchild.Checked ? ((ASTUtility.Right(isgcod, 5) == "00000") ? (ASTUtility.Left(isgcod, 2) + "001" + ASTUtility.Right(isgcod, 2)) : ASTUtility.Left(isgcod, 5) + "01")
+
+            //       : ((isgcod != tpaymentcode) ? tpaymentcode : isgcod);
+
+
+            string gcod = this.Chboxchild.Checked ? ((ASTUtility.Right(isgcod, 5) == "00000") ? (ASTUtility.Left(isgcod, 4) + "01" + ASTUtility.Right(isgcod, 3)) : ASTUtility.Left(isgcod, 6) + "001")
 
                    : ((isgcod != tpaymentcode) ? tpaymentcode : isgcod);
 
-            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", gcod,
-                          Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
+            //string sircode = (this.Chboxchild.Checked) ? ((ASTUtility.Right(isircode, 8) == "00000000") ? (ASTUtility.Left(isircode, 4) + "001" + ASTUtility.Right(isircode, 5))
+            //        : ((ASTUtility.Right(isircode, 5) == "00000" && ASTUtility.Right(isircode, 8) != "00000000") ? (ASTUtility.Left(isircode, 7) + "01" + ASTUtility.Right(isircode, 3)) : ASTUtility.Left(isircode, 9) + "001"))
+            //        : ((isircode != tsircode) ? tsircode : isircode);
+
+            
+
+            //bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", gcod,Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
+            bool result = da.UpdateTransInfo(comcod, "[dbo_kpi].[SP_ENTRY_CODEBOOK_NEW]", "INSERTKPICODE", gcod, Desc, marks, mnumber, "", "", "", "", "");
+
 
             if (result == true)
             {
