@@ -67,7 +67,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
            // ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Save";
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnApprove")).Text = "Approve";
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
         }

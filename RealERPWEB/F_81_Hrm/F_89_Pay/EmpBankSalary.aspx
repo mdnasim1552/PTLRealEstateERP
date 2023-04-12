@@ -92,11 +92,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6  ">
+                        <div class="col-lg-5 col-md-5 col-sm-6  ">
                             <div class="form-group">
                                 <asp:Label ID="Label3" CssClass="d-block" runat="server">Type of Catagory</asp:Label>
 
                                 <asp:CheckBox ID="chkBonus" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Festival Bonus" />
+                                <asp:CheckBox ID="chkspBon" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Sp. Bonus" />
+
                                 <asp:CheckBox ID="chckFitr" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Eid(Fitr)" />
                                 <asp:CheckBox ID="chckAdha" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Eid(Adha)" />
 
@@ -121,7 +123,7 @@
                         </div>
 
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">

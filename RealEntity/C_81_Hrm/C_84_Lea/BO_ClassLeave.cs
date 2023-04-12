@@ -329,6 +329,9 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string refdesc { get; set; }
             public string sectionname { get; set; }
             public string rmrks { get; set; }
+            public string bankacno { get; set; }
+
+            
             public BonusSheet01() { }
         }
         //a.comcod,a.idcard, a.section, a.desigid, a.desig, a.empname,a.refno, a.empid, a.bsal, a.hrent, a.cven, a.mallow, a.arsal, a.oth, a.pfund,
