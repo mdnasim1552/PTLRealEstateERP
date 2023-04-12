@@ -2597,6 +2597,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void gvBonus_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.SaveValue();
             this.gvBonus.PageIndex = e.NewPageIndex;
             this.Data_Bind();
 
