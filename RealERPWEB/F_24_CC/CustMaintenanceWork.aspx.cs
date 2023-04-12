@@ -274,6 +274,8 @@ namespace RealERPWEB.F_24_CC
                 case "260000000":
                 case "290000000":
                 case "300000000":
+                case "320000000":
+
                     this.gvAddWork.Columns[5].Visible = false;
                     this.gvAddWork.Columns[6].Visible = false;
                     this.gvAddWork.Columns[7].Visible = false;
