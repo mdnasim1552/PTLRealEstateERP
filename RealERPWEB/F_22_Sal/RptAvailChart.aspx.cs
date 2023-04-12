@@ -425,9 +425,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 Session["tblflorlist"] = (DataTable)ds2.Tables[2];
                 Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
-                //Session["grpname"] = (DataTable)ds2.Tables[4];
-                Session["floorname"] = (DataTable)ds2.Tables[5];
-                Session["buildingtype"] = (DataTable)ds2.Tables[6];
+                
+             
                 this.GetAvailabilityChartFilterData();
 
             }
