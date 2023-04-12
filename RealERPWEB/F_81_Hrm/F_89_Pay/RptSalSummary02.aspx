@@ -836,7 +836,7 @@
 
                             <asp:View ID="BonousSheetCash" runat="server">
                                 <asp:GridView ID="gvBonus" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    AutoGenerateColumns="False" OnPageIndexChanging="gvBonus_PageIndexChanging"
+                                    AutoGenerateColumns="False" OnPageIndexChanging="gvBonus_PageIndexChanging" 
                                     ShowFooter="True" Width="766px">
                                     <PagerSettings Position="Top" />
                                     <RowStyle />
@@ -984,8 +984,8 @@
                                                 </table>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:CheckBox ID="chkMergeBonus" runat="server" CssClass="input-control" Text=""  />
-                                                     <%--Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "iscehcked"))=="True" %>'--%>
+                                                <asp:CheckBox ID="chkMergeBonus" runat="server" CssClass="input-control" 
+                                                     Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ischeck"))=="True" %>' />
                                             </ItemTemplate>
                                             <ItemStyle Width="30" />
                                         </asp:TemplateField>
