@@ -14,41 +14,41 @@
      <script src="../Scripts/highcharts.js"></script>
     <script src="../Scripts/highchartexporting.js"></script>
     <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
         var comcod, projcode, data;
         function pageLoaded() {
-
             $('.chzn-select').chosen({ search_contains: true });
             GetData();
-
-
-        });
+        };
 
         function GetData() {
             try {
                 comcod = <%=this.GetComdCode()%>;
-                projcode = $('#<%=this.Request.QueryString["PID"]%>').val();
+                projcode = '<%=this.Request.QueryString["PID"].ToString()%>';
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "JobAnalytics.aspx/GetAllData",
                     contentType: "application/json; charset=utf-8",
-                    data: '{comcodi:"' + comcod + '" , projcode: "' + $('#<%=this.Request.QueryString["PID"]%>').val() + '"}',
+                    data:'{"comcodi":"' + comcod + '" , "projcode": "' + projcode + '"}',
                     dataType: "json",
 
                     success: function (response) {
                         var data = JSON.parse(response.d);
                         var data1 = data.GrphicalShow;
-                        console.log('success',response);
+                        console.log('success', data1);
 
-                        data1[1].pmargin
-                        var marcolor = data1[1].pmargin > 0 ? "#009999" : "#FF0000";
-                        var cashflowcolor = data1[1].cashflow > 0 ? "#009999" : "#FF0000";
+                        //data1[1].pmargin
+                        //var marcolor = data1[1].pmargin > 0 ? "#009999" : "#FF0000";
+                        //var cashflowcolor = data1[1].cashflow > 0 ? "#009999" : "#FF0000";
 
-                        Highcharts.chart('#container', {
+                        Highcharts.chart('container', {
                             chart: {
-                                type: 'pie'
-                                styledMode: true
+                                type: 'pie',
+                                styledMode: true                                
                             },
                             title: {
                                 text: 'AI Project Wise Report',
@@ -72,14 +72,24 @@
                                 series: {
                                     dataLabels: {
                                         enabled: true,
-                                        format: '{point.name}: {point.y:.1f}%'
+                                        format: '{point.name}: {point.y:.1f}'
                                     }
                                 }
                             },
-
+                            legend: {
+                                enabled: true,
+                                floating: true,
+                                borderWidth: 0,
+                                align: 'right',
+                                layout: 'vertical',
+                                verticalAlign: 'middle',
+                                labelFormatter: function () {
+                                    return '<span style="color:{point.color}">' + this.name + ': </span>' + this.y + '<br/>';
+                                }
+                            },
                             tooltip: {
                                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
                             },
 
                             series: [
@@ -89,30 +99,34 @@
                                     data: [
                                         {
                                             name: 'Total',
-                                            y: data1[1].total,
+                                            y: data1[0].total,
                                             "color": '#8A2BE2'
                                         },
                                         {
                                             name: 'Annotor',
-                                            y: data1[1].qa1work,
+                                            y: data1[0].qa1work,
                                             "color": '#808080'
                                         },
                                         {
                                             name: 'QA1',
-                                            y: data1[1].qa2work,
-                                            "color": '#993366'
+                                            y: data1[0].qa2work,
+                                            "color": '#C5D930'
                                         },
                                         {
                                             name: 'QA2',
-                                            y: data1[1].qa3work,
-                                            "color": '#883366'
+                                            y: data1[0].qa3work,
+                                            "color": '#96D5DF'
                                         }
 
-                                    ]
+                                    ],
+                                    size: '90%',
+                                    innerSize: '55%',
+                                    showInLegend: true,
+                                    dataLabels: {
+                                        enabled: true
+                                    }
                                 }
-                            ]
-
-
+                            ],
                         });
                     },
                     failure: function (response) {
