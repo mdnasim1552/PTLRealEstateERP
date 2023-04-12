@@ -177,13 +177,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.TextBox txtDesc;
 
         /// <summary>
-        /// txtDescBN control.
+        /// txtMarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescBN;
+        protected global::System.Web.UI.WebControls.TextBox txtMarks;
 
         /// <summary>
         /// chkbod control.
