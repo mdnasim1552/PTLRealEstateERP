@@ -138,7 +138,10 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "SaleVsCollTypeWise":
-                    this.MultiView1.ActiveViewIndex = 8;
+
+               
+                        this.MultiView1.ActiveViewIndex = 8;
+                   
                     this.pnlsales.Visible = true;
                     this.type.Visible = true;
 
@@ -348,7 +351,17 @@ namespace RealERPWEB.F_22_Sal
                 //    break;
 
                  case "SaleVsCollTypeWise":
-                    this.ShowSaleVsCollTypeWise();
+                    if (this.rbtnType.SelectedItem.Value == "ALL")
+                    {
+
+                        this.MultiView1.ActiveViewIndex = 9;
+
+                    }
+                    else
+                    {
+                        this.MultiView1.ActiveViewIndex = 8;
+                    }
+                        this.ShowSaleVsCollTypeWise();
                     break;
 
 
@@ -432,6 +445,7 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
+                this.ViewSection();
                 Session.Remove("tblsalsum");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetComeCode();
@@ -448,10 +462,24 @@ namespace RealERPWEB.F_22_Sal
                     this.gvsalvscolltypeWise.DataBind();
                     return;
                 }
-                Session["tblsalsum"] = ds1.Tables[0];
-                this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
-                this.gvsalvscolltypeWise.DataBind();
-                this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+
+                
+               
+
+                if (this.rbtnType.SelectedItem.Value == "ALL")
+                {
+                    Session["tblsalsum"] = ds1.Tables[0];
+                    this.gvsalvscolltypeWiseALL.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
+                    this.gvsalvscolltypeWiseALL.DataBind();
+                }
+                else
+                {
+                    Session["tblsalsum"] = ds1.Tables[0];
+                    this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
+                    this.gvsalvscolltypeWise.DataBind();
+                    this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+                }
+               
 
             }
             catch (Exception ex)
