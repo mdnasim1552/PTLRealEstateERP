@@ -5614,8 +5614,8 @@ namespace RealERPWEB.F_21_MKT
                 // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
                 //: (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
 
-                this.lblSource.InnerText = ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? ds1.Tables[0].Rows[0]["sourcetxt"].ToString()
-                                                : "IR" + "(" + (ds1.Tables[0].Rows[0]["irpersonname"].ToString()) + ")";
+                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ?"": (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? ds1.Tables[0].Rows[0]["sourcetxt"].ToString()
+                                                : "IR" + "(" + (ds1.Tables[0].Rows[0]["irpersonname"].ToString()) + ")");
 
 
                 this.hdlpreleadst.Value = ds1.Tables[1].Rows[0]["prestcode"].ToString();
