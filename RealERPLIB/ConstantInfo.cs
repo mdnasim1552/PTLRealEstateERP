@@ -1793,7 +1793,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3501000", "3501010", "F_34_Mgt", "CodeLink", "", "Code Link(BS)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501011", "F_34_Mgt", "CodeLinkCf", "", "Code Link(CF)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501012", "F_34_Mgt", "CodeLinkWs", "", "Code Link(WS)", "Management", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa", "", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa?", "Type=ResBase", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501014", "F_34_Mgt", "CodeLinkCoReBa?", "Type=Floor", "Code Link(Floor)", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501015", "F_34_Mgt", "CodeLinkCoReBa?", "Type=buildType", "Code Link(Build Type)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3501000", "3501300", "F_34_Mgt", "AccProjectCode", "", "Project Code Book", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3501000", "3501310", "F_34_Mgt", "AlternativeSupvervisor", "", "Alternative Supervisor", "Management", "False", "False", "False", "False" });
 
@@ -10188,7 +10190,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0214000002", "22. Code Link(BS)", "F_34_Mgt/CodeLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000003", "23. Code Link(CF)", "F_34_Mgt/CodeLinkCf", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000004", "24. Code Link(WS)", "F_34_Mgt/CodeLinkWs", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000005", "24. Code Link(Cost Resource Basis)", "F_34_Mgt/CodeLinkCoReBa", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000005", "24. Code Link(Cost Resource Basis)", "F_34_Mgt/CodeLinkCoReBa?Type=ResBase", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000005", "24. Code Link(Floor)", "F_34_Mgt/CodeLinkCoReBa?Type=Floor", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000005", "24. Code Link(Build Type)", "F_34_Mgt/CodeLinkCoReBa?Type=buildType", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000006", "19. Share Equity", "F_34_Mgt/ShareEquity", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000007", "20. Project Closing ", "F_34_Mgt/ProjectClosing", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000008", "13. Signature Margin", "F_34_Mgt/PayTypCodeBook", "", true, "" });

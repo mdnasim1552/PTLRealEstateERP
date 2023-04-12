@@ -29,8 +29,9 @@ namespace RealERPWEB.F_34_Mgt
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Link(Cost Resource Basis)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString().Trim() == "ResBase") ? "Link(Cost Resource Basis)": (Request.QueryString["Type"].ToString().Trim() == "Floor")? "Link(Floor)": "Link(Build Type)";
 
+                
                 this.ShowInformation();
                 this.GetACGCode();
 
@@ -56,7 +57,8 @@ namespace RealERPWEB.F_34_Mgt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string srchoption = "%%";
-            DataSet dsone = this.accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETAGCCODE", srchoption, "RB", "", "", "", "", "", "", "");
+            string type = (Request.QueryString["Type"].ToString().Trim() == "ResBase") ? "RB" : (Request.QueryString["Type"].ToString().Trim() == "Floor") ? "FL" : "BL";
+            DataSet dsone = this.accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETAGCCODE", srchoption, type, "", "", "", "", "", "", "");
             ViewState["tblgencode"] = dsone.Tables[0];
             dsone.Dispose();
 
@@ -128,7 +130,8 @@ namespace RealERPWEB.F_34_Mgt
             tbl1.Rows[Index]["acgdesc"] = acgdesc;
             Session["storedata"] = tbl1;
             this.grvacc.EditIndex = -1;
-            bool result = this.accData.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "UPDATECRBENCODEWS", actcode, acgcode, "", "", "", "", "", "", "", "",
+            string type = (Request.QueryString["Type"].ToString().Trim() == "ResBase") ? "RB" : (Request.QueryString["Type"].ToString().Trim() == "Floor") ? "FL" : "BL";
+            bool result = this.accData.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "UPDATECRBENCODEWS", actcode, acgcode, type, "", "", "", "", "", "", "",
                 "", "", "", "", "");
 
 
@@ -201,7 +204,8 @@ namespace RealERPWEB.F_34_Mgt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string srchoption = "%";
-            DataSet ds1 = this.accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETRBCODEINFO", srchoption, "", "", "", "", "", "", "", "");
+            string type = (Request.QueryString["Type"].ToString().Trim() == "ResBase") ? "RB" : (Request.QueryString["Type"].ToString().Trim() == "Floor") ? "FL" : "BL";
+            DataSet ds1 = this.accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETRBCODEINFO", srchoption, type, "", "", "", "", "", "", "");
             if (ds1.Tables[0].Rows.Count == 0)
             {
                 this.grvacc.DataSource = null;

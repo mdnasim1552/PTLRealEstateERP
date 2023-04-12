@@ -85,6 +85,7 @@ namespace RealERPWEB.F_14_Pro
                             break;
                     }
                 }
+                this.Get_Vat_Tax();
                 string ordero = this.Request.QueryString["genno"].ToString().Trim();
                 if (ordero.Length > 0)
                 {
@@ -92,6 +93,7 @@ namespace RealERPWEB.F_14_Pro
                     {
                         this.lbtnPrevOrderList_Click(null, null);
                         this.lbtnOk_Click(null, null);
+                       
                     }
                 }
             }
@@ -983,6 +985,8 @@ namespace RealERPWEB.F_14_Pro
             this.lblissueno.Text = ds1.Tables[3].Rows[0]["oissueno"].ToString();
 
             this.txtOrderNarrP.Text = ds1.Tables[3].Rows[0]["terms"].ToString();
+           this.ddlvat.SelectedValue= ds1.Tables[0].Rows[0]["vatcode"].ToString();
+           this.ddltax.SelectedValue= ds1.Tables[0].Rows[0]["taxcode"].ToString();
 
             this.gvOrderInfo_DataBind();
         }
@@ -992,6 +996,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblOrder"]);
             this.gvOrderInfo.DataSource = tbl1;
             this.gvOrderInfo.DataBind();
+            
 
             //if (this.ddlPrevOrderList.Items.Count > 0)
             //{

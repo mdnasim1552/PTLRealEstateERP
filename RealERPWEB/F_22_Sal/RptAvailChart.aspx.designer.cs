@@ -150,13 +150,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// ddlGroup control.
+        /// ddlowner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGroup;
+        protected global::System.Web.UI.WebControls.DropDownList ddlowner;
 
         /// <summary>
         /// Label3 control.
@@ -168,13 +168,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// ddlFloor control.
+        /// ddlstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFloor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlstatus;
 
         /// <summary>
         /// divUnitGraph control.
