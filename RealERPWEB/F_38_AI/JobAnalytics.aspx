@@ -14,6 +14,11 @@
      <script src="../Scripts/highcharts.js"></script>
     <script src="../Scripts/highchartexporting.js"></script>
     <script language="javascript" type="text/javascript">
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+
         var comcod, projcode, data;
         function pageLoaded() {
 
@@ -21,19 +26,22 @@
             GetData();
 
 
-        });
+        }
 
         function GetData() {
             try {
+                
                 comcod = <%=this.GetComdCode()%>;
-                projcode = $('#<%=this.Request.QueryString["PID"]%>').val();
+                projcode = $('<%=this.Request.QueryString["PID"].ToString()%>').selector;
+                
                 var temp = comcod.toString();
-                var com = temp.slice(0, 1);
+                /*var com = temp.slice(0, 1);*/
                 $.ajax({
                     type: "GET",
-                    url: "JobAnalytics.aspx/GetAllData",
+                    url: `JobAnalytics.aspx/GetAllData}`,
                     contentType: "application/json; charset=utf-8",
-                    data: '{comcodi:"' + comcod + '" , projcode: "' + $('#<%=this.Request.QueryString["PID"]%>').val() + '"}',
+                    //data: `comcodi=${temp}&projcode=${projcode}`,
+                    //data: '{comcodi:"' + comcod + '" , projcode: "' + projcode + '"}',
                     dataType: "json",
 
                     success: function (response) {
@@ -47,7 +55,7 @@
 
                         Highcharts.chart('#container', {
                             chart: {
-                                type: 'pie'
+                                type: 'pie',
                                 styledMode: true
                             },
                             title: {
