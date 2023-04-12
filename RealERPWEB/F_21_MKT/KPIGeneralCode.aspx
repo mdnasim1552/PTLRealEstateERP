@@ -100,8 +100,10 @@
                         <div class="col-md-2">
                             <label  for="ddlOthersBookSegment"  CssClass=" lblName lblTxt" id="Label3" runat="server">Details Code</label>
                                <asp:DropDownList ID="ddlOthersBookSegment" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="12">
-                                   <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
-                                   <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
+                                   <asp:ListItem Value="2">Main Code</asp:ListItem>
+                                   <asp:ListItem Value="4">Sub Code-1</asp:ListItem>
+                                   <asp:ListItem Value="6">Sub Code-2</asp:ListItem>
+                                   <asp:ListItem Selected="True" Value="9">Details Code</asp:ListItem>
                                </asp:DropDownList>
                             <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control "></asp:Label>
                         </div>
@@ -165,22 +167,22 @@
                             <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" SelectText=""
                                 ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
+                                <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" HorizontalAlign="Center" />
                             </asp:CommandField>
                             <asp:TemplateField HeaderText=" ">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgrcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod2"))+"-" %>'
                                         Width="30px"></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle Font-Size="12px" />
+                                <ItemStyle Font-Size="12px" HorizontalAlign="Center"/>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Code">
                                 <ItemTemplate>
                                     <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3")) %>'
-                                        Width="50px"></asp:Label>
+                                        Width="70px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                <ItemStyle Font-Size="12px" />
+                                <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Description of Code">
                                 <EditItemTemplate>
@@ -195,7 +197,23 @@
                                 </ItemTemplate>
                                 <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                            </asp:TemplateField>   
+
+                            <asp:TemplateField HeaderText="Marks">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtgvMarks" runat="server" Font-Size="12px" MaxLength="100" Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "marks")) %>'
+                                        Width="100px"></asp:TextBox>
+                                </EditItemTemplate>
+                              
+                                <ItemTemplate>
+                                    <asp:Label ID="lblMarks" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "marks")) %>'
+                                        Width="100px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
                             </asp:TemplateField>
+
                                <%--<asp:TemplateField HeaderText="Description of Code">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtgvDescgdescbn" runat="server" Font-Size="12px" MaxLength="100" Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
@@ -247,7 +265,7 @@
                         <div class="modal-body form-horizontal">
                             <div class="row mb-1">
                                 <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
-                                <label class="col-md-4">Payment Code </label>
+                                <label class="col-md-4">KPI Code </label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txtpaymentcode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
@@ -262,27 +280,20 @@
                                 </div>
                             </div>  
                             <div class="row mb-1">
-                                <label class="col-md-4">Description of Code BN</label>
-                                <div class="col-md-8">
-                                    <asp:TextBox ID="txtDescBN" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                            </div> 
-                            <div class="row mb-1">
-                                <%--<label class="col-md-4">Type </label>
+                                <label class="col-md-4">Marks</label>
                                 <div class="col-md-4">
-                                    <asp:TextBox ID="txttype" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>--%>
-                                <div class="col-md-1">
+                                    <asp:TextBox ID="txtMarks" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-md-4 mt-2">
                                     <label id="chkbod" runat="server" class="switch">
                                         <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
                                         <span class="btn btn-xs slider round"></span>
                                     </label>
-                                    <%--<asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>--%>
-                                </div>
-                                <div class="col-md-2">
+
                                     <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
                                 </div>
-                            </div>
+                            </div> 
+                            
                             <div class="modal-footer ">
                             <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click"  ToolTip="Update Code Info.">
                                 <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
