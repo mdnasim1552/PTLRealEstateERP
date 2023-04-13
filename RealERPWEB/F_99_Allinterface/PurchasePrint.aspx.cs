@@ -4009,6 +4009,13 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjaddress = _ReportDataSet.Tables[0].Rows[0]["proadd"].ToString();
                 string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
                 string deptdesc = _ReportDataSet.Tables[0].Rows[0]["deptdesc"].ToString();
+                double vamt = Convert.ToDouble("0"+ _ReportDataSet.Tables[8].Rows[0]["vatamt"].ToString());
+                double tamt = Convert.ToDouble("0" + _ReportDataSet.Tables[8].Rows[0]["taxamt"].ToString());
+                string vatamt = vamt.ToString("#,##0;(#,##0); ");
+                string taxamt = tamt.ToString("#,##0;(#,##0); ");
+
+                string vat = _ReportDataSet.Tables[8].Rows[0]["vat"].ToString();
+                string tax = _ReportDataSet.Tables[8].Rows[0]["tax"].ToString();
 
 
                 string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
@@ -4316,7 +4323,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                   // case "3101": // Pintech
 
                     case "3366": // Lanco
                     case "3370": // cpdl
@@ -4522,7 +4529,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3311": //Rupayan group
                     case "2305": //Rupayan group
                     case "2306": //Rupayan group
-                    //case "3101":
+                    case "3101":
                         Reportpath = "~/Report/RptPurchaseOrderRupayon.rdlc";
                         break;
 
@@ -4613,7 +4620,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3374": // Angan  
                     case "3376": 
 
-                        Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
+                        //Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
                         Reportpath = "~/Report/RptPurchaseOrderANGAN.rdlc";
                         porderno = ASTUtility.CustomReqFormat(wrkid);
                         break;
@@ -4721,15 +4728,22 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3101": // cpdl  
-
-                    case "3370": // cpdl
-                    case "3374": // ANGAN
-                    case "3376":
+                    //case "3101": // cpdl
+                    case "3370": // cpdl                   
                     case "1211":
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
                         Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
+                        break;
+                    case "3374": // ANGAN
+                    case "3376":
+                        Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
+                        Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                        Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
+                        Rpt1.SetParameters(new ReportParameter("vatamt", vatamt));
+                        Rpt1.SetParameters(new ReportParameter("taxamt", taxamt));
+                        Rpt1.SetParameters(new ReportParameter("vat", vat));
+                        Rpt1.SetParameters(new ReportParameter("tax", tax));
                         break;
 
                     case "1205": // p2p

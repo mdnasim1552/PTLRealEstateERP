@@ -889,6 +889,26 @@ namespace RealEntity.C_17_Acc
         }
 
         [Serializable]
+        public class TdsVdsSdDeducSubjWise
+        {
+
+            public string comcod { get; set; }
+            public string vounum { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public double opam { get; set; }
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double netamt { get; set; }
+
+            public TdsVdsSdDeducSubjWise() { }
+
+
+        }
+
+        [Serializable]
         public class RptAitVatSdDeduction
         {
 

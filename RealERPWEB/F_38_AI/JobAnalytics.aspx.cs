@@ -110,7 +110,7 @@ namespace RealERPWEB.F_38_AI
             }
         }
         
-        [WebMethod(EnableSession = false)]
+        [WebMethod(EnableSession = false)]        
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string GetAllData(string comcodi, string projcode)
         {
@@ -120,7 +120,7 @@ namespace RealERPWEB.F_38_AI
                 string comcod = comcodi;
 
                 
-                DataSet ds = purData.GetTransInfo(comcod, "SP_INTERFACE_AI", "GETANALYTICSYSTEM", projcode, "", "", "", "", "", "", "", "");
+                DataSet ds = purData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETANALYTICSYSTEM", projcode, "", "", "", "", "", "", "", "");
 
                 if (ds == null) { return ""; };
                 var lst = ds.Tables[0].DataTableToList<GrphicalShow>();
