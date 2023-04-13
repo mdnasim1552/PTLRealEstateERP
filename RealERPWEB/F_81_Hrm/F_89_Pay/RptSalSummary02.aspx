@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptSalSummary02.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_89_Pay.RptSalSummary02" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" AutoEventWireup="true" CodeBehind="RptSalSummary02.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_89_Pay.RptSalSummary02" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -14,6 +14,7 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
 
@@ -54,6 +55,23 @@
         }
 
     </script>
+    <style>
+        .chzn-container-single .chzn-single {
+            height: 29px !important;
+            line-height: 28px !important;
+        }
+
+        .clearfix {
+            clear: both !important;
+            display: block;
+        }
+        .mt25{
+            margin-top:25px;
+        }
+        .mt20{
+            margin-top:20px;
+        }
+    </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -74,126 +92,105 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+            <div class="card card-fluid mb-1">
+                <div class="card-body">
                     <div class="row">
-
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
-                                        <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnCompany_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-5 pading5px asitCol5">
-                                        <asp:DropDownList ID="ddlCompany" runat="server" Width="233" CssClass="form-control inputTxt pull-left" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
-                                        </asp:DropDownList>
-
-
-                                        <div class="pull-left">
-                                            <asp:LinkButton ID="lnkbtnShow" runat="server" OnClick="lnkbtnShow_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3 pull-right">
-                                        <asp:UpdateProgress ID="UpdateProgress2" runat="server">
-                                            <ProgressTemplate>
-                                                <asp:Label ID="Label3" runat="server" CssClass="btn btn-info primaryBtn" Text="Please wait . . . . . . ."></asp:Label>
-                                            </ProgressTemplate>
-                                        </asp:UpdateProgress>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnProSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlDepartName" runat="server" Width="233" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlDepartName_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
-                                        </asp:DropDownList>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblSecion" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
-                                        <asp:TextBox ID="txtSrcSec" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSecSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlSection" runat="server" Width="233" CssClass="form-control inputTxt chzn-select" TabIndex="2">
-                                        </asp:DropDownList>
-
-
-                                    </div>
-
-
-                                </div>
-
-
-                                <div class="form-group">
-                                    <div class="col-md-9 pading5px">
-                                        <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Month</asp:Label>
-                                        <asp:TextBox ID="txtfMonth" runat="server" CssClass=" inputDateBox "></asp:TextBox>
-
-                                        <cc1:CalendarExtender ID="txtfMonth_CalendarExtender" runat="server"
-                                            Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
-                                            PopupButtonID="Image2"></cc1:CalendarExtender>
-
-                                        <div id="PnlDesign" runat="server" visible="false">
-                                            <div class="col-md-3 pading5px">
-                                                <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">From</asp:Label>
-                                                <asp:DropDownList ID="ddlfrmDesig" runat="server" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
-                                                </asp:DropDownList>
-                                            </div>
-
-                                            <div class="col-md-4 pading5px">
-                                                <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
-
-
-                                                <asp:DropDownList ID="ddlToDesig" runat="server" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                                </asp:DropDownList>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
-                                        Font-Size="14px" Height="14px" RepeatColumns="14" RepeatDirection="Horizontal"
-                                        Width="500px" Visible="false">
-                                    </asp:RadioButtonList>
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" Visible="false" CssClass=" lblTxt lblName ">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" Visible="false" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="76" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                            <asp:ListItem>10</asp:ListItem>
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                        </asp:DropDownList>
-                                        <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL ADHA" Visible="False" />
-                                        <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl" Text="Exclude Management" Visible="False" />
-
-                                    </div>
-                                    <div class="col-md-3">
-                                        <asp:Label ID="lblmsg" runat="server" Visible="false" CssClass="btn btn-danger primaryBtn"></asp:Label>
-                                    </div>
-
-                                </div>
+                        <div class="col-md-3 col-sm-3 col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label10" runat="server" CssClass="lblTxt lblName">Company</asp:Label>                                
+                                <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="srearchBtn" OnClick="imgbtnCompany_Click"><i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:TextBox ID="txtSrcCompany" runat="server" Visible="false" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control form-control-sm chzn-select" Style="width: 290px;" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                </asp:DropDownList>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Department</asp:Label>                                     
+                                <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="srearchBtn" OnClick="imgbtnProSrch_Click"> <i class="fas fa-search"></i> </asp:LinkButton>
+                                <asp:TextBox ID="txtSrcPro" runat="server" Visible="false" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:DropDownList ID="ddlDepartName" runat="server" CssClass="form-control form-control-sm chzn-select" Style="width: 290px;" OnSelectedIndexChanged="ddlDepartName_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2">
+                            <div class="form-group">
+                                <asp:Label ID="lblSecion" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
+                                <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="srearchBtn" OnClick="imgbtnSecSrch_Click"><i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:TextBox ID="txtSrcSec" runat="server" Visible="false" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:DropDownList ID="ddlSection" runat="server"  CssClass="form-control form-control-sm chzn-select" Style="width: 180px;" TabIndex="2">
+                                </asp:DropDownList>      
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Month</asp:Label>
+                                <asp:TextBox ID="txtfMonth" runat="server" CssClass=" form-control form-control-sm "></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtfMonth_CalendarExtender" runat="server"
+                                    Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
+                                    PopupButtonID="Image2"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2">
+                            <div class="form-group">
+                                 <asp:LinkButton ID="lnkbtnShow" runat="server" OnClick="lnkbtnShow_Click" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="lblPage" runat="server" Visible="false" CssClass=" lblTxt lblName ">Page Size</asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" Visible="false" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" Width="76" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>                        
                     </div>
 
                     <div class="row">
+                        <div class="col-md-2 col-sm-2 col-lg-2" id="divfrmd" runat="server" Visible="False">
+                            <div class="form-group">
+                                <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                                <asp:DropDownList ID="ddlfrmDesig" runat="server" AutoPostBack="true" CssClass="form-control form-control-sm chzn-select" Style="width: 190px;" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2" id="divtdeg" runat="server" Visible="False">
+                            <div class="form-group">
+                                <asp:Label ID="lbltdeg" runat="server" CssClass="lblTxt lblName">To</asp:Label>
+                                <asp:DropDownList ID="ddlToDesig" runat="server" CssClass="form-control form-control-sm chzn-select" Style="width: 190px;" TabIndex="6">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-6 mt25" id="divrbtnlistsaltype" runat="server"  Visible="False" >
+                            <div class="form-group">
+                                <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1"
+                                    Font-Size="14px" Height="14px"
+                                    Width="500px" Visible="false">
+                                </asp:RadioButtonList>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2 mt25" id="divchkBonustype" runat="server" Visible="False">
+                            <div class="form-group">
+                                  <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl" Text="EID UL ADHA" Visible="False" />
+                                   <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl " Text="Exclude Management" Visible="False" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-fluid">
+                <div class="card-body" style="min-height: 400px;">
+                    <div class="row table-respnsive">
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="SalarySummary" runat="server">
                                 <div class="table-responsive">
@@ -1972,9 +1969,6 @@
                 </div>
             </div>
 
-
-
-
             <div id="bankChecksInfo" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-mid-width">
                     <div class="modal-content modal-content-mid-width">
@@ -2055,10 +2049,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

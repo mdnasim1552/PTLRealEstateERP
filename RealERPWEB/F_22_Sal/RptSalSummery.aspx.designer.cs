@@ -312,6 +312,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.View SalesvscolltypeWise;
 
         /// <summary>
+        /// pnlsalvscolltypeWise control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlsalvscolltypeWise;
+
+        /// <summary>
         /// gvsalvscolltypeWise control.
         /// </summary>
         /// <remarks>
@@ -321,13 +330,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.GridView gvsalvscolltypeWise;
 
         /// <summary>
-        /// salvscolltypeWiseALL control.
+        /// pnlsalvscolltypeWiseALL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View salvscolltypeWiseALL;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlsalvscolltypeWiseALL;
 
         /// <summary>
         /// gvsalvscolltypeWiseALL control.
