@@ -138,7 +138,9 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "SaleVsCollTypeWise":
-                    this.MultiView1.ActiveViewIndex = 8;
+
+                   this.MultiView1.ActiveViewIndex = 8;
+                   
                     this.pnlsales.Visible = true;
                     this.type.Visible = true;
 
@@ -348,7 +350,19 @@ namespace RealERPWEB.F_22_Sal
                 //    break;
 
                  case "SaleVsCollTypeWise":
-                    this.ShowSaleVsCollTypeWise();
+                    if (this.rbtnType.SelectedValue == "ALL")
+                    {
+                        this.pnlsalvscolltypeWise.Visible = false;
+                        this.pnlsalvscolltypeWiseALL.Visible = true;
+                        this.ShowSaleVsCollTypeWiseALL();
+                    }
+                    else
+                    {
+                        this.pnlsalvscolltypeWise.Visible = true;
+                        this.pnlsalvscolltypeWiseALL.Visible = false;
+                        this.ShowSaleVsCollTypeWise();
+                    }
+                   
                     break;
 
 
@@ -432,6 +446,7 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
+                //this.ViewSection();
                 Session.Remove("tblsalsum");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetComeCode();
@@ -448,10 +463,13 @@ namespace RealERPWEB.F_22_Sal
                     this.gvsalvscolltypeWise.DataBind();
                     return;
                 }
-                Session["tblsalsum"] = ds1.Tables[0];
-                this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
-                this.gvsalvscolltypeWise.DataBind();
-                this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+
+                    Session["tblsalsum"] = ds1.Tables[0];
+                    this.gvsalvscolltypeWise.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
+                    this.gvsalvscolltypeWise.DataBind();
+                    this.FooterCalculation(ds1.Tables[0], "gvsalvscolltypeWise");
+               
+               
 
             }
             catch (Exception ex)
@@ -459,7 +477,43 @@ namespace RealERPWEB.F_22_Sal
             }
 
         }
+        private void ShowSaleVsCollTypeWiseALL()
+        {
+            try
+            {
+                //this.ViewSection();
+                //this.MultiView1.ActiveViewIndex = 9;
+                Session.Remove("tblsalsum");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetComeCode();
+                string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+                string salesperson = this.ddlSalesperson.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSalesperson.SelectedValue.ToString() + "%";
+                string pactcode = "18%";
+                string type = "ALL";
 
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RTPSALVSTARGETTYPEWISE", pactcode, frmdate, todate, salesperson, type, "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                {
+                    this.gvsalvscolltypeWiseALL.DataSource = null;
+                    this.gvsalvscolltypeWiseALL.DataBind();
+                    return;
+                }
+
+                   
+                    Session["tblsalsum"] = ds1.Tables[0];
+                    this.gvsalvscolltypeWiseALL.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
+                    this.gvsalvscolltypeWiseALL.DataBind();
+                    //
+               
+              
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
         private void ShowDailSalVsColl()
         {
             try
@@ -1074,8 +1128,18 @@ namespace RealERPWEB.F_22_Sal
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DataTable dt = (DataTable)Session["tblsalsum"];
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.SaleVsCollTypeWise>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsCollTypeWise", lst, null, null);
+
+            if (this.rbtnType.SelectedValue == "ALL")
+            {
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.SaleVsCollTypeWiseALL>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsCollTypeWiseALL", lst, null, null);
+            }
+            else
+            {
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.SaleVsCollTypeWise>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsCollTypeWise", lst, null, null);
+            }
+        
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -1352,6 +1416,130 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        protected void gvsalvscolltypeWiseALL_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell1 = new TableCell();
+                cell1.Text = "";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell1.ColumnSpan = 1;
+
+                gvrow.Cells.Add(cell1);
+
+                //TableCell cell12 = new TableCell();
+                //cell12.Text = "";
+                //cell1.HorizontalAlign = HorizontalAlign.Center;
+                //cell12.ColumnSpan = 1;
+                //gvrow.Cells.Add(cell12);
+
+                TableCell cell2 = new TableCell();
+                cell2.Text = "";
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 1;
+
+                gvrow.Cells.Add(cell2);
+
+                TableCell cell3 = new TableCell();
+                cell3.Text = "Sales Target Qty";
+                cell3.HorizontalAlign = HorizontalAlign.Center;
+                cell3.ColumnSpan = 2;
+                cell3.Font.Bold = true;
+                gvrow.Cells.Add(cell3);
+
+                TableCell cell4 = new TableCell();
+                cell4.Text = "Sales Actual Qty";
+                cell4.HorizontalAlign = HorizontalAlign.Center;
+                cell4.ColumnSpan = 2;
+                cell4.Font.Bold = true;
+                gvrow.Cells.Add(cell4);
+
+                TableCell cell5 = new TableCell();
+                cell5.Text = "Short Fall/Gain Qty";
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                cell5.Font.Bold = true;
+                gvrow.Cells.Add(cell5);
+
+                TableCell cell6 = new TableCell();
+                cell6.Text = "Achieved In (%) Qty";
+                cell6.HorizontalAlign = HorizontalAlign.Center;
+                cell6.ColumnSpan = 2;
+                cell6.Font.Bold = true;
+                gvrow.Cells.Add(cell6);
+
+                TableCell cell7 = new TableCell();
+                cell7.Text = "Sales Target Amount";
+                cell7.HorizontalAlign = HorizontalAlign.Center;
+                cell7.ColumnSpan = 2;
+                cell7.Font.Bold = true;
+                gvrow.Cells.Add(cell7);
+
+                TableCell cell8 = new TableCell();
+                cell8.Text = "Sales Actual Amount";
+                cell8.HorizontalAlign = HorizontalAlign.Center;
+                cell8.ColumnSpan = 2;
+                cell8.Font.Bold = true;
+                gvrow.Cells.Add(cell8);
+
+                TableCell cell9 = new TableCell();
+                cell9.Text = "Short Fall/Gain Amount";
+                cell9.HorizontalAlign = HorizontalAlign.Center;
+                cell9.ColumnSpan = 2;
+                cell9.Font.Bold = true;
+                gvrow.Cells.Add(cell9);
+
+                TableCell cell10 = new TableCell();
+                cell10.Text = "Achieved In (%) Amount";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 2;
+                cell10.Font.Bold = true;
+                gvrow.Cells.Add(cell10);
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.ColumnSpan = 1;
+                cell11.Font.Bold = true;
+                gvrow.Cells.Add(cell11);
+
+
+                TableCell cell12 = new TableCell();
+                cell12.Text = "Collection Target";
+                cell12.HorizontalAlign = HorizontalAlign.Center;
+                cell12.ColumnSpan = 2;
+                cell12.Font.Bold = true;
+                gvrow.Cells.Add(cell12);
+
+                TableCell cell13 = new TableCell();
+                cell13.Text = "Collection Actual";
+                cell13.HorizontalAlign = HorizontalAlign.Center;
+                cell13.ColumnSpan = 2;
+                cell13.Font.Bold = true;
+                gvrow.Cells.Add(cell13);
+
+                TableCell cell14 = new TableCell();
+                cell14.Text = "Short Fall/Gain";
+                cell14.HorizontalAlign = HorizontalAlign.Center;
+                cell14.ColumnSpan = 2;
+                cell14.Font.Bold = true;
+                gvrow.Cells.Add(cell14);
+
+                TableCell cell15 = new TableCell();
+                cell15.Text = "Achieved In (%)";
+                cell15.HorizontalAlign = HorizontalAlign.Center;
+                cell15.ColumnSpan = 2;
+                cell15.Font.Bold = true;
+                gvrow.Cells.Add(cell15);
+
+                gvsalvscolltypeWiseALL.Controls[0].Controls.AddAt(0, gvrow);
+            }
+            }
 
         protected void gvCollvsHonoured_RowDataBound(object sender, GridViewRowEventArgs e)
         {

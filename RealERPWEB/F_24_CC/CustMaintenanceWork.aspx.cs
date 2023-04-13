@@ -1387,6 +1387,8 @@ namespace RealERPWEB.F_24_CC
                         case "3317":
                         case "3364": //jbs
                         case "3367": //epic
+                        case "3374": //Angan
+
                             break;
                         default:
                             approval = "approval";
@@ -1403,6 +1405,7 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3374": //Angan
                             break;
                     }
                     break;
@@ -1415,6 +1418,7 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3374": //Angan
                             break;
                     }
                     break;
@@ -1429,6 +1433,7 @@ namespace RealERPWEB.F_24_CC
                         case "3317":
                         case "3364": //jbs
                         case "3367": //EPIC
+                        case "3374": //Angan
                             approval = "approval";
                             break;
                     }
