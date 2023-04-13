@@ -2013,10 +2013,12 @@ namespace RealERPWEB.F_14_Pro
 
 
 
+                            Session["Report1"] = gvPurSum;
+                            ((HyperLink)this.gvPurSum.HeaderRow.FindControl("hlbtngvPurSumExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
 
 
                         }
-
 
                         break;
 

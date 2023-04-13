@@ -146,6 +146,8 @@ namespace RealERPWEB.F_14_Pro
                 //string prjcode = (Request.QueryString["prjcode"].Length > 0) ? Request.QueryString["prjcode"].ToString() : "";
                 FotLnk.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus.aspx?Type=Purchase&Rpt=DaywPur&comcod=" + comcod + "&prjcode=" + prjcode + "&Date1=" + date1 + "&Date2=" + date2;
             }
+            Session["Report1"] = gvPurmatwise;
+            ((HyperLink)this.gvPurmatwise.HeaderRow.FindControl("hlbtngvPurmatwiseExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 
