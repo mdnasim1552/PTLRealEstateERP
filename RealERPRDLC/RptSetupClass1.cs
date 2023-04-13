@@ -583,6 +583,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptMonthlySuppBill": Rpt1a = SetRptMonthlySuppBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptMonthlySubConBill": Rpt1a = SetRptMonthlySubConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptATIVat": Rpt1a = SetRptATIVat(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.LinkRptATITaxIndProj01": Rpt1a = SetTdsVdsSdDeducSubjWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccAitVatSd": Rpt1a = SetRptAccATIVatDeduction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAitVatProjWise": Rpt1a = SetRptAccATITxVatProjWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaySlipSupplier": Rpt1a = SetRptPaySlipSupplier(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3261,6 +3262,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptATIVat(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.TdsVdsSdDeducProjWise>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetTdsVdsSdDeducSubjWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.TdsVdsSdDeducSubjWise>)RptDataSet));
             return Rpt1a;
         }
 
