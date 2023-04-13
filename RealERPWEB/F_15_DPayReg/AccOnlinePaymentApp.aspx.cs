@@ -482,12 +482,15 @@ namespace RealERPWEB.F_15_DPayReg
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblpayment"];
             string slnum = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvslnum")).Text.Trim();
+            string billno1 = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvbillno1")).Text.Trim();
+
+            
             //int rowindex = (this.gvPayment.PageSize) * (this.gvPayment.PageIndex) + e.RowIndex;
             // dt.Rows[rowindex].Delete();
 
 
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYAPP", slnum, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYAPP", slnum, billno1, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -500,7 +503,8 @@ namespace RealERPWEB.F_15_DPayReg
 
 
             DataView dv = dt.DefaultView;
-            dv.RowFilter = ("slnum<>'" + slnum + "'");
+            dv.RowFilter = ("billno1<>'" + billno1 + "'");
+            //dv.RowFilter = ("slnum<>'" + slnum + "'");
             ViewState.Remove("tblpayment");
             ViewState["tblpayment"] = dv.ToTable();
 

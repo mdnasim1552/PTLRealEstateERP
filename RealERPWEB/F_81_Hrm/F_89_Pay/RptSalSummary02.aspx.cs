@@ -45,7 +45,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Disbursement") ? "Summary of Disbursement" :
                 //    (this.Request.QueryString["Type"].ToString().Trim() == "TopSalary") ? "Salary Top Sheet" : (this.Request.QueryString["Type"].ToString().Trim() == "TopSheetPID") ? "Salary Top Sheet (Project)" :
                 //    "EMPLOYEE SALARY SUMMARY INFORMATION ";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 GetEmployeeName();
    
                 
@@ -121,10 +120,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.rbtnlistsaltypeAddItem();
                             break;
                         case "3354":
-                            this.PnlDesign.Visible = true;
+                            this.divfrmd.Visible = true;
+                            this.divtdeg.Visible = true;
                             break;
                         case "3365": // BTI 
-                            this.PnlDesign.Visible = false;
+                            this.divfrmd.Visible = false;
+                            this.divtdeg.Visible = false;
                             break;
                     }
                     break;
@@ -138,6 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashBonus":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.MultiView1.ActiveViewIndex = 3;
                     this.GetDesignation();
@@ -146,17 +148,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     {
                         case "3101":
                         case "3354"://Edison Real Estate
-                            this.PnlDesign.Visible = true;
+                            this.divfrmd.Visible = true;
+                            this.divtdeg.Visible = true;
                             break;
                     }
                     break;
 
                 case "BonusSummary":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
 
                 case "BonPaySlip":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.lnkbtnShow.Visible = false;
                     break;
@@ -201,6 +206,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (comcod)
             {
                 case "3355":
+                    this.divrbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Items.Add(new ListItem("Management", "1"));
                     this.rbtnlistsaltype.Items.Add(new ListItem("Acting Management", "2"));
@@ -211,6 +217,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 //default acme
                 default:
+                    this.divrbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Items.Add(new ListItem("Management", "1"));
                     this.rbtnlistsaltype.Items.Add(new ListItem("Non Management", "2"));

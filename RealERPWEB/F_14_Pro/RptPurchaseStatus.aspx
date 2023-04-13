@@ -526,10 +526,17 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Project Desc.">
+                                        <asp:TemplateField HeaderText="">
+                                            <HeaderTemplate>
+                                                <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Desc." Width="110px" ></asp:Label>
+                                                 <asp:HyperLink ID="hlbtngvPurSumExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                </asp:HyperLink>
+                                            </HeaderTemplate>
+                                           
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvprojectdesc0" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                     Width="200px"></asp:Label>
+                                                
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>

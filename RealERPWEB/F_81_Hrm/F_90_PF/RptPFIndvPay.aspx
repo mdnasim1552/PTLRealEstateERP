@@ -173,7 +173,7 @@
                                 <asp:Label ID="lblgvSalary" runat="server" Font-Size="11PX"
                                     Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pfamt")).ToString("#, ##0.00;(#, ##0.00); ") %>'
-                                    Width="60px"></asp:Label>
+                                  ></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="lbltotalpf" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
@@ -187,7 +187,7 @@
                                 <asp:Label ID="lblgvContri" runat="server" Font-Size="11PX"
                                     Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "contribu")).ToString("#, ##0.00;(#, ##0.00); ") %>'
-                                    Width="60px"></asp:Label>
+                                  ></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="gvFcontribu" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
@@ -253,7 +253,7 @@
                                 <asp:Label ID="lblgvswfamt" runat="server" Font-Size="11PX"
                                     Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "swf")).ToString("#, ##0.00;(#, ##0.00); ") %>'
-                                    Width="60px"></asp:Label>
+                                ></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="gvFgvswfamt" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
@@ -268,7 +268,7 @@
                                 <asp:Label ID="lblgvpfswf" runat="server" Font-Size="11PX"
                                     Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pfamt")).ToString("#, ##0.00;(#, ##0.00); ") %>'
-                                    Width="60px"></asp:Label>
+                                   ></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="lblFgvpfswf" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
@@ -285,7 +285,7 @@
                                 <asp:Label ID="lblgvtotalamt" runat="server" Font-Size="11PX"
                                     Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalamt")).ToString("#, ##0.00;(#, ##0.00); ") %>'
-                                    Width="60px"></asp:Label>
+                                   ></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:Label ID="gvFtotamat" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
