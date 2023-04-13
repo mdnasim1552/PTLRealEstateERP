@@ -286,6 +286,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     comBonumStatement = "EMPBANKPAYINFOPEB02";
                     break;
 
+                case "3315":
+                    comBonumStatement=(this.chkspBon.Checked) ? "EMPBANKPAYINFOASSURE" : "EMPBANKPAYINFOGEN";
+                    break;
+
 
                 default:
                     comBonumStatement = "EMPBANKPAYINFOGEN";

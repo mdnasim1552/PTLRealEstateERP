@@ -139,8 +139,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "SaleVsCollTypeWise":
 
-               
-                        this.MultiView1.ActiveViewIndex = 8;
+                   this.MultiView1.ActiveViewIndex = 8;
                    
                     this.pnlsales.Visible = true;
                     this.type.Visible = true;
@@ -351,17 +350,15 @@ namespace RealERPWEB.F_22_Sal
                 //    break;
 
                  case "SaleVsCollTypeWise":
-                    if (this.rbtnType.SelectedItem.Value == "ALL")
+                    if (this.rbtnType.SelectedValue == "ALL")
                     {
-
                         this.MultiView1.ActiveViewIndex = 9;
-
                     }
                     else
                     {
                         this.MultiView1.ActiveViewIndex = 8;
                     }
-                        this.ShowSaleVsCollTypeWise();
+                    this.ShowSaleVsCollTypeWise();
                     break;
 
 
@@ -445,7 +442,7 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
-                this.ViewSection();
+                //this.ViewSection();
                 Session.Remove("tblsalsum");
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetComeCode();
@@ -468,9 +465,11 @@ namespace RealERPWEB.F_22_Sal
 
                 if (this.rbtnType.SelectedItem.Value == "ALL")
                 {
+                    this.MultiView1.ActiveViewIndex = 9;
                     Session["tblsalsum"] = ds1.Tables[0];
                     this.gvsalvscolltypeWiseALL.DataSource = ds1.Tables[0];     //this.HiddenSameData(ds1.Tables[0]);
                     this.gvsalvscolltypeWiseALL.DataBind();
+                    //
                 }
                 else
                 {
