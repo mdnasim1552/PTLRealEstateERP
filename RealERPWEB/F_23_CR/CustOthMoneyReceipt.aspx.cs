@@ -246,33 +246,39 @@ namespace RealERPWEB.F_23_CR
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-            if (this.lbtnOk.Text == "Ok")
+            try
             {
-                this.lbtnOk.Text = "New";
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
-                this.lblCustomer.Text = (this.ddlCustomer.Items.Count == 0) ? "" : this.ddlCustomer.SelectedItem.Text.Substring(13);
-                this.ddlProjectName.Visible = false;
-                this.ddlCustomer.Visible = false;
-                this.lblProjectdesc.Visible = true;
-                this.lblCustomer.Visible = (this.ddlCustomer.Items.Count == 0) ? false : true;
-                this.PnlMoneyReceipt.Visible = true;
-                this.GetLastMrNo();
-                this.PayType();
-                this.BillNo();
-                this.GetSalesOrCustCare();
-                return;
+                if (this.lbtnOk.Text == "Ok")
+                {
+                    this.lbtnOk.Text = "New";
+                    this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                    this.lblCustomer.Text = (this.ddlCustomer.Items.Count == 0) ? "" : this.ddlCustomer.SelectedItem.Text.Substring(13);
+                    this.ddlProjectName.Visible = false;
+                    this.ddlCustomer.Visible = false;
+                    this.lblProjectdesc.Visible = true;
+                    this.lblCustomer.Visible = (this.ddlCustomer.Items.Count == 0) ? false : true;
+                    this.PnlMoneyReceipt.Visible = true;
+                    this.GetLastMrNo();
+                    this.PayType();
+                    this.BillNo();
+                    this.GetSalesOrCustCare();
+                    return;
+                }
+                Session.Remove("tblfincoll");
+                this.lbtnOk.Text = "Ok";
+                this.ddlProjectName.Visible = true;
+                this.ddlCustomer.Visible = true;
+                this.lblProjectdesc.Visible = false;
+                this.lblCustomer.Visible = false;
+                this.PnlMoneyReceipt.Visible = false;
+                this.gvMoneyreceipt.DataSource = null;
+                this.ddlPreMrr.Items.Clear();
+                this.gvMoneyreceipt.DataBind();
+                this.Clearmrscreen();
+            }catch(Exception exp)
+            {
+                
             }
-            Session.Remove("tblfincoll");
-            this.lbtnOk.Text = "Ok";
-            this.ddlProjectName.Visible = true;
-            this.ddlCustomer.Visible = true;
-            this.lblProjectdesc.Visible = false;
-            this.lblCustomer.Visible = false;
-            this.PnlMoneyReceipt.Visible = false;
-            this.gvMoneyreceipt.DataSource = null;
-            this.ddlPreMrr.Items.Clear();
-            this.gvMoneyreceipt.DataBind();
-            this.Clearmrscreen();
 
         }
 
@@ -736,7 +742,7 @@ namespace RealERPWEB.F_23_CR
 
                 if (tbl1.Rows.Count > 0)
                 {
-                    ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0;(#,##0); -");
+                    ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0.00;(#,##0.00); -");
 
                 }
             }

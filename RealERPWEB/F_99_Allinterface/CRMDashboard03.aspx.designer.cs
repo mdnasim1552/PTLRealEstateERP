@@ -96,6 +96,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.LinkButton LbtnOk;
 
         /// <summary>
+        /// DHypQuery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypQuery;
+
+        /// <summary>
         /// Widget_Query control.
         /// </summary>
         /// <remarks>
