@@ -271,7 +271,14 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Description">
+                                        <asp:TemplateField HeaderText=" ">
+                                            <HeaderTemplate>
+                                                <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Description" Width="110px" ></asp:Label>
+                                                 <asp:HyperLink ID="hlbtngvPurmatwiseExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                </asp:HyperLink>
+                                            </HeaderTemplate>
+                                           
+
                                             <ItemTemplate>
 
                                                 <asp:LinkButton ID="lnkgvWDescgp" runat="server" ForeColor="Black" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptdesc")) 
@@ -281,7 +288,7 @@
 
 
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvtotal" runat="server" Style="text-align: right"
                                                     Text='Total'></asp:Label>

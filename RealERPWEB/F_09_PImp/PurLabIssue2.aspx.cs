@@ -896,6 +896,9 @@ namespace RealERPWEB.F_09_PImp
                 return;
 
             ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.0000;(#,##0.0000); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblbgtamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balqty)", "")) ? 0.00 : dt.Compute("Sum(balqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblworkamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(wrkqty)", "")) ? 0.00 : dt.Compute("Sum(wrkqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblratesumamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuqty)", "")) ? 0.00 : dt.Compute("Sum(isuqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
         }

@@ -141,37 +141,39 @@
                         <div class="col-lg-2">
                             <asp:Label runat="server">Gender</asp:Label>
                             <asp:DropDownList ID="ddlgender" runat="server" CssClass="form-control">
-                                <asp:ListItem>Male</asp:ListItem>
-                                <asp:ListItem>Female</asp:ListItem>
+                                <asp:ListItem Value="0000">All</asp:ListItem>
+                                <asp:ListItem Value="Male">Male</asp:ListItem>
+                                <asp:ListItem Value="Female">Female</asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
                             <div class="col-lg-2">
                             <asp:Label runat="server">Religion</asp:Label>
                             <asp:DropDownList ID="ddlreligion" runat="server" CssClass="form-control">
+                                 <asp:ListItem Value="0000">All</asp:ListItem>
                                 <asp:ListItem Value="Islam">Islam</asp:ListItem>
                                 <asp:ListItem Value="Hindu">Hindu</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                          <div class="col-lg-1">
                             <asp:Label runat="server">From Age</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmage"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
                           <div class="col-lg-1">
                             <asp:Label runat="server">To Age</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txttoage"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txttoage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
 
                                       <div class="col-lg-1">
                             <asp:Label runat="server">from  Salary</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmsal"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmsal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
                           <div class="col-lg-1">
                             <asp:Label runat="server">To Salary</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txttosal"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txttosal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
                     </div>
 
@@ -199,7 +201,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvdepname" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                Width="120px"></asp:Label>
+                                                ></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
@@ -228,7 +230,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Designation">
@@ -285,7 +287,7 @@
                                                 Width="45px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                        <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Salary">

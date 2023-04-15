@@ -1389,6 +1389,40 @@ namespace RealEntity.C_22_Sal
             public SaleVsCollTypeWise() { 
             
             }
+        } public class SaleVsCollTypeWiseALL
+        {
+            //Iqbal Nayan
+            public string comcod { get; set; }
+            public string empname { get; set; }
+          
+            public double aptqty { get; set; }
+            public double aptqty1 { get; set; }
+            public double shopqty { get; set; }
+            public double shopqty1 { get; set; }
+            public double actaptqty { get; set; }
+            public double actaptqty1 { get; set; }
+            public double actshopqty { get; set; }
+            public double actshopqty1 { get; set; }
+            public double salaptsfall { get; set; }
+            public double salaptsfall1 { get; set; }
+            public double salshopsfall { get; set; }
+            public double salshopsfall1 { get; set; }
+            public double perontapt1 { get; set; }
+            public double perontapt { get; set; }
+            public double perontshop { get; set; }
+            public double perontshop1 { get; set; }
+            public double aptamt { get; set; }
+            public double shopamt { get; set; }
+            public double aptaccollamt { get; set; }
+            public double shopaccollamt { get; set; }
+            public double collaptsfall { get; set; }
+            public double collshopsfall { get; set; }
+            public double peronaptcoll { get; set; }
+            public double peronshopcoll { get; set; }
+          
+            public SaleVsCollTypeWiseALL() { 
+            
+            }
         }
         [Serializable]
         public class PostDCheck

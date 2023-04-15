@@ -480,11 +480,17 @@
 
 
                                     <asp:TemplateField HeaderText="Bal.Qty">
+                                        
                                         <ItemTemplate>
                                             <asp:Label ID="lblbalqty" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="70px" Style="text-align: right"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblbgtamt" runat="server" Style="text-align: right"
+                                                Width="70px" Font-Size="12px"></asp:Label>
+                                        </FooterTemplate>
+
                                         <ItemStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
@@ -507,6 +513,10 @@
                                                 Width="70px" BackColor="Transparent"
                                                 BorderStyle="None" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblworkamt" runat="server" Style="text-align: right"
+                                                Width="70px" Font-Size="12px"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
@@ -554,8 +564,12 @@
                                                 Width="70px" BackColor="Transparent"
                                                 BorderStyle="None" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblratesumamt" runat="server" Style="text-align: right"
+                                                Width="70px" Font-Size="12px"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="right" />
-                                        <FooterStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <FooterStyle HorizontalAlign="right" VerticalAlign="Middle" />
 
                                     </asp:TemplateField>
 

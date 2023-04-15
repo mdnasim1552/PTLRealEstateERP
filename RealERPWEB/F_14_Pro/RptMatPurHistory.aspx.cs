@@ -204,6 +204,10 @@ namespace RealERPWEB.F_14_Pro
             this.gvMatPurHis.DataSource = (DataTable)Session["MatPurHis"];
             this.gvMatPurHis.DataBind();
             this.FooterCalculation();
+            Session["Report1"] = gvMatPurHis;
+            ((HyperLink)this.gvMatPurHis.HeaderRow.FindControl("hlbtngvMatPurHisExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
         }
         private void FooterCalculation()
         {

@@ -144,7 +144,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-            /*
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -152,34 +152,38 @@ namespace RealERPWEB.F_17_Acc
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string session = hst["session"].ToString();
 
-            DataTable dt1 = (DataTable)Session["tblaitvatsd"];
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-            string projname = "Project Name: " + ddlProj.SelectedItem.Text.Substring(13);
-            string date = "Date: " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
-            string rpttitle = "TDS,VDS,SD Deduction Project Wise";
+            DataTable dt1 = (DataTable)Session["tblsupdetails"];
+
+            //string projname = "Project Name: " + ddlProj.SelectedItem.Text.Substring(13);
+            //string date = "Date: " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+            string rpttitle = "TDS VDS SD Deduction Supplier/Subcontractor Wise Details";
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
 
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            var lst = dt1.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.TdsVdsSdDeducProjWise>();
+            var lst = dt1.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.TdsVdsSdDeducSubjWise>();
 
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptATIVat", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.LinkRptATITaxIndProj01", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", rpttitle));
-            Rpt1.SetParameters(new ReportParameter("projname", projname));
-            Rpt1.SetParameters(new ReportParameter("date", date));
+            //Rpt1.SetParameters(new ReportParameter("projname", projname));
+            //Rpt1.SetParameters(new ReportParameter("date", date));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            */
+
 
         }
 

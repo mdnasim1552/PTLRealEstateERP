@@ -224,7 +224,13 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Project Description">
+                                <asp:TemplateField HeaderText="">
+                                     <HeaderTemplate>
+                                                <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Description" Width="110px" ></asp:Label>
+                                                 <asp:HyperLink ID="hlbtngvMatPurHisExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                </asp:HyperLink>
+                                            </HeaderTemplate>
+
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvprojectdesc" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
