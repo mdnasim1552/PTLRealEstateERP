@@ -14,7 +14,6 @@ using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using System.Web.UI.DataVisualization.Charting;
-using Microsoft.Reporting.WinForms;
 using System.IO;
 using RealERPLIB;
 using RealERPRPT;
@@ -22,7 +21,7 @@ using System.Reflection;
 using RealERPRDLC;
 using EASendMail;
 using System.Net.Mail;
-using Microsoft.Reporting.WebForms;
+using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_99_Allinterface
 {
@@ -4469,8 +4468,22 @@ namespace RealERPWEB.F_99_Allinterface
                         terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
-
-
+                    case "3101":
+                    case "3305":
+                        terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
+                        terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
+                        terms3 = termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
+                        terms4 = termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "";
+                        terms5 = termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? "5." + (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "";
+                        terms6 = termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString().Length > 0 ? "6." + (termscondition.FindAll(p => p.termsid == "006")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString()) : "";
+                        terms7 = termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "";
+                        terms8 = termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "";
+                        terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        terms10 = termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString().Length > 0 ? "10." + (termscondition.FindAll(p => p.termsid == "010")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        //terms11 = termscondition.FindAll(p => p.termsid == "011")[0].termsdesc.ToString().Length > 0 ? "11." + (termscondition.FindAll(p => p.termsid == "011")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "011")[0].termsdesc.ToString()) : "";
+                        //terms12 = termscondition.FindAll(p => p.termsid == "012")[0].termsdesc.ToString().Length > 0 ? "12." + (termscondition.FindAll(p => p.termsid == "012")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "012")[0].termsdesc.ToString()) : "";
+                        break;
 
                     default: //Default
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4693,7 +4706,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("pordnar", pordnar));
 
                 // todo for skip subreport and dynamic carrying charge
-                this.SetCarryingDynamic(Rpt1);
+                //this.SetCarryingDynamic(Rpt1);
                 switch (comcod)
                 {
                     case "1108":
