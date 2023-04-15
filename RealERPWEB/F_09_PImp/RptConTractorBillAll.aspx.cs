@@ -150,7 +150,7 @@ namespace RealERPWEB.F_09_PImp
             switch (index)
             {
                 case 0:
-                    this.ShowConBillDetails(); ;
+                    this.ShowConBillDetails(); 
                     break;
 
                 case 1:
@@ -197,6 +197,7 @@ namespace RealERPWEB.F_09_PImp
 
             // Session["tblconbill"] =ds1.Tables[0];
             Session["tblconbill"] = this.HiddenSameData(ds1.Tables[0]);
+            Session["lastra"] = ds1.Tables[1];
             // Session["tblbank"]=ds1.Tables[1];
             this.Data_Bind();
 
@@ -290,7 +291,8 @@ namespace RealERPWEB.F_09_PImp
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblconbill"];
-
+            DataTable dt1 = (DataTable)Session["lastra"];
+            this.lbllastra.Text = dt1.Rows.Count >0 ? dt1.Rows[0]["ranno"].ToString() :"no" ;
             int index = this.rbtnconbill.SelectedIndex;
             switch (index)
             {

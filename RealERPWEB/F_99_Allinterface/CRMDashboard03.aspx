@@ -195,7 +195,7 @@
                         <div class="statistic mt-3">
                             <div class="row">
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
+                                    <asp:HyperLink class="card-color h-100" ID="DHypQuery" Target="_blank" runat="server">
                                         <div class="card-body card-light-warning">
                                             <div class="card-title" id="Widget_Query" runat="server"></div>
                                             <div class="card-subtitle">Query</div>
@@ -207,7 +207,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
