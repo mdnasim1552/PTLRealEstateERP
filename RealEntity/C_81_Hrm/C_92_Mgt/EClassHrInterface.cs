@@ -49,6 +49,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             public string deptname { get; set; }
             public string servleng { get; set; }
             public DateTime billdate { get; set; }
+            public DateTime confdate { get; set; }
             public bool aprvstatus { get; set; }
             public double ttlamt { get; set; }
             public string refno { get; set; }
