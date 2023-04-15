@@ -242,6 +242,37 @@ namespace RealEntity.C_81_Hrm.C_81_Rec
         }
 
 
+        [Serializable]
+        public class EmpAllInfo
+        {
+            //comcod, company, secid, desigid,  empid, idcardno, companyname, section, desig, empname, joindate, slength,depcod,deptname,
+            //confirmdate,religion,sex, age,gssal
+            public string comcod { get; set; }
+            public string company { get; set; }
+            public string secid { get; set; }
+            public string desigid { get; set; }
+            public string empid { get; set; }
+            public string idcardno { get; set; }
+            public string companyname { get; set; }
+            public string section { get; set; }
+            public string desig { get; set; }
+            public string empname { get; set; }
+            public string joindate { get; set; }
+            public string slength { get; set; }
+            public string depcod { get; set; }
+            public string deptname { get; set; }
+            public string confirmdate { get; set; }
+            public string religion { get; set; }
+            public string sex { get; set; }
+            public string age { get; set; }
+            public double gssal { get; set; }
+            public EmpAllInfo()
+            {
+
+            }
+        }
+
+
 
     }
 }

@@ -371,8 +371,8 @@
                         <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Status"></asp:Label>
                         <asp:DropDownList ID="ddlstatus" runat="server" CssClass="chzn-select form-control form-control-sm"  TabIndex="4">
                             <asp:ListItem Value="Unsold">Available</asp:ListItem>
-                            <asp:ListItem Value="Sold">Sold</asp:ListItem>
-                            <asp:ListItem Value="mgbooking">Reserved</asp:ListItem>
+                            <asp:ListItem Value="Sale">Sold</asp:ListItem>
+                            <asp:ListItem Value="MGTBooking">Reserved</asp:ListItem>
                               <asp:ListItem Value="All" Selected="true">All</asp:ListItem>
                         </asp:DropDownList>
                     </div>
