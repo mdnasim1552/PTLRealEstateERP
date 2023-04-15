@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
 
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
@@ -15,9 +14,13 @@
             var gv1 = $('#<%=this.gvcustdues.ClientID %>');
             gv1.Scrollable();             
             $('.chzn-select').chosen({ search_contains: true });
+
+    
+            });
         }
     </script>
 
+   
 
 
 
