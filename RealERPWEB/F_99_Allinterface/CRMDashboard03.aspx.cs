@@ -210,7 +210,9 @@ private void GetDashboardInformation()
             Session["tblNotification"] = ds1;
             BindWidgetData();
 
-       
+            this.DHypQuery.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd";
+
+
         }
 
         private void GetToDoListInformation()
