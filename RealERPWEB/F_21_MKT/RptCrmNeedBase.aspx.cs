@@ -186,7 +186,7 @@ namespace RealERPWEB.F_21_MKT
                     //this.txtFromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     //this.TxtToDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                    GetStdNeedBaseData();
+                  //  GetStdNeedBaseData();
                     this.Multiview.ActiveViewIndex = 1;
                     break;
 
