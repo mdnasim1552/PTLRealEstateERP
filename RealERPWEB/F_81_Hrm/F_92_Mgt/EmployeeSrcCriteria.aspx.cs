@@ -44,7 +44,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
             string secid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPBYFILTER", Company, Deptid, secid, "", "", "", "", "", "");
+            string gender = this.ddlgender.SelectedValue.ToString()+"%";
+            string religion= this.ddlreligion.SelectedValue.ToString()+"%";
+            string frmage = (this.txtfrmage.Text.ToString() == "" ? "0" : this.txtfrmage.Text.ToString());
+            string toage = (this.txttoage.Text.ToString() == "" ? "0" : this.txttoage.Text.ToString());
+
+            string fromsal = Convert.ToDecimal((this.txtfrmsal.Text.ToString() == "" ? "0" : this.txtfrmsal.Text.ToString())).ToString();
+            string tosal = Convert.ToDecimal((this.txttosal.Text.ToString() == "" ? "0" : this.txttosal.Text.ToString())).ToString();
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPBYFILTER", Company, Deptid, secid, gender, religion, frmage, toage, fromsal, tosal);
             if (ds == null)
             {
                 this.gvEmpList.DataSource = null;
@@ -187,7 +195,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (dt.Rows.Count > 0)
             {
                 Session["Report1"] = gvEmpList;
-                ((HyperLink)this.gvEmpList.HeaderRow.FindControl("hlbtntbCdataExcelemplist")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                //((HyperLink)this.gvEmpList.HeaderRow.FindControl("hlbtntbCdataExcelemplist")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
         }
     }
