@@ -1257,6 +1257,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
+    <None Include="R_81_Hrm\R_82_App\RptEmployeeSrcInfordlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmployeeAllInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptHRCodeBookInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendanceSummary.rdlc" />

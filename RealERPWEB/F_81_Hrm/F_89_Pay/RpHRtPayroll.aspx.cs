@@ -4093,7 +4093,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compname", this.ddlCompany.SelectedItem.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("rpttitle", "Speical Purpose Bonus"));
+            //Rpt1.SetParameters(new ReportParameter("rpttitle", "Speical Purpose Bonus"));
+            Rpt1.SetParameters(new ReportParameter("rpttitle", "Profit Bonus"));
+
             Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("date1", frmdate));
