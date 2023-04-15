@@ -5029,7 +5029,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     break;
 
-                case "3370"://CPDL
+           
                 case "3368": //Finlay 
                     i = 0;
                     foreach (GridViewRow gv1 in this.gvBonus.Rows)
@@ -5055,10 +5055,28 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         i++;
                     }
                     break;
+                case "3370"://CPDL
+                    i = 0;
+                    foreach (GridViewRow gv1 in this.gvBonus.Rows)
+                    {
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+                        double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
+                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bankamt > 0 ? bankamt : 0.00;
+                        dt.Rows[rowindex]["cashamt"] = cashamt > 0 ? cashamt : 0.00;
+                        i++;
+                    }
+                    break;
 
 
 
-          
+
                 case "3101":
                 case "3374": //Angan
                 case "3376":
