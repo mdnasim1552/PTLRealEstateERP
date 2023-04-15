@@ -4323,7 +4323,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                   // case "3101": // Pintech
 
                     case "3366": // Lanco
                     case "3370": // cpdl
@@ -4728,7 +4728,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3101": // cpdl
+                    //case "3101": // cpdl
                     case "3370": // cpdl                   
                     case "1211":
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
@@ -6336,6 +6336,9 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3370":
                     PrintReq = "PrintBillCPDL";
                     break;
+                case "3374":
+                    PrintReq = "PrintBillANGAN";
+                    break;
 
                 default:
                     PrintReq = "PrintBill01";
@@ -6727,6 +6730,15 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
+            else if (pCompanyBill == "PrintBillANGAN")
+            {
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillANGAN", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
 
             }
             else if (pCompanyBill == "PrintBillCPDL")
