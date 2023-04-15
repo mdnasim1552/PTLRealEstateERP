@@ -22,6 +22,7 @@ using System.Reflection;
 using RealERPRDLC;
 using EASendMail;
 using System.Net.Mail;
+using Microsoft.Reporting.WebForms;
 
 namespace RealERPWEB.F_99_Allinterface
 {
