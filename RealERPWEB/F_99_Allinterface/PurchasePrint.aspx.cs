@@ -4323,7 +4323,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // Pintech
+                   // case "3101": // Pintech
 
                     case "3366": // Lanco
                     case "3370": // cpdl
@@ -4728,7 +4728,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3101": // cpdl
+                    //case "3101": // cpdl
                     case "3370": // cpdl                   
                     case "1211":
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
