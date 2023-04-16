@@ -52,7 +52,7 @@
                             },
                             title: {
                                 text: 'AI Project Wise Report',
-                                align: 'left'
+                                align: 'center'
                             },
                             subtitle: {
                                 text: '',
@@ -82,7 +82,7 @@
                                 borderWidth: 0,
                                 align: 'right',
                                 layout: 'vertical',
-                                verticalAlign: 'middle',
+                                verticalAlign: 'right',
                                 labelFormatter: function () {
                                     return '<span style="color:{point.color}">' + this.name + ': </span>' + this.y + '<br/>';
                                 }
