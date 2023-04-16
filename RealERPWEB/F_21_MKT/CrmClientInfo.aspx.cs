@@ -6261,6 +6261,7 @@ namespace RealERPWEB.F_21_MKT
                         ////////////////
                         //////// this below code disbale lead status apply for all company
                         //////////  Nahid 20221222
+                        ///
                         int index = 0;
                         string holdLost = "";
                         DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
@@ -6272,30 +6273,33 @@ namespace RealERPWEB.F_21_MKT
                                 holdLost = "hold_lost";//rows[0]["gcod"].ToString();
                             }
                         }
-                        if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
+                        switch (comcod)
                         {
-                            index = index - 1;
-                            for (int p = 0; p < index; p++)
-                            {
-
-
-
-                                if (p < index)
+                            case "3348"://CHL
+                                break;
+                            default:                             
+                                if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
                                 {
-                                    ChkBoxLstStatus.Items[p].Enabled = false;
+                                    index = index - 1;
+                                    for (int p = 0; p < index; p++)
+                                    {
+
+
+
+                                        if (p < index)
+                                        {
+                                            ChkBoxLstStatus.Items[p].Enabled = false;
+                                        }
+
+
+                                        //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
+                                        //{
+                                        //    ChkBoxLstStatus.Items[p].Enabled = false;
+                                        //}
+                                    }
                                 }
-
-
-                                //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
-                                //{
-                                //    ChkBoxLstStatus.Items[p].Enabled = false;
-                                //}
-                            }
+                                break;
                         }
-
-
-                        //
-
 
                         //Lost, Hold & Close Enabled
                         switch (comcod)
