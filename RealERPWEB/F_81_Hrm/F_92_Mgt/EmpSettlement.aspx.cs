@@ -468,7 +468,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
             var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
+            var sttlmntinfo1 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"]).OrderBy(x => x.seq).ToList();
+            var sttlmntinfo2 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"]).OrderBy(x => x.seq).ToList();
 
+           string totalearning =  ((Label)this.gvsettlemntcredit.FooterRow.FindControl("lblfttlamt")).Text.ToString();
+            string totalded = ((Label)this.gvsttlededuct.FooterRow.FindControl("lblgvfdedttlamt")).Text.ToString();
             var list1 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
             var list2 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
             var shorempdata = emplist.FindAll(d => d.empid == empid);
@@ -484,10 +488,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 var grossslary = sttlmntinfo[0].amount.ToString();
                 string joining = shorempdata[0].joindat.ToString("dd-MMM-yyyy");
                 string sepdate = shorempdata[0].retdat.ToString("dd-MMM-yyyy");
+                string confdate = shorempdata[0].confdate.ToString("dd-MMM-yyyy");
                 var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0;(#,##0); ");
                 string servicelength = shorempdata[0].servleng.ToString();
 
                 double netpay = Convert.ToDouble(netamount);
+                //string earningtot = ((Label)this.gvsettlemntcredit.FindControl("lblfttlamt")).Text.Trim();
+                //string earningtot = ((Label)this.gvsettlemntcredit.Rows[0].FindControl("lblfttlamt")).Text.Trim();
 
 
                 LocalReport rpt1 = new LocalReport();
@@ -502,6 +509,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
 
                 // for Show EmplInfo
+                rpt1.SetParameters(new ReportParameter("totalearning", totalearning));
+                rpt1.SetParameters(new ReportParameter("totalded", totalded));
                 rpt1.SetParameters(new ReportParameter("billDate", billDate));
                 rpt1.SetParameters(new ReportParameter("name", name));
                 rpt1.SetParameters(new ReportParameter("Desgin", Desgin));
@@ -509,6 +518,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 rpt1.SetParameters(new ReportParameter("Section", Section));
                 rpt1.SetParameters(new ReportParameter("jobseperation", jobseperation));
                 rpt1.SetParameters(new ReportParameter("joining", joining));
+                rpt1.SetParameters(new ReportParameter("confdate", confdate));
                 rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
                 rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
                 rpt1.SetParameters(new ReportParameter("inwords", ASTUtility.Trans(netpay, 2)));
