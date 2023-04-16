@@ -211,7 +211,7 @@
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
+                                    <asp:HyperLink Target="_blank" ID="DHypLead" runat="server" class="card-color h-100">
                                         <div class="card-body card-light-purple">
                                             <div class="card-title" id="Widget_Lead" runat="server"></div>
                                             <div class="card-subtitle">Lead</div>
@@ -228,12 +228,12 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-primary">
+                                     <asp:HyperLink runat="server" ID="DHypQLead" Target="_blank" class="card-color h-100">
+                                      <div class="card-body card-light-primary">
                                             <div class="card-title" id="Widget_QLead" runat="server"></div>
                                             <div class="card-subtitle">Qualified Lead</div>
                                             <ul class="p-0 mb-0">
@@ -248,13 +248,14 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                              </div>
+                                        </asp:HyperLink>
+                                  
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-success">
+                                     <asp:HyperLink ID="DHypNego" class="card-color h-100" runat="server" Target="_blank">
+                                       <div class="card-body card-light-success" >
                                             <div class="card-title" id="Widget_Nego" runat="server"></div>
                                             <div class="card-subtitle">Negotiation</div>
                                             <ul class="p-0 mb-0">
@@ -269,22 +270,24 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                           </div>
+                                        </asp:HyperLink>
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-success">
+                                     <asp:HyperLink ID="DHypSold" class="card-color h-100" runat="server" Target="_blank">
+                                     <div class="card-body card-light-success" >
                                             <div class="card-title" id="Widget_Sold" runat="server"></div>
                                             <div class="card-subtitle">Sold</div>
-                                        </div>
-                                    </div>
+                                         </div>
+                                         </asp:HyperLink>
+                                   
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-primary">
+                                    <asp:HyperLink ID="DHypHold" class="card-color h-100" Target="_blank" runat="server">
+                                        <div class="card-body card-light-primary" >
                                             <div class="card-title" id="Widget_Hold" runat="server"></div>
                                             <div class="card-subtitle">Hold</div>
                                             <ul class="p-0 mb-0">
@@ -300,12 +303,14 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
+                                
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-purple">
+                                    <asp:HyperLink ID="DHypClose" class="card-color h-100" runat="server" Target="_blank">
+                                      <div  class="card-body card-light-purple" >
                                             <div class="card-title" id="Widget_close" runat="server"></div>
                                             <div class="card-subtitle">Close</div>
                                             <ul class="p-0 mb-0">
@@ -320,17 +325,19 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                          </div>
+                                        </asp:HyperLink>
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-danger">
+                                      <asp:HyperLink class="card-color h-100" ID="DHypLost" runat="server" Target="_blank">
+                                    <div  class="card-body card-light-danger" >
                                             <div class="card-title" id="Widget_lost" runat="server">10</div>
                                             <div class="card-subtitle">Lost</div>
                                         </div>
-                                    </div>
+                                        </asp:HyperLink>
+                                   
                                 </div>
                                 <!-- END -->
                             </div>
