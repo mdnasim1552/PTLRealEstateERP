@@ -4178,6 +4178,7 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
     <Fakes Include="Fakes\Antlr3.Runtime.fakes" />
+    <Content Include="Content\custom.scss" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>

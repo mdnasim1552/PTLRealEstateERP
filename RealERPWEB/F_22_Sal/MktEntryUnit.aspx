@@ -524,6 +524,24 @@
                                 </asp:TemplateField>
 
 
+                                  <asp:TemplateField HeaderText="Parking Code">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvparkingcode" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
+                                            Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))%>'
+                                            Width="120px"></asp:Label>
+
+
+
+                                    </ItemTemplate>
+
+
+
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                                </asp:TemplateField>
+
+
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
 
