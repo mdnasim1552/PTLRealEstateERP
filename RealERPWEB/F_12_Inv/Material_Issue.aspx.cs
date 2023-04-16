@@ -551,7 +551,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.ddlResList.DataTextField = "rsirdesc";
             this.ddlResList.DataValueField = "rsircode";
-            this.ddlResList.DataSource = dt1;
+            this.ddlResList.DataSource = ds1.Tables[1];
             this.ddlResList.DataBind();
 
 
@@ -895,41 +895,46 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
 
-
-
-            //this.Panel2.Visible = true;
-            this.SaveValue();
-            DataTable tbl1 = (DataTable)ViewState["tblIssue"];
-            string mResCode = this.ddlResList.SelectedValue.ToString();
-            // string Specification = this.ddlResSpcf.SelectedValue.ToString();
-            string Empcode = this.ddlDeptCode.SelectedValue.ToString();
-            string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
-            if (dr2.Length == 0)
+            try
             {
-                DataRow dr1 = tbl1.NewRow();
 
-                dr1["comcod"] = this.GetCompCode();
-                dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
-                dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
-                dr1["rsirdesc"] = this.ddlResList.SelectedItem.Text.Trim();
-                dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
-                dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
-                dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
-                DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
-                dr1["rsirunit"] = dr3[0]["rsirunit"];
-                dr1["stkqty"] = dr3[0]["stkqty"];
-                dr1["stkrate"] = dr3[0]["stkrate"];
-                dr1["issueqty"] = dr3[0]["issueqty"];
-                dr1["issueamt"] = 0;
-                dr1["remarks"] = "";
-                tbl1.Rows.Add(dr1);
+                //this.Panel2.Visible = true;
+                this.SaveValue();
+                DataTable tbl1 = (DataTable)ViewState["tblIssue"];
+                string mResCode = this.ddlResList.SelectedValue.ToString();
+                // string Specification = this.ddlResSpcf.SelectedValue.ToString();
+                string Empcode = this.ddlDeptCode.SelectedValue.ToString();
+                string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
+                DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
+                if (dr2.Length == 0)
+                {
+                    DataRow dr1 = tbl1.NewRow();
+
+                    dr1["comcod"] = this.GetCompCode();
+                    dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
+                    dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
+                    dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
+                    dr1["rsirdesc"] = this.ddlResList.SelectedItem.Text.Trim();
+                    dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
+                    dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
+                    dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
+                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                    DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
+                    dr1["rsirunit"] = dr3[0]["rsirunit"];
+                    dr1["stkqty"] = dr3[0]["stkqty"];
+                    dr1["stkrate"] = dr3[0]["stkrate"];
+                    dr1["issueqty"] = dr3[0]["issueqty"];
+                    dr1["issueamt"] = 0;
+                    dr1["remarks"] = "";
+                    tbl1.Rows.Add(dr1);
+                }
+
+                ViewState["tblIssue"] = tbl1;
+                this.Data_Bind();
+            }catch(Exception exp)
+            {
+
             }
-
-            ViewState["tblIssue"] = tbl1;
-            this.Data_Bind();
 
         }
         protected void lbtnSelectAll_Click(object sender, EventArgs e)
