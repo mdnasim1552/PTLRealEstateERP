@@ -26,7 +26,37 @@ namespace RealERPWEB.F_21_MKT
                 GetEmployee();
                 GetAllSubdata();
                 SelectView();
-               
+
+                string date1=String.Empty, date2 = String.Empty, empid = String.Empty, genno = String.Empty;
+                if (Request.QueryString.AllKeys.Contains("Date1"))
+                {                   
+                    date1 = Request.QueryString["Date1"].ToString();
+                    this.txtFromdate.Text = Convert.ToDateTime(date1).ToString("dd-MMM-yyyy");
+                }
+                if (Request.QueryString.AllKeys.Contains("Date2"))
+                {
+                    date2 = Request.QueryString["Date2"].ToString();
+                    this.TxtToDate.Text = Convert.ToDateTime(date2).ToString("dd-MMM-yyyy");
+
+                }
+                if (Request.QueryString.AllKeys.Contains("empid"))
+                {
+                    empid = Request.QueryString["empid"].ToString();
+                    if (empid.Length == 12)
+                    {
+                        this.DdlEmployee.SelectedValue = empid;
+                    }
+                }
+                if (Request.QueryString.AllKeys.Contains("genno"))
+                {
+                    genno = Request.QueryString["genno"].ToString();
+                    this.DdlStage.SelectedValue = genno;
+                }
+
+                if(date1.Length>0 || date2.Length>0 || empid.Length>0 || genno.Length > 0)
+                {
+                    this.GetStdNeedBaseData();
+                }
             }
 
 
