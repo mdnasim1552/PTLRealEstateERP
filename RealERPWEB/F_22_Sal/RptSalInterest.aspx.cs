@@ -189,6 +189,7 @@ namespace RealERPWEB.F_22_Sal
             string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
             string islandowner = this.Request.QueryString["Type"] == "LO" ? "1" : "0";
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
+            Session["tblprojwisCust"] = ds2.Tables[0];
             this.ddlCustName.DataTextField = "custnam";
             this.ddlCustName.DataValueField = "custid";
             this.ddlCustName.DataSource = ds2.Tables[0];
@@ -1863,11 +1864,15 @@ namespace RealERPWEB.F_22_Sal
             string formType = "";
             switch (comcod)
             {
+                case "3101":
+                case "3357":
+                    formType = "formType03";
+                    break;
                 case "3336":
                 case "3637":
                 case "3305":
-                case "3101":
-                    formType = "formType02";
+                //case "3101":
+                  formType = "formType02";
                     break;
 
                 default:
@@ -1886,11 +1891,57 @@ namespace RealERPWEB.F_22_Sal
 
 
             if (formtype == "formType02")
+            {
                 this.CustAppForm02();
-
+            }  
+            else if(formtype== "formType03")
+            {
+                this.CustAppForm3();
+            }
             else
+            {
                 this.CustAppForm01();
+            }
+        }
+        private void CustAppForm3()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string customerImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
+            string nomineeImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
 
+            DataTable dt1 = (DataTable)Session["tblprojwisCust"];//Session["tblflrwisbill"];
+           // if (dt1 == null || dt1.Rows.Count == 0)
+                //return;
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.RptCustomerApplicationCube>();
+            //var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustApp>();
+            LocalReport Rpt1 = new LocalReport();
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", lst, null, null);
+            //Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", null, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            //string selectedProjectText = ddlprjlist.SelectedItem.Text;
+            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("selectedProjectText", selectedProjectText));
+            //Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("customerImage", customerImage));
+            Rpt1.SetParameters(new ReportParameter("nomineeImage", nomineeImage));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void CustAppForm01()

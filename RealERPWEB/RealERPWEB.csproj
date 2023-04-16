@@ -4149,6 +4149,7 @@
     <Content Include="Upload\purorder\POR2019100001514456.jpg" />
     <Content Include="Upload\purorder\POR2019100001592448.PNG" />
     <Content Include="Upload\UserImages\3101001.JPG" />
+    <Content Include="Image\cube_userImage.png" />
     <Content Include="UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="fonts\AgencyFB-Bold.eot" />

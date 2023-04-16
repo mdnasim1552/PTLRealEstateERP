@@ -405,6 +405,8 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalesVsAchivementDPC": Rpt1a = RptSalesVsAchivementDPC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMonthlySalesBudget": Rpt1a = RptMonthlySalesBudget(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                case "R_22_Sal.RptCustomerApplicationCube": Rpt1a = RptCustomerApplicationCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_22_Sal.RptPaymentSystem": Rpt1a = SetRptPaymentSystem(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptPrjWiseCollection": Rpt1a = SetRptPrjWiseCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptPrjWiseCollectionTillDate": Rpt1a = SetRptPrjWiseCollectionTillDate(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -7608,7 +7610,11 @@ namespace RealERPRDLC
 
             return Rpt1a;
         }
-
+        private static LocalReport RptCustomerApplicationCube(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.RptCustomerApplicationCube>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptGroupAtt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
 

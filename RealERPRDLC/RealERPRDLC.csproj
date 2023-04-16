@@ -228,6 +228,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollectiontilldate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+RptCustomerApplicationCube.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInterest.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory1.datasource" />
@@ -1258,6 +1259,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
+    <None Include="R_81_Hrm\R_82_App\RptEmployeeSrcInfordlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmployeeAllInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptHRCodeBookInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendanceSummary.rdlc" />
