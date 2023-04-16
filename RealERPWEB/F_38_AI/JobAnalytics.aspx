@@ -100,22 +100,22 @@
                                         {
                                             name: 'Total',
                                             y: data1[0].total,
-                                            "color": '#8A2BE2'
+                                            "color": '#1F2F98'
                                         },
                                         {
                                             name: 'Annotor',
                                             y: data1[0].qa1work,
-                                            "color": '#808080'
+                                            "color": '#7BE495'
                                         },
                                         {
                                             name: 'QA1',
                                             y: data1[0].qa2work,
-                                            "color": '#C5D930'
+                                            "color": '#85CBCC'
                                         },
                                         {
                                             name: 'QA2',
                                             y: data1[0].qa3work,
-                                            "color": '#96D5DF'
+                                            "color": '#4A707A'
                                         }
 
                                     ],
@@ -224,7 +224,7 @@
                     <div class="col-md-2">
                         <div class="shadow-lg p-1 mb-5 bg-body rounded">
                             <div class="text-center">
-                                <h6>Total QA1</h6>
+                                <h6>Total Assign Annotor</h6>
                             </div>
                             <h3 class="text-center" id="H1" runat="server">
                                 <asp:Label runat="server" ID="lbltotalqa1"></asp:Label></h3>
@@ -233,7 +233,7 @@
                     <div class="col-md-2">
                         <div class="shadow-lg p-1 mb-5 bg-body rounded">
                             <div class="text-center">
-                                <h6>Total QA2</h6>
+                                <h6>Total Assign QA1</h6>
                             </div>
                             <h3 class="text-center" id="H2" runat="server">
                                 <asp:Label runat="server" ID="lbltotalqa2"></asp:Label></h3>
@@ -242,7 +242,7 @@
                     <div class="col-md-2">
                         <div class="shadow-lg p-1 mb-5 bg-body rounded">
                             <div class="text-center">
-                                <h6>Total QA3</h6>
+                                <h6>Total Assign QA2</h6>
                             </div>
                             <h3 class="text-center" id="H3" runat="server">
                                 <asp:Label runat="server" ID="lbltotalqa3"></asp:Label></h3>
@@ -270,7 +270,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-lg-6 text-center">
-                        <div id="container" style="height: 360px; width: 600px;"></div>
+                        <div id="container" style="height: 330px; width: 900px;"></div>
                     </div>
                     <div class="col-lg-6" style="width: 100%">
                         <div class="row">

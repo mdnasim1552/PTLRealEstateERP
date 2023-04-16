@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
-
+                case "SubContractorPayment":
                 case "ASupConPayment":
                     this.PrintAllSOrConPayment();
                     break;
