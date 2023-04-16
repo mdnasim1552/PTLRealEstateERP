@@ -4,7 +4,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    
+    <a href="../Content/custom.scss">../Content/custom.scss</a>
+    
     <script type="text/javascript" language="javascript">
+        
+
+
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('.chzn-select').chosen({ search_contains: true });
@@ -21,6 +28,8 @@
 
     </script>
     <style type="text/css">
+        
+
         .table th, .table td {
             padding: 4px;
         }
@@ -36,6 +45,19 @@
             height: 29px !important;
             line-height: 28px !important;
         }
+
+
+        .bglandowner {
+     background:#A020F0;
+}
+
+
+       
+
+
+
+      
+
     </style>
 
     <div class="RealProgressbar">

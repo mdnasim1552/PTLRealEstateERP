@@ -932,7 +932,7 @@
                   <Width>0.26042in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.98958in</Width>
+                  <Width>2.0625in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1121,7 +1121,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>1.43404in</Top>
             <Height>0.5in</Height>
-            <Width>3.79167in</Width>
+            <Width>3.86459in</Width>
             <ZIndex>22</ZIndex>
             <Style>
               <Border>
