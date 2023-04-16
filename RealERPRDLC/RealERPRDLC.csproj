@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -289,6 +289,7 @@
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptAccRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmpAllInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
@@ -1258,7 +1259,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
-    <None Include="R_81_Hrm\R_82_App\RptEmployeeSrcInfordlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpInfSrc.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_82_App\RptFilterEmpInf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmployeeAllInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptHRCodeBookInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendanceSummary.rdlc" />
