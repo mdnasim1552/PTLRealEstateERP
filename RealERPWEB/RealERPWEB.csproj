@@ -247,12 +247,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-=======
-      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
->>>>>>> c403896820cdfd1169c273607ee7f10fb950b7d2
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
