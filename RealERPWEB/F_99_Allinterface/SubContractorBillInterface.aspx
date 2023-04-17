@@ -542,8 +542,30 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
+             
+
                         //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
                       //  $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
+                        break;
+
+                    case 1211: // Bricks & Bridge
+
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(15)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();
+
+
+                        //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
+                        //  $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
 
