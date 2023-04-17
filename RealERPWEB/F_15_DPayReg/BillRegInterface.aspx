@@ -384,6 +384,22 @@
                 //    time: 1000
                 //});
 
+
+                var comcod = <%=this.GetCompCode()%>;
+                switch (comcod) {
+
+                    case 3370:   // ACME   
+                  //  case 3101:   // ACME   
+                  
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();//Forward    
+                        break;
+
+                    default:  
+                        break;
+                }
+
+
+
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
@@ -396,6 +412,11 @@
                 $('#<%=this.grvApproved.ClientID %>').tblScrollable();
                 $('#<%=this.grvIssued.ClientID %>').tblScrollable();
                 $('#<%=this.grvRecm.ClientID %>').tblScrollable();
+
+
+
+
+
 
 
             }
