@@ -192,6 +192,7 @@ namespace RealERPWEB.F_38_AI
                 this.ddlprojname.DataValueField = "infcod";
                 this.ddlprojname.DataSource = ds.Tables[0];
                 this.ddlprojname.DataBind();
+                this.txtdoneqty.Text = Request.QueryString["qty"].ToString();
 
             }
             catch (Exception exp)
@@ -251,6 +252,9 @@ namespace RealERPWEB.F_38_AI
                     this.ddlcurrency.DataValueField = "currency";
                     this.ddlcurrency.DataSource = tbl1;
                     this.ddlcurrency.DataBind();
+
+                    //this.txtdoneqty.Text =;
+                    this.txtrate.Text = tbl1.Rows[0]["rate"].ToString();
                 }
                 
                
