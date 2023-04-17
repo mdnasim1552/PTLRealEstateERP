@@ -388,7 +388,7 @@
 
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <FooterTemplate>
-                                            <asp:Label ID="txtFTotal" runat="server" ForeColor="#000"></asp:Label>
+                                            <asp:Label ID="txtFTotal" runat="server"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbillamt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -447,7 +447,7 @@
 
                                     <asp:TemplateField HeaderText="Payment Amount">
                                         <FooterTemplate>
-                                            <asp:Label ID="lblgvFtopayamt" runat="server" ForeColor="#000"></asp:Label>
+                                            <asp:Label ID="lblgvFtopayamt" runat="server"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvpayamt" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -526,12 +526,13 @@
 
                                 </Columns>
 
-                                <FooterStyle CssClass="grvFooterNew" />
+                                
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="" />
                         <RowStyle CssClass="grvRowsNew" />
                         <HeaderStyle CssClass="grvHeaderNew" />
+                        <FooterStyle CssClass="grvFooterNew" />
                             </asp:GridView>
                         </div>
 
