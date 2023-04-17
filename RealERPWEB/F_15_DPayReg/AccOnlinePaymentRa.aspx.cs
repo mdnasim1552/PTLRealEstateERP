@@ -299,15 +299,27 @@ namespace RealERPWEB.F_15_DPayReg
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
 
-
+            string comcod = this.GetCompCode();
             string Type = this.Request.QueryString["Type"].ToString();
             switch (Type)
             {
                 case "ChequeReady":
                     this.UpdateChequeReady();
+                    switch (comcod) 
+                    {
+                        case "3370"://CPDL
+                       // case "3101"://Model
+                            this.UpdateChequeApproval();
+                            break;
+
+                        default:
+                            break;
+
+
+
+                    }
+
                     break;
-
-
 
                 case "ChequeApproval":
                     this.UpdateChequeApproval();
