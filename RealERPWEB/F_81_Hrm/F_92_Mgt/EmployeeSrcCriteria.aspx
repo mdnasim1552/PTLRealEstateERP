@@ -1,7 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmployeeSrcCriteria.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.EmployeeSrcCriteria" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+             <script type="text/javascript" language="javascript">
+                 $(document).ready(function () {
+                     Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+                 });
+                 function pageLoaded() {
+                     $("input, select").bind("keydown", function (event) {
+                         var k1 = new KeyPress();
+                         k1.textBoxHandler(event);
+                     });
+                     $('.chzn-select').chosen({ search_contains: true });
+                 };
 
+
+             </script>
 
     <style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
