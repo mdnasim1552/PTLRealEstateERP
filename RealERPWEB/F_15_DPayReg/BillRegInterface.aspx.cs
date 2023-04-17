@@ -91,7 +91,7 @@ namespace RealERPWEB.F_15_DPayReg
 
         }
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -1270,6 +1270,28 @@ namespace RealERPWEB.F_15_DPayReg
 
 
 
+        private string GetCalltypeDelCheckAForward()
+        {
+
+            string comcod = this.GetCompCode();
+            string CallType = "";
+            switch (comcod)
+            {
+                case "3370"://CPDL
+                //case "3101":
+                    CallType = "DELETEBILLCHECKED";
+                    break;
+
+                default:
+                    CallType = "DELETEBILLFORWARD";
+                    break;
+            
+            
+            }
+            return CallType;
+
+
+        }
         protected void btnDelForward_Click(object sender, EventArgs e)
         {
             string url = "AccOnlinePaymentRa?Type=ChequeApproval";
@@ -1293,6 +1315,7 @@ namespace RealERPWEB.F_15_DPayReg
             string billno = ((Label)this.grvApproved.Rows[rowindex].FindControl("lbgvbillno")).Text.Trim();
 
             string[] arrbill = billno.Split(',');
+            string CallType = this.GetCalltypeDelCheckAForward();
 
             foreach (string arrbillno in arrbill)
             {
@@ -1300,7 +1323,7 @@ namespace RealERPWEB.F_15_DPayReg
                 string ibillno = arrbillno.Trim();
 
 
-                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLFORWARD", slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", CallType, slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {
