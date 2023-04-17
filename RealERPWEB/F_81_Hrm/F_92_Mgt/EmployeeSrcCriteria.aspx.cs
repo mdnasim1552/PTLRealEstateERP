@@ -28,11 +28,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 Session.Remove("tblEmpstatus");;
                 this.GetCompany();
-                this.txtfrmage.Text = "0";
-                this.txttoage.Text = "100";
+                //this.txtfrmage.Text = "0";
+                //this.txttoage.Text = "100";
 
-                this.txtfrmsal.Text = "0";
-                this.txttosal.Text = "1000000";
+                //this.txtfrmsal.Text = "0";
+                //this.txttosal.Text = "1000000";
 
             }
         }
@@ -127,10 +127,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             string frmage = (this.txtfrmage.Text.ToString() == "" ? "0" : this.txtfrmage.Text.ToString());
-            string toage = (this.txttoage.Text.ToString() == "" ? "0" : this.txttoage.Text.ToString());
+            string toage = (this.txttoage.Text.ToString() == "" ? "100" : this.txttoage.Text.ToString());
 
             string fromsal = Convert.ToDecimal((this.txtfrmsal.Text.ToString() == "" ? "0" : this.txtfrmsal.Text.ToString())).ToString();
-            string tosal = Convert.ToDecimal((this.txttosal.Text.ToString() == "" ? "0" : this.txttosal.Text.ToString())).ToString();
+            string tosal = Convert.ToDecimal((this.txttosal.Text.ToString() == "" ? "10000000" : this.txttosal.Text.ToString())).ToString();
 
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPBYFILTER", Company, Deptid, secid, gender, religion, frmage, toage, fromsal, tosal);
             if (ds == null)
