@@ -45,19 +45,32 @@ namespace RealERPWEB.F_38_AI
                     return;
 
 
-                //dashboard counting (rakib)
-                string doninstnace = ds1.Tables[0].Rows[0]["doninstnace"].ToString() ?? "";
-                string attinstance = ds1.Tables[0].Rows[0]["attinstance"].ToString() ?? "";
-                string qaspent = ds1.Tables[0].Rows[0]["qaspent"].ToString() ?? "";
-                string annotspent = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
-                string adminspnt = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
-                string ttlskip = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
-                this.doninstnace.InnerText = doninstnace;
-                this.attinstance.InnerText = attinstance;
-                this.qaspent.InnerText = qaspent;
-                this.annotspent.InnerText = annotspent;
-                this.adminspnt.InnerText = adminspnt;
-                this.ttlskip.InnerText = ttlskip;
+                //dashboard counting (robi)
+                double doninstnace =Convert.ToDouble("0"+ ds1.Tables[0].Rows[0]["totalcomp"].ToString()) ;
+                double totalhour = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["totalhour"].ToString());
+                double annotorhour = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["annotorhour"].ToString());
+                double qa1hour = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qa1hour"].ToString());
+                double qa2hour = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qa2hour"].ToString());
+                double totalprjhour = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["totalprjhour"].ToString());
+                double totalprjqt = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["totalprjqt"].ToString());
+              
+                //string annotspent = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
+                //string adminspnt = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
+                //string ttlskip = ds1.Tables[0].Rows[0]["annotspent"].ToString() ?? "";
+
+
+                this.doninstnace.InnerText = doninstnace.ToString("#,##0;(#,##0); ");
+                this.Totalhour1.Text = totalhour.ToString("#,##0;(#,##0); ");
+                this.lbltotalhour2.Text = totalhour.ToString("#,##0;(#,##0); ");
+                this.lbltotalhour3.Text = totalhour.ToString("#,##0;(#,##0); ");
+                this.annotorspent.InnerText = annotorhour.ToString("#,##0;(#,##0); ");
+                this.qa1spent.InnerText = qa1hour.ToString("#,##0;(#,##0); ");              
+                this.qa2spnt.InnerText = qa2hour.ToString("#,##0;(#,##0); ");
+                this.projtecthour.InnerText = totalprjhour.ToString("#,##0;(#,##0); ");
+                this.lblprjquantity.Text = totalprjqt.ToString("#,##0;(#,##0); ");
+
+                //this.adminspnt.InnerText = adminspnt;
+                //this.ttlskip.InnerText = ttlskip;
 
 
 
@@ -95,7 +108,7 @@ namespace RealERPWEB.F_38_AI
                 double assignqa2 = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["assignqa2"].ToString());
                 double assignqa3 = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["assignqa3"].ToString());
                 double complete = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["complete"].ToString());
-                this.lbltotalbatch.Text = batch.ToString("#,##0;(#,##0); ");
+                this.lbltotalbatch.Text =  batch.ToString("#,##0;(#,##0); ");
                 this.lbltotalqa1.Text = assignqa1.ToString("#,##0;(#,##0); ");
                 this.lbltotalqa2.Text = assignqa2.ToString("#,##0;(#,##0); ");
                 this.lbltotalqa3.Text = assignqa3.ToString("#,##0;(#,##0); ");

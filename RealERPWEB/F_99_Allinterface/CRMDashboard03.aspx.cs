@@ -210,9 +210,29 @@ private void GetDashboardInformation()
             Session["tblNotification"] = ds1;
             BindWidgetData();
 
-            this.DHypQuery.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd";
+            this.DHypQuery.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1="+ fromdate 
+                + "&Date2="+todate+ "&empid=" + ddlempid + "&genno=9501002";
+           
+            this.DHypLead.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+               + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501004";
+            
+            this.DHypQLead.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+             + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501008";
 
+            this.DHypNego.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+            + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501012";
 
+            this.DHypSold.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+            + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501001";
+
+            this.DHypHold.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+           + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501020";
+
+            this.DHypClose.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+        + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501035";
+            
+            this.DHypLost.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
+            + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501028";
         }
 
         private void GetToDoListInformation()
