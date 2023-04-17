@@ -11,7 +11,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-     <script src="../Scripts/highcharts.js"></script>
+    <script src="../Scripts/highcharts.js"></script>
     <script src="../Scripts/highchartexporting.js"></script>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
@@ -100,22 +100,22 @@
                                         {
                                             name: 'Total',
                                             y: data1[0].total,
-                                            "color": '#8A2BE2'
+                                            "color": '#1F2F98'
                                         },
                                         {
                                             name: 'Annotor',
                                             y: data1[0].qa1work,
-                                            "color": '#808080'
+                                            "color": '#7BE495'
                                         },
                                         {
                                             name: 'QA1',
                                             y: data1[0].qa2work,
-                                            "color": '#C5D930'
+                                            "color": '#85CBCC'
                                         },
                                         {
                                             name: 'QA2',
                                             y: data1[0].qa3work,
-                                            "color": '#96D5DF'
+                                            "color": '#4A707A'
                                         }
 
                                     ],
@@ -187,6 +187,85 @@
         .highcharts-data-table tr:hover {
             background: #f1f7ff;
         }
+
+        .card-counter {
+            box-shadow: 2px 2px 10px #DADADA;
+            margin: 5px;
+            padding: 20px 10px;
+            background-color: #fff;
+            height: 100px;
+            border-radius: 5px;
+            transition: .3s linear all;
+        }
+
+            .card-counter:hover {
+                box-shadow: 4px 4px 20px #DADADA;
+                transition: .3s linear all;
+            }
+
+            .card-counter.primary {
+                background-color: #007bff;
+                color: #FFF;
+            }
+
+            .card-counter.danger {
+                background-color: #ef5350;
+                color: #FFF;
+            }
+
+            .card-counter.success {
+                background-color: #66bb6a;
+                color: #FFF;
+            }
+
+            .card-counter.info {
+                background-color: #26c6da;
+                color: #FFF;
+            }
+
+            .card-counter i {
+                font-size: 5em;
+                opacity: 0.2;
+            }
+
+            .card-counter .count-numbers {
+                position: absolute;
+                right: 35px;
+                top: 20px;
+                font-size: 32px;
+                display: block;
+            }
+
+            .card-counter .count-name {
+                position: absolute;
+                right: 35px;
+                top: 65px;
+                font-style: italic;
+                text-transform: capitalize;
+                opacity: 0.5;
+                display: block;
+                font-size: 18px;
+            }
+
+        #color {
+           background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+        }
+        #colorwork{
+            background-image: linear-gradient(to left bottom, #370521, #503868, #3e72ad, #00afdc, #12ebeb);
+        }
+       #totalcolor{
+            background-image: linear-gradient(to left, #7f6c77, #6b6478, #4d5e75, #2b5868, #115151);
+        }
+        #colorqa1{
+           background-image: linear-gradient(to top, #2d2730, #413352, #504279, #5553a4, #4967d3);
+        }
+        #colorannotor{
+            background-image: linear-gradient(to right bottom, #5e6fde, #7e69e1, #9c62e0, #b857db, #d349d3);
+        }
+         #colorqa2
+        {
+            background-image: linear-gradient(to left bottom, #69187a, #9c2173, #c13c6a, #db5f63, #ec8561);
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -211,107 +290,90 @@
             </div>
 
             <div class="card mt-4">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Total Batch</h6>
+                <div class="container-fluid well">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="totalcolor">
+                                <i class="fa fa-university"></i>
+                                <span class="count-numbers">                                   
+                                        <asp:Label runat="server" ID="lbltotalbatch"></asp:Label>
+                                </span>
+                                <span class="count-name">Total Batch</span>
                             </div>
-                            <h3 class="text-center">
-                                <asp:Label runat="server" ID="lbltotalbatch"></asp:Label></h3>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Total QA1</h6>
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="colorannotor">
+                                <i class="fa fa-certificate"></i>
+                                <span class="count-numbers">                                    
+                                        <asp:Label runat="server" ID="lbltotalqa1"></asp:Label>
+                                </span>
+                                <span class="count-name text-white">Total Assign Annotor</span>
                             </div>
-                            <h3 class="text-center" id="H1" runat="server">
-                                <asp:Label runat="server" ID="lbltotalqa1"></asp:Label></h3>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Total QA2</h6>
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="colorqa1">
+                                <i class="fa fa-user"></i>
+                                <span class="count-numbers">
+                                    <asp:Label runat="server" ID="lbltotalqa2"></asp:Label></span>
+                                <span class="count-name">Total Assign QA1</span>
                             </div>
-                            <h3 class="text-center" id="H2" runat="server">
-                                <asp:Label runat="server" ID="lbltotalqa2"></asp:Label></h3>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Total QA3</h6>
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="colorqa2">
+                                <i class="fa fa-users"></i>
+                                <span class="count-numbers">
+                                    <asp:Label runat="server" ID="lbltotalqa3"></asp:Label></span>
+                                <span class="count-name">Total Assign QA2</span>
                             </div>
-                            <h3 class="text-center" id="H3" runat="server">
-                                <asp:Label runat="server" ID="lbltotalqa3"></asp:Label></h3>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Total Work</h6>
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="colorwork">
+                                <i class="fa fa-star"></i>
+                                <span class="count-numbers">
+                                    <asp:Label runat="server" ID="lbltotaltask"></asp:Label></span>
+                                <span class="count-name">Total Work</span>
                             </div>
-                            <h3 class="text-center" id="H4" runat="server">
-                                <asp:Label runat="server" ID="lbltotaltask"></asp:Label></h3>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="shadow-lg p-1 mb-5 bg-body rounded">
-                            <div class="text-center">
-                                <h6>Complete</h6>
+                        <div class="col-md-2">
+                            <div class="card-counter text-white" id="color">
+                                <i class="fa fa-database"></i>
+                                <span class="count-numbers ">
+                                    <asp:Label runat="server" ID="lblcomplete"></asp:Label></span>
+                                <span class="count-name">Complete</span>
                             </div>
-                            <h3 class="text-center" id="H5" runat="server">
-                                <asp:Label runat="server" ID="lblcomplete"></asp:Label></h3>
                         </div>
                     </div>
                 </div>
-                <hr />
+
                 <div class="row">
                     <div class="col-lg-6 text-center">
-                        <div id="container" style="height: 360px; width: 600px;"></div>
+                        <div id="container" style="height: 330px; width: 700px;"></div>
                     </div>
+
+
                     <div class="col-lg-6" style="width: 100%">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="metric metric-bordered align-items-center">
-                                    <h2 class="text-center" runat="server" id="doninstnace">25K</h2>
-                                    <div class="text-center">
-                                        <p>Total Number of Complate class insatance</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="metric metric-bordered align-items-center">
-                                    <h2 class="text-center text-primary" runat="server" id="attinstance">0</h2>
-                                    <div class="text-center">
-                                        <p>Number of Complete attribute insatance</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="metric metric-bordered align-items-center">
-                                    <h2 class="text-center" runat="server" id="qaspent">0.1<small>hrs</small></h2>
+                                    <h2 class="text-center text-primary" runat="server" id="doninstnace"></h2>
                                     <div class="text-center">
                                         <p>
-                                            Out of 770.4hrs 
-                                    <br />
-                                            <b class="text-primary">QA hours spent</b>
+                                             Out of <asp:Label class="text-center text-primary" runat="server" ID="lblprjquantity"></asp:Label> Quantity
+                                            <br />
+                                            Total Number of Complate Quantity
+
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="metric metric-bordered align-items-center">
-                                    <h2 class="text-center text-primary" runat="server" id="annotspent">410.8<small>hrs</small></h2>
+                                    <h2 class="text-center text-primary" runat="server" id="projtecthour"></h2>
                                     <div class="text-center">
                                         <p>
-                                            Out of 770.4hrs
-                                    <br />
-                                            <b class="text-primary">Annot, hours spent</b>
+                                           <span class="text-center text-primary" >Total Project Quantity</span>
+                                            <br />
+                                            Total Hour Of Project
                                         </p>
                                     </div>
                                 </div>
@@ -320,12 +382,38 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="metric metric-bordered align-items-center">
-                                    <h2 class="text-center text-primary" runat="server" id="adminspnt">359.4<small>hrs</small></h2>
+                                    <h2 class="text-center text-primary" runat="server" id="annotorspent"><small>hrs</small></h2>
                                     <div class="text-center">
                                         <p>
-                                            Out of 770.4hrs 
+                                          Out of <asp:Label runat="server" ID="Totalhour1"></asp:Label> Hour
                                     <br />
-                                            <b class="text-primary">Admin hours spent</b>
+                                            <b class="text-primary">Annotor hours spent</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center text-primary" runat="server" id="qa1spent"><small>hrs</small></h2>
+                                    <div class="text-center">
+                                        <p>
+                                             Out of <asp:Label runat="server" ID="lbltotalhour2"></asp:Label> Hour
+                                    <br />
+                                            <b class="text-primary">QA1, hours spent</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="metric metric-bordered align-items-center">
+                                    <h2 class="text-center text-primary" runat="server" id="qa2spnt"><small>hrs</small></h2>
+                                    <div class="text-center">
+                                        <p>
+                                            Out of <asp:Label runat="server" ID="lbltotalhour3"></asp:Label> Hour
+                                    <br />
+                                            <b class="text-primary">QA2 hours spent</b>
                                         </p>
                                     </div>
                                 </div>
@@ -373,7 +461,7 @@
 
                                 <td>
                                     <a href="#" class="tile tile-img mr-1">
-                                        <img class="img-fluid" src="../Upload/UserImages/3101001.png" alt="Card image cap"></a> <a href="#">NAhid</a>
+                                        <img class="img-fluid" src="../Upload/UserImages/3101001.png" alt="Card image cap"></a> <a href="#">Robix</a>
                                 </td>
                                 <td class="align-center">Annotor </td>
                                 <td class="align-center">4 Hurs </td>
