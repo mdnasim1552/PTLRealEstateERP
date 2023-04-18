@@ -209,6 +209,19 @@
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm okBtn" OnClick="lbtnOk_Click" TabIndex="4" Style="margin-top: 20px;">ok</asp:LinkButton>
                         </div>
                     </div>
+                    <div class="row">
+                               <div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:Label ID="LalSubCode" runat="server" CssClass="lblTxt lblName" Text="Level"></asp:Label>
+                                <asp:DropDownList ID="ddlCodeLayer" CssClass="form-control form-control-sm chzn-select" runat="server" >
+                               <asp:ListItem Value="2">Main Code</asp:ListItem>
+                            <asp:ListItem Value="4">Sub Code-1</asp:ListItem>
+                            <asp:ListItem Value="7">Sub Code-2</asp:ListItem>
+                            <asp:ListItem Value="9">Sub Code-3</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

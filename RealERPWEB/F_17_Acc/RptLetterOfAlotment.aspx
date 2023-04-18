@@ -94,12 +94,23 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label1">Customer Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlcustomerName" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlcustomerName" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm">
+                                </asp:DropDownList>
                             </div>
                         </div>
+                        
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm mt20">OK</asp:LinkButton>
+                            </div>
+                        </div>
+                         <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="Label2">Report Type</asp:Label>
+                                <asp:DropDownList runat="server" ID="ddlreptype" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm">
+                                    <asp:ListItem Value="1">Customer Sattelement Report</asp:ListItem>
+                                    <asp:ListItem Value="2">Customer Financial Statement Report</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                     </div>
