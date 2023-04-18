@@ -1524,12 +1524,12 @@ namespace RealERPWEB.F_14_Pro
 
                             dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                             dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
-                           
+
                             if (this.chkbillcscopy.Checked == true)
                             {
                                 for (int j = 0; j < tbl02.Rows.Count; j++)
                                 {
-                                    
+
                                     string rsircode = tbl02.Rows[j]["rsircode"].ToString();
                                     string flrcode = tbl02.Rows[j]["flrcod"].ToString();
                                     if (rsircode == mResCode2 && flrcode == flrcod)
@@ -1543,7 +1543,7 @@ namespace RealERPWEB.F_14_Pro
 
                                 }
                             }
-                            dr1["proposerate"] = this.chkbillcscopy.Checked == true ? prop.Length > 0 ? prop : "0" : "0"; 
+                            dr1["proposerate"] = this.chkbillcscopy.Checked == true ? prop.Length > 0 ? prop : "0" : "0";
                             dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
                             dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
                             dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";
@@ -2167,5 +2167,63 @@ namespace RealERPWEB.F_14_Pro
                 return;
             Session["CopyBillCS"] = ds1.Tables[2];
         }
+
+
+
+        protected void gvMSRInfo2_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            DataTable tbl1 = (DataTable)Session["tblt02"];
+            string supRate = Convert.ToString(e.CommandArgument.ToString());
+            string rate = "";
+
+
+            for (int i = 0; i < this.gvMSRInfo2.Rows.Count; i++)
+            {
+
+                switch (supRate)
+                {
+                    case "rate1":
+                         rate = ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim()==""?"0": ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim();
+                        tbl1.Rows[i]["resrate1"] = Convert.ToDouble(rate);
+                        break;
+
+                    case "rate2":
+                        rate = ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate2")).Text.Trim() == "" ? "0" : ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate2")).Text.Trim();
+                        tbl1.Rows[i]["resrate2"] = Convert.ToDouble(rate);
+
+                        break;
+
+                    case "rate3":
+                        rate = ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate3")).Text.Trim() == "" ? "0" : ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate3")).Text.Trim();
+                        tbl1.Rows[i]["resrate3"] = Convert.ToDouble(rate);
+
+                        break;
+
+
+                    case "rate4":
+                        rate = ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate4")).Text.Trim() == "" ? "0" : ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate4")).Text.Trim();
+                        tbl1.Rows[i]["resrate4"] = Convert.ToDouble(rate);
+
+                        break;
+
+
+                    case "rate5":
+                        rate = ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate5")).Text.Trim() == "" ? "0" : ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate5")).Text.Trim();
+                        tbl1.Rows[i]["resrate5"] = Convert.ToDouble(rate);
+
+                        break;
+                }
+
+            tbl1.Rows[i]["proposerate"] = Convert.ToDouble(rate);
+
+
+
+            }
+            Session["tblt02"] = tbl1;
+            gvMSRInfo_DataBind();
+        }
     }
 }
+
+
+
