@@ -3025,6 +3025,7 @@
     <Content Include="F_34_Mgt\OtherReqEntry02.aspx" />
     <Content Include="F_34_Mgt\PayProUpdate.aspx" />
     <Content Include="F_34_Mgt\PayTypCodeBook.aspx" />
+    <Content Include="F_34_Mgt\PrintChequeStatus.aspx" />
     <Content Include="F_34_Mgt\ProjectClosing.aspx" />
     <Content Include="F_34_Mgt\PurReqAdjst.aspx" />
     <Content Include="F_34_Mgt\ResetPassword.aspx" />
@@ -5264,6 +5265,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
       <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\PrintChequeStatus.aspx.cs">
+      <DependentUpon>PrintChequeStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\PrintChequeStatus.aspx.designer.cs">
+      <DependentUpon>PrintChequeStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
