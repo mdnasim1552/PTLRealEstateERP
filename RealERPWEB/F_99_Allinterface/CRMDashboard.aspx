@@ -7,7 +7,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            document.getElementById('<%= lnkbtnOk.ClientID %>').click();
+           // document.getElementById('<%= lnkbtnOk.ClientID %>').click();
 
         });
 
@@ -285,6 +285,25 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+
+             <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+
 
     <div class="card card-fluid container-data mt-5">
         <div class="card-body">

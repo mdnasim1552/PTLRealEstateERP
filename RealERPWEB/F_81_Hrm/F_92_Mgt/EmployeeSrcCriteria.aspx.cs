@@ -28,11 +28,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             {
                 Session.Remove("tblEmpstatus");;
                 this.GetCompany();
-                this.txtfrmage.Text = "0";
-                this.txttoage.Text = "100";
+                //this.txtfrmage.Text = "0";
+                //this.txttoage.Text = "100";
 
-                this.txtfrmsal.Text = "0";
-                this.txttosal.Text = "1000000";
+                //this.txtfrmsal.Text = "0";
+                //this.txttosal.Text = "1000000";
 
             }
         }
@@ -60,17 +60,53 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string username = hst["username"].ToString();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["empinfo"];
+
+            string company = this.ddlCompany.SelectedItem.Text.ToString();
+            string dept = this.ddlDepartment.SelectedItem.Text.ToString();
+            string section = this.ddlProjectName.SelectedItem.Text.ToString();
+            string gender =this.ddlgender.SelectedItem.Text.ToString();
+            string religion = this.ddlreligion.SelectedItem.Text.ToString();
+            string frmage = this.txtfrmage.Text.ToString();
+            string toage = this.txttoage.Text.ToString();
+            string frmsal = this.txtfrmsal.Text.ToString();
+            string tosal = this.txttosal.Text.ToString();
+
+
+
+
+            DataTable dt = (DataTable)Session["empinfosrc"];
             if (dt == null || dt.Rows.Count==0)
                 return;
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.EmpAllInfo>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_82_App.RptEmployeeAllInfo", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_82_App.RptFilterEmpInf", lst, null, null);
+              
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comname", comname));
+            Rpt1.SetParameters(new ReportParameter("comnam", comname));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee's Leave Card"));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printdate));
+
+            Rpt1.SetParameters(new ReportParameter("dept", dept));
+            Rpt1.SetParameters(new ReportParameter("section", section));
+            Rpt1.SetParameters(new ReportParameter("gender", gender));
+            Rpt1.SetParameters(new ReportParameter("religion", religion));
+            Rpt1.SetParameters(new ReportParameter("frmage", frmage));
+            Rpt1.SetParameters(new ReportParameter("toage", toage));
+            Rpt1.SetParameters(new ReportParameter("frmsal", frmsal));
+            Rpt1.SetParameters(new ReportParameter("tosal", tosal));
+
+
+
+
+
+
+
+
+
+
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Search Criteria"));
             //Rpt1.PrintToPrinter();
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
@@ -91,10 +127,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             string frmage = (this.txtfrmage.Text.ToString() == "" ? "0" : this.txtfrmage.Text.ToString());
-            string toage = (this.txttoage.Text.ToString() == "" ? "0" : this.txttoage.Text.ToString());
+            string toage = (this.txttoage.Text.ToString() == "" ? "100" : this.txttoage.Text.ToString());
 
             string fromsal = Convert.ToDecimal((this.txtfrmsal.Text.ToString() == "" ? "0" : this.txtfrmsal.Text.ToString())).ToString();
-            string tosal = Convert.ToDecimal((this.txttosal.Text.ToString() == "" ? "0" : this.txttosal.Text.ToString())).ToString();
+            string tosal = Convert.ToDecimal((this.txttosal.Text.ToString() == "" ? "10000000" : this.txttosal.Text.ToString())).ToString();
 
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPBYFILTER", Company, Deptid, secid, gender, religion, frmage, toage, fromsal, tosal);
             if (ds == null)
@@ -103,7 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.gvEmpList.DataBind();
                 return;
             }
-            Session["tblEmpstatus"] = HiddenSameData(ds.Tables[0]);
+            Session["empinfosrc"] = HiddenSameData(ds.Tables[0]);
             this.LoadGrid();
 
         }
@@ -232,15 +268,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void LoadGrid()
         {
-            DataTable dt = (DataTable)Session["tblEmpstatus"];
+            DataTable dt = (DataTable)Session["empinfosrc"];
             this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
             this.gvEmpList.DataBind();
-            if (dt.Rows.Count > 0)
-            {
-                Session["Report1"] = gvEmpList;
-                //((HyperLink)this.gvEmpList.HeaderRow.FindControl("hlbtntbCdataExcelemplist")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-            }
+            //if (dt.Rows.Count > 0)
+            //{
+            //    Session["Report1"] = gvEmpList;
+            //    //((HyperLink)this.gvEmpList.HeaderRow.FindControl("hlbtntbCdataExcelemplist")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            //}
         }
     }
 }

@@ -42,15 +42,6 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label lbltotalbatch;
 
         /// <summary>
-        /// H1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
-
-        /// <summary>
         /// lbltotalqa1 control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltotalqa1;
-
-        /// <summary>
-        /// H2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H2;
 
         /// <summary>
         /// lbltotalqa2 control.
@@ -78,15 +60,6 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label lbltotalqa2;
 
         /// <summary>
-        /// H3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H3;
-
-        /// <summary>
         /// lbltotalqa3 control.
         /// </summary>
         /// <remarks>
@@ -96,15 +69,6 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label lbltotalqa3;
 
         /// <summary>
-        /// H4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H4;
-
-        /// <summary>
         /// lbltotaltask control.
         /// </summary>
         /// <remarks>
@@ -112,15 +76,6 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltotaltask;
-
-        /// <summary>
-        /// H5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H5;
 
         /// <summary>
         /// lblcomplete control.
@@ -141,40 +96,76 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl doninstnace;
 
         /// <summary>
-        /// attinstance control.
+        /// lblprjquantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl attinstance;
+        protected global::System.Web.UI.WebControls.Label lblprjquantity;
 
         /// <summary>
-        /// qaspent control.
+        /// projtecthour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qaspent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl projtecthour;
 
         /// <summary>
-        /// annotspent control.
+        /// annotorspent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl annotspent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl annotorspent;
 
         /// <summary>
-        /// adminspnt control.
+        /// Totalhour1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl adminspnt;
+        protected global::System.Web.UI.WebControls.Label Totalhour1;
+
+        /// <summary>
+        /// qa1spent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qa1spent;
+
+        /// <summary>
+        /// lbltotalhour2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltotalhour2;
+
+        /// <summary>
+        /// qa2spnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qa2spnt;
+
+        /// <summary>
+        /// lbltotalhour3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltotalhour3;
 
         /// <summary>
         /// ttlskip control.

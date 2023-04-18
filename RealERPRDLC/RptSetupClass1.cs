@@ -422,6 +422,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptLetterOfAllotmentCPDL": Rpt1a = SetRptLetterOfAllotmentCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustomerSettlementCPDL": Rpt1a = RptCustomerSettlementCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptCustomerFinalSteatement": Rpt1a = SetRptCustomerFinalSteatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustomerSettlementANGAN": Rpt1a = RptCustomerSettlementANGAN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalEncashment": Rpt1a = SetRptSalEncashment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptFinalSettlmntCP": Rpt1a = SetRptFinalSettlmntCP(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -433,8 +434,11 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptMissFollowup": Rpt1a = SetRptMissFollowup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 
                 case "R_24_CC.CancellationAddWork": Rpt1a = SetCancellationAddWork(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_82_App.RptFilterEmpInf": Rpt1a = SetRptFilterEmpInf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
+
+                    
 
 
 
@@ -1587,6 +1591,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustomerSettlement>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptCustomerFinalSteatement(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {            
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustomerFinalSteatement>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport RptCustomerSettlementANGAN(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -1647,6 +1656,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.CancellationAddWork>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptFilterEmpInf(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.EmpAllInfo>)RptDataSet));
+            return Rpt1a;
+        }
+        
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

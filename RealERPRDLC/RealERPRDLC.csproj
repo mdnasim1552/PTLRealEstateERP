@@ -38,7 +38,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -48,9 +48,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -253,6 +253,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustBookApp2.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustomerFinalSteatement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustomerSettlement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNominatedBookApp2.datasource" />
@@ -291,6 +292,7 @@
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptAccRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmpAllInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
@@ -971,6 +973,7 @@
     <EmbeddedResource Include="R_22_Sal\RptBookingApplication.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerApplicationCube.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementANGAN.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptCustomerFinalSteatement.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDayWiseSalesFinlay.rdlc" />
@@ -1261,7 +1264,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptCreateOffLt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptEmpAss.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpAllInformationENG.rdlc" />
-    <None Include="R_81_Hrm\R_82_App\RptEmployeeSrcInfordlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmpInfSrc.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_82_App\RptFilterEmpInf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptEmployeeAllInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_82_App\RptHRCodeBookInfo.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptAttendanceSummary.rdlc" />
@@ -1495,7 +1499,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpIdCard.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelment - Copy.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelment.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptFinalSettlmntCP.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptGroupAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />
@@ -1507,7 +1511,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpOfferLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptPabxInfoList.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpListJoinDateWise.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelment.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelmentcopy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelmentBangla.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSpList.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInactiveEmplist.rdlc" />

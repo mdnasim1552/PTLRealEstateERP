@@ -206,6 +206,30 @@ namespace RealERPWEB.F_09_LCM
             }
             // this.LoadGRRNo();
         }
+
+
+        private string GetCallType()
+        {
+            string CallType = "";
+            string comcod = this.GetCompCode();
+            switch (comcod) 
+            {
+                case "1211":
+                     CallType = "RETRIVELCSTORE";
+                    break;
+
+                default:
+                     CallType = "RETRIVELCSTORE1";
+                    break;
+            
+            
+            }
+
+            return CallType;
+
+
+
+        }
         private void GetStore()
         {
             string lcno2 = this.ddlLcCode.SelectedValue.ToString();
@@ -213,7 +237,8 @@ namespace RealERPWEB.F_09_LCM
             string LcCode = ASTUtility.Left(this.ddlLcCode.SelectedValue.ToString(), 4);
             string LccodeType = (LcCode == "1401") ? "actcode like '15%'" : (LcCode == "1402") ? "actcode like '17%'" : (LcCode == "1403") ? "actcode like '11%'"
                 : "actcode like '1[157]%'";
-            DataSet ds5 = Purdata.GetTransInfo(comcod, "SP_LC_INFO", "RETRIVELCSTORE1", LccodeType, "", "", "", "", "", "", "", "");
+            string Calltype = this.GetCallType();
+            DataSet ds5 = Purdata.GetTransInfo(comcod, "SP_LC_INFO", Calltype, LccodeType, lcno2, "", "", "", "", "", "", "");
             this.ddlStorid.DataTextField = "actdesc1";
             this.ddlStorid.DataValueField = "actcode";
             this.ddlStorid.DataSource = ds5.Tables[0];

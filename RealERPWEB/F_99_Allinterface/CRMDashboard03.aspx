@@ -1173,7 +1173,7 @@
                                                         </asp:TemplateField>
 
                                                     </Columns>
-                                                    <PagerStyle CssClass="table-pagination" />
+                                                    <PagerStyle CssClass="" />
                                                 </asp:GridView>
                                             </div>
                                             <div class="row">

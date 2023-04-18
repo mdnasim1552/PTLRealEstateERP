@@ -2219,7 +2219,8 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "customer")).ToString().Trim();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid + "&Pactcode=" + pactcode;
+                string doneqty = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "fdoneqty")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid + "&Pactcode=" + pactcode+"&qty="+ doneqty;
 
             }
 
@@ -2731,9 +2732,13 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtnapproved");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnmapiping");
                 string invono = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "invno")).ToString().Trim();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
                 string invoicedate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "invoicedate")).ToString("dd-MMM-yyyy");
+                hlink1.Visible = pactcode == "" ? true : false;
                 hlink.NavigateUrl = "~/F_38_AI/AIInvoiceApproved.aspx?Type=Aproved&Invono=" + invono + "&Date=" + invoicedate;
+                hlink1.NavigateUrl = "~/F_34_Mgt/AccProjectCode.aspx";
 
             }
 

@@ -112,7 +112,7 @@ namespace RealERPWEB.F_12_Inv
 
             string resListMulti = "";
             string resourcelist = this.chkResourcelist.SelectedValue.ToString();
-
+            string codelvl = this.ddlCodeLayer.SelectedValue.ToString();
 
 
             if (resourcelist == "000000000000")
@@ -139,7 +139,7 @@ namespace RealERPWEB.F_12_Inv
             string group = this.group.SelectedValue.ToString();
 
 
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, resListMulti, group, "", "", "", "", "", "");
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, resListMulti, group, codelvl, "", "", "", "", "");
 
             Session["tblRptMatStc"] = ds1.Tables[0];
 
