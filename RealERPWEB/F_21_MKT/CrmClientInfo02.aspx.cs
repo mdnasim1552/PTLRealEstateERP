@@ -364,6 +364,19 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblproject"] = ds2.Tables[2];
             ViewState["tblcompany"] = ds2.Tables[3];
             ds2.Dispose();
+
+            DataView Dv1 = new DataView();
+            DataTable dt = new DataTable();
+
+            Dv1 = ds2.Tables[2].DefaultView;
+            Dv1.RowFilter = ("comcod='" + comcod + "'");
+            dt = Dv1.ToTable();
+            //   dt.Rows.Add("000000000000", "--All--", "");
+            DdlProjec.DataTextField = "pactdesc";
+            DdlProjec.DataValueField = "pactcode";
+            DdlProjec.DataSource = dt;
+            DdlProjec.DataBind();
+            DdlProjec.SelectedValue = "";
         }
 
 
@@ -4012,7 +4025,7 @@ namespace RealERPWEB.F_21_MKT
             string Pri = "%"; //(this.ddlPri.SelectedValue.ToString() == "0000000") ? "%" : this.ddlPri.SelectedValue.ToString() + "%";
             string Status = "%";// (this.ddlStatus.SelectedValue.ToString() == "0000000") ? "%" : this.ddlStatus.SelectedValue.ToString() + "%";
             string Other = "9";// this.ddlOther.SelectedValue.ToString();
-            string TxtVal = "%";// + this.txtVal.Text + "%";
+            string TxtVal = this.txtVal.Text + "%";
             string frmdate = this.GetFromToDate("From");
             string todate = this.GetFromToDate("To");
 
@@ -4428,44 +4441,44 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void ViewData_Click(object sender, EventArgs e)
         {
-            //LinkButton btn = (LinkButton)sender;
-            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            //int index = row.RowIndex;
-            //string comcod = GetComeCode();
-            //string code = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
-            //DataTable dt = (DataTable)Session["tblsummData"];
-            //if (dt.Rows.Count == 0)
-            //    return;
-            //DataView dv1 = dt.Copy().DefaultView;
-            //dv1.RowFilter = ("sircode='" + code + "'");
-            //this.lname.Text = dv1.ToTable().Rows[0]["sirdesc"].ToString();
-            //this.lphn.Text = dv1.ToTable().Rows[0]["phone"].ToString();
-            //this.ldesig.Text = dv1.ToTable().Rows[0]["desig"].ToString();
-            //this.lheader.Text = dv1.ToTable().Rows[0]["sircode1"].ToString();
-            //this.lLSrc.Text = dv1.ToTable().Rows[0]["LeadSrc"].ToString();
-            //this.lassdt.Text = dv1.ToTable().Rows[0]["appbydat"].ToString();
-            //this.lassto.Text = dv1.ToTable().Rows[0]["assoc"].ToString();
-            //this.lcreateby.Text = dv1.ToTable().Rows[0]["assoc"].ToString();
-            //this.lleadquality.Text = dv1.ToTable().Rows[0]["LeadType"].ToString();
-            //this.lsalfd.Text = "";///dv1.ToTable().Rows[0]["desig"].ToString();
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string comcod = GetComeCode();
+            string code = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
+            DataTable dt = (DataTable)Session["tblsummData"];
+            if (dt.Rows.Count == 0)
+                return;
+            DataView dv1 = dt.Copy().DefaultView;
+            dv1.RowFilter = ("sircode='" + code + "'");
+            this.lname.Text = dv1.ToTable().Rows[0]["sirdesc"].ToString();
+            this.lphn.Text = dv1.ToTable().Rows[0]["phone"].ToString();
+            this.ldesig.Text = dv1.ToTable().Rows[0]["desig"].ToString();
+            this.lheader.Text = dv1.ToTable().Rows[0]["sircode1"].ToString();
+            this.lLSrc.Text = dv1.ToTable().Rows[0]["LeadSrc"].ToString();
+            this.lassdt.Text = dv1.ToTable().Rows[0]["appbydat"].ToString();
+            this.lassto.Text = dv1.ToTable().Rows[0]["assoc"].ToString();
+            this.lcreateby.Text = dv1.ToTable().Rows[0]["assoc"].ToString();
+            this.lleadquality.Text = dv1.ToTable().Rows[0]["LeadType"].ToString();
+            this.lsalfd.Text = "";///dv1.ToTable().Rows[0]["desig"].ToString();
 
-            //this.lprjname.Text = "";
-            //this.ldesc.Text = "";
-            //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "openViewModal();", true);
+            this.lprjname.Text = "";
+            this.ldesc.Text = "";
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "openViewModal();", true);
 
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string events = hst["events"].ToString();
-            //if (Convert.ToBoolean(events) == true)
-            //{
-            //    string eventtype = "Data view (Sales CRM) ";
-            //    string eventdesc = "Data view (Sales CRM) ";
-            //    string eventdesc2 = "";
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Data view (Sales CRM) ";
+                string eventdesc = "Data view (Sales CRM) ";
+                string eventdesc2 = "";
 
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
 
-            //}
+            }
         }
         protected void lnkgvHeader_Click(object sender, EventArgs e)
         {
@@ -5295,7 +5308,7 @@ namespace RealERPWEB.F_21_MKT
                     Empid = hst["empid"].ToString();
                 }
 
-                string tdate = this.txttodate.Text.ToString();
+                string tdate = this.GetFromToDate("To");
                 string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
                 DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONDETAILS", "8301%", Empid, type, tdate, fempid);
                 if (ds1 == null)
@@ -5348,19 +5361,19 @@ namespace RealERPWEB.F_21_MKT
 
         protected void lnkOk_Click(object sender, EventArgs e)
         {
-          //  if (this.hdnlblattribute.Value.Trim() == "")
-          //  {
+            if (this.hdnlblattribute.Value.Trim() == "")
+            {
                 this.GetGridSummary();
                 this.GetNotificationinfo();
-          //  }
-            //else
-            //{
-            //    this.EmpMonthlyKPI();
+        }
+            else
+            {
+                this.EmpMonthlyKPI();
 
 
-            //}
+            }
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
+    Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
@@ -5633,101 +5646,98 @@ namespace RealERPWEB.F_21_MKT
         protected void lnkEditfollowup_Click(object sender, EventArgs e)
         {
 
-            //try
-            //{
+            try
+            {
+                string comcod = this.GetComeCode();
+                int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            //    string comcod = this.GetComeCode();
-            //    int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+                string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
+                string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
+                string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
+                string cdate = this.txttodate.Text.Trim();
+                DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
 
-            //    string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
-            //    string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
-            //    string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
-            //    string cdate = this.txttodate.Text.Trim();
-            //    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+                this.rpclientinfo.DataSource = ds1.Tables[0];
+                this.rpclientinfo.DataBind();
+                this.lblPID.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["pid"].ToString() : ds1.Tables[0].Rows[0]["pid"].ToString();
+                this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
+                this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
+                this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
+                this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
+                this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
+                this.lblpreferloc.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["preferloc"].ToString() : ds1.Tables[0].Rows[0]["preferloc"].ToString();
+                this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
+                this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                this.lbleditempid.Value = gempid;
+                this.lblgeneratedate.Value = ds1.Tables[1].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
+                this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
+                this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
+                this.lblProfession.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["profession"].ToString() : ds1.Tables[0].Rows[0]["profession"].ToString();
+                // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["sourcetxt"].ToString() : ds1.Tables[0].Rows[0]["sourcetxt"].ToString();
+                // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
+                //: (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
 
-            //    this.rpclientinfo.DataSource = ds1.Tables[0];
-            //    this.rpclientinfo.DataBind();
-            //    this.lblPID.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["pid"].ToString() : ds1.Tables[0].Rows[0]["pid"].ToString();
-            //    this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
-            //    this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
-            //    this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
-            //    this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
-            //    this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
-            //    this.lblpreferloc.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["preferloc"].ToString() : ds1.Tables[0].Rows[0]["preferloc"].ToString();
-            //    this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
-            //    this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
-            //    //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
-            //    this.lbleditempid.Value = gempid;
-            //    this.lblgeneratedate.Value = ds1.Tables[1].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
-            //    this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
-            //    this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
-            //    this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
-            //    this.lblProfession.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["profession"].ToString() : ds1.Tables[0].Rows[0]["profession"].ToString();
-            //    // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["sourcetxt"].ToString() : ds1.Tables[0].Rows[0]["sourcetxt"].ToString();
-            //    // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
-            //    //: (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
-
-            //    this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? "" : (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? ds1.Tables[0].Rows[0]["sourcetxt"].ToString()
-            //                                    : "IR" + "(" + (ds1.Tables[0].Rows[0]["irpersonname"].ToString()) + ")");
-
-
-            //    this.hdlpreleadst.Value = ds1.Tables[1].Rows[0]["prestcode"].ToString();
-            //    this.lbtnprestatus.Visible = this.hdlpreleadst.Value.Length > 0;
-            //    this.lblprelaststatus.InnerHtml = "Previous:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + ds1.Tables[1].Rows[0]["prestatus"].ToString() + "</span>";
-
-            //    ShowDiscussion();
-            //    this.SoldInfo();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? "" : (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? ds1.Tables[0].Rows[0]["sourcetxt"].ToString()
+                                                : "IR" + "(" + (ds1.Tables[0].Rows[0]["irpersonname"].ToString()) + ")");
 
 
-            //    Hashtable hst = (Hashtable)Session["tblLogin"];
-            //    string events = hst["events"].ToString();
+                this.hdlpreleadst.Value = ds1.Tables[1].Rows[0]["prestcode"].ToString();
+                this.lbtnprestatus.Visible = this.hdlpreleadst.Value.Length > 0;
+                this.lblprelaststatus.InnerHtml = "Previous:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + ds1.Tables[1].Rows[0]["prestatus"].ToString() + "</span>";
 
-            //    if (Convert.ToBoolean(events) == true)
-            //    {
-            //        string eventtype = "Click Follow UP (Sales CRM) ";
-            //        string eventdesc = "Click Follow UP (Sales CRM) ";
-            //        string eventdesc2 = follclintidno;
-
-            //        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                ShowDiscussion();
+                this.SoldInfo();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
 
-            //    }
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Click Follow UP (Sales CRM) ";
+                    string eventdesc = "Click Follow UP (Sales CRM) ";
+                    string eventdesc2 = follclintidno;
 
-            //}
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-            //catch (Exception ex)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                }
 
-            //}
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            }
 
         }
 
 
         private void ShowDiscussion()
         {
-            //string comcod = this.GetComeCode();
-            //DataTable tbl1 = (DataTable)ViewState["tbModalData"];
+            string comcod = this.GetComeCode();
+            DataTable tbl1 = (DataTable)ViewState["tbModalData"];
             //string YmonID = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("yyyyMM");
-            //string Empid = this.ddlEmpid.SelectedValue.ToString();
-            ////string grpcode = this.lblgrp.Text;
-            //string Client = this.lblproscod.Value.ToString();
-            //string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
-            //string wrkdpt = "000000000000";
-            //DateTime time = System.DateTime.Now;
-            //string qcdate = this.Request.QueryString["followupdate"] ?? "";
-            //string cdate = qcdate.Length == 0 ? this.txtfrmdate.Text + " " + time.ToString("HH:mm") : qcdate;
+            string Empid = this.ddlEmpid.SelectedValue.ToString();
+            //string grpcode = this.lblgrp.Text;
+            string Client = this.lblproscod.Value.ToString();
+            string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
+            string wrkdpt = "000000000000";
+            DateTime time = System.DateTime.Now;
+            string qcdate = this.Request.QueryString["followupdate"] ?? "";
+            string cdate = qcdate.Length == 0 ? this.txtfrmdate.Text + " " + time.ToString("HH:mm") : qcdate;
 
 
-            //DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
 
 
-            //// DataSet ds1 = KpiData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
-            //ViewState["tbModalData"] = HiddenSameData(ds1.Tables[0]);
-            //this.Modal_Data_Bind();
+            // DataSet ds1 = KpiData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+            ViewState["tbModalData"] = HiddenSameData(ds1.Tables[0]);
+            this.Modal_Data_Bind();
 
 
 
@@ -5736,92 +5746,92 @@ namespace RealERPWEB.F_21_MKT
         private void SoldInfo()
         {
 
-            //ViewState.Remove("tblsoldinfo");
-            //string comcod = this.GetComeCode();
-            ////string YmonID = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("yyyyMM");
-            ////string Empid = this.ddlEmpid.SelectedValue.ToString();
+            ViewState.Remove("tblsoldinfo");
+            string comcod = this.GetComeCode();
+            //string YmonID = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("yyyyMM");
+            //string Empid = this.ddlEmpid.SelectedValue.ToString();
 
-            //string proscode = this.lblproscod.Value.ToString();
-            ////string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
-            ////string wrkdpt = "000000000000";
-            ////DateTime time = System.DateTime.Now;
-            ////string qcdate = this.Request.QueryString["followupdate"] ?? "";
-            ////string cdate = qcdate.Length == 0 ? this.txtfrmdate.Text + " " + time.ToString("HH:mm") : qcdate;
+            string proscode = this.lblproscod.Value.ToString();
+            //string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
+            //string wrkdpt = "000000000000";
+            //DateTime time = System.DateTime.Now;
+            //string qcdate = this.Request.QueryString["followupdate"] ?? "";
+            //string cdate = qcdate.Length == 0 ? this.txtfrmdate.Text + " " + time.ToString("HH:mm") : qcdate;
 
 
-            //DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETSOLDINFO", proscode, "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETSOLDINFO", proscode, "", "", "", "", "");
 
-            //ViewState["tblsoldinfo"] = ds1.Tables[0];
-            //this.SoldData_Bind();
-            //ds1.Dispose();
+            ViewState["tblsoldinfo"] = ds1.Tables[0];
+            this.SoldData_Bind();
+            ds1.Dispose();
 
         }
         private void SoldData_Bind()
         {
 
-            //DataTable dt = (DataTable)ViewState["tblsoldinfo"];
-            //DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
-            //DataSet ds1 = ((DataSet)ViewState["tblproaunit"]).Copy();
-            //DataTable dtagg = ((DataTable)ViewState["tblsubddl"]).Copy();
-            //// this.hdnnoofsold.Value = dt.Rows.Count.ToString();
+            DataTable dt = (DataTable)ViewState["tblsoldinfo"];
+            DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
+            DataSet ds1 = ((DataSet)ViewState["tblproaunit"]).Copy();
+            DataTable dtagg = ((DataTable)ViewState["tblsubddl"]).Copy();
+            // this.hdnnoofsold.Value = dt.Rows.Count.ToString();
 
-            //this.rpsold.DataSource = dt;
-            //this.rpsold.DataBind();
-
-
-
-            //string comcod = this.GetComeCode();
-
-            //DropDownList ddlProject, ddlUnit, ddlaggst;
-            //DataView dv, dvagg;
-            //dv = dtprj.DefaultView;
-            //dv.RowFilter = ("comcod='" + comcod + "' and pactcode<>''");
-
-
-            //dvagg = dtagg.DefaultView;
-            //dvagg.RowFilter = ("gcod like '71%'");
-
-            //string pactcode = "";
+            this.rpsold.DataSource = dt;
+            this.rpsold.DataBind();
 
 
 
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
+            string comcod = this.GetComeCode();
 
-            //    ddlProject = ((DropDownList)this.rpsold.Items[i].FindControl("ddlsoldProject"));
-            //    ddlProject.DataTextField = "pactdesc";
-            //    ddlProject.DataValueField = "pactcode";
-            //    ddlProject.DataSource = dv.ToTable();// ds1.Tables[0];
-            //    ddlProject.DataBind();
-            //    pactcode = ddlProject.SelectedValue.ToString();
+            DropDownList ddlProject, ddlUnit, ddlaggst;
+            DataView dv, dvagg;
+            dv = dtprj.DefaultView;
+            dv.RowFilter = ("comcod='" + comcod + "' and pactcode<>''");
 
 
-            //    DataTable dt1 = ds1.Tables[1].Copy();
-            //    DataView dv2;
-            //    dv2 = dt1.DefaultView;
-            //    dv2.RowFilter = ("pactcode='" + pactcode + "'");
-            //    dt1 = dv2.ToTable();
+            dvagg = dtagg.DefaultView;
+            dvagg.RowFilter = ("gcod like '71%'");
 
-            //    ddlUnit = ((DropDownList)this.rpsold.Items[i].FindControl("ddlsoldunit"));
-            //    ddlUnit.DataTextField = "udesc";
-            //    ddlUnit.DataValueField = "usircode";
-            //    ddlUnit.DataSource = dt1;
-            //    ddlUnit.DataBind();
+            string pactcode = "";
 
 
 
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
 
-            //    ddlaggst = ((DropDownList)this.rpsold.Items[i].FindControl("ddlaggst"));
-            //    ddlaggst.DataTextField = "gdesc";
-            //    ddlaggst.DataValueField = "gcod";
-            //    ddlaggst.DataSource = dvagg.ToTable();
-            //    ddlaggst.DataBind();
+                ddlProject = ((DropDownList)this.rpsold.Items[i].FindControl("ddlsoldProject"));
+                ddlProject.DataTextField = "pactdesc";
+                ddlProject.DataValueField = "pactcode";
+                ddlProject.DataSource = dv.ToTable();// ds1.Tables[0];
+                ddlProject.DataBind();
+                pactcode = ddlProject.SelectedValue.ToString();
 
 
-            //    ((TextBox)this.rpsold.Items[i].FindControl("txtrpsolddate")).Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                DataTable dt1 = ds1.Tables[1].Copy();
+                DataView dv2;
+                dv2 = dt1.DefaultView;
+                dv2.RowFilter = ("pactcode='" + pactcode + "'");
+                dt1 = dv2.ToTable();
+
+                ddlUnit = ((DropDownList)this.rpsold.Items[i].FindControl("ddlsoldunit"));
+                ddlUnit.DataTextField = "udesc";
+                ddlUnit.DataValueField = "usircode";
+                ddlUnit.DataSource = dt1;
+                ddlUnit.DataBind();
 
 
-            //}
+
+
+                ddlaggst = ((DropDownList)this.rpsold.Items[i].FindControl("ddlaggst"));
+                ddlaggst.DataTextField = "gdesc";
+                ddlaggst.DataValueField = "gcod";
+                ddlaggst.DataSource = dvagg.ToTable();
+                ddlaggst.DataBind();
+
+
+                ((TextBox)this.rpsold.Items[i].FindControl("txtrpsolddate")).Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+            }
 
         }
 
@@ -5869,827 +5879,827 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-            ////try
+            //try
 
-            ////{
-
-            //DataTable dtg = ((DataTable)ViewState["tblsubddl"]).Copy();
-
-            //DataTable dt = (DataTable)ViewState["tbModalData"];
-            //this.gvInfo.DataSource = dt;
-            //this.gvInfo.DataBind();
-
-
-
-            //if ((DataSet)ViewState["tblproaunit"] == null)
             //{
 
-            //    this.GetProjectAUnit();
-            //}
-            //DataSet ds1 = (DataSet)ViewState["tblproaunit"];
-            ////GetIntlocation();
-            ////DataTable dt5 = (DataTable)ViewState["tbllocation"];
+            DataTable dtg = ((DataTable)ViewState["tblsubddl"]).Copy();
+
+            DataTable dt = (DataTable)ViewState["tbModalData"];
+            this.gvInfo.DataSource = dt;
+            this.gvInfo.DataBind();
 
 
-            ////    GetFollow();
-            //DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy();
+
+            if ((DataSet)ViewState["tblproaunit"] == null)
+            {
+
+                this.GetProjectAUnit();
+            }
+            DataSet ds1 = (DataSet)ViewState["tblproaunit"];
+            //GetIntlocation();
+            //DataTable dt5 = (DataTable)ViewState["tbllocation"];
+
+
+            //    GetFollow();
+            DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy();
+            DataView dv1;
+            dv1 = dt5.DefaultView;
+            dv1.RowFilter = ("gcod like '96%'");
+
+
+
+            DataTable dt6 = (DataTable)ViewState["tblparti"];
+
+            DataView dv;
+            DataView dvLeadStatus;
+            DataTable dtvs = ((DataTable)ViewState["tblFollow"]).Copy();
+            dv = dtvs.DefaultView;
+            dv.RowFilter = ("gcod like '95%'");
+            DataTable dts = dv.ToTable();
+
+
+
+
+
+
+
+
+
+            // Visitor
+            GetVisitoraStatinfo();
+            DataTable dtv = (DataTable)ViewState["tblvisiastator"];
+            DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
+
+
+
             //DataView dv1;
-            //dv1 = dt5.DefaultView;
-            //dv1.RowFilter = ("gcod like '96%'");
 
 
+            //DataView dv1;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
+            string pcomcod = "";
+            DropDownList ddlcomp, ddlgval, ddlUnit, ddlVisitor, ddlgval1, ddlgval2, ddlgval3;
+            ListBox ddlPartic, ddlProject;
+            DataRow dr1;
+            int j;
+            int k = 0;
+            string data = "";
+            int count;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
 
-            //DataTable dt6 = (DataTable)ViewState["tblparti"];
+                string Gcode = dt.Rows[i]["gcod"].ToString();
 
-            //DataView dv;
-            //DataView dvLeadStatus;
-            //DataTable dtvs = ((DataTable)ViewState["tblFollow"]).Copy();
-            //dv = dtvs.DefaultView;
-            //dv.RowFilter = ("gcod like '95%'");
-            //DataTable dts = dv.ToTable();
+                switch (Gcode)
+                {
 
 
 
 
+                    case "810100101001": //Meeting Date
 
 
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //// Visitor
-            //GetVisitoraStatinfo();
-            //DataTable dtv = (DataTable)ViewState["tblvisiastator"];
-            //DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
 
+                        DateTime datetime = System.DateTime.Now;
 
+                        string gTime = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
 
-            ////DataView dv1;
+                        ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
+                        ddlgval1.SelectedValue = (gTime.Length == 0) ? datetime.ToString("hh") : ASTUtility.Left(gTime, 2);
+                        ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
+                        ddlgval2.SelectedValue = (gTime.Length == 0) ? datetime.ToString("mm") : gTime.Substring(3, 2);
+                        ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
+                        ddlgval3.SelectedValue = (gTime.Length == 0) ? datetime.ToString("tt") : ASTUtility.Right(gTime, 2);
 
 
-            ////DataView dv1;
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = this.GetComeCode();
-            //string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
-            //string pcomcod = "";
-            //DropDownList ddlcomp, ddlgval, ddlUnit, ddlVisitor, ddlgval1, ddlgval2, ddlgval3;
-            //ListBox ddlPartic, ddlProject;
-            //DataRow dr1;
-            //int j;
-            //int k = 0;
-            //string data = "";
-            //int count;
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
+                        if (this.lblgeneratedate.Value.Length > 0)
+                        {
 
-            //    string Gcode = dt.Rows[i]["gcod"].ToString();
+                            AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
 
-            //    switch (Gcode)
-            //    {
+                            DataSet copSetup = compUtility.GetCompUtility();
+                            bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
+                            if (bakdatain == false)// its backdate data inserted true/flase if based on prospoect generated date
+                            {
+                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);
+                            }
+                            switch (comcod) // its backdate data inserted true/flase if based on cuurent date requirment by pulok assure dev by nahid
+                            {
+                                case "3101":
+                                case "3315":
+                                case "3316":
+                                    DateTime tomorrow = DateTime.Now.AddDays(-2);
 
+                                    CalendarExtendere21.StartDate = Convert.ToDateTime(tomorrow);
 
+                                    break;
+                            }
+                        }
 
 
-            //        case "810100101001": //Meeting Date
 
 
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        break;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
+                    case "810100101002": // Today's Followup
 
-            //            DateTime datetime = System.DateTime.Now;
 
-            //            string gTime = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
 
-            //            ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
-            //            ddlgval1.SelectedValue = (gTime.Length == 0) ? datetime.ToString("hh") : ASTUtility.Left(gTime, 2);
-            //            ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
-            //            ddlgval2.SelectedValue = (gTime.Length == 0) ? datetime.ToString("mm") : gTime.Substring(3, 2);
-            //            ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
-            //            ddlgval3.SelectedValue = (gTime.Length == 0) ? datetime.ToString("tt") : ASTUtility.Right(gTime, 2);
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
+                        // ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            if (this.lblgeneratedate.Value.Length > 0)
-            //            {
 
-            //                AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
 
-            //                DataSet copSetup = compUtility.GetCompUtility();
-            //                bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
-            //                if (bakdatain == false)// its backdate data inserted true/flase if based on prospoect generated date
-            //                {
-            //                    CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);
-            //                }
-            //                switch (comcod) // its backdate data inserted true/flase if based on cuurent date requirment by pulok assure dev by nahid
-            //                {
-            //                    case "3101":
-            //                    case "3315":
-            //                    case "3316":
-            //                        DateTime tomorrow = DateTime.Now.AddDays(-2);
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //                        CalendarExtendere21.StartDate = Convert.ToDateTime(tomorrow);
 
-            //                        break;
-            //                }
-            //            }
+                        //((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = true;                        
+                        //ChkBoxLstFollow = ((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
+                        //ChkBoxLstFollow.DataTextField = "gdesc";
+                        //ChkBoxLstFollow.DataValueField = "gcod";
+                        //ChkBoxLstFollow.DataSource = dt5;
+                        //ChkBoxLstFollow.DataBind();
+                        //ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
 
 
+                        CheckBoxList ChkBoxLstFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
+                        ChkBoxLstFollow.DataTextField = "gdesc";
+                        ChkBoxLstFollow.DataValueField = "gcod";
+                        ChkBoxLstFollow.DataSource = dv1.ToTable();
+                        ChkBoxLstFollow.DataBind();
+                        //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
-            //            break;
+                        break;
 
 
 
-            //        case "810100101002": // Today's Followup
 
+                    case "810100101019"://Next Followup
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                        // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false ;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = true;
 
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
 
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
-            //            // ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                        CheckBoxList ChkBoxLstnextFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstnextFollow"));
+                        ChkBoxLstnextFollow.DataTextField = "gdesc";
+                        ChkBoxLstnextFollow.DataValueField = "gcod";
+                        ChkBoxLstnextFollow.DataSource = dv1.ToTable();
+                        ChkBoxLstnextFollow.DataBind();
+                        //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                        break;
 
 
-            //            //((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = true;                        
-            //            //ChkBoxLstFollow = ((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
-            //            //ChkBoxLstFollow.DataTextField = "gdesc";
-            //            //ChkBoxLstFollow.DataValueField = "gcod";
-            //            //ChkBoxLstFollow.DataSource = dt5;
-            //            //ChkBoxLstFollow.DataBind();
-            //            //ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
 
+                    case "810100101007": //Company
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                        ddlcomp = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany"));
+                        ddlcomp.DataTextField = "comdesc";
+                        ddlcomp.DataValueField = "comcod";
+                        ddlcomp.DataSource = (DataTable)ViewState["tblcompany"];// ds1.Tables[0];
+                        ddlcomp.DataBind();
+                        //ddlcomp.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        ddlcomp.SelectedValue = this.GetComeCode();
+                        pcomcod = ddlcomp.SelectedValue.ToString();
+                        break;
 
-            //            CheckBoxList ChkBoxLstFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
-            //            ChkBoxLstFollow.DataTextField = "gdesc";
-            //            ChkBoxLstFollow.DataValueField = "gcod";
-            //            ChkBoxLstFollow.DataSource = dv1.ToTable();
-            //            ChkBoxLstFollow.DataBind();
-            //            //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
-            //            break;
 
 
+                    case "810100101003": //Pactcode
 
+                        pcomcod = pcomcod.Trim().Length == 0 ? this.GetComeCode() : pcomcod;
+                        dv = dtprj.DefaultView;
+                        dv.RowFilter = ("comcod='" + pcomcod + "'");
 
-            //        case "810100101019"://Next Followup
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
-            //            // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false ;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlnextFollow")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                        ddlgval = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject"));
+                        ddlgval.DataTextField = "pactdesc";
+                        ddlgval.DataValueField = "pactcode";
+                        ddlgval.DataSource = dv.ToTable();// ds1.Tables[0];
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());                     
 
 
+                        //for (j = 0; j < count / 12; j++)
+                        //{
+                        //    data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
+                        //    foreach (ListItem item in lstProject.Items)
+                        //    {
+                        //        if (item.Value == data)
+                        //        {
+                        //            item.Selected = true;
+                        //        }
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-            //            CheckBoxList ChkBoxLstnextFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstnextFollow"));
-            //            ChkBoxLstnextFollow.DataTextField = "gdesc";
-            //            ChkBoxLstnextFollow.DataValueField = "gcod";
-            //            ChkBoxLstnextFollow.DataSource = dv1.ToTable();
-            //            ChkBoxLstnextFollow.DataBind();
-            //            //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //    }
+                        //    k = k + 12;
+                        //}
 
-            //            break;
 
 
 
 
-            //        case "810100101007": //Company
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-            //            ddlcomp = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany"));
-            //            ddlcomp.DataTextField = "comdesc";
-            //            ddlcomp.DataValueField = "comcod";
-            //            ddlcomp.DataSource = (DataTable)ViewState["tblcompany"];// ds1.Tables[0];
-            //            ddlcomp.DataBind();
-            //            //ddlcomp.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            ddlcomp.SelectedValue = this.GetComeCode();
-            //            pcomcod = ddlcomp.SelectedValue.ToString();
-            //            break;
+                        break;
 
 
 
 
-            //        case "810100101003": //Pactcode
 
-            //            pcomcod = pcomcod.Trim().Length == 0 ? this.GetComeCode() : pcomcod;
-            //            dv = dtprj.DefaultView;
-            //            dv.RowFilter = ("comcod='" + pcomcod + "'");
 
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                    case "810100101004": //Unit
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-            //            ddlgval = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject"));
-            //            ddlgval.DataTextField = "pactdesc";
-            //            ddlgval.DataValueField = "pactcode";
-            //            ddlgval.DataSource = dv.ToTable();// ds1.Tables[0];
-            //            ddlgval.DataBind();
-            //            ddlgval.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            //count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());                     
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //            //for (j = 0; j < count / 12; j++)
-            //            //{
-            //            //    data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
-            //            //    foreach (ListItem item in lstProject.Items)
-            //            //    {
-            //            //        if (item.Value == data)
-            //            //        {
-            //            //            item.Selected = true;
-            //            //        }
+                        string pactcode = ((DropDownList)this.gvInfo.Rows[i - 1].FindControl("ddlProject")).Text.Trim();
 
-            //            //    }
-            //            //    k = k + 12;
-            //            //}
+                        DataTable dt1 = ds1.Tables[1].Copy();
+                        DataView dv2;
+                        dv2 = dt1.DefaultView;
+                        dv2.RowFilter = ("pactcode='000000000000' or pactcode='" + pactcode + "'");
+                        dt1 = dv2.ToTable();
 
+                        ddlUnit = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit"));
+                        ddlUnit.DataTextField = "udesc";
+                        ddlUnit.DataValueField = "usircode";
+                        ddlUnit.DataSource = dt1;//dv1.ToTable();
+                        ddlUnit.DataBind();
+                        //ddlUnit.SelectedValue = usircode;
+                        ddlUnit.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        break;
 
 
 
+                    case "810100101012": //Lead Reasion
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                        ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            break;
+                        //add nahid
+                        //DataView dvLostReasion;
+                        //DataTable dtrvs = ((DataTable)ViewState["tblFollow"]).Copy();
+                        dv = dtg.DefaultView;
+                        dv.RowFilter = ("gcod like '45%'");
 
+                        //dvLostReasion = dtrvs.DefaultView;
+                        //dvLostReasion.RowFilter = ("gcod like '45%'");
 
 
+                        //add nahid
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = true;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = true;
+                        DropDownList checkboxReson = ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson"));
+                        checkboxReson.DataTextField = "gdesc";
+                        checkboxReson.DataValueField = "gcod";
+                        checkboxReson.DataSource = dv.ToTable();
+                        checkboxReson.DataBind();
 
+                        ListItem li = new ListItem();
+                        li.Text = "None";
+                        li.Value = "";
+                        checkboxReson.Items.Add(li);
+                        checkboxReson.SelectedValue = "";
 
+                        //checkboxReson.SelectedItem = "--None--";
 
-            //        case "810100101004": //Unit
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                        //checkboxReson.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //            string pactcode = ((DropDownList)this.gvInfo.Rows[i - 1].FindControl("ddlProject")).Text.Trim();
 
-            //            DataTable dt1 = ds1.Tables[1].Copy();
-            //            DataView dv2;
-            //            dv2 = dt1.DefaultView;
-            //            dv2.RowFilter = ("pactcode='000000000000' or pactcode='" + pactcode + "'");
-            //            dt1 = dv2.ToTable();
 
-            //            ddlUnit = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit"));
-            //            ddlUnit.DataTextField = "udesc";
-            //            ddlUnit.DataValueField = "usircode";
-            //            ddlUnit.DataSource = dt1;//dv1.ToTable();
-            //            ddlUnit.DataBind();
-            //            //ddlUnit.SelectedValue = usircode;
-            //            ddlUnit.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            break;
+                        break;
 
 
+                    case "810100101014": //Lead Quality
 
-            //        case "810100101012": //Lead Reasion
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
-            //            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                        dv = dtg.DefaultView;
+                        dv.RowFilter = ("gcod like '42%'");
+                        DataTable dtlq = dv.ToTable();
 
-            //            //add nahid
-            //            //DataView dvLostReasion;
-            //            //DataTable dtrvs = ((DataTable)ViewState["tblFollow"]).Copy();
-            //            dv = dtg.DefaultView;
-            //            dv.RowFilter = ("gcod like '45%'");
 
-            //            //dvLostReasion = dtrvs.DefaultView;
-            //            //dvLostReasion.RowFilter = ("gcod like '45%'");
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit")).Visible = true;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                        ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
 
-            //            //add nahid
+                        dtlq.Rows.Add();
+                        ddlVisitor.DataTextField = "gdesc";
+                        ddlVisitor.DataValueField = "gcod";
+                        ddlVisitor.DataSource = dtlq;
+                        ddlVisitor.DataBind();
+                        ddlVisitor.Items.Insert(0, new ListItem("None", ""));
+                        ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        break;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = true;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = true;
-            //            DropDownList checkboxReson = ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson"));
-            //            checkboxReson.DataTextField = "gdesc";
-            //            checkboxReson.DataValueField = "gcod";
-            //            checkboxReson.DataSource = dv.ToTable();
-            //            checkboxReson.DataBind();
 
-            //            ListItem li = new ListItem();
-            //            li.Text = "None";
-            //            li.Value = "";
-            //            checkboxReson.Items.Add(li);
-            //            checkboxReson.SelectedValue = "";
 
-            //            //checkboxReson.SelectedItem = "--None--";
 
+                    case "810100101016": //Status
+                        string lstleadstatus = this.hiddenLedStatus.Value.ToString();
 
-            //            //checkboxReson.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            //
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                        ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = true;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
+                        CheckBoxList ChkBoxLstStatus = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus"));
+                        ChkBoxLstStatus.DataTextField = "gdesc";
+                        ChkBoxLstStatus.DataValueField = "gcod";
+                        ChkBoxLstStatus.DataSource = dts;
+                        ChkBoxLstStatus.DataBind();
+                        ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
 
+                        ////////////////
+                        //////// this below code disbale lead status apply for all company
+                        //////////  Nahid 20221222
+                        ///
+                        int index = 0;
+                        string holdLost = "";
+                        DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
+                        if (rows.Length > 0)
+                        {
+                            index = Convert.ToInt32(rows[0]["rowid"]);
+                            if ((rows[0]["gcod"].ToString() == "9501020") || (rows[0]["gcod"].ToString() == "9501028"))
+                            {
+                                holdLost = "hold_lost";//rows[0]["gcod"].ToString();
+                            }
+                        }
+                        switch (comcod)
+                        {
+                            case "3348"://CHL
+                                break;
+                            default:
+                                if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
+                                {
+                                    index = index - 1;
+                                    for (int p = 0; p < index; p++)
+                                    {
 
-            //            break;
 
 
-            //        case "810100101014": //Lead Quality
+                                        if (p < index)
+                                        {
+                                            ChkBoxLstStatus.Items[p].Enabled = false;
+                                        }
 
-            //            dv = dtg.DefaultView;
-            //            dv.RowFilter = ("gcod like '42%'");
-            //            DataTable dtlq = dv.ToTable();
 
+                                        //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
+                                        //{
+                                        //    ChkBoxLstStatus.Items[p].Enabled = false;
+                                        //}
+                                    }
+                                }
+                                break;
+                        }
 
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit")).Visible = true;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-            //            ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                        //Lost, Hold & Close Enabled
+                        switch (comcod)
+                        {
+                            case "3354"://Edison
+                            case "3101"://PTL
+                                //Clost Inactive only Query
+                                if (lstleadstatus == "9501002") //Query
+                                {
+                                    if (dts.Select("gcod='9501035'").Length > 0)//Close
+                                    {
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
 
 
-            //            dtlq.Rows.Add();
-            //            ddlVisitor.DataTextField = "gdesc";
-            //            ddlVisitor.DataValueField = "gcod";
-            //            ddlVisitor.DataSource = dtlq;
-            //            ddlVisitor.DataBind();
-            //            ddlVisitor.Items.Insert(0, new ListItem("None", ""));
-            //            ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            break;
+                                            if (statuscode == "9501035")
+                                            {
 
+                                                chkboxstatus.Enabled = false;
+                                                break;
 
+                                            }
 
 
-            //        case "810100101016": //Status
-            //            string lstleadstatus = this.hiddenLedStatus.Value.ToString();
+                                        }
+                                    }
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
-            //            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = true;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                                    if (dts.Select("gcod='9501020'").Length > 0)//Hold
+                                    {
 
-            //            CheckBoxList ChkBoxLstStatus = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus"));
-            //            ChkBoxLstStatus.DataTextField = "gdesc";
-            //            ChkBoxLstStatus.DataValueField = "gcod";
-            //            ChkBoxLstStatus.DataSource = dts;
-            //            ChkBoxLstStatus.DataBind();
-            //            ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
 
-            //            ////////////////
-            //            //////// this below code disbale lead status apply for all company
-            //            //////////  Nahid 20221222
-            //            ///
-            //            int index = 0;
-            //            string holdLost = "";
-            //            DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
-            //            if (rows.Length > 0)
-            //            {
-            //                index = Convert.ToInt32(rows[0]["rowid"]);
-            //                if ((rows[0]["gcod"].ToString() == "9501020") || (rows[0]["gcod"].ToString() == "9501028"))
-            //                {
-            //                    holdLost = "hold_lost";//rows[0]["gcod"].ToString();
-            //                }
-            //            }
-            //            switch (comcod)
-            //            {
-            //                case "3348"://CHL
-            //                    break;
-            //                default:
-            //                    if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
-            //                    {
-            //                        index = index - 1;
-            //                        for (int p = 0; p < index; p++)
-            //                        {
 
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
 
 
-            //                            if (p < index)
-            //                            {
-            //                                ChkBoxLstStatus.Items[p].Enabled = false;
-            //                            }
+                                            if (statuscode == "9501020")
+                                            {
 
+                                                chkboxstatus.Enabled = false;
+                                                break;
 
-            //                            //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
-            //                            //{
-            //                            //    ChkBoxLstStatus.Items[p].Enabled = false;
-            //                            //}
-            //                        }
-            //                    }
-            //                    break;
-            //            }
+                                            }
 
-            //            //Lost, Hold & Close Enabled
-            //            switch (comcod)
-            //            {
-            //                case "3354"://Edison
-            //                case "3101"://PTL
-            //                    //Clost Inactive only Query
-            //                    if (lstleadstatus == "9501002") //Query
-            //                    {
-            //                        if (dts.Select("gcod='9501035'").Length > 0)//Close
-            //                        {
-            //                            foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-            //                            {
-            //                                string statuscode = chkboxstatus.Value;
 
+                                        }
+                                    }
 
-            //                                if (statuscode == "9501035")
-            //                                {
 
-            //                                    chkboxstatus.Enabled = false;
-            //                                    break;
 
-            //                                }
+                                }
 
+                                else if (lstleadstatus.Length > 0)  //hold or Lost Activef Lead or Upword
+                                {
 
-            //                            }
-            //                        }
 
 
-            //                        if (dts.Select("gcod='9501020'").Length > 0)//Hold
-            //                        {
+                                    if (dts.Select("gcod='9501028'").Length > 0)//Lost
+                                    {
 
 
 
-            //                            foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-            //                            {
-            //                                string statuscode = chkboxstatus.Value;
+                                        foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
+                                        {
+                                            string statuscode = chkboxstatus.Value;
 
 
-            //                                if (statuscode == "9501020")
-            //                                {
+                                            if (statuscode == "9501028")
+                                            {
 
-            //                                    chkboxstatus.Enabled = false;
-            //                                    break;
+                                                chkboxstatus.Enabled = false;
+                                                break;
 
-            //                                }
+                                            }
 
 
-            //                            }
-            //                        }
+                                        }
+                                    }
 
 
 
-            //                    }
 
-            //                    else if (lstleadstatus.Length > 0)  //hold or Lost Activef Lead or Upword
-            //                    {
 
 
 
-            //                        if (dts.Select("gcod='9501028'").Length > 0)//Lost
-            //                        {
+                                }
 
+                                //Not Skipping                                   
 
+                                index = rows.Length == 0 ? 0 : (Convert.ToInt32(rows[0]["rowid"]) - 1);
+                                int chkstatus = 0;
 
-            //                            foreach (ListItem chkboxstatus in ChkBoxLstStatus.Items)
-            //                            {
-            //                                string statuscode = chkboxstatus.Value;
+                                for (int st = index + 1; st < ChkBoxLstStatus.Items.Count; st++)
+                                {
 
+                                    string statuscode = ChkBoxLstStatus.Items[st].Value;
+                                    if (statuscode == "9501020" || statuscode == "9501028" || statuscode == "9501035")
 
-            //                                if (statuscode == "9501028")
-            //                                {
+                                        continue;
+                                    else
+                                    {
+                                        if (chkstatus == 0)
+                                        {
+                                            ChkBoxLstStatus.Items[st].Enabled = true;
+                                            chkstatus++;
+                                        }
+                                        else
+                                            ChkBoxLstStatus.Items[st].Enabled = false;
 
-            //                                    chkboxstatus.Enabled = false;
-            //                                    break;
+                                    }
 
-            //                                }
 
 
-            //                            }
-            //                        }
 
 
 
+                                }
 
 
+                                break;
 
+                            default:
+                                break;
 
-            //                    }
 
-            //                    //Not Skipping                                   
 
-            //                    index = rows.Length == 0 ? 0 : (Convert.ToInt32(rows[0]["rowid"]) - 1);
-            //                    int chkstatus = 0;
+                        }
 
-            //                    for (int st = index + 1; st < ChkBoxLstStatus.Items.Count; st++)
-            //                    {
 
-            //                        string statuscode = ChkBoxLstStatus.Items[st].Value;
-            //                        if (statuscode == "9501020" || statuscode == "9501028" || statuscode == "9501035")
 
-            //                            continue;
-            //                        else
-            //                        {
-            //                            if (chkstatus == 0)
-            //                            {
-            //                                ChkBoxLstStatus.Items[st].Enabled = true;
-            //                                chkstatus++;
-            //                            }
-            //                            else
-            //                                ChkBoxLstStatus.Items[st].Enabled = false;
+                        break;
 
-            //                        }
 
+                    case "810100101017": //Visit
+                        dv = dtv.DefaultView;
+                        dv.RowFilter = ("gcod like '92%'");
 
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit")).Visible = true;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
 
+                        ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
+                        ddlVisitor.DataTextField = "gdesc";
+                        ddlVisitor.DataValueField = "gcod";
+                        ddlVisitor.DataSource = dv.ToTable();
+                        ddlVisitor.DataBind();
+                        ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        break;
 
-            //                    }
 
+                    case "810100101018": //PARTICIPANTS  
 
-            //                    break;
+                        // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = true;
+                        ((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).Visible = true;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
 
-            //                default:
-            //                    break;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            }
 
+                        ddlPartic = ((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic"));
+                        ddlPartic.DataTextField = "gdesc";
+                        ddlPartic.DataValueField = "gcod";
+                        ddlPartic.DataSource = dt6;
+                        ddlPartic.DataBind();
+                        if (((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim() != "")
+                        {
+                            ddlPartic.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        }
 
 
-            //            break;
+                        count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());
+                        if (count == 0)
+                        {
 
 
-            //        case "810100101017": //Visit
-            //            dv = dtv.DefaultView;
-            //            dv.RowFilter = ("gcod like '92%'");
+                            if (empid.Length == 13)
+                            {
 
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit")).Visible = true;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                                empid = empid.Replace("%", "");
+                                ddlPartic.SelectedValue = empid;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
+                            }
+                            //string empid1 = empid.Substring(0, 12);
+                            //int index = 0;
+                            //DataRow[] rows = dt6.Select("gcod='" + empid1 + "'");
 
-            //            ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
-            //            ddlVisitor.DataTextField = "gdesc";
-            //            ddlVisitor.DataValueField = "gcod";
-            //            ddlVisitor.DataSource = dv.ToTable();
-            //            ddlVisitor.DataBind();
-            //            ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            break;
+                            //if (rows.Length > 0)
+                            //{
+                            //    index = Convert.ToInt32(dt6.Rows.IndexOf(rows[0]));
+                            //}
+                            //ddlPartic.SelectedIndex = index;
+                        }
 
 
-            //        case "810100101018": //PARTICIPANTS  
 
-            //            // ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = true;
-            //            ((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).Visible = true;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                        for (j = 0; j < count / 12; j++)
+                        {
+                            data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
+                            foreach (ListItem item in ddlPartic.Items)
+                            {
+                                if (item.Value == data)
+                                {
+                                    item.Selected = true;
+                                }
 
+                            }
+                            k = k + 12;
+                        }
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                        break;
 
 
-            //            ddlPartic = ((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic"));
-            //            ddlPartic.DataTextField = "gdesc";
-            //            ddlPartic.DataValueField = "gcod";
-            //            ddlPartic.DataSource = dt6;
-            //            ddlPartic.DataBind();
-            //            if (((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim() != "")
-            //            {
-            //                ddlPartic.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-            //            }
 
 
-            //            count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());
-            //            if (count == 0)
-            //            {
 
 
-            //                if (empid.Length == 13)
-            //                {
 
-            //                    empid = empid.Replace("%", "");
-            //                    ddlPartic.SelectedValue = empid;
 
 
-            //                }
-            //                //string empid1 = empid.Substring(0, 12);
-            //                //int index = 0;
-            //                //DataRow[] rows = dt6.Select("gcod='" + empid1 + "'");
+                    case "810100101015": //Summary
+                    case "810100101025": //Discussion
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).TextMode = TextBoxMode.MultiLine;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Rows = 3;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //                //if (rows.Length > 0)
-            //                //{
-            //                //    index = Convert.ToInt32(dt6.Rows.IndexOf(rows[0]));
-            //                //}
-            //                //ddlPartic.SelectedIndex = index;
-            //            }
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
 
-            //            for (j = 0; j < count / 12; j++)
-            //            {
-            //                data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
-            //                foreach (ListItem item in ddlPartic.Items)
-            //                {
-            //                    if (item.Value == data)
-            //                    {
-            //                        item.Selected = true;
-            //                    }
+                        TextBox sd = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis"));
+                        sd.Style.Add("background", "#DFF0D8");
+                        sd.Style.Add("width", "100%");
 
-            //                }
-            //                k = k + 12;
-            //            }
 
+                        //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
+                        break;
 
-            //            break;
+                    case "810100101020": //Next Followup          
 
 
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        // ((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = true;
 
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
 
+                        string gTime20 = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
 
+                        ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
+                        ddlgval1.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Left(gTime20, 2);
+                        ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
+                        ddlgval2.SelectedValue = (gTime20.Length == 0) ? "" : gTime20.Substring(3, 2);
+                        ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
+                        ddlgval3.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Right(gTime20, 2);
 
-            //        case "810100101015": //Summary
-            //        case "810100101025": //Discussion
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).TextMode = TextBoxMode.MultiLine;
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Rows = 3;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
+                        //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
+                        break;
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                    default:
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        //((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-            //            TextBox sd = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis"));
-            //            sd.Style.Add("background", "#DFF0D8");
-            //            sd.Style.Add("width", "100%");
 
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
 
-            //            //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
-            //            break;
 
-            //        case "810100101020": //Next Followup          
+                        break;
 
 
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-            //            // ((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = true;
 
 
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
+                }
 
-
-            //            string gTime20 = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
-
-            //            ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
-            //            ddlgval1.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Left(gTime20, 2);
-            //            ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
-            //            ddlgval2.SelectedValue = (gTime20.Length == 0) ? "" : gTime20.Substring(3, 2);
-            //            ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
-            //            ddlgval3.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Right(gTime20, 2);
-
-
-            //            //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
-            //            break;
-
-            //        default:
-            //            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-            //            //((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
-
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlProject")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Items.Clear();
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlUnit")).Visible = false;
-            //            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
-
-
-            //            ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
-            //            ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-
-
-            //            break;
-
-
-
-
-
-            //    }
-
-            //}
+            }
 
         }
 
@@ -7322,21 +7332,21 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void lnkbtnKpi_Click(object sender, EventArgs e)
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
             //this.lbltodatekpi.Visible = true;
             //this.txtkpitodate.Visible = true;
-            //this.hdnlblattribute.Value = "Kpi";
-            //this.EmpMonthlyKPI();
+            this.hdnlblattribute.Value = "Kpi";
+            this.EmpMonthlyKPI();
 
-            //string events = hst["events"].ToString();
-            //if (Convert.ToBoolean(events) == true)
-            //{
-            //    string eventtype = "Show Key Performance Indicator (Sales CRM)";
-            //    string eventdesc = "Show Key Performance Indicator (Sales CRM)";
-            //    string eventdesc2 = "";
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Key Performance Indicator (Sales CRM)";
+                string eventdesc = "Show Key Performance Indicator (Sales CRM)";
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
 
 
         }
