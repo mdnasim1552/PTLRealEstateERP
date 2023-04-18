@@ -74,7 +74,7 @@
 
                         </div>
 
-                        <div class="col-md-1" style="margin-top: 22px;">
+                        <div class="col-md-1" style="margin-top: 18px;">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 

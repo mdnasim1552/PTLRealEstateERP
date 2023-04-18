@@ -1507,6 +1507,7 @@ namespace RealERPWEB.F_14_Pro
                         string rate = "";
                         string rate1 = "";
                         string rate2 = "";
+                        string prop = "";
                         string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
                         string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
 
@@ -1523,16 +1524,17 @@ namespace RealERPWEB.F_14_Pro
 
                             dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["qty"];
                             dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode = '" + mResCode2 + "' and flrcod='" + flrcod + "' "))[0]["bgdrat"];
-                            dr1["proposerate"] = 0;
+                           
                             if (this.chkbillcscopy.Checked == true)
                             {
                                 for (int j = 0; j < tbl02.Rows.Count; j++)
                                 {
-
+                                    
                                     string rsircode = tbl02.Rows[j]["rsircode"].ToString();
                                     string flrcode = tbl02.Rows[j]["flrcod"].ToString();
                                     if (rsircode == mResCode2 && flrcode == flrcod)
                                     {
+                                        prop = tbl02.Rows[j]["proposerate"].ToString();
                                         rate = tbl02.Rows[j]["resrate1"].ToString();
                                         rate1 = tbl02.Rows[j]["resrate2"].ToString();
                                         rate2 = tbl02.Rows[j]["resrate3"].ToString();
@@ -1541,7 +1543,7 @@ namespace RealERPWEB.F_14_Pro
 
                                 }
                             }
-
+                            dr1["proposerate"] = this.chkbillcscopy.Checked == true ? prop.Length > 0 ? prop : "0" : "0"; 
                             dr1["resrate1"] = this.chkbillcscopy.Checked == true ? rate.Length > 0 ? rate : "0" : "0";
                             dr1["resrate2"] = this.chkbillcscopy.Checked == true ? rate1.Length > 0 ? rate1 : "0" : "0";
                             dr1["resrate3"] = this.chkbillcscopy.Checked == true ? rate2.Length > 0 ? rate2 : "0" : "0";

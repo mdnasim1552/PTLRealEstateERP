@@ -75,6 +75,15 @@ namespace RealERPWEB.F_32_Mis
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
+            if (Request.QueryString["projcode"].ToString() == "")
+            {
+                this.ddlProjectName.Enabled = true;
+            }
+            else
+            {
+                this.ddlProjectName.SelectedValue = this.Request.QueryString["projcode"];
+                this.ddlProjectName.Enabled = false;
+            }
 
         }
 
