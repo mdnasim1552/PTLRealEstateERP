@@ -133,8 +133,8 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[6].HeaderText = "Date";
                     this.gvSummary.Columns[8].HeaderText = "Customer's Name";
                     this.gvSummary.Columns[5].Visible = true; // for pid show
-                    // this.gvSummary.Columns[8].Visible = false;                
-                    this.gvSummary.Columns[11].Visible = false;
+                                  
+                  //  this.gvSummary.Columns[11].Visible = false;//Associative
                     this.gvSummary.Columns[12].Visible = false;
                     this.gvSummary.Columns[13].Visible = false;
                     this.gvSummary.Columns[23].Visible = false;
