@@ -2275,7 +2275,7 @@
                                         Lead Status
                                       </span>
                                     </div>--%>
-                                                                                      <asp:DropDownList ID="ddlStatus" runat="server" CssClass="custom-select"></asp:DropDownList>
+                                   <asp:DropDownList ID="ddlStatus" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" runat="server" CssClass="custom-select" AutoPostBack="true"></asp:DropDownList>
                         
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
@@ -2301,10 +2301,7 @@
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                </asp:TemplateField>
-
-
-                                            
+                                                </asp:TemplateField>                                            
 
                                                 <asp:TemplateField HeaderText="Team Leader" Visible="false">
                                                     <ItemTemplate>

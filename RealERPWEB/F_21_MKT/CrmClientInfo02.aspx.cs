@@ -21,7 +21,7 @@ namespace RealERPWEB.F_21_MKT
     {
         ProcessAccess instcrm = new ProcessAccess();
         Common compUtility = new Common();
-
+        static string staticstatus = "0000000";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -4309,7 +4309,7 @@ namespace RealERPWEB.F_21_MKT
                 ddlStatus.DataValueField = "gcod";
                 ddlStatus.DataSource = dtSta;
                 ddlStatus.DataBind();
-                ddlStatus.SelectedValue = "0000000";
+                ddlStatus.SelectedValue = staticstatus;
             }
 
 
@@ -8448,7 +8448,43 @@ namespace RealERPWEB.F_21_MKT
             this.gvkpidet.DataBind();
         }
 
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = ((DataTable)Session["tblsummData"]).Copy();
+            DataView dv = dt.DefaultView;
 
+            DropDownList ddlstatus = (DropDownList)sender;
+           // string leadstatus = ddlstatus.SelectedValue;
+            staticstatus = ddlstatus.SelectedValue;
+
+            if (staticstatus != "0000000")
+            {
+               
+                dv.RowFilter = ("LeadScod='" + staticstatus + "'");
+            }
+            else
+            {
+                dv.RowFilter = ("LeadScod like '%'");
+
+            }
+
+            if (dv.ToTable().Rows.Count > 0) { 
+            this.gvSummary.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.gvSummary.DataSource = dv.ToTable();
+            this.gvSummary.DataBind();
+
+            if (dv.ToTable().Rows.Count > 0)
+            {
+                Session["Report1"] = gvSummary;
+                ((HyperLink)this.gvSummary.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+
+            }
+        }
     }
 
 
