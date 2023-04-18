@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_23_CR
+namespace RealERPWEB.F_34_Mgt
 {
 
 
-    public partial class CustChDishoner
+    public partial class PrintChequeStatus
     {
 
         /// <summary>
@@ -33,57 +33,66 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblchequeno control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblchequeno;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// ibtnFindChequeno control.
+        /// ibtnFindProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnFindChequeno;
+        protected global::System.Web.UI.WebControls.LinkButton ibtnFindProject;
 
         /// <summary>
-        /// txtsrchChequeno control.
+        /// txtSrcPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchChequeno;
+        protected global::System.Web.UI.WebControls.TextBox txtSrcPro;
 
         /// <summary>
-        /// ddlChequeNo control.
+        /// ddlChequeno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChequeNo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlChequeno;
 
         /// <summary>
-        /// lbtnSelectChequeNo control.
+        /// lbShow0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelectChequeNo;
+        protected global::System.Web.UI.WebControls.LinkButton lbShow0;
 
         /// <summary>
-        /// gvchdishoner control.
+        /// grvacc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvchdishoner;
+        protected global::System.Web.UI.WebControls.GridView grvacc;
+
+        /// <summary>
+        /// lblrecdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblrecdate;
     }
 }
