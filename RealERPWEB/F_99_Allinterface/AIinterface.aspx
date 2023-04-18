@@ -2453,7 +2453,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Invoice Print">
                                             <ItemTemplate>
-                                                <asp:HyperLink ID="lnkbtnmapiping" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode"))=="" ? true:false %>' Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-street-view fa-xl"></span></asp:HyperLink>
+                                                <asp:HyperLink ID="lnkbtnmapiping" runat="server"  Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-street-view fa-xl"></span></asp:HyperLink>
                                                 <asp:HyperLink ID="lnkbtnapproved" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span></asp:HyperLink>
                                                 <asp:LinkButton runat="server" ID="btninvoiceprint" OnClick="btninvoiceprint_Click"><i class="fa fa-print fa-xl"></i></asp:LinkButton>
 
