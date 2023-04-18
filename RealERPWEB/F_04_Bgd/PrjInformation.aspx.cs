@@ -150,7 +150,7 @@ namespace RealERPWEB.F_04_Bgd
 
             this.gvPrjInfo.DataSource = ds1.Tables[0];
             this.gvPrjInfo.DataBind();
-
+            Session["prjlog"] = ds1;
             ViewState["projectEntry"] = ds1.Tables[0];
             ViewState["tblimages"] = ds1.Tables[1];
             ListViewEmpAll.DataSource = ds1.Tables[1];
@@ -319,7 +319,15 @@ namespace RealERPWEB.F_04_Bgd
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string pactcode = this.ddlPrjName.SelectedValue.ToString();
-
+                string PostedByid = hst["usrid"].ToString();
+                string Posttrmid = hst["compname"].ToString();
+                string PostSession = hst["session"].ToString();
+                string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                DataSet dt1 = (DataSet)Session["prjlog"];
+                if (dt1 != null)
+                {
+                    bool result = this.XmlPrjInfo(pactcode, dt1);
+                }
 
                 // (((DataTable)Session["tblpro"]).Select("infcod='"+fpactcode+"'"))[0]["pactcode"];
 
@@ -355,7 +363,7 @@ namespace RealERPWEB.F_04_Bgd
                     }
 
                     Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "INSERTORUPDATEPRJINF", pactcode, Gcode, gtype, Gvalue, Gunit, fpactcode, "", "", "", "", "", "", "", "", "");
+                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "INSERTORUPDATEPRJINF", pactcode, Gcode, gtype, Gvalue, Gunit, fpactcode, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "", "");
                 }
 
 
@@ -385,6 +393,58 @@ namespace RealERPWEB.F_04_Bgd
             }
 
 
+        }
+
+
+        private bool XmlPrjInfo(string pactcode, DataSet dt1)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            DataSet ds1 = new DataSet("ds1");
+            DataTable dt2 = new DataTable();
+            dt2.Columns.Add("editbyid", typeof(string));
+            dt2.Columns.Add("editseson", typeof(string));
+            dt2.Columns.Add("edittrmnid", typeof(string));
+            dt2.Columns.Add("editdate", typeof(DateTime));
+
+            DataRow dr1 = dt2.NewRow();
+            dr1["editbyid"] = usrid;
+            dr1["editseson"] = session;
+            dr1["edittrmnid"] = trmnid;
+            dr1["editdate"] = Date;
+            dt2.Rows.Add(dr1);
+            dt2.TableName = "tbl1";
+
+
+
+            ds1.Merge(dt2);
+            ds1.Merge(dt1.Tables[0]);
+            ds1.Merge(dt1.Tables[1]);
+         
+
+            ds1.Tables[0].TableName = "tbl1";
+            ds1.Tables[1].TableName = "tbl2";
+            ds1.Tables[2].TableName = "tbl3";
+            
+
+
+            bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXML01", ds1, null, null, pactcode);
+
+            if (!resulta)
+            {
+
+                return false;
+            }
+
+
+            return true;
+
+           
         }
 
         protected void FileUploadComplete(object sender, AsyncFileUploadEventArgs e)
