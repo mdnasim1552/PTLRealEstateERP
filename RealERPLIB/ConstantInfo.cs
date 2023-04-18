@@ -1904,6 +1904,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502292", "F_01_LPA", "LandDevProposal?", "Type=Management", "Land Development Proposal", "Management", "False", "False", "False", "False" }); ;
            
             tblObj.Rows.Add(new Object[] { "3502000", "3502301", "F_34_Mgt", "DeletePDC", "", "Cancellation Post Dated Cheque", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3502000", "3502302", "F_34_Mgt", "PrintChequeStatus", "", "Print Cheque Status", "Management", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "3502000", "3502310", "F_02_Fea", "ProjFeasibilityLandDev?", "Type=Management", "Feasibility Land Development", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502320", "F_34_Mgt", "Tranlimitdate", "", "Transaction Limit Day", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502325", "F_34_Mgt", "UserTranlimitdate", "", "User Transaction Limit", "Management", "False", "False", "False", "False" }); ;
@@ -10276,6 +10278,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0309000011", "16. Post Dated Cheque Update", "F_17_Acc/AccPayUpdate?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000012", "17. Bank Reconcilation", "F_17_Acc/AccBankRecon?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000013", "18. Cancellation Post Dated Cheque", "F_17_Acc/DeletePDC", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000014", "18. Print Cheque Status", "F_34_Mgt/PrintChequeStatus", "", true, "" });            
             mnuTbl1.Rows.Add(new Object[] { "0309000014", "19. Intercom Voucher Delete", "F_17_Acc/AccInterComVoucherDel?Type=Mgt", "", true, "" });
 
 
