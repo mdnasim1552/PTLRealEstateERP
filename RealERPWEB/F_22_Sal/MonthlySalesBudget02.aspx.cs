@@ -40,13 +40,22 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Create an event handler for the master page's contentCallEvent event
+            // Create an event handler for the master page's contentCallEvent 
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbYearbgdTotal_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnYBgdUpdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(this.Request.UrlReferrer.ToString());
+        }
 
         private string GetCompCode()
         {
@@ -329,7 +338,6 @@ namespace RealERPWEB.F_22_Sal
             this.ddlteam.Enabled = true;
             this.gvySalbgd.DataSource = null;
             this.gvySalbgd.DataBind();
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
 
 
 
@@ -365,11 +373,10 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnYBgdUpdate_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('You have no permission');", true);
                 return;
             }
             try
@@ -388,7 +395,7 @@ namespace RealERPWEB.F_22_Sal
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = SalesData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Failed');", true);
                     return;
                 }
 
@@ -412,7 +419,7 @@ namespace RealERPWEB.F_22_Sal
 
                         if (result == false)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Failed');", true);
                             return;
                         }
 
@@ -451,7 +458,7 @@ namespace RealERPWEB.F_22_Sal
 
                             if (result == false)
                             {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Failed');", true);
                                 return;
                             }
 
@@ -463,8 +470,7 @@ namespace RealERPWEB.F_22_Sal
 
                     }
 
-
-                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
 
 
@@ -479,7 +485,7 @@ namespace RealERPWEB.F_22_Sal
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Errp:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Error');", true);
             }
 
         }
