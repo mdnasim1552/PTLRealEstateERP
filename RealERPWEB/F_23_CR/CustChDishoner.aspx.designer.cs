@@ -42,15 +42,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.Label lblchequeno;
 
         /// <summary>
-        /// txtsrchChequeno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchChequeno;
-
-        /// <summary>
         /// ibtnFindChequeno control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ibtnFindChequeno;
+
+        /// <summary>
+        /// txtsrchChequeno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchChequeno;
 
         /// <summary>
         /// ddlChequeNo control.
@@ -76,15 +76,6 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnSelectChequeNo;
-
-        /// <summary>
-        /// lmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lmsg;
 
         /// <summary>
         /// gvchdishoner control.
