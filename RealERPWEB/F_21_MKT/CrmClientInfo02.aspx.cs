@@ -4295,7 +4295,22 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void gvSummary_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                DataTable dt1 = (DataTable)ViewState["tblsubddl"];
+                DataView dv;
+                DropDownList ddlStatus = (DropDownList)e.Row.FindControl("ddlStatus");       
 
+                dv = dt1.Copy().DefaultView;
+                dv.RowFilter = ("gcod like '95%'");
+                DataTable dtSta = dv.ToTable();
+                dtSta.Rows.Add("0000000", "Status");
+                ddlStatus.DataTextField = "gdesc";
+                ddlStatus.DataValueField = "gcod";
+                ddlStatus.DataSource = dtSta;
+                ddlStatus.DataBind();
+                ddlStatus.SelectedValue = "0000000";
+            }
 
 
 

@@ -2254,7 +2254,7 @@
                                                 
                                                 <asp:TemplateField HeaderText="Lead Status">
                                                     <HeaderTemplate>
-                                                        <div class="d-flex align-items-center justify-content-center">
+                                                        <%--<div class="d-flex align-items-center justify-content-center">
                                       <div class="dropdown mmbd-dropdown-icon mr-2">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                           <i class="fa fa-filter"></i>
@@ -2266,12 +2266,17 @@
                                           <span class="dropdown-item">
                                             Lead
                                           </span>
+                                             <span class="dropdown-item">
+
+                                          </span>
                                         </div>
                                       </div>
                                       <span class="header-label">
                                         Lead Status
                                       </span>
-                                    </div>
+                                    </div>--%>
+                                                                                      <asp:DropDownList ID="ddlStatus" runat="server" CssClass="custom-select"></asp:DropDownList>
+                        
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="lprefdesc" CssClass="badge badge-light" runat="server" Width="70px"
