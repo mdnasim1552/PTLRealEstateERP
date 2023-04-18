@@ -7612,7 +7612,6 @@ namespace RealERPRDLC
         }
         private static LocalReport RptCustomerApplicationCube(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.RptCustomerApplicationCube>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptGroupAtt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

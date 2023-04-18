@@ -418,26 +418,5 @@ namespace RealEntity.C_22_Sal
 
             }
         }
-
-
-        [Serializable]
-        public class RptCustomerApplicationCube
-        {
-            public string custid { get; set; }
-
-
-            public string usize { get; set; }
-            public string unit { get; set; }
-            public string udesc { get; set; }
-            public string custnam { get; set; }
-            public string custname { get; set; }
-
-            public string custadd { get; set; }
-
-            public RptCustomerApplicationCube()
-            {
-
-            }
-        }
     }
 }

@@ -129,13 +129,13 @@
                                 <asp:TextBox ID="txtinpermonth" runat="server" TabIndex="3" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1" id="divientryben" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblentryben" CssClass="lblTxt lblName" runat="server" Text="Early Benefit:"></asp:Label>
                                 <asp:TextBox ID="txtentryben" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1" runat="server" id="divlbldelaychrg">
                             <div class="form-group">
                                 <asp:Label ID="lbldelaychrg" CssClass="lblTxt lblName" runat="server" Text="Delay Charge:"></asp:Label>
                                 <asp:TextBox ID="txtdelaychrg" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>

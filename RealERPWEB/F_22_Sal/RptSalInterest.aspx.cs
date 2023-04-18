@@ -89,6 +89,14 @@ namespace RealERPWEB.F_22_Sal
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
+                    this.divientryben.Visible = false;
+                    //this.lblentryben.Visible = false;
+                    //this.txtentryben.Visible = false;
+                    this.divlbldelaychrg.Visible = false;
+                    //this.lbldelaychrg.Visible = false;
+                    //this.txtdelaychrg.Visible = false;
+                    this.lbtnupdateb.Visible = false;
+
                     break;
                 case "CustNoteSheet":
                     this.divinterest.Visible = false;
@@ -1903,8 +1911,31 @@ namespace RealERPWEB.F_22_Sal
                 this.CustAppForm01();
             }
         }
+        private void GetCustomerDetails()
+        {
+
+            string comcod = this.GetCompCode();
+            string UsirCode = this.ddlCustName.SelectedValue.ToString();//ddlCustName
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            ViewState.Remove("tblimages");
+            ViewState.Remove("tblcustinf");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
+            ViewState["tblimages"] = ds1.Tables[9];
+            ViewState["tblcustinf"] = ds1.Tables[0];
+        }
         private void CustAppForm3()
         {
+            GetCustomerDetails();
+            DataTable dt = (DataTable)ViewState["tblcustinf"];
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+
+            DataTable dt1 = (DataTable)Session["tblprojwisCust"];//Session["tblflrwisbill"];
+            if (dt1 == null || dt1.Rows.Count == 0)
+                return;
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             //string comnam = hst["comnam"].ToString();
@@ -1918,25 +1949,20 @@ namespace RealERPWEB.F_22_Sal
             string customerImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
             string nomineeImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
 
-            DataTable dt1 = (DataTable)Session["tblprojwisCust"];//Session["tblflrwisbill"];
-           // if (dt1 == null || dt1.Rows.Count == 0)
-                //return;
-            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.RptCustomerApplicationCube>();
-            //var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustApp>();
+            
             LocalReport Rpt1 = new LocalReport();
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", lst, null, null);
-            //Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", lst, null, null);
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", null, null, null);
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", null, null, null);
             Rpt1.EnableExternalImages = true;
-
-            //string selectedProjectText = ddlprjlist.SelectedItem.Text;
-            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            //Rpt1.SetParameters(new ReportParameter("selectedProjectText", selectedProjectText));
-            //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("customerImage", customerImage));
             Rpt1.SetParameters(new ReportParameter("nomineeImage", nomineeImage));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                //string gcod = (string)row["gcod"];
+                Rpt1.SetParameters(new ReportParameter("A_"+ row["gcod"], (string)row["gdesc1"]));
+            }
 
 
             Session["Report1"] = Rpt1;
