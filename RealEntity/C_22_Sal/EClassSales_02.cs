@@ -1736,6 +1736,27 @@ namespace RealEntity.C_22_Sal
             }
 
         }
+        public class RptCustomerFinalSteatement
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public double usize { get; set; }
+            public double pqty { get; set; }
+            public double pricepersft { get; set; }
+            public double assosiationfee { get; set; }
+            public double delaycharge { get; set; }
+            public double additionalbillrefund { get; set; }
+            public double aptprice { get; set; }
+            public double carparking { get; set; }
+            public double utility { get; set; }
+            public double additionalbill { get; set; }
+            public RptCustomerFinalSteatement()
+            {
+
+            }
+
+        }
 
     }
 

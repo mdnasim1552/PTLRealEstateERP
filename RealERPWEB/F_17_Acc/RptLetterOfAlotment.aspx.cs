@@ -136,7 +136,14 @@ namespace RealERPWEB.F_17_Acc
                         this.CustomerSettlementANGAN();
                         break;
                     default:
-                        this.CustomerSettlementCPDL();
+                        if (this.ddlreptype.SelectedValue == "1")
+                        {
+                            this.CustomerSettlementCPDL();
+                        }
+                        else
+                        {
+                            this.CustomerFinalstatementCPDL();
+                        }
                         break;
                 }
 
@@ -433,6 +440,68 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
+        private void CustomerFinalstatementCPDL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy");
+            string prjname = this.ddlprjname.SelectedValue.ToString();
+            string ProjectName = this.ddlprjname.SelectedItem.ToString();
+            string custname = this.ddlcustomerName.SelectedValue.ToString();
+            if (custname != "")
+            {
+
+
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTHANDOVERFORM", prjname, custname, "", "", "", "", "", "", "");
+                DataTable dt = (DataTable)ds3.Tables[0];
+                DataTable dt1 = (DataTable)ds3.Tables[1];
+                string customername = dt1.Rows[0]["custname"].ToString();
+                string udesc = dt.Rows[0]["udesc"].ToString();
+                string bookingdate = Convert.ToDateTime(dt1.Rows[0]["bookingdate"]).ToString("dd-MMM-yyyy");
+
+                string delaycharge = Convert.ToDecimal(dt.Rows[0]["delaycharge"]).ToString("#,##0.00;(#,##0.00);");
+                string pqty = Convert.ToDecimal(dt.Rows[0]["pqty"]).ToString("#,##0.00;(#,##0.00);");
+                string usize = Convert.ToDecimal(dt.Rows[0]["usize"]).ToString("#,##0.00;(#,##0.00);");
+                string totalprice = Convert.ToDecimal(dt.Rows[0]["totalprice"]).ToString("#,##0.00;(#,##0.00);");
+                string total = Convert.ToDecimal(dt.Rows[0]["total"]).ToString("#,##0.00;(#,##0.00);");
+                string totalcostprop = Convert.ToDecimal(dt.Rows[0]["totalcostprop"]).ToString("#,##0.00;(#,##0.00);");
+                string totalcostprop1 = Convert.ToDecimal(dt.Rows[0]["totalcostprop1"]).ToString("#,##0.00;(#,##0.00);");
+
+                if (ds3 == null)
+                    return;
+                LocalReport Rpt1 = new LocalReport();
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustomerFinalSteatement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerFinalSteatement", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+
+
+               
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("total", total));
+                Rpt1.SetParameters(new ReportParameter("totalcostprop", totalcostprop));
+                Rpt1.SetParameters(new ReportParameter("totalcostprop1", totalcostprop1));
+                Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
+                Rpt1.SetParameters(new ReportParameter("customername", customername));
+                Rpt1.SetParameters(new ReportParameter("bookingdate", bookingdate));
+                Rpt1.SetParameters(new ReportParameter("pqty", pqty));
+                Rpt1.SetParameters(new ReportParameter("udesc", udesc));
+                Rpt1.SetParameters(new ReportParameter("delaycharge", delaycharge));
+                Rpt1.SetParameters(new ReportParameter("totalprice", totalprice));
+                Rpt1.SetParameters(new ReportParameter("usize", usize));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                //Rpt1.SetParameters(new ReportParameter("customername", customername));
+             
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+
+        }
         private void CustomerSettlementANGAN()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -547,7 +616,7 @@ namespace RealERPWEB.F_17_Acc
                 string type = this.Request.QueryString["Type"].ToString();
 
 
-
+               
 
                 if (type == "CustomerSettlement")
                 {

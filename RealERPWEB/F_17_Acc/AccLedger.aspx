@@ -97,6 +97,40 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-1 pading5px asitCol3">
+                                        <asp:Label ID="lblPage" runat="server" Text="Size:" CssClass="lblName lblTxt"></asp:Label>
+
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="ddlPage"
+                                            TabIndex="4">
+                                            <asp:ListItem Value="10" Selected="True">10</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="150">150</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="400">400</asp:ListItem>
+                                            <asp:ListItem Value="600">600</asp:ListItem>
+                                            <asp:ListItem Value="700">700</asp:ListItem>
+                                            <asp:ListItem Value="900">900</asp:ListItem>
+                                            <asp:ListItem Value="1200">1200</asp:ListItem>
+                                            <asp:ListItem Value="1500">1500</asp:ListItem>
+                                            <asp:ListItem Value="1800">1800</asp:ListItem>
+                                            <asp:ListItem Value="2100">2100</asp:ListItem>
+                                            <asp:ListItem Value="2400">2400</asp:ListItem>
+                                            <asp:ListItem Value="2800">2800</asp:ListItem>
+                                            <asp:ListItem Value="3000">3000</asp:ListItem>
+                                            <asp:ListItem Value="3500">3500</asp:ListItem>
+                                            <asp:ListItem Value="4000">4000</asp:ListItem>  
+                                            <asp:ListItem Value="6000">6000</asp:ListItem>                                           
+                                            
+
+                                        </asp:DropDownList>
+
+                                    </div>
+
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group">
@@ -157,7 +191,7 @@
                     </div>
                     <div class="table-responsive row">
                         <asp:GridView ID="dgv2" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            OnRowDataBound="dgv2_RowDataBound">
+                            OnRowDataBound="dgv2_RowDataBound" OnPageIndexChanging="dgv2_PageIndexChanging" AllowPaging="true">
                             <Columns>
 
                                 <asp:TemplateField HeaderText="Sl.No.">
