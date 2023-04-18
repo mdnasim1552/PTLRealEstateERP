@@ -1412,7 +1412,7 @@ namespace RealERPWEB.F_09_PImp
                 string Edittrmid = (this.Request.QueryString["type"] == "BillEntry") ? tblEditedtrmid : (this.Request.QueryString["type"] == "BillEdit") ? Terminal : tblEditedtrmid;
                 string EditSession = (this.Request.QueryString["type"] == "BillEntry") ? tblEditedSession : (this.Request.QueryString["type"] == "BillEdit") ? Sessionid : tblEditedSession;
                 string Editdat = (this.Request.QueryString["type"] == "BillEntry") ? tblEditeddat : (this.Request.QueryString["type"] == "BillEdit") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblEditeddat;
-
+                string confirmdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 // BillEdit
 
 
@@ -1501,6 +1501,12 @@ namespace RealERPWEB.F_09_PImp
                 result = PurData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
                       Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid,advpay, Approval, "","","","","","","","", "");
 
+                //if (result==true && this.Request.QueryString["Type"] == "BillEntry" && comcod=="3101")
+                //{
+                //    PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "CONFIRMEDBILFINAL", billno, userid, Sessionid, Terminal,
+                //     confirmdat, "", "", "", "", "", "", "", "", "", "");
+                //}
+
                 if (type == "BillServiceEntry")
                 {
                     result = PurData.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEPURCBILLB", billno);
@@ -1588,6 +1594,10 @@ namespace RealERPWEB.F_09_PImp
 
                 if (this.Request.QueryString["Type"] == "BillEntry")
                 {
+                    string usrid = hst["usrid"].ToString();
+                    string sessionid = hst["session"].ToString();
+                    string trmid = hst["compname"].ToString();
+                    string confirmdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
                     //Finalization Approved
 
@@ -1617,20 +1627,22 @@ namespace RealERPWEB.F_09_PImp
                         case "3368"://Finlay
                         case "3367"://epic
                         case "3366": //Lanco
-                        case "3101": //ptl
+                       
                         case "3374": //Angan
+                        case "3101": //ptl
 
-                            
                             break;
+          
+
 
                         default:
 
                             //  Hashtable hst = (Hashtable)Session["tblLogin"];
 
-                            string usrid = hst["usrid"].ToString();
-                            string sessionid = hst["session"].ToString();
-                            string trmid = hst["compname"].ToString();
-                            string confirmdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                            //string usrid = hst["usrid"].ToString();
+                            //string sessionid = hst["session"].ToString();
+                            //string trmid = hst["compname"].ToString();
+                            //string confirmdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                             result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "CONFIRMEDBILFINAL", billno, usrid, sessionid, trmid,
                                   confirmdate, "", "", "", "", "", "", "", "", "", "");
 
