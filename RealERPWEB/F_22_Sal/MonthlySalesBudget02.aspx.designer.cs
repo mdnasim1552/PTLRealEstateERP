@@ -51,24 +51,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlyear;
 
         /// <summary>
-        /// lbtnYearbgd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnYearbgd;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
         /// lblddlteam control.
         /// </summary>
         /// <remarks>
@@ -76,15 +58,6 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblddlteam;
-
-        /// <summary>
-        /// txtteamSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtteamSearch;
 
         /// <summary>
         /// ImgbtnFindteam control.
@@ -96,6 +69,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindteam;
 
         /// <summary>
+        /// txtteamSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtteamSearch;
+
+        /// <summary>
         /// ddlteam control.
         /// </summary>
         /// <remarks>
@@ -103,6 +85,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlteam;
+
+        /// <summary>
+        /// lbtnYearbgd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnYearbgd;
 
         /// <summary>
         /// gvySalbgd control.
