@@ -258,6 +258,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtinpermonth;
 
         /// <summary>
+        /// divientryben control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divientryben;
+
+        /// <summary>
         /// lblentryben control.
         /// </summary>
         /// <remarks>
@@ -274,6 +283,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtentryben;
+
+        /// <summary>
+        /// divlbldelaychrg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divlbldelaychrg;
 
         /// <summary>
         /// lbldelaychrg control.
