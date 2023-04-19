@@ -2440,6 +2440,7 @@
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
+    <Content Include="F_21_MKT\AddLead.aspx" />
     <Content Include="F_21_MKT\CrmClientInfo02.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
@@ -4622,6 +4623,13 @@
     </Compile>
     <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
       <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\AddLead.aspx.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\AddLead.aspx.designer.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\CrmClientInfo02.aspx.cs">
       <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
