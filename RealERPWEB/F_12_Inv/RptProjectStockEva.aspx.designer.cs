@@ -204,6 +204,24 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
+        /// LalSubCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LalSubCode;
+
+        /// <summary>
+        /// ddlCodeLayer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCodeLayer;
+
+        /// <summary>
         /// gvStocjEvaluation control.
         /// </summary>
         /// <remarks>

@@ -72,7 +72,7 @@
                                
                     <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         AutoGenerateColumns="False" Font-Size="12px"
-                        OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+                        OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing" OnRowDataBound="grvacc_RowDataBound"
                         OnRowUpdating="grvacc_RowUpdating" PageSize="200" Width="400px"
                         ShowFooter="True"
                         >
@@ -216,7 +216,7 @@
 
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkStatus" runat="server" Width="60px" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
+                                    <asp:CheckBox ID="chkStatus" OnCheckedChanged="chkStatus_CheckedChanged" runat="server" Width="60px" AutoPostBack="true" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "status"))=="True" %>' />
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />

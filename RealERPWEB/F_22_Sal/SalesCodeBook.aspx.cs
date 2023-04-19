@@ -146,8 +146,6 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
-
             string comcod = this.GetCompCode();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
             string gcode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim();
@@ -342,6 +340,7 @@ namespace RealERPWEB.F_22_Sal
                 string slno = ((TextBox)grvacc.Rows[i].FindControl("lblslno")).Text.ToString();
                 string gcod = ((Label)grvacc.Rows[i].FindControl("lbgrcod1")).Text.ToString();
                 CheckBox chk = ((CheckBox)grvacc.Rows[i].FindControl("chkStatus"));
+                //chk.Visible = false;
                 string checkstatus = (chk.Checked == true) ? "True" : "False";
                 //dt1.Rows[i]["slno"] = slno;
                 //dt1.Rows[i]["status"] = checkstatus;
@@ -432,6 +431,47 @@ namespace RealERPWEB.F_22_Sal
             grvacc_DataBind();
         }
 
+        protected void chkStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkStatus = (CheckBox)sender;
+            bool isChecked = chkStatus.Checked;
+
+            GridViewRow row = (GridViewRow)chkStatus.NamingContainer;
+            int rowIndex = row.RowIndex;
+
+            string comcod = this.GetCompCode();
+            string gcod = ((Label)grvacc.Rows[rowIndex].FindControl("lbgrcod1")).Text.Trim();
+            string slno = ((TextBox)grvacc.Rows[rowIndex].FindControl("lblslno")).Text.ToString();
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPSALINFSTATUS", gcod,
+                       slno, isChecked.ToString(), "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = da.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+
+        }
+
+        protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (grvacc.EditIndex == e.Row.RowIndex)
+                {
+                    CheckBox chkStatus = (CheckBox)e.Row.FindControl("chkStatus");
+                    chkStatus.Enabled = false;
+                }
+                else
+                {
+                    CheckBox chkStatus = (CheckBox)e.Row.FindControl("chkStatus");
+                    chkStatus.Enabled = true;
+                }
+            }
+        }
+
         //protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    DataTable dt = (DataTable)Session["storedata"];
@@ -446,7 +486,7 @@ namespace RealERPWEB.F_22_Sal
         //            link.Visible = true;
         //        }
         //    }
-            
+
         //}
     }
 }
