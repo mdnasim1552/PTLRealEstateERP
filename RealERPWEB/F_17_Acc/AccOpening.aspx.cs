@@ -365,6 +365,8 @@ namespace RealERPWEB.F_17_Acc
 
 
             DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETOPENINGRES", filter2, acccode01, SearchInfo, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             Session["AccTbl02"] = this.HiddenSameData(ds2.Tables[0]);
             this.dgv3_DataBind();
             this.dgv2.Visible = false;
@@ -759,7 +761,7 @@ namespace RealERPWEB.F_17_Acc
             DataTable tblt03 = (DataTable)Session["AccTbl02"];
             this.dgv3.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.dgv3.DataSource = tblt03;
-            this.dgv3.DataBind();
+            this.dgv3.DataBind(); 
             if (tblt03.Rows.Count == 0)
                 return;
             Session["Report1"] = dgv3;

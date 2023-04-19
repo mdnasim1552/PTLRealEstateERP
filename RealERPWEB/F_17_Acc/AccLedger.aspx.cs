@@ -589,12 +589,45 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.dgv2.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            //this.dgv2.DataBind();
+            this.Data_BindLedger();
+
+            
+        }
 
 
+        private void Data_BindLedger()
+        {
+            DataTable dt = (DataTable)Session["StoreTable"];
+
+            if (dt.Rows.Count > 0)
+            {
+                this.dgv2.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.dgv2.DataSource = dt;
+                this.dgv2.DataBind();
+
+            }
+            else
+            {
+                this.dgv2.DataSource = null;
+                this.dgv2.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                return;
+            }
+        }
 
 
+        protected void dgv2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.dgv2.PageIndex = e.NewPageIndex;
+                   //this.dgv2.DataBind();
+                    this.Data_BindLedger();
 
-
+           
+        }
 
 
         private void PrintLedger()
@@ -796,6 +829,6 @@ namespace RealERPWEB.F_17_Acc
             //                      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-
+        
     }
 }

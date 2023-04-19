@@ -945,6 +945,15 @@
 
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Cheque Dishonoured Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbldisdat" runat="server"
+                                                            
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedis")) %>'
+                                                            Width="70px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
                                                  <asp:TemplateField HeaderText="Entry Date">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblentrydat" runat="server"

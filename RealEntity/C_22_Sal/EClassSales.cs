@@ -418,6 +418,5 @@ namespace RealEntity.C_22_Sal
 
             }
         }
-
     }
 }
