@@ -124,9 +124,11 @@
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+Workorder03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+ConRaBill.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+ContractorBillWorkWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+EClassConBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+EClassMRbook.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptPrjFloorWiseBill.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+SubConAllBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EClassMaterial+IndentStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EClassMaterial+IndentStatusSummary.datasource" />
@@ -340,6 +342,7 @@
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss - Copy.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillANGAN.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptConBillWorkWiseInnsCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptPrjFloorWiseBill.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdCostDet.rdlc" />
