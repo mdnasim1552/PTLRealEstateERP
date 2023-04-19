@@ -2074,9 +2074,9 @@
                             </div>
                             <div class="col-md-4 align-self-end">
                                 <div class="d-flex justify-content-end">
-                                    <button class="mmbd-btn mmbd-btn-primary mr-2" id="btnaddland" runat="server">
+                                    <asp:HyperLink NavigateUrl="~/F_21_MKT/AddLead.aspx?Type=Entry&sircode=" Target="_blank" class="mmbd-btn mmbd-btn-primary mr-2" ID="HypAddLead" runat="server">
                                         <strong><i class="fas fa-user-plus"></i>&nbsp;Add Lead</strong>
-                                    </button>
+                                    </asp:HyperLink>
                                     <button class="mmbd-btn mmbd-btn-primary" id="btnDashboard">
                                         <img
                                             src="../assets/new-ui/images/equalizer.svg"
