@@ -581,8 +581,5 @@ namespace RealERPRDLC
              
             return Rpt1a;
         }
-       
-     
-      
     }
 }

@@ -89,6 +89,14 @@ namespace RealERPWEB.F_22_Sal
                     this.lbltoDate.Visible = false;
                     this.txttoDate.Visible = false;
                     this.lbtnOk.Visible = false;
+                    this.divientryben.Visible = false;
+                    //this.lblentryben.Visible = false;
+                    //this.txtentryben.Visible = false;
+                    this.divlbldelaychrg.Visible = false;
+                    //this.lbldelaychrg.Visible = false;
+                    //this.txtdelaychrg.Visible = false;
+                    this.lbtnupdateb.Visible = false;
+
                     break;
                 case "CustNoteSheet":
                     this.divinterest.Visible = false;
@@ -189,6 +197,7 @@ namespace RealERPWEB.F_22_Sal
             string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
             string islandowner = this.Request.QueryString["Type"] == "LO" ? "1" : "0";
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
+            Session["tblprojwisCust"] = ds2.Tables[0];
             this.ddlCustName.DataTextField = "custnam";
             this.ddlCustName.DataValueField = "custid";
             this.ddlCustName.DataSource = ds2.Tables[0];
@@ -1863,11 +1872,15 @@ namespace RealERPWEB.F_22_Sal
             string formType = "";
             switch (comcod)
             {
+                case "3101":
+                case "3357":
+                    formType = "formType03";
+                    break;
                 case "3336":
                 case "3637":
                 case "3305":
-                case "3101":
-                    formType = "formType02";
+                //case "3101":
+                  formType = "formType02";
                     break;
 
                 default:
@@ -1886,11 +1899,75 @@ namespace RealERPWEB.F_22_Sal
 
 
             if (formtype == "formType02")
+            {
                 this.CustAppForm02();
-
+            }  
+            else if(formtype== "formType03")
+            {
+                this.CustAppForm3();
+            }
             else
+            {
                 this.CustAppForm01();
+            }
+        }
+        private void GetCustomerDetails()
+        {
 
+            string comcod = this.GetCompCode();
+            string UsirCode = this.ddlCustName.SelectedValue.ToString();//ddlCustName
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            ViewState.Remove("tblimages");
+            ViewState.Remove("tblcustinf");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
+            ViewState["tblimages"] = ds1.Tables[9];
+            ViewState["tblcustinf"] = ds1.Tables[0];
+        }
+        private void CustAppForm3()
+        {
+            GetCustomerDetails();
+            DataTable dt = (DataTable)ViewState["tblcustinf"];
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+
+            DataTable dt1 = (DataTable)Session["tblprojwisCust"];//Session["tblflrwisbill"];
+            if (dt1 == null || dt1.Rows.Count == 0)
+                return;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string customerImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
+            string nomineeImage = new Uri(Server.MapPath(@"~\Image\cube_userImage.png")).AbsoluteUri;
+
+            
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustomerApplicationCube", null, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("customerImage", customerImage));
+            Rpt1.SetParameters(new ReportParameter("nomineeImage", nomineeImage));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                //string gcod = (string)row["gcod"];
+                Rpt1.SetParameters(new ReportParameter("A_"+ row["gcod"], (string)row["gdesc1"]));
+            }
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void CustAppForm01()

@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Project Reference\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -228,6 +229,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PaymentStatusRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+PrjWiseCollectiontilldate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+RptCustomerApplicationCube.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInterest.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory1.datasource" />
@@ -968,6 +970,7 @@
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptBookingApplication.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerApplicationCube.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerSettlementANGAN.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerFinalSteatement.rdlc" />
