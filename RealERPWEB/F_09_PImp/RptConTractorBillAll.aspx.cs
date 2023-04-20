@@ -150,7 +150,7 @@ namespace RealERPWEB.F_09_PImp
             switch (index)
             {
                 case 0:
-                    this.ShowConBillDetails(); 
+                    this.ShowConBillDetails();
                     break;
 
                 case 1:
@@ -192,7 +192,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtsub.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["sub"].ToString();
             this.txtmemo.Text = ds1.Tables[2].Rows.Count == 0 ? "" : ds1.Tables[2].Rows[0]["memono"].ToString();
 
-            
+
 
 
             // Session["tblconbill"] =ds1.Tables[0];
@@ -213,7 +213,7 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-             
+
 
             string rsircode = dt1.Rows[0]["rsircode"].ToString();
             string flrcod = dt1.Rows[0]["flrcod"].ToString();
@@ -221,7 +221,7 @@ namespace RealERPWEB.F_09_PImp
 
             if (chkfloor.Checked)
             {
-                for(int j = 1; j < dt1.Rows.Count; j++)
+                for (int j = 1; j < dt1.Rows.Count; j++)
                 {
                     if (dt1.Rows[j]["flrcod"].ToString() == flrcod)
                     {
@@ -252,7 +252,7 @@ namespace RealERPWEB.F_09_PImp
                 }
 
             }
-           
+
             return dt1;
 
         }
@@ -292,7 +292,7 @@ namespace RealERPWEB.F_09_PImp
         {
             DataTable dt = (DataTable)Session["tblconbill"];
             DataTable dt1 = (DataTable)Session["lastra"];
-            this.lbllastra.Text = dt1.Rows.Count >0 ? dt1.Rows[0]["ranno"].ToString() :"no" ;
+            this.lbllastra.Text = dt1.Rows.Count > 0 ? dt1.Rows[0]["ranno"].ToString() : "no";
             int index = this.rbtnconbill.SelectedIndex;
             switch (index)
             {
@@ -661,8 +661,12 @@ namespace RealERPWEB.F_09_PImp
 
                 ReportDocument rptstk = new ReportDocument();
                 LocalReport Rpt1 = new LocalReport();
+
+
                 var lst = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.ContractorBillWorkWise>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillWorkWiseInns", lst, null, null);
+
+
                 Rpt1.SetParameters(new ReportParameter("txtProjectName", this.ddlProjectName.SelectedItem.Text.Trim().Substring(17)));
                 Rpt1.SetParameters(new ReportParameter("txtSubcon", this.ddlSubName.SelectedItem.Text.Trim().Substring(13)));
                 Rpt1.SetParameters(new ReportParameter("txtDate", this.txtDate.Text));
