@@ -6,10 +6,18 @@
             height: 2rem;
             font-size: .875rem;
         }
+        .mt20{
+            margin-top:20px;
+        }
+        .chzn-container-single .chzn-single {
+            height: 29px !important;
+            line-height: 29px !important;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
 
@@ -48,30 +56,32 @@
                     <div class="card card-fluid">
                         <div class="card-body pl-0">
                             <div class="row mb-2">
-                                <div class="col-md-1">
-                                    <asp:Label ID="lblProjCode" runat="server" Text="Project Code:" Style="font-weight: bold;"></asp:Label>
+                                <div class="col-sm-3 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblProjCode" CssClass="lblTxt lblName" runat="server" Text="Project Code" ></asp:Label>
+                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control form-control-sm chzn-select" Width="300px"></asp:DropDownList>
+                                    </div>                                    
                                 </div>
-                                <div class="col-md-2">
-                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select" Style="width: 230px;"></asp:DropDownList>
-                                </div>
-                                <div class="col-md-1 ml-5">
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:Label ID="lblPage" runat="server" Font-Bold="True" Text="Page Size:"></asp:Label>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                                        <asp:ListItem Value="10">10</asp:ListItem>
-                                        <asp:ListItem Value="15">15</asp:ListItem>
-                                        <asp:ListItem Value="20">20</asp:ListItem>
-                                        <asp:ListItem Value="30">30</asp:ListItem>
-                                        <asp:ListItem Value="50">50</asp:ListItem>
-                                        <asp:ListItem Value="100">100</asp:ListItem>
-                                        <asp:ListItem Value="150">150</asp:ListItem>
-                                        <asp:ListItem Value="200">200</asp:ListItem>
-                                        <asp:ListItem Value="300">300</asp:ListItem>
-                                    </asp:DropDownList>
+                                <div class="col-sm-1 col-md-1 col-lg-1">
+                                    <div class="form-group">
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                    </div>
+                                    </div>
+                                <div class="col-sm-1 col-md-1 col-lg-1">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size"></asp:Label>
+                                        <asp:DropDownList ID="ddlPageSize" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="150">150</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,20 +90,22 @@
                         <div class="card card-fluid">
                             <div class="card-body pl-0">
                                 <div class="row mb-2">
-                                    <div class="col-md-1">
-                                        <asp:Label ID="lblFileNo" runat="server" Text="File No:" Style="font-weight: bold;"></asp:Label>
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblFileNo"  CssClass="lblTxt lblName" runat="server" Text="File No"></asp:Label>
+                                            <asp:TextBox ID="txtFileNo"  CssClass="form-control form-control-sm " runat="server"></asp:TextBox>
+                                        </div>                                        
                                     </div>
-                                    <div class="col-md-2">
-                                        <asp:TextBox ID="txtFileNo" runat="server" Style="width: 230px;"></asp:TextBox>
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblLocation"  CssClass="lblTxt lblName" runat="server" Text="File Location"></asp:Label>
+                                            <asp:TextBox ID="txtLocation" CssClass="form-control form-control-sm "  runat="server" ></asp:TextBox>
+                                        </div>                                        
                                     </div>
-                                    <div class="col-md-1 ml-5">
-                                        <asp:Label ID="lblLocation" runat="server" Text="File Location:" Style="font-weight: bold; float: right;"></asp:Label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <asp:TextBox ID="txtLocation" runat="server" Style="width: 230px;"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-1 ml-5">
-                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnAdd_Click">Add</asp:LinkButton>
+                                    <div class="col-sm-1 col-md-1 col-lg-1">
+                                        <div class="form-group">
+                                             <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnAdd_Click">Add</asp:LinkButton>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
@@ -132,9 +144,9 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                             Width="350px"></asp:Label>
                                     </ItemTemplate>
-                                    <FooterTemplate>
+                                    <%--<FooterTemplate>
                                         <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True" CssClass=" btn  btn-danger primaryBtnUp" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
-                                    </FooterTemplate>
+                                    </FooterTemplate>--%>
                                     <FooterStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
@@ -153,11 +165,11 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
-                            <FooterStyle BackColor="#e6c8d0" Height="30px" />
+                            <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" HorizontalAlign="Center" />
+                            <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                     </asp:Panel>
                 </div>
