@@ -2493,7 +2493,7 @@
                                                         <div class="d-flex">
                                                              <asp:LinkButton ID="ViewData" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="View"  OnClick="ViewData_Click"><span><i class="fas fa-eye" aria-hidden="true"></i></span></asp:LinkButton>
                                                                  
-                                                             <asp:LinkButton ID="lnkEdit" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class="fas   fa-edit"></span></asp:LinkButton>
+                                                             <asp:HyperLink ID="lnkEdit" NavigateUrl="<%# ResolveUrl("~/F_21_MKT/AddLead?Type=Edit&sircode="+Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")).ToString()+"") %>" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit"> <span class="fas   fa-edit"></span></asp:HyperLink>
                                                                            
                                                                             <button
                                                                                 class="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light">

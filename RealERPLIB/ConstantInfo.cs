@@ -1160,6 +1160,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102141", "F_21_MKT", "LostProspect", "", "CRM Lost Prospect", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102142", "F_21_MKT", "CrmClientInfo02?", "Type=Entry", "Customer Relationship Management(New)", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102143", "F_21_MKT", "LostProspectTransfer?", "Type=Returned", "CRM Lost Prospect Transfer(Returned)", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102144", "F_21_MKT", "AddLead?", "Type=Entry", "Create New Lead", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102145", "F_21_MKT", "AddLead?", "Type=Edit", "Edit Lead", "CRM", "False", "False", "False", "False" });
 
             //kpi 
             // 05. My Marketing Interface(Sales)

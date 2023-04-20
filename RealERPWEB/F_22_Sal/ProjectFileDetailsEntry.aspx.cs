@@ -29,7 +29,20 @@ namespace RealERPWEB.F_22_Sal
                 this.ShowProjFileInfo();
             }
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
 
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(this.Request.UrlReferrer.ToString());
+        }
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];

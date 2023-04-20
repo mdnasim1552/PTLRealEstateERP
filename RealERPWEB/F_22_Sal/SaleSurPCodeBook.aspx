@@ -12,6 +12,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            $('.chzn-select').chosen({ search_contains: true });
         });
 
 
@@ -62,6 +63,9 @@
 
 
     <style>
+        .mt20{
+            margin-top:27px;
+        }
         .switch {
             position: relative;
             display: inline-block;
@@ -130,47 +134,21 @@
         <ContentTemplate>
             <div class="card card-fluid">
                 <div class="card-body">
-
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="FromDate" id="lblDaterange" runat="server">Search</label>
-
+                                <label class="lblTxt lblName" for="FromDate" id="lblDaterange" runat="server">Search</label>
+                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                        </div><div class="col-sm-1 col-md-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnksearch" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnksearch_Click"><span class="fa fa-search"></span></asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <div class="form-group">
-
-                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
-
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnksearch" runat="server" CssClass="btn btn-primary" OnClick="lnksearch_Click"><span class="fa fa-search"></span></asp:LinkButton>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="lblPage" id="lblPage" runat="server">Page</label>
-
-
-
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control"
+                                <label class="lblTxt lblName" for="lblPage" id="lblPage" runat="server">Page</label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" Width="90px"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" >
                                      <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
@@ -184,35 +162,15 @@
                                     <asp:ListItem >600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
                                 </asp:DropDownList>
-
                             </div>
                         </div>
-
-
-
-
-
-
-
-
                     </div>
-
-
                     <div class="row">
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating"
                             OnPageIndexChanging="grvacc_PageIndexChanging" BorderStyle="None" OnRowDataBound="grvacc_RowDataBound" OnDataBound="grvacc_DataBound" ShowFooter="false">
 
                             <FooterStyle BackColor="#5F9467" />
-
-
-
-
-
-
-
-
-
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No." HeaderStyle-Width="30px">
                                     <ItemTemplate>
