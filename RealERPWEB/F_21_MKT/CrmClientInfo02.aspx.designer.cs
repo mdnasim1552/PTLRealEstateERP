@@ -69,13 +69,13 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.LinkButton lnkOk;
 
         /// <summary>
-        /// btnaddland control.
+        /// HypAddLead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnaddland;
+        protected global::System.Web.UI.WebControls.HyperLink HypAddLead;
 
         /// <summary>
         /// lblnewprospect control.

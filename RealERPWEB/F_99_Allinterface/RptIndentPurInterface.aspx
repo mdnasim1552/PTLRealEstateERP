@@ -778,6 +778,7 @@
                         break;
 
                     case 3370:  //CPDL
+                    case 1211:  //brb
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval

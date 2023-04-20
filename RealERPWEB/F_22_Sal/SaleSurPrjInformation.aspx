@@ -14,7 +14,7 @@
                 Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
                     });
 
-
+            $('.chzn-select').chosen({ search_contains: true });
 
 
             function pageLoaded()
@@ -35,6 +35,13 @@
 
         </script>
     <style>
+        .mt20{
+            margin-top:27px;
+        }
+        .chzn-container-single .chzn-single {
+            height: 29px !important;
+            line-height: 29px !important;
+        }
         .lblHead {
             color: blue;
             font-size: 14px !important;
@@ -164,34 +171,18 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">
-
-
-                        <div class="col-md-1">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <div class="form-group">
-                                <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">Project Name</label>
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control chzn-select" TabIndex="3">
+                                <label for="Label5" runat="server" class=" lblTxt lblName">Project Name</label>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="3">
                                 </asp:DropDownList>
-
                             </div>
                         </div>
-
-
-                        <div class="col-md-2">
+                        <div class="col-sm-2 col-md-2 col-lg-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
-                        </div>
-
-
-
-
+                        </div>                        
                     </div>
 
                     <asp:GridView ID="gvPrjInfo" runat="server" AutoGenerateColumns="False"
@@ -201,7 +192,7 @@
                             <asp:TemplateField HeaderText="Sl.No.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo0" runat="server"
-                                        Style="text-align: right"
+                                        Style="text-align: center"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                 </ItemTemplate>
 
@@ -236,10 +227,10 @@
                            
 
                             <asp:TemplateField>
-                                <FooterTemplate>
+                               <%-- <FooterTemplate>
                                     <asp:LinkButton ID="lUpdatPerInfo" runat="server" OnClick="lUpdatPerInfo_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
 
-                                </FooterTemplate>
+                                </FooterTemplate>--%>
 
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent"
