@@ -2020,9 +2020,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
+  
+
                         if (comcod == "3364")
                         {
                             dt.Rows[rowindex]["fixday"] = sysdaycount;
+                            dt.Rows[rowindex]["holidayrate"] = dayrate;
+                        }
+                        if (comcod == "3369")
+                        {
+                            dt.Rows[rowindex]["fixday"] = fixdaycount;
                             dt.Rows[rowindex]["holidayrate"] = dayrate;
                         }
     
