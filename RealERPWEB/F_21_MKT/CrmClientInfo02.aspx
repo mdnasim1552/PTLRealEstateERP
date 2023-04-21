@@ -2074,9 +2074,9 @@
                             </div>
                             <div class="col-md-4 align-self-end">
                                 <div class="d-flex justify-content-end">
-                                    <button class="mmbd-btn mmbd-btn-primary mr-2" id="btnaddland" runat="server">
+                                    <asp:HyperLink NavigateUrl="~/F_21_MKT/AddLead.aspx?Type=Entry&sircode=" Target="_blank" class="mmbd-btn mmbd-btn-primary mr-2" ID="HypAddLead" runat="server">
                                         <strong><i class="fas fa-user-plus"></i>&nbsp;Add Lead</strong>
-                                    </button>
+                                    </asp:HyperLink>
                                     <button class="mmbd-btn mmbd-btn-primary" id="btnDashboard">
                                         <img
                                             src="../assets/new-ui/images/equalizer.svg"
@@ -2493,7 +2493,7 @@
                                                         <div class="d-flex">
                                                              <asp:LinkButton ID="ViewData" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="View"  OnClick="ViewData_Click"><span><i class="fas fa-eye" aria-hidden="true"></i></span></asp:LinkButton>
                                                                  
-                                                             <asp:LinkButton ID="lnkEdit" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class="fas   fa-edit"></span></asp:LinkButton>
+                                                             <asp:HyperLink ID="lnkEdit" NavigateUrl="<%# ResolveUrl("~/F_21_MKT/AddLead?Type=Edit&sircode="+Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")).ToString()+"") %>" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit"> <span class="fas   fa-edit"></span></asp:HyperLink>
                                                                            
                                                                             <button
                                                                                 class="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light">

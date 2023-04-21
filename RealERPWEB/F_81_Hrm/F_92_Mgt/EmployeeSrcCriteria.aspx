@@ -31,9 +31,9 @@
             width: 100% !important;
         }
 
-        .chzn-container-single .chzn-single {
-            height: 35px !important;
-            line-height: 35px !important;
+ .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
         }
 
         .card-body {
@@ -127,7 +127,7 @@
                                 <asp:Label ID="Label1" CssClass="mb-2 d-block" runat="server">Page Size</asp:Label>
 
 
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -145,7 +145,7 @@
 
                         <div class="col-md-2" style="margin-top: 28px;">
 
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-info btn-md mb-2" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-info btn-sm mb-2" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@
     
                         <div class="col-lg-2">
                             <asp:Label runat="server">Gender</asp:Label>
-                            <asp:DropDownList ID="ddlgender" runat="server" CssClass="form-control">
+                            <asp:DropDownList ID="ddlgender" runat="server" CssClass="form-control form-control-sm">
                                 <asp:ListItem Value="0000">All</asp:ListItem>
                                 <asp:ListItem Value="Male">Male</asp:ListItem>
                                 <asp:ListItem Value="Female">Female</asp:ListItem>
@@ -162,7 +162,7 @@
 
                             <div class="col-lg-2">
                             <asp:Label runat="server">Religion</asp:Label>
-                            <asp:DropDownList ID="ddlreligion" runat="server" CssClass="form-control">
+                            <asp:DropDownList ID="ddlreligion" runat="server" CssClass="form-control form-control-sm">
                                  <asp:ListItem Value="0000">All</asp:ListItem>
                                 <asp:ListItem Value="Islam">Islam</asp:ListItem>
                                 <asp:ListItem Value="Hindu">Hindu</asp:ListItem>
@@ -170,23 +170,23 @@
                         </div>
                          <div class="col-lg-1">
                             <asp:Label runat="server">From Age</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtfrmage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
                           <div class="col-lg-1">
                             <asp:Label runat="server">To Age</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txttoage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txttoage" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
 
                                       <div class="col-lg-1">
                             <asp:Label runat="server">from  Salary</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txtfrmsal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txtfrmsal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
 
                           <div class="col-lg-1">
                             <asp:Label runat="server">To Salary</asp:Label>
-                            <asp:TextBox runat="server" CssClass="form-control" ID="txttosal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                            <asp:TextBox runat="server" CssClass="form-control form-control-sm" ID="txttosal" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         </div>
                     </div>
 
@@ -202,7 +202,7 @@
                                     <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                Style="text-align: right"
+                                                Style="text-align: center"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
@@ -277,7 +277,7 @@
                                                 Width="40px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                        <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Gender">
