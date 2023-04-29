@@ -233,6 +233,11 @@ private void GetDashboardInformation()
             
             this.DHypLost.NavigateUrl = "~/F_21_MKT/RptCrmNeedBase?Type=RptStd&Date1=" + fromdate
             + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=9501028";
+
+            this.HypTodoScheduleWork.NavigateUrl= "~/F_21_MKT/CrmClientInfo02?Type=Entry&Date1=" + fromdate
+            + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=dws";
+            this.HypTodoDailyWorkRpt.NavigateUrl= "~/F_21_MKT/CrmClientInfo02?Type=Entry&Date1=" + fromdate
+            + "&Date2=" + todate + "&empid=" + ddlempid + "&genno=dwr";
         }
 
         private void GetToDoListInformation()

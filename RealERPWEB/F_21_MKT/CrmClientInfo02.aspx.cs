@@ -30,7 +30,7 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Client Information";
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
@@ -73,7 +73,35 @@ namespace RealERPWEB.F_21_MKT
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
 
-                // }
+                string date1 = String.Empty, date2 = String.Empty, empid = String.Empty, genno = String.Empty;
+                if (Request.QueryString.AllKeys.Contains("Date1"))
+                {
+                    date1 = Request.QueryString["Date1"].ToString();
+                    this.txtfrmdate.Text = Convert.ToDateTime(date1).ToString("dd-MMM-yyyy");
+                    this.DdlDateType.SelectedValue = "7";
+                }
+                if (Request.QueryString.AllKeys.Contains("Date2"))
+                {
+                    date2 = Request.QueryString["Date2"].ToString();
+                    this.txttodate.Text = Convert.ToDateTime(date2).ToString("dd-MMM-yyyy");
+                    this.DdlDateType.SelectedValue = "7";
+                }
+                if (Request.QueryString.AllKeys.Contains("empid"))
+                {
+                    empid = Request.QueryString["empid"].ToString();
+                    if (empid.Length == 12)
+                    {
+                        this.ddlEmpid.SelectedValue = empid;
+                    }
+                }
+                if (Request.QueryString.AllKeys.Contains("genno"))
+                {
+                  genno = Request.QueryString["genno"].ToString();                  
+                  this.ShowNotifications(genno);
+                    
+                }
+
+               
 
 
             }
