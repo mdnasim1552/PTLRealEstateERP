@@ -26,13 +26,13 @@ namespace RealERPWEB.F_21_MKT
         {
             if (!IsPostBack)
             {
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("~/AcceessError.aspx");
-                //((Label)this.Master.FindControl("lblTitle")).Text = "Client Information";
-               // DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-              //  ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-              //  this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Client Information";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
@@ -42,8 +42,7 @@ namespace RealERPWEB.F_21_MKT
 
                 this.GetAllSubdata();               
                 this.GETEMPLOYEEUNDERSUPERVISED();
-                this.GetFollow();
-                this.GetParcipants();               
+                this.GetFollow();                           
                 this.IsTeamLeader();
                 this.GetIRComARefProspect();
                 //this.SoldInfo();
@@ -59,8 +58,85 @@ namespace RealERPWEB.F_21_MKT
                     string eventdesc2 = "";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
+                if (this.Request.QueryString["Type"].ToString()=="Edit")
+                {
+                    //lbllandname.Visible = true;
+                    //LinkButton btn = (LinkButton)sender;
+                    //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                    //int index = row.RowIndex;
+                    //string comcod = GetComeCode();
+                    //string styleid = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
+                    //string clintIdno = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString();
 
-                // }
+                    //lbllandname.Text = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString() + ':' + ((Label)this.gvSummary.Rows[index].FindControl("ldesc")).Text.ToString();
+                    ViewState["existclientcode"] = this.Request.QueryString["sircode"].ToString();
+               
+                    GetData();                   
+                    ShowPersonalInfo();
+                    ShowSourceInfo();
+                    Showpinfo();
+                    ShowhomeInfo();
+                    Showbusinfo();
+                    ShowMoreInfo();
+                    //btnaddland.Text = "Back";
+
+                    //string Message = "Edit Client Form";
+
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+
+                    //Hashtable hst = (Hashtable)Session["tblLogin"];
+                    //string events = hst["events"].ToString();
+                    //if (Convert.ToBoolean(events) == true)
+                    //{
+                    //    string eventtype = "Edit Client Information (Sales CRM)";
+                    //    string eventdesc = "Edit Client Information (Sales CRM)";
+                    //    string eventdesc2 = "Edit " + clintIdno;
+
+                    //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                    //} 
+                }
+                else
+                {
+                    try
+                    {
+                       
+                        string empid = hst["empid"].ToString();
+                        string usrid = hst["usrid"].ToString();
+                        string userrole = hst["userrole"].ToString();
+                        if (empid == "" && userrole != "1")
+                        {
+                            string Messaged = "Please add employee id in the user permission! Thank you.";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                            return;
+                        }
+
+                        GetData();
+                        this.lbllandname.Text = "";                        
+
+                            ShowPersonalInfo();
+                            ShowSourceInfo();
+                            Showpinfo();
+                            ShowhomeInfo();
+                            Showbusinfo();
+                            ShowMoreInfo();
+                           
+                            string Message = "Add Client Form";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+
+                            this.lblnewprospect.Value = "";
+
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    }
+                }
 
 
             }
@@ -213,92 +289,7 @@ namespace RealERPWEB.F_21_MKT
             ddlgval.DataBind();
         }
 
-        protected void btnaddland_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string empid = hst["empid"].ToString();
-                string usrid = hst["usrid"].ToString();
-                string userrole = hst["userrole"].ToString();
-                if (empid == "" && userrole != "1")
-                {
-                    string Messaged = "Please add employee id in the user permission! Thank you.";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
-                    return;
-                }
-
-                GetData();
-                this.lbllandname.Text = "";
-                if (btnaddland.Text == "Add Lead" || btnaddland.Text == "Add Client")
-                {
-                    string comcod = this.GetComeCode();
-                    //if (comcod == "3315" || comcod == "3316")
-                    //{
-                    //    Hashtable hst = (Hashtable)Session["tblLogin"];
-                    //    string usrid = hst["usrid"].ToString();
-                    //    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMP_INTERFACE", "GETDEPTDATA", usrid, "", "", "", "", "", "", "", "", "");
-                    //    if (ds1 != null && ds1.Tables[0].Rows.Count == 1)
-                    //    {
-                    //        this.txtentryEmpID.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
-                    //    }
-                    //    else
-                    //    {
-                    //        this.txtentryEmpID.Text = "";
-                    //    }
-                    //    this.txtentryClient.Text = "";
-                    //    this.txtentrymobile.Text = "";
-                    //    this.txtentryemail.Text = "";               
-                    //    this.txtentrydate.Text = "";              
-                    //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAssureModal();", true);
-                    //}
-                    //else
-                    //{
-                    
-                    ShowPersonalInfo();
-                    ShowSourceInfo();
-                    Showpinfo();
-                    ShowhomeInfo();
-                    Showbusinfo();
-                    ShowMoreInfo();
-                    btnaddland.Text = "Cancel";
-
-                    string Message = "Add Client Form";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-
-
-                    this.lblnewprospect.Value = "";
-
-
-                    string events = hst["events"].ToString();
-                    if (Convert.ToBoolean(events) == true)
-                    {
-                        string eventtype = "Add Lead (Sales CRM)";
-                        string eventdesc = "Add Lead (Sales CRM)";
-                        string eventdesc2 = "";
-                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
-                    }
-
-
-                    //  }
-                }
-                else
-                {
-                    btnaddland.Text = "Add Lead";                 
-                    lbllandname.Visible = false;
-                    ViewState["existclientcode"] = null;                  
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            }
-        }
+      
 
 
         private void ShowPersonalInfo()
@@ -4325,16 +4316,6 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
-
-        private void GetParcipants()
-        {
-            ViewState.Remove("tblparti");
-            string comcod = this.GetComeCode();
-            DataSet ds1 = this.instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "PARTICIPANTS", "", "", "", "", "", "", "", "", "");
-            DataTable dt11 = ds1.Tables[0];
-            ViewState["tblparti"] = dt11;
-
-        }
 
   
   
