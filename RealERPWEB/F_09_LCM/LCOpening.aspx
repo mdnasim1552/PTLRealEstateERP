@@ -14,7 +14,7 @@
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
 
         });
         function pageLoaded() {
@@ -30,7 +30,7 @@
 
          
 
-            $('.chzn-select').chosen({ search_contains: true });
+           
             $('#tblrpprodetails').Scrollable({
             });
             
@@ -63,7 +63,7 @@
                                         <asp:Label ID="lblLcno" runat="server" CssClass="lblTxt lblName">L/C Number</asp:Label>
                                     </div>
                                     <div class="col-md-3 pading5px">
-                                        <asp:DropDownList ID="ddlLcCode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddlLcCode" runat="server" CssClass=" chzn-select form-control"  AutoPostBack="true">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-1">

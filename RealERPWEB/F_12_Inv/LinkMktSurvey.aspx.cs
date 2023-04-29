@@ -82,6 +82,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3364": //JBS
                 case "3370": //cpdl
                 case "3374": //angan
+                case "1211": //angan
 
                     msrType = "MSR02";
                     break;
@@ -105,6 +106,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3364": //JBS
                 case "3370": //cpdl
                 case "3374": //cpdl
+                case "1211": //cpdl
                     this.Multiview1.ActiveViewIndex = 1;
                     this.Get_Survey_Info();
                     break;
@@ -173,6 +175,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3364": //JBS
                 case "3370": //cpdl
                 case "3374": //angan
+                case "1211": //angan
 
                     this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
                     this.gvMSRInfo2.DataBind();
