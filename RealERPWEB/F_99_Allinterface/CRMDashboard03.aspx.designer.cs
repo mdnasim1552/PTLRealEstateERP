@@ -249,6 +249,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TodoScheduleWOrk;
 
         /// <summary>
+        /// HypTodoScheduleWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypTodoScheduleWork;
+
+        /// <summary>
         /// TodoDailyWorkReport control.
         /// </summary>
         /// <remarks>
@@ -256,6 +265,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TodoDailyWorkReport;
+
+        /// <summary>
+        /// HypTodoDailyWorkRpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypTodoDailyWorkRpt;
 
         /// <summary>
         /// TodoTodayVisit control.
