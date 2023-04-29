@@ -104,9 +104,12 @@ namespace RealERPWEB.F_17_Acc
             {
                 case "Allotment":
                     this.MultiView1.ActiveViewIndex = 0;
+                    this.pnlrpttype.Visible = false;
                     break;
                 case "CustomerSettlement":
                     this.MultiView1.ActiveViewIndex = 1;
+                    this.pnlrpttype.Visible = true;
+                   
                     break;
             }
         }
