@@ -15,7 +15,6 @@
             position: fixed;
             overflow: scroll;
         }
-
         .multiselect {
             width: 280px !important;
             border: 1px solid;
@@ -23,25 +22,19 @@
             border-color: #cfd1d4;
             font-family: sans-serif;
         }
-
         .multiselect-container {
             overflow: scroll;
             max-height: 300px !important;
         }
-
-
         .multiselect-text {
             width: 200px !important;
         }
-
         .caret {
             display: none !important;
         }
-
         span.multiselect-selected-text {
             width: 200px !important;
         }
-
         .chzn-single {
             border-radius: 3px !important;
             height: 29px !important;
@@ -52,38 +45,25 @@
     </style>
 
     <script type="text/javascript" language="javascript">
-
         $(document).ready(function () {
-
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
-
-
         function pageLoaded() {
 
-           
             $(function () {
                 $('[id*=chkResourcelist]').multiselect({
                     includeSelectAllOption: true,
-
                     enableCaseInsensitiveFiltering: true,
                     //enableFiltering: true,
-
                 });
-
             });
-           
+
             $('.chzn-select').chosen({ search_contains: true });
             var gv = $('#<%=this.gvMatStock.ClientID %>');
             gv.Scrollable();
-
             var gv1 = $('#<%=this.gvMatStockSpec.ClientID%>');
             gv1.Scrollable();
-
-
         }
-
     </script>
 
 
@@ -542,7 +522,3 @@
     </asp:UpdatePanel>
 
 </asp:Content>
-
-
-
-
