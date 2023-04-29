@@ -2133,7 +2133,7 @@
                             </div>
                         </div>
 
-                        <asp:LinkButton ID="btnaddland" runat="server" CssClass="mt-2 btn btn-primary align-self-end" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
+                        
 
 
                     </div>
