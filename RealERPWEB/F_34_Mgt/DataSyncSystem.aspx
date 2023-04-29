@@ -427,7 +427,7 @@
                     </div>
                     </div>
                      </div>
-             <%--<a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#exampleModalDrawerRight" style="font-size:smaller">modal? <%--<i class="fa fa-file-alt">--%></i></a>--%>
+             <%--<a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#exampleModalDrawerRight" style="font-size:smaller">modal? <%--<i class="fa fa-file-alt"></i></a>--%>
 
 
             <div class="modal modal-drawer fade has-shown" data-backdrop="static" id="exampleModalDrawerRight" tabindex="-1" role="dialog" aria-labelledby="exampleModalDrawerRightLabel" style="display: none;" aria-hidden="true">
