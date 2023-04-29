@@ -3,74 +3,81 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
-    <script type="text/javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+   
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-            //var date = new Date();
-
-            //var day = ("0" + date.getDate()).slice(-2);
-            //var month = ("0" + (date.getMonth() + 1)).slice(-2);
-
-            //var today = date.getFullYear() + "-" + (month) + "-" + (day);
-
-            //$('#TxtFdate').val(today);
-            //$('#TxtTdate').val(today);
-            $(document).on("change", "#DdlDateType", function () {
-                // $("#DdlDateType").change(function () {
-                var status = this.value;
-                // alert(status);
-                if (status == "7") {
-                    $("#exampleModalSm").modal("toggle");
-                }
-
-            });
-            $('.po-markup > .po-link').popover({
-                sanitize: false,
-                html: true,
-                trigger: 'click',
-                // must have if HTML is contained in popover
-
-                // get the title and conent
-                title: function () {
-                    return $(this).parent().find('.po-title').html();
-                },
-                content: function () {
-                    return $(this).parent().find('.po-body').html();
-                },
-
-                container: 'body',
-                placement: 'bottom'
-
-            });
-        });
-        function pageLoaded() {
-            try {
-
-                $("#btnInterface").click(function () {
-                    //specify your URL here..
-                    window.open('../F_21_MKT/CrmClientInfo02?Type=Entry','_blank')
-                   
-                });
-                $("#btnSalesFunnel").click(function () {
-                    window.open('../F_21_Mkt/RptSalesFunnel', '_blank')
-
-                });
-
-            }
-            catch (e) {
-
-            }
-        };
-    </script>
+     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
+ 
     <style>
         .popover {
             min-width: 27%;
         }
     </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+       <script type="text/javascript">
+           $(document).ready(function () {
+               try {
+
+
+                   Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+                   $(document).on("change", "#DdlDateType", function () {
+                       // $("#DdlDateType").change(function () {
+                       var status = this.value;
+                       // alert(status);
+                       if (status == "7") {
+                           $("#exampleModalSm").modal("toggle");
+                       }
+
+                   });
+                   $('.po-markup > .po-link').popover({
+                       sanitize: false,
+                       html: true,
+                       trigger: 'click',
+                       // must have if HTML is contained in popover
+
+                       // get the title and conent
+                       title: function () {
+                           return $(this).parent().find('.po-title').html();
+                       },
+                       content: function () {
+                           return $(this).parent().find('.po-body').html();
+                       },
+
+                       container: 'body',
+                       placement: 'bottom'
+
+                   });
+               }
+               catch (e) {
+                   alert(e.message);
+               }
+           });
+           function pageLoaded() {
+               try {
+
+
+
+                   $("#btnInterface").click(function () {
+                       //specify your URL here..
+                     
+                       window.open('../F_21_MKT/CrmClientInfo02?Type=Entry', '_blank');
+
+                   });
+                   $("#btnSalesFunnel").click(function () {
+                       window.open('../F_21_Mkt/RptSalesFunnel', '_blank');
+
+                   });
+
+               }
+               catch (e) {
+                   alert(e.message);
+
+               }
+           };
+       </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -177,7 +184,7 @@
                             </div>
                             <div class="col-md-5 align-self-end">
                                 <div class="d-flex justify-content-end">
-                                    <button class="mmbd-btn mmbd-btn-primary" id="btnInterface">
+                                    <button class="mmbd-btn mmbd-btn-primary"  id="btnInterface">
                                         <img
                                             src="../assets/new-ui/images/equalizer.svg"
                                             alt="CRM Interface"
