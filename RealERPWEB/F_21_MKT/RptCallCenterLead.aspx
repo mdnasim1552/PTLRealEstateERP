@@ -34,6 +34,7 @@
             height: 28px !important;
             line-height: 29px !important;
         }
+        .grvContentarea {}
     </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -1335,7 +1336,7 @@
                             </asp:View>
                             <asp:View ID="ViewSOPTimeline" runat="server">
                                 <div class="row table-responsive">
-                                    <asp:GridView ID="gvSOPTimeline" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-bordered grvContentarea">
+                                    <asp:GridView ID="gvSOPTimeline" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-bordered grvContentarea" Width="549px">
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL#">
                                                 <ItemTemplate>
@@ -1353,14 +1354,14 @@
                                                     <asp:HyperLink ID="hlbtntbCdataExelC" runat="server" CssClass="btn btn-danger btn-xs" ToolTip="Export to Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblempnameC" runat="server" Style="text-align: left" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc"))%>'></asp:Label>
+                                                    <asp:Label ID="lblempnameC" runat="server"  Width="150px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc"))%>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Query To Lead %">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblQryToleadperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytoleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                    <asp:Label ID="lblQryToleadperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qrytolead")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lbltotalQryToleadperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1372,7 +1373,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Lead To Qualified Lead %">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblLeadToqleadperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqleadper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                    <asp:Label ID="lblLeadToqleadperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leadtoqlead")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lbltotalLeadToqleadperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1384,7 +1385,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Qualified Lead To  Nego %">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblqLeadToNegoperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonegoper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                    <asp:Label ID="lblqLeadToNegoperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qleadtonego")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lbltotalqLeadToNegoperC" runat="server" Font-Bold="True" Font-Size="13px"
@@ -1396,7 +1397,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Nego To Win %">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblnegoTowinperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowinper")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                    <asp:Label ID="lblnegoTowinperC" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "negotowin")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lbltotalnegoToWinperC" runat="server" Font-Bold="True" Font-Size="13px"
