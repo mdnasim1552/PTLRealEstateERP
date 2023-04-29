@@ -38,6 +38,9 @@ namespace RealERPWEB.F_34_Mgt
                 //  ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Voucher 360 <sup>0";
                 //this.Master.Page.Title = "Voucher 360 <sup>0</sup>";
+               
+
+
                 CommonButton();
                 this.txtfromdate.Text = Fromdate();
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddDays(7).ToString("dd-MMM-yyyy");
