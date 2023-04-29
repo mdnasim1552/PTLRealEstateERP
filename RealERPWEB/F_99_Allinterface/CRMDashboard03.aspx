@@ -361,10 +361,10 @@
                                                             class="symbol symbol-60px symbol-light">
                                                             <div class="symbol-label" id="TodoScheduleWOrk" runat="server"></div>
                                                         </a>
-                                                        <a href="#" class="list-body">
+                                                        <asp:HyperLink ID="HypTodoScheduleWork" Target="_blank" runat="server" CssClass="list-body" >
                                                             <div class="list-title">Schedule Work</div>
                                                             <div class="list-para">Updated in 2 Days</div>
-                                                        </a>
+                                                        </asp:HyperLink>
                                                     </div>
                                                 </div>
                                                 <div class="col-6 col-md-4 col-lg-3">
@@ -375,12 +375,12 @@
                                                             class="symbol symbol-60px symbol-light">
                                                             <div class="symbol-label" id="TodoDailyWorkReport" runat="server"></div>
                                                         </a>
-                                                        <a href="#" class="list-body">
+                                                         <asp:HyperLink ID="HypTodoDailyWorkRpt" Target="_blank" runat="server" CssClass="list-body" >                                                       
                                                             <div class="list-title">
                                                                 Daily Work Report
                                                             </div>
                                                             <div class="list-para">Updated in 2 Days</div>
-                                                        </a>
+                                                         </asp:HyperLink>
                                                     </div>
                                                 </div>
                                                 <div class="col-6 col-md-4 col-lg-3">
