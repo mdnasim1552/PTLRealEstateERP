@@ -851,7 +851,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/ShowNotifications",
+                    url: "CrmClientInfo02.aspx/ShowNotifications",
                     data: '{comcod:"' + comcod + '",  empid: "' + empid + '", rtype:"' + rtype + '", fdate: "' + $('#<%=this.txtfrmdate.ClientID%>').val() + '", tdate: "' + $('#<%=this.txttodate.ClientID%>').val() + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -968,7 +968,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/UpdatePost",
+                    url: "CrmClientInfo02.aspx/UpdatePost",
                     data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '" , post: "' + comments + '", comdate: "' + comdate + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1021,7 +1021,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/FollowupCancel",
+                    url: "CrmClientInfo02.aspx/FollowupCancel",
                     data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1100,7 +1100,7 @@
             try {
                 $.ajax({
 
-                    url: "CrmClientInfo.aspx/CheckMobile",
+                    url: "CrmClientInfo02.aspx/CheckMobile",
                     type: "POST",
                     data: '{comcod:"' + comcod + '", sircode:"' + sircode + '", mobile:"' + mobile + '"}',
                     contentType: "application/json; charset=utf-8",
@@ -1138,7 +1138,7 @@
 
                 $.ajax({
 
-                    url: "CrmClientInfo.aspx/GetSchedulenumber",
+                    url: "CrmClientInfo02.aspx/GetSchedulenumber",
                     type: "POST",
                     data: '{comcod:"' + comcod + '", followupdate:"' + followupdate + '", lastfollowup:"' + lastfollowup + '", empid:"' + empid + '"}',
                     contentType: "application/json; charset=utf-8",
@@ -1175,7 +1175,7 @@
             try {
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/GetCompanyProject",
+                    url: "CrmClientInfo02.aspx/GetCompanyProject",
                     data: '{comcod:"' + comcod + '", company:"' + company + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1254,7 +1254,7 @@
             try {
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/GetProjectUnit",
+                    url: "CrmClientInfo02.aspx/GetProjectUnit",
                     data: '{comcod:"' + company + '", pactcode:"' + pactcode + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1333,7 +1333,7 @@
             try {
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/GetProjectUnit",
+                    url: "CrmClientInfo02.aspx/GetProjectUnit",
                     data: '{comcod:"' + comcod + '", pactcode:"' + pactcode + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1429,7 +1429,7 @@
             try {
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    url: "CrmClientInfo02.aspx/GetLeadReason",
                     data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1497,7 +1497,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/UpdateStatus",
+                    url: "CrmClientInfo02.aspx/UpdateStatus",
                     data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", statusid:"' + statusid + '", empid:"' + empid + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1555,7 +1555,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/GetReschedule",
+                    url: "CrmClientInfo02.aspx/GetReschedule",
                     data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1911,7 +1911,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "CrmClientInfo.aspx/UpdateRate",
+                    url: "CrmClientInfo02.aspx/UpdateRate",
                     data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -2493,7 +2493,7 @@
                                                         <div class="d-flex">
                                                              <asp:LinkButton ID="ViewData" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="View"  OnClick="ViewData_Click"><span><i class="fas fa-eye" aria-hidden="true"></i></span></asp:LinkButton>
                                                                  
-                                                             <asp:LinkButton ID="lnkEdit" runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class="fas   fa-edit"></span></asp:LinkButton>
+                                                             <asp:HyperLink ID="lnkEdit" Target="_blank" NavigateUrl='<%# ResolveUrl("~/F_21_MKT/AddLead?Type=Edit&sircode="+Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")).ToString()+"") %>' runat="server" CssClass="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light mr-1"  ToolTip="Edit Client Info" Text="Edit"> <span class="fas   fa-edit"></span></asp:HyperLink>
                                                                            
                                                                             <button
                                                                                 class="mmbd-btn mmbd-btn-icon mmbd-btn-primary-light">

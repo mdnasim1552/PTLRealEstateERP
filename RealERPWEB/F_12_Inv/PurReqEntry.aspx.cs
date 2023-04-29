@@ -634,7 +634,6 @@ namespace RealERPWEB.F_12_Inv
                     this.GetApprQty();
                 }
             }
-
             if (mReqNo == "NEWREQ")
             {
                 ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTREQINFO", CurDate1, "", "", "", "", "", "", "", "");

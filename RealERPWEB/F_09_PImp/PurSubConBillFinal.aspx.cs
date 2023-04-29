@@ -128,8 +128,8 @@ namespace RealERPWEB.F_09_PImp
 
                 case "3370"://CPDL
                     this.gvSubBill.Columns[8].Visible = false;
-                    this.gvSubBill.Columns[9].Visible = false;                    
-                    this.gvSubBill.Columns[10].Visible = true;                    
+                    this.gvSubBill.Columns[9].Visible = false;
+                    this.gvSubBill.Columns[10].Visible = true;
                     this.gvSubBill.Columns[12].Visible = true;
                     this.gvSubBill.Columns[13].Visible = false;
                     break;
@@ -215,7 +215,7 @@ namespace RealERPWEB.F_09_PImp
             string type = Request.QueryString["Type"].ToString();
             string comcod = this.GetCompCode();
 
-            string serch1 = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? ("%" + this.txtSrcPro.Text.Trim() + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
+            string serch1 = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? ("%%") : (this.Request.QueryString["prjcode"].ToString() + "%");
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURPROJECTNAME", serch1, status, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -232,7 +232,7 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
 
-            string serch1 = (this.Request.QueryString["sircode"].ToString()).Length == 0 ? ("%" + this.txtSrcSub.Text.Trim() + "%") : (this.Request.QueryString["sircode"].ToString() + "%");
+            string serch1 = (this.Request.QueryString["sircode"].ToString()).Length == 0 ? ("%%") : (this.Request.QueryString["sircode"].ToString() + "%");
             // string serch1 = "%" + this.txtSrcSub.Text.Trim() + "%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURSUBNAME", pactcode, serch1, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -249,7 +249,7 @@ namespace RealERPWEB.F_09_PImp
         private void GetBillType()
         {
             string comcod = this.GetCompCode();
-            string serch1 = "%" + this.txtSrcSub.Text.Trim() + "%";
+            string serch1 = "%%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETBILLTYPE", serch1, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -269,7 +269,7 @@ namespace RealERPWEB.F_09_PImp
             string csircode = this.ddlSubName.SelectedValue.ToString();
             string curdate = this.txtCurDate.Text.Trim();
             // string txtsearch = "%" +this.txtSrcPreBill.Text + "%";
-            string txtsearch = (this.Request.QueryString["genno"].ToString()).Length == 0 ? ("%" + this.txtSrcPreBill.Text.Trim() + "%") : (this.Request.QueryString["genno"].ToString() + "%");
+            string txtsearch = (this.Request.QueryString["genno"].ToString()).Length == 0 ? ("%%") : (this.Request.QueryString["genno"].ToString() + "%");
             string billconfirmed = (this.Request.QueryString["Type"].ToString() == "BillConfirmed") ? "BillConfirmed" : "";
 
 
@@ -511,7 +511,7 @@ namespace RealERPWEB.F_09_PImp
 
                     PrintReq = "PrintBill08";
                     break;
-                
+
                 case "3101":// ptl
                 case "3370":// cpdl
                     PrintReq = "PrintBill09";
@@ -831,17 +831,12 @@ namespace RealERPWEB.F_09_PImp
             {
                 this.lbtnOk.Text = "New";
 
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
-                this.lblSubDesc.Text = this.ddlSubName.SelectedItem.Text.Trim().Substring(13);
-                this.ddlProjectName.Visible = false;
-                this.ddlSubName.Visible = false;
-                this.lblProjectdesc.Visible = true;
-                this.lblSubDesc.Visible = true;
+                this.ddlProjectName.Enabled = false;
+                this.ddlSubName.Enabled = false;
+
                 this.PnlProRemarks.Visible = true;
-                this.lblPreList.Visible = false;
-                this.txtSrcPreBill.Visible = false;
-                this.ibtnPreBillList.Visible = false;
-                this.ddlPrevBillList.Visible = false;
+
+                this.ddlPrevBillList.Enabled = false;
                 this.ddlpagesize.Visible = true;
                 this.lblPage.Visible = true;
                 this.txtCurDate.Enabled = true;
@@ -861,8 +856,7 @@ namespace RealERPWEB.F_09_PImp
             this.ClearSecurity();
             this.lbtnOk.Text = "Ok";
             this.panel11.Visible = false;
-            this.lblProjectdesc.Text = "";
-            this.lblSubDesc.Text = "";
+
             this.txtRemarks.Text = "";
             this.lblvalnettotal.Text = "";
 
@@ -879,12 +873,11 @@ namespace RealERPWEB.F_09_PImp
             this.ddlPrevBillList.Items.Clear();
             this.ddlProjectName.Visible = true;
             this.ddlSubName.Visible = true;
-            this.lblProjectdesc.Visible = false;
-            this.lblSubDesc.Visible = false;
+
             this.lblPreList.Visible = true;
-            this.txtSrcPreBill.Visible = true;
+
             this.ibtnPreBillList.Visible = true;
-            this.ddlPrevBillList.Visible = true;
+            this.ddlPrevBillList.Enabled = true;
             this.PnlProRemarks.Visible = false;
             this.gvSubBill.DataSource = null;
             this.ddlpagesize.Visible = false;
@@ -952,8 +945,8 @@ namespace RealERPWEB.F_09_PImp
                 this.ddlProjectName.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
                 this.ddlProjectName_SelectedIndexChanged(null, null);
                 this.ddlSubName.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
-                this.lblSubDesc.Text = this.ddlSubName.SelectedItem.Text.Trim().Substring(13);
+                //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
+                //this.lblSubDesc.Text = this.ddlSubName.SelectedItem.Text.Trim().Substring(13);
                 this.txtCBillRefNo.Text = ds1.Tables[1].Rows[0]["cbillref"].ToString();
                 this.txtpercentage.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); ") + "%";
                 this.txtSDAmount.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["sdamt"]).ToString("#,##0.00;(#,##0.00); ");
@@ -1104,7 +1097,7 @@ namespace RealERPWEB.F_09_PImp
 
         }
         private void SaveValue()
-      {
+        {
 
             DataTable dt = (DataTable)Session["tblbill"];
             int TblRowIndex;
@@ -1131,9 +1124,9 @@ namespace RealERPWEB.F_09_PImp
 
 
 
-           
 
-                conrate = conqty==0 ? 0.00 : conrate == 0.00 ? billamt / conqty: conrate >0 ? conrate : 0.00;               
+
+                conrate = conqty == 0 ? 0.00 : conrate == 0.00 ? billamt / conqty : conrate > 0 ? conrate : 0.00;
                 billamt = conrate > 0 ? conrate * conqty : billamt;
                 //billamt =conrate == 0.00 ? billamt  : conrate > 0 ? conrate * conqty : 0.00;
 
@@ -1215,7 +1208,7 @@ namespace RealERPWEB.F_09_PImp
                     {
 
                         case "1103":
-                       // case "3368": // finlay
+                            // case "3368": // finlay
 
                             break;
 
@@ -1367,8 +1360,9 @@ namespace RealERPWEB.F_09_PImp
             // DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                string msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             try
@@ -1415,14 +1409,15 @@ namespace RealERPWEB.F_09_PImp
                 string confirmdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 // BillEdit
 
-
+                string msg = "";
 
                 DataTable dt = (DataTable)Session["tblbill"];
 
                 if (this.txtCBillRefNo.Text.Trim() == "")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Ref. No";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Ref. No";
+                    msg = "Please Fillup Ref. No";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -1431,8 +1426,9 @@ namespace RealERPWEB.F_09_PImp
                 if (dr.Length == 0)
                 {
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Check Total Amount";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Please Check Total Amount";
+                    msg = "Please Check Total Amount";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -1456,8 +1452,9 @@ namespace RealERPWEB.F_09_PImp
 
                         if (ds4.Tables[0].Rows[0]["billno"].ToString() != "00000000000000")
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Issue  No already Existing in Bill";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            //((Label)this.Master.FindControl("lblmsg")).Text = "Issue  No already Existing in Bill";
+                            msg = "Issue  No already Existing in Bill";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                             return;
                         }
 
@@ -1499,7 +1496,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 result = PurData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
-                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid,advpay, Approval, "","","","","","","","", "");
+                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid, advpay, Approval, "", "", "", "", "", "", "", "", "");
 
                 //if (result==true && this.Request.QueryString["Type"] == "BillEntry" && comcod=="3101")
                 //{
@@ -1514,8 +1511,11 @@ namespace RealERPWEB.F_09_PImp
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+
+                    msg = "Error: " + PurData.ErrorObject["Msg"];
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
 
                 }
@@ -1578,8 +1578,10 @@ namespace RealERPWEB.F_09_PImp
                          "", "", "", "", "", "", "", "", "", "");
                         if (!result)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+                            msg = "Error: " + PurData.ErrorObject["Msg"];
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                             return;
 
                         }
@@ -1627,12 +1629,12 @@ namespace RealERPWEB.F_09_PImp
                         case "3368"://Finlay
                         case "3367"://epic
                         case "3366": //Lanco
-                       
+
                         case "3374": //Angan
                         case "3101": //ptl
 
                             break;
-          
+
 
 
                         default:
@@ -1648,16 +1650,20 @@ namespace RealERPWEB.F_09_PImp
 
                             if (!result)
                             {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                                msg = "Error: " + PurData.ErrorObject["Msg"];
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                                 return;
                             }
                             break;
 
                     }
                 }
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+                msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
                 if (ConstantInfo.LogStatus == true)
                 {
@@ -1670,8 +1676,9 @@ namespace RealERPWEB.F_09_PImp
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                string msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
             }
@@ -1695,19 +1702,24 @@ namespace RealERPWEB.F_09_PImp
             string billno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
 
             bool result;
+            string msg = "";
 
             result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "CONFIRMEDBILFINAL", billno, usrid, sessionid, trmid,
                   confirmdate, "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+                msg = "Error: " + PurData.ErrorObject["Msg"];
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
 
             }
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Bill Confirmed Successfully.";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+            msg = "Bill Confirmed Successfully.";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
         protected void ImgbtnFindRes_Click(object sender, EventArgs e)
         {
@@ -1717,7 +1729,7 @@ namespace RealERPWEB.F_09_PImp
             string mProject = this.ddlProjectName.SelectedValue.ToString();
             string mSupCode = this.ddlSubName.SelectedValue.ToString();
             //string mOrderNo = this.ddlOrderList.SelectedValue.ToString();
-            string mSrchTxt = "%" + this.txtResSearch.Text.Trim() + "%";
+            string mSrchTxt = "%%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "SHOWCONISSUEINFO", mProject, mSupCode, mSrchTxt, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -1877,7 +1889,7 @@ namespace RealERPWEB.F_09_PImp
             double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
             double Advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim());
-            this.lblvalnettotal.Text = (amount + Reward  - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
+            this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
             //if (((DataTable)Session["tblbill"]).Rows.Count == 0)
             //    return;
             //double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billamt)", "")) ? 0.00
@@ -1911,17 +1923,22 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)Session["tblbill"];
             string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string billno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
-
+            string msg = "";
             bool result = PurData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELLCBILLFINAB", billno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Deleted Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Data Deleted Fail";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Data Deleted Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                 return;
             }
             else
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Deleted Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                msg = "Data Deleted Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
         protected void ddlProjectName_SelectedIndexChanged1(object sender, EventArgs e)
         {
@@ -2065,10 +2082,10 @@ namespace RealERPWEB.F_09_PImp
 
 
 
-                
-                
+
+
                 }
-                
+
                 //if (Request.QueryString["status"] != null)
                 //{
                 //    if (Request.QueryString["status"].ToString() == "S")
@@ -2086,19 +2103,19 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetCompCode();
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string lisuno = ((Label)this.gvSubBill.Rows[index].FindControl("lgcIsuno1")).Text.Trim();
-           
+
             bool result = PurData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('"+PurData.ErrorObject["Msg"].ToString()+"');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + PurData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
             dt.Rows.RemoveAt(index);
             dt.AcceptChanges();
             Session["tblbill"] = dt;
-           ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
-            
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
         }
 
         protected void lbtnDelIssu_Click(object sender, EventArgs e)
@@ -2126,10 +2143,11 @@ namespace RealERPWEB.F_09_PImp
                 this.Data_DataBind();
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + exp.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                string msg = "Error: " + exp.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
         }
 

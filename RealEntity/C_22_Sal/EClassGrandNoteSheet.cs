@@ -63,7 +63,6 @@ namespace RealEntity.C_22_Sal
             public double fv { get; set; }
 
 
-
             public EClassCoffGrandNoteSheet()
             {
 
@@ -81,8 +80,6 @@ namespace RealEntity.C_22_Sal
                 this.ymon = ymon;
                 this.pv = pv;
                 this.fv = fv;
-
-
             }
 
         }
