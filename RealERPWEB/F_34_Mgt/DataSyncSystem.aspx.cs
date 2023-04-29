@@ -61,12 +61,15 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
-        //private void GetScompany()
-        //{
+        private string GetScompany()
+        {
+
+            DataSet ds1 = SecAccData.GetTransInfo("", "SP_UTILITY_DATA_SYNC", "GETSECONDAYCOMPANY", "", "", "", "", "", "", "", "");                          
             
-        //        DataSet ds1 = SecAccData.GetTransInfo("", "SP_UTILITY_DATA_SYNC", "GETSECONDAYCOMPANY", "","", "", "", "", "", "", "");
-                
-        //}
+            return ds1.Tables[0].Rows[0]["comcod"].ToString();
+
+
+        }
 
         private  string Fromdate()
         {
@@ -86,7 +89,9 @@ namespace RealERPWEB.F_34_Mgt
                 }
                 else
                 {
-                    string scomcod = "3368";
+                    //string scomcod = "3368";
+                    string scomcod = this.GetScompany();
+
                     DataSet ds3 = SecAccData.GetTransInfo(scomcod, "SP_UTILITY_DATA_SYNC", "GET_LASTSYNCDATE", "", "", "", "", "", "");
                     if (ds3 != null)
                     {
@@ -177,13 +182,14 @@ namespace RealERPWEB.F_34_Mgt
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            string comcod = "3368"; //this.GetCompCode();
+            // string comcod = "3368"; //this.GetCompCode();
+            string scomcod = this.GetScompany();
             DateTime frmdate = Convert.ToDateTime(this.txtfromdate.Text);
             DateTime todate = Convert.ToDateTime(this.txttodate.Text);
 
             if (frmdate.Month == todate.Month && frmdate.Year == todate.Year)
             {
-                DataSet ds1 = SecAccData.GetTransInfo(comcod, "SP_UTILITY_DATA_SYNC", "GET_PERIODIC_ALL_TRANSECTION", frmdate.ToString("dd-MMM-yyyy"), todate.ToString("dd-MMM-yyyy"), "", "", "", "", "", "");
+                DataSet ds1 = SecAccData.GetTransInfo(scomcod, "SP_UTILITY_DATA_SYNC", "GET_PERIODIC_ALL_TRANSECTION", frmdate.ToString("dd-MMM-yyyy"), todate.ToString("dd-MMM-yyyy"), "", "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvAccVoucher.DataSource = null;
@@ -346,8 +352,9 @@ namespace RealERPWEB.F_34_Mgt
         {
             
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = "3368";
-         
+            //string comcod = "3368";
+            string scomcod = this.GetScompany();
+
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
 
@@ -357,7 +364,7 @@ namespace RealERPWEB.F_34_Mgt
                 string voutype =(type1=="BD")?"PV": (type1 == "CD")?"PV":"";
                 string ProceName = (voutype == "PV") ? "SP_ENTRY_ACCOUNTS_PAYMENT" : "SP_REPORT_ACCOUNTS_VOUCHER";
                 string ProceNameNar = (voutype == "PV") ? "SP_ENTRY_ACCOUNTS_PAYMENT" : "SP_ENTRY_ACCOUNTS_VOUCHER";
-                DataSet _NewDataSet = SecAccData.GetTransInfo(comcod, ProceName, "EDITVOUCHER", vounum, "", "", "", "", "", "", "", "");
+                DataSet _NewDataSet = SecAccData.GetTransInfo(scomcod, ProceName, "EDITVOUCHER", vounum, "", "", "", "", "", "", "", "");
               
                     DataTable dt = this.HiddenSameData(_NewDataSet.Tables[0]);
                     //this.dgv1.DataSource = dt;
@@ -501,8 +508,9 @@ namespace RealERPWEB.F_34_Mgt
 
                 }
 
-                string secomcod = "3368";
-                DataSet ds2 = SecAccData.GetTransInfo(secomcod, "SP_UTILITY_DATA_SYNC", "GET_ALL_CODEBOOK", "", "", "", "", "", "");
+                //string secomcod = "3368";
+                string scomcod = this.GetScompany();
+                DataSet ds2 = SecAccData.GetTransInfo(scomcod, "SP_UTILITY_DATA_SYNC", "GET_ALL_CODEBOOK", "", "", "", "", "", "");
                 if (ds2 != null)
                 {
                     accbooksec = ds2.Tables[0].DataTableToList<AccountsBook>();
