@@ -6,8 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     
     
-    <a href="../Content/custom.scss">../Content/custom.scss</a>
     
+   
     <script type="text/javascript" language="javascript">
         
 
@@ -28,7 +28,10 @@
 
     </script>
     <style type="text/css">
-        
+       
+
+         @import '../Content/custom.scss';
+
 
         .table th, .table td {
             padding: 4px;
@@ -77,7 +80,7 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
-    <div class="card mt-4 mb-1">
+    <div class="card card-fluid mb-1">
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-md-5 pading5px asitCol5 d-none">
@@ -116,6 +119,7 @@
                         <span class="badge badge-lg badge-danger bg-red">Sold</span>
                         <span class="badge badge-lg badge-success">Unsold</span>
                         <span class="badge badge-lg badge-primary bg-blue">Mgt Booking</span>
+                          <span class="badge badge-lg badge-primary bglandowner">Land Owner</span>
                     </div>
                 </div>
             </div>

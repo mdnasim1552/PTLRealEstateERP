@@ -3483,7 +3483,7 @@
                                                 <%--5--%>
                                                 <asp:TemplateField HeaderText="P-ID">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lsircode1" runat="server" Width="40px"
+                                                        <asp:Label ID="lsircode1" runat="server" Width="50px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
