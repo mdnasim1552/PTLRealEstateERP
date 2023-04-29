@@ -38,10 +38,13 @@ namespace RealERPWEB.F_34_Mgt
                 //  ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //((Label)this.Master.FindControl("lblTitle")).Text = "Voucher 360 <sup>0";
                 //this.Master.Page.Title = "Voucher 360 <sup>0</sup>";
+               
+
+
                 CommonButton();
                 this.txtfromdate.Text = Fromdate();
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddDays(7).ToString("dd-MMM-yyyy");
-
+               // this.GetScompany();
                 this.lbtnOk_Click(null, null);
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -60,6 +63,13 @@ namespace RealERPWEB.F_34_Mgt
 
             }
         }
+
+        //private void GetScompany()
+        //{
+            
+        //        DataSet ds1 = SecAccData.GetTransInfo("", "SP_UTILITY_DATA_SYNC", "GETSECONDAYCOMPANY", "","", "", "", "", "", "", "");
+                
+        //}
 
         private  string Fromdate()
         {
