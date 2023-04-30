@@ -2362,17 +2362,19 @@ namespace RealERPWEB.F_12_Inv
         private void Session_tblReq_Update()
         {
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
+            string comcod = this.GetCompCode();
             int TblRowIndex2;
 
             string Rsircode = "000000000000";
             double chkqty = 0.00;
+            
             for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
             {
 
                 TblRowIndex2 = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
 
                 string Resocde = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
-
+             
                 double dgvBgdQty = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdqty1"]);
                 double bbgdamt = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdamt1"]);
                 double dgvReqQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
@@ -2382,7 +2384,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     if (this.chkneBudget.Checked)
                     {
-                        string comcod = this.GetCompCode();
+                        
                         switch (comcod)
                         {
                             case "3336":
@@ -2455,6 +2457,7 @@ namespace RealERPWEB.F_12_Inv
                 double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
                 double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
                 double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
+                double StokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblstkqty")).Text.Trim()));
                 //string dgvUseDat = this.GetCompCode() == "3101" ? ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDatCal")).Text.Trim() :  ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
 
                 string dgvUseDat =((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
