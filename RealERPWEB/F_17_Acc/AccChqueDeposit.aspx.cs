@@ -61,6 +61,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 CommonButton();
+                
             }
         }
 
@@ -69,22 +70,11 @@ namespace RealERPWEB.F_17_Acc
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
-
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
-            ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
-            ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
-
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = true;
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = true;
 
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -132,6 +122,7 @@ namespace RealERPWEB.F_17_Acc
                     this.GetConActCode();
                     this.GetProjectName();
                     // this.CompanyBalance();
+                    this.PnlDeposit.Visible = true;
                     this.MultiView1.ActiveViewIndex = 0;
                     ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
                     break;
@@ -139,9 +130,11 @@ namespace RealERPWEB.F_17_Acc
                     string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.txtfDate.Text = "01" + date1.Substring(2);
                     this.txttDate.Text = date1;
+                    this.Panel1.Visible = true;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "RegChqCl":
+                    this.Panel2.Visible = true;
                     this.MultiView1.ActiveViewIndex = 2;
                     this.Panel1.Visible = false;
                     this.ShowRegChqHistory();
@@ -971,6 +964,7 @@ namespace RealERPWEB.F_17_Acc
 
             if (dv.ToTable().Rows[0]["actelev"].ToString() == "2")
             {
+                this.divreshead.Visible = true;
                 this.lblreshead.Visible = true;
                 this.txtsrchres.Visible = true;
                 this.lbtnreshead.Visible = true;
@@ -979,6 +973,7 @@ namespace RealERPWEB.F_17_Acc
             }
             else
             {
+                this.divreshead.Visible = false;
                 this.lblreshead.Visible = false;
                 this.txtsrchres.Visible = false;
                 this.lbtnreshead.Visible = false;
