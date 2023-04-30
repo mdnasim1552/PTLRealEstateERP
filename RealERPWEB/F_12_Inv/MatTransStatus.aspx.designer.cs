@@ -96,15 +96,6 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// txtSrcPro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcPro;
-
-        /// <summary>
         /// ibtnFindProject control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,15 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ibtnFindProject;
+
+        /// <summary>
+        /// txtSrcPro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcPro;
 
         /// <summary>
         /// ddlProName control.
@@ -123,15 +123,6 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.DropDownList ddlProName;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// toproject control.
         /// </summary>
         /// <remarks>
@@ -139,15 +130,6 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label toproject;
-
-        /// <summary>
-        /// txtproject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtproject;
 
         /// <summary>
         /// btntoproject control.
@@ -159,6 +141,15 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton btntoproject;
 
         /// <summary>
+        /// txtproject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtproject;
+
+        /// <summary>
         /// ddlprjlistto control.
         /// </summary>
         /// <remarks>
@@ -166,15 +157,6 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlprjlistto;
-
-        /// <summary>
-        /// lblddlProjectTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblddlProjectTo;
 
         /// <summary>
         /// lblresName control.
@@ -186,15 +168,6 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.Label lblresName;
 
         /// <summary>
-        /// txtsrchresource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchresource;
-
-        /// <summary>
         /// lbtnresource control.
         /// </summary>
         /// <remarks>
@@ -204,13 +177,22 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton lbtnresource;
 
         /// <summary>
+        /// txtsrchresource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchresource;
+
+        /// <summary>
         /// DropCheck1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xMilk.DropCheck DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
 
         /// <summary>
         /// lblPage control.
@@ -240,15 +222,6 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// txtSrcRefNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcRefNo;
-
-        /// <summary>
         /// imgbtnFindRefno control.
         /// </summary>
         /// <remarks>
@@ -258,6 +231,15 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindRefno;
 
         /// <summary>
+        /// txtSrcRefNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrcRefNo;
+
+        /// <summary>
         /// chkProjectTrnsTo control.
         /// </summary>
         /// <remarks>
@@ -265,6 +247,15 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkProjectTrnsTo;
+
+        /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// grvacc control.
