@@ -458,6 +458,7 @@ namespace RealERPWEB.F_12_Inv
             switch (GetCompCode())
             {
                 case "3370":
+                case "1211":
                     for (int i = 0; i < this.grvacc.Rows.Count; i++)
                     {
                         string rsircode = ((Label)this.grvacc.Rows[i].FindControl("lblgvMatCode")).Text.ToString();
@@ -822,6 +823,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3101":
                 case "3370": //cpdl
+                case "1211": //cpdl
                 case "1205": // p2p
                 case "3351": // p2p
                 case "3352": // p2p
@@ -1058,6 +1060,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 
                 case "3370":
+                case "1211":
 
                     //this.grvacc.Columns[11].Visible = false;
                     this.grvacc.Columns[12].Visible = false;
@@ -1359,6 +1362,7 @@ namespace RealERPWEB.F_12_Inv
             switch (GetCompCode())
             {
                 case "3370": //8 9col
+                case "1211": //8 9col
                     this.gvreqaprv.Columns[8].Visible = false;
                     this.gvreqaprv.Columns[9].Visible = false;
                     break;

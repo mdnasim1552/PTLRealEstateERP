@@ -243,9 +243,15 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3367":
                     gatePass = "Gate Pass";
                     approval = "Received";
+                    
+                    break;
+                case "1211":
+                    gatePass = "Gate Pass";
+                    approval = "Received";
+                    Audit = "Approval";
                     break;
 
-                case"3370":
+                case "3370":
                     gatePass = "Gate Pass";
                     approval = "Received";
                     Audit = "Approval";
@@ -404,6 +410,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkapp");
                 HyperLink hlnkapedit = (HyperLink)e.Row.FindControl("lnkgpapdit");
+                HyperLink HyInprPrintAppv = (HyperLink)e.Row.FindControl("HyInprPrintAppv");
                 string comcod = this.GetCompCode();
 
                 switch (comcod)
@@ -421,6 +428,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
                 string getpref = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "getpref")).ToString();
 
+                HyInprPrintAppv.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno + "&gpref=" + getpref + "&pType=" + "PrntRCV"; ;
                 hlnkchk.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno + "&gpref=" + getpref;
                 hlnkapedit.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=GpaEdit&genno=" + mtreqno + "&getpasno=" + getpasno + "&gpref=" + getpref;
             }
