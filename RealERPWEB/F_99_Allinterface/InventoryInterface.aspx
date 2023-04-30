@@ -1356,10 +1356,12 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
+                                               
                                                 <asp:LinkButton ID="lnkremoveap" CssClass="btn btn-xs btn-default" OnClick="lnkremoveap_Click" OnClientClick="return cofirm('Are you want to delete?');" runat="server" ToolTip="Cancel"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                 <asp:HyperLink ID="HyInprPrintAppv" runat="server" ToolTip="Print MTR Received Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
                                                 <asp:HyperLink ID="lnkapp" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Approval"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
                                                 <asp:HyperLink ID="lnkgpapdit" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Approval Edit"><span class=" fa fa-edit"></span> </asp:HyperLink>
-
+                                                
                                             </ItemTemplate>
                                             <ItemStyle Width="120px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="70px" VerticalAlign="Top" />

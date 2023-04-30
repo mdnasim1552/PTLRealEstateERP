@@ -78,6 +78,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.LinkButton btnok;
 
         /// <summary>
+        /// pnlrpttype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlrpttype;
+
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>

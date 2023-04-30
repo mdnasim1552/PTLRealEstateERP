@@ -834,6 +834,7 @@ namespace RealERPWEB.F_12_Inv
             this.gvIssue.DataSource = (DataTable)ViewState["tblIssue"];
             this.gvIssue.DataBind();
             this.FooterCalCulation();
+            
 
 
         }
@@ -1052,6 +1053,8 @@ namespace RealERPWEB.F_12_Inv
 
         protected void gvIssue_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            
+
             DataTable dt = (DataTable)ViewState["tblIssue"];
 
             int rowindex = (this.gvIssue.PageSize) * (this.gvIssue.PageIndex) + e.RowIndex;
@@ -1070,7 +1073,14 @@ namespace RealERPWEB.F_12_Inv
             }
 
             ViewState["tblIssue"] = dt;
+            
+            DataView dv = dt.DefaultView;
+            dv.RowFilter =(" rsircode <> ''");
+            DataTable dt1 = dv.ToTable();
+            ViewState["tblIssue"] = dt1;
+
             this.Data_Bind();
+            //ViewState.Remove("tblIssue");
         }
 
         protected void lnkbtn_exlup_Click(object sender, EventArgs e)
