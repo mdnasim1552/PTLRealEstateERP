@@ -421,22 +421,7 @@
     <script type="text/javascript">
 
 
-        //$(document).on('scroll','#divscroll',function(){
-        //    alert("scrool");
-        //});
-
-
-        //window.onload = function () {
-        //    var strCook = document.cookie;
-        //    console.log(strCook);
-        //    if (strCook.indexOf("!~") != 0) {
-        //        var intS = strCook.indexOf("!~");
-        //        var intE = strCook.indexOf("~!");
-        //        var strPos = strCook.substring(intS + 2, intE);
-        //        document.getElementById("divscroll").scrollTop = strPos;
-        //        //console.log("Position"+strPos);
-        //    }
-        //}
+      
 
         function Initializescroll() {
             document.cookie = "yPos=!~" + 0 + "~!";
@@ -473,7 +458,7 @@
         function pageLoaded() {
 
             try {
-                VisibilitycomNotification();
+                
 
                 $('.lbtnschedule').click(function () {
 
@@ -1125,7 +1110,7 @@
             }
 
             catch (e) {
-               // alert(e.message)
+              //  alert(e.message)
 
             }
 
