@@ -104,7 +104,7 @@
                                 <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm mt20">OK</asp:LinkButton>
                             </div>
                         </div>
-                         <div class="col-md-2">
+                         <div class="col-md-2" runat="server" id="pnlrpttype" visible="false">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label2">Report Type</asp:Label>
                                 <asp:DropDownList runat="server" ID="ddlreptype" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm">

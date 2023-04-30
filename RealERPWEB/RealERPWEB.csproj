@@ -241,11 +241,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.Design.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -255,9 +255,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3429,6 +3429,7 @@
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\IndentRequiredInterface.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
+    <Content Include="F_99_Allinterface\Inventoryprint.aspx" />
     <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
@@ -6107,6 +6108,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.designer.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.cs">
       <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>

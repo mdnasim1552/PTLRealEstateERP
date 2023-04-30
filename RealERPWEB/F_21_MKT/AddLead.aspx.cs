@@ -2995,7 +2995,7 @@ namespace RealERPWEB.F_21_MKT
                     }
                 }
 
-                if (Gcode == "0301003")
+               else if (Gcode == "0301003")
                 {
                     Phone = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                     CCC0 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
@@ -3035,7 +3035,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                 }
-                if (Gcode == "0301005")
+               else if (Gcode == "0301005")
                 {
                     altphone2 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                     CCC1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
@@ -3047,7 +3047,7 @@ namespace RealERPWEB.F_21_MKT
                     //    return;
                     //}
                 }
-                if (Gcode == "0301004")
+               else if (Gcode == "0301004")
                 {
                     altphone1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                     CCC2 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
@@ -3061,7 +3061,7 @@ namespace RealERPWEB.F_21_MKT
                     //    return;
                     //}
                 }
-                if (Gcode == "0301007")
+               else if (Gcode == "0301007")
                 {
                     email = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 

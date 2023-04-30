@@ -2439,7 +2439,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>9.13833in</Height>
+        <Height>8.45778in</Height>
         <Style />
       </Body>
       <Width>8.85501in</Width>
@@ -2681,7 +2681,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox6</rd:DefaultName>
-              <Top>0in</Top>
               <Left>0.59667in</Left>
               <Height>0.25in</Height>
               <Width>7.68333in</Width>
@@ -2702,7 +2701,6 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>12in</PageHeight>
         <PageWidth>9.2in</PageWidth>
         <LeftMargin>0.15in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
