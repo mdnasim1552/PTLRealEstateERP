@@ -2,26 +2,15 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
+   
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
     <script type="text/javascript">
 
 
-        //$(document).on('scroll','#divscroll',function(){
-        //    alert("scrool");
-        //});
 
-
-        //window.onload = function () {
-        //    var strCook = document.cookie;
-        //    console.log(strCook);
-        //    if (strCook.indexOf("!~") != 0) {
-        //        var intS = strCook.indexOf("!~");
-        //        var intE = strCook.indexOf("~!");
-        //        var strPos = strCook.substring(intS + 2, intE);
-        //        document.getElementById("divscroll").scrollTop = strPos;
-        //        //console.log("Position"+strPos);
-        //    }
-        //}
 
         function Initializescroll() {
             document.cookie = "yPos=!~" + 0 + "~!";
@@ -1953,7 +1942,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);           
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
             $(document).on("change", "#DdlDateType", function () {
                 // $("#DdlDateType").change(function () {
@@ -2004,8 +1993,7 @@
             border-radius: 0 !important;
         }
     </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="wrapper">
@@ -4559,8 +4547,6 @@
 
                             </div>
                             <div class="row">
-
-
                                 <div class="col-md-12 col-lg-12">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>

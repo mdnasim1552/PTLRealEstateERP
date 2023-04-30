@@ -47,10 +47,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     if (this.Request.QueryString.AllKeys.Contains("pType"))
                     {
-                        if (this.Request.QueryString["pType"].ToString()=="PrntRCV")
-                        {
-                            this.PrintMatTransferGenCPDL();
-                        }
+                        
                         this.printMtrRecevFAudit();
 
                     }

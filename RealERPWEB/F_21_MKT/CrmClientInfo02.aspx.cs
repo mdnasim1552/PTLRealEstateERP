@@ -5697,7 +5697,7 @@ namespace RealERPWEB.F_21_MKT
                 string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
                 string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
-                string cdate = this.txttodate.Text.Trim();
+                string cdate = this.GetFromToDate("To");
                 DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
 
                 this.rpclientinfo.DataSource = ds1.Tables[0];
