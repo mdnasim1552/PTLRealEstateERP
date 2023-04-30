@@ -3429,6 +3429,7 @@
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\IndentRequiredInterface.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
+    <Content Include="F_99_Allinterface\Inventoryprint.aspx" />
     <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
@@ -6107,6 +6108,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.designer.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.cs">
       <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
