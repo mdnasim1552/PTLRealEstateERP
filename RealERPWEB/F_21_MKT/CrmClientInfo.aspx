@@ -5624,7 +5624,7 @@
             </div>
             <div id="detnotification" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-full-width">
-                    <div class="modal-content modal-content-full-width">
+                    <div class="modal-content modal-content-full-width">tParticipants
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <i class="fa fa-hand-point-right"></i>Information </h4>
