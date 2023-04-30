@@ -134,6 +134,7 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
+            //this.DropCheck1.Items.Clear();
             this.ShowTransStatus();
         }
 

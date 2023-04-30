@@ -1399,6 +1399,8 @@ namespace RealERPWEB.F_17_Acc
             string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString()==""?"": Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");    
             string dues = ds.Tables[0].Rows[0]["duesamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
             string recvamt= ds.Tables[0].Rows[0]["trecvamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) ");
+            string project= ds.Tables[0].Rows[0]["prjdesc"].ToString() ;
+            string udesc= ds.Tables[0].Rows[0]["udesc"].ToString();            
             string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
             tempeng = tempeng.Replace("[name]", cutname);
             tempeng = tempeng.Replace("[date]", paymentdate);
@@ -1407,6 +1409,8 @@ namespace RealERPWEB.F_17_Acc
             tempeng = tempeng.Replace("[chequeno]", cheqno);           
             tempeng = tempeng.Replace("[duesamt]", dues);
             tempeng = tempeng.Replace("[recvamt]", recvamt);
+            tempeng = tempeng.Replace("[prjname]", project);
+            tempeng = tempeng.Replace("[aptname]", udesc);
 
 
             string  smtext = tempeng;
