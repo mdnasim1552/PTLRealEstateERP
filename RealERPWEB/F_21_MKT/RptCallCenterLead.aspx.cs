@@ -144,7 +144,8 @@ namespace RealERPWEB.F_21_MKT
             string comcod = hst["comcod"].ToString();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string empid = this.ddlEmp.SelectedValue.ToString();
+            string empid = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmp.SelectedValue.ToString()  ;
+          
             DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_EMP_KPI04", "RPTSOPTIMELINE", "8301%", frmdate, toDate, empid, "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -190,7 +191,7 @@ namespace RealERPWEB.F_21_MKT
             string comcod = hst["comcod"].ToString();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; ;
+            string emp = this.ddlEmp.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlEmp.SelectedValue.ToString() + "%"; 
 
             DataSet ds1 = prjData.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_KPICONVERSION", "SHOWKPICONVERSION", "8301%", frmdate, toDate, emp, "", "", "", "", "");
             if (ds1 == null)
