@@ -406,6 +406,7 @@ namespace RealEntity.C_09_PIMP
             public string flrcod { get; set; }
             public string rsircode { get; set; }
             public double pbillqty { get; set; }
+            public double bgdqty { get; set; }
             public double curbillqty { get; set; }
             public double tbillqty { get; set; }
             public double tbillamt { get; set; }

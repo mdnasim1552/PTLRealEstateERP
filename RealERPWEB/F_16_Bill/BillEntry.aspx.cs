@@ -550,7 +550,8 @@ namespace RealERPWEB.F_16_Bill
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string date = this.txtDate.Text.Trim(); string projectname = this.ddlProject.SelectedValue.ToString();
+            string date = this.txtDate.Text.Trim(); 
+            string projectname = this.ddlProject.SelectedValue.ToString();
             string srchoption = ((this.Request.QueryString["genno"].ToString().Length > 0) ? this.Request.QueryString["genno"].ToString() : "%") + "%";
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT", "GETPREBILLNO", date, srchoption, "", "", "", "", "", "", "");
@@ -1159,7 +1160,7 @@ namespace RealERPWEB.F_16_Bill
             string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string mBILLNo = this.ddlPrevList.SelectedValue.ToString();
-            string RANO = this.ddlRA.SelectedItem.Text.ToString();
+            string RANO = this.txtRefno.Text.ToString();
 
             double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billam)", "")) ? 0.00
                   : ((DataTable)Session["tblbill"]).Compute("sum(billam)", "")));
@@ -1191,8 +1192,11 @@ namespace RealERPWEB.F_16_Bill
             //Added By Nime 
             DataView dv = dt2.DefaultView;
             dv.RowFilter = ("billqty<>0");
+            DataView dv1 = dt2.DefaultView;
+            dv1.RowFilter = ("isirdesc<>''");
 
             var lst = dv.ToTable().DataTableToList<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>();
+            var lst1 = dv1.ToTable().DataTableToList<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>();
 
             if (comcod == "1205" || comcod == "1101")
             {
@@ -1200,7 +1204,7 @@ namespace RealERPWEB.F_16_Bill
             }   
             else if (comcod == "1206" || comcod == "1207")
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceAcme", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceAcme", lst1, null, null);
             }
             else
             {

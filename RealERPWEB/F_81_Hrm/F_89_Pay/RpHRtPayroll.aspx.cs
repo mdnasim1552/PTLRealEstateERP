@@ -253,7 +253,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
-                    break;
+                
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -545,14 +545,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3368":
                     this.rbtlBonSheet.SelectedIndex = 15;
                     break;
-                case "3101":
+            
                 case "3366":
                     this.rbtlBonSheet.SelectedIndex = 16;
                     break;
 
+                case "3101":
                 case "3374"://Angan Properties
                 case "3376"://Angan Development
                     this.rbtlBonSheet.SelectedIndex = 17;
+                    break;
+                case "3370"://CPDL
+                    this.rbtlBonSheet.SelectedIndex = 18;
                     break;
 
                 default://Bridge  , Terranova        
@@ -1019,7 +1023,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.lblComBonLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
             string Calltype = (this.rbtlBonSheet.SelectedIndex == 0) ? "EMPBONUS" : (this.rbtlBonSheet.SelectedIndex == 1) ? "EMPBONUS1" : (this.rbtlBonSheet.SelectedIndex == 5) ? "EMPBONUS2" : (this.rbtlBonSheet.SelectedIndex == 2) ? "EMPBONUSSAN" : (this.rbtlBonSheet.SelectedIndex == 6) ? "EMPBONUSBRIDGE" : (this.rbtlBonSheet.SelectedIndex == 7) ? "EMPBONUSALLIANCE"
                 : (this.rbtlBonSheet.SelectedIndex == 8) ? "EMPBONUSGEN" : (this.rbtlBonSheet.SelectedIndex == 10) ? "EMPBONUSTROPICAL" : (this.rbtlBonSheet.SelectedIndex == 11) ? "EMPBONUSPEBSTEEL" : (this.rbtlBonSheet.SelectedIndex == 12) ? "EMPBONUSGREENWOOD" : (this.rbtlBonSheet.SelectedIndex == 13) ? "EMPBONUSBTI" : (this.rbtlBonSheet.SelectedIndex == 14) ? "EMPBONUSEDISON" 
-                : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : (this.rbtlBonSheet.SelectedIndex == 16) ? "EMPBONUSLANCO": (this.rbtlBonSheet.SelectedIndex == 17) ? "EMPBONUSANGAN" : "EMPBONUSGEN";
+                : (this.rbtlBonSheet.SelectedIndex == 15) ? "EMPBONUSFINLAY" : (this.rbtlBonSheet.SelectedIndex == 16) ? "EMPBONUSLANCO": (this.rbtlBonSheet.SelectedIndex == 17) ? "EMPBONUSANGAN" : (this.rbtlBonSheet.SelectedIndex == 18) ? "EMPBONUSCPDL" : "EMPBONUSGEN";
             string afterdays = Convert.ToDouble("0" + this.txtafterdays.Text.Trim()).ToString();
             string comgross = this.Companygross();
             string bonpaytype = this.companyBonusPayType();
@@ -3925,6 +3929,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.PrintBonusAngan();
                         break;
 
+                    case "3370"://Cpdl
+                        this.PrintBonusCPDL();
+                        break;
+
                     default:
                         this.PrintBonusSheet();
                         break;
@@ -3955,6 +3963,40 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var lst = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
             double tAmt = lst.Select(p => p.bonamt).Sum();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetAngan", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptname", "Festival Bonus of " + bonusType + " for the Year' " + frmdate));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("Inword", "In Word: " + ASTUtility.Trans(tAmt, 2)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+
+        private void PrintBonusCPDL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = this.ddlCompany.SelectedItem.Text;
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("yyyy");
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt3 = (DataTable)Session["tblpay"];
+            var lst = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.BonusSheet>();
+            double tAmt = lst.Select(p => p.bonamt).Sum();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusSheetCPDL", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
@@ -4051,7 +4093,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compname", this.ddlCompany.SelectedItem.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("rpttitle", "Speical Purpose Bonus"));
+            //Rpt1.SetParameters(new ReportParameter("rpttitle", "Speical Purpose Bonus"));
+            Rpt1.SetParameters(new ReportParameter("rpttitle", "Profit Bonus"));
+
             Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("date1", frmdate));
@@ -4985,6 +5029,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     break;
 
+           
                 case "3368": //Finlay 
                     i = 0;
                     foreach (GridViewRow gv1 in this.gvBonus.Rows)
@@ -5010,6 +5055,69 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         i++;
                     }
                     break;
+                case "3370"://CPDL
+                    i = 0;
+                    foreach (GridViewRow gv1 in this.gvBonus.Rows)
+                    {
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBonusAmt")).Text.Trim());
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());
+                        double bankamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double bankamt2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvBankAmt2bon")).Text.Trim()); ;
+                        double cashamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvcashAmtbon")).Text.Trim()); ;
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bankamt > 0 ? bankamt : 0.00;
+                        dt.Rows[rowindex]["cashamt"] = cashamt > 0 ? cashamt : 0.00;
+                        i++;
+                    }
+                    break;
+
+
+
+
+                case "3101":
+                case "3374": //Angan
+                case "3376":
+                    for (i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+
+                        double perbonus = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("lgPerBonus")).Text.Replace("%", "").Trim());
+                        double gssal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvGsalb")).Text.Trim());
+                        double bsal = Convert.ToDouble("0" + ((Label)this.gvBonus.Rows[i].FindControl("lgvBasicb")).Text.Trim());                      
+                        double bonamt = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvBonusAmt")).Text.Trim());
+                        double bankamt1  = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvBankAmtbon")).Text.Trim());
+                        double cashamt1 = Convert.ToDouble("0" + ((TextBox)this.gvBonus.Rows[i].FindControl("txtgvcashAmtbon")).Text.Trim());
+
+
+               
+
+                        //double bonamt = bsal * 0.01 * perbonus;
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+
+
+                        double bankamta = Convert.ToDouble(dt.Rows[rowindex]["bankamta"]);
+                        double cashamta = Convert.ToDouble(dt.Rows[rowindex]["cashamta"]);
+                        string bankgrp = dt.Rows[rowindex]["bankgrp"].ToString();
+                        string empconfirm = dt.Rows[rowindex]["empconfirm"].ToString();
+
+                        double bankamt = (bankgrp.Length >0) ? bankamt1==0 ? 0 : bonamt == bankamt1 ? bonamt: (bonamt*50*.01) : 0.00;
+                        double bankamt2 =(bankgrp == "b2") ? (bonamt - (bankamta + cashamta)) : bankamta;                       
+                        double cashamt = (bankgrp.Length > 0) ? cashamt1==0.00?0.00: bonamt == cashamt1 ? bonamt : (bonamt * 50 * .01) : bonamt;
+
+
+                        dt.Rows[rowindex]["perbon"] = perbonus;
+                        dt.Rows[rowindex]["bonamt"] = bonamt;
+                        dt.Rows[rowindex]["bankamt"] = bankamt;
+                        dt.Rows[rowindex]["bankamt2"] = bankamt2;
+                        dt.Rows[rowindex]["cashamt"] = cashamt;
+
+                    }
+                    break;
+
+
+
                 default:
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
                     {

@@ -12,19 +12,43 @@
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
-        function pageLoaded() {
+        function pageLoaded()
+        {
 
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
+            try {
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
 
 
-            var gridview = $('#<%=this.gvReqInfo.ClientID %>');
-            $.keynavigation(gridview);
-            //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-            $('.chzn-select').chosen({ search_contains: true });
+                var gridview = $('#<%=this.gvReqInfo.ClientID %>');
+                $.keynavigation(gridview);
+                //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+                $('.chzn-select').chosen({ search_contains: true });
 
+
+<%--               var comcod =<%=this.GetCompCode()%>;
+                switch (comcod)
+                {                   
+                    case 3354://Edison
+                    case 3101:
+                        $('#<%=this.ibtncalextender.ClientId()%>').css({ "display": "" });
+                        break;
+
+
+                    default:
+                        $('#ibtncalextender').css({ "display": "none" });
+                      
+                        break;
+                }--%>
+            }
+
+            catch (e)
+            {
+                alert(e.message);
+
+            }
 
 
 
@@ -319,15 +343,15 @@
                                                 <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClientClick="return Confirmation();" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvUseDat"  runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                <asp:TextBox ID="txtgvUseDat"   runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
                                                     Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
 
 
-
+                                                <asp:ImageButton  runat="server" ID="ibtncalextender"  ImageUrl="~/Image/calender.png"  style="width:20px; height:20px;"/>
                                               
-                                                <%-- <cc1:CalendarExtender ID="txtgvUseDat_CalendarExtender" runat="server"
-                                                        Format="dd-MMM-yyyy"  PopupButtonID="imgbtn" ></cc1:CalendarExtender>--%>
+                                                 <cc1:CalendarExtender ID="txtgvUseDat_CalendarExtender" runat="server" 
+                                                        Format="dd-MMM-yyyy"   TargetControlID="txtgvUseDat" PopupButtonID="ibtncalextender" ></cc1:CalendarExtender>
 
                                                 
                                                 

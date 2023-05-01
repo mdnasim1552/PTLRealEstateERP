@@ -186,6 +186,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.CheckBox chkBonus;
 
         /// <summary>
+        /// chkspBon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkspBon;
+
+        /// <summary>
+        /// chckFitr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chckFitr;
+
+        /// <summary>
+        /// chckAdha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chckAdha;
+
+        /// <summary>
         /// chklksalary control.
         /// </summary>
         /// <remarks>

@@ -36,9 +36,15 @@ namespace RealERPWEB.F_23_CR
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lFinalUpdate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+        }
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(this.Request.UrlReferrer.ToString());
         }
 
         private void CreateTable()

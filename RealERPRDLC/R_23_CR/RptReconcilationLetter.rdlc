@@ -40,11 +40,19 @@ Assalamu Alaikum.</Value>
                 <TextRuns>
                   <TextRun>
                     <Value>
-We are happy to inform you that we have received Tk. </Value>
+We are happy to inform you that we have received </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
                       <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>Tk. </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -52,11 +60,11 @@ We are happy to inform you that we have received Tk. </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> (In Word: </Value>
+                    <Value> ( In Word:</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -68,12 +76,11 @@ We are happy to inform you that we have received Tk. </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>)
-as of  </Value>
+                    <Value>) as of  </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -105,7 +112,7 @@ as of  </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> of Finlay </Value>
+                    <Value> of </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -117,7 +124,7 @@ as of  </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -174,7 +181,7 @@ Finlay Properties Limited</Value>
       <Width>7.775in</Width>
       <Page>
         <PageHeader>
-          <Height>0.78333in</Height>
+          <Height>1.1in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -182,62 +189,16 @@ Finlay Properties Limited</Value>
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.15556in</Top>
-              <Left>2.79945in</Left>
-              <Height>0.55833in</Height>
-              <Width>0.79167in</Width>
+              <Top>0.31389in</Top>
+              <Left>3.32445in</Left>
+              <Height>0.71666in</Height>
+              <Width>1.275in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
               </Style>
             </Image>
-            <Textbox Name="Textbox4">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>FinlaY</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>16pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Properties Limited</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.15556in</Top>
-              <Left>3.74389in</Left>
-              <Height>0.55833in</Height>
-              <Width>1.475in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
           </ReportItems>
           <Style>
             <Border>

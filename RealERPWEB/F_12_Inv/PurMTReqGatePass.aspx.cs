@@ -53,11 +53,11 @@ namespace RealERPWEB.F_12_Inv
                 {
 
                 }
+               
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
 
-                //((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
-
-                // ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["title"].ToString();
-                this.txtCurAprovDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
+                    // ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["title"].ToString();
+                    this.txtCurAprovDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurAprovDate_CalendarExtender.EndDate = System.DateTime.Today;
             }
 
@@ -230,7 +230,7 @@ namespace RealERPWEB.F_12_Inv
             //         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
+       
         protected string GetStdDate(string Date1)
         {
            

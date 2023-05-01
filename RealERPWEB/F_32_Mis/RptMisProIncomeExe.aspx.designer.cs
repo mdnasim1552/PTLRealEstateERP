@@ -39,7 +39,7 @@ namespace RealERPWEB.F_32_Mis
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Panel1;
 
         /// <summary>
         /// lblDaterange0 control.

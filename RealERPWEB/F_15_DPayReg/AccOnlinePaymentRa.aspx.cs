@@ -299,15 +299,27 @@ namespace RealERPWEB.F_15_DPayReg
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
 
-
+            string comcod = this.GetCompCode();
             string Type = this.Request.QueryString["Type"].ToString();
             switch (Type)
             {
                 case "ChequeReady":
                     this.UpdateChequeReady();
+                    switch (comcod) 
+                    {
+                        case "3370"://CPDL
+                       // case "3101"://Model
+                            this.UpdateChequeApproval();
+                            break;
+
+                        default:
+                            break;
+
+
+
+                    }
+
                     break;
-
-
 
                 case "ChequeApproval":
                     this.UpdateChequeApproval();
@@ -529,9 +541,14 @@ namespace RealERPWEB.F_15_DPayReg
 
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblpayment"];
-            string slnum = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvslnum")).Text.Trim();
+            // string slnum = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvslnum")).Text.Trim();
+            
+            string slnum = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvslnum1")).Text.Trim();           
+            string billno1 = ((Label)this.gvPayment.Rows[e.RowIndex].FindControl("lbgvbillno1")).Text.Trim();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYAPP", slnum, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            //string ChequeApproval = this.Request.QueryString["Type"].ToString().Trim()== "ChequeApproval"? "ChequeApproval":"";
+         
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYAPP", slnum, billno1, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -540,7 +557,8 @@ namespace RealERPWEB.F_15_DPayReg
             }
 
             DataView dv = dt.DefaultView;
-            dv.RowFilter = ("slnum<>'" + slnum + "'");
+            dv.RowFilter = ("billno1<>'" + billno1 + "'");
+            // dv.RowFilter = ("slnum<>'" + slnum + "'");
             ViewState.Remove("tblpayment");
             ViewState["tblpayment"] = dv.ToTable();
             ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Row";

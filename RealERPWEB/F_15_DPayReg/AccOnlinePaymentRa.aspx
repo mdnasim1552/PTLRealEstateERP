@@ -109,7 +109,7 @@
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slnum1")) %>'
                                             Width="70px"></asp:Label>
 
-                                        <asp:Label ID="Label3" runat="server" BorderColor="#99CCFF" Visible="false" BorderStyle="Solid"
+                                        <asp:Label ID="lbgvslnum1" runat="server" BorderColor="#99CCFF" Visible="false" BorderStyle="Solid"
                                             BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slnum")) %>'
                                             Width="70px"></asp:Label>
 
@@ -117,6 +117,15 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                 </asp:TemplateField>
 
+
+                                    <asp:TemplateField HeaderText="Bill No" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbgvbillno1" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                            BorderWidth="0px" Style="text-align: Left; background-color: Transparent" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno1")) %>'
+                                            Width="90px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="12px" />
+                                </asp:TemplateField>
 
 
                                 <asp:TemplateField HeaderText="Bill No">

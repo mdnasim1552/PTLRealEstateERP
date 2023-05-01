@@ -3,74 +3,81 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
-    <script type="text/javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+   
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-            //var date = new Date();
-
-            //var day = ("0" + date.getDate()).slice(-2);
-            //var month = ("0" + (date.getMonth() + 1)).slice(-2);
-
-            //var today = date.getFullYear() + "-" + (month) + "-" + (day);
-
-            //$('#TxtFdate').val(today);
-            //$('#TxtTdate').val(today);
-            $(document).on("change", "#DdlDateType", function () {
-                // $("#DdlDateType").change(function () {
-                var status = this.value;
-                // alert(status);
-                if (status == "7") {
-                    $("#exampleModalSm").modal("toggle");
-                }
-
-            });
-            $('.po-markup > .po-link').popover({
-                sanitize: false,
-                html: true,
-                trigger: 'click',
-                // must have if HTML is contained in popover
-
-                // get the title and conent
-                title: function () {
-                    return $(this).parent().find('.po-title').html();
-                },
-                content: function () {
-                    return $(this).parent().find('.po-body').html();
-                },
-
-                container: 'body',
-                placement: 'bottom'
-
-            });
-        });
-        function pageLoaded() {
-            try {
-
-                $("#btnInterface").click(function () {
-                    //specify your URL here..
-                    window.open('../F_21_MKT/CrmClientInfo02?Type=Entry','_blank')
-                   
-                });
-                $("#btnSalesFunnel").click(function () {
-                    window.open('../F_21_Mkt/RptSalesFunnel', '_blank')
-
-                });
-
-            }
-            catch (e) {
-
-            }
-        };
-    </script>
+     <link href="../Content/crm-new-dashboard.css" rel="stylesheet" />
+ 
     <style>
         .popover {
             min-width: 27%;
         }
     </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+       <script type="text/javascript">
+           $(document).ready(function () {
+               try {
+
+
+                   Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+                   $(document).on("change", "#DdlDateType", function () {
+                       // $("#DdlDateType").change(function () {
+                       var status = this.value;
+                       // alert(status);
+                       if (status == "7") {
+                           $("#exampleModalSm").modal("toggle");
+                       }
+
+                   });
+                   $('.po-markup > .po-link').popover({
+                       sanitize: false,
+                       html: true,
+                       trigger: 'click',
+                       // must have if HTML is contained in popover
+
+                       // get the title and conent
+                       title: function () {
+                           return $(this).parent().find('.po-title').html();
+                       },
+                       content: function () {
+                           return $(this).parent().find('.po-body').html();
+                       },
+
+                       container: 'body',
+                       placement: 'bottom'
+
+                   });
+               }
+               catch (e) {
+                   alert(e.message);
+               }
+           });
+           function pageLoaded() {
+               try {
+
+
+
+                   $("#btnInterface").click(function () {
+                       //specify your URL here..
+                     
+                       window.open('../F_21_MKT/CrmClientInfo02?Type=Entry', '_blank');
+
+                   });
+                   $("#btnSalesFunnel").click(function () {
+                       window.open('../F_21_Mkt/RptSalesFunnel', '_blank');
+
+                   });
+
+               }
+               catch (e) {
+                   alert(e.message);
+
+               }
+           };
+       </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -177,7 +184,7 @@
                             </div>
                             <div class="col-md-5 align-self-end">
                                 <div class="d-flex justify-content-end">
-                                    <button class="mmbd-btn mmbd-btn-primary" id="btnInterface">
+                                    <button class="mmbd-btn mmbd-btn-primary"  id="btnInterface">
                                         <img
                                             src="../assets/new-ui/images/equalizer.svg"
                                             alt="CRM Interface"
@@ -195,7 +202,7 @@
                         <div class="statistic mt-3">
                             <div class="row">
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
+                                    <asp:HyperLink class="card-color h-100" ID="DHypQuery" Target="_blank" runat="server">
                                         <div class="card-body card-light-warning">
                                             <div class="card-title" id="Widget_Query" runat="server"></div>
                                             <div class="card-subtitle">Query</div>
@@ -207,11 +214,11 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
+                                    <asp:HyperLink Target="_blank" ID="DHypLead" runat="server" class="card-color h-100">
                                         <div class="card-body card-light-purple">
                                             <div class="card-title" id="Widget_Lead" runat="server"></div>
                                             <div class="card-subtitle">Lead</div>
@@ -228,12 +235,12 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-primary">
+                                     <asp:HyperLink runat="server" ID="DHypQLead" Target="_blank" class="card-color h-100">
+                                      <div class="card-body card-light-primary">
                                             <div class="card-title" id="Widget_QLead" runat="server"></div>
                                             <div class="card-subtitle">Qualified Lead</div>
                                             <ul class="p-0 mb-0">
@@ -248,13 +255,14 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                              </div>
+                                        </asp:HyperLink>
+                                  
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-success">
+                                     <asp:HyperLink ID="DHypNego" class="card-color h-100" runat="server" Target="_blank">
+                                       <div class="card-body card-light-success" >
                                             <div class="card-title" id="Widget_Nego" runat="server"></div>
                                             <div class="card-subtitle">Negotiation</div>
                                             <ul class="p-0 mb-0">
@@ -269,22 +277,24 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                           </div>
+                                        </asp:HyperLink>
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-success">
+                                     <asp:HyperLink ID="DHypSold" class="card-color h-100" runat="server" Target="_blank">
+                                     <div class="card-body card-light-success" >
                                             <div class="card-title" id="Widget_Sold" runat="server"></div>
                                             <div class="card-subtitle">Sold</div>
-                                        </div>
-                                    </div>
+                                         </div>
+                                         </asp:HyperLink>
+                                   
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-primary">
+                                    <asp:HyperLink ID="DHypHold" class="card-color h-100" Target="_blank" runat="server">
+                                        <div class="card-body card-light-primary" >
                                             <div class="card-title" id="Widget_Hold" runat="server"></div>
                                             <div class="card-subtitle">Hold</div>
                                             <ul class="p-0 mb-0">
@@ -300,12 +310,14 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </asp:HyperLink>
+                                
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-purple">
+                                    <asp:HyperLink ID="DHypClose" class="card-color h-100" runat="server" Target="_blank">
+                                      <div  class="card-body card-light-purple" >
                                             <div class="card-title" id="Widget_close" runat="server"></div>
                                             <div class="card-subtitle">Close</div>
                                             <ul class="p-0 mb-0">
@@ -320,17 +332,19 @@
                                                     <span>50</span>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                          </div>
+                                        </asp:HyperLink>
+                                    
                                 </div>
                                 <!-- END -->
                                 <div class="col-6 col-lg-3 mb-3">
-                                    <div class="card-color h-100">
-                                        <div class="card-body card-light-danger">
+                                      <asp:HyperLink class="card-color h-100" ID="DHypLost" runat="server" Target="_blank">
+                                    <div  class="card-body card-light-danger" >
                                             <div class="card-title" id="Widget_lost" runat="server">10</div>
                                             <div class="card-subtitle">Lost</div>
                                         </div>
-                                    </div>
+                                        </asp:HyperLink>
+                                   
                                 </div>
                                 <!-- END -->
                             </div>
@@ -354,10 +368,10 @@
                                                             class="symbol symbol-60px symbol-light">
                                                             <div class="symbol-label" id="TodoScheduleWOrk" runat="server"></div>
                                                         </a>
-                                                        <a href="#" class="list-body">
+                                                        <asp:HyperLink ID="HypTodoScheduleWork" Target="_blank" runat="server" CssClass="list-body" >
                                                             <div class="list-title">Schedule Work</div>
                                                             <div class="list-para">Updated in 2 Days</div>
-                                                        </a>
+                                                        </asp:HyperLink>
                                                     </div>
                                                 </div>
                                                 <div class="col-6 col-md-4 col-lg-3">
@@ -368,12 +382,12 @@
                                                             class="symbol symbol-60px symbol-light">
                                                             <div class="symbol-label" id="TodoDailyWorkReport" runat="server"></div>
                                                         </a>
-                                                        <a href="#" class="list-body">
+                                                         <asp:HyperLink ID="HypTodoDailyWorkRpt" Target="_blank" runat="server" CssClass="list-body" >                                                       
                                                             <div class="list-title">
                                                                 Daily Work Report
                                                             </div>
                                                             <div class="list-para">Updated in 2 Days</div>
-                                                        </a>
+                                                         </asp:HyperLink>
                                                     </div>
                                                 </div>
                                                 <div class="col-6 col-md-4 col-lg-3">
@@ -1166,7 +1180,7 @@
                                                         </asp:TemplateField>
 
                                                     </Columns>
-                                                    <PagerStyle CssClass="table-pagination" />
+                                                    <PagerStyle CssClass="" />
                                                 </asp:GridView>
                                             </div>
                                             <div class="row">

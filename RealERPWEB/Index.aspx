@@ -379,6 +379,7 @@
 
                         }
                     },
+
                     series: [{
                         name: 'Purchase',
                         data: [purdata[0].ttlsalamtcore,
@@ -416,7 +417,9 @@
                             purdata[11].tpayamtcore
                         ],
                         color: 'black'
-                    }]
+                        }]
+
+                   
                 });
 
                 //End of Purchase
@@ -2709,7 +2712,7 @@
 
                                                     </asp:DropDownList>
                                                     <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                        <asp:ListItem Value="00" Selected>All Months</asp:ListItem>
+                                                        <asp:ListItem Value="00" Selected="True">All Months</asp:ListItem>
                                                         <asp:ListItem Value="Jan">Jan</asp:ListItem>
                                                         <asp:ListItem Value="Feb">Feb</asp:ListItem>
                                                         <asp:ListItem Value="Mar">Mar</asp:ListItem>
@@ -3156,7 +3159,7 @@
 
                                             </div>
                                         </div>
-                                        <div id="purchartG" style="width: 90%; max-height: 280px;"></div>
+                                      <div id="purchartG" style="width: 90%; max-height: 280px;"></div>
                                     </div>
                                     <div class="tab-pane fade" id="Accountsg">
                                         <div class="row ">

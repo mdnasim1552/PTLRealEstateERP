@@ -96,6 +96,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.LinkButton LbtnOk;
 
         /// <summary>
+        /// DHypQuery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypQuery;
+
+        /// <summary>
         /// Widget_Query control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_Query;
+
+        /// <summary>
+        /// DHypLead control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypLead;
 
         /// <summary>
         /// Widget_Lead control.
@@ -114,6 +132,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_Lead;
 
         /// <summary>
+        /// DHypQLead control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypQLead;
+
+        /// <summary>
         /// Widget_QLead control.
         /// </summary>
         /// <remarks>
@@ -121,6 +148,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_QLead;
+
+        /// <summary>
+        /// DHypNego control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypNego;
 
         /// <summary>
         /// Widget_Nego control.
@@ -132,6 +168,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_Nego;
 
         /// <summary>
+        /// DHypSold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypSold;
+
+        /// <summary>
         /// Widget_Sold control.
         /// </summary>
         /// <remarks>
@@ -139,6 +184,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_Sold;
+
+        /// <summary>
+        /// DHypHold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypHold;
 
         /// <summary>
         /// Widget_Hold control.
@@ -150,6 +204,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_Hold;
 
         /// <summary>
+        /// DHypClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypClose;
+
+        /// <summary>
         /// Widget_close control.
         /// </summary>
         /// <remarks>
@@ -157,6 +220,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Widget_close;
+
+        /// <summary>
+        /// DHypLost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink DHypLost;
 
         /// <summary>
         /// Widget_lost control.
@@ -177,6 +249,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TodoScheduleWOrk;
 
         /// <summary>
+        /// HypTodoScheduleWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypTodoScheduleWork;
+
+        /// <summary>
         /// TodoDailyWorkReport control.
         /// </summary>
         /// <remarks>
@@ -184,6 +265,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TodoDailyWorkReport;
+
+        /// <summary>
+        /// HypTodoDailyWorkRpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypTodoDailyWorkRpt;
 
         /// <summary>
         /// TodoTodayVisit control.

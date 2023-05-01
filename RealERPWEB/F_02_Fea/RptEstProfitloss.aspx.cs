@@ -716,7 +716,7 @@ namespace RealERPWEB.F_02_Fea
                             //spsalincest = txtestcost;
                             //spsalincacutal = txtactual;
 
-                            spsalincest = comitedval * percnt * .01; ;
+                            spsalincest = 0.00 ;
                             spsalincacutal = actualsalvalue * percnt * .01;
 
 
@@ -1715,8 +1715,10 @@ namespace RealERPWEB.F_02_Fea
                         actualsalvalue = Convert.ToDouble("0" + (lblactualsal1.Text));
 
                         dt3.Select("estgcod='11003'")[0]["estcost"] = comitedval - tarpurAndB;//02005 change
-                        dt3.Select("estgcod='11003'")[0]["tarpercntange"] = actualsalvalue - todaypurAndB;
-                        dt3.Select("estgcod='11003'")[0]["actual"] = 0.00;
+                        dt3.Select("estgcod='11003'")[0]["actual"] = actualsalvalue - todaypurAndB;
+                        dt3.Select("estgcod='11003'")[0]["tarpercntange"] = 0.00;
+
+                        
 
 
                         // dt.Select("estgcod='02000'")[0]["balamt"] = cost - actual;

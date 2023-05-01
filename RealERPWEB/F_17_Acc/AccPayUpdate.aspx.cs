@@ -43,6 +43,9 @@ namespace RealERPWEB.F_17_Acc
                 this.txttodate.Text = System.DateTime.Today.AddYears(1).ToString("dd-MMM-yyyy");
 
                 this.txtVouDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtVouDate_CalendarExtender.EndDate = System.DateTime.Today;
+
+
                 string Type = this.Request.QueryString["Type"].ToString();
                 this.GetBankName();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;

@@ -240,6 +240,7 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3101":
                 case "3370":
+                case "1211":
                     this.printCPDL_cs();
                     break;
                 default:

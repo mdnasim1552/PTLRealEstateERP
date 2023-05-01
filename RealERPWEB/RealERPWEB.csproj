@@ -221,29 +221,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Release\Microsoft.QualityTools.Testing.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes.resources">
-      <HintPath>..\..\bin\Release\ja\Microsoft.QualityTools.Testing.Fakes.resources.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design.resources">
-      <HintPath>..\..\bin\Release\ja\Microsoft.ReportViewer.Design.resources.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel">
-      <HintPath>..\..\bin\Release\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms">
-      <HintPath>..\..\bin\Release\Microsoft.ReportViewer.WebForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>F:\binwebrdlc\REAlwebBIn\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2443,9 +2443,11 @@
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
+    <Content Include="F_21_MKT\AddLead.aspx" />
     <Content Include="F_21_MKT\CrmClientInfo02.aspx" />
     <Content Include="F_21_MKT\CrmPolicy.aspx" />
     <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
+    <Content Include="F_21_MKT\KPIGeneralCode.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\LostProspect.aspx" />
     <Content Include="F_21_MKT\LostProspectTransfer.aspx" />
@@ -3027,6 +3029,7 @@
     <Content Include="F_34_Mgt\OtherReqEntry02.aspx" />
     <Content Include="F_34_Mgt\PayProUpdate.aspx" />
     <Content Include="F_34_Mgt\PayTypCodeBook.aspx" />
+    <Content Include="F_34_Mgt\PrintChequeStatus.aspx" />
     <Content Include="F_34_Mgt\ProjectClosing.aspx" />
     <Content Include="F_34_Mgt\PurReqAdjst.aspx" />
     <Content Include="F_34_Mgt\ResetPassword.aspx" />
@@ -3365,6 +3368,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
@@ -3422,6 +3426,7 @@
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\IndentRequiredInterface.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
+    <Content Include="F_99_Allinterface\Inventoryprint.aspx" />
     <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
@@ -3600,6 +3605,7 @@
     <Content Include="Image\CONS2.png" />
     <Content Include="Image\counterpoint.PNG" />
     <Content Include="Image\CR.png" />
+    <Content Include="Image\cube_userImage.png" />
     <Content Include="Image\D1.png" />
     <Content Include="Image\DDImage.bmp" />
     <Content Include="Image\discussion.svg" />
@@ -4174,12 +4180,14 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
     <Fakes Include="Fakes\Antlr3.Runtime.fakes" />
+    <Content Include="Content\custom.scss" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
     <Fakes Include="Fakes\CrystalDecisions.CrystalReports.Design.fakes" />
     <Fakes Include="Fakes\Microsoft.ReportViewer.WinForms.fakes" />
+    <Fakes Include="Fakes\Microsoft.ReportViewer.DataVisualization.fakes" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -4621,6 +4629,13 @@
     <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
       <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\AddLead.aspx.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\AddLead.aspx.designer.cs">
+      <DependentUpon>AddLead.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\CrmClientInfo02.aspx.cs">
       <DependentUpon>CrmClientInfo02.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4641,6 +4656,13 @@
     </Compile>
     <Compile Include="F_21_MKT\FunnelAnalysis.aspx.designer.cs">
       <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\KPIGeneralCode.aspx.cs">
+      <DependentUpon>KPIGeneralCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\KPIGeneralCode.aspx.designer.cs">
+      <DependentUpon>KPIGeneralCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
@@ -5257,6 +5279,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\DeviceIPSetup.aspx.designer.cs">
       <DependentUpon>DeviceIPSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\PrintChequeStatus.aspx.cs">
+      <DependentUpon>PrintChequeStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\PrintChequeStatus.aspx.designer.cs">
+      <DependentUpon>PrintChequeStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
@@ -5944,6 +5973,13 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
       <DependentUpon>EmpAttApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeSrcCriteria.aspx.designer.cs">
+      <DependentUpon>EmployeeSrcCriteria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.cs">
       <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6069,6 +6105,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\Inventoryprint.aspx.designer.cs">
+      <DependentUpon>Inventoryprint.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.cs">
       <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
@@ -13270,6 +13313,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\AIimage\" />
+    <Folder Include="CV\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
@@ -13288,8 +13332,6 @@
     <Content Include="ASITMaster.Master" />
     <Content Include="ASITNEW.Master" />
     <Content Include="FileUploadHandler.ashx" />
-    <Content Include="CV\Text.docx" />
-    <Content Include="CV\Uzzal CV1.docx" />
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />

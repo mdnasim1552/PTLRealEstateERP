@@ -274,6 +274,8 @@ namespace RealERPWEB.F_24_CC
                 case "260000000":
                 case "290000000":
                 case "300000000":
+                case "320000000":
+
                     this.gvAddWork.Columns[5].Visible = false;
                     this.gvAddWork.Columns[6].Visible = false;
                     this.gvAddWork.Columns[7].Visible = false;
@@ -1385,6 +1387,10 @@ namespace RealERPWEB.F_24_CC
                         case "3317":
                         case "3364": //jbs
                         case "3367": //epic
+                        case "3374": //Angan
+                        case "3376": //Angan propertise
+
+
                             break;
                         default:
                             approval = "approval";
@@ -1401,6 +1407,8 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3374": //Angan
+                        case "3376": //Angan propertise
                             break;
                     }
                     break;
@@ -1413,6 +1421,8 @@ namespace RealERPWEB.F_24_CC
                         case "3316":
                         case "3317":
                         case "3364": //jbs
+                        case "3374": //Angan
+                        case "3376": //Angan propertise
                             break;
                     }
                     break;
@@ -1427,6 +1437,8 @@ namespace RealERPWEB.F_24_CC
                         case "3317":
                         case "3364": //jbs
                         case "3367": //EPIC
+                        case "3374": //Angan
+                        case "3376": //Angan propertise
                             approval = "approval";
                             break;
                     }

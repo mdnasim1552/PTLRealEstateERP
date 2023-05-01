@@ -133,8 +133,8 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[6].HeaderText = "Date";
                     this.gvSummary.Columns[8].HeaderText = "Customer's Name";
                     this.gvSummary.Columns[5].Visible = true; // for pid show
-                    // this.gvSummary.Columns[8].Visible = false;                
-                    this.gvSummary.Columns[11].Visible = false;
+                                  
+                  //  this.gvSummary.Columns[11].Visible = false;//Associative
                     this.gvSummary.Columns[12].Visible = false;
                     this.gvSummary.Columns[13].Visible = false;
                     this.gvSummary.Columns[23].Visible = false;
@@ -5611,10 +5611,11 @@ namespace RealERPWEB.F_21_MKT
                 this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
                 this.lblProfession.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["profession"].ToString() : ds1.Tables[0].Rows[0]["profession"].ToString();
                 // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["sourcetxt"].ToString() : ds1.Tables[0].Rows[0]["sourcetxt"].ToString();
-                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
-                                            : (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
+                // this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ? (ds1.Tables[1].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")")
+                //: (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? this.lblSource.InnerText : this.lblSource.InnerText + "(" + ds1.Tables[1].Rows[0]["irpersonname"].ToString() + ")");
 
-
+                this.lblSource.InnerText = ds1.Tables[0].Rows.Count == 0 ?"": (ds1.Tables[0].Rows[0]["irpersonname"].ToString() == "" ? ds1.Tables[0].Rows[0]["sourcetxt"].ToString()
+                                                : "IR" + "(" + (ds1.Tables[0].Rows[0]["irpersonname"].ToString()) + ")");
 
 
                 this.hdlpreleadst.Value = ds1.Tables[1].Rows[0]["prestcode"].ToString();
@@ -6260,6 +6261,7 @@ namespace RealERPWEB.F_21_MKT
                         ////////////////
                         //////// this below code disbale lead status apply for all company
                         //////////  Nahid 20221222
+                        ///
                         int index = 0;
                         string holdLost = "";
                         DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
@@ -6271,30 +6273,33 @@ namespace RealERPWEB.F_21_MKT
                                 holdLost = "hold_lost";//rows[0]["gcod"].ToString();
                             }
                         }
-                        if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
+                        switch (comcod)
                         {
-                            index = index - 1;
-                            for (int p = 0; p < index; p++)
-                            {
-
-
-
-                                if (p < index)
+                            case "3348"://CHL
+                                break;
+                            default:                             
+                                if (holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
                                 {
-                                    ChkBoxLstStatus.Items[p].Enabled = false;
+                                    index = index - 1;
+                                    for (int p = 0; p < index; p++)
+                                    {
+
+
+
+                                        if (p < index)
+                                        {
+                                            ChkBoxLstStatus.Items[p].Enabled = false;
+                                        }
+
+
+                                        //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
+                                        //{
+                                        //    ChkBoxLstStatus.Items[p].Enabled = false;
+                                        //}
+                                    }
                                 }
-
-
-                                //if (lstleadstatus == "9501002" && p == 6 && comcod == "3101"  && comcod == "3354")
-                                //{
-                                //    ChkBoxLstStatus.Items[p].Enabled = false;
-                                //}
-                            }
+                                break;
                         }
-
-
-                        //
-
 
                         //Lost, Hold & Close Enabled
                         switch (comcod)

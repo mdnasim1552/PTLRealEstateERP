@@ -85,6 +85,7 @@ namespace RealERPWEB.F_14_Pro
                             break;
                     }
                 }
+                this.Get_Vat_Tax();
                 string ordero = this.Request.QueryString["genno"].ToString().Trim();
                 if (ordero.Length > 0)
                 {
@@ -92,6 +93,7 @@ namespace RealERPWEB.F_14_Pro
                     {
                         this.lbtnPrevOrderList_Click(null, null);
                         this.lbtnOk_Click(null, null);
+                       
                     }
                 }
             }
@@ -182,14 +184,19 @@ namespace RealERPWEB.F_14_Pro
                 string hostname = scheme+"://" + host + port + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
                 **/
                 string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
-                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath;
-                string currentptah = "F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
+                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+                string currentptah = "PurchasePrint.aspx?Type=OrderPrintNew&orderno=" + orderno;
+                string totalpath = hostname + currentptah;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+                
+                //Response.Redirect(currentptah);
+                //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+                //string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
                 //string totalpath = hostname + currentptah;
                 //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-                
-                Response.Redirect(currentptah);
+
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
 
             }
@@ -863,123 +870,130 @@ namespace RealERPWEB.F_14_Pro
 
         protected void Get_Pur_Order_Info()
         {
-
-            string comcod = this.GetCompCode();
-            string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
-            string mOrderNo = "NEWORDER";
-            string typecod = this.ddltypecod.SelectedValue;
-            if (comcod == "3301" || comcod == "2301" || comcod == "1301")
+            try
             {
-                this.lblReqNarr.Text = "Special Notes:- ";
-            }
-            if (this.ddlPrevOrderList.Items.Count > 0)
-            {
-                // this.ddlSuplierList.Items.Clear();
-                this.txtCurOrderDate.Enabled = false;
-                this.lblissueno.Enabled = false;
-                mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
-            }
-
-            DataTable dt2 = (DataTable)ViewState["tblProject"];
-            string pactcode = "";
-            if (dt2 != null)
-            {
-                for (int i = 0; i < dt2.Rows.Count; i++)
+                string comcod = this.GetCompCode();
+                string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
+                string mOrderNo = "NEWORDER";
+                string typecod = this.ddltypecod.SelectedValue;
+                if (comcod == "3301" || comcod == "2301" || comcod == "1301")
                 {
-                    pactcode += dt2.Rows[i]["pactcode"].ToString();
+                    this.lblReqNarr.Text = "Special Notes:- ";
                 }
-            }
+                if (this.ddlPrevOrderList.Items.Count > 0)
+                {
+                    // this.ddlSuplierList.Items.Clear();
+                    this.txtCurOrderDate.Enabled = false;
+                    this.lblissueno.Enabled = false;
+                    mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
+                }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            ViewState["dsOrder"] = ds1;
-            ViewState["tblOrder"] = this.HiddenSameData(ds1.Tables[0]);
-            ViewState["purtermcon"] = ds1.Tables[1];
+                DataTable dt2 = (DataTable)ViewState["tblProject"];
+                string pactcode = "";
+                if (dt2 != null)
+                {
+                    for (int i = 0; i < dt2.Rows.Count; i++)
+                    {
+                        pactcode += dt2.Rows[i]["pactcode"].ToString();
+                    }
+                }
 
-            this.gvOrderTerms.DataSource = ds1.Tables[1];
-            this.gvOrderTerms.DataBind();
-            // Modified by emdad 08.06.2021
-
-            //switch (comcod)
-            //{
-
-            //    //case "3335":
-
-            //    //    if (this.ddlPrevOrderList.Items.Count > 0)
-            //    //    {
-            //    //        this.gvOrderTerms.DataSource = ds1.Tables[1];
-            //    //        this.gvOrderTerms.DataBind();
-
-            //    //    }
-
-            //        break;
-            //    default:
-            //        this.gvOrderTerms.DataSource = ds1.Tables[1];
-            //        this.gvOrderTerms.DataBind();
-            //        break;
-            //}
-            //if (comcod != "3335" || comcod != "3101")
-            //{
-            //    this.gvOrderTerms.DataSource = ds1.Tables[1];
-            //    this.gvOrderTerms.DataBind();
-            //}
-
-            if (comcod == "3338")
-            {
-                gvOrderTerms.Columns[2].Visible = false;
-            }
-
-            ViewState["tblpaysch"] = ds1.Tables[2];
-            this.SchData_Bind();
-
-
-            if (mOrderNo == "NEWORDER")
-            {
-
-                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", CurDate1, "", "", "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
-                if (ds1.Tables[0].Rows.Count > 0)
+                ViewState["dsOrder"] = ds1;
+                ViewState["tblOrder"] = this.HiddenSameData(ds1.Tables[0]);
+                ViewState["purtermcon"] = ds1.Tables[1];
+
+                this.gvOrderTerms.DataSource = ds1.Tables[1];
+                this.gvOrderTerms.DataBind();
+                // Modified by emdad 08.06.2021
+
+                //switch (comcod)
+                //{
+
+                //    //case "3335":
+
+                //    //    if (this.ddlPrevOrderList.Items.Count > 0)
+                //    //    {
+                //    //        this.gvOrderTerms.DataSource = ds1.Tables[1];
+                //    //        this.gvOrderTerms.DataBind();
+
+                //    //    }
+
+                //        break;
+                //    default:
+                //        this.gvOrderTerms.DataSource = ds1.Tables[1];
+                //        this.gvOrderTerms.DataBind();
+                //        break;
+                //}
+                //if (comcod != "3335" || comcod != "3101")
+                //{
+                //    this.gvOrderTerms.DataSource = ds1.Tables[1];
+                //    this.gvOrderTerms.DataBind();
+                //}
+
+                if (comcod == "3338")
                 {
-                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(0, 6);
-                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(6, 5);
+                    gvOrderTerms.Columns[2].Visible = false;
                 }
 
-                switch (comcod)
+                ViewState["tblpaysch"] = ds1.Tables[2];
+                this.SchData_Bind();
+
+
+                if (mOrderNo == "NEWORDER")
                 {
-                    case "1108":
-                    case "1109":
-                    case "3315":
-                    case "3316":
-                    case "3317":
-                    //case "3101":
-                    case "5101":
-                    case "3330":
-                        this.GetIssueNO();
-                        break;
+
+                    ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", CurDate1, "", "", "", "", "", "", "", "");
+                    if (ds1 == null)
+                        return;
+                    if (ds1.Tables[0].Rows.Count > 0)
+                    {
+                        this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(0, 6);
+                        this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(6, 5);
+                    }
+
+                    switch (comcod)
+                    {
+                        case "1108":
+                        case "1109":
+                        case "3315":
+                        case "3316":
+                        case "3317":
+                        //case "3101":
+                        case "5101":
+                        case "3330":
+                            this.GetIssueNO();
+                            break;
+                    }
+                    return;
                 }
-                return;
+
+                this.lblCurOrderNo1.Text = ds1.Tables[3].Rows[0]["orderno1"].ToString().Substring(0, 6);
+                this.txtCurOrderNo2.Text = ds1.Tables[3].Rows[0]["orderno1"].ToString().Substring(6, 5);
+                this.txtOrderRefNo.Text = ds1.Tables[3].Rows[0]["pordref"].ToString();
+                this.txtLETDES.Text = ds1.Tables[3].Rows[0]["leterdes"].ToString();
+                this.txtSubject.Text = ds1.Tables[3].Rows[0]["subject"].ToString();
+
+                this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
+                this.txtPreparedBy.Text = ds1.Tables[3].Rows[0]["pordbydes"].ToString();
+                this.lssircode.Text = ds1.Tables[3].Rows[0]["ssircode"].ToString();
+                this.txtApprovedBy.Text = ds1.Tables[3].Rows[0]["appbydes"].ToString();
+                this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
+                this.txtOrderNarr.Text = ds1.Tables[3].Rows[0]["pordnar"].ToString();
+                this.txtadvAmt.Text = Convert.ToDouble(ds1.Tables[3].Rows[0]["advamt"]).ToString("#,##0;(#,##0); ");
+                this.lblissueno.Text = ds1.Tables[3].Rows[0]["oissueno"].ToString();
+
+                this.txtOrderNarrP.Text = ds1.Tables[3].Rows[0]["terms"].ToString();
+                this.ddlvat.SelectedValue = ds1.Tables[0].Rows[0]["vatcode"].ToString();
+                this.ddltax.SelectedValue = ds1.Tables[0].Rows[0]["taxcode"].ToString();
+
+                this.gvOrderInfo_DataBind();
+            }catch(Exception exp)
+            {
+
             }
-
-            this.lblCurOrderNo1.Text = ds1.Tables[3].Rows[0]["orderno1"].ToString().Substring(0, 6);
-            this.txtCurOrderNo2.Text = ds1.Tables[3].Rows[0]["orderno1"].ToString().Substring(6, 5);
-            this.txtOrderRefNo.Text = ds1.Tables[3].Rows[0]["pordref"].ToString();
-            this.txtLETDES.Text = ds1.Tables[3].Rows[0]["leterdes"].ToString();
-            this.txtSubject.Text = ds1.Tables[3].Rows[0]["subject"].ToString();
-
-            this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
-            this.txtPreparedBy.Text = ds1.Tables[3].Rows[0]["pordbydes"].ToString();
-            this.lssircode.Text = ds1.Tables[3].Rows[0]["ssircode"].ToString();
-            this.txtApprovedBy.Text = ds1.Tables[3].Rows[0]["appbydes"].ToString();
-            this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
-            this.txtOrderNarr.Text = ds1.Tables[3].Rows[0]["pordnar"].ToString();
-            this.txtadvAmt.Text = Convert.ToDouble(ds1.Tables[3].Rows[0]["advamt"]).ToString("#,##0;(#,##0); ");
-            this.lblissueno.Text = ds1.Tables[3].Rows[0]["oissueno"].ToString();
-
-            this.txtOrderNarrP.Text = ds1.Tables[3].Rows[0]["terms"].ToString();
-
-            this.gvOrderInfo_DataBind();
         }
         protected void gvOrderInfo_DataBind()
         {
@@ -987,6 +1001,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblOrder"]);
             this.gvOrderInfo.DataSource = tbl1;
             this.gvOrderInfo.DataBind();
+            
 
             //if (this.ddlPrevOrderList.Items.Count > 0)
             //{

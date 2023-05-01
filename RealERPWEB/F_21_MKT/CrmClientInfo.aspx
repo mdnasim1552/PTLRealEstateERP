@@ -3483,7 +3483,7 @@
                                                 <%--5--%>
                                                 <asp:TemplateField HeaderText="P-ID">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lsircode1" runat="server" Width="40px"
+                                                        <asp:Label ID="lsircode1" runat="server" Width="50px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -5624,7 +5624,7 @@
             </div>
             <div id="detnotification" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-full-width">
-                    <div class="modal-content modal-content-full-width">
+                    <div class="modal-content modal-content-full-width">tParticipants
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <i class="fa fa-hand-point-right"></i>Information </h4>

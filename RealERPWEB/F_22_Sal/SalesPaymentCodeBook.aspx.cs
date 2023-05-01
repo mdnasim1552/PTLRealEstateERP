@@ -67,8 +67,13 @@ namespace RealERPWEB.F_22_Sal
             {
 
 
+
+
                 string comcod = this.GetCompCode();
-                string Code = (this.Request.QueryString["Type"].ToString() == "Mkt") ? "80" : "81";
+                string Code = (this.Request.QueryString["Type"].ToString() == "Mkt") ? "80" : (this.Request.QueryString["Type"].ToString() == "Sales")? "81":"59";
+
+
+
                 DataSet dsone = this.da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTSALEPAYCODE",
                                 Code, "", "", "", "", "", "", "", "");
                 this.ddlSalPayment.DataTextField = "gdesc";
@@ -85,19 +90,14 @@ namespace RealERPWEB.F_22_Sal
 
         private void LoadGrid()
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
+           
             string comcod = this.GetCompCode();
             string tempddl1 = (this.ddlSalPayment.SelectedValue.ToString()).Substring(0, 2);
             string tempddl2 = this.ddlOthersBookSegment.SelectedValue.ToString().Trim();
 
             DataSet ds1 = this.da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTINFO", tempddl1,
                             tempddl2, "", "", "", "", "", "", "");
-            //if (ds1.Tables[0].Rows.Count == 0)
-            //{
-            //    this.lnknewentry.Visible = true;
-
-            //}
+           
             Session["storedata"] = ds1.Tables[0];
             this.gvPaySch_DataBind();
 
@@ -117,6 +117,38 @@ namespace RealERPWEB.F_22_Sal
 
             this.gvPaySch.EditIndex = e.NewEditIndex;
             this.gvPaySch_DataBind();
+            string comcod = this.GetCompCode();
+            string gcod = ((Label)gvPaySch.Rows[e.NewEditIndex].FindControl("lblgrcode")).Text.Trim();
+            string gcode1 = ((Label)gvPaySch.Rows[e.NewEditIndex].FindControl("lblgrcode")).Text.Trim();
+            string gcode2 = ((Label)gvPaySch.Rows[e.NewEditIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
+            gcod = gcode1.Substring(0, 2) + gcode2;
+            int rowindex = (gvPaySch.PageSize) * (this.gvPaySch.PageIndex) + e.NewEditIndex;
+            string floorcode = ((DataTable)Session["storedata"]).Rows[rowindex]["floorcode"].ToString();
+           
+            Panel pnl02 = (Panel)this.gvPaySch.Rows[e.NewEditIndex].FindControl("Panelmapping");
+            DropDownList ddl2 = (DropDownList)this.gvPaySch.Rows[e.NewEditIndex].FindControl("ddlFloorCode");
+
+            if (gcod.Substring(0, 2) == "59" && ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000")
+            {
+             
+
+
+              
+                DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETFLOORCODE", "%%", "", "", "", "", "", "", "", "");
+                ddl2.DataTextField = "flrdesc";
+                ddl2.DataValueField = "floorcode";
+                ddl2.DataSource = ds1;
+                ddl2.DataBind();
+                ddl2.SelectedValue = floorcode;
+                pnl02.Visible = true;
+            }
+            else
+            {
+                pnl02.Visible = false;
+                ddl2.Items.Clear();
+
+            }
+
         }
         protected void gvPaySch_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
@@ -138,8 +170,9 @@ namespace RealERPWEB.F_22_Sal
 
                 string gtype = ((TextBox)this.gvPaySch.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
                 string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+                string floorcode = ((DropDownList)gvPaySch.Rows[e.RowIndex].FindControl("ddlFloorCode")).SelectedValue.Trim();
                 bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPSALINF", tgcod,
-                               gdesc, Gtype, "0", "", "", gdescbn, "", "", "", "", "", "", "", "");
+                               gdesc, Gtype, "0", "", "", gdescbn, floorcode, "", "", "", "", "", "", "");
 
                 if (result == true)
                 {

@@ -246,33 +246,39 @@ namespace RealERPWEB.F_23_CR
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-            if (this.lbtnOk.Text == "Ok")
+            try
             {
-                this.lbtnOk.Text = "New";
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
-                this.lblCustomer.Text = (this.ddlCustomer.Items.Count == 0) ? "" : this.ddlCustomer.SelectedItem.Text.Substring(13);
-                this.ddlProjectName.Visible = false;
-                this.ddlCustomer.Visible = false;
-                this.lblProjectdesc.Visible = true;
-                this.lblCustomer.Visible = (this.ddlCustomer.Items.Count == 0) ? false : true;
-                this.PnlMoneyReceipt.Visible = true;
-                this.GetLastMrNo();
-                this.PayType();
-                this.BillNo();
-                this.GetSalesOrCustCare();
-                return;
+                if (this.lbtnOk.Text == "Ok")
+                {
+                    this.lbtnOk.Text = "New";
+                    this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                    this.lblCustomer.Text = (this.ddlCustomer.Items.Count == 0) ? "" : this.ddlCustomer.SelectedItem.Text.Substring(13);
+                    this.ddlProjectName.Visible = false;
+                    this.ddlCustomer.Visible = false;
+                    this.lblProjectdesc.Visible = true;
+                    this.lblCustomer.Visible = (this.ddlCustomer.Items.Count == 0) ? false : true;
+                    this.PnlMoneyReceipt.Visible = true;
+                    this.GetLastMrNo();
+                    this.PayType();
+                    this.BillNo();
+                    this.GetSalesOrCustCare();
+                    return;
+                }
+                Session.Remove("tblfincoll");
+                this.lbtnOk.Text = "Ok";
+                this.ddlProjectName.Visible = true;
+                this.ddlCustomer.Visible = true;
+                this.lblProjectdesc.Visible = false;
+                this.lblCustomer.Visible = false;
+                this.PnlMoneyReceipt.Visible = false;
+                this.gvMoneyreceipt.DataSource = null;
+                this.ddlPreMrr.Items.Clear();
+                this.gvMoneyreceipt.DataBind();
+                this.Clearmrscreen();
+            }catch(Exception exp)
+            {
+                
             }
-            Session.Remove("tblfincoll");
-            this.lbtnOk.Text = "Ok";
-            this.ddlProjectName.Visible = true;
-            this.ddlCustomer.Visible = true;
-            this.lblProjectdesc.Visible = false;
-            this.lblCustomer.Visible = false;
-            this.PnlMoneyReceipt.Visible = false;
-            this.gvMoneyreceipt.DataSource = null;
-            this.ddlPreMrr.Items.Clear();
-            this.gvMoneyreceipt.DataBind();
-            this.Clearmrscreen();
 
         }
 
@@ -736,7 +742,7 @@ namespace RealERPWEB.F_23_CR
 
                 if (tbl1.Rows.Count > 0)
                 {
-                    ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0;(#,##0); -");
+                    ((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(paidamount)", "")) ? 0.00 : tbl1.Compute("Sum(paidamount)", ""))).ToString("#,##0.00;(#,##0.00); -");
 
                 }
             }
@@ -956,12 +962,12 @@ namespace RealERPWEB.F_23_CR
                     string userid = hst["usrid"].ToString();
                     string Terminal = hst["compname"].ToString();
                     string Sessionid = hst["session"].ToString();
-                    string PostedByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
-                    string Posttrmid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-                    string PostSession = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-                    string Posteddat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-                    string EditByid = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
-                    string Editdat = (this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    string PostedByid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
+                    string Posttrmid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+                    string PostSession = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
+                    string Posteddat = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                    string EditByid = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "" : userid;
+                    string Editdat = (this.Request.QueryString["type"] == "AIBilling" || this.Request.QueryString["type"] == "CustCare" || this.Request.QueryString["type"] == "Billing") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                     DataTable dt1 = (DataTable)Session["tblfincoll"];
                     bool result = true;
@@ -1010,7 +1016,7 @@ namespace RealERPWEB.F_23_CR
                     string Type = this.Request.QueryString["Type"];
 
 
-                    if (Type == "CustCare" || Type == "Billing")
+                    if (Type == "CustCare" || Type == "Billing" || Type=="AIBilling")
                     {
                         switch (comcod)
                         {

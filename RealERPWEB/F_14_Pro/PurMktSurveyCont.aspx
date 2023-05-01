@@ -232,7 +232,7 @@
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"
-                                OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated">
+                                OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated" OnRowCommand="gvMSRInfo2_RowCommand">
                                 <PagerSettings Visible="False" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
@@ -342,7 +342,9 @@
 
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValue" runat="server" OnClick="lbtnSameValue_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
-                                        </HeaderTemplate>
+
+                                             <asp:Button runat="server" Text="Copy Rate" CommandArgument="rate1" />
+                                            </HeaderTemplate>
 
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnMSRUpdate" runat="server" OnClick="lbtnMSRUpdate_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
@@ -386,7 +388,9 @@
                                     <asp:TemplateField HeaderText="Rate">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueB" runat="server" OnClick="lbtnSameValueB_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
-                                        </HeaderTemplate>
+                                             <asp:Button runat="server" Text="Copy Rate" CommandArgument="rate2" />
+                                      
+                                            </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate2" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -419,7 +423,8 @@
                                     <asp:TemplateField HeaderText="Rate">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueC" runat="server" OnClick="lbtnSameValueC_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
-                                        </HeaderTemplate>
+                                                  <asp:Button runat="server" Text="Copy Rate" CommandArgument="rate3" />
+                                            </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate3" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -454,7 +459,8 @@
                                     <asp:TemplateField HeaderText="Rate">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueD" runat="server" OnClick="lbtnSameValueD_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
-                                        </HeaderTemplate>
+                                                  <asp:Button runat="server" Text="Copy Rate" CommandArgument="rate4" />
+                                            </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate4" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -487,7 +493,9 @@
                                     <asp:TemplateField HeaderText="Rate">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lbtnSameValueE" runat="server" OnClick="lbtnSameValueE_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
-                                        </HeaderTemplate>
+                                                  <asp:Button runat="server" Text="Copy Rate" CommandArgument="rate5" />
+                                       
+                                            </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate5" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"

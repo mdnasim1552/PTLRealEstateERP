@@ -4,7 +4,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+  
+    
+    
+   
     <script type="text/javascript" language="javascript">
+        
+
+
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('.chzn-select').chosen({ search_contains: true });
@@ -21,6 +28,10 @@
 
     </script>
     <style type="text/css">
+       
+
+
+
         .table th, .table td {
             padding: 4px;
         }
@@ -36,6 +47,19 @@
             height: 29px !important;
             line-height: 28px !important;
         }
+
+
+        .bglandowner {
+     background:#A020F0;
+}
+
+
+       
+
+
+
+      
+
     </style>
 
     <div class="RealProgressbar">
@@ -55,7 +79,7 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
-    <div class="card mt-4 mb-1">
+    <div class="card card-fluid mb-1">
         <div class="card-body">
             <div class="row mb-4">
                 <div class="col-md-5 pading5px asitCol5 d-none">
@@ -94,6 +118,7 @@
                         <span class="badge badge-lg badge-danger bg-red">Sold</span>
                         <span class="badge badge-lg badge-success">Unsold</span>
                         <span class="badge badge-lg badge-primary bg-blue">Mgt Booking</span>
+                          <span class="badge badge-lg badge-primary bglandowner">Land Owner</span>
                     </div>
                 </div>
             </div>
@@ -357,19 +382,23 @@
 
             <div id="divgvChart" visible="false" runat="server">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <asp:Label ID="Label5" runat="server" CssClass="form-lable" Text="Unit Type"></asp:Label>
-                        <asp:DropDownList ID="ddlUnitType" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlUnitType_SelectedIndexChanged" TabIndex="4">
+                        <asp:DropDownList ID="ddlUnitType" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="4">
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="Label2" runat="server" CssClass="form-lable" Text="Group Name"></asp:Label>
-                        <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
+                    <div class="col-md-2">
+                        <asp:Label ID="Label2" runat="server" CssClass="form-lable" Text="Owner Type"></asp:Label>
+                        <asp:DropDownList ID="ddlowner" runat="server" CssClass="chzn-select form-control form-control-sm"  TabIndex="4">
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3">
-                        <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Category Name"></asp:Label>
-                        <asp:DropDownList ID="ddlFloor" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="4">
+                    <div class="col-md-2">
+                        <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Status"></asp:Label>
+                        <asp:DropDownList ID="ddlstatus" runat="server" CssClass="chzn-select form-control form-control-sm"  TabIndex="4">
+                            <asp:ListItem Value="Unsold">Available</asp:ListItem>
+                            <asp:ListItem Value="Sale">Sold</asp:ListItem>
+                            <asp:ListItem Value="MGTBooking">Reserved</asp:ListItem>
+                              <asp:ListItem Value="All" Selected="true">All</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>

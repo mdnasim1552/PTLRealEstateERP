@@ -92,11 +92,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6  ">
+                        <div class="col-lg-5 col-md-5 col-sm-6  ">
                             <div class="form-group">
                                 <asp:Label ID="Label3" CssClass="d-block" runat="server">Type of Catagory</asp:Label>
 
                                 <asp:CheckBox ID="chkBonus" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Festival Bonus" />
+                                <asp:CheckBox ID="chkspBon" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Sp. Bonus" />
+
+                                <asp:CheckBox ID="chckFitr" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Eid(Fitr)" />
+                                <asp:CheckBox ID="chckAdha" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Eid(Adha)" />
+
+
                                 <asp:CheckBox ID="chklksalary" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Previous" />
                                 <asp:CheckBox ID="ChkAll" runat="server" CssClass="checkBox" Style="height: 25px !important;" Text="Bank Wise" />
                             </div>
@@ -105,7 +111,7 @@
                                 <asp:Label ID="lblBankLock" runat="server" CssClass="form-control " Visible="False" Width="233"></asp:Label>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-5 col-sm-6  ">
+                        <div class="col-lg-2 col-md-5 col-sm-6  ">
                             <div class="form-group">
                             <asp:Label ID="Label4" runat="server">Type of Employee</asp:Label>
 
@@ -117,7 +123,7 @@
                         </div>
 
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-1 col-md-1 col-sm-6">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">

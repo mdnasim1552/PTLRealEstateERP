@@ -45,7 +45,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Disbursement") ? "Summary of Disbursement" :
                 //    (this.Request.QueryString["Type"].ToString().Trim() == "TopSalary") ? "Salary Top Sheet" : (this.Request.QueryString["Type"].ToString().Trim() == "TopSheetPID") ? "Salary Top Sheet (Project)" :
                 //    "EMPLOYEE SALARY SUMMARY INFORMATION ";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 GetEmployeeName();
    
                 
@@ -121,10 +120,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.rbtnlistsaltypeAddItem();
                             break;
                         case "3354":
-                            this.PnlDesign.Visible = true;
+                            this.divfrmd.Visible = true;
+                            this.divtdeg.Visible = true;
                             break;
                         case "3365": // BTI 
-                            this.PnlDesign.Visible = false;
+                            this.divfrmd.Visible = false;
+                            this.divtdeg.Visible = false;
                             break;
                     }
                     break;
@@ -138,6 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashBonus":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.MultiView1.ActiveViewIndex = 3;
                     this.GetDesignation();
@@ -146,17 +148,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     {
                         case "3101":
                         case "3354"://Edison Real Estate
-                            this.PnlDesign.Visible = true;
+                            this.divfrmd.Visible = true;
+                            this.divtdeg.Visible = true;
                             break;
                     }
                     break;
 
                 case "BonusSummary":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
 
                 case "BonPaySlip":
+                    this.divchkBonustype.Visible = true;
                     this.chkBonustype.Visible = true;
                     this.lnkbtnShow.Visible = false;
                     break;
@@ -201,6 +206,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (comcod)
             {
                 case "3355":
+                    this.divrbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Items.Add(new ListItem("Management", "1"));
                     this.rbtnlistsaltype.Items.Add(new ListItem("Acting Management", "2"));
@@ -211,6 +217,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 //default acme
                 default:
+                    this.divrbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Visible = true;
                     this.rbtnlistsaltype.Items.Add(new ListItem("Management", "1"));
                     this.rbtnlistsaltype.Items.Add(new ListItem("Non Management", "2"));
@@ -1865,18 +1872,38 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         //}
         private void SaveValue()
         {
-            Session.Remove("tblcashpay");
-            DataTable dt = (DataTable)Session["tblSalSum"];
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            DataTable dt = new DataTable();
             int rowindex;
-
-            for (int i = 0; i < this.gvcashpay.Rows.Count; i++)
+            switch (type)
             {
-                string ischeck = ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked ? "True" : "False";
-                rowindex = (this.gvcashpay.PageSize) * (this.gvcashpay.PageIndex) + i;
-                dt.Rows[rowindex]["ischeck"] = ischeck;
-            }
+               
+                case "CashSalary":
+                    Session.Remove("tblcashpay");
+                    dt = (DataTable)Session["tblSalSum"];
+                    for (int i = 0; i < this.gvcashpay.Rows.Count; i++)
+                    {
+                        string ischeck = ((CheckBox)this.gvcashpay.Rows[i].FindControl("chkMerge")).Checked ? "True" : "False";
+                        rowindex = (this.gvcashpay.PageSize) * (this.gvcashpay.PageIndex) + i;
+                        dt.Rows[rowindex]["ischeck"] = ischeck;
+                    }
 
-            Session["tblcashpay"] = dt;
+                    Session["tblcashpay"] = dt;
+                    break;
+                case "CashBonus":
+                    dt = (DataTable)Session["tblSalSum"];
+                    for (int i = 0; i < this.gvBonus.Rows.Count; i++)
+                    {
+                        string ischeck = ((CheckBox)this.gvBonus.Rows[i].FindControl("chkMergeBonus")).Checked ? "True" : "False";
+                        rowindex = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                        dt.Rows[rowindex]["ischeck"] = ischeck;
+                    }
+
+                    Session["tblSalSum"] = dt;
+                    break;
+
+            }
+            
         }
 
 
@@ -2141,9 +2168,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
             string frmdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
             string dat2 = ASTUtility.Right(frmdate, 4);
+            double netpay = 0.0;
 
             frmdate = frmdate.ToUpper();
             string bonusType = (this.chkBonustype.Checked) ? " EID-UL-ADHA" : "EID-UL-FITR";
@@ -2157,18 +2186,48 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonusEdison", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     break;
+                case "3374":
+                case "3376":
+                    SaveValue();
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = ("ischeck='True'");
+                    dt = dv.ToTable();
+                    list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptBonusPayAngan", list, null, null);
+                    Rpt1.EnableExternalImages = true;                                      
+                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptEmpBonus", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     break;
-            }           
+            }
+            switch (comcod)
+            {
+                case "3374":
+                case "3376":
+                    printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                    date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
+                    date = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+                    netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ? 0.00 : dt.Compute("sum(bonamt)", "")));
+                    Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+                    Rpt1.SetParameters(new ReportParameter("rptTitle", "Bonus Statement (Cash)"));
+                    Rpt1.SetParameters(new ReportParameter("txtDate", bonusType + " for the Month of : " + date));
+                    Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpay, 2)));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                    Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+                    break;
+                default:
+                    Rpt1.SetParameters(new ReportParameter("compName", comname));
+                    Rpt1.SetParameters(new ReportParameter("bonusType", "FESTIVAL BONUS OF " + bonusType + " (Cash)"));
+                    Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
+                    Rpt1.SetParameters(new ReportParameter("txtDuration", "Duration In Month"));
+                    Rpt1.SetParameters(new ReportParameter("tkInWord", "In Word: " + ASTUtility.Trans(tbonamt, 2)));
+                    Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+                    break;
 
-            Rpt1.SetParameters(new ReportParameter("compName", comname));
-            Rpt1.SetParameters(new ReportParameter("bonusType", "FESTIVAL BONUS OF " + bonusType + " (Cash)"));
-            Rpt1.SetParameters(new ReportParameter("txtDate", frmdate));
-            Rpt1.SetParameters(new ReportParameter("txtDuration", "Duration In Month"));
-            Rpt1.SetParameters(new ReportParameter("tkInWord", "In Word: " + ASTUtility.Trans(tbonamt, 2)));
-            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+            }
+
+            
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
@@ -2545,6 +2604,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void gvBonus_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.SaveValue();
             this.gvBonus.PageIndex = e.NewPageIndex;
             this.Data_Bind();
 
@@ -3418,6 +3478,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             /* Verifies that the control is rendered */
         }
 
-         
+        protected void chkMergeAllBonus_CheckedChanged(object sender, EventArgs e)
+        {
+            int i, index;
+            if (((CheckBox)this.gvBonus.HeaderRow.FindControl("chkMergeAllBonus")).Checked)
+            {
+                for (i = 0; i < this.gvBonus.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvBonus.Rows[i].FindControl("chkMergeBonus")).Checked = true;
+                    index = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                }
+            }
+            else
+            {
+                for (i = 0; i < this.gvBonus.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvBonus.Rows[i].FindControl("chkMergeBonus")).Checked = false;
+                    index = (this.gvBonus.PageSize) * (this.gvBonus.PageIndex) + i;
+                }
+
+            }
+        }
     }
 }

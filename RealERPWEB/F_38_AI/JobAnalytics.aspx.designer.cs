@@ -33,67 +33,58 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// engst control.
+        /// lbltotalbatch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl engst;
+        protected global::System.Web.UI.WebControls.Label lbltotalbatch;
 
         /// <summary>
-        /// lblprjname control.
+        /// lbltotalqa1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprjname;
+        protected global::System.Web.UI.WebControls.Label lbltotalqa1;
 
         /// <summary>
-        /// lblprjtype control.
+        /// lbltotalqa2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprjtype;
+        protected global::System.Web.UI.WebControls.Label lbltotalqa2;
 
         /// <summary>
-        /// lblwktype control.
+        /// lbltotalqa3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblwktype;
+        protected global::System.Web.UI.WebControls.Label lbltotalqa3;
 
         /// <summary>
-        /// lblcreatedat control.
+        /// lbltotaltask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcreatedat;
+        protected global::System.Web.UI.WebControls.Label lbltotaltask;
 
         /// <summary>
-        /// lblqty control.
+        /// lblcomplete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblqty;
-
-        /// <summary>
-        /// lblcusname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcusname;
+        protected global::System.Web.UI.WebControls.Label lblcomplete;
 
         /// <summary>
         /// doninstnace control.
@@ -105,40 +96,76 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl doninstnace;
 
         /// <summary>
-        /// attinstance control.
+        /// lblprjquantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl attinstance;
+        protected global::System.Web.UI.WebControls.Label lblprjquantity;
 
         /// <summary>
-        /// qaspent control.
+        /// projtecthour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qaspent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl projtecthour;
 
         /// <summary>
-        /// annotspent control.
+        /// annotorspent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl annotspent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl annotorspent;
 
         /// <summary>
-        /// adminspnt control.
+        /// Totalhour1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl adminspnt;
+        protected global::System.Web.UI.WebControls.Label Totalhour1;
+
+        /// <summary>
+        /// qa1spent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qa1spent;
+
+        /// <summary>
+        /// lbltotalhour2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltotalhour2;
+
+        /// <summary>
+        /// qa2spnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl qa2spnt;
+
+        /// <summary>
+        /// lbltotalhour3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltotalhour3;
 
         /// <summary>
         /// ttlskip control.

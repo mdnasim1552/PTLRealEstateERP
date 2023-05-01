@@ -58,7 +58,7 @@ namespace RealERPWEB.F_17_Acc
                 this.lblPage.Visible = false;
                 this.ddlpagesize.Visible = false;
                 this.txtSrchRes.Text = "";
-                if ((Request.QueryString["Type"].ToString().Trim() == "ASPayment") || (Request.QueryString["Type"].ToString().Trim() == "AConPayment") || (Request.QueryString["Type"].ToString().Trim() == "ASupConPayment"))
+                if ((Request.QueryString["Type"].ToString().Trim() == "ASPayment") || (Request.QueryString["Type"].ToString().Trim() == "AConPayment") || (Request.QueryString["Type"].ToString().Trim() == "ASupConPayment") || (Request.QueryString["Type"].ToString().Trim() == "SubContractorPayment"))
                 {
                     this.lblcontrolAccResCode.Visible = false;
                     this.txtSrchRes.Visible = false;
@@ -75,13 +75,20 @@ namespace RealERPWEB.F_17_Acc
                     this.chkContractor.Visible = true;
                     this.LoadAllSupplier();
                 }
-
+                if (Request.QueryString["Type"].ToString().Trim() == "SubContractorPayment")
+                {
+                    this.chkSupplier.Visible = false;
+                    this.chkContractor.Visible = true;
+                    this.chkContractor.Checked = true;
+                    this.chkContractor.Enabled = false;
+                    this.LoadAllSupplier();
+                }
                 if (Request.QueryString["Type"].ToString().Trim() == "AConPayment")
                 {
                     this.chkSupplier.Visible = true;
                     this.chkSupplier.Text = "Without balance";
                 }
-
+                
                 if ((Request.QueryString["Type"].ToString().Trim() == "Adv"))
                 {
                     this.lblGroup.Visible = true;
@@ -188,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
-
+                case "SubContractorPayment":
                 case "ASupConPayment":
                     this.PrintAllSOrConPayment();
                     break;
@@ -865,6 +872,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+                case "SubContractorPayment":
                 case "ASupConPayment":
                     this.MultiView1.ActiveViewIndex = 6;
                     this.ShowAllSupOrConPayment();
@@ -1129,7 +1137,7 @@ namespace RealERPWEB.F_17_Acc
             string frmdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
             string SupOrConCode = (Request.QueryString["Type"].ToString().Trim() == "ASPayment") ? "99"
-                : (Request.QueryString["Type"].ToString().Trim() == "ASupConPayment") ? (this.chkContractor.Checked ? "98" : this.chkSupplier.Checked ? "99" : "9[89]") : "98";
+                : (Request.QueryString["Type"].ToString().Trim() == "ASupConPayment") ? (this.chkContractor.Checked ? "98" : this.chkSupplier.Checked ? "99" : "9[89]") : (Request.QueryString["Type"].ToString().Trim() == "SubContractorPayment") ? "98" :"98";
             string Rescode = ((Request.QueryString["Type"].ToString().Trim() == "Adv") ? this.ddlConAccResHead.SelectedValue.Substring(0, 4).ToString() : SupOrConCode) + "%";
 
 
@@ -1283,6 +1291,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "ASupConPayment":
+                case "SubContractorPayment":
                     Session["Report1"] = gvAllSubAconBill;
                     ((HyperLink)this.gvAllSubAconBill.HeaderRow.FindControl("hlbtntbCdataExelalsasub")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
@@ -1569,6 +1578,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 case "ASupConPayment":
+                case "SubContractorPayment":
                     this.gvAllSubAconBill.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvAllSubAconBill.DataSource = (DataTable)Session["tblspledger"];
                     this.gvAllSubAconBill.DataBind();
